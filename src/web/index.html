@@ -26,6 +26,12 @@
         >
         <label
           >Sort by<select name="sort">
+            <option value="totalBeforeDelivery">
+              Package price before delivery
+            </option>
+            <option value="totalAfterDelivery">
+              Package price after delivery
+            </option>
             <option value="costPerProteinGramBeforeDelivery">
               Protein cost before delivery
             </option>
@@ -107,7 +113,11 @@
       </form>
       <p id="status" role="status"></p>
       <p id="coverage" role="status"></p>
-      <h2>Manufacturer-verified specifications</h2>
+      <h2>Captured prices and specifications</h2>
+      <p>
+        Prices are sorted using the selected metric. Each row shows its
+        verification status. Offers missing that metric are listed below.
+      </p>
       <div class="table-wrap">
         <table>
           <thead>

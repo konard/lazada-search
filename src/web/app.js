@@ -54,13 +54,23 @@ async function calculate(event) {
     if (!response.ok) {
       throw new Error(result.error);
     }
-    const rows = result.comparisons
-      .filter((entry) => entry.manufacturerVerified)
-      .map(({ product, offer, metrics, eligible, problems }) => {
+    const rows = result.observedPrices.map(
+      ({
+        product,
+        offer,
+        metrics,
+        eligible,
+        manufacturerVerified,
+        problems,
+      }) => {
         const row = document.createElement('tr');
         const cell = document.createElement('td');
         cell.append(
           listingLink(product, offer),
+          element(
+            'small',
+            `Price captured: ${new Date(offer.observedAt).toLocaleString()}`
+          ),
           element('small', `${offer.seller} · ${product.proteinType}`),
           element(
             'small',
@@ -74,7 +84,9 @@ async function calculate(event) {
           ),
           element(
             'small',
-            eligible ? 'Confirmed comparison' : problems.join('; ')
+            eligible
+              ? 'Confirmed comparison'
+              : `${manufacturerVerified ? 'Manufacturer specifications verified' : 'Manufacturer verification pending'} · ${problems.join('; ')}`
           )
         );
         row.append(cell);
@@ -97,10 +109,18 @@ async function calculate(event) {
         evidence.append(productDetails(product));
         row.append(evidence);
         return row;
-      });
+      }
+    );
     document.querySelector('#offers').replaceChildren(...rows);
     document.querySelector('#excluded').replaceChildren(
-      ...result.excluded.map(({ product, offer, problems, metrics }) => {
+      ...[
+        ...new Map(
+          [...result.excluded, ...result.unsortable].map((row) => [
+            row.offer.id,
+            row,
+          ])
+        ).values(),
+      ].map(({ product, offer, problems, metrics }) => {
         const entry = document.createElement('li');
         entry.append(
           listingLink(product, offer),
@@ -117,7 +137,7 @@ async function calculate(event) {
         return entry;
       })
     );
-    status.textContent = `${result.comparisons.length} compared · ${result.ranked.length} eligible offers · ${result.excluded.length} need information · Prices in ${result.assumptions.currency} · ${new Date(result.calculatedAt).toLocaleString()}`;
+    status.textContent = `${result.observedPrices.length} prices sorted · ${result.ranked.length} eligible offers · ${result.unsortable.length} lack the selected metric · Prices in ${result.assumptions.currency} · ${new Date(result.calculatedAt).toLocaleString()}`;
     const coverageResponse = await fetch('/api/coverage');
     const coverage = await coverageResponse.json();
     document.querySelector('#coverage').textContent = coverage.complete

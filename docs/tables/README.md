@@ -12,6 +12,8 @@
 | Unclassified discovery observations        | 191                             |
 | Whole-market completeness                  | Unverifiable from public search |
 
+- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)
+- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)
 - [All captured protein-powder offers](protein-powder.md)
 - [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)
 - [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)
@@ -25,9 +27,9 @@
 ## Reproduce without website requests
 
 ```sh
-node scripts/audit-cached-catalog.mjs --offline
+node bin/lazada-search.js archive-verify --offline --no-ocr
 node scripts/export-catalog-tables.mjs --offline
-node bin/lazada-search.js audit --strict --offline
+node bin/lazada-search.js audit --strict --offline --no-ocr
 ```
 
 The last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use `crawl --exhaustive`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.

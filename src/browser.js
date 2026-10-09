@@ -337,7 +337,9 @@ export class BrowserCollector {
         }
         const cached = await this.store.get('cache', `image:${url}`);
         const bytes =
-          cached?.blob && (await this.store.blob(cached.blob.sha256));
+          cached?.blob &&
+          !cached.invalidatedAt &&
+          (await this.store.blob(cached.blob.sha256));
         if (bytes && !this.refreshImages) {
           await route.fulfill({ body: bytes, contentType: cached.contentType });
         } else {
@@ -363,7 +365,7 @@ export class BrowserCollector {
             lastModified: headers['last-modified'] || null,
           };
           const known = await this.store.get('cache', `image:${url}`);
-          if (known?.blob?.sha256 !== blob.sha256) {
+          if (known?.invalidatedAt || known?.blob?.sha256 !== blob.sha256) {
             await this.store.put('cache', {
               ...image,
               id: `image:${url}`,
@@ -403,7 +405,12 @@ export class BrowserCollector {
     });
     // Re-run newer extractors against saved HTML, preserving the original
     // observation time and screenshot. A selector fix needs no site request.
-    if (result.extractorVersion !== 8 && result.html) {
+    if (
+      (options.reprocess ||
+        result.extractorVersion !== 8 ||
+        result.extractedHtmlSha256 !== result.html?.sha256) &&
+      result.html
+    ) {
       const bytes = await this.store.blob(result.html.sha256);
       if (bytes) {
         const { parseHTML } = await import('linkedom');
@@ -418,6 +425,7 @@ export class BrowserCollector {
           snapshot,
           status: classifyPage(snapshot),
           extractorVersion: 8,
+          extractedHtmlSha256: result.html.sha256,
         };
         delete updated.cacheHit;
         delete updated.stale;
@@ -507,6 +515,7 @@ export class BrowserCollector {
       snapshot,
       status,
       html,
+      extractedHtmlSha256: html.sha256,
       screenshot,
       finalUrl,
       scrollLimit: this.maxScrolls,

@@ -112,6 +112,7 @@ export default [
     files: [
       'bin/lazada-search.js',
       'src/application.js',
+      'src/archive.js',
       'src/browser.js',
       'src/crawl.js',
       'src/coverage.js',

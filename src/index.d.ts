@@ -45,6 +45,7 @@ export interface Product {
   sku?: string;
   manufacturerSku?: string;
   gtin?: string;
+  specificationsInvalidated?: boolean;
   netMassG?: number;
   netVolumeMl?: number;
   packCount?: number;
@@ -97,6 +98,8 @@ export interface Offer {
   url: string;
   currency: string;
   price?: number;
+  priceInvalidated?: boolean;
+  shippingInvalidated?: boolean;
   shipping?: number;
   shippingQuantity?: number;
   shippingDestination?: string;
@@ -196,6 +199,8 @@ export interface ComparisonRow {
 }
 export interface ComparisonReport {
   comparisons: ComparisonRow[];
+  observedPrices: ComparisonRow[];
+  unsortable: ComparisonRow[];
   ranked: ComparisonRow[];
   excluded: ComparisonRow[];
   bestByCategory: Record<Exclude<Category, 'unknown'>, ComparisonRow | null>;
@@ -240,8 +245,12 @@ export declare class DoubletGraph {
   static fromBinary(bytes: Buffer): DoubletGraph;
 }
 export declare class AssociativeStore {
-  constructor(options?: { directory?: string });
+  constructor(options?: {
+    directory?: string;
+    archive?: string | RepositoryArchive;
+  });
   directory: string;
+  archive?: RepositoryArchive;
   recordPath(kind: string, id: string): string;
   locked<T>(action: () => Promise<T>): Promise<T>;
   put<T extends { id: string }>(kind: string, record: T): Promise<T>;
@@ -325,6 +334,10 @@ export declare class EvidenceCache {
     offline?: boolean;
   });
   offline: boolean;
+  invalidate(
+    url: string,
+    options: { reason: string; namespace?: string }
+  ): Promise<{ url: string; invalidated: number; reason: string }>;
   stats: {
     hits: number;
     misses: number;
@@ -361,7 +374,12 @@ export declare class BrowserCollector {
   start(): Promise<void>;
   page(
     url: string,
-    options?: { namespace?: string; ttlMs?: number; refresh?: boolean }
+    options?: {
+      namespace?: string;
+      ttlMs?: number;
+      refresh?: boolean;
+      reprocess?: boolean;
+    }
   ): Promise<Capture>;
   capture(url: string): Promise<Partial<Capture>>;
   close(): Promise<void>;
@@ -382,6 +400,7 @@ export interface OcrResult {
   psm: number;
   observedAt: string;
   cacheHit: boolean;
+  rawTsv?: BlobReference;
 }
 export declare class TesseractOcr {
   constructor(options: {
@@ -435,7 +454,7 @@ export declare class LazadaSearch {
   }): Promise<{ products: number; offers: number }>;
   collect(
     url: string,
-    options?: { refresh?: boolean }
+    options?: { refresh?: boolean; reprocess?: boolean }
   ): Promise<{
     product: Product;
     offer: Offer;
@@ -469,6 +488,38 @@ export declare class LazadaSearch {
   compare(options?: ComparisonOptions): Promise<ComparisonReport>;
   close(): Promise<void>;
 }
+
+export declare const DEFAULT_ARCHIVE: string;
+export declare class RepositoryArchive {
+  constructor(options?: { directory?: string });
+  directory: string;
+  manifest(): Promise<Record<string, unknown>>;
+  list<T = Record<string, unknown>>(kind: string): Promise<T[]>;
+  get<T = Record<string, unknown>>(
+    kind: string,
+    id: string
+  ): Promise<T | undefined>;
+  blob(hash: string): Promise<Buffer | undefined>;
+  graph(kind: string, id: string): Promise<DoubletGraph | undefined>;
+  verify(): Promise<{
+    valid: boolean;
+    records: number;
+    blobs: number;
+    downloads: number;
+  }>;
+}
+export declare function exportRepositoryArchive(options: {
+  store: AssociativeStore;
+  directory?: string;
+  caseMetadata?: Record<string, unknown>;
+}): Promise<{
+  directory: string;
+  records: number;
+  blobs: number;
+  reused: number;
+  rebuilt: number;
+  downloads: number;
+}>;
 export declare const MARKETS: Record<
   string,
   { host: string; currency: string; queries: string[] }

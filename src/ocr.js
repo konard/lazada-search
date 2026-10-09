@@ -127,6 +127,7 @@ export class TesseractOcr {
         psm,
         ...parseTsv(stdout),
         observedAt: new Date().toISOString(),
+        rawTsv: await this.store.putBlob(Buffer.from(stdout)),
       };
       await this.store.put('ocr', result);
       return { ...result, cacheHit: false };

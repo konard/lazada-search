@@ -1,14 +1,13 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import {
   LazadaSearch,
-  AssociativeStore,
   TesseractOcr,
   manufacturerCandidates,
 } from '../src/index.js';
-import { parseArguments } from '../src/config.js';
+import { configuredStore, parseArguments } from '../src/config.js';
 
 const options = parseArguments(process.argv.slice(2));
-const store = new AssociativeStore({ directory: options.dataDir });
+const store = configuredStore(options);
 const app = new LazadaSearch({
   store,
   market: options.market,

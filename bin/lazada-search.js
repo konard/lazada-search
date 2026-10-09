@@ -3,10 +3,9 @@ import { readFileSync, realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { encode } from 'lino-objects-codec';
 import { LazadaSearch } from '../src/application.js';
-import { AssociativeStore } from '../src/store.js';
 import { TesseractOcr } from '../src/ocr.js';
 import { HELP, executeCommand } from '../src/commands.js';
-import { parseArguments } from '../src/config.js';
+import { configuredStore, parseArguments } from '../src/config.js';
 import { startServer } from '../src/server.js';
 import { createTelegramBot } from '../src/telegram.js';
 import { importSession, sessionSources } from '../src/session.js';
@@ -32,7 +31,7 @@ export async function runCli(
       stdout(HELP);
       return 0;
     }
-    const store = new AssociativeStore({ directory: options.dataDir });
+    const store = configuredStore(options);
     if (command === 'sessions') {
       stdout(JSON.stringify(await sessionSources(), null, 2));
       return 0;

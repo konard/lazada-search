@@ -123,6 +123,6 @@ test('Telegram delivers every comparison row, refuses incomplete audits and isol
       .slice(count)
       .map((message) => message.text)
       .join(''),
-    /Pending manufacturer verification: Telegram fixture 0/
+    /Captured price: Telegram fixture 0/
   );
 });

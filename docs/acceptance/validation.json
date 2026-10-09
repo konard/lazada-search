@@ -1,15 +1,15 @@
 {
-  "validatedAt": "2026-10-09T14:01:40.802Z",
+  "validatedAt": "2026-10-09T15:31:45.668Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 610,
-    "pass": 610,
+    "tests": 622,
+    "pass": 622,
     "fail": 0,
     "skipped": 0
   },
   "e2e": {
-    "tests": 5,
-    "pass": 5,
+    "tests": 6,
+    "pass": 6,
     "fail": 0,
     "skipped": 0
   },
@@ -32,8 +32,32 @@
   "sourceChecks": 29,
   "committedCatalogReplay": {
     "networkRequests": 0,
-    "preservesProductAndSkuCoverageGaps": true
+    "preservesProductAndSkuCoverageGaps": true,
+    "sortableObservedFoodPrices": 31,
+    "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
+    "originalPriceTimestampsPreserved": true
   },
   "productionReady": false,
-  "reason": "Public catalog coverage, exact manufacturer variants, bulk stock/freight and frozen delivery remain unresolved."
+  "reason": "Public catalog coverage, exact manufacturer variants, bulk stock/freight and frozen delivery remain unresolved.",
+  "archiveAndPriceRegressionTests": {
+    "tests": 12,
+    "pass": 12,
+    "fail": 0,
+    "skipped": 0
+  },
+  "repositoryArchive": {
+    "valid": true,
+    "records": 7676,
+    "blobs": 2888,
+    "downloads": 0,
+    "manifestSha256": "439c92863674e2407ed95eee598d436f430479bf4a22467f60df045a7d899178",
+    "htmlCapturesReExtracted": 69,
+    "originalPriceSelectionAndSkuInventoriesPreserved": true,
+    "securityUrlParameters": 0,
+    "unchangedExport": {
+      "reused": 2927,
+      "rebuilt": 0,
+      "downloads": 0
+    }
+  }
 }

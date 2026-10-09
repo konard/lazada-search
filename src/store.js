@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
+import { RepositoryArchive } from './archive.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
 
 const validKind = (kind) => {
@@ -13,8 +14,12 @@ const validKind = (kind) => {
 };
 
 export class AssociativeStore {
-  constructor({ directory = '.lazada-search' } = {}) {
+  constructor({ directory = '.lazada-search', archive } = {}) {
     this.directory = resolve(directory);
+    this.archive =
+      typeof archive === 'string'
+        ? new RepositoryArchive({ directory: archive })
+        : archive;
   }
 
   recordPath(kind, id) {
@@ -95,15 +100,30 @@ export class AssociativeStore {
 
   async get(kind, id) {
     const text = await readOptional(this.recordPath(kind, id), 'utf8');
-    return text === undefined ? undefined : decode({ notation: text });
+    return text === undefined
+      ? this.archive?.get(kind, id)
+      : decode({ notation: text });
   }
 
   async graph(kind, id) {
     return await this.locked(async () => {
       const path = this.recordPath(kind, id);
-      const notation = await readOptional(path, 'utf8');
+      let notation = await readOptional(path, 'utf8');
       if (notation === undefined) {
-        return undefined;
+        const archived = await this.archive?.get(kind, id);
+        if (!archived) {
+          return undefined;
+        }
+        notation = encode({ obj: archived });
+        await atomicWrite(path, notation);
+        const graph = await this.archive.graph(kind, id);
+        const bytes = graph.toBinary();
+        await atomicWrite(path.replace(/\.lino$/u, '.links'), bytes);
+        await atomicWrite(
+          `${path}.sha256`,
+          `${sha256(notation)}:${sha256(bytes)}`
+        );
+        return graph;
       }
       const bytes = await readOptional(path.replace(/\.lino$/u, '.links'));
       const digest = await readOptional(`${path}.sha256`, 'utf8');
@@ -124,20 +144,28 @@ export class AssociativeStore {
       files = await readdir(join(this.directory, validKind(kind)));
     } catch (error) {
       if (error.code === 'ENOENT') {
-        return [];
+        files = [];
+      } else {
+        throw error;
       }
-      throw error;
     }
-    const records = [];
+    const records = new Map(
+      ((await this.archive?.list(kind)) || []).map((record) => [
+        record.id,
+        record,
+      ])
+    );
     for (const file of files.sort().filter((name) => name.endsWith('.lino'))) {
       const record = decode({
         notation: await readOptional(join(this.directory, kind, file), 'utf8'),
       });
-      if (path === undefined || valueAt(record, path) === value) {
-        records.push(record);
-      }
+      records.set(record.id, record);
     }
-    return records;
+    return [...records.values()]
+      .sort((left, right) => left.id.localeCompare(right.id))
+      .filter(
+        (record) => path === undefined || valueAt(record, path) === value
+      );
   }
 
   async putBlob(contents) {
@@ -160,12 +188,21 @@ export class AssociativeStore {
     if (bytes && sha256(bytes) !== id) {
       throw new Error('Corrupt evidence blob');
     }
-    return bytes;
+    return bytes ?? this.archive?.blob(id);
   }
 
   async exportGraph() {
     const graph = new DoubletGraph();
-    for (const kind of (await readdir(this.directory)).filter(
+    const local = await readdir(this.directory).catch((error) => {
+      if (error.code === 'ENOENT') {
+        return [];
+      }
+      throw error;
+    });
+    const archived = this.archive
+      ? Object.keys((await this.archive.manifest()).kinds)
+      : [];
+    for (const kind of [...new Set([...local, ...archived])].filter(
       (entry) =>
         /^[a-z][a-z-]*$/u.test(entry) &&
         entry !== 'blobs' &&

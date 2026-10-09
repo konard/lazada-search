@@ -156,10 +156,11 @@ export class LazadaSearch {
     return this.store.put('offer', offer);
   }
 
-  async collect(url, { refresh = false } = {}) {
+  async collect(url, { refresh = false, reprocess = false } = {}) {
     this.assertMarket(url);
     const capture = await this.collector.page(canonicalUrl(url), {
       refresh,
+      reprocess,
       namespace: `lazada:${this.market}:${this.deliveryArea}`,
     });
     if (capture.status !== 'ok') {
@@ -603,15 +604,43 @@ export class LazadaSearch {
   }
 
   async compare(options = {}) {
-    return compareOffers(
-      await this.store.list('product'),
-      (await this.store.list('offer')).filter((offer) => !offer.supersededBy),
-      {
-        currency: MARKETS[this.market].currency,
-        deliveryArea: this.deliveryArea,
-        ...options,
-      }
+    const products = await this.store.list('product');
+    const offers = (await this.store.list('offer')).filter(
+      (offer) => !offer.supersededBy
     );
+    const invalidated = [];
+    for (const entry of await this.store.list('invalidation')) {
+      for (const id of entry.cacheIds) {
+        const source = await this.store.get('cache', id);
+        if (source?.invalidatedAt) {
+          invalidated.push(source);
+        }
+      }
+    }
+    for (const offer of offers) {
+      offer.priceInvalidated = invalidated.some(
+        (source) =>
+          source.url === offer.url && /^(?:lazada|page):/u.test(source.id)
+      );
+      offer.shippingInvalidated = invalidated.some(
+        (source) =>
+          source.url === offer.url && source.id.startsWith('delivery:')
+      );
+    }
+    for (const product of products) {
+      product.specificationsInvalidated = invalidated.some(
+        (source) =>
+          source.url === product.url ||
+          product.crossChecks?.some(
+            (check) => check.manufacturerUrl === source.url
+          )
+      );
+    }
+    return compareOffers(products, offers, {
+      currency: MARKETS[this.market].currency,
+      deliveryArea: this.deliveryArea,
+      ...options,
+    });
   }
 
   async close() {

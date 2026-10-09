@@ -18,6 +18,11 @@ export { createTelegramBot } from './telegram.js';
 export { startServer } from './server.js';
 export { importSession, sessionSources } from './session.js';
 export { NativeLinkStore } from './native-store.js';
+export {
+  RepositoryArchive,
+  exportRepositoryArchive,
+  DEFAULT_ARCHIVE,
+} from './archive.js';
 export { captureDelivery } from './delivery.js';
 export { auditCoverage, assertCompleteCoverage } from './coverage.js';
 export {

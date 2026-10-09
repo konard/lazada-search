@@ -3,6 +3,9 @@ import { decode } from 'lino-objects-codec';
 import { comparisonOptions } from './config.js';
 import { NativeLinkStore } from './native-store.js';
 import { assertCompleteCoverage } from './coverage.js';
+import { RepositoryArchive, exportRepositoryArchive } from './archive.js';
+import { parse as parseYaml } from 'yaml';
+import { sha256 } from './util.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
@@ -12,12 +15,15 @@ Commands:
   collect <lazada-url>           Collect a single listing with image OCR
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
-  import <file.json|file.lino>   Import reviewed product and offer records
+  import <file.json|file.yml|file.lino>   Import records and retain their original source
   inspect <kind> [id]            Read products, offers, evidence, OCR or history
   verify <product-id> <url>      Cross-check an operator-supplied official page
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
   quote <offer-id> <JSON>        Record shipping, bulk tiers and delivery checks
   export                        Export the associative network (--format lino|links)
+  archive                       Commit-ready public sources, OCR, .lino and binary snapshot
+  archive-verify                Check every archived source and both conversions offline
+  invalidate <url> --reason TEXT Mark a source for online reload after a data correction
   serve                         Start the online calculator on localhost:8080
   bot                           Start Telegram polling using configured credentials
   sessions                      Inspect Lazada session availability, without credentials
@@ -26,11 +32,12 @@ Commands:
 
 Options:
   --data-dir PATH --market vn --delivery-area "Nha Trang"
+  --archive-dir PATH --no-archive  Select the committed case archive or disable reuse
   --province "Khánh Hòa" --locality "Phường Nha Trang"
   --query TEXT --max-pages 5 --max-products 100 --max-images 40
   --exhaustive --strict          Visit search pagination; fail an incomplete audit
   --no-require-manufacturer      Explore unverified observations without a purchase guarantee
-  --headless=false --executable-path PATH --refresh --offline --no-ocr
+  --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
   --session-from auto|chrome|firefox|yandex|safari --session-profile NAME --cdp-url URL
   --category whey|protein-powder|chocolate-ice-cream --protein-type isolate|concentrate|blend
@@ -43,6 +50,22 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'archive':
+      return exportRepositoryArchive({
+        store: application.store,
+        directory: options.archiveDir,
+        caseMetadata: {
+          market: application.market,
+          currency: application.currency,
+          deliveryArea: application.deliveryArea,
+        },
+      });
+    case 'archive-verify':
+      return new RepositoryArchive({ directory: options.archiveDir }).verify();
+    case 'invalidate':
+      return application.cache.invalidate(required(args[0], 'Source URL'), {
+        reason: required(options.reason, 'Invalidation reason'),
+      });
     case 'audit': {
       const report = await application.audit();
       return options.strict ? assertCompleteCoverage(report) : report;
@@ -58,6 +81,7 @@ export async function executeCommand(application, command, args, options = {}) {
     case 'collect':
       return application.collect(required(args[0], 'Lazada URL'), {
         refresh: options.refresh,
+        reprocess: options.reprocess,
       });
     case 'compare':
       return application.compare(comparisonOptions(options));
@@ -70,9 +94,28 @@ export async function executeCommand(application, command, args, options = {}) {
     case 'import': {
       const file = required(args[0], 'Import file');
       const text = await readFile(file, 'utf8');
-      return application.importRecords(
-        file.endsWith('.lino') ? decode({ notation: text }) : JSON.parse(text)
-      );
+      const format = /\.ya?ml$/iu.test(file)
+        ? 'yaml'
+        : file.endsWith('.lino')
+          ? 'lino'
+          : 'json';
+      const parsed =
+        format === 'lino'
+          ? decode({ notation: text })
+          : format === 'yaml'
+            ? parseYaml(text, { maxAliasCount: 100 })
+            : JSON.parse(text);
+      const result = await application.importRecords(parsed);
+      const source = await application.store.putBlob(Buffer.from(text));
+      await application.store.put('import-source', {
+        id: `import:${sha256(text)}`,
+        format,
+        source,
+        importedAt: new Date().toISOString(),
+        productIds: (parsed.products || []).map((product) => product.id),
+        offerIds: (parsed.offers || []).map((offer) => offer.id),
+      });
+      return result;
     }
     case 'inspect': {
       const kind = required(args[0], 'Record kind');

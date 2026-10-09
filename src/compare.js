@@ -28,6 +28,12 @@ export function calculateOffer(product, offer, options = {}) {
   });
   const currency = options.currency || offer.currency;
   const problems = [];
+  if (offer.priceInvalidated) {
+    problems.push('Price source invalidated; reload the listing');
+  }
+  if (product.specificationsInvalidated) {
+    problems.push('Specification source invalidated; reload and verify');
+  }
   if (options.requireManufacturer !== false) {
     problems.push(...specificationProblems(product));
   }
@@ -89,7 +95,10 @@ export function calculateOffer(product, offer, options = {}) {
   const quoteMatchesQuantity =
     offer.shippingQuantity === undefined || offer.shippingQuantity === quantity;
   const shipping =
-    options.shipping ?? (quoteMatchesQuantity ? offer.shipping : undefined);
+    options.shipping ??
+    (quoteMatchesQuantity && !offer.shippingInvalidated
+      ? offer.shipping
+      : undefined);
   if (!quoteMatchesQuantity && options.shipping === undefined) {
     problems.push(
       `Shipping quoted for ${offer.shippingQuantity} packages, not ${quantity}`
@@ -293,8 +302,33 @@ export function compareOffers(products, offers, options = {}) {
           (right.metrics[sort] ?? Infinity)) ||
       left.offer.id.localeCompare(right.offer.id)
   );
+  // Captured prices remain sortable while exact nutrition or delivery is
+  // pending. These observations do not acquire purchase eligibility.
+  const observedPrices = results.filter(
+    (row) =>
+      row.offer.variantConfirmed === true &&
+      ['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
+        row.product.category
+      ) &&
+      !row.offer.priceInvalidated &&
+      (!row.product.specificationsInvalidated ||
+        ['totalBeforeDelivery', 'totalAfterDelivery', 'totalCost'].includes(
+          sort
+        )) &&
+      row.offer.price > 0 &&
+      Number.isFinite(row.metrics[sort])
+  );
+  observedPrices.sort(
+    (left, right) =>
+      (sort === 'proteinPer100g'
+        ? right.metrics[sort] - left.metrics[sort]
+        : left.metrics[sort] - right.metrics[sort]) ||
+      left.offer.id.localeCompare(right.offer.id)
+  );
   return {
     comparisons: results,
+    observedPrices,
+    unsortable: results.filter((row) => !observedPrices.includes(row)),
     ranked: results.filter((result) => result.eligible),
     excluded: results.filter((result) => !result.eligible),
     bestByCategory: Object.fromEntries(
@@ -312,6 +346,7 @@ export function compareOffers(products, offers, options = {}) {
       deliveryArea: options.deliveryArea || null,
       requireShipping: options.requireShipping !== false,
       requireManufacturer: options.requireManufacturer !== false,
+      sort,
       discountScope:
         'Fixed amount per order, subtracted once; no assumed volume-to-mass conversion',
     },

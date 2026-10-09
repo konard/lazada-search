@@ -67,10 +67,14 @@ export class EvidenceCache {
   }
 
   async obtain(id, url, { ttlMs, refresh, load }) {
+    if (this.offline && refresh) {
+      throw new Error(`Cannot refresh a source offline: ${url}`);
+    }
     const cached = await this.store.get('cache', id);
     if (
       cached &&
-      (this.offline || (!refresh && this.now() - cached.checkedAt <= ttlMs))
+      !cached.invalidatedAt &&
+      this.reusable(cached, { ttlMs, refresh })
     ) {
       this.stats.hits += 1;
       return {
@@ -80,7 +84,9 @@ export class EvidenceCache {
       };
     }
     if (this.offline) {
-      throw new Error(`Offline cache miss: ${url}`);
+      throw new Error(
+        `${cached?.invalidatedAt ? 'Invalidated source needs an online reload' : 'Offline cache miss'}: ${url}`
+      );
     }
     this.stats.misses += 1;
     const loaded = await this.scheduler.run(url, () => load(cached));
@@ -95,6 +101,12 @@ export class EvidenceCache {
       checkedAt: this.now(),
     };
     delete record.notModified;
+    delete record.invalidatedAt;
+    delete record.invalidationReason;
+    // A working store backed by a committed case retains sources until refresh.
+    if (this.store.archive) {
+      record.repositoryReusable = true;
+    }
     if (loaded.notModified) {
       this.stats.revalidated += 1;
     } else {
@@ -102,6 +114,41 @@ export class EvidenceCache {
     }
     await this.store.put('cache', record);
     return { ...record, cacheHit: false, stale: false };
+  }
+
+  reusable(cached, { ttlMs, refresh }) {
+    return (
+      this.offline ||
+      (!refresh &&
+        (cached.repositoryReusable || this.now() - cached.checkedAt <= ttlMs))
+    );
+  }
+
+  async invalidate(url, { reason, namespace } = {}) {
+    if (typeof reason !== 'string' || !reason.trim()) {
+      throw new Error('Invalidation requires a reason');
+    }
+    const canonical = canonicalUrl(url);
+    const records = (await this.store.list('cache')).filter(
+      (record) =>
+        record.url === canonical &&
+        (!namespace || record.id === `${namespace}:${canonical}`)
+    );
+    for (const record of records) {
+      await this.store.put('cache', {
+        ...record,
+        invalidatedAt: new Date(this.now()).toISOString(),
+        invalidationReason: reason,
+      });
+    }
+    await this.store.put('invalidation', {
+      id: canonical,
+      url: canonical,
+      cacheIds: records.map((record) => record.id),
+      reason,
+      invalidatedAt: new Date(this.now()).toISOString(),
+    });
+    return { url: canonical, invalidated: records.length, reason };
   }
 
   async image(
@@ -119,10 +166,10 @@ export class EvidenceCache {
           return browserImage;
         }
         const headers = {};
-        if (cached?.etag) {
+        if (cached?.etag && !cached.invalidatedAt) {
           headers['If-None-Match'] = cached.etag;
         }
-        if (cached?.lastModified) {
+        if (cached?.lastModified && !cached.invalidatedAt) {
           headers['If-Modified-Since'] = cached.lastModified;
         }
         const response = await fetchImage(url, {

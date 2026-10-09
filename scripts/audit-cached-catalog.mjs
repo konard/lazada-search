@@ -1,7 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import {
   LazadaSearch,
-  AssociativeStore,
   EvidenceCache,
   BrowserCollector,
   TesseractOcr,
@@ -9,12 +8,12 @@ import {
   manufacturerCandidates,
   auditCoverage,
 } from '../src/index.js';
-import { parseArguments } from '../src/config.js';
+import { configuredStore, parseArguments } from '../src/config.js';
 import { categoryOf, parsePrice } from '../src/nutrition.js';
 import { canonicalUrl, sha256 } from '../src/util.js';
 
 const options = parseArguments(process.argv.slice(2));
-const store = new AssociativeStore({ directory: options.dataDir });
+const store = configuredStore(options);
 const cache = new EvidenceCache({ store, offline: true });
 const collector = new BrowserCollector({ store, cache });
 collector.start = () => {

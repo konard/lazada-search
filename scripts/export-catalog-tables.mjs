@@ -2,13 +2,12 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { format, resolveConfig } from 'prettier';
 import {
   LazadaSearch,
-  AssociativeStore,
   calculateOffer,
   compareOffers,
   manufacturerCandidates,
   specificationProblems,
 } from '../src/index.js';
-import { parseArguments } from '../src/config.js';
+import { configuredStore, parseArguments } from '../src/config.js';
 
 const options = parseArguments(process.argv.slice(2));
 const style = await resolveConfig('docs/tables/README.md');
@@ -22,7 +21,7 @@ async function writeFormatted(path, content) {
   );
 }
 const app = new LazadaSearch({
-  store: new AssociativeStore({ directory: options.dataDir }),
+  store: configuredStore(options),
   offline: true,
   ocr: false,
   deliveryArea: options.deliveryArea,
@@ -56,7 +55,11 @@ for (const offer of offers.filter((offer) => reviewByUrl.has(offer.url))) {
     );
   }
 }
-entries.sort((left, right) => left.offer.url.localeCompare(right.offer.url));
+entries.sort(
+  (left, right) =>
+    (left.offer.price ?? Infinity) - (right.offer.price ?? Infinity) ||
+    left.offer.url.localeCompare(right.offer.url)
+);
 const cell = (value) =>
   String(value ?? 'Unknown')
     .replace(/[\r\n]+/gu, ' ')
@@ -79,7 +82,7 @@ const variant = (product) =>
   ].join('; ') || 'No option selected';
 const pair = (before, after) => `${number(before)} → ${number(after)}`;
 const intro =
-  'These are **unranked, provisional observations**, not manufacturer-verified purchase comparisons. Unknown means no confirmed value; it never means zero. Every row is retained, including conflicting and unavailable offers. Prices refer only to the captured selected SKU. Destination: **Nha Trang, Vietnam**, currency: **VND**, quantity: **one package**. Delivery for bulk quantities must be quoted separately.\n\n';
+  'Rows are sorted by **captured package price, cheapest first**. Unit costs and specifications are provisional until their source and package identity are verified. Unknown means no confirmed value; it never means zero. Every row is retained, including conflicting and unavailable offers. Prices refer only to the captured selected SKU. Destination: **Nha Trang, Vietnam**, currency: **VND**, quantity: **one package**. Delivery for bulk quantities must be quoted separately. [Price-only table](known-prices.md) lists confirmed prices independently of specification gaps.\n\n';
 function priceRows(rows) {
   return rows.map(({ product, offer, metrics }) => [
     link(product.title, offer.url),
@@ -126,6 +129,40 @@ await mkdir('docs/tables', { recursive: true });
 async function save(name, text) {
   await writeFormatted(`docs/tables/${name}`, `${text}\n`);
 }
+const knownPriceRows = entries.filter(
+  (row) =>
+    row.offer.price > 0 &&
+    row.offer.variantConfirmed &&
+    ['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
+      row.product.category
+    )
+);
+const priceOnlyHeaders = [
+  'Listing',
+  'Selected option',
+  'SKU',
+  'Price VND',
+  'Captured at',
+  'Verification',
+];
+const priceOnlyRows = (rows) =>
+  rows.map(({ product, offer }) => [
+    link(product.title, offer.url),
+    variant(product),
+    offer.sku || 'Not supplied by listing',
+    number(offer.price),
+    offer.observedAt,
+    reviewByUrl.has(offer.url)
+      ? link(
+          'Screenshot checked',
+          `../acceptance/visual-review/README.md#listing-${reviewByUrl.get(offer.url).index}`
+        )
+      : 'Manual check pending',
+  ]);
+await save(
+  'known-prices.md',
+  `# Captured selected-SKU prices, cheapest first\n\n${knownPriceRows.length} confirmed selected-SKU price observations. All rows have a positive captured price. These historical captures remain available offline; they do not establish current stock, freight, exact manufacturer specifications or the lowest price across uncollected listings.\n\n## Protein powders\n\n${table(priceOnlyHeaders, priceOnlyRows(knownPriceRows.filter((row) => ['whey', 'protein-powder'].includes(row.product.category))))}\n\n## Chocolate ice cream\n\n${table(priceOnlyHeaders, priceOnlyRows(knownPriceRows.filter((row) => row.product.category === 'chocolate-ice-cream')))}\n\n[Before/after delivery and unit costs for powders](protein-powder.md) · [Before/after delivery and unit costs for ice cream](chocolate-ice-cream.md) · [Missing prices requiring collection](missing-sku-prices.md)`
+);
 const powders = entries.filter((row) =>
   ['whey', 'protein-powder'].includes(row.product.category)
 );
@@ -258,7 +295,7 @@ await save(
 );
 await save(
   'README.md',
-  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Visually checked selected-page prices | ${review.items.length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode scripts/audit-cached-catalog.mjs --offline\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use \`crawl --exhaustive\`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nThe attempted public backlog encountered an app-only page and Lazada security redirects. Further Lazada requests stopped. Official manufacturer sources are collected independently with caching and pacing. There is no confirmed logged-in Lazada access, and no purchase was placed. Known gaps remain explicitly unresolved.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
+  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Visually checked selected-page prices | ${review.items.length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)\n- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode bin/lazada-search.js archive-verify --offline --no-ocr\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline --no-ocr\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use \`crawl --exhaustive\`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nThe attempted public backlog encountered an app-only page and Lazada security redirects. Further Lazada requests stopped. Official manufacturer sources are collected independently with caching and pacing. There is no confirmed logged-in Lazada access, and no purchase was placed. Known gaps remain explicitly unresolved.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
 );
 const fixture = JSON.parse(
   await readFile('tests/fixtures/products.json', 'utf8')
@@ -326,7 +363,7 @@ await writeFormatted(
 await app.close();
 console.log(
   JSON.stringify({
-    tables: 10,
+    tables: 11,
     observed: entries.length,
     manufacturerVerified: verified.length,
     missingListings: audit.missingListings.length,

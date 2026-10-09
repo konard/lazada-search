@@ -1,5 +1,19 @@
 import { LinoEnv, makeConfig, toUpperCase } from 'lino-arguments';
 import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { AssociativeStore } from './store.js';
+import { DEFAULT_ARCHIVE } from './archive.js';
+
+export function configuredStore(options) {
+  const archive = options.archiveDir || DEFAULT_ARCHIVE;
+  return new AssociativeStore({
+    directory: options.dataDir,
+    archive:
+      options.archive !== false && existsSync(join(archive, 'manifest.json'))
+        ? archive
+        : undefined,
+  });
+}
 
 function loadConfiguration(path, override) {
   if (!existsSync(path)) {
@@ -64,6 +78,12 @@ export function parseArguments(argv) {
           type: 'string',
           default: getenv('LAZADA_DATA_DIR', '.lazada-search'),
         })
+        .option('archive-dir', {
+          type: 'string',
+          default: getenv('LAZADA_ARCHIVE_DIR', 'data/cases/vietnam-nha-trang'),
+        })
+        .option('archive', { type: 'boolean', default: true })
+        .option('reason', { type: 'string' })
         .option('market', {
           type: 'string',
           default: getenv('LAZADA_MARKET', 'vn'),
@@ -104,6 +124,7 @@ export function parseArguments(argv) {
         })
         .option('max-images', { type: 'number', default: 40 })
         .option('refresh', { type: 'boolean', default: false })
+        .option('reprocess', { type: 'boolean', default: false })
         .option('exhaustive', { type: 'boolean', default: false })
         .option('strict', { type: 'boolean', default: false })
         .option('require-manufacturer', { type: 'boolean', default: true })

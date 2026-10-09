@@ -4,6 +4,8 @@ An evidence-backed product research library, CLI, Telegram bot and online calcul
 
 [Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **The current live dataset is incomplete and has no fully manufacturer-verified purchase winner.**
 
+[Captured prices sorted cheapest first](docs/tables/known-prices.md) remain usable while other fields await verification. The [complete public evidence archive](data/cases/vietnam-nha-trang/README.md) is committed with the case, including source snapshots, HTML, images, OCR, correction histories, `.lino` and binary conversions. A fresh checkout can replay it without website requests.
+
 The collector uses [Browser Commander](https://github.com/link-foundation/browser-commander), preserves page text, specifications, JSON-LD, variant options, images, HTML and screenshots, and runs local Tesseract OCR. Gallery extraction prefers the largest image URLs actually present in the page, including embedded image metadata. Products, offers, label claims and manufacturer checks form an associative links network. Every calculation can be rerun from cached evidence without visiting Lazada.
 
 ## Quick Start
@@ -16,6 +18,7 @@ npx playwright install chromium
 # macOS: brew install tesseract tesseract-lang
 # Ubuntu: sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
 cp .lenv.example .lenv
+node bin/lazada-search.js compare --offline --no-ocr --allow-stale --sort totalBeforeDelivery
 node bin/lazada-search.js crawl --max-pages 5 --max-products 100
 node bin/lazada-search.js compare --category whey --quantity 10
 node bin/lazada-search.js compare --category chocolate-ice-cream --quantity 10
@@ -32,21 +35,22 @@ If no session can be imported, `node bin/lazada-search.js login` opens the dedic
 
 CLI options override environment defaults and `.lenv` configuration through [lino-arguments](https://github.com/link-foundation/lino-arguments). Existing environment variables take precedence over the default `.lenv` file; `--configuration FILE` selects an explicit configuration.
 
-| Setting                     | Default          | Purpose                                    |
-| --------------------------- | ---------------- | ------------------------------------------ |
-| `LAZADA_DATA_DIR`           | `.lazada-search` | Private local state                        |
-| `LAZADA_MARKET`             | `vn`             | Also supports `th`, `sg`, `my`, `ph`, `id` |
-| `LAZADA_DELIVERY_AREA`      | `Nha Trang`      | Delivery context for page cache            |
-| `LAZADA_SESSION_FROM`       | empty            | Optional existing browser session          |
-| `LAZADA_BROWSER_EXECUTABLE` | auto             | Browser Commander executable selection     |
-| `LAZADA_CDP_URL`            | empty            | Optional running browser endpoint          |
-| `LAZADA_OCR_LANGUAGES`      | `eng`            | Tesseract languages, e.g. `eng+vie`        |
-| `LAZADA_OCR_DATA_DIR`       | system           | Optional local trained-model directory     |
-| `LAZADA_CLINK_COMMAND`      | `clink`          | Optional native store executable           |
-| `TELEGRAM_BOT_TOKEN`        | empty            | BotFather token                            |
-| `TELEGRAM_ALLOWED_USER_IDS` | empty            | Comma-separated private-chat user IDs      |
+| Setting                     | Default                        | Purpose                                    |
+| --------------------------- | ------------------------------ | ------------------------------------------ |
+| `LAZADA_DATA_DIR`           | `.lazada-search`               | Private local state                        |
+| `LAZADA_ARCHIVE_DIR`        | `data/cases/vietnam-nha-trang` | Committed public case fallback             |
+| `LAZADA_MARKET`             | `vn`                           | Also supports `th`, `sg`, `my`, `ph`, `id` |
+| `LAZADA_DELIVERY_AREA`      | `Nha Trang`                    | Delivery context for page cache            |
+| `LAZADA_SESSION_FROM`       | empty                          | Optional existing browser session          |
+| `LAZADA_BROWSER_EXECUTABLE` | auto                           | Browser Commander executable selection     |
+| `LAZADA_CDP_URL`            | empty                          | Optional running browser endpoint          |
+| `LAZADA_OCR_LANGUAGES`      | `eng`                          | Tesseract languages, e.g. `eng+vie`        |
+| `LAZADA_OCR_DATA_DIR`       | system                         | Optional local trained-model directory     |
+| `LAZADA_CLINK_COMMAND`      | `clink`                        | Optional native store executable           |
+| `TELEGRAM_BOT_TOKEN`        | empty                          | BotFather token                            |
+| `TELEGRAM_ALLOWED_USER_IDS` | empty                          | Comma-separated private-chat user IDs      |
 
-Run `node bin/lazada-search.js --help` for all options. Page navigations and explicit image downloads start at least three seconds apart per domain. `--offline` prohibits website downloads; cached stale prices still require `--allow-stale` to rank. `--no-ocr` explicitly disables OCR. Search/listing snapshots expire after six hours and manufacturer pages after 30 days. Images and OCR are keyed separately; OCR includes the engine version, languages and segmentation mode. Images observed by the browser are reused for OCR, and cached images are served back to later browser pages. New selectors can reprocess saved HTML without downloading the page again. `--refresh` rechecks the page and its image evidence.
+Run `node bin/lazada-search.js --help` for all options. Page navigations and explicit image downloads start at least three seconds apart per domain. `--offline` prohibits website downloads; cached stale prices still require `--allow-stale` for purchase eligibility. `--no-ocr` explicitly disables OCR. Committed case sources are reused until explicit refresh or invalidation. With `--no-archive`, search/listing snapshots expire after six hours and manufacturer pages after 30 days. Images and OCR are keyed separately; OCR includes the engine version, languages and segmentation mode. Images observed by the browser are reused for OCR, and cached images are served back to later browser pages. New selectors and changed HTML hashes reprocess saved HTML without downloading the page again; `collect --reprocess --offline` explicitly repeats extraction. `--refresh` rechecks the page and image evidence online. `invalidate URL --reason TEXT` persists a correction/reload requirement, which an offline request cannot satisfy. Re-export with `archive`, and verify all sources and conversions with `archive-verify`.
 
 ## Comparison and evidence
 
@@ -73,6 +77,8 @@ the affected unit costs `null`. No volume-to-mass conversion is assumed.
 `totalCost` and the original unit-cost names retain the legacy calculation:
 when shipping is unknown they represent merchandise cost only. Use the explicit
 before/after fields for delivery comparisons.
+
+`observedPrices` contains confirmed selected-SKU observations sorted by the chosen known metric, independently of manufacturer verification. `unsortable` retains rows missing that metric or variant confirmation. Neither list changes purchase eligibility in `ranked`. Use `--sort totalBeforeDelivery` to sort captured package prices without requiring nutrition or freight; use `--sort totalAfterDelivery` only where a matching freight quote exists. Invalidated price/quote sources are excluded until reloaded. Each observation retains its original timestamp.
 
 Public Vietnam shipping estimates can be collected without signing in:
 
@@ -109,7 +115,7 @@ node bin/lazada-search.js compare --category whey --protein-type isolate --min-p
 
 Manufacturer URLs are explicitly supplied by the operator. Verification matches exact GTIN, or brand plus manufacturer SKU; similar names alone never establish identity. Unmatched sources and contradictions are retained. Exact manufacturer evidence takes priority over listing values and preserves conflicting original claims in a correction ledger. OCR still requires review. Official-domain discovery candidates do not establish exact identity. Refreshing changed page evidence invalidates previous field reviews. Reusing the same cached page preserves a shipping quote; a new price snapshot expires it.
 
-Use `import FILE.json` or `import FILE.lino` for reviewed data. See [the fixture schema](tests/fixtures/products.json); those records are explicitly fictional test data. Imports validate nutrition bounds, currencies, timestamps and product references before writing records. `inspect offer-history` exposes past price/quote snapshots.
+Use `import FILE.json`, `import FILE.yml` or `import FILE.lino` for reviewed data. Imports retain the original source bytes and rebuild the affected working-store `.lino` and binary records. See [the fixture schema](tests/fixtures/products.json); those records are explicitly fictional test data. Imports validate nutrition bounds, currencies, timestamps and product references before writing records. `inspect offer-history` exposes past price/quote snapshots. See the [case archive workflow](data/cases/vietnam-nha-trang/README.md) for refresh, correction, export and offline verification.
 
 [Real public cache fixtures](tests/fixtures/public-cache/README.md) also include
 four historical product captures, two original nutrition labels, bilingual OCR
