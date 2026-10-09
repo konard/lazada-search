@@ -1,0 +1,88 @@
+{
+  "products": [
+    {
+      "id": "whey-isolate",
+      "url": "https://www.lazada.vn/products/fixture-whey-i101.html",
+      "title": "Fixture whey isolate 1 kg",
+      "category": "whey",
+      "brand": "Fixture Nutrition",
+      "gtin": "0123456789012",
+      "netMassG": 1000,
+      "proteinPer100g": 80,
+      "sugarPer100g": 3,
+      "kcalPer100g": 380,
+      "ingredients": ["whey protein isolate", "cocoa", "sucralose"],
+      "evidenceIds": ["fixture-label"],
+      "claims": [
+        {
+          "field": "proteinPer100g",
+          "value": 80,
+          "source": "manual-review",
+          "evidenceId": "fixture-label",
+          "requiresReview": false
+        }
+      ]
+    },
+    {
+      "id": "whey-concentrate",
+      "url": "https://www.lazada.vn/products/fixture-concentrate-i102.html",
+      "title": "Fixture whey concentrate 500 g",
+      "category": "whey",
+      "netMassG": 500,
+      "proteinPer100g": 70,
+      "sugarPer100g": 6,
+      "ingredients": ["whey protein concentrate"]
+    },
+    {
+      "id": "chocolate-ice-cream",
+      "url": "https://www.lazada.vn/products/fixture-ice-cream-i103.html",
+      "title": "Fixture chocolate ice cream 500 g",
+      "category": "chocolate-ice-cream",
+      "netMassG": 500,
+      "proteinPer100g": 12,
+      "sugarPer100g": 10,
+      "kcalPer100g": 180,
+      "ingredients": ["milk", "cocoa", "sugar"]
+    }
+  ],
+  "offers": [
+    {
+      "id": "isolate-offer",
+      "productId": "whey-isolate",
+      "url": "https://www.lazada.vn/products/fixture-whey-i101.html",
+      "currency": "VND",
+      "deliveryArea": "Nha Trang",
+      "price": 300000,
+      "shipping": 30000,
+      "available": true,
+      "variantConfirmed": true,
+      "observedAt": "2026-10-09T08:00:00Z",
+      "bulkTiers": [{ "minQuantity": 10, "unitPrice": 250000 }]
+    },
+    {
+      "id": "concentrate-offer",
+      "productId": "whey-concentrate",
+      "url": "https://www.lazada.vn/products/fixture-concentrate-i102.html",
+      "currency": "VND",
+      "deliveryArea": "Nha Trang",
+      "price": 130000,
+      "shipping": 20000,
+      "available": true,
+      "variantConfirmed": true,
+      "observedAt": "2026-10-09T08:00:00Z"
+    },
+    {
+      "id": "ice-cream-offer",
+      "productId": "chocolate-ice-cream",
+      "url": "https://www.lazada.vn/products/fixture-ice-cream-i103.html",
+      "currency": "VND",
+      "deliveryArea": "Nha Trang",
+      "price": 60000,
+      "shipping": 30000,
+      "coldChainConfirmed": true,
+      "available": true,
+      "variantConfirmed": true,
+      "observedAt": "2026-10-09T08:00:00Z"
+    }
+  ]
+}

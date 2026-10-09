@@ -1,383 +1,191 @@
-# js-ai-driven-development-pipeline-template
+# Lazada search
 
-A comprehensive template for AI-driven JavaScript/TypeScript development with full CI/CD pipeline support.
+An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
-This repository publishes the real test package
-`@link-foundation/example-package-name` so the template release pipeline is
-validated end to end with npm trusted publishing.
-
-## Features
-
-- **Multi-runtime support**: Works with Bun, Node.js, and Deno
-- **Universal testing**: Uses [test-anywhere](https://github.com/link-foundation/test-anywhere) for cross-runtime tests
-- **Automated releases**: Changesets-based versioning with GitHub Actions
-- **Optional Docker Hub publishing**: Docker images can be published after the matching npm version is visible
-- **Universal app example**: React UI for the package API with GitHub Pages, Electron, and Capacitor build paths
-- **Code quality**: ESLint + Prettier with pre-commit hooks via Husky
-- **Package manager agnostic**: Works with bun, npm, yarn, pnpm, and deno
-- **Broken link checks**: Automated link validation with [lychee](https://github.com/lycheeverse/lychee-action) and Web Archive fallback suggestions
+The collector uses [Browser Commander](https://github.com/link-foundation/browser-commander), preserves page text, specifications, JSON-LD, variant options, images, HTML and screenshots, and runs local Tesseract OCR. Gallery extraction prefers the largest image URLs actually present in the page, including embedded image metadata. Products, offers, label claims and manufacturer checks form an associative links network. Every calculation can be rerun from cached evidence without visiting Lazada.
 
 ## Quick Start
 
-### Using This Template
-
-1. Click "Use this template" on GitHub to create a new repository
-2. Clone your new repository
-3. Update `package.json` with your package name and description
-4. Install dependencies: `bun install`
-5. Start developing!
-
-### Development
+Use Node.js 22.13 or newer. Install Tesseract and the languages needed for your labels (`eng`, optionally `vie`).
 
 ```bash
-# Install dependencies
-bun install
-
-# Run tests
-bun test --timeout 30000
-
-# Or with other runtimes:
-npm test
-deno test --allow-read
-
-# Lint code
-bun run lint
-
-# Format code
-bun run format
-
-# Check all (lint + format + file size)
-bun run check
-
-# Build the universal React example app
-npm install --prefix examples/universal-app
-npm run example:web:build
-npm run example:desktop:package
-
-# Try the CLI locally
-node bin/example-package-name.js add 2 3
+npm install
+npx playwright install chromium
+# macOS: brew install tesseract tesseract-lang
+# Ubuntu: sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
+cp .lenv.example .lenv
+node bin/lazada-search.js crawl --max-pages 5 --max-products 100
+node bin/lazada-search.js compare --category whey --quantity 10
+node bin/lazada-search.js compare --category chocolate-ice-cream --quantity 10
+node bin/lazada-search.js serve
 ```
 
-## Project Structure
+Open `http://127.0.0.1:8080` to change quantity, shipping, discounts and nutrition filters. Calculations read the current store on every request. Collected and imported fixture data are kept separate; the tool never seeds fictional products into your shopping database.
 
-```
-.
-├── .changeset/           # Changeset configuration
-├── .github/workflows/    # GitHub Actions CI/CD
-├── .husky/               # Git hooks (pre-commit)
-├── examples/             # Usage examples
-│   └── universal-app/    # React + GitHub Pages + Electron + Capacitor app
-├── scripts/              # Build and release scripts
-├── src/                  # Source code
-│   ├── index.js          # Main entry point
-│   └── index.d.ts        # TypeScript definitions
-├── tests/                # Test files
-├── .eslintrc.js          # ESLint configuration
-├── .prettierrc           # Prettier configuration
-├── bunfig.toml           # Bun configuration
-├── deno.json             # Deno configuration
-└── package.json          # Node.js package manifest
-```
+A public-page crawl works without `--session-from`. When an existing session is accessible, `--session-from auto` uses Browser Commander's domain-scoped import into a dedicated automation profile. You can choose `chrome`, `firefox`, `yandex` or `safari` and `--session-profile NAME`. Session contents stay local and are excluded from graph exports. `sessions` reports only availability, counts and access errors. A cookie count does **not** prove authentication. Safari files may require macOS Full Disk Access. If an existing debugging browser is available, `--cdp-url http://127.0.0.1:9222` collects in a new tab in its existing context. The original tabs remain open.
 
-## Design Choices
-
-### Multi-Runtime Support
-
-This template is designed to work seamlessly with all major JavaScript runtimes:
-
-- **Bun**: Primary runtime with highest performance, uses native test support (`bun test`)
-- **Node.js**: Alternative runtime, uses built-in test runner (`node --test`)
-- **Deno**: Secure runtime with built-in TypeScript support (`deno test`)
-
-The [test-anywhere](https://github.com/link-foundation/test-anywhere) framework provides a unified testing API that works identically across all runtimes.
-
-### Package Manager Agnostic
-
-While `package.json` is the source of truth for dependencies, the template supports:
-
-- **bun**: Primary choice, uses `bun.lockb`
-- **npm**: Uses `package-lock.json`
-- **yarn**: Uses `yarn.lock`
-- **pnpm**: Uses `pnpm-lock.yaml`
-- **deno**: Uses `deno.json` for configuration
-
-Note: `package-lock.json` is not committed by default to allow any package manager.
-
-### Universal App Example
-
-The template includes `examples/universal-app`, a Vite React app that imports
-`add` and `multiply` from `src/index.js` and renders a visual calculator UI.
-The same static build is used by:
-
-- GitHub Pages (`npm run example:web:build`)
-- Electron desktop packaging (`npm run example:desktop:package`)
-- Capacitor Android/iOS sync (`npm run example:mobile:sync`)
-
-The example app has its own `package.json` and lockfile so template users can
-opt into the frontend stack without adding React, Electron, or Capacitor to the
-library package itself.
-
-See [examples/universal-app/README.md](examples/universal-app/README.md) for
-local web, desktop, Android, and iOS testing instructions.
-
-### Code Quality
-
-- **ESLint**: Configured with recommended rules + Prettier integration
-- **Prettier**: Consistent code formatting
-- **Husky + lint-staged**: Pre-commit hooks ensure code quality
-- **File size limit**: Files must stay under 1500 lines for maintainability (enforced via ESLint and CI)
-
-### Release Workflow
-
-The release workflow uses [Changesets](https://github.com/changesets/changesets) for version management:
-
-1. **Creating a changeset**: Run `bun run changeset` to document changes
-2. **PR validation**: CI checks for valid changeset in each PR
-3. **Automated versioning**: Merging to `main` triggers version bump
-4. **npm publishing**: Automated via OIDC trusted publishing (no tokens needed)
-5. **Optional Docker Hub publishing**: When configured, waits for the exact npm version and tags the Docker image with that version
-6. **GitHub releases**: Auto-created with formatted release notes
-
-> **First release of a brand-new package**: OIDC trusted publishing cannot
-> create a package that does not exist yet (the first publish fails with
-> `E404`, because a trusted publisher can only be configured for an existing
-> package). To bootstrap, add a repository secret named `NPM_TOKEN` (a
-> granular/automation token with publish access). The release workflow passes
-> it as `NODE_AUTH_TOKEN` automatically. Once the package exists and OIDC
-> trusted publishing is configured on npmjs.com, the token becomes optional and
-> can be removed.
-
-#### Manual Releases
-
-Two manual release modes are available via GitHub Actions:
-
-- **Instant release**: Immediately bump version and publish
-- **Changeset PR**: Create a PR with changeset for review
-
-### CI/CD Pipeline
-
-The GitHub Actions workflow (`.github/workflows/release.yml`) implements a fast-fail pipeline:
-
-**Fast checks** (~7-30s each, run first for fastest feedback):
-
-1. **Test compilation**: Syntax-checks all `.mjs` files with `node --check`
-2. **Lint, format & secrets scan**: ESLint, Prettier, jscpd, and [secretlint](https://github.com/secretlint/secretlint) for credential leak detection
-3. **File line limits**: Enforces the 1500-line limit on JavaScript (`.js`, `.mjs`, `.cjs`) and Markdown (`.md`) files plus `release.yml`
-4. **Changeset check**: Validates PR has exactly one changeset (added by that PR)
-5. **Version check**: Blocks manual version changes in `package.json`
-6. **Documentation validation**: Checks required doc files (doc line limits are enforced by the file line limits check)
-
-**Slow checks** (only run after all fast checks pass):
-
-7. **Test matrix**: 3 runtimes × 3 OS = 9 test combinations
-8. **Broken link checks**: Validates all links in Markdown/HTML files (separate workflow)
-
-**Release** (on merge to main):
-
-9. **Changeset merge**: Combines multiple pending changesets at release time
-10. **Release**: Automated versioning and npm publishing
-11. **Optional Docker publish**: Publishes Docker Hub `latest` and npm-version tags after the npm package is visible
-
-#### Reasonable Timeouts
-
-Every CI job declares an explicit `timeout-minutes` so hung steps fail
-in minutes instead of reaching the GitHub Actions default of six hours.
-Fast checks use 5-10 minute caps, release jobs use 50 minutes, and the
-link checker uses 10 minutes for external network variance.
-
-That cap is a backstop, never the deadline: GitHub reports a job it
-kills as **cancelled**, not **failed**. Long steps therefore own an
-explicit budget via `scripts/run-with-budget-warning.sh`, which warns at
-70% of the budget and fails the step with exit code 124 when it expires.
-See [CI-TIMEOUT-BUDGETS.md](docs/CI-TIMEOUT-BUDGETS.md).
-
-Individual tests are also capped inside supported runners:
-`npm test` runs `node --test --test-timeout=30000`, and the CI Bun
-runner uses `bun test --timeout 30000`. Both bound a _single test_, not
-the suite, which is why the suite budget above exists. Deno does not
-provide a single global per-test timeout flag, so Deno tests are
-protected by their step budget and the matrix job backstop.
-
-See [BEST-PRACTICES.md](docs/BEST-PRACTICES.md) for detailed explanations of each practice.
-
-#### Robust Changeset Handling
-
-The CI/CD pipeline is designed to handle concurrent PRs gracefully:
-
-- **PR Validation**: Only validates changesets **added by the current PR**, not pre-existing ones from other merged PRs. This prevents false failures when multiple PRs merge before a release cycle completes.
-
-- **Release-time Merging**: If multiple changesets exist when releasing, they are automatically merged into a single changeset with:
-  - The highest version bump type (major > minor > patch)
-  - All descriptions preserved in chronological order
-
-This design decouples PR validation from the need to pull changes from the default branch, reducing conflicts and ensuring that even if CI/CD fails, all unpublished changesets will still get published when the error is resolved.
-
-### Deploying the example app
-
-The `example-app.yml` workflow deploys the universal example app to GitHub
-Pages on every push to `main`. Before the first run on `main` in a new
-repository created from this template, open **Settings → Pages** and set
-**Source = GitHub Actions**. This is a one-time manual step and cannot be
-configured from a workflow because the Pages source defaults to
-_Deploy from a branch_. Without it, the `pages-deploy` job fails on
-`actions/deploy-pages` with `Get Pages site failed` /
-`Failed to create deployment`. After flipping the source, the workflow
-provisions the Pages site on its first run.
-
-### Auto-regenerated preview screenshots
-
-The same `example-app.yml` workflow contains a `preview-regen` job that boots
-the built example app in a headless Chromium via
-[`browser-commander`](https://www.npmjs.com/package/browser-commander) +
-Playwright and writes fresh screenshots to
-`docs/screenshots/example-app/example-app-{locale}-{theme}.png` on every
-push to `main` (and on `workflow_dispatch`). Any drift is committed back to
-`main` so README/site images never go stale between releases. Screenshot-only
-pushes do not match this workflow's path filter, while a protected-branch
-fallback PR remains eligible for its required checks. The job runs in the
-official Playwright container with the browser already installed, avoiding CI
-stalls from live Chromium downloads.
-
-The same script is available locally:
-
-```bash
-npm install --prefix examples/universal-app
-npm run example:web:preview-images
-# Verbose probe of <html data-theme>, <html lang>, and PNG signatures:
-PREVIEW_VERBOSE=1 npm run example:web:preview-images
-```
-
-The matrix defaults to `{en, ru} × {light, dark}`. The shipped example app
-has no localization or theme toggle yet, so every cell currently renders
-the same UI — when a fork adds either, the matrix produces real per-cell
-variants without script edits.
-
-### Broken Link Checker
-
-The link checker workflow (`.github/workflows/links.yml`) validates all links in Markdown and HTML files:
-
-1. **Detection**: Uses [lychee](https://github.com/lycheeverse/lychee-action) to scan all `*.md` and `*.html` files
-2. **Web Archive fallback**: For any broken links found, automatically checks the [Wayback Machine](https://web.archive.org) for archived versions
-3. **Actionable suggestions**: Reports one of three outcomes for each broken link:
-   - **Archived**: Suggests the Web Archive URL as a replacement
-   - **Not archived**: Clearly reports the link is unrecoverable
-4. **Scheduled checks**: Runs weekly to catch links that break over time (even if no files changed)
-5. **Issue creation**: On scheduled runs, creates a GitHub Issue with the full broken links report
-
-Add regex patterns to `.lycheeignore` to exclude URLs from checks (e.g., local dev URLs, example.com, known rate-limited sites).
+If no session can be imported, `node bin/lazada-search.js login` opens the dedicated profile for sign-in. Close it with Ctrl+C; subsequent commands retain that profile. Challenges and login walls are reported and stop collection. `--refresh` retries a page after access has been restored.
 
 ## Configuration
 
-### Updating Package Name
+CLI options override environment defaults and `.lenv` configuration through [lino-arguments](https://github.com/link-foundation/lino-arguments). Existing environment variables take precedence over the default `.lenv` file; `--configuration FILE` selects an explicit configuration.
 
-After creating a repository from this template, update the package name in:
+| Setting                     | Default          | Purpose                                    |
+| --------------------------- | ---------------- | ------------------------------------------ |
+| `LAZADA_DATA_DIR`           | `.lazada-search` | Private local state                        |
+| `LAZADA_MARKET`             | `vn`             | Also supports `th`, `sg`, `my`, `ph`, `id` |
+| `LAZADA_DELIVERY_AREA`      | `Nha Trang`      | Delivery context for page cache            |
+| `LAZADA_SESSION_FROM`       | empty            | Optional existing browser session          |
+| `LAZADA_BROWSER_EXECUTABLE` | auto             | Browser Commander executable selection     |
+| `LAZADA_CDP_URL`            | empty            | Optional running browser endpoint          |
+| `LAZADA_OCR_LANGUAGES`      | `eng`            | Tesseract languages, e.g. `eng+vie`        |
+| `LAZADA_OCR_DATA_DIR`       | system           | Optional local trained-model directory     |
+| `LAZADA_CLINK_COMMAND`      | `clink`          | Optional native store executable           |
+| `TELEGRAM_BOT_TOKEN`        | empty            | BotFather token                            |
+| `TELEGRAM_ALLOWED_USER_IDS` | empty            | Comma-separated private-chat user IDs      |
 
-1. `package.json`: replace `"@link-foundation/example-package-name"` with your package name
-2. `.changeset/config.json`: Package references
+Run `node bin/lazada-search.js --help` for all options. Page navigations and explicit image downloads start at least three seconds apart per domain. `--offline` prohibits website downloads; cached stale prices still require `--allow-stale` to rank. `--no-ocr` explicitly disables OCR. Search/listing snapshots expire after six hours and manufacturer pages after 30 days. Images and OCR are keyed separately; OCR includes the engine version, languages and segmentation mode. Images observed by the browser are reused for OCR, and cached images are served back to later browser pages. New selectors can reprocess saved HTML without downloading the page again. `--refresh` rechecks the page and its image evidence.
 
-Release scripts derive the package name from `package.json` at runtime, so no
-script-level package-name constants need to be edited during template adoption.
+## Comparison and evidence
 
-### Protected-Branch Release Pull Requests
+The default metric is delivered cost per gram of protein:
 
-If `main` requires pull requests and the `Pipeline Status` check, the release
-and instant-release jobs can use their built-in `GITHUB_TOKEN` to open a release
-PR. Enable **Allow GitHub Actions to create and approve pull requests** in
-repository Actions settings. The helper verifies that the version commit is a
-direct child of the validated workflow SHA and contains only package metadata
-and consumed changesets. It then creates a successful `Pipeline Status` check
-on that exact commit, linked to the validating run, waits for every required
-check, and merges the PR only after they pass. The release jobs alone receive
-`checks: write`. Set `RELEASE_METADATA_PATHS` to a comma-separated list of
-additional exact metadata paths for other package layouts.
+```text
+order cost = quantity × applicable unit price + order shipping − confirmed order discount
+food mass = package net mass × explicit pack count × quantity
+protein mass = food mass × protein per 100 g ÷ 100
+cost per 25 g protein = order cost × 25 ÷ protein mass
+```
 
-An optional `RELEASE_PR_TOKEN` secret keeps the existing dedicated-token path
-and takes precedence when set. Give that actor Contents and Pull requests write
-access and Checks read access. The manual changeset-PR and generated-preview
-paths still require the dedicated token. A short-lived GitHub App installation
-token can be wired to the same inputs instead of a PAT.
+Bulk tiers use an explicit minimum package quantity. Shipping and coupons apply once to the whole order. The tool also calculates cost per kilogram, protein per 100 kcal and sugar per 25 g protein. It reports separate best offers for whey and chocolate ice cream. Currencies are never silently mixed or converted.
 
-### Optional Docker Hub Publishing
+Every relevant offer remains visible in `comparisons`, the calculator table and
+Telegram, including offers that need more information. The following metrics
+are calculated independently before and after delivery: `totalBeforeDelivery`,
+`totalAfterDelivery`, `costPerGramBeforeDelivery`, `costPerGramAfterDelivery`,
+`costPerMlBeforeDelivery`, `costPerMlAfterDelivery`,
+`costPerProteinGramBeforeDelivery`, `costPerProteinGramAfterDelivery`, and the
+corresponding costs per 25 g protein and per kg of food. Missing shipping makes
+the after-delivery values `null`; missing labelled mass or volume makes only
+the affected unit costs `null`. No volume-to-mass conversion is assumed.
+`totalCost` and the original unit-cost names retain the legacy calculation:
+when shipping is unknown they represent merchandise cost only. Use the explicit
+before/after fields for delivery comparisons.
 
-Docker publishing is disabled by default. To enable it for a project that ships
-a Docker image, add a `Dockerfile` and configure these GitHub Actions settings:
+Public Vietnam shipping estimates can be collected without signing in:
 
-| Setting              | Type               | Description                                                                           |
-| -------------------- | ------------------ | ------------------------------------------------------------------------------------- |
-| `DOCKERHUB_IMAGE`    | Variable           | Docker Hub image name, for example `namespace/image`. This enables Docker publishing. |
-| `DOCKERHUB_USERNAME` | Variable           | Docker Hub username used by `docker/login-action`.                                    |
-| `DOCKERHUB_TOKEN`    | Secret             | Docker Hub access token used for registry authentication.                             |
-| `DOCKER_CONTEXT`     | Variable, optional | Docker build context. Defaults to `.`.                                                |
-| `DOCKERFILE`         | Variable, optional | Dockerfile path. Defaults to `./Dockerfile`.                                          |
+```bash
+node bin/lazada-search.js delivery LAZADA_URL --province "Khánh Hòa" --locality "Phường Nha Trang"
+node bin/lazada-search.js compare --sort costPerGramAfterDelivery
+node bin/lazada-search.js compare --category chocolate-ice-cream --sort costPerMlBeforeDelivery
+```
 
-When enabled, the release workflow waits until the exact published npm version
-is visible in the npm registry, then publishes Docker Hub tags for `latest` and
-that same version. The Docker build also receives `NPM_PACKAGE_VERSION` as a
-build argument so Dockerfiles can install the matching published package.
+Delivery captures preserve the selected SKU, exact locality, original HTML and
+screenshot. Successful estimates and failed attempts are cached for six hours;
+`--refresh` explicitly retries. A public product-page estimate is recorded with
+`shippingQuantity: 1`. It does not establish freight for a bulk order. A
+confirmed bulk quote should specify `shippingQuantity` for that quantity.
+An explicit `--shipping` override remains an order-cost scenario. Phường Nha
+Trang is the default representative locality, not a claim about the buyer's
+exact address. A page that cannot deliver there is recorded as unavailable
+for that destination.
 
-### ESLint Rules
+Eligible offers require a known price, mass and protein density, a confirmed variant, a fresh price and known shipping. Frozen delivery requires explicit confirmation. Unknown nutrition, volume-only labels, mixed nutrition columns, ambiguous variants, stale offers, unavailable stock, unreviewed OCR and manufacturer conflicts remain visible in `excluded`. A declared delivery-area filter requires a quote for exactly that area. `--shipping` is an explicit what-if override; `--no-require-shipping` produces a merchandise-cost comparison. These assumptions are returned with the result.
 
-Customize ESLint in `eslint.config.js`. Current configuration:
+Ingredients identify isolate, concentrate, hydrolyzed whey or blends; a title's marketing claim alone does not identify the protein type. Label flags indicate milk, soy, added sugar, sweeteners and palm oil. Missing ingredient data stays unknown. Flags are descriptions, not medical judgments or a synthetic health score.
 
-- ES Modules support
-- Prettier integration
-- No console restrictions (common in CLI tools)
-- Strict equality enforcement
-- Async/await best practices
-- **Strict unused variables rule**: No exceptions - all unused variables, arguments, and caught errors must be removed (no `_` prefix exceptions)
+```bash
+node bin/lazada-search.js inspect product
+node bin/lazada-search.js inspect evidence EVIDENCE_ID
+node bin/lazada-search.js inspect ocr OCR_ID
+node bin/lazada-search.js verify PRODUCT_ID https://official-manufacturer.example/exact-product
+node bin/lazada-search.js review PRODUCT_ID proteinPer100g 80 EVIDENCE_ID
+node bin/lazada-search.js quote OFFER_ID '{"shipping":30000,"deliveryArea":"Nha Trang","variantConfirmed":true}'
+node bin/lazada-search.js quote ICE_CREAM_OFFER_ID '{"shipping":30000,"deliveryArea":"Nha Trang","coldChainConfirmed":true}'
+node bin/lazada-search.js compare --category whey --protein-type isolate --min-protein 75 --max-sugar 5 --quantity 10
+```
 
-### Prettier Options
+Manufacturer URLs are explicitly supplied by the operator. Verification matches exact GTIN, or brand plus manufacturer SKU; similar names alone never establish identity. Unmatched sources and contradictions are retained. Manufacturer evidence can fill a missing field after identity is confirmed; OCR still requires review. Refreshing changed page evidence invalidates previous field reviews. Reusing the same cached page preserves a shipping quote; a new price snapshot expires it.
 
-Configured in `.prettierrc`:
+Use `import FILE.json` or `import FILE.lino` for reviewed data. See [the fixture schema](tests/fixtures/products.json); those records are explicitly fictional test data. Imports validate nutrition bounds, currencies, timestamps and product references before writing records. `inspect offer-history` exposes past price/quote snapshots.
 
-- Single quotes
-- Semicolons
-- 2-space indentation
-- 80-character line width
-- ES5 trailing commas
-- LF line endings
+[Real public cache fixtures](tests/fixtures/public-cache/README.md) also include
+four historical product captures, two original nutrition labels, bilingual OCR
+results, Nha Trang delivery evidence, `.lino` records and binary `.links`
+projections. The offline replay test asserts zero browser starts and downloads.
 
-## Scripts Reference
+## Library
 
-| Script                               | Description                                           |
-| ------------------------------------ | ----------------------------------------------------- |
-| `bun test --timeout 30000`           | Run tests with Bun and a 30s per-test cap             |
-| `npm test`                           | Run tests with Node.js and a 30s per-test cap         |
-| `bun run lint`                       | Check code with ESLint                                |
-| `bun run lint:fix`                   | Fix ESLint issues automatically                       |
-| `bun run format`                     | Format code with Prettier                             |
-| `bun run format:check`               | Check formatting without changing files               |
-| `bun run check`                      | Run all checks (lint + format)                        |
-| `npm run example:web:dev`            | Start the universal app Vite dev server               |
-| `npm run example:web:build`          | Build the universal app static web bundle             |
-| `npm run example:web:preview-images` | Regenerate preview screenshots via browser-commander  |
-| `npm run example:desktop:package`    | Package the Electron desktop app locally              |
-| `npm run example:mobile:sync`        | Build and sync the app bundle into Capacitor projects |
-| `bun run changeset`                  | Create a new changeset                                |
+```javascript
+import { AssociativeStore, LazadaSearch } from 'lazada-search';
+
+const app = new LazadaSearch({
+  store: new AssociativeStore({ directory: '.lazada-search' }),
+  market: 'vn',
+  deliveryArea: 'Nha Trang',
+});
+try {
+  await app.crawl({ maxPages: 5, maxProducts: 100 });
+  const result = await app.compare({ category: 'whey', quantity: 10 });
+  console.log(result.ranked, result.excluded, result.bestByCategory);
+} finally {
+  await app.close();
+}
+```
+
+The public package includes TypeScript declarations, collector/cache/OCR adapters, nutrition parsing, comparison functions, the associative store, native store adapter, session import and Telegram/HTTP factories. Importing the package never opens a browser or sends messages.
+
+## Associative storage
+
+The design follows [Formal AI's associative technology stack](https://github.com/link-assistant/formal-ai/blob/main/docs/associative-tech-stack.md). `links-notation`, `lino-objects-codec` and `lino-arguments` are direct dependencies. Records use readable object `.lino` files, content-addressed blobs and addressable doublets `(record, (field, typed value))`, with explicit product/evidence/cache/OCR relationships. Equal pairs and atoms share addresses in the exported network.
+
+The built-in `LZLINK01` binary projection provides source/target queries, inverse links and digest-checked recovery from canonical `.lino` records. It is an application format. The optional `NativeLinkStore` adapter also creates actual **binary links-notation archives** through Rust link-cli's `--export-binary`. Each archive is imported into a fresh store and every link is compared before the shard becomes active. Numeric link addresses avoid expensive native name lookups; each shard's `atoms.lino` maps atom addresses to their full typed labels. Both graph and dictionary determine the content address. Keep the whole shard when copying it. Unchanged verified shards are reused; corruption rebuilds the shard.
+
+```bash
+cargo install link-cli --version 1.0.0 --locked
+node bin/lazada-search.js mirror --clink-command /path/to/clink
+node bin/lazada-search.js export --format lino > products-network.lino
+node bin/lazada-search.js export --format links > products-network.links
+```
+
+Native shards live under `.lazada-search/.native/`; `data.links` is the binary archive and `store.db` is link-cli's working database. Rust link-cli 1.0.0 persists its working database as text, so the adapter explicitly creates and verifies the binary archive. Open `store.db` with `clink --db`, or restore `data.links` using `clink --db fresh.db --import-binary data.links`. The regular `export` command's `.links` output uses `LZLINK01`. Every application record commits via fsync and atomic rename under a process-shared writer lock. Binary projections can be rebuilt after interrupted writes. Blobs deduplicate by SHA-256. No background pruning deletes label evidence. Copy the whole private data directory for backup, excluding browser profiles and `.session-cache` when only research evidence is needed. Dependency reports and workarounds are recorded in [docs/upstream-issues.md](docs/upstream-issues.md).
+
+## Telegram
+
+```bash
+export TELEGRAM_BOT_TOKEN='your-BotFather-token'
+export TELEGRAM_ALLOWED_USER_IDS='your-numeric-user-id'
+node bin/lazada-search.js bot
+```
+
+Private-chat commands: `/crawl`, `/collect URL`, `/compare`, `/inspect KIND ID`, `/verify ID URL`, `/review ID FIELD VALUE EVIDENCE_ID`, `/quote OFFER_ID JSON`, `/help`. Options match the CLI. Quote whitespace-bearing strings with single quotes, including JSON objects. The bot requires an explicit allowlist, ignores other users and group chats, serializes work and uses plain-text replies. No production messages are sent by the test suite.
+
+## Coverage and acceptance
+
+A crawl is a bounded search, not proof that every Lazada SKU has been enumerated. Default search queries include whey, isolate, and English/Vietnamese chocolate ice cream. Reports preserve searched pages, found products, failures, cache counts, limits and uncollected URLs. `complete` stays false because inventory, personalization and lazy-loading can hide products. Page and image limits are explicit; all original page evidence and unparsed fields are retained. Repeating a crawl reuses visited search pages, prioritizes unseen product URLs across the queries, and advances through cached results before requesting new search pages.
+
+```bash
+npm test
+npm run test:e2e
+# Include a real native link-cli check:
+LAZADA_TEST_CLINK=/path/to/clink npm run test:e2e
+# Optional installed Chromium override for CI/local test browsers:
+LAZADA_TEST_BROWSER_EXECUTABLE=/path/to/chromium npm run test:e2e
+# Small public-page acceptance; requires a priced product in both categories:
+npm run test:live
+npm run check
+```
+
+Deterministic E2E tests use real Chromium through Browser Commander, real Tesseract, persisted graph recovery, spawned CLI commands, a local Telegram Bot API fixture and a browser-driven calculator. Live Lazada results and account access are a separate acceptance check. See [architecture and evidence rules](docs/architecture.md).
+
+## Universal app example
+
+The React example imports the same pure comparison functions and accepts reviewed product/offer JSON. It retains the template's web, Electron and Capacitor build paths. Auto-regenerated preview screenshots use `npm run example:web:preview-images`; they are separate from live shopping evidence. `npm run example:web:build` builds the example. The local `serve` calculator is the primary interface to the collected database.
 
 ## Contributing
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed contribution guidelines.
-
-Quick steps:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Make your changes
-4. Create a changeset: `bun run changeset`
-5. Commit your changes (pre-commit hooks will run automatically)
-6. Push and create a Pull Request
-
-## Best Practices
-
-This template implements CI/CD best practices for AI-driven development. See [BEST-PRACTICES.md](docs/BEST-PRACTICES.md) for details on:
-
-- File size limits for AI readability
-- Automated formatting and linting
-- Multi-runtime and cross-platform testing
-- Changeset-based versioning
-- Concurrency control for CI/CD pipelines
+Keep calculations deterministic, preserve ambiguous source claims, and add meaningful fixtures when parser behavior changes. Use `npm test`, `npm run test:e2e` and `npm run check`. The inherited Changesets release pipeline remains in place; package identity is now `lazada-search`. See [contributing](docs/CONTRIBUTING.md).
 
 ## License
 
-[Unlicense](LICENSE) - Public Domain
+[Unlicense](LICENSE).

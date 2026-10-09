@@ -176,7 +176,7 @@ describe('release-preflight probe behaviour (offline, curl stub)', () => {
       'audience=npm%3Aregistry.npmjs.org'
     );
     expect(readFileSync(join(fixtures, 'requests'), 'utf8')).toContain(
-      '/exchange/package/%40link-foundation%2Fexample-package-name'
+      '/exchange/package/lazada-search'
     );
     expect(stdout).not.toContain('private-fixture');
   });

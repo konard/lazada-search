@@ -1,95 +1,78 @@
-import { describe, it, expect } from 'test-anywhere';
+import test from 'node:test';
+import assert from 'node:assert/strict';
 import {
-  existsSync,
-  mkdtempSync,
   readFileSync,
-  rmSync,
+  writeFileSync,
+  mkdtempSync,
   symlinkSync,
+  rmSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { runCli } from '../bin/lazada-search.js';
 
-import { runCli } from '../bin/example-package-name.js';
-
-const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
-const lockJson = JSON.parse(readFileSync('package-lock.json', 'utf8'));
-
-describe('publishable package metadata', () => {
-  it('uses the real link-foundation example package name', () => {
-    expect(packageJson.name).toBe('@link-foundation/example-package-name');
-    expect(packageJson.publishConfig).toEqual({ access: 'public' });
-    expect(lockJson.name).toBe('@link-foundation/example-package-name');
-    expect(lockJson.packages[''].name).toBe(
-      '@link-foundation/example-package-name'
-    );
-  });
-
-  it('defines a globally installable CLI command', () => {
-    expect(packageJson.bin).toEqual({
-      'example-package-name': './bin/example-package-name.js',
+test('package identity, installed executable and library export are usable', async () => {
+  const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
+  const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+  assert.equal(manifest.name, 'lazada-search');
+  assert.equal(lock.name, manifest.name);
+  assert.deepEqual(manifest.bin, { 'lazada-search': './bin/lazada-search.js' });
+  const lines = [];
+  assert.equal(
+    await runCli(['--help'], { stdout: (line) => lines.push(line) }),
+    0
+  );
+  assert.ok(lines[0].includes('compare'));
+  const root = mkdtempSync(join(tmpdir(), 'lazada-bin-'));
+  try {
+    const bin = join(root, 'lazada-search');
+    symlinkSync(resolve('bin/lazada-search.js'), bin);
+    const result = spawnSync(process.execPath, [bin, '--version'], {
+      encoding: 'utf8',
     });
-    expect(existsSync('bin/example-package-name.js')).toBe(true);
-  });
+    assert.equal(result.status, 0);
+    assert.equal(result.stdout.trim(), manifest.version);
+    assert.equal(result.stderr, '');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
 
-  it('runs package functions through the CLI command', () => {
-    const stdout = [];
-    const stderr = [];
-
-    expect(
-      runCli(['add', '2', '3'], {
-        stderr: (line) => stderr.push(line),
-        stdout: (line) => stdout.push(line),
-      })
-    ).toBe(0);
-
-    expect(stdout).toEqual(['5']);
-    expect(stderr).toEqual([]);
-  });
-
-  it('runs when invoked through an npm-style bin symlink', () => {
-    if (typeof Deno !== 'undefined') {
-      return;
-    }
-
-    const tempRoot = mkdtempSync(join(tmpdir(), 'example-package-name-'));
-    const linkPath = join(tempRoot, 'example-package-name');
-
-    try {
-      symlinkSync(resolve('bin/example-package-name.js'), linkPath);
-    } catch (error) {
-      rmSync(tempRoot, { force: true, recursive: true });
-
-      if (process.platform === 'win32') {
-        expect(error.code).toBe('EPERM');
-        return;
-      }
-
-      throw error;
-    }
-
-    try {
+test('local and explicit .lenv configuration keep CLI JSON stdout machine-readable', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'lazada-config-'));
+  try {
+    writeFileSync(
+      join(directory, '.lenv'),
+      "LAZADA_DELIVERY_AREA: 'Nha Trang'\n"
+    );
+    writeFileSync(
+      join(directory, 'custom.lenv'),
+      "LAZADA_DELIVERY_AREA: 'Custom area'\n"
+    );
+    const env = Object.fromEntries(
+      Object.entries(process.env).filter(([key]) => !key.startsWith('LAZADA_'))
+    );
+    for (const config of [[], ['--configuration', 'custom.lenv']]) {
       const result = spawnSync(
         process.execPath,
-        [linkPath, 'multiply', '6', '7'],
-        { encoding: 'utf8' }
+        [
+          resolve('bin/lazada-search.js'),
+          'compare',
+          '--data-dir',
+          join(directory, 'data'),
+          ...config,
+        ],
+        { cwd: directory, env, encoding: 'utf8' }
       );
-
-      expect(result.status).toBe(0);
-      expect(result.stdout.trim()).toBe('42');
-      expect(result.stderr).toBe('');
-    } finally {
-      rmSync(tempRoot, { force: true, recursive: true });
+      assert.equal(result.status, 0, result.stderr);
+      const report = JSON.parse(result.stdout);
+      assert.equal(
+        report.assumptions.deliveryArea,
+        config.length ? 'Custom area' : 'Nha Trang'
+      );
     }
-  });
-
-  it('publishes only the package runtime surface', () => {
-    expect(packageJson.files).toEqual([
-      'bin/',
-      'src/',
-      'CHANGELOG.md',
-      'LICENSE',
-      'README.md',
-    ]);
-  });
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
 });

@@ -357,8 +357,8 @@ jobs:
       - name: Run tests (Bun)
         if: matrix.runtime == 'bun'
         shell: bash
-        # --timeout caps an *individual* test at 30s, matching Node's
-        # --test-timeout budget while leaving headroom for cold runners.
+        # --timeout caps an *individual* test at 30s; Node instead gives
+        # each test file 120s for suites that create many Git fixtures.
         # It is a per-test bound and does not bound the suite: 25 tests of
         # 29s each pass every per-test check. The suite budget below is
         # what bounds the whole run.

@@ -1,27 +1,492 @@
-/**
- * Example module type definitions
- * Replace this with your actual type definitions
- */
-
-/**
- * Adds two numbers
- * @param a - First number
- * @param b - Second number
- * @returns Sum of a and b
- */
-export declare const add: (a: number, b: number) => number;
-
-/**
- * Multiplies two numbers
- * @param a - First number
- * @param b - Second number
- * @returns Product of a and b
- */
-export declare const multiply: (a: number, b: number) => number;
-
-/**
- * Delays execution for specified milliseconds
- * @param ms - Milliseconds to wait
- * @returns Promise that resolves after the delay
- */
-export declare const delay: (ms: number) => Promise<void>;
+import type { Bot } from 'grammy';
+import type { Server } from 'node:http';
+export type Category = 'whey' | 'chocolate-ice-cream' | 'unknown';
+export declare function categoryOf(title: string): Category;
+export declare function volumeMillilitres(value: string): number | undefined;
+export declare function captureDelivery(
+  collector: BrowserCollector,
+  url: string,
+  options: { province: string; locality: string; refresh?: boolean }
+): Promise<Record<string, unknown>>;
+export type ProteinType =
+  | 'isolate'
+  | 'concentrate'
+  | 'blend'
+  | 'hydrolyzed'
+  | 'unknown';
+export type Json =
+  | null
+  | boolean
+  | number
+  | string
+  | Json[]
+  | { [key: string]: Json };
+export interface Claim {
+  field: string;
+  value: Json;
+  evidenceId?: string;
+  source: string;
+  confidence?: number;
+  requiresReview: boolean;
+  excerpt?: string;
+  reviewedAt?: string;
+}
+export interface Product {
+  id: string;
+  url: string;
+  title: string;
+  category: Category;
+  market?: string;
+  brand?: string;
+  sku?: string;
+  manufacturerSku?: string;
+  gtin?: string;
+  netMassG?: number;
+  netVolumeMl?: number;
+  packCount?: number;
+  servingMassG?: number;
+  proteinPer100g?: number;
+  sugarPer100g?: number;
+  fatPer100g?: number;
+  saturatedFatPer100g?: number;
+  kcalPer100g?: number;
+  ingredients?: string[];
+  proteinType?: ProteinType;
+  ingredientFlags?: Record<string, boolean | null>;
+  evidenceIds?: string[];
+  claims?: Claim[];
+  reviewedFields?: string[];
+  crossChecks?: CrossCheck[];
+  warnings?: string[];
+  observedAt?: string;
+  variants?: Array<{ text?: string; selected?: boolean; sku?: string }>;
+  selectedVariant?: Array<{ text?: string; selected?: boolean; sku?: string }>;
+  ocrCoverage?: {
+    discovered: number;
+    attempted: number;
+    skipped: number;
+    failed: number;
+    empty?: number;
+    passes?: number;
+  };
+}
+export interface Offer {
+  id: string;
+  productId: string;
+  url: string;
+  currency: string;
+  price?: number;
+  shipping?: number;
+  shippingQuantity?: number;
+  shippingDestination?: string;
+  quoteEvidenceId?: string;
+  discount?: number;
+  seller?: string;
+  sku?: string;
+  available?: boolean;
+  deliveryAvailable?: boolean;
+  variantConfirmed?: boolean;
+  coldChainConfirmed?: boolean;
+  deliveryArea?: string;
+  stock?: number;
+  minQuantity?: number;
+  maxQuantity?: number;
+  bulkTiers?: Array<{ minQuantity: number; unitPrice: number }>;
+  observedAt: string;
+  evidenceId?: string;
+  priceScope?: string;
+  supersededBy?: string;
+}
+export interface ComparisonOptions {
+  category?: Category;
+  proteinType?: ProteinType;
+  quantity?: number;
+  currency?: string;
+  shipping?: number;
+  discount?: number;
+  deliveryArea?: string;
+  minProtein?: number;
+  maxSugar?: number;
+  excludeIngredients?: string[];
+  maxPriceAgeMs?: number;
+  allowStale?: boolean;
+  requireShipping?: boolean;
+  now?: number;
+  sort?:
+    | 'costPerProteinG'
+    | 'costPerKg'
+    | 'totalCost'
+    | 'proteinPer100g'
+    | 'totalBeforeDelivery'
+    | 'totalAfterDelivery'
+    | 'costPerGramBeforeDelivery'
+    | 'costPerGramAfterDelivery'
+    | 'costPerMlBeforeDelivery'
+    | 'costPerMlAfterDelivery'
+    | 'costPerProteinGramBeforeDelivery'
+    | 'costPerProteinGramAfterDelivery'
+    | 'costPer25gProteinBeforeDelivery'
+    | 'costPer25gProteinAfterDelivery'
+    | 'costPerKgBeforeDelivery'
+    | 'costPerKgAfterDelivery';
+}
+export interface Metrics {
+  quantity: number;
+  currency: string;
+  unitPrice?: number;
+  shipping: number | null;
+  discount: number;
+  merchandiseSubtotal: number | null;
+  totalBeforeDelivery: number | null;
+  totalAfterDelivery: number | null;
+  totalCost: number | null;
+  totalMassG: number | null;
+  totalVolumeMl: number | null;
+  totalProteinG: number | null;
+  costPerGramBeforeDelivery: number | null;
+  costPerGramAfterDelivery: number | null;
+  costPerMlBeforeDelivery: number | null;
+  costPerMlAfterDelivery: number | null;
+  costPerProteinGramBeforeDelivery: number | null;
+  costPerProteinGramAfterDelivery: number | null;
+  costPer25gProteinBeforeDelivery: number | null;
+  costPer25gProteinAfterDelivery: number | null;
+  costPerKgBeforeDelivery: number | null;
+  costPerKgAfterDelivery: number | null;
+  costPerProteinG: number | null;
+  costPer25gProtein: number | null;
+  costPerKg: number | null;
+  proteinPer100g: number | null;
+  proteinPer100kcal: number | null;
+  sugarPer25gProtein: number | null;
+  priceAgeMs: number;
+  shippingKnown: boolean;
+  shippingQuantity: number | null;
+  shippingDestination: string | null;
+}
+export interface ComparisonRow {
+  product: Product;
+  offer: Offer;
+  metrics: Metrics;
+  eligible: boolean;
+  problems: string[];
+}
+export interface ComparisonReport {
+  comparisons: ComparisonRow[];
+  ranked: ComparisonRow[];
+  excluded: ComparisonRow[];
+  bestByCategory: Record<'whey' | 'chocolate-ice-cream', ComparisonRow | null>;
+  assumptions: Record<string, Json>;
+  calculatedAt: string;
+}
+export interface CrossCheck {
+  id?: string;
+  productId?: string;
+  manufacturerUrl?: string;
+  evidenceId?: string;
+  identityMatched: boolean;
+  identityMethod: string;
+  conflicts: Array<{ field: string; listing: Json; manufacturer: Json }>;
+  corroborated: string[];
+}
+export interface BlobReference {
+  sha256: string;
+  bytes: number;
+}
+export interface Doublet {
+  id: number;
+  source: number;
+  target: number;
+  name?: string;
+}
+export declare class DoubletGraph {
+  links: Doublet[];
+  names: Map<string, number>;
+  pairs: Map<string, number>;
+  atom(name: string): number;
+  pair(source: number, target: number): number;
+  addRecord(
+    kind: string,
+    record: { id: string; [key: string]: unknown }
+  ): number;
+  query(filter?: { source?: number; target?: number }): Doublet[];
+  toNotation(options?: { numericIds?: boolean }): string;
+  toBinary(): Buffer;
+  static fromBinary(bytes: Buffer): DoubletGraph;
+}
+export declare class AssociativeStore {
+  constructor(options?: { directory?: string });
+  directory: string;
+  recordPath(kind: string, id: string): string;
+  locked<T>(action: () => Promise<T>): Promise<T>;
+  put<T extends { id: string }>(kind: string, record: T): Promise<T>;
+  get<T = Record<string, unknown>>(
+    kind: string,
+    id: string
+  ): Promise<T | undefined>;
+  list<T = Record<string, unknown>>(
+    kind: string,
+    query?: { path?: string; value?: unknown }
+  ): Promise<T[]>;
+  graph(kind: string, id: string): Promise<DoubletGraph | undefined>;
+  exportGraph(): Promise<DoubletGraph>;
+  putBlob(contents: string | Uint8Array): Promise<BlobReference>;
+  blob(id: string): Promise<Buffer | undefined>;
+}
+export declare class DomainScheduler {
+  constructor(options?: {
+    intervalMs?: number;
+    sleep?: (ms: number) => Promise<unknown>;
+  });
+  run<T>(url: string, action: () => Promise<T>): Promise<T>;
+}
+export interface Capture {
+  id: string;
+  url: string;
+  snapshot: PageSnapshot;
+  status: string;
+  html?: BlobReference;
+  screenshot?: BlobReference;
+  finalUrl?: string;
+  fetchedAt: number;
+  checkedAt: number;
+  cacheHit: boolean;
+  stale: boolean;
+}
+export interface PageSnapshot {
+  url: string;
+  title: string;
+  priceText?: string;
+  seller?: string;
+  brand?: string;
+  description?: string;
+  rawText: string;
+  specs?: string[];
+  jsonLd?: unknown[];
+  images?: string[];
+  productImages?: string[];
+  variants?: Product['variants'];
+  selectedVariant?: Product['variants'];
+  cards?: Array<{ url: string; title: string; rawText?: string }>;
+  links?: Array<{ url: string; text: string }>;
+  nextUrl?: string;
+}
+export declare class EvidenceCache {
+  constructor(options: {
+    store: AssociativeStore;
+    scheduler?: DomainScheduler;
+    now?: () => number;
+    offline?: boolean;
+  });
+  offline: boolean;
+  stats: {
+    hits: number;
+    misses: number;
+    downloads: number;
+    revalidated: number;
+  };
+  get<T extends Record<string, unknown>>(
+    url: string,
+    options?: {
+      namespace?: string;
+      ttlMs?: number;
+      refresh?: boolean;
+      load?: (cached?: T) => Promise<T | { notModified: true }>;
+    }
+  ): Promise<T & { cacheHit: boolean; stale: boolean }>;
+  image(
+    url: string,
+    options?: {
+      refresh?: boolean;
+      fetchImage?: typeof fetch;
+      maxBytes?: number;
+    }
+  ): Promise<{ blob: BlobReference; cacheHit: boolean }>;
+}
+export declare class BrowserCollector {
+  constructor(options: {
+    cache: EvidenceCache;
+    store?: AssociativeStore;
+    browserOptions?: Record<string, unknown>;
+    settleMs?: number;
+    maxScrolls?: number;
+  });
+  start(): Promise<void>;
+  page(
+    url: string,
+    options?: { namespace?: string; ttlMs?: number; refresh?: boolean }
+  ): Promise<Capture>;
+  capture(url: string): Promise<Partial<Capture>>;
+  close(): Promise<void>;
+}
+export interface OcrResult {
+  id: string;
+  imageHash: string;
+  text: string;
+  confidence: number;
+  words: Array<{
+    line: string;
+    text: string;
+    confidence: number;
+    box: number[];
+  }>;
+  engine: string;
+  languages: string;
+  psm: number;
+  observedAt: string;
+  cacheHit: boolean;
+}
+export declare class TesseractOcr {
+  constructor(options: {
+    store: AssociativeStore;
+    languages?: string;
+    command?: string;
+    psm?: number;
+    tessdataDir?: string;
+  });
+  version(): Promise<string>;
+  recognize(
+    blob: BlobReference,
+    options?: { psm?: number }
+  ): Promise<OcrResult>;
+}
+export declare class NativeLinkStore {
+  constructor(options?: { command?: string });
+  project(
+    directory: string,
+    graph: DoubletGraph
+  ): Promise<{ directory: string; cacheHit: boolean; links: number }>;
+  mirror(
+    store: AssociativeStore
+  ): Promise<{ backend: string; shards: unknown[]; reused: number }>;
+}
+export declare class LazadaSearch {
+  constructor(options?: {
+    store?: AssociativeStore;
+    cache?: EvidenceCache;
+    collector?: BrowserCollector;
+    ocr?: TesseractOcr | false;
+    market?: string;
+    deliveryArea?: string;
+    maxImages?: number;
+    offline?: boolean;
+    browserOptions?: Record<string, unknown>;
+    scheduler?: DomainScheduler;
+  });
+  store: AssociativeStore;
+  cache: EvidenceCache;
+  collector: BrowserCollector;
+  market: string;
+  deliveryArea: string;
+  importRecords(records: {
+    products?: Product[];
+    offers?: Offer[];
+  }): Promise<{ products: number; offers: number }>;
+  collect(
+    url: string,
+    options?: { refresh?: boolean }
+  ): Promise<{
+    product: Product;
+    offer: Offer;
+    cacheHit: boolean;
+    stale: boolean;
+  }>;
+  crawl(options?: {
+    queries?: string[];
+    maxPages?: number;
+    maxProducts?: number;
+    refresh?: boolean;
+  }): Promise<Record<string, unknown>>;
+  verify(
+    productId: string,
+    manufacturerUrl: string,
+    options?: { refresh?: boolean }
+  ): Promise<CrossCheck>;
+  review(
+    productId: string,
+    field: string,
+    value: Json,
+    evidenceId: string
+  ): Promise<Product>;
+  quote(offerId: string, input: Partial<Offer>): Promise<Offer>;
+  delivery(
+    url: string,
+    options?: { province?: string; locality?: string; refresh?: boolean }
+  ): Promise<Record<string, unknown>>;
+  compare(options?: ComparisonOptions): Promise<ComparisonReport>;
+  close(): Promise<void>;
+}
+export declare const MARKETS: Record<
+  string,
+  { host: string; currency: string; queries: string[] }
+>;
+export declare function extractPage(context?: {
+  document: unknown;
+  url: string;
+}): PageSnapshot;
+export declare function classifyPage(page: PageSnapshot): string;
+export declare function parseTsv(
+  text: string
+): Pick<OcrResult, 'text' | 'confidence' | 'words'>;
+export declare function parseProduct(
+  snapshot: PageSnapshot,
+  options?: {
+    market?: string;
+    currency?: string;
+    evidenceId?: string;
+    source?: string;
+    observedAt?: string;
+  }
+): { product: Product; offer: Offer };
+export declare function validateProduct(product: Product): Product;
+export declare function validateOffer(offer: Offer): Offer;
+export declare function extractNutrition(text: string): {
+  fields: Partial<Product>;
+  excerpts: Record<string, string>;
+  warnings: string[];
+  basis: string;
+};
+export declare function crossCheck(
+  product: Product,
+  manufacturer: Product
+): CrossCheck;
+export declare function ingredientFlags(
+  ingredients: string[]
+): Record<string, boolean | null>;
+export declare function proteinTypeOf(
+  ingredients: string[],
+  category: Category
+): ProteinType;
+export declare function calculateOffer(
+  product: Product,
+  offer: Offer,
+  options?: ComparisonOptions
+): ComparisonRow;
+export declare function compareOffers(
+  products: Product[],
+  offers: Offer[],
+  options?: ComparisonOptions
+): ComparisonReport;
+export declare function createTelegramBot(options: {
+  application: LazadaSearch;
+  token: string;
+  allowedUserIds: number[];
+  botInfo?: unknown;
+  client?: unknown;
+}): Bot;
+export declare function startServer(options: {
+  application: LazadaSearch;
+  port?: number;
+}): Promise<Server>;
+export declare function sessionSources(
+  domain?: string
+): Promise<Record<string, unknown>>;
+export declare function importSession(options: {
+  directory: string;
+  domain?: string;
+  browser?: string;
+  profile?: string;
+}): Promise<{
+  cookies: unknown[];
+  summary: { browser: string; profile?: string; cookieCount: number };
+}>;

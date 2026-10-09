@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lazada protein comparison</title>
+    <link rel="stylesheet" href="/app.css" />
+    <script src="/app.js" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Lazada • evidence and value</p>
+      <h1>More protein for your money</h1>
+      <p>
+        Compare whey powder and chocolate ice cream separately. Adjust your
+        order to recalculate delivered cost and protein. Prices come from your
+        collected listings.
+      </p>
+      <form id="calculator">
+        <label
+          >Category<select name="category">
+            <option value="whey">Whey protein</option>
+            <option value="chocolate-ice-cream">Chocolate ice cream</option>
+          </select></label
+        >
+        <label
+          >Sort by<select name="sort">
+            <option value="costPerProteinGramBeforeDelivery">
+              Protein cost before delivery
+            </option>
+            <option value="costPerProteinGramAfterDelivery">
+              Protein cost after delivery
+            </option>
+            <option value="costPerGramBeforeDelivery">
+              Food gram cost before delivery
+            </option>
+            <option value="costPerGramAfterDelivery">
+              Food gram cost after delivery
+            </option>
+            <option value="costPerMlBeforeDelivery">
+              Millilitre cost before delivery
+            </option>
+            <option value="costPerMlAfterDelivery">
+              Millilitre cost after delivery
+            </option>
+          </select></label
+        >
+        <label
+          >Protein type<select name="proteinType">
+            <option value="">All types</option>
+            <option value="isolate">Isolate</option>
+            <option value="concentrate">Concentrate</option>
+            <option value="blend">Blend</option>
+            <option value="hydrolyzed">Hydrolyzed</option>
+          </select></label
+        >
+        <label
+          >Packages<input
+            name="quantity"
+            type="number"
+            value="1"
+            min="1"
+            step="1"
+            required
+        /></label>
+        <label
+          >Order shipping override<input
+            name="shipping"
+            type="number"
+            min="0"
+            placeholder="Use recorded quote"
+        /></label>
+        <label
+          >Order discount override<input
+            name="discount"
+            type="number"
+            min="0"
+            placeholder="Use recorded discount"
+        /></label>
+        <label
+          >Minimum protein / 100 g<input
+            name="minProtein"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="Any"
+        /></label>
+        <label
+          >Maximum sugar / 100 g<input
+            name="maxSugar"
+            type="number"
+            min="0"
+            max="100"
+            placeholder="Any"
+        /></label>
+        <label
+          >Delivery area<input
+            name="deliveryArea"
+            placeholder="Use recorded area"
+        /></label>
+        <label
+          ><input name="allowStale" type="checkbox" value="true" /> Include
+          older prices</label
+        >
+        <button type="submit">Recalculate</button>
+      </form>
+      <p id="status" role="status"></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Product</th>
+              <th rowspan="2">Protein / 100 g</th>
+              <th colspan="2">Order total</th>
+              <th colspan="2">Cost / food g</th>
+              <th colspan="2">Cost / ml</th>
+              <th colspan="2">Cost / protein g</th>
+              <th colspan="2">Cost / 25 g protein</th>
+              <th rowspan="2">Ingredients &amp; evidence</th>
+            </tr>
+            <tr>
+              <th>Before</th>
+              <th>After</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Before</th>
+              <th>After</th>
+            </tr>
+          </thead>
+          <tbody id="offers"></tbody>
+        </table>
+      </div>
+      <p class="muted">
+        All costs use the currency shown above. Before and after columns include
+        the order discount once. Unknown delivery remains unknown. Millilitres
+        require a volume label; grams require a mass label.
+      </p>
+      <details open>
+        <summary>Offers needing more information</summary>
+        <ul id="excluded"></ul>
+      </details>
+      <p class="muted">
+        Ingredient flags describe the label. They are not a health score. A
+        frozen delivery quote and a confirmed variant are required for ice
+        cream.
+      </p>
+    </main>
+  </body>
+</html>

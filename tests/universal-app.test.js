@@ -45,14 +45,16 @@ describe('universal React example app', () => {
     expect(packageJson.scripts['mobile:ios:run']).toContain('cap run ios');
   });
 
-  it('renders a visual UI using the package add and multiply functions', () => {
+  it('renders a protein comparison UI using the package metrics', () => {
     const appSource = readText(appSourcePath);
 
-    expect(appSource).toContain("from '../../../src/index.js'");
-    expect(appSource).toContain('add(parsedLeft, parsedRight)');
-    expect(appSource).toContain('multiply(parsedLeft, parsedRight)');
-    expect(appSource).toContain('Addition');
-    expect(appSource).toContain('Multiplication');
+    expect(appSource).toContain("from '../../../src/compare.js'");
+    expect(appSource).toContain(
+      'compareOffers(records.products, records.offers, { quantity })'
+    );
+    expect(appSource).toContain('metrics.costPer25gProtein.toFixed(2)');
+    expect(appSource).toContain('Lazada protein comparison');
+    expect(appSource).toContain('Offers needing information');
   });
 
   it('shares the Vite build output with Capacitor and GitHub Pages', () => {

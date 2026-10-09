@@ -1,35 +1,21 @@
-/**
- * Example test file using test-anywhere
- * Works with Node.js, Bun, and Deno
- */
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import * as library from '../src/index.js';
 
-import { describe, it, expect } from 'test-anywhere';
-import { add, multiply } from '../src/index.js';
-
-describe('add function', () => {
-  it('should add two positive numbers', () => {
-    expect(add(2, 3)).toBe(5);
-  });
-
-  it('should add negative numbers', () => {
-    expect(add(-1, -2)).toBe(-3);
-  });
-
-  it('should add zero', () => {
-    expect(add(5, 0)).toBe(5);
-  });
-});
-
-describe('multiply function', () => {
-  it('should multiply two positive numbers', () => {
-    expect(multiply(2, 3)).toBe(6);
-  });
-
-  it('should multiply by zero', () => {
-    expect(multiply(5, 0)).toBe(0);
-  });
-
-  it('should multiply negative numbers', () => {
-    expect(multiply(-2, 3)).toBe(-6);
-  });
+test('public package exposes the library and adapters without launching a browser', () => {
+  for (const name of [
+    'LazadaSearch',
+    'AssociativeStore',
+    'DoubletGraph',
+    'NativeLinkStore',
+    'BrowserCollector',
+    'EvidenceCache',
+    'TesseractOcr',
+    'compareOffers',
+    'createTelegramBot',
+    'startServer',
+    'importSession',
+  ]) {
+    assert.equal(typeof library[name], 'function');
+  }
 });

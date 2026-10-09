@@ -322,9 +322,9 @@ describe('CI timeout policy', () => {
     expect(getTimeoutMinutes(crlfWorkflow, 'second-job')).toBe(10);
   });
 
-  it('caps individual Node.js and Bun tests at 30 seconds', () => {
+  it('bounds Node.js test files at two minutes and individual Bun tests at 30 seconds', () => {
     expect(packageJson.scripts.test).toBe(
-      'node --test --test-timeout=30000 tests/*.test.js'
+      'node --test --test-concurrency=4 --test-timeout=120000 tests/*.test.js'
     );
     expect(releaseWorkflow).toContain('bun test --timeout 30000');
   });

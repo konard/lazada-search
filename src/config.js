@@ -1,0 +1,163 @@
+import { LinoEnv, makeConfig, toUpperCase } from 'lino-arguments';
+import { existsSync } from 'node:fs';
+
+function loadConfiguration(path, override) {
+  if (!existsSync(path)) {
+    return;
+  }
+  const file = new LinoEnv(path);
+  file.read();
+  for (const [key, value] of Object.entries(file.toObject())) {
+    const name = toUpperCase(key);
+    if (override || process.env[name] === undefined) {
+      const trimmed = value.trim();
+      process.env[name] = /^(["']).*\1$/su.test(trimmed)
+        ? trimmed.slice(1, -1)
+        : value;
+    }
+  }
+}
+
+export function parseArguments(argv) {
+  // makeConfig 0.3.0 logs .lenv loads to stdout, which corrupts JSON and
+  // binary CLI output. Load its exported LinoEnv object quietly first.
+  const argumentsWithoutConfig = [];
+  let configuration;
+  for (let index = 0; index < argv.length; index += 1) {
+    const argument = argv[index];
+    if (argument === '--configuration' || argument === '-c') {
+      configuration = argv[++index];
+      if (!configuration || configuration.startsWith('--')) {
+        throw new Error('Configuration file path is required');
+      }
+    } else if (argument.startsWith('--configuration=')) {
+      configuration = argument.slice('--configuration='.length);
+      if (!configuration) {
+        throw new Error('Configuration file path is required');
+      }
+    } else {
+      argumentsWithoutConfig.push(argument);
+    }
+  }
+  loadConfiguration('.lenv', false);
+  if (configuration) {
+    if (!existsSync(configuration)) {
+      throw new Error(`Configuration file not found: ${configuration}`);
+    }
+    loadConfiguration(configuration, true);
+  }
+  let positional = [];
+  const config = makeConfig({
+    argv: [process.execPath, 'lazada-search', ...argumentsWithoutConfig],
+    lenv: { enabled: false },
+    yargs: ({ yargs, getenv }) =>
+      yargs
+        .exitProcess(false)
+        .help(false)
+        .version(false)
+        .strictOptions()
+        .check((parsed) => {
+          positional = parsed._.map(String);
+          return true;
+        })
+        .option('data-dir', {
+          type: 'string',
+          default: getenv('LAZADA_DATA_DIR', '.lazada-search'),
+        })
+        .option('market', {
+          type: 'string',
+          default: getenv('LAZADA_MARKET', 'vn'),
+        })
+        .option('delivery-area', {
+          type: 'string',
+          default: getenv('LAZADA_DELIVERY_AREA', 'Nha Trang'),
+        })
+        .option('headless', { type: 'boolean', default: true })
+        .option('province', { type: 'string' })
+        .option('locality', { type: 'string' })
+        .option('executable-path', {
+          type: 'string',
+          default: getenv('LAZADA_BROWSER_EXECUTABLE', ''),
+        })
+        .option('cdp-url', {
+          type: 'string',
+          default: getenv('LAZADA_CDP_URL', ''),
+        })
+        .option('session-from', {
+          type: 'string',
+          default: getenv('LAZADA_SESSION_FROM', ''),
+        })
+        .option('session-profile', { type: 'string' })
+        .option('clink-command', {
+          type: 'string',
+          default: getenv('LAZADA_CLINK_COMMAND', 'clink'),
+        })
+        .option('offline', { type: 'boolean', default: false })
+        .option('ocr', { type: 'boolean', default: true })
+        .option('ocr-languages', {
+          type: 'string',
+          default: getenv('LAZADA_OCR_LANGUAGES', 'eng'),
+        })
+        .option('ocr-data-dir', {
+          type: 'string',
+          default: getenv('LAZADA_OCR_DATA_DIR', ''),
+        })
+        .option('max-images', { type: 'number', default: 40 })
+        .option('refresh', { type: 'boolean', default: false })
+        .option('max-pages', { type: 'number', default: 5 })
+        .option('max-products', { type: 'number', default: 100 })
+        .option('query', { type: 'array', string: true })
+        .option('quantity', { type: 'number', default: 1 })
+        .option('currency', { type: 'string' })
+        .option('category', {
+          type: 'string',
+          choices: ['whey', 'chocolate-ice-cream', 'unknown'],
+        })
+        .option('protein-type', {
+          type: 'string',
+          choices: ['isolate', 'concentrate', 'blend', 'hydrolyzed', 'unknown'],
+        })
+        .option('min-protein', { type: 'number' })
+        .option('max-sugar', { type: 'number' })
+        .option('exclude-ingredient', { type: 'array', string: true })
+        .option('shipping', { type: 'number' })
+        .option('discount', { type: 'number' })
+        .option('allow-stale', { type: 'boolean', default: false })
+        .option('require-shipping', { type: 'boolean', default: true })
+        .option('sort', { type: 'string', default: 'costPerProteinG' })
+        .option('port', { type: 'number', default: 8080 })
+        .option('format', {
+          type: 'string',
+          choices: ['json', 'lino', 'links'],
+          default: 'json',
+        })
+        .option('path', { type: 'string' })
+        .option('value', { type: 'string' })
+        .option('help', { alias: 'h', type: 'boolean' })
+        .option('version', { alias: 'v', type: 'boolean' }),
+  });
+  return {
+    ...config,
+    ...(configuration ? { configuration } : {}),
+    _: positional,
+  };
+}
+
+export const comparisonOptions = (options) =>
+  Object.fromEntries(
+    Object.entries({
+      quantity: options.quantity,
+      currency: options.currency,
+      deliveryArea: options.deliveryArea,
+      category: options.category,
+      proteinType: options.proteinType,
+      minProtein: options.minProtein,
+      maxSugar: options.maxSugar,
+      excludeIngredients: options.excludeIngredient,
+      shipping: options.shipping,
+      discount: options.discount,
+      allowStale: options.allowStale,
+      requireShipping: options.requireShipping,
+      sort: options.sort,
+    }).filter(([, value]) => value !== undefined)
+  );

@@ -1,0 +1,105 @@
+:root {
+  color-scheme: light;
+  font:
+    16px/1.55 system-ui,
+    sans-serif;
+  color: #19372f;
+  background: #f3f7f4;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 1280px;
+  padding: 48px 24px;
+  margin: auto;
+}
+h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 12px 0;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #497464;
+  font-size: 0.8rem;
+}
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 18px;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  margin: 30px 0;
+}
+label {
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+input,
+select,
+button {
+  font: inherit;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #b2c9bf;
+}
+button {
+  background: #19644c;
+  color: white;
+  cursor: pointer;
+  align-self: end;
+}
+input[type='checkbox'] {
+  width: 20px;
+}
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #d7e4dd;
+  vertical-align: top;
+}
+td:first-child {
+  min-width: 240px;
+}
+th {
+  font-size: 0.8rem;
+}
+a {
+  color: #156247;
+  overflow-wrap: anywhere;
+}
+small {
+  display: block;
+  color: #60786e;
+  margin-top: 6px;
+}
+details {
+  margin-top: 24px;
+}
+td details {
+  margin: 0;
+}
+summary {
+  cursor: pointer;
+}
+.muted {
+  color: #60786e;
+  font-size: 0.85rem;
+}

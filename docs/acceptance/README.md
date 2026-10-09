@@ -1,0 +1,35 @@
+# Public collection and validation
+
+The calculator uses the local evidence store at [http://127.0.0.1:8080](http://127.0.0.1:8080). Restart it with `node bin/lazada-search.js serve`. Node 22.13 or newer is required. Private local `.lenv` configuration selects Vietnam, Nha Trang, English/Vietnamese OCR models and the installed Rust link-cli executable.
+
+## What was collected
+
+[live-result.json](live-result.json) records 21 whey offers and 11 chocolate ice-cream offers carrying observed prices. [expanded-crawl.json](expanded-crawl.json) records the wider search: 88 discovered links and 27 successful additional collections, with one app-only failure. Collection is a resumable bounded search; the report does not claim to enumerate every Lazada product.
+
+Saved pages were reprocessed with improved selectors and the largest observed gallery images, followed by English/Vietnamese OCR and a second segmentation pass for low-confidence results. The latest candidate OCR replay recorded 99 cache hits, zero misses and zero downloads. Original HTML, images, screenshots, OCR words/confidence and unparsed text remain in the private local store. The extractor now uses the selected DOM SKU and variant weight; a listing headed "Rule 1 5Lbs" was actually offering a selected 1 kg trial bag. Packet counts, protein claims and whey skin creams are excluded from food-weight calculations.
+
+[review-result.json](review-result.json) records visual inspection of three cached seller-supplied whey labels, including evidence hashes and per-serving values. These are not authenticated manufacturer identity matches. [delivery-result.json](delivery-result.json) contains public delivery checks for every collected food offer, including 15 shipping amounts. Quotes use **Khánh Hòa, Phường Nha Trang** as a representative destination for one selected package. They do not confirm the buyer's precise address or freight for a bulk order.
+
+| Listing                                                                                  |     Price | Shipping (1 package) | Delivered total | VND / food g before → after | VND / 25 g protein before → after |
+| ---------------------------------------------------------------------------------------- | --------: | -------------------: | --------------: | --------------------------: | --------------------------------: |
+| [It's Just isolate, 2,268 g](https://www.lazada.vn/products/pdp-i3261102356.html)        | 3,100,000 |               80,200 |       3,180,200 |         1,366.84 → 1,402.20 |                   37,588 → 38,561 |
+| [MusaKing chocolate blend, 2,205 g](https://www.lazada.vn/products/pdp-i3326813842.html) | 2,990,000 |               90,400 |       3,080,400 |         1,356.01 → 1,397.01 |                   47,460 → 48,895 |
+| [MusaKing chocolate blend, 500 g](https://www.lazada.vn/products/pdp-i3326267977.html)   |   658,000 |               51,100 |         709,100 |            1,316 → 1,418.20 |                   46,060 → 49,637 |
+
+It's Just is the lowest delivered protein cost among these three label-reviewed offers. It contains 30 g protein per 33 g serving (90.9%); both MusaKing labels contain 25 g per 35 g (71.4%). Ten It's Just packages contain 22.68 kg powder and cost 31,000,000 VND before freight; shipping for ten packages remains unconfirmed. Stock for a bulk order and the physical batch have not been checked.
+
+The It's Just front label states 2,268 g; this reviewed value replaces the listing's rounded 2.3 kg specification. Its nutrition panel lists 1 g sugar per serving even though another promotional image says "Sugar Free". MusaKing's ingredients include sucralose and stevia. The tool records ingredient and nutrient facts rather than assigning an invented health score.
+
+[manufacturer-result.json](manufacturer-result.json) preserves checks against public official manufacturer pages. Sources with missing exact GTIN/manufacturer-SKU matches stay unmatched; their data does not silently override marketplace products. The official [138 Foods product family](https://138foods.com/products/its-just-whey-protein-isolate) supports the isolate's ingredient list and 33 g serving. The official [MusaKing 500 g page](https://musaking.com/products/whey-isolate) supports its 25 g protein per 35 g serving, blend composition and sweeteners. These family/page checks do not establish listing authenticity or delivered availability.
+
+Every offer appears in the calculator table and [price-comparison.json](price-comparison.json), with independent before/after unit costs. Unknown values stay null. The cheapest observed ice-cream volume price is [Merino chocolate/banana 150 ml](https://www.lazada.vn/products/pdp-i497330157.html), 18,000 VND or 120 VND/ml before delivery, but its page explicitly refuses the Nha Trang destination. The [Merino 900 ml mixed chocolate/vanilla/strawberry tub](https://www.lazada.vn/products/pdp-i1561259427.html) is 110,000 VND, or 122.22 VND/ml before delivery; no Nha Trang shipping quote was obtained. No ice-cream offer has confirmed frozen delivery and a reviewed protein density, so there is no eligible ice-cream protein-cost winner. Some pages show a standard freight estimate despite an HCM-only title; that does not establish a cold chain.
+
+Public local-retailer checks reached MM and LOTTE's catalogs. MM's older Nha Trang URL now returns a missing-content page under the default An Phú store; the LOTTE Nha Trang home page loads, but no priced frozen chocolate product was established from those public checks. These checks do not establish a local bulk buying recommendation. No account was used and no order was placed.
+
+## Verification
+
+The complete unit/repository suite passed 575 tests. All three E2E tests passed without skips: real Browser Commander Chromium, public destination selection and quote caching, local Tesseract with English/Vietnamese models, collection/cache restart, manufacturer evidence, quote and comparison arithmetic, installed CLI, a local simulated Telegram API, the browser calculator, and actual Rust link-cli binary export/import. Production Telegram messages were not sent. [Committed public cache fixtures](../../tests/fixtures/public-cache/README.md) replay four actual products, original labels, bilingual OCR, destination quotes, `.lino` and binary `.links` with zero browser starts or downloads. A separate test verifies that failed public delivery attempts are cached without repeating navigation.
+
+Lint, formatting, duplicate-code checks, the web example build and package dry-run passed. [native-result.json](native-result.json) records the native archive mirror of the earlier real-data capture and cache reuse. Each archive was imported into a fresh native store and its complete graph compared before activation. Canonical `.lino` and the application's binary projection cover all current records; native archive exports remain available locally.
+
+Dependency reports and their current workarounds are tracked in [upstream-issues.md](../upstream-issues.md).

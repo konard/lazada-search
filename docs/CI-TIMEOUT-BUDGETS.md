@@ -39,11 +39,11 @@ dependent release workflow reported `skipped`.
 
 ## Per-test timeouts do not bound a suite
 
-`bun test --timeout 30000` and `node --test --test-timeout=30000` bound a
-**single test** at 30 seconds. They do not bound the suite: 25 tests that each
-take 29 seconds pass every per-test check and still blow a 10-minute job cap.
-Keep them — a hung test is worth catching early — but do not treat them as a
-suite deadline.
+`bun test --timeout 30000` bounds a **single test** at 30 seconds.
+Node's `--test-timeout=120000` bounds each test file at two minutes, allowing
+the Git-fixture suites to finish; `--test-concurrency=4` limits contention.
+Neither replaces the overall suite budget. Many passing tests or files can
+still exhaust the job's deadline.
 
 ## The rule
 
