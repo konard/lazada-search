@@ -12,6 +12,12 @@ Each subset records the SHA-256 of its original snapshot. Label image bytes are
 unchanged and addressed by SHA-256. These historical prices are test data;
 normal freshness checks still apply to buying comparisons.
 
+The four captured public SKU inventories contain eight combinations. Four
+selected prices are known; four alternate SKU prices remain missing. The
+regression test asserts that those alternatives cannot inherit a default price
+or be reported as complete. All four products remain excluded from the default
+manufacturer-verified ranking.
+
 Regenerate from actual local captures with:
 
 ```sh

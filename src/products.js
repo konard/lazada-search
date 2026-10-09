@@ -211,7 +211,9 @@ export function validateProduct(input) {
   if (
     !product.id ||
     !product.title ||
-    !['whey', 'chocolate-ice-cream', 'unknown'].includes(product.category)
+    !['whey', 'protein-powder', 'chocolate-ice-cream', 'unknown'].includes(
+      product.category
+    )
   ) {
     throw new Error('Product requires id, title and a supported category');
   }

@@ -1,4 +1,5 @@
 import { positive } from './values.js';
+import { specificationProblems } from './verification.js';
 
 function evidenceProblem(product, field) {
   if (
@@ -27,7 +28,14 @@ export function calculateOffer(product, offer, options = {}) {
   });
   const currency = options.currency || offer.currency;
   const problems = [];
-  if (!['whey', 'chocolate-ice-cream'].includes(product.category)) {
+  if (options.requireManufacturer !== false) {
+    problems.push(...specificationProblems(product));
+  }
+  if (
+    !['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
+      product.category
+    )
+  ) {
     problems.push('Outside the supported product categories');
   }
   if (offer.currency !== currency) {
@@ -196,7 +204,14 @@ export function calculateOffer(product, offer, options = {}) {
     shippingQuantity: offer.shippingQuantity ?? null,
     shippingDestination: offer.shippingDestination ?? null,
   };
-  return { product, offer, metrics, eligible: problems.length === 0, problems };
+  return {
+    product,
+    offer,
+    metrics,
+    manufacturerVerified: specificationProblems(product).length === 0,
+    eligible: problems.length === 0,
+    problems,
+  };
 }
 
 export function compareOffers(products, offers, options = {}) {
@@ -283,7 +298,7 @@ export function compareOffers(products, offers, options = {}) {
     ranked: results.filter((result) => result.eligible),
     excluded: results.filter((result) => !result.eligible),
     bestByCategory: Object.fromEntries(
-      ['whey', 'chocolate-ice-cream'].map((category) => [
+      ['whey', 'protein-powder', 'chocolate-ice-cream'].map((category) => [
         category,
         results.find(
           (result) => result.eligible && result.product.category === category
@@ -296,6 +311,7 @@ export function compareOffers(products, offers, options = {}) {
       shippingOverride: options.shipping ?? null,
       deliveryArea: options.deliveryArea || null,
       requireShipping: options.requireShipping !== false,
+      requireManufacturer: options.requireManufacturer !== false,
       discountScope:
         'Fixed amount per order, subtracted once; no assumed volume-to-mass conversion',
     },

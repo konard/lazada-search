@@ -31,6 +31,7 @@ export function apiComparisonOptions(params) {
   }
   options.allowStale = params.get('allowStale') === 'true';
   options.requireShipping = params.get('requireShipping') !== 'false';
+  options.requireManufacturer = params.get('requireManufacturer') !== 'false';
   options.excludeIngredients = params.getAll('excludeIngredient');
   return options;
 }
@@ -63,6 +64,8 @@ export async function startServer({ application, port = 8080 } = {}) {
         );
       } else if (url.pathname === '/api/products') {
         result = await application.store.list('product');
+      } else if (url.pathname === '/api/coverage') {
+        result = await application.audit();
       } else if (url.pathname === '/api/evidence') {
         result = await application.store.get(
           'evidence',

@@ -33,6 +33,17 @@ test('committed public captures replay prices, OCR and Nha Trang delivery withou
     ) + 1000;
   const report = await app.compare({ now });
   assert.equal(report.comparisons.length, 4);
+  const audit = await app.audit();
+  const inventories = await store.list('sku-inventory');
+  assert.equal(
+    inventories.reduce((count, inventory) => count + inventory.skus.length, 0),
+    8
+  );
+  assert.equal(audit.missingSkuPrices.length, 4);
+  assert.equal(audit.unknownSkuInventories.length, 0);
+  assert.equal(audit.verifiedProducts, 0);
+  assert.equal(audit.complete, false);
+  assert.equal(report.ranked.length, 0);
   const whey = report.comparisons.find((row) =>
     row.offer.url.includes('i3261102356')
   );

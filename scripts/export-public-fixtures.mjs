@@ -75,7 +75,14 @@ for (const url of urls) {
     rawText: [original.title, ...original.specs].join('\n'),
     jsonLd: original.jsonLd,
     productImages: [],
+    skuCatalog: original.skuCatalog,
+    skuCatalogObserved: original.skuCatalogObserved,
+    searchCoverage: original.searchCoverage,
   };
+  const inventory = await source.get('sku-inventory', url);
+  if (inventory) {
+    await target.put('sku-inventory', inventory);
+  }
   await target.put('cache', {
     id: cache.id,
     url,

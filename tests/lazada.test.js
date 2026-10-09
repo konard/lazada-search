@@ -452,7 +452,7 @@ test('parser preserves SKU identity and rejects an unselected variant price', ()
     'unknown'
   );
   assert.equal(categoryOf('Chocolate ice cream molds'), 'unknown');
-  assert.equal(categoryOf('Organic soy protein powder 1 kg'), 'unknown');
+  assert.equal(categoryOf('Organic soy protein powder 1 kg'), 'protein-powder');
   assert.equal(
     categoryOf('Kem Nhuộm Tóc Sô cô la Home Chocolate Hair Dye Cream'),
     'unknown'

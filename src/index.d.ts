@@ -1,6 +1,10 @@
 import type { Bot } from 'grammy';
 import type { Server } from 'node:http';
-export type Category = 'whey' | 'chocolate-ice-cream' | 'unknown';
+export type Category =
+  | 'whey'
+  | 'protein-powder'
+  | 'chocolate-ice-cream'
+  | 'unknown';
 export declare function categoryOf(title: string): Category;
 export declare function volumeMillilitres(value: string): number | undefined;
 export declare function captureDelivery(
@@ -56,6 +60,23 @@ export interface Product {
   evidenceIds?: string[];
   claims?: Claim[];
   reviewedFields?: string[];
+  manufacturerVerification?: {
+    identityMatched: boolean;
+    sourceAuthority: string;
+    evidenceId: string;
+    sourceUrl: string;
+    identityMethod?: string;
+    checkedAt?: string;
+  };
+  corrections?: Array<{
+    field: string;
+    previous: Json;
+    corrected: Json;
+    evidenceId: string;
+    sourceUrl: string;
+    correctedAt?: string;
+    reason: string;
+  }>;
   crossChecks?: CrossCheck[];
   warnings?: string[];
   observedAt?: string;
@@ -111,6 +132,7 @@ export interface ComparisonOptions {
   maxPriceAgeMs?: number;
   allowStale?: boolean;
   requireShipping?: boolean;
+  requireManufacturer?: boolean;
   now?: number;
   sort?:
     | 'costPerProteinG'
@@ -169,17 +191,20 @@ export interface ComparisonRow {
   offer: Offer;
   metrics: Metrics;
   eligible: boolean;
+  manufacturerVerified: boolean;
   problems: string[];
 }
 export interface ComparisonReport {
   comparisons: ComparisonRow[];
   ranked: ComparisonRow[];
   excluded: ComparisonRow[];
-  bestByCategory: Record<'whey' | 'chocolate-ice-cream', ComparisonRow | null>;
+  bestByCategory: Record<Exclude<Category, 'unknown'>, ComparisonRow | null>;
   assumptions: Record<string, Json>;
   calculatedAt: string;
 }
 export interface CrossCheck {
+  sourceAuthority?: string;
+  checkedAt?: string;
   id?: string;
   productId?: string;
   manufacturerUrl?: string;
@@ -252,6 +277,7 @@ export interface Capture {
   checkedAt: number;
   cacheHit: boolean;
   stale: boolean;
+  imagesRefreshed?: boolean;
 }
 export interface PageSnapshot {
   url: string;
@@ -267,7 +293,27 @@ export interface PageSnapshot {
   productImages?: string[];
   variants?: Product['variants'];
   selectedVariant?: Product['variants'];
-  cards?: Array<{ url: string; title: string; rawText?: string }>;
+  cards?: Array<{
+    url: string;
+    title: string;
+    rawText?: string;
+    priceText?: string;
+    sku?: string;
+  }>;
+  skuCatalogObserved?: boolean;
+  skuCatalog?: Array<{
+    sku: string;
+    url?: string;
+    options: Array<{ name: string; value: string }>;
+    available: boolean;
+  }>;
+  searchCoverage?: {
+    currentPage: number;
+    lastPage: number | null;
+    reportedTotal: number | null;
+    terminalConfirmed: boolean;
+    nextAvailable: boolean | null;
+  };
   links?: Array<{ url: string; text: string }>;
   nextUrl?: string;
 }
@@ -310,6 +356,7 @@ export declare class BrowserCollector {
     browserOptions?: Record<string, unknown>;
     settleMs?: number;
     maxScrolls?: number;
+    captureTimeoutMs?: number;
   });
   start(): Promise<void>;
   page(
@@ -372,6 +419,7 @@ export declare class LazadaSearch {
     offline?: boolean;
     browserOptions?: Record<string, unknown>;
     scheduler?: DomainScheduler;
+    manufacturerRegistry?: Manufacturer[];
   });
   store: AssociativeStore;
   cache: EvidenceCache;
@@ -381,6 +429,9 @@ export declare class LazadaSearch {
   importRecords(records: {
     products?: Product[];
     offers?: Offer[];
+    discoveries?: Array<{ id: string; [key: string]: unknown }>;
+    skuInventories?: Array<{ id: string; [key: string]: unknown }>;
+    crawls?: Array<{ id: string; [key: string]: unknown }>;
   }): Promise<{ products: number; offers: number }>;
   collect(
     url: string,
@@ -391,7 +442,9 @@ export declare class LazadaSearch {
     cacheHit: boolean;
     stale: boolean;
   }>;
+  audit(): Promise<Record<string, unknown>>;
   crawl(options?: {
+    exhaustive?: boolean;
     queries?: string[];
     maxPages?: number;
     maxProducts?: number;
@@ -490,3 +543,44 @@ export declare function importSession(options: {
   cookies: unknown[];
   summary: { browser: string; profile?: string; cookieCount: number };
 }>;
+
+export declare const REQUIRED_SPEC_FIELDS: string[];
+export declare function specificationProblems(product: Product): string[];
+export declare function reconcileManufacturer(
+  product: Product,
+  manufacturer: Product,
+  check: CrossCheck & {
+    sourceAuthority: string;
+    evidenceId: string;
+    manufacturerUrl: string;
+    checkedAt?: string;
+  }
+): Product;
+export declare function auditCoverage(
+  input?: Record<string, unknown>
+): Record<string, unknown>;
+export declare function assertCompleteCoverage(
+  report: Record<string, unknown>
+): Record<string, unknown>;
+export interface Manufacturer {
+  name: string;
+  aliases: string[];
+  domains: string[];
+  url: string;
+}
+export declare const MANUFACTURERS: Manufacturer[];
+export declare function manufacturerCandidates(
+  product: Product,
+  registry?: Manufacturer[]
+): Array<{
+  name: string;
+  url: string;
+  identityStatus: string;
+  reason: string;
+  brandConflict: boolean;
+}>;
+export declare function isTrustedManufacturer(
+  product: Product,
+  url: string,
+  registry?: Manufacturer[]
+): boolean;

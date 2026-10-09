@@ -3,8 +3,12 @@ import { EvidenceCache, evidenceId } from './cache.js';
 import { BrowserCollector } from './browser.js';
 import { TesseractOcr } from './ocr.js';
 import { parseProduct, validateOffer, validateProduct } from './products.js';
-import { categoryOf, crossCheck, extractNutrition } from './nutrition.js';
+import { crossCheck, extractNutrition } from './nutrition.js';
 import { compareOffers } from './compare.js';
+import { crawlMarketplace } from './crawl.js';
+import { auditCoverage } from './coverage.js';
+import { MANUFACTURERS, isTrustedManufacturer } from './manufacturers.js';
+import { reconcileManufacturer } from './verification.js';
 import { captureDelivery } from './delivery.js';
 import { canonicalUrl, positive, sha256 } from './util.js';
 
@@ -12,7 +16,18 @@ export const MARKETS = {
   vn: {
     host: 'www.lazada.vn',
     currency: 'VND',
-    queries: ['whey protein', 'whey isolate', 'kem chocolate', 'kem sô cô la'],
+    queries: [
+      'whey protein',
+      'whey isolate',
+      'protein powder',
+      'bột protein',
+      'casein protein',
+      'soy protein',
+      'kem chocolate',
+      'kem sô cô la',
+      'kem socola',
+      'chocolate ice cream',
+    ],
   },
   th: {
     host: 'www.lazada.co.th',
@@ -53,6 +68,7 @@ export class LazadaSearch {
     offline = false,
     browserOptions,
     scheduler,
+    manufacturerRegistry = MANUFACTURERS,
   } = {}) {
     if (!MARKETS[market]) {
       throw new Error('Unsupported Lazada market');
@@ -65,8 +81,11 @@ export class LazadaSearch {
       new BrowserCollector({ cache: this.cache, store, browserOptions });
     this.ocr = ocr === false ? undefined : ocr || new TesseractOcr({ store });
     this.market = market;
+    this.host = MARKETS[market].host;
+    this.currency = MARKETS[market].currency;
     this.deliveryArea = deliveryArea;
     this.maxImages = maxImages;
+    this.manufacturerRegistry = manufacturerRegistry;
   }
 
   assertMarket(url) {
@@ -78,7 +97,13 @@ export class LazadaSearch {
     }
   }
 
-  async importRecords({ products = [], offers = [] }) {
+  async importRecords({
+    products = [],
+    offers = [],
+    discoveries = [],
+    skuInventories = [],
+    crawls = [],
+  }) {
     const validProducts = products.map(validateProduct);
     const validOffers = offers.map(validateOffer);
     const known = new Set([
@@ -90,11 +115,34 @@ export class LazadaSearch {
         throw new Error(`Unknown product ${offer.productId}`);
       }
     }
+    const metadata = [
+      ['discovery', discoveries],
+      ['sku-inventory', skuInventories],
+      ['crawl', crawls],
+    ];
+    for (const [kind, records] of metadata) {
+      if (
+        !Array.isArray(records) ||
+        records.some((record) => !record || typeof record.id !== 'string')
+      ) {
+        throw new Error(`Imported ${kind} records require string IDs`);
+      }
+      for (const record of records) {
+        if (record.url) {
+          this.assertMarket(canonicalUrl(record.url));
+        }
+      }
+    }
     for (const product of validProducts) {
       await this.store.put('product', product);
     }
     for (const offer of validOffers) {
       await this.saveOffer(offer);
+    }
+    for (const [kind, records] of metadata) {
+      for (const record of records) {
+        await this.store.put(kind, record);
+      }
     }
     return { products: products.length, offers: offers.length };
   }
@@ -118,6 +166,14 @@ export class LazadaSearch {
       throw new Error(`Collection stopped: ${capture.status} at ${url}`);
     }
     this.assertMarket(capture.finalUrl || capture.snapshot.url);
+    await this.store.put('sku-inventory', {
+      id: canonicalUrl(url),
+      url: canonicalUrl(url),
+      skus: capture.snapshot.skuCatalog || [],
+      inventoryObserved: capture.snapshot.skuCatalogObserved === true,
+      observedAt: new Date(capture.fetchedAt).toISOString(),
+      cacheId: capture.id,
+    });
     const id = evidenceId(
       capture.snapshot.url,
       Buffer.from(JSON.stringify(capture.snapshot))
@@ -148,6 +204,11 @@ export class LazadaSearch {
       );
       product.evidenceIds = [...new Set([...previous.evidenceIds, id])];
       product.crossChecks = previous.crossChecks || [];
+      product.corrections = previous.corrections || [];
+      product.manufacturerVerification =
+        previous.observedAt === product.observedAt
+          ? previous.manufacturerVerification
+          : undefined;
       product.reviewedFields =
         previous.observedAt === product.observedAt
           ? previous.reviewedFields || []
@@ -163,7 +224,7 @@ export class LazadaSearch {
     const previousOffer = await this.store.get('offer', offer.id);
     const savedOffer =
       previousOffer?.observedAt === offer.observedAt &&
-      previousOffer?.evidenceId === offer.evidenceId
+      (previousOffer?.evidenceId === offer.evidenceId || capture.cacheHit)
         ? { ...previousOffer, ...offer }
         : offer;
     await this.saveOffer(validateOffer(savedOffer));
@@ -266,7 +327,10 @@ export class LazadaSearch {
     for (const imageUrl of selected) {
       try {
         const image = await this.cache.image(imageUrl, {
-          refresh: !capture.cacheHit && !this.cache.offline,
+          refresh:
+            capture.imagesRefreshed === true &&
+            !capture.cacheHit &&
+            !this.cache.offline,
         });
         await recognize(image.blob, imageUrl);
       } catch (error) {
@@ -288,148 +352,32 @@ export class LazadaSearch {
     product.warnings = [...new Set(product.warnings)];
   }
 
-  async crawl({
-    queries = MARKETS[this.market].queries,
-    maxPages = 5,
-    maxProducts = 100,
-    refresh = false,
-  } = {}) {
-    positive(maxPages, 'maxPages', { integer: true });
-    positive(maxProducts, 'maxProducts', { integer: true });
-    const report = {
-      id: `crawl:${new Date().toISOString()}`,
-      market: this.market,
-      deliveryArea: this.deliveryArea,
-      queries,
-      pages: [],
-      products: [],
-      failures: [],
-      coverage: 'bounded-search',
-      complete: false,
-      cache: {},
-    };
-    const discovered = new Set();
-    const knownUrls = new Set(
-      (await this.store.list('product')).map((product) => product.url)
-    );
-    const queryQueues = [];
-    let stopped = false;
-    for (const query of queries) {
-      const queue = [];
-      queryQueues.push(queue);
-      let url = `https://${MARKETS[this.market].host}/catalog/?q=${encodeURIComponent(query)}`;
-      for (let index = 0; index < maxPages && !stopped; index += 1) {
-        try {
-          const page = await this.collector.page(url, {
-            namespace: `search:${this.market}:${this.deliveryArea}`,
-            refresh,
-          });
-          report.pages.push({
-            url,
-            status: page.status,
-            cacheHit: page.cacheHit,
-          });
-          await this.store.put('crawl-page', {
-            id: url,
-            query,
-            cacheId: page.id,
-            observedAt: new Date(page.fetchedAt).toISOString(),
-            status: page.status,
-          });
-          if (page.status !== 'ok') {
-            stopped = true;
-            break;
-          }
-          let added = 0;
-          for (const card of page.snapshot.cards || []) {
-            if (categoryOf(card.title) === 'unknown') {
-              continue;
-            }
-            let productUrl;
-            try {
-              productUrl = canonicalUrl(card.url);
-              this.assertMarket(productUrl);
-            } catch {
-              continue;
-            }
-            if (
-              !new URL(productUrl).pathname.includes('/products/') ||
-              discovered.has(productUrl)
-            ) {
-              continue;
-            }
-            discovered.add(productUrl);
-            queue.push(productUrl);
-            added += 1;
-          }
-          if (
-            !added ||
-            queue.filter((entry) => !knownUrls.has(entry)).length >= maxProducts
-          ) {
-            break;
-          }
-          const next =
-            page.snapshot.nextUrl ||
-            (() => {
-              const nextUrl = new URL(url);
-              nextUrl.searchParams.set('page', String(index + 2));
-              return nextUrl.href;
-            })();
-          this.assertMarket(next);
-          url = canonicalUrl(next);
-        } catch (error) {
-          report.failures.push({ url, error: error.message });
-          break;
-        }
-      }
-      if (stopped) {
-        break;
-      }
-    }
-    // Round-robin the queries so a large whey result page cannot consume the
-    // entire detail-page budget before an ice-cream query is considered.
-    const selected = [];
-    for (const revisit of [false, true]) {
-      const queues = queryQueues.map((queue) =>
-        queue.filter((entry) => knownUrls.has(entry) === revisit)
-      );
-      for (let index = 0; selected.length < maxProducts; index += 1) {
-        const round = queues.map((queue) => queue[index]).filter(Boolean);
-        if (!round.length) {
-          break;
-        }
-        selected.push(...round.slice(0, maxProducts - selected.length));
-      }
-    }
-    for (const url of selected) {
-      try {
-        const collected = await this.collect(url, { refresh });
-        report.products.push({
-          id: collected.product.id,
-          url,
-          cacheHit: collected.cacheHit,
-        });
-        knownUrls.add(url);
-      } catch (error) {
-        report.failures.push({ url, error: error.message });
-        if (/challenge|login/iu.test(error.message)) {
-          break;
-        }
-      }
-    }
-    report.discovered = discovered.size;
-    report.uncollectedUrls = [...discovered].filter(
-      (url) => !knownUrls.has(url)
-    );
-    report.uncollected = report.uncollectedUrls.length;
-    report.stopReason = stopped
-      ? 'challenge-or-login'
-      : discovered.size >= maxProducts
-        ? 'product-limit'
-        : 'search-ended-or-page-limit';
-    report.cache = { ...this.cache.stats };
-    await this.store.put('crawl', report);
-    return report;
+  async crawl(options = {}) {
+    return await crawlMarketplace(this, {
+      ...options,
+      queries: options.queries || MARKETS[this.market].queries,
+    });
+  }
+
+  async audit() {
+    const crawls = await this.store.list('crawl');
+    const observed = (report) =>
+      Date.parse(
+        report.finishedAt ||
+          report.startedAt ||
+          report.id.match(/\d{4}-\d{2}-\d{2}T[\d:.]+Z/u)?.[0] ||
+          ''
+      ) || 0;
+    const crawl = crawls.sort(
+      (left, right) => observed(right) - observed(left)
+    )[0];
+    return auditCoverage({
+      crawl,
+      products: await this.store.list('product'),
+      offers: await this.store.list('offer'),
+      discoveries: await this.store.list('discovery'),
+      skuInventories: await this.store.list('sku-inventory'),
+    });
   }
 
   async verify(productId, manufacturerUrl, { refresh = false } = {}) {
@@ -472,6 +420,16 @@ export class LazadaSearch {
       productId,
       manufacturerUrl: url,
       evidenceId: id,
+      checkedAt: new Date().toISOString(),
+      sourceAuthority:
+        isTrustedManufacturer(product, url, this.manufacturerRegistry) &&
+        isTrustedManufacturer(
+          product,
+          capture.finalUrl || capture.snapshot.url,
+          this.manufacturerRegistry
+        )
+          ? 'manufacturer'
+          : 'unverified-source',
       ...crossCheck(product, manufacturer),
     };
     await this.store.put('cross-check', result);
@@ -480,20 +438,17 @@ export class LazadaSearch {
       result,
     ];
     product.evidenceIds.push(id);
-    if (result.identityMatched) {
-      for (const claim of manufacturer.claims) {
-        product.claims.push(claim);
-        if (product[claim.field] === undefined && !claim.requiresReview) {
-          product[claim.field] = claim.value;
-        }
-      }
-    }
-    await this.store.put('product', validateProduct(product));
+    await this.store.put(
+      'product',
+      validateProduct(reconcileManufacturer(product, manufacturer, result))
+    );
     return result;
   }
 
   async review(productId, field, value, evidenceId) {
     const allowed = [
+      'category',
+      'brand',
       'netMassG',
       'netVolumeMl',
       'packCount',
@@ -511,6 +466,22 @@ export class LazadaSearch {
     const product = await this.store.get('product', productId);
     if (!product || !product.evidenceIds.includes(evidenceId)) {
       throw new Error('Review must refer to evidence attached to this product');
+    }
+    if (
+      product[field] !== undefined &&
+      JSON.stringify(product[field]) !== JSON.stringify(value)
+    ) {
+      product.corrections ||= [];
+      product.corrections.push({
+        field,
+        previous: product[field],
+        corrected: value,
+        evidenceId,
+        sourceUrl: product.url,
+        correctedAt: new Date().toISOString(),
+        reason:
+          'Visual evidence review; manufacturer verification remains separate',
+      });
     }
     product[field] = value;
     product.reviewedFields = [

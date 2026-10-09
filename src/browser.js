@@ -1,6 +1,20 @@
 import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
 
+async function boundedImageBody(response, timeoutMs = 30000) {
+  let timer;
+  try {
+    return await Promise.race([
+      response.body(),
+      new Promise((resolve) => {
+        timer = setTimeout(() => resolve(null), timeoutMs);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // Runs in the browser realm. Preserve all labels, descriptions, JSON-LD,
 // images and variant options, including fields the normalizer cannot parse.
 export function extractPage(context) {
@@ -37,14 +51,17 @@ export function extractPage(context) {
     .filter((url) => url && /^https?:/u.test(url));
   const productImages = [
     ...document.querySelectorAll(
-      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-gallery img, .product-description img, #product-description img, .product__description img, .rte img, [data-product-image]'
+      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-information__media img, .product-images img, .product-thumb img, .product-gallery img, .product-description img, .product-description-wrapper img, #product-description img, .product__description img, .product-tabs-section img, .rte img, [data-product-image]'
     ),
   ]
-    .flatMap((image) => [
-      image.currentSrc,
-      image.src,
-      image.getAttribute('data-src'),
-    ])
+    .flatMap((image) => {
+      const fullSize =
+        image.parentElement?.getAttribute('data-zoom-image') ||
+        image.parentElement?.getAttribute('data-image');
+      return fullSize
+        ? [fullSize]
+        : [image.currentSrc, image.src, image.getAttribute('data-src')];
+    })
     .map(absolute)
     .filter((url) => url && /^https?:/u.test(url));
   const preferredImages = new Map();
@@ -79,6 +96,10 @@ export function extractPage(context) {
           anchor?.title ||
           card.innerText,
         rawText: card.innerText,
+        priceText: card
+          .querySelector('.ooOxS, [data-card-price]')
+          ?.textContent?.trim(),
+        sku: card.getAttribute('data-sku-simple') || undefined,
       };
     })
     .filter((card) => card.url);
@@ -96,6 +117,75 @@ export function extractPage(context) {
       element.getAttribute('aria-checked') === 'true',
     sku: element.getAttribute('data-sku-id'),
   }));
+  const pagination = document.querySelector(
+    '.ant-pagination, [data-pagination]'
+  );
+  const nextButton = pagination?.querySelector(
+    '.ant-pagination-next, [data-next-page]'
+  );
+  const pageNumbers = [
+    ...(pagination?.querySelectorAll(
+      '.ant-pagination-item, [data-page-number]'
+    ) || []),
+  ]
+    .map((entry) => Number(entry.textContent))
+    .filter(Number.isFinite);
+  const currentPage =
+    Number(
+      pagination?.querySelector(
+        '.ant-pagination-item-active, [aria-current="page"]'
+      )?.textContent
+    ) || Number(new URL(pageUrl).searchParams.get('page') || 1);
+  const nextDisabled = Boolean(
+    nextButton &&
+    (nextButton.getAttribute('aria-disabled') === 'true' ||
+      /disabled/u.test(nextButton.className) ||
+      nextButton.querySelector('[disabled]'))
+  );
+  const bodyText = document.body?.innerText || document.body?.textContent || '';
+  const resultCount = bodyText.match(
+    /Tìm thấy\s+([\d.,]+)\s+sản phẩm|([\d.,]+)\s+(?:items|products)\s+found/iu
+  );
+  let skuCatalog = [];
+  let skuCatalogObserved = false;
+  for (const script of document.querySelectorAll('script:not([src])')) {
+    // Parse the public JSON assignment without evaluating any page JavaScript.
+    const match = script.textContent.match(
+      /(?:var\s+|window\.)__moduleData__\s*=\s*(\{[^\n]+\});/u
+    );
+    if (!match) {
+      continue;
+    }
+    try {
+      const fields = JSON.parse(match[1]).data?.root?.fields;
+      const base = fields?.productOption?.skuBase;
+      skuCatalogObserved = Array.isArray(base?.skus);
+      skuCatalog = (base?.skus || []).map((sku) => ({
+        sku: String(sku.skuId),
+        url: absolute(sku.pagePath),
+        options: (sku.propPath || '')
+          .split(';')
+          .filter(Boolean)
+          .map((part) => {
+            const separator = part.indexOf(':');
+            const property = base.properties?.find(
+              (entry) => String(entry.pid) === part.slice(0, separator)
+            );
+            const value = property?.values?.find(
+              (entry) => String(entry.vid) === part.slice(separator + 1)
+            );
+            return {
+              name: property?.name || part.slice(0, separator),
+              value: value?.name || part.slice(separator + 1),
+            };
+          }),
+        available: fields.skuInfos?.[sku.skuId]?.operation?.disable !== true,
+      }));
+    } catch {
+      // A malformed assignment is an unresolved SKU inventory, never a reason
+      // to infer prices or silently claim that a listing has one variant.
+    }
+  }
   return {
     url: pageUrl,
     title:
@@ -117,16 +207,18 @@ export function extractPage(context) {
       ?.querySelector('.key-value')
       ?.textContent?.trim(),
     description: text(
-      '.pdp-product-desc, .pdp-product-desc-v2, [data-description], #product-description, .product-description, .product__description, .rte'
+      '.pdp-product-desc, .pdp-product-desc-v2, [data-description], #product-description, .product-description, .product-description-wrapper, .product__description, .product-tabs-section .tabs-content, .rte'
     ),
     selectedVariant: variants.filter((variant) => variant.selected),
     variants,
-    rawText: document.body?.innerText || document.body?.textContent || '',
+    skuCatalog,
+    skuCatalogObserved,
+    rawText: bodyText,
     specs: [
       ...document.querySelectorAll(
         '.key-li, .pdp-product-highlights li, [data-spec]'
       ),
-    ].map((element) => element.innerText),
+    ].map((element) => element.innerText || element.textContent),
     jsonLd,
     images: [...new Set(images)],
     productImages: [...preferredImages.values()].map((image) => image.url),
@@ -135,6 +227,15 @@ export function extractPage(context) {
       text: anchor.innerText || anchor.title || '',
     })),
     cards,
+    searchCoverage: {
+      currentPage,
+      lastPage: pageNumbers.length ? Math.max(...pageNumbers) : null,
+      reportedTotal: resultCount
+        ? Number((resultCount[1] || resultCount[2]).replace(/[.,]/gu, ''))
+        : null,
+      terminalConfirmed: nextDisabled,
+      nextAvailable: nextButton ? !nextDisabled : null,
+    },
     nextUrl: absolute(
       document
         .querySelector('a[rel="next"], a[aria-label="Next"], [data-next-page]')
@@ -146,6 +247,7 @@ export function extractPage(context) {
 export function classifyPage(page) {
   const title = page.title || '';
   if (
+    /\/_____tmd_____\/punish|\/captcha(?:\/|\?|$)/iu.test(page.url || '') ||
     /captcha|verify (?:your|you)|security verification|access denied|robot check|xác minh/iu.test(
       title
     ) ||
@@ -186,12 +288,17 @@ export class BrowserCollector {
     browserOptions = {},
     settleMs = 1000,
     maxScrolls = 20,
+    captureTimeoutMs = 90000,
   } = {}) {
     this.cache = cache;
     this.store = store;
     this.browserOptions = browserOptions;
     this.settleMs = settleMs;
     this.maxScrolls = maxScrolls;
+    if (!Number.isFinite(captureTimeoutMs) || captureTimeoutMs <= 0) {
+      throw new Error('captureTimeoutMs must be positive');
+    }
+    this.captureTimeoutMs = captureTimeoutMs;
     this.tail = Promise.resolve();
   }
 
@@ -243,8 +350,8 @@ export class BrowserCollector {
         }
         const capture = (async () => {
           const headers = response.headers();
-          const bytes = await response.body();
-          if (bytes.length > 25 * 1024 ** 2) {
+          const bytes = await boundedImageBody(response);
+          if (!bytes || bytes.length > 25 * 1024 ** 2) {
             return;
           }
           const blob = await this.store.putBlob(bytes);
@@ -287,7 +394,8 @@ export class BrowserCollector {
       ...options,
       load: () => {
         // One page owns one navigation at a time, even for different hosts.
-        const capture = () => this.capture(url, { refresh: options.refresh });
+        const capture = () =>
+          this.captureWithBudget(url, { refresh: options.refresh });
         const operation = this.tail.then(capture, capture);
         this.tail = operation.catch(() => {});
         return operation;
@@ -295,7 +403,7 @@ export class BrowserCollector {
     });
     // Re-run newer extractors against saved HTML, preserving the original
     // observation time and screenshot. A selector fix needs no site request.
-    if (result.extractorVersion !== 5 && result.html) {
+    if (result.extractorVersion !== 8 && result.html) {
       const bytes = await this.store.blob(result.html.sha256);
       if (bytes) {
         const { parseHTML } = await import('linkedom');
@@ -309,7 +417,7 @@ export class BrowserCollector {
           ...result,
           snapshot,
           status: classifyPage(snapshot),
-          extractorVersion: 5,
+          extractorVersion: 8,
         };
         delete updated.cacheHit;
         delete updated.stale;
@@ -323,6 +431,40 @@ export class BrowserCollector {
       }
     }
     return result;
+  }
+
+  async captureWithBudget(url, options) {
+    let timer;
+    let timedOut = false;
+    try {
+      return await Promise.race([
+        this.capture(url, options),
+        new Promise((_, reject) => {
+          timer = setTimeout(() => {
+            timedOut = true;
+            reject(
+              new Error(
+                `Page capture timed out after ${this.captureTimeoutMs} ms`
+              )
+            );
+          }, this.captureTimeoutMs);
+        }),
+      ]);
+    } catch (error) {
+      if (timedOut) {
+        // Close the collector-owned page so a late navigation cannot modify
+        // the next capture. Existing attached-browser tabs stay untouched.
+        await this.runtime?.page.close();
+        if (!this.attached) {
+          await this.runtime?.browser.close();
+        }
+        this.runtime = undefined;
+        this.commander = undefined;
+      }
+      throw error;
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   async capture(url, { refresh = false } = {}) {
@@ -357,7 +499,7 @@ export class BrowserCollector {
     }
     const html = await this.store.putBlob(Buffer.from(await page.content()));
     const screenshot = await this.store.putBlob(
-      await page.screenshot({ fullPage: true })
+      await page.screenshot({ fullPage: true, timeout: 15000 })
     );
     const finalUrl = canonicalUrl(snapshot.url);
     await Promise.all([...this.imageTasks]);
@@ -368,7 +510,8 @@ export class BrowserCollector {
       screenshot,
       finalUrl,
       scrollLimit: this.maxScrolls,
-      extractorVersion: 5,
+      extractorVersion: 8,
+      imagesRefreshed: refresh,
     };
   }
 

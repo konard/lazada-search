@@ -104,6 +104,9 @@ export function parseArguments(argv) {
         })
         .option('max-images', { type: 'number', default: 40 })
         .option('refresh', { type: 'boolean', default: false })
+        .option('exhaustive', { type: 'boolean', default: false })
+        .option('strict', { type: 'boolean', default: false })
+        .option('require-manufacturer', { type: 'boolean', default: true })
         .option('max-pages', { type: 'number', default: 5 })
         .option('max-products', { type: 'number', default: 100 })
         .option('query', { type: 'array', string: true })
@@ -111,7 +114,7 @@ export function parseArguments(argv) {
         .option('currency', { type: 'string' })
         .option('category', {
           type: 'string',
-          choices: ['whey', 'chocolate-ice-cream', 'unknown'],
+          choices: ['whey', 'protein-powder', 'chocolate-ice-cream', 'unknown'],
         })
         .option('protein-type', {
           type: 'string',
@@ -158,6 +161,7 @@ export const comparisonOptions = (options) =>
       discount: options.discount,
       allowStale: options.allowStale,
       requireShipping: options.requireShipping,
+      requireManufacturer: options.requireManufacturer,
       sort: options.sort,
     }).filter(([, value]) => value !== undefined)
   );

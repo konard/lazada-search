@@ -113,6 +113,8 @@ export default [
       'bin/lazada-search.js',
       'src/application.js',
       'src/browser.js',
+      'src/crawl.js',
+      'src/coverage.js',
       'src/commands.js',
       'src/compare.js',
       'src/nutrition.js',

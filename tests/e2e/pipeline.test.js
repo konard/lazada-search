@@ -35,7 +35,7 @@ const structured = {
   },
 };
 const label =
-  '<div id="label" style="font:32px Arial;background:white;color:black;padding:30px;width:800px">Net weight: 1 kg<br>Per 100 g<br>Protein 80 g<br>Sugar 3 g<br>Energy 380 kcal<br>Ingredients: whey protein isolate, cocoa</div>';
+  '<div id="label" style="font:32px Arial;background:white;color:black;padding:30px;width:800px">Net weight: 1 kg<br>Per 100 g<br>Protein 80 g<br>Sugar 3 g<br>Total Fat 2 g<br>Saturated Fat 1 g<br>Energy 380 kcal<br>Ingredients: whey protein isolate, cocoa</div>';
 
 async function listen(server) {
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
@@ -65,6 +65,14 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
     },
   });
   const app = new LazadaSearch({
+    manufacturerRegistry: [
+      {
+        name: 'Fixture Nutrition',
+        aliases: ['Fixture Nutrition'],
+        domains: ['manufacturer.example'],
+        url: officialUrl,
+      },
+    ],
     store,
     cache,
     collector,
@@ -135,7 +143,7 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
   await page.route(officialUrl, (route) =>
     route.fulfill({
       contentType: 'text/html',
-      body: `<h1>Fixture Whey Isolate 1 kg</h1><script type="application/ld+json">${JSON.stringify({ ...structured, url: officialUrl })}</script><div data-description>Net weight: 1 kg<br>Per 100 g<br>Protein 80 g<br>Sugar 3 g<br>Energy 380 kcal<br>Ingredients: whey protein isolate, cocoa</div>`,
+      body: `<h1>Fixture Whey Isolate 1 kg</h1><script type="application/ld+json">${JSON.stringify({ ...structured, url: officialUrl })}</script><div data-description>Net weight: 1 kg<br>Per 100 g<br>Protein 80 g<br>Sugar 3 g<br>Total Fat 2 g<br>Saturated Fat 1 g<br>Energy 380 kcal<br>Ingredients: whey protein isolate, cocoa</div>`,
     })
   );
   const crawl = await app.crawl({

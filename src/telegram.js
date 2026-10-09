@@ -40,13 +40,18 @@ export function tokenize(text) {
 export function formatComparison(report) {
   const money = (value) =>
     Number.isFinite(value) ? value.toFixed(2) : 'Unknown';
-  const lines = report.comparisons
-    .slice(0, 10)
+  const verified = report.comparisons.filter((row) => row.manufacturerVerified);
+  const pending = report.comparisons
+    .filter((row) => !row.manufacturerVerified)
     .map(
-      ({ product, offer, metrics, eligible, problems }, index) =>
-        `${index + 1}. ${product.title}\n${product.proteinType}; ${metrics.proteinPer100g ?? 'Unknown'} g protein/100 g\n${metrics.currency}, before / after delivery:\nOrder (${metrics.quantity}): ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)}\nFood g: ${money(metrics.costPerGramBeforeDelivery)} / ${money(metrics.costPerGramAfterDelivery)}\nml: ${money(metrics.costPerMlBeforeDelivery)} / ${money(metrics.costPerMlAfterDelivery)}\nProtein g: ${money(metrics.costPerProteinGramBeforeDelivery)} / ${money(metrics.costPerProteinGramAfterDelivery)}\n25 g protein: ${money(metrics.costPer25gProteinBeforeDelivery)} / ${money(metrics.costPer25gProteinAfterDelivery)}\n${eligible ? 'Confirmed comparison' : problems.join('; ')}\n${offer.url}`
+      ({ product, offer }) =>
+        `Pending manufacturer verification: ${product.title}\nObserved price: ${money(offer.price)} ${offer.currency}; specs: Unknown\n${offer.url}`
     );
-  return `${lines.join('\n\n') || 'No collected offers match these filters.'}\n\n${report.ranked.length} eligible offers; ${report.excluded.length} need information. ${[...new Set(report.excluded.flatMap((item) => item.problems))].join('; ')}`;
+  const lines = verified.map(
+    ({ product, offer, metrics, eligible, problems }, index) =>
+      `${index + 1}. ${product.title}\n${product.proteinType}; ${metrics.proteinPer100g ?? 'Unknown'} g protein/100 g\n${metrics.currency}, before / after delivery:\nOrder (${metrics.quantity}): ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)}\nFood g: ${money(metrics.costPerGramBeforeDelivery)} / ${money(metrics.costPerGramAfterDelivery)}\nml: ${money(metrics.costPerMlBeforeDelivery)} / ${money(metrics.costPerMlAfterDelivery)}\nProtein g: ${money(metrics.costPerProteinGramBeforeDelivery)} / ${money(metrics.costPerProteinGramAfterDelivery)}\n25 g protein: ${money(metrics.costPer25gProteinBeforeDelivery)} / ${money(metrics.costPer25gProteinAfterDelivery)}\n${eligible ? 'Confirmed comparison' : problems.join('; ')}\n${offer.url}`
+  );
+  return `Manufacturer-verified comparison, before / after delivery:\n${lines.join('\n\n') || 'No manufacturer-verified offers match these filters.'}\n\n${pending.join('\n\n')}\n\n${report.ranked.length} eligible offers; ${report.excluded.length} need information. ${[...new Set(report.excluded.flatMap((item) => item.problems))].join('; ')}`;
 }
 
 export function createTelegramBot({
@@ -78,12 +83,13 @@ export function createTelegramBot({
   });
   bot.command(['start', 'help'], (ctx) =>
     ctx.reply(
-      'Commands: /crawl, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
+      'Commands: /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
     )
   );
   bot.command(
     [
       'crawl',
+      'audit',
       'collect',
       'delivery',
       'compare',

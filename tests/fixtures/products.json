@@ -12,7 +12,7 @@
       "sugarPer100g": 3,
       "kcalPer100g": 380,
       "ingredients": ["whey protein isolate", "cocoa", "sucralose"],
-      "evidenceIds": ["fixture-label"],
+      "evidenceIds": ["fixture-label", "fixture-manufacturer:whey-isolate"],
       "claims": [
         {
           "field": "proteinPer100g",
@@ -20,8 +20,66 @@
           "source": "manual-review",
           "evidenceId": "fixture-label",
           "requiresReview": false
+        },
+        {
+          "field": "netMassG",
+          "value": 1000,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "proteinPer100g",
+          "value": 80,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "sugarPer100g",
+          "value": 3,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "fatPer100g",
+          "value": 2,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "saturatedFatPer100g",
+          "value": 1,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "kcalPer100g",
+          "value": 380,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
+        },
+        {
+          "field": "ingredients",
+          "value": ["whey protein isolate", "cocoa", "sucralose"],
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-isolate",
+          "requiresReview": false
         }
-      ]
+      ],
+      "fatPer100g": 2,
+      "saturatedFatPer100g": 1,
+      "manufacturerVerification": {
+        "identityMatched": true,
+        "sourceAuthority": "manufacturer",
+        "identityMethod": "gtin",
+        "evidenceId": "fixture-manufacturer:whey-isolate",
+        "sourceUrl": "https://manufacturer.example/whey-isolate"
+      }
     },
     {
       "id": "whey-concentrate",
@@ -31,7 +89,69 @@
       "netMassG": 500,
       "proteinPer100g": 70,
       "sugarPer100g": 6,
-      "ingredients": ["whey protein concentrate"]
+      "ingredients": ["whey protein concentrate"],
+      "fatPer100g": 2,
+      "saturatedFatPer100g": 1,
+      "kcalPer100g": 380,
+      "evidenceIds": ["fixture-manufacturer:whey-concentrate"],
+      "manufacturerVerification": {
+        "identityMatched": true,
+        "sourceAuthority": "manufacturer",
+        "identityMethod": "gtin",
+        "evidenceId": "fixture-manufacturer:whey-concentrate",
+        "sourceUrl": "https://manufacturer.example/whey-concentrate"
+      },
+      "claims": [
+        {
+          "field": "netMassG",
+          "value": 500,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "proteinPer100g",
+          "value": 70,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "sugarPer100g",
+          "value": 6,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "fatPer100g",
+          "value": 2,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "saturatedFatPer100g",
+          "value": 1,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "kcalPer100g",
+          "value": 380,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        },
+        {
+          "field": "ingredients",
+          "value": ["whey protein concentrate"],
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:whey-concentrate",
+          "requiresReview": false
+        }
+      ]
     },
     {
       "id": "chocolate-ice-cream",
@@ -42,7 +162,68 @@
       "proteinPer100g": 12,
       "sugarPer100g": 10,
       "kcalPer100g": 180,
-      "ingredients": ["milk", "cocoa", "sugar"]
+      "ingredients": ["milk", "cocoa", "sugar"],
+      "fatPer100g": 2,
+      "saturatedFatPer100g": 1,
+      "evidenceIds": ["fixture-manufacturer:chocolate-ice-cream"],
+      "manufacturerVerification": {
+        "identityMatched": true,
+        "sourceAuthority": "manufacturer",
+        "identityMethod": "gtin",
+        "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+        "sourceUrl": "https://manufacturer.example/chocolate-ice-cream"
+      },
+      "claims": [
+        {
+          "field": "netMassG",
+          "value": 500,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "proteinPer100g",
+          "value": 12,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "sugarPer100g",
+          "value": 10,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "fatPer100g",
+          "value": 2,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "saturatedFatPer100g",
+          "value": 1,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "kcalPer100g",
+          "value": 180,
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        },
+        {
+          "field": "ingredients",
+          "value": ["milk", "cocoa", "sugar"],
+          "source": "manufacturer",
+          "evidenceId": "fixture-manufacturer:chocolate-ice-cream",
+          "requiresReview": false
+        }
+      ]
     }
   ],
   "offers": [
@@ -57,7 +238,12 @@
       "available": true,
       "variantConfirmed": true,
       "observedAt": "2026-10-09T08:00:00Z",
-      "bulkTiers": [{ "minQuantity": 10, "unitPrice": 250000 }]
+      "bulkTiers": [
+        {
+          "minQuantity": 10,
+          "unitPrice": 250000
+        }
+      ]
     },
     {
       "id": "concentrate-offer",

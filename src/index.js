@@ -19,3 +19,14 @@ export { startServer } from './server.js';
 export { importSession, sessionSources } from './session.js';
 export { NativeLinkStore } from './native-store.js';
 export { captureDelivery } from './delivery.js';
+export { auditCoverage, assertCompleteCoverage } from './coverage.js';
+export {
+  specificationProblems,
+  reconcileManufacturer,
+  REQUIRED_SPEC_FIELDS,
+} from './verification.js';
+export {
+  MANUFACTURERS,
+  manufacturerCandidates,
+  isTrustedManufacturer,
+} from './manufacturers.js';

@@ -54,8 +54,9 @@ async function calculate(event) {
     if (!response.ok) {
       throw new Error(result.error);
     }
-    const rows = result.comparisons.map(
-      ({ product, offer, metrics, eligible, problems }) => {
+    const rows = result.comparisons
+      .filter((entry) => entry.manufacturerVerified)
+      .map(({ product, offer, metrics, eligible, problems }) => {
         const row = document.createElement('tr');
         const cell = document.createElement('td');
         cell.append(
@@ -96,8 +97,7 @@ async function calculate(event) {
         evidence.append(productDetails(product));
         row.append(evidence);
         return row;
-      }
-    );
+      });
     document.querySelector('#offers').replaceChildren(...rows);
     document.querySelector('#excluded').replaceChildren(
       ...result.excluded.map(({ product, offer, problems, metrics }) => {
@@ -110,7 +110,7 @@ async function calculate(event) {
           ),
           element(
             'p',
-            `Calculation for ${metrics.quantity} packages: ${number(metrics.totalCost)} ${metrics.currency}${metrics.shippingKnown ? '' : ' before shipping'} · ${number(metrics.costPer25gProtein)} ${metrics.currency} per 25 g protein`
+            `Calculation for ${metrics.quantity} packages: ${number(metrics.totalCost)} ${metrics.currency}${metrics.shippingKnown ? '' : ' before shipping'} · ${number(metrics.costPer25gProtein)} ${metrics.currency} per 25 g protein${product.manufacturerVerification ? '' : ' (unverified observation)'} `
           ),
           productDetails(product)
         );
@@ -118,6 +118,11 @@ async function calculate(event) {
       })
     );
     status.textContent = `${result.comparisons.length} compared · ${result.ranked.length} eligible offers · ${result.excluded.length} need information · Prices in ${result.assumptions.currency} · ${new Date(result.calculatedAt).toLocaleString()}`;
+    const coverageResponse = await fetch('/api/coverage');
+    const coverage = await coverageResponse.json();
+    document.querySelector('#coverage').textContent = coverage.complete
+      ? 'Catalog coverage verified'
+      : `Catalog incomplete: ${coverage.missingListings?.length ?? 'Unknown'} missing listings; ${coverage.missingSkuPrices?.length ?? 'Unknown'} missing SKU prices. No whole-market best-price claim.`;
   } catch (error) {
     status.textContent = error.message;
   }

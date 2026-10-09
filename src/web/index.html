@@ -20,6 +20,7 @@
         <label
           >Category<select name="category">
             <option value="whey">Whey protein</option>
+            <option value="protein-powder">Other protein powders</option>
             <option value="chocolate-ice-cream">Chocolate ice cream</option>
           </select></label
         >
@@ -105,6 +106,8 @@
         <button type="submit">Recalculate</button>
       </form>
       <p id="status" role="status"></p>
+      <p id="coverage" role="status"></p>
+      <h2>Manufacturer-verified specifications</h2>
       <div class="table-wrap">
         <table>
           <thead>
@@ -140,7 +143,9 @@
         require a volume label; grams require a mass label.
       </p>
       <details open>
-        <summary>Offers needing more information</summary>
+        <summary>
+          Observed inventory awaiting verification or delivery information
+        </summary>
         <ul id="excluded"></ul>
       </details>
       <p class="muted">

@@ -2,6 +2,8 @@
 
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
+[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **The current live dataset is incomplete and has no fully manufacturer-verified purchase winner.**
+
 The collector uses [Browser Commander](https://github.com/link-foundation/browser-commander), preserves page text, specifications, JSON-LD, variant options, images, HTML and screenshots, and runs local Tesseract OCR. Gallery extraction prefers the largest image URLs actually present in the page, including embedded image metadata. Products, offers, label claims and manufacturer checks form an associative links network. Every calculation can be rerun from cached evidence without visiting Lazada.
 
 ## Quick Start
@@ -90,7 +92,7 @@ Trang is the default representative locality, not a claim about the buyer's
 exact address. A page that cannot deliver there is recorded as unavailable
 for that destination.
 
-Eligible offers require a known price, mass and protein density, a confirmed variant, a fresh price and known shipping. Frozen delivery requires explicit confirmation. Unknown nutrition, volume-only labels, mixed nutrition columns, ambiguous variants, stale offers, unavailable stock, unreviewed OCR and manufacturer conflicts remain visible in `excluded`. A declared delivery-area filter requires a quote for exactly that area. `--shipping` is an explicit what-if override; `--no-require-shipping` produces a merchandise-cost comparison. These assumptions are returned with the result.
+Eligible offers require an exact official manufacturer match with sourced net mass, protein, sugar, fat, saturated fat, energy and ingredients; they also require a confirmed variant, a fresh price and known shipping. Frozen delivery requires explicit confirmation. Unknown nutrition, volume-only labels, mixed nutrition columns, ambiguous variants, stale offers, unavailable stock, unreviewed OCR and manufacturer conflicts remain visible in `excluded`. A declared delivery-area filter requires a quote for exactly that area. `--shipping` is an explicit what-if override; `--no-require-shipping` produces a merchandise-cost comparison. These assumptions are returned with the result.
 
 Ingredients identify isolate, concentrate, hydrolyzed whey or blends; a title's marketing claim alone does not identify the protein type. Label flags indicate milk, soy, added sugar, sweeteners and palm oil. Missing ingredient data stays unknown. Flags are descriptions, not medical judgments or a synthetic health score.
 
@@ -105,7 +107,7 @@ node bin/lazada-search.js quote ICE_CREAM_OFFER_ID '{"shipping":30000,"deliveryA
 node bin/lazada-search.js compare --category whey --protein-type isolate --min-protein 75 --max-sugar 5 --quantity 10
 ```
 
-Manufacturer URLs are explicitly supplied by the operator. Verification matches exact GTIN, or brand plus manufacturer SKU; similar names alone never establish identity. Unmatched sources and contradictions are retained. Manufacturer evidence can fill a missing field after identity is confirmed; OCR still requires review. Refreshing changed page evidence invalidates previous field reviews. Reusing the same cached page preserves a shipping quote; a new price snapshot expires it.
+Manufacturer URLs are explicitly supplied by the operator. Verification matches exact GTIN, or brand plus manufacturer SKU; similar names alone never establish identity. Unmatched sources and contradictions are retained. Exact manufacturer evidence takes priority over listing values and preserves conflicting original claims in a correction ledger. OCR still requires review. Official-domain discovery candidates do not establish exact identity. Refreshing changed page evidence invalidates previous field reviews. Reusing the same cached page preserves a shipping quote; a new price snapshot expires it.
 
 Use `import FILE.json` or `import FILE.lino` for reviewed data. See [the fixture schema](tests/fixtures/products.json); those records are explicitly fictional test data. Imports validate nutrition bounds, currencies, timestamps and product references before writing records. `inspect offer-history` exposes past price/quote snapshots.
 
@@ -189,3 +191,11 @@ Keep calculations deterministic, preserve ambiguous source claims, and add meani
 ## License
 
 [Unlicense](LICENSE).
+
+## Catalog coverage and Markdown export
+
+`crawl --exhaustive` follows observed public pagination without page/product caps, retains every discovered candidate, inventories all public SKU combinations and stops on security challenges. Each SKU needs its own confirmed price. `audit --strict` fails while catalog completeness remains unproven; public search cannot certify a whole-market inventory.
+
+Generate the repository tables with `node scripts/export-catalog-tables.mjs --offline`. Reprocess cached listings and OCR with `node scripts/audit-cached-catalog.mjs --offline`. `node scripts/collect-manufacturer-sources.mjs` follows the official-domain registry, retains unmatched source evidence and reuses cached pages, images and OCR. The [coverage table](docs/tables/README.md) lists every outstanding gap. Telegram supports `/audit --strict` and splits full comparisons across messages without a ten-row limit.
+
+The committed [catalog snapshot](docs/tables/catalog.json) includes products, offers, discoveries, public SKU inventories and crawl reports. Import it into a fresh cache with `node bin/lazada-search.js import docs/tables/catalog.json --offline`. It reproduces the same explicit coverage gaps and provisional calculations without website requests. Original private browser state is not part of the published snapshot.

@@ -64,7 +64,7 @@ export function volumeMillilitres(value) {
 }
 
 export function categoryOf(title) {
-  const value = fold(title);
+  const value = fold(title).replace(/[-–—]/gu, ' ');
   if (
     /duong (?:am|da)|duong da mat|nhuom toc|skin cream|face cream|hair dye|\blotion\b/u.test(
       value
@@ -73,7 +73,7 @@ export function categoryOf(title) {
     return 'unknown';
   }
   if (
-    /ice\s*cream|gelato|\bkem\s+(?:hop|ly|que|oc que|vien|socola|so co la|chocolate|sua|vi|celano|merino|haagen|wall|tuoi|lanh|hu)\b/u.test(
+    /ice\s*cream|gelato|\bkem\s+(?:hop|ly|que|oc que|vien|socola|so co la|chocolate|sua|vi|celano|merino|haagen|wall|aice|khoai|tuoi|lanh|hu)\b/u.test(
       value
     ) &&
     /choco|socola|so co la/u.test(value) &&
@@ -85,6 +85,12 @@ export function categoryOf(title) {
   }
   if (/\bwhey\b/u.test(value)) {
     return 'whey';
+  }
+  if (
+    /\bcasein\b|\bprotein powder\b|\bbot\b.*\bprotein\b/u.test(value) &&
+    !/\b(?:infant|formula|creatine|bcaa|collagen)\b|tre em/u.test(value)
+  ) {
+    return 'protein-powder';
   }
   return 'unknown';
 }
@@ -133,7 +139,8 @@ const NUTRIENTS = {
     /(?:protein|chất đạm|đạm)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
   sugarPer100g:
     /(?:total sugars?|sugars?|đường)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
-  fatPer100g: /(?:total fat|fat|chất béo)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
+  fatPer100g:
+    /(?<!saturated\s+)(?:total fat|fat|chất béo)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
   saturatedFatPer100g:
     /(?:saturated fat|saturates|béo bão hòa)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
   kcalPer100g:
@@ -208,14 +215,16 @@ export function extractNutrition(text) {
     fields.netVolumeMl = volumeMillilitres(netVolume[0]);
     excerpts.netVolumeMl = netVolume[0];
   }
-  const ingredientLine = text.match(
-    /(?:ingredients?|thành phần)[ \t]*(?::|\n)\s*([^\n]+)/iu
+  const ingredientLine = [
+    ...text.matchAll(/(?:ingredients?|thành phần)[ \t]*(?::|\n)\s*([^\n]+)/giu),
+  ].find(
+    (entry) =>
+      !/^(?:allergy|nutrition|how to use|directions|thành phần|ingredients?)\s*$/iu.test(
+        entry[1].trim()
+      )
   );
   if (ingredientLine) {
-    fields.ingredients = ingredientLine[1]
-      .split(/[,;]/u)
-      .map(normalizeText)
-      .filter(Boolean);
+    fields.ingredients = splitIngredients(ingredientLine[1]);
     excerpts.ingredients = ingredientLine[0];
   }
   return {
@@ -224,6 +233,34 @@ export function extractNutrition(text) {
     warnings,
     basis: per100 ? 'per-100g' : perServing ? 'per-serving' : 'unknown',
   };
+}
+
+export function splitIngredients(text) {
+  const parts = [];
+  let depth = 0,
+    start = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const character = text[index];
+    if (character === '(' || character === '[') {
+      depth += 1;
+    }
+    if (character === ')' || character === ']') {
+      depth = Math.max(0, depth - 1);
+    }
+    const decimalComma =
+      character === ',' &&
+      /\d/u.test(text[index - 1] || '') &&
+      /\d/u.test(text[index + 1] || '');
+    if (
+      depth === 0 &&
+      (character === ';' || (character === ',' && !decimalComma))
+    ) {
+      parts.push(normalizeText(text.slice(start, index)));
+      start = index + 1;
+    }
+  }
+  parts.push(normalizeText(text.slice(start)));
+  return parts.filter(Boolean);
 }
 
 export function crossCheck(product, manufacturer) {

@@ -2,11 +2,13 @@ import { readFile } from 'node:fs/promises';
 import { decode } from 'lino-objects-codec';
 import { comparisonOptions } from './config.js';
 import { NativeLinkStore } from './native-store.js';
+import { assertCompleteCoverage } from './coverage.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
 Commands:
   crawl                         Discover and collect whey and chocolate ice cream
+  audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
@@ -26,10 +28,12 @@ Options:
   --data-dir PATH --market vn --delivery-area "Nha Trang"
   --province "Khánh Hòa" --locality "Phường Nha Trang"
   --query TEXT --max-pages 5 --max-products 100 --max-images 40
+  --exhaustive --strict          Visit search pagination; fail an incomplete audit
+  --no-require-manufacturer      Explore unverified observations without a purchase guarantee
   --headless=false --executable-path PATH --refresh --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
   --session-from auto|chrome|firefox|yandex|safari --session-profile NAME --cdp-url URL
-  --category whey|chocolate-ice-cream --protein-type isolate|concentrate|blend
+  --category whey|protein-powder|chocolate-ice-cream --protein-type isolate|concentrate|blend
   --quantity 10 --currency VND --shipping 30000 --discount 50000
   --min-protein 70 --max-sugar 5 --exclude-ingredient sucralose
   --allow-stale --no-require-shipping --sort costPerProteinG|costPerKg|totalCost|proteinPer100g
@@ -39,12 +43,17 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'audit': {
+      const report = await application.audit();
+      return options.strict ? assertCompleteCoverage(report) : report;
+    }
     case 'crawl':
       return application.crawl({
         queries: options.query,
         maxPages: options.maxPages,
         maxProducts: options.maxProducts,
         refresh: options.refresh,
+        exhaustive: options.exhaustive,
       });
     case 'collect':
       return application.collect(required(args[0], 'Lazada URL'), {
