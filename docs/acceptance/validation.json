@@ -1,15 +1,15 @@
 {
-  "validatedAt": "2026-10-09T15:31:45.668Z",
+  "validatedAt": "2026-10-09T18:05:12.408Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 622,
-    "pass": 622,
+    "tests": 634,
+    "pass": 634,
     "fail": 0,
     "skipped": 0
   },
   "e2e": {
-    "tests": 6,
-    "pass": 6,
+    "tests": 7,
+    "pass": 7,
     "fail": 0,
     "skipped": 0
   },
@@ -24,40 +24,48 @@
   "cachedAudit": {
     "browserStarts": 0,
     "downloads": 0,
-    "missingListings": 65,
-    "missingSkuPrices": 193,
-    "manufacturerVerified": 0
+    "missingListings": 76,
+    "missingSkuPrices": 168,
+    "manufacturerVerified": 11,
+    "unfinishedSearches": 10,
+    "unclassifiedObservations": 5
   },
   "manualPageReviews": 32,
   "sourceChecks": 29,
   "committedCatalogReplay": {
     "networkRequests": 0,
     "preservesProductAndSkuCoverageGaps": true,
-    "sortableObservedFoodPrices": 31,
+    "sortableObservedFoodPrices": 57,
     "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
     "originalPriceTimestampsPreserved": true
   },
   "productionReady": false,
-  "reason": "Public catalog coverage, exact manufacturer variants, bulk stock/freight and frozen delivery remain unresolved.",
-  "archiveAndPriceRegressionTests": {
-    "tests": 12,
-    "pass": 12,
-    "fail": 0,
-    "skipped": 0
-  },
+  "reason": "Lazada reCAPTCHA and an anonymous cart block further collection and bulk freight. Remaining exact manufacturer identities, frozen delivery and authoritative whole-market coverage are unproven.",
   "repositoryArchive": {
     "valid": true,
-    "records": 7676,
-    "blobs": 2888,
+    "records": 8136,
+    "blobs": 3023,
     "downloads": 0,
-    "manifestSha256": "439c92863674e2407ed95eee598d436f430479bf4a22467f60df045a7d899178",
-    "htmlCapturesReExtracted": 69,
+    "manifestSha256": "9bbf2ca1b3119f5f5a0ece08732c33fe852d87945ab09939bdb8dd5538759534",
+    "htmlCapturesReExtracted": 71,
     "originalPriceSelectionAndSkuInventoriesPreserved": true,
     "securityUrlParameters": 0,
     "unchangedExport": {
-      "reused": 2927,
+      "reused": 3068,
       "rebuilt": 0,
       "downloads": 0
     }
+  },
+  "additionalSkuCaptures": {
+    "accepted": 27,
+    "distinctSkus": 26,
+    "rejected": 7,
+    "reviewSheets": 7
+  },
+  "focusedBrowserReviewAndTablesTests": {
+    "tests": 14,
+    "pass": 14,
+    "fail": 0,
+    "skipped": 0
   }
 }

@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
 import { decode } from 'lino-objects-codec';
 import { comparisonOptions } from './config.js';
 import { NativeLinkStore } from './native-store.js';
@@ -13,11 +14,13 @@ Commands:
   crawl                         Discover and collect whey and chocolate ice cream
   audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
+  import-capture <capture.json>  Import HTML/screenshot from an existing browser
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
   import <file.json|file.yml|file.lino>   Import records and retain their original source
   inspect <kind> [id]            Read products, offers, evidence, OCR or history
   verify <product-id> <url>      Cross-check an operator-supplied official page
+  review-manufacturer <id> <review.json>  Record an exact visual variant and label review
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
   quote <offer-id> <JSON>        Record shipping, bulk tiers and delivery checks
   export                        Export the associative network (--format lino|links)
@@ -85,6 +88,24 @@ export async function executeCommand(application, command, args, options = {}) {
       });
     case 'compare':
       return application.compare(comparisonOptions(options));
+    case 'import-capture': {
+      const file = required(args[0], 'Capture metadata file');
+      const metadata = JSON.parse(await readFile(file, 'utf8'));
+      return application.importCapture({
+        ...metadata,
+        html: await readFile(resolve(dirname(file), metadata.html)),
+        screenshot: metadata.screenshot
+          ? await readFile(resolve(dirname(file), metadata.screenshot))
+          : undefined,
+      });
+    }
+    case 'review-manufacturer':
+      return application.reviewManufacturer(
+        required(args[0], 'Product id'),
+        JSON.parse(
+          await readFile(required(args[1], 'Manufacturer review file'), 'utf8')
+        )
+      );
     case 'delivery':
       return application.delivery(required(args[0], 'Lazada URL'), {
         province: options.province,

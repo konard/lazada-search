@@ -34,6 +34,30 @@ export interface Claim {
   requiresReview: boolean;
   excerpt?: string;
   reviewedAt?: string;
+  sourceEvidenceId?: string;
+  reviewedBy?: string;
+  reviewId?: string;
+}
+export interface VariantIdentity {
+  brand: string;
+  name: string;
+  flavour: string;
+  netMassG: number;
+  packCount: number;
+}
+export interface ManufacturerReview {
+  evidenceId: string;
+  listingEvidenceId: string;
+  identity: { listing: VariantIdentity; manufacturer: VariantIdentity };
+  reviewedBy: string;
+  reason: string;
+  facts: Record<string, { value: Json; evidenceId: string; excerpt: string }>;
+}
+export interface BrowserCapture {
+  url: string;
+  html: Uint8Array | string;
+  screenshot?: Uint8Array;
+  observedAt: string;
 }
 export interface Product {
   id: string;
@@ -68,6 +92,8 @@ export interface Product {
     sourceUrl: string;
     identityMethod?: string;
     checkedAt?: string;
+    reviewId?: string;
+    identity?: VariantIdentity;
   };
   corrections?: Array<{
     field: string;
@@ -118,6 +144,7 @@ export interface Offer {
   bulkTiers?: Array<{ minQuantity: number; unitPrice: number }>;
   observedAt: string;
   evidenceId?: string;
+  quoteObservedAt?: string;
   priceScope?: string;
   supersededBy?: string;
 }
@@ -462,6 +489,16 @@ export declare class LazadaSearch {
     stale: boolean;
   }>;
   audit(): Promise<Record<string, unknown>>;
+  importCapture(capture: BrowserCapture): Promise<{
+    product: Product;
+    offer: Offer;
+    cacheHit: boolean;
+    stale: boolean;
+  }>;
+  reviewManufacturer(
+    productId: string,
+    review: ManufacturerReview
+  ): Promise<Product>;
   crawl(options?: {
     exhaustive?: boolean;
     queries?: string[];
@@ -490,6 +527,15 @@ export declare class LazadaSearch {
 }
 
 export declare const DEFAULT_ARCHIVE: string;
+export declare function importBrowserCapture(
+  application: LazadaSearch,
+  capture: BrowserCapture
+): ReturnType<LazadaSearch['importCapture']>;
+export declare function reviewManufacturer(
+  application: LazadaSearch,
+  productId: string,
+  review: ManufacturerReview
+): Promise<Product>;
 export declare class RepositoryArchive {
   constructor(options?: { directory?: string });
   directory: string;

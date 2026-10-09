@@ -61,7 +61,9 @@ export function parseProduct(
   const structured = selectedStructuredProduct(snapshot) || {};
   const url = canonicalUrl(snapshot.url);
   const selected = snapshot.selectedVariant || [];
-  const requestedSku = new URL(url).searchParams.get('skuId');
+  const requestedSku =
+    new URL(url).searchParams.get('skuId') ||
+    new URL(url).pathname.match(/-s(\d+)\.html$/u)?.[1];
   const visibleSku = selected.find((entry) => entry.sku)?.sku || snapshot.sku;
   const sku = visibleSku || requestedSku || structured.sku;
   const skuNumber = (value) => String(value).split('_VNAMZ-').at(-1);
@@ -174,15 +176,21 @@ export function parseProduct(
     variantConfirmed,
     priceScope: variantConfirmed ? 'observed-variant' : 'unknown-variant',
     available:
-      /OutOfStock|SoldOut|Discontinued/iu.test(rawOffer.availability || '') ||
+      snapshot.available ??
+      (/OutOfStock|SoldOut|Discontinued/iu.test(rawOffer.availability || '') ||
       /hết hàng|out of stock/iu.test(snapshot.rawText || '')
         ? false
-        : true,
+        : true),
     // Shipping is deliberately unknown until observed for the delivery area.
     observedAt,
     evidenceId,
     ...(sku ? { sku: String(sku) } : {}),
   };
+  for (const field of ['minQuantity', 'maxQuantity']) {
+    if (Number.isSafeInteger(snapshot[field]) && snapshot[field] > 0) {
+      offer[field] = snapshot[field];
+    }
+  }
   if (!variantConfirmed) {
     product.warnings.push('Listing price is not tied to a confirmed variant');
   }
@@ -287,6 +295,13 @@ export function validateOffer(input) {
   }
   if (!Number.isFinite(Date.parse(offer.observedAt))) {
     throw new Error('Offer requires an observedAt timestamp');
+  }
+  if (
+    offer.quoteObservedAt !== undefined &&
+    (!Number.isFinite(Date.parse(offer.quoteObservedAt)) ||
+      Date.parse(offer.quoteObservedAt) > Date.now() + 60000)
+  ) {
+    throw new Error('Quote requires a valid observation timestamp');
   }
   for (const field of [
     'available',

@@ -2,7 +2,7 @@
 
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
-[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **The current live dataset is incomplete and has no fully manufacturer-verified purchase winner.**
+[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **57 food prices are captured and 11 selected SKUs have exact manufacturer specifications. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
 
 [Captured prices sorted cheapest first](docs/tables/known-prices.md) remain usable while other fields await verification. The [complete public evidence archive](data/cases/vietnam-nha-trang/README.md) is committed with the case, including source snapshots, HTML, images, OCR, correction histories, `.lino` and binary conversions. A fresh checkout can replay it without website requests.
 
@@ -30,6 +30,15 @@ Open `http://127.0.0.1:8080` to change quantity, shipping, discounts and nutriti
 A public-page crawl works without `--session-from`. When an existing session is accessible, `--session-from auto` uses Browser Commander's domain-scoped import into a dedicated automation profile. You can choose `chrome`, `firefox`, `yandex` or `safari` and `--session-profile NAME`. Session contents stay local and are excluded from graph exports. `sessions` reports only availability, counts and access errors. A cookie count does **not** prove authentication. Safari files may require macOS Full Disk Access. If an existing debugging browser is available, `--cdp-url http://127.0.0.1:9222` collects in a new tab in its existing context. The original tabs remain open.
 
 If no session can be imported, `node bin/lazada-search.js login` opens the dedicated profile for sign-in. Close it with Ctrl+C; subsequent commands retain that profile. Challenges and login walls are reported and stop collection. `--refresh` retries a page after access has been restored.
+
+Existing browser tools can also supply a complete DOM capture without importing cookies:
+
+```sh
+node bin/lazada-search.js import-capture capture.json --offline --no-ocr
+node bin/lazada-search.js review-manufacturer PRODUCT_ID review.json --offline --no-ocr
+```
+
+The capture JSON contains `url`, the original `observedAt`, and relative `html` and optional `screenshot` file paths. Import requires the displayed SKU to match the requested variant and have its own visible price; a default variant cannot fill another SKU's price. Original timestamps and one-package freight scope are preserved. An exact manufacturer review requires matching brand, product, flavour, mass and pack count on both sides, a reviewer and reason, plus published official image evidence for every promoted field. [Committed review examples](docs/acceptance/manufacturer-reviews/) demonstrate the review format and correction history.
 
 ## Configuration
 

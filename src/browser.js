@@ -1,6 +1,8 @@
 import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
 
+export const EXTRACTOR_VERSION = 11;
+
 async function boundedImageBody(response, timeoutMs = 30000) {
   let timer;
   try {
@@ -51,7 +53,7 @@ export function extractPage(context) {
     .filter((url) => url && /^https?:/u.test(url));
   const productImages = [
     ...document.querySelectorAll(
-      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-information__media img, .product-images img, .product-thumb img, .product-gallery img, .product-description img, .product-description-wrapper img, #product-description img, .product__description img, .product-tabs-section img, .rte img, [data-product-image]'
+      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-information__media img, .product-images img, .product-thumb img, .product-gallery img, .product-description img, .product-description-wrapper img, #product-description img, .product__description img, .product-tabs-section img, .nutritional-info-image img, .rte img, .woocommerce-product-gallery img, img.wp-post-image, img.product-gallery-grid__image, img.product__media-item--variant, img.ps-spf-images__image, img[alt*="nutrition facts" i], img[alt*="supplement facts" i], [data-product-image]'
     ),
   ]
     .flatMap((image) => {
@@ -65,15 +67,48 @@ export function extractPage(context) {
     .map(absolute)
     .filter((url) => url && /^https?:/u.test(url));
   const preferredImages = new Map();
+  // WooCommerce publishes the images for unselected product variants in its
+  // form attribute. Keep those exact URLs as evidence for flavour matching.
+  for (const form of document.querySelectorAll('[data-product_variations]')) {
+    try {
+      const choices = JSON.parse(form.getAttribute('data-product_variations'));
+      if (!Array.isArray(choices)) {
+        continue;
+      }
+      for (const choice of choices) {
+        const url = absolute(choice.image?.full_src || choice.image?.url);
+        if (url && /^https?:/u.test(url)) {
+          productImages.push(url);
+        }
+      }
+    } catch {
+      // Malformed variant metadata does not supply usable image evidence.
+    }
+  }
   for (const url of productImages) {
     const parsed = new URL(url);
     const resized = /(?:lazcdn\.com|slatic\.net)$/u.test(parsed.hostname)
       ? parsed.pathname.match(/_(\d+)x(\d+)q\d+.*$/u)
       : undefined;
-    const key = resized
-      ? `${parsed.origin}${parsed.pathname.slice(0, resized.index)}`
-      : url;
-    const area = resized ? Number(resized[1]) * Number(resized[2]) : Infinity;
+    const shopifyImage = /^\/cdn\/shop\/(?:files|products)\//u.test(
+      parsed.pathname
+    );
+    const shopifyWidth = Number(parsed.searchParams.get('width')) || Infinity;
+    if (shopifyImage) {
+      parsed.searchParams.delete('width');
+      parsed.searchParams.delete('height');
+      parsed.searchParams.delete('crop');
+    }
+    const key = shopifyImage
+      ? parsed.href
+      : resized
+        ? `${parsed.origin}${parsed.pathname.slice(0, resized.index)}`
+        : url;
+    const area = shopifyImage
+      ? shopifyWidth
+      : resized
+        ? Number(resized[1]) * Number(resized[2])
+        : Infinity;
     if (!preferredImages.has(key) || preferredImages.get(key).area < area) {
       preferredImages.set(key, { url, area });
     }
@@ -142,7 +177,17 @@ export function extractPage(context) {
       /disabled/u.test(nextButton.className) ||
       nextButton.querySelector('[disabled]'))
   );
-  const bodyText = document.body?.innerText || document.body?.textContent || '';
+  // Offline DOM parsers include script text in innerText. Those contents
+  // are not product descriptions or visible access challenges.
+  const textBody = document.body?.cloneNode(true);
+  for (const element of textBody?.querySelectorAll(
+    'script, style, template, noscript'
+  ) || []) {
+    element.remove();
+  }
+  const bodyText = context?.document
+    ? textBody?.textContent || ''
+    : document.body?.innerText || textBody?.textContent || '';
   const resultCount = bodyText.match(
     /Tìm thấy\s+([\d.,]+)\s+sản phẩm|([\d.,]+)\s+(?:items|products)\s+found/iu
   );
@@ -206,6 +251,35 @@ export function extractPage(context) {
       )
       ?.querySelector('.key-value')
       ?.textContent?.trim(),
+    available: /hết hàng|out of stock/iu.test(
+      text('.quantity-content-warning') || ''
+    )
+      ? false
+      : [
+            ...document.querySelectorAll(
+              'button.add-to-cart-buy-now-btn, [data-product-purchase]'
+            ),
+          ].some(
+            (element) =>
+              !element.hasAttribute('disabled') &&
+              /Mua ngay|Thêm vào giỏ|Add to cart/iu.test(
+                element.textContent || ''
+              )
+          )
+        ? true
+        : undefined,
+    minQuantity:
+      Number(
+        document
+          .querySelector('.sku-quantity-selection-v2 input[min]')
+          ?.getAttribute('min')
+      ) || undefined,
+    maxQuantity:
+      Number(
+        document
+          .querySelector('.sku-quantity-selection-v2 input[max]')
+          ?.getAttribute('max')
+      ) || undefined,
     description: text(
       '.pdp-product-desc, .pdp-product-desc-v2, [data-description], #product-description, .product-description, .product-description-wrapper, .product__description, .product-tabs-section .tabs-content, .rte'
     ),
@@ -251,7 +325,7 @@ export function classifyPage(page) {
     /captcha|verify (?:your|you)|security verification|access denied|robot check|xác minh/iu.test(
       title
     ) ||
-    /(?:please complete the security check|slide to verify|unusual traffic)/iu.test(
+    /(?:please complete the security check|performing security verification|verifies you are not a bot|slide to verify|unusual traffic)/iu.test(
       page.rawText
     )
   ) {
@@ -265,14 +339,15 @@ export function classifyPage(page) {
   }
   if (
     /pdp-web-redirect-app/iu.test(page.url || '') ||
-    /chuyển sang ứng dụng di động Lazada|chỉ có trên ứng dụng di động Lazada/iu.test(
-      page.rawText || ''
-    )
+    (!page.priceText &&
+      /chuyển sang ứng dụng di động Lazada|chỉ có trên ứng dụng di động Lazada/iu.test(
+        page.rawText || ''
+      ))
   ) {
     return 'app-only';
   }
   if (
-    /page not found|product no longer available|sản phẩm không tồn tại/iu.test(
+    /page not found|we can['’]t find that page|product no longer available|sản phẩm không tồn tại/iu.test(
       page.rawText
     )
   ) {
@@ -407,7 +482,7 @@ export class BrowserCollector {
     // observation time and screenshot. A selector fix needs no site request.
     if (
       (options.reprocess ||
-        result.extractorVersion !== 8 ||
+        result.extractorVersion !== EXTRACTOR_VERSION ||
         result.extractedHtmlSha256 !== result.html?.sha256) &&
       result.html
     ) {
@@ -424,7 +499,7 @@ export class BrowserCollector {
           ...result,
           snapshot,
           status: classifyPage(snapshot),
-          extractorVersion: 8,
+          extractorVersion: EXTRACTOR_VERSION,
           extractedHtmlSha256: result.html.sha256,
         };
         delete updated.cacheHit;
@@ -519,7 +594,7 @@ export class BrowserCollector {
       screenshot,
       finalUrl,
       scrollLimit: this.maxScrolls,
-      extractorVersion: 8,
+      extractorVersion: EXTRACTOR_VERSION,
       imagesRefreshed: refresh,
     };
   }

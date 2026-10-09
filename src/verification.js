@@ -30,7 +30,9 @@ export function specificationProblems(product) {
         JSON.stringify(claim.value) === JSON.stringify(product[field]) &&
         claim.source === 'manufacturer' &&
         !claim.requiresReview &&
-        claim.evidenceId === verification?.evidenceId
+        claim.evidenceId === verification?.evidenceId &&
+        (verification?.identityMethod !== 'visual-exact-variant' ||
+          claim.reviewId === verification.reviewId)
     );
     if (!present || !sourced) {
       problems.push(`Manufacturer specification required: ${field}`);

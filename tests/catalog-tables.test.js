@@ -116,10 +116,13 @@ test('committed catalog imports offline with the same offers and explicit covera
   const audit = await app.audit();
   assert.deepEqual(audit.missingListings, catalog.audit.missingListings);
   assert.deepEqual(audit.missingSkuPrices, catalog.audit.missingSkuPrices);
-  assert.equal(audit.verifiedProducts, 0);
+  assert.equal(audit.verifiedProducts, catalog.audit.verifiedProducts);
   const report = await app.compare({ allowStale: true });
   assert.equal(report.comparisons.length, catalog.offers.length);
-  assert.equal(report.ranked.length, 0);
+  assert.equal(
+    report.comparisons.filter((row) => row.manufacturerVerified).length,
+    catalog.comparisons.filter((row) => row.manufacturerVerified).length
+  );
   assert.equal(app.cache.stats.downloads, 0);
   await app.close();
 });

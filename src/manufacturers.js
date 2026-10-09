@@ -4,6 +4,12 @@ import { fold } from './util.js';
 // authenticity or its exact flavour, net quantity and nutrition identity.
 export const MANUFACTURERS = [
   {
+    name: 'Aice',
+    aliases: ['aice'],
+    domains: ['aicevietnam.vn'],
+    url: 'https://aicevietnam.vn/san-pham/kem-hop-vi-chocolate/',
+  },
+  {
     name: 'Scitec Nutrition',
     aliases: ['scitec nutrition', 'scitec'],
     domains: ['scitecnutrition.com'],

@@ -77,9 +77,14 @@ export function categoryOf(title) {
       value
     ) &&
     /choco|socola|so co la/u.test(value) &&
-    !/\b(?:keo|banh|khuon|molds?|candy|candies|cookie|cookies|powder|mix|syrup|sauce|spread)\b|\bbot\b|sua chua|yogurt|chocolate bars/u.test(
+    !/\b(?:khuon|molds?|powder|mix|syrup|sauce|spread)\b|\bbot\b|sua chua|yogurt|chocolate bars/u.test(
       value
-    )
+    ) &&
+    (!/\b(?:keo|banh|candy|candies|cookies?)\b/u.test(value) ||
+      /ice\s*cream|gelato|\bkem\s+(?:hop|ly|que|oc que|vien)\b/u.test(value) ||
+      /^kem\s+(?:socola|so co la|chocolate)\b/u.test(
+        value.replace(/\[[^\]]*\]/gu, '').trim()
+      ))
   ) {
     return 'chocolate-ice-cream';
   }

@@ -212,6 +212,7 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
       '--data-dir',
       directory,
       '--offline',
+      '--no-archive',
       '--quantity',
       '10',
       '--category',

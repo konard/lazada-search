@@ -10,6 +10,8 @@ import { auditCoverage } from './coverage.js';
 import { MANUFACTURERS, isTrustedManufacturer } from './manufacturers.js';
 import { reconcileManufacturer } from './verification.js';
 import { captureDelivery } from './delivery.js';
+import { importBrowserCapture } from './capture-import.js';
+import { reviewManufacturer } from './manufacturer-review.js';
 import { canonicalUrl, positive, sha256 } from './util.js';
 
 export const MARKETS = {
@@ -183,6 +185,7 @@ export class LazadaSearch {
       id,
       url: capture.snapshot.url,
       role: 'listing',
+      sourceUrl: capture.sourceUrl || capture.snapshot.url,
       observedAt: new Date(capture.fetchedAt).toISOString(),
       html: capture.html,
       screenshot: capture.screenshot,
@@ -255,6 +258,14 @@ export class LazadaSearch {
       cacheHit: capture.cacheHit,
       stale: capture.stale,
     };
+  }
+
+  importCapture(capture) {
+    return importBrowserCapture(this, capture);
+  }
+
+  reviewManufacturer(productId, review) {
+    return reviewManufacturer(this, productId, review);
   }
 
   async collectOcr(product, capture) {
@@ -591,6 +602,7 @@ export class LazadaSearch {
       'shippingDestination',
       'quoteEvidenceId',
       'deliveryAvailable',
+      'quoteObservedAt',
     ];
     if (Object.keys(input).some((key) => !allowed.includes(key))) {
       throw new Error('Unsupported quote field');
@@ -598,7 +610,7 @@ export class LazadaSearch {
     const updated = validateOffer({
       ...offer,
       ...input,
-      quoteObservedAt: new Date().toISOString(),
+      quoteObservedAt: input.quoteObservedAt || new Date().toISOString(),
     });
     return this.saveOffer(updated);
   }
