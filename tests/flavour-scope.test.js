@@ -55,6 +55,15 @@ test('selected SKU and exact manufacturer flavour take precedence over general a
   assert.equal(
     matchesFlavourScope(
       powder('Chocolate whey', {
+        selectedVariant: [{ text: 'Sôcôla' }, { text: 'BÌNH BỘT' }],
+      }),
+      scope
+    ),
+    false
+  );
+  assert.equal(
+    matchesFlavourScope(
+      powder('Chocolate whey', {
         selectedVariant: [{ text: 'Chocolate + Shaker' }],
       }),
       scope

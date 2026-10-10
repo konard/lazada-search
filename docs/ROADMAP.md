@@ -20,3 +20,9 @@ Reported local defects: [archive refresh #1](https://github.com/konard/lazada-se
 Reported Browser Commander observations: [dependency audit #136](https://github.com/link-foundation/browser-commander/issues/136#issuecomment-6098863210), [launch defaults #141](https://github.com/link-foundation/browser-commander/issues/141), and [capture geometry #142](https://github.com/link-foundation/browser-commander/issues/142). Version 0.28.0 is installed. The dependency resolution warning remains open until a compatible patched graph is verified. The actual Lazada footer selector defect was fixed locally and has a browser regression.
 
 All original public/redacted evidence and reproducible source producers belong in Git. Cookies, OTPs, private browser profiles and account-specific checkout content remain in the local private overlay. No order has been placed.
+
+Urgent follow-up: [handpicked list](tables/handpicked.md) records all six submitted links and exact-SKU/listing top-ten intersections. Collect any unpriced resolved SKU before refreshing already-correct observations. Keep whey, soy and mixed protein separate; paid Vietnamese BÌNH BỘT selections are now excluded. Manufacturer/core matching and actual frozen destination freight remain pending despite correct seller unit arithmetic. [Original source audit](acceptance/top10-check/unit-cost-audit.md).
+
+Metric weight parsing still needs a general fix: the case now corrects ON to its selected900g repack, ProSupps to printed907g, and Levels to printed2560g using original-label/source reviews. Add package-identity-aware metric priority and OCR regressions before relying on unreviewed imports; preserve conflicts and selectively invalidate affected derived fields.
+
+[Metric selling-unit parser defect#4](https://github.com/konard/lazada-search/issues/4) contains exact original/redacted source digests and reproduction cases.

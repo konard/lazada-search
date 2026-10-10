@@ -1,5 +1,5 @@
 {
-  "validatedAt": "2026-10-10T16:05:57.300805+00:00",
+  "validatedAt": "2026-10-10T16:49:18.702831+00:00",
   "node": "v22.23.0",
   "unit": {
     "tests": 745,
@@ -36,8 +36,8 @@
   },
   "cachedAudit": {
     "downloads": 0,
-    "missingListings": 1656,
-    "missingSkuPrices": 242,
+    "missingListings": 1650,
+    "missingSkuPrices": 252,
     "unfinishedSearches": 0,
     "manufacturerVerified": 16
   },
@@ -60,24 +60,24 @@
   "reason": "Partial report published; full-market completeness, remaining product/SKU extraction, exact manufacturer revision matching, bulk and frozen freight, and complete Vietnamese-English translation remain unresolved. See docs/REQUIREMENTS.md.",
   "repositoryArchive": {
     "valid": true,
-    "records": 20739,
-    "blobs": 3790,
+    "records": 20883,
+    "blobs": 3847,
     "downloads": 0,
-    "manifestSha256": "73830c9a51b56c8dc92acac320eb638364c3f3946d445038c1fa15762f0903d0",
+    "manifestSha256": "0c06965927c24fd9e23ba0ffa52c5a6488b2e278cf1b5955b21824c951412688",
     "lastExport": {
       "directory": "/Users/konard/Code/Archive/konard/lazada-search/data/cases/vietnam-nha-trang",
-      "records": 20739,
-      "blobs": 3790,
-      "reused": 3782,
-      "rebuilt": 65,
+      "records": 20883,
+      "blobs": 3847,
+      "reused": 3907,
+      "rebuilt": 3,
       "downloads": 0
     },
-    "sourceAndConversionValidation": "passed;20739 records and3790 blobs; zero downloads"
+    "sourceAndConversionValidation": "passed;20883records and3847blobs;zero downloads"
   },
   "authenticatedPublication": {
-    "published": 140,
+    "published": 149,
     "historicalPublished": 2,
-    "allPublished": 142,
+    "allPublished": 151,
     "rejected": 3,
     "downloads": 0,
     "privateAccountScreenshotsPublished": 0,
@@ -252,12 +252,42 @@
     "wheyRows": 10,
     "verifiedProteinRows": 10,
     "iceRows": 10,
-    "exactSelectedIcePrices": 5,
-    "searchCardIceLeads": 5,
+    "exactSelectedIcePrices": 10,
+    "searchCardIceLeads": 0,
     "downloads": 0,
     "path": "docs/tables/top-10-partial.md",
-    "hydropureFormulaConditionalOnSellerIdentity": true
+    "hydropureFormulaConditionalOnSellerIdentity": true,
+    "soySeparate": true,
+    "verifiedProteinCategory": "whey"
   },
   "requirementsTracker": "docs/REQUIREMENTS.md",
-  "roadmap": "docs/ROADMAP.md"
+  "roadmap": "docs/ROADMAP.md",
+  "top10Recheck": {
+    "validatedAt": "2026-10-10T16:35:45.745783+00:00",
+    "sourceWheyRows": 10,
+    "sourceIceRows": 10,
+    "exactSkuAndPriceHashMatches": 20,
+    "arithmeticRows": 30,
+    "targetedUnit": {
+      "tests": 21,
+      "pass": 21,
+      "fail": 0
+    },
+    "targetedInterfacesE2E": {
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "interfaces": ["library", "CLI", "HTTP", "Telegram"]
+    },
+    "soySeparated": true,
+    "printedProSuppsMassG": 907,
+    "iceComboFiveConesG": 300,
+    "coldChainRequiredForDeliveredIceCosts": true,
+    "downloadsForRecalculation": 0,
+    "allCurrentThirtySkuPriceSourcesReparsed": true,
+    "handpickedRows": 6,
+    "handpickedExactPricesAndMasses": 6,
+    "handpickedFoodGramTop10Matches": 3,
+    "handpickedWheyProteinGramTop10Matches": 1
+  }
 }

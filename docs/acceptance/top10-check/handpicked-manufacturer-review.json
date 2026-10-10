@@ -1,0 +1,462 @@
+{
+  "reviewedAt": "2026-10-10T16:45:33.944Z",
+  "scope": "Only resolved submitted handpicked exact identities and existing manufacturer cache; no requests, store mutation or new manufacturer review approval.",
+  "networkRequests": 0,
+  "sourceDigests": [
+    {
+      "path": "docs/acceptance/urgent-whey-reviews/factory-lead-sources/nutrabolics-current-three-sizes-front.png",
+      "sha256": "56d83fc6b95ca07e68af15a884f7d24941c1f716facd4229b85365afd0e5a734",
+      "digestMatched": true,
+      "bytes": 802566
+    },
+    {
+      "path": "docs/acceptance/urgent-whey-reviews/factory-lead-sources/nutrabolics-extreme-chocolate-4-5lb-nutrition.png",
+      "sha256": "19929ae96e7cf2dc4f51b17b238f11226b27abc6023b41d0d0a8a7f7ae987d03",
+      "digestMatched": true,
+      "bytes": 442267
+    },
+    {
+      "path": "docs/acceptance/urgent-whey-reviews/rule1-chocolate-fudge-original.png",
+      "sha256": "f712b1ba720cbaf269cf2cf95a5a4dbc4660785100a82b495c02707554fee224",
+      "digestMatched": true,
+      "bytes": 64628
+    },
+    {
+      "archiveBlobSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
+      "digestMatched": true,
+      "bytes": 1523592
+    },
+    {
+      "archiveBlobSha256": "4711eca14e653811ae84adb8a98490586dadd53970e6161114e02958a385d613",
+      "digestMatched": true,
+      "bytes": 1879550
+    },
+    {
+      "path": "docs/acceptance/top10-check/levels-vanilla-front-original.webp",
+      "sha256": "f3b45798247995109d7f4279e7cd4b3c184f51a7adc589cfd8f3df737c28dc2d",
+      "digestMatched": true,
+      "bytes": 300608
+    }
+  ],
+  "rows": [
+    {
+      "labelProvidedByUser": "Levels 80 servings",
+      "originalUrl": "https://s.lazada.vn/s.oq6vw?c=d",
+      "listingId": "13451810835",
+      "skuId": "117268785502",
+      "sku": "13451810835_VNAMZ-117268785502",
+      "status": "Selected Vanilla 80-serving seller front prints 2.56 kg; no exact manufacturer-hosted source cached",
+      "factoryFormulaAssignable": false,
+      "classification": "Explicit whey; exact selected Vanilla 80 servings is outside chocolate/plain scope",
+      "massCaveat": "Use printed 2.56 kg / 2560 g rather than assumed 5 lb or inferred 80 × scoop weight. Selected Vanilla is excluded from chocolate/plain scope; fresh captured soldout state prevents buyable ranking.",
+      "manufacturerEvidence": [],
+      "publicCachedIdentity": null,
+      "newManufacturerReviewApplied": false,
+      "freshSellerIdentity": {
+        "sku": "13451810835_VNAMZ-117268785502",
+        "sourceHtmlSha256": "fb5c09e3c0abf109f3289450fb5a153b3cfd18105bbfdf09ebd9894caec26465",
+        "sourceVisibility": "Private product HTML inspected read-only; no HTML copied. The retained product label is an original public seller gallery image.",
+        "selectedVariant": ["80 lần dùng", "Vanilla"],
+        "sellerFrontPrintedText": "VANILLA BEAN; NET WT.5.64LB(90OZ)(2.56KG)",
+        "netMassG": 2560,
+        "foodPackagesPerSellingUnit": 1,
+        "capturedPriceVnd": 3800000,
+        "costPerFoodGramBeforeDelivery": 1484.375,
+        "flavorEligible": false,
+        "availabilityAsReportedByLiveCollector": false,
+        "manufacturerFormulaVerified": false,
+        "massSource": {
+          "url": "https://img.lazcdn.com/g/p/03f2d3a0fe5651c944eac5c1f8b0a897.jpg_2200x2200q80.jpg_.webp",
+          "sha256": "f3b45798247995109d7f4279e7cd4b3c184f51a7adc589cfd8f3df737c28dc2d",
+          "file": "levels-vanilla-front-original.webp",
+          "match": "Exact selected 80-serving Vanilla SKU option image URL shares the03f2d3a0fe5651c944eac5c1f8b0a897 source. Gallery image0 also depicts Vanilla Bean 80-serving bag and same printed weight."
+        },
+        "additionalSellerNutritionImage": {
+          "sha256": "33a47dbe53437e519c0561ffc7ebe9db59ea086b0ce1b88e9926e2d837fad6ab",
+          "printedServingMassG": 32,
+          "printedProteinPerServingG": 24,
+          "printedServings": "About80",
+          "authority": "Public seller gallery photo of the80-serving Vanilla bag; not independently manufacturer-hosted verification.",
+          "manufacturerReviewApplied": false
+        }
+      }
+    },
+    {
+      "labelProvidedByUser": "ITS JUST 2.3kg",
+      "originalUrl": "https://s.lazada.vn/s.oqh3U",
+      "listingId": "3201573592",
+      "skuId": "15280912681",
+      "sku": "3201573592_VNAMZ-15280912681",
+      "status": "Existing exact plain IT’S JUST 5 lb manufacturer review already present",
+      "factoryFormulaAssignable": true,
+      "classification": "Reviewed whey isolate; unflavoured",
+      "facts": {
+        "netMassG": 2268,
+        "packCount": 1,
+        "servingMassG": 33,
+        "proteinPerServingG": 30,
+        "proteinPer100g": 90.9090909090909,
+        "ingredients": [
+          "grass fed whey protein isolate",
+          "sunflower lecithin (less than2%)"
+        ]
+      },
+      "manufacturerEvidence": [
+        {
+          "url": "https://138foods.com/products/its-just-whey-protein-isolate",
+          "reviewFile": "docs/acceptance/manufacturer-reviews/its-just-15280912681.json",
+          "labelFile": "docs/acceptance/manufacturer-labels/its-just-nutrition.png",
+          "originalOfficialLabelSha256": "4fcaa035874c333b47cb935f1804133f167c75979843a95a0c8c802c1eddadf3"
+        }
+      ],
+      "publicCachedIdentity": {
+        "title": "[TẶNG SHAKER] Bột Whey Tinh Khiết Nhất IT'S JUST Whey Protein Isolate 2.3kg (5lbs)",
+        "brand": "It's Just",
+        "selectedVariant": [
+          {
+            "text": "UNFLAVOURED",
+            "selected": true,
+            "sku": null
+          },
+          {
+            "text": "UNFLAVOURED",
+            "selected": true,
+            "sku": null
+          }
+        ],
+        "netMassG": 2268,
+        "packCount": 1,
+        "manufacturerVerified": true,
+        "observedAt": "2026-10-09T11:30:32.204Z"
+      },
+      "newManufacturerReviewApplied": false
+    },
+    {
+      "labelProvidedByUser": "Hydropure 4.5lb",
+      "originalUrl": "https://s.lazada.vn/s.oqhQH",
+      "listingId": "3095127497",
+      "skuId": "14849213308",
+      "sku": "3095127497_VNAMZ-14849213308",
+      "status": "Complete current Extreme Chocolate factory facts cached; exact seller revision remains unmatched",
+      "factoryFormulaAssignable": false,
+      "classification": "Claimed whey isolate; selected Extreme Chocolate",
+      "conditionalFactoryFacts": {
+        "netMassG": 2050,
+        "packCount": 1,
+        "flavour": "Extreme Chocolate",
+        "proteinType": "hydrolyzed isolate",
+        "servingMassG": 36,
+        "servingsPerContainer": 57,
+        "proteinPerServingG": 28,
+        "proteinPer100g": 77.77777777777779,
+        "sugarPerServingG": 1,
+        "sugarPer100g": 2.7777777777777777,
+        "fatPerServingG": 1,
+        "fatPer100g": 2.7777777777777777,
+        "saturatedFatPerServingG": 0.5,
+        "saturatedFatPer100g": 1.3888888888888888,
+        "kcalPerServing": 130,
+        "carbohydratePerServingG": 2,
+        "fibrePerServingG": 1,
+        "cholesterolPerServingMg": 40,
+        "sodiumPerServingMg": 80,
+        "potassiumPerServingMg": 262,
+        "calciumPerServingMg": 150,
+        "ironPerServingMg": 1,
+        "ingredients": [
+          "Hydrolyzed Whey Protein Isolate (WPH90)",
+          "Hydrolyzed Whey Protein Isolate (WPH80)",
+          "Cocoa processed with alkali",
+          "Natural & Artificial Flavors",
+          "Xanthan Gum",
+          "Soy Lecithin",
+          "Cellulose Gum",
+          "Sucralose",
+          "Acesulfame Potassium",
+          "Organic Stevia Extract"
+        ],
+        "allergens": ["milk", "soy"]
+      },
+      "manufacturerEvidence": [
+        {
+          "receipt": "factory-lead-sources/nutrabolics-current-three-sizes-front.json",
+          "name": "nutrabolics-current-three-sizes-front",
+          "url": "https://nutrabolics.com/cdn/shop/files/HYDROPURE_3_x_SIZES_2.0.png?v=1790159568&width=1200",
+          "referringSource": "nutrabolics-hydropure-current-product.html.gz",
+          "extension": "png",
+          "finalUrl": "https://nutrabolics.com/cdn/shop/files/HYDROPURE_3_x_SIZES_2.0.png?v=1790159568&width=1200",
+          "status": 200,
+          "successful": true,
+          "observedAt": "2026-10-10T15:46:50.845Z",
+          "contentType": "image/png",
+          "filename": "nutrabolics-current-three-sizes-front.png",
+          "encoding": "original",
+          "sha256": "56d83fc6b95ca07e68af15a884f7d24941c1f716facd4229b85365afd0e5a734",
+          "bytes": 802566,
+          "method": "Original public manufacturer response bytes retained; existing receipts prevent repeat requests including HTTP failures. No Lazada request or associative-store mutation."
+        },
+        {
+          "receipt": "factory-lead-sources/nutrabolics-extreme-chocolate-4-5lb-nutrition.json",
+          "name": "nutrabolics-extreme-chocolate-4-5lb-nutrition",
+          "url": "https://nutrabolics.com/cdn/shop/files/Hydropure_4.5lb_Chocolate_Extreme_Nutritional_inf-1.png?v=1790277591&width=1200",
+          "referringSource": "nutrabolics-hydropure-current-product.html.gz",
+          "extension": "png",
+          "finalUrl": "https://nutrabolics.com/cdn/shop/files/Hydropure_4.5lb_Chocolate_Extreme_Nutritional_inf-1.png?v=1790277591&width=1200",
+          "status": 200,
+          "successful": true,
+          "observedAt": "2026-10-10T15:45:49.762Z",
+          "contentType": "image/png",
+          "filename": "nutrabolics-extreme-chocolate-4-5lb-nutrition.png",
+          "encoding": "original",
+          "sha256": "19929ae96e7cf2dc4f51b17b238f11226b27abc6023b41d0d0a8a7f7ae987d03",
+          "bytes": 442267,
+          "method": "Original public manufacturer response bytes retained; existing receipts prevent repeat requests including HTTP failures. No Lazada request or associative-store mutation."
+        }
+      ],
+      "sellerLimits": [
+        "Exact selected SKU text says Extreme Chocolate and title says 4.5 lb, but gallery/option artwork does not show that selected flavour.",
+        "Gallery0/1 are Chocolate Banana 2.05 kg; gallery2 Strawberry, gallery3 Chocolate Peanut Butter, gallery4 Chocolate Coconut 2.04 kg. Do not map another flavour nutrition or mass to the selected SKU.",
+        "Official source confirms Extreme Chocolate 2.05 kg; numeric conversion of title 4.5 lb into 2041.165665 g is not the declared factory mass.",
+        "No readable SKU-specific GTIN, batch or selected seller Extreme Chocolate front/back is cached. Manufacturer specifications do not establish seller authenticity.",
+        "57 servings is a rounded package yield; calculate protein from declared 2050 g and 28/36, not 57*28 g."
+      ],
+      "publicCachedIdentity": {
+        "title": "Bột Whey Protein thuỷ phân Nutrabolics Hydropure 4.5 Lbs | Sản xuất tại Canada",
+        "brand": "",
+        "selectedVariant": [
+          {
+            "text": "Chocolate Peanut Butter",
+            "selected": true,
+            "sku": null
+          },
+          {
+            "text": "Chocolate Peanut Butter",
+            "selected": true,
+            "sku": null
+          }
+        ],
+        "netMassG": 2041.165665,
+        "manufacturerVerified": false,
+        "observedAt": "2026-10-10T16:36:15.624Z"
+      },
+      "newManufacturerReviewApplied": false
+    },
+    {
+      "labelProvidedByUser": "Rule 1 unflavoured",
+      "originalUrl": "https://s.lazada.vn/s.oqhkC?c=d",
+      "listingId": "13392889869",
+      "skuId": "117024762283",
+      "sku": "13392889869_VNAMZ-117024762283",
+      "status": "Current cached Rule1 factory page lacks exact unflavoured formula; new seller combo is a repack",
+      "factoryFormulaAssignable": false,
+      "classification": "Explicit seller whey ingredient; plain/unflavoured seller description; provisional category classification supported",
+      "freshSellerIdentity": {
+        "sku": "13392889869_VNAMZ-117024762283",
+        "sourceHtmlSha256": "8768854dcb7c0268aa85646d34b0bf5a2982c998b198dafec151e69ce4545caa",
+        "sourceVisibility": "Private product capture inspected read-only; original HTML not copied. Root owns redacted public source publication.",
+        "sourceExcerpts": [
+          "Thành phần: Protein whey",
+          "Loại: Naturally Flavored (Không mùi vị)",
+          "Đóng gói: Túi500gam,1Kg",
+          "Selected selling option: Combo 2 Túi 1Kg"
+        ],
+        "selectedFoodMassPerPackageG": 1000,
+        "selectedFoodPackages": 2,
+        "totalSellingUnitFoodMassG": 2000,
+        "capturedPriceVnd": 2277000,
+        "costPerFoodGramBeforeDelivery": 1138.5,
+        "available": true,
+        "optionCatalog": "Only size selections500g,1000g,Combo 2 Túi 1Kg; no contradictory flavor option"
+      },
+      "massCaveat": "Selected two 1 kg bags override shared 2.2 lb / Plastic Cans/single-item attributes. The manufacturer’s factory tub mass cannot establish seller repack fill weight.",
+      "manufacturerEvidence": [
+        {
+          "url": "https://www.ruleoneproteins.com/products/r1-protein-whey-isolate",
+          "originalHtmlSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
+          "exactUnflavouredVariantFound": false
+        },
+        {
+          "url": "https://www.ruleoneproteins.com/cdn/shop/files/R1_Protein_Whey_Isolate_Chocolate_Fudge_panel.png?v=1718924045275634866",
+          "sha256": "f712b1ba720cbaf269cf2cf95a5a4dbc4660785100a82b495c02707554fee224",
+          "file": "docs/acceptance/urgent-whey-reviews/rule1-chocolate-fudge-original.png",
+          "flavour": "Chocolate Fudge",
+          "mayTransferToPlain": false
+        }
+      ],
+      "publicCachedIdentity": {
+        "title": "[Naturally Flavored] Bột Sữa Protein Rule 1 Protein Naturally Flavored Loại Không Mùi Vị - Shop Đô Con",
+        "brand": "Rule 1 Proteins",
+        "selectedVariant": [
+          {
+            "text": "Combo 2 Túi 1Kg",
+            "selected": true,
+            "sku": null
+          },
+          {
+            "text": "Combo 2 Túi 1Kg",
+            "selected": true,
+            "sku": null
+          }
+        ],
+        "netMassG": 1000,
+        "packCount": 2,
+        "manufacturerVerified": false,
+        "observedAt": "2026-10-10T16:37:25.459Z"
+      },
+      "newManufacturerReviewApplied": false
+    },
+    {
+      "labelProvidedByUser": "ON 2lb / 900g seller pack",
+      "originalUrl": "https://s.lazada.vn/s.oqhmK?c=d",
+      "listingId": "3265021607",
+      "skuId": "15762183506",
+      "sku": "3265021607_VNAMZ-15762183506",
+      "status": "Exact seller description confirms one 900 g zip repack from a larger 10 lb bag; manufacturer formula remains unverified",
+      "factoryFormulaAssignable": false,
+      "classification": "Explicit seller whey ingredient; exact selected DoubleRich Chocolate; provisional whey/chocolate classification supported",
+      "massCaveat": "Use the explicit selected selling 900 g zip repack, not converted 2 lb / 907.18474 g, a 907 g factory tub, or the 10 lb parent bag. A random free shaker has zero food mass. Actual batch/formula and seller fill weight remain unverified.",
+      "manufacturerEvidence": [
+        {
+          "url": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-whey-protein-powder",
+          "originalHtmlSha256": "4711eca14e653811ae84adb8a98490586dadd53970e6161114e02958a385d613",
+          "capturedFactoryFlavor": "Double Rich Chocolate",
+          "capturedFactorySize": "29 Servings (1.98lb)",
+          "exactLazadaMatch": false,
+          "sourceReceipt": "docs/acceptance/optimum-nutrition-labels.json",
+          "nutritionImageStatus": "Previously403; no new request made"
+        }
+      ],
+      "publicCachedIdentity": null,
+      "newManufacturerReviewApplied": false,
+      "freshSellerIdentity": {
+        "sku": "3265021607_VNAMZ-15762183506",
+        "sourceHtmlSha256": "f235ca5d2116d8aca18f0e5510a685e1e511c52c061aefe61a0af494bf359995",
+        "sourceVisibility": "Private product capture inspected read-only; original HTML not copied. Root owns redacted public source publication.",
+        "sourceExcerpts": [
+          "Title: 2lbs (Gói 900gam)",
+          "Net Content: 2 lbs (900g)",
+          "Thành phần: Protein whey",
+          "Đóng gói: Túi zip 900gam share từ bịch lớn 10lbs",
+          "Selected flavor: DoubleRich Chocolate",
+          "Quà tặng: Bình lắc shaker ngẫu nhiên"
+        ],
+        "selectedFoodMassPerPackageG": 900,
+        "foodPackagesPerSellingUnit": 1,
+        "totalSellingUnitFoodMassG": 900,
+        "capturedPriceVnd": 1087200,
+        "costPerFoodGramBeforeDelivery": 1208,
+        "packageCountBasis": "One described selling 900 g zip bag; generic Nhiều gói attribute has no numeric package count and does not establish a multipack."
+      }
+    },
+    {
+      "labelProvidedByUser": "Hydropure",
+      "originalUrl": "https://s.lazada.vn/s.oqhwZ?c=d",
+      "listingId": "3095127497",
+      "skuId": "14849213302",
+      "sku": "3095127497_VNAMZ-14849213302",
+      "status": "Complete current Extreme Chocolate factory facts cached; exact seller revision remains unmatched",
+      "factoryFormulaAssignable": false,
+      "classification": "Claimed whey isolate; selected Extreme Chocolate",
+      "conditionalFactoryFacts": {
+        "netMassG": 2050,
+        "packCount": 1,
+        "flavour": "Extreme Chocolate",
+        "proteinType": "hydrolyzed isolate",
+        "servingMassG": 36,
+        "servingsPerContainer": 57,
+        "proteinPerServingG": 28,
+        "proteinPer100g": 77.77777777777779,
+        "sugarPerServingG": 1,
+        "sugarPer100g": 2.7777777777777777,
+        "fatPerServingG": 1,
+        "fatPer100g": 2.7777777777777777,
+        "saturatedFatPerServingG": 0.5,
+        "saturatedFatPer100g": 1.3888888888888888,
+        "kcalPerServing": 130,
+        "carbohydratePerServingG": 2,
+        "fibrePerServingG": 1,
+        "cholesterolPerServingMg": 40,
+        "sodiumPerServingMg": 80,
+        "potassiumPerServingMg": 262,
+        "calciumPerServingMg": 150,
+        "ironPerServingMg": 1,
+        "ingredients": [
+          "Hydrolyzed Whey Protein Isolate (WPH90)",
+          "Hydrolyzed Whey Protein Isolate (WPH80)",
+          "Cocoa processed with alkali",
+          "Natural & Artificial Flavors",
+          "Xanthan Gum",
+          "Soy Lecithin",
+          "Cellulose Gum",
+          "Sucralose",
+          "Acesulfame Potassium",
+          "Organic Stevia Extract"
+        ],
+        "allergens": ["milk", "soy"]
+      },
+      "manufacturerEvidence": [
+        {
+          "receipt": "factory-lead-sources/nutrabolics-current-three-sizes-front.json",
+          "name": "nutrabolics-current-three-sizes-front",
+          "url": "https://nutrabolics.com/cdn/shop/files/HYDROPURE_3_x_SIZES_2.0.png?v=1790159568&width=1200",
+          "referringSource": "nutrabolics-hydropure-current-product.html.gz",
+          "extension": "png",
+          "finalUrl": "https://nutrabolics.com/cdn/shop/files/HYDROPURE_3_x_SIZES_2.0.png?v=1790159568&width=1200",
+          "status": 200,
+          "successful": true,
+          "observedAt": "2026-10-10T15:46:50.845Z",
+          "contentType": "image/png",
+          "filename": "nutrabolics-current-three-sizes-front.png",
+          "encoding": "original",
+          "sha256": "56d83fc6b95ca07e68af15a884f7d24941c1f716facd4229b85365afd0e5a734",
+          "bytes": 802566,
+          "method": "Original public manufacturer response bytes retained; existing receipts prevent repeat requests including HTTP failures. No Lazada request or associative-store mutation."
+        },
+        {
+          "receipt": "factory-lead-sources/nutrabolics-extreme-chocolate-4-5lb-nutrition.json",
+          "name": "nutrabolics-extreme-chocolate-4-5lb-nutrition",
+          "url": "https://nutrabolics.com/cdn/shop/files/Hydropure_4.5lb_Chocolate_Extreme_Nutritional_inf-1.png?v=1790277591&width=1200",
+          "referringSource": "nutrabolics-hydropure-current-product.html.gz",
+          "extension": "png",
+          "finalUrl": "https://nutrabolics.com/cdn/shop/files/Hydropure_4.5lb_Chocolate_Extreme_Nutritional_inf-1.png?v=1790277591&width=1200",
+          "status": 200,
+          "successful": true,
+          "observedAt": "2026-10-10T15:45:49.762Z",
+          "contentType": "image/png",
+          "filename": "nutrabolics-extreme-chocolate-4-5lb-nutrition.png",
+          "encoding": "original",
+          "sha256": "19929ae96e7cf2dc4f51b17b238f11226b27abc6023b41d0d0a8a7f7ae987d03",
+          "bytes": 442267,
+          "method": "Original public manufacturer response bytes retained; existing receipts prevent repeat requests including HTTP failures. No Lazada request or associative-store mutation."
+        }
+      ],
+      "sellerLimits": [
+        "Exact selected SKU text says Extreme Chocolate and title says 4.5 lb, but gallery/option artwork does not show that selected flavour.",
+        "Gallery0/1 are Chocolate Banana 2.05 kg; gallery2 Strawberry, gallery3 Chocolate Peanut Butter, gallery4 Chocolate Coconut 2.04 kg. Do not map another flavour nutrition or mass to the selected SKU.",
+        "Official source confirms Extreme Chocolate 2.05 kg; numeric conversion of title 4.5 lb into 2041.165665 g is not the declared factory mass.",
+        "No readable SKU-specific GTIN, batch or selected seller Extreme Chocolate front/back is cached. Manufacturer specifications do not establish seller authenticity.",
+        "57 servings is a rounded package yield; calculate protein from declared 2050 g and 28/36, not 57*28 g."
+      ],
+      "publicCachedIdentity": {
+        "title": "Bột Whey Protein thuỷ phân Nutrabolics Hydropure 4.5 Lbs | Sản xuất tại Canada",
+        "brand": "",
+        "selectedVariant": [
+          {
+            "text": "Extreme Chocolate",
+            "selected": true,
+            "sku": null
+          },
+          {
+            "text": "Extreme Chocolate",
+            "selected": true,
+            "sku": null
+          }
+        ],
+        "netMassG": 2041.165665,
+        "manufacturerVerified": false,
+        "observedAt": "2026-10-10T15:35:24.245Z"
+      },
+      "newManufacturerReviewApplied": false
+    }
+  ]
+}

@@ -72,6 +72,6 @@ export function matchesFlavourScope(product, scope) {
 
 export function isShakerBundle(product) {
   return (product.selectedVariant || []).some((option) =>
-    /\bshaker\b|binh\s*(?:lac|shake)/u.test(fold(option.text || ''))
+    /\bshaker\b|binh\s*(?:lac|shake|bot)/u.test(fold(option.text || ''))
   );
 }

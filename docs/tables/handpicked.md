@@ -1,0 +1,26 @@
+# User-picked Lazada links: exact identity and unit costs
+
+Updated 2026-10-10T16:46:48.972Z. Public cached sources only, Vietnam / Nha Trang, VND. No identity inferred from user labels or similar titles. A resolved listing alone does not identify its selling option. Cached observations retain their timestamps. Delivery metrics require the exact Nha Trang one-unit quote. Source-derived unit costs remain separate from any published conditional factory calculation. Manufacturer matching does not establish seller authenticity.
+
+6 submitted rows; 6 resolved listing identities; 6 resolved selling SKUs; 6 exact SKUs with cached observations. Duplicate counts are 1 resolved listing rows and 0 resolved exact SKU rows. Two similarly named links are never assumed to be duplicates.
+
+| Submitted label / link                                       | Exact resolved SKU             | Saved sale VND | Food packages / unit | Food g / unit | VND/food g before | VND/food g delivered   | VND/protein g before   | VND/protein g delivered | Source / flavour / available | Whey scope eligible | Manufacturer matched | Observed UTC             | Status                                                 |
+| ------------------------------------------------------------ | ------------------------------ | -------------- | -------------------- | ------------- | ----------------- | ---------------------- | ---------------------- | ----------------------- | ---------------------------- | ------------------- | -------------------- | ------------------------ | ------------------------------------------------------ |
+| [Levels 80 servings](https://s.lazada.vn/s.oq6vw?c=d)        | 13451810835_VNAMZ-117268785502 | 3,800,000      | 1                    | 2,560         | 1,484.38          | Pending exact evidence | Pending exact evidence | Pending exact evidence  | whey / other / false         | No / pending        | No / pending         | 2026-10-10T16:42:24.057Z | Exact resolved SKU found in public cached observations |
+| [ITS JUST 2.3kg](https://s.lazada.vn/s.oqh3U)                | 3201573592_VNAMZ-15280912681   | 3,100,000      | 1                    | 2,268         | 1,366.84          | 1,397.71               | 1,503.53               | 1,537.48                | whey / unflavoured / true    | Yes                 | Yes                  | 2026-10-09T11:30:32.204Z | Exact resolved SKU found in public cached observations |
+| [Hydropure 4.5lb](https://s.lazada.vn/s.oqhQH)               | 3095127497_VNAMZ-14849213308   | 999,997        | 1                    | 2,041.17      | 489.91            | 508.38                 | Pending exact evidence | Pending exact evidence  | whey / other / true          | No / pending        | No / pending         | 2026-10-10T16:36:15.624Z | Exact resolved SKU found in public cached observations |
+| [Rule 1 unflavoured](https://s.lazada.vn/s.oqhkC?c=d)        | 13392889869_VNAMZ-117024762283 | 2,277,000      | 2                    | 2,000         | 1,138.5           | 1,160.45               | Pending exact evidence | Pending exact evidence  | whey / unflavoured / true    | Yes                 | No / pending         | 2026-10-10T16:37:25.459Z | Exact resolved SKU found in public cached observations |
+| [ON 2lb / 900g seller pack](https://s.lazada.vn/s.oqhmK?c=d) | 3265021607_VNAMZ-15762183506   | 1,087,200      | 1                    | 900           | 1,208             | 1,264.78               | Pending exact evidence | Pending exact evidence  | whey / chocolate / true      | Yes                 | No / pending         | 2026-10-10T16:39:21.182Z | Exact resolved SKU found in public cached observations |
+| [Hydropure](https://s.lazada.vn/s.oqhwZ?c=d)                 | 3095127497_VNAMZ-14849213302   | 999,997        | 1                    | 2,041.17      | 489.91            | 508.38                 | Pending exact evidence | Pending exact evidence  | whey / chocolate / true      | Yes                 | No / pending         | 2026-10-10T15:35:24.245Z | Exact resolved SKU found in public cached observations |
+
+## Intersection with the published top tens
+
+Listing-level membership means another selling option from that listing may appear in the table; it does not establish that the submitted exact SKU is ranked.
+
+| Ranking         | Submitted listing matches | Submitted exact-SKU matches | Unique listing matches | Unique exact-SKU matches |
+| --------------- | ------------------------- | --------------------------- | ---------------------- | ------------------------ |
+| wheyFoodGram    | 4                         | 3                           | 3                      | 3                        |
+| wheyProteinGram | 1                         | 1                           | 1                      | 1                        |
+| soyProteinGram  | 0                         | 0                           | 0                      | 0                        |
+
+[Machine-readable receipt](handpicked.json) includes exact option text, alternative cached SKU identities for resolved listings, source timestamps and any separately published conditional factory calculation. Unresolved links remain unpriced. Ingredient-based whey and soy categories remain separate. No bulk shipping or food millilitres are inferred.
