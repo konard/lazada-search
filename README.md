@@ -2,7 +2,7 @@
 
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
-[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **57 food prices are captured and 11 selected SKUs have exact manufacturer specifications. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
+[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **140 confirmed selected-SKU prices are captured: 99 protein powders and 41 chocolate ice-cream candidates. Eleven selected SKUs have exact manufacturer specifications. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
 
 [Captured prices sorted cheapest first](docs/tables/known-prices.md) remain usable while other fields await verification. The [complete public evidence archive](data/cases/vietnam-nha-trang/README.md) is committed with the case, including source snapshots, HTML, images, OCR, correction histories, `.lino` and binary conversions. A fresh checkout can replay it without website requests.
 
@@ -31,7 +31,18 @@ A public-page crawl works without `--session-from`. When an existing session is 
 
 If no session can be imported, `node bin/lazada-search.js login --account default` opens a separate private profile for sign-in. Set `LAZADA_LOGIN_PHONE` in your uncommitted `.lenv` to autofill a Vietnamese mobile number and request its Zalo code once. Use `--auth-channel sms` for SMS verification. Enter verification in that browser, then press Ctrl+C to save and close. Use `--account default` on later collection, comparison, calculator and bot commands. Session cookies are saved locally between launches. Challenges and login walls stop collection; `--refresh` retries after access is restored.
 
-Account stores read the public working store and committed archive before collecting. Complete cached pages, images and OCR are reused. Account collection retries a public login wall or missing SKU price, and saves new evidence under `.lazada-search/accounts/NAME/`. Private overrides and public records produce one merged row per stable product or offer ID. Private captures and quotes stay out of the public store; `archive --account NAME` is rejected. Run `archive` without an account to publish public evidence. Explicit invalidation and refresh still reload affected sources and rebuild their conversions.
+Account stores read the public working store and committed archive before collecting. Complete cached pages, images and OCR are reused. Account collection retries a public login wall or missing SKU price, and saves new evidence under `.lazada-search/accounts/NAME/`. Private overrides and public records produce one merged row per stable product or offer ID, including listing URL aliases. Private captures and quotes stay out of the public store; `archive --account NAME` is rejected. Explicit invalidation and refresh still reload affected sources and rebuild their conversions.
+
+Publish product evidence from an account collection offline, then regenerate the public tables and archive:
+
+```sh
+node scripts/publish-account-captures.mjs --account default --offline --no-ocr
+node scripts/export-catalog-tables.mjs --offline
+node bin/lazada-search.js archive --offline --no-ocr
+node bin/lazada-search.js archive-verify --offline --no-ocr
+```
+
+Publication rebuilds records from redacted product HTML, preserves exact SKU prices and original observation times, and copies cached product images. Account headers, cookies, login forms and private screenshots are excluded. Unconfirmed requested-SKU prices are rejected. Repeating publication reuses its recorded results without downloading. [Publication receipts](docs/acceptance/account-publication.json) distinguish signed-in price observations from manual visual reviews. The library exposes the same operation as `publishAccountCaptures(application, accountStore)`.
 
 Collector-owned Chrome windows disable the `SessionRestoreInfobar` promo and Translate feature, and set `translate.enabled: false` in their dedicated profiles. Browser Commander's existing issue [#141](https://github.com/link-foundation/browser-commander/issues/141) describes both obstructing panels and these workarounds. Other caller-supplied feature switches are merged by Browser Commander. New navigations and variant-selection requests are spaced at least 60 seconds apart by default, including across persistent collector restarts.
 

@@ -37,6 +37,15 @@ export function canonicalUrl(value) {
   return url.href;
 }
 
+// Slugs, selected-SKU suffixes and tracking parameters can identify one item.
+export function listingKey(value) {
+  const url = new URL(canonicalUrl(value));
+  const item = url.pathname.match(/-i(\d+)(?:-s\d+)?\.html$/u)?.[1];
+  return item && /(?:^|\.)lazada\./u.test(url.hostname)
+    ? `${url.hostname.replace(/^www\./u, '')}:item:${item}`
+    : url.href;
+}
+
 export { positive } from './values.js';
 
 export async function atomicWrite(path, contents) {

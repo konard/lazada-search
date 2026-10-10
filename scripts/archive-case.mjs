@@ -16,7 +16,7 @@ console.log(
         categories: ['whey', 'protein-powder', 'chocolate-ice-cream'],
         purpose:
           'Compare captured selected SKU prices, manufacturer specifications and freight using reusable public evidence',
-        captureMode: 'public anonymous pages; no confirmed signed-in account',
+        captureMode: 'public pages and redacted authenticated product captures',
         coverage: 'incomplete; see docs/tables/README.md',
       },
     })

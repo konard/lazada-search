@@ -1,5 +1,5 @@
 import { specificationProblems } from './verification.js';
-import { canonicalUrl } from './util.js';
+import { listingKey } from './util.js';
 
 const skuNumber = (value) =>
   String(value || '')
@@ -16,7 +16,7 @@ export function auditCoverage({
   const active = offers.filter((offer) => !offer.supersededBy);
   const byUrl = new Map();
   for (const product of products) {
-    const url = canonicalUrl(product.url);
+    const url = listingKey(product.url);
     if (!byUrl.has(url)) {
       byUrl.set(url, []);
     }
@@ -29,7 +29,7 @@ export function auditCoverage({
         .filter((entry) => entry.category !== 'unknown')
         .map((entry) => entry.url),
     ]),
-  ].filter((url) => !byUrl.has(canonicalUrl(url)));
+  ].filter((url) => !byUrl.has(listingKey(url)));
   const categoryReview = discoveries.filter(
     (entry) => entry.classification === 'needs-category-review'
   );
@@ -58,19 +58,27 @@ export function auditCoverage({
       url: offer.url,
       sku: offer.sku || null,
     }));
-  for (const inventory of skuInventories) {
+  const missing = new Map();
+  for (const inventory of [...skuInventories].sort((a, b) =>
+    String(b.observedAt || '').localeCompare(String(a.observedAt || ''))
+  )) {
     for (const sku of inventory.skus || []) {
       // A selected-page price cannot be reused for every flavour or package size.
       if (
         !active.some(
           (offer) =>
-            (offer.url === inventory.url || offer.url === sku.url) &&
+            (listingKey(offer.url) === listingKey(inventory.url) ||
+              (sku.url && listingKey(offer.url) === listingKey(sku.url))) &&
             skuNumber(offer.sku) === skuNumber(sku.sku) &&
             offer.price > 0 &&
             offer.variantConfirmed
         )
       ) {
-        missingSkuPrices.push({
+        const key = `${listingKey(inventory.url)}:${skuNumber(sku.sku)}`;
+        if (missing.has(key)) {
+          continue;
+        }
+        missing.set(key, {
           listingUrl: inventory.url,
           sku: sku.sku,
           url: sku.url,
@@ -80,6 +88,7 @@ export function auditCoverage({
       }
     }
   }
+  missingSkuPrices.push(...missing.values());
   const relevant = products.filter(
     (product) =>
       ['whey', 'protein-powder', 'chocolate-ice-cream'].includes(

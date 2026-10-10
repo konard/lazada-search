@@ -48,6 +48,14 @@ export function selectedStructuredProduct(snapshot) {
   return products.length === 1 ? products[0] : undefined;
 }
 
+function productIdentityUrl(value) {
+  const url = new URL(value);
+  const item = url.pathname.match(/-i(\d+)(?:-s\d+)?\.html$/u)?.[1];
+  return item && /(?:^|\.)lazada\./u.test(url.hostname)
+    ? `https://www.${url.hostname.replace(/^www\./u, '')}/products/pdp-i${item}.html`
+    : value;
+}
+
 export function parseProduct(
   snapshot,
   {
@@ -66,13 +74,14 @@ export function parseProduct(
     new URL(url).pathname.match(/-s(\d+)\.html$/u)?.[1];
   const visibleSku = selected.find((entry) => entry.sku)?.sku || snapshot.sku;
   const sku = visibleSku || requestedSku || structured.sku;
+  const identityUrl = productIdentityUrl(url);
   const skuNumber = (value) => String(value).split('_VNAMZ-').at(-1);
   const requestedVariantMatches =
     !requestedSku ||
     !visibleSku ||
     skuNumber(requestedSku) === skuNumber(visibleSku);
   const title = normalizeText(snapshot.title || structured.name);
-  const id = `product:${sha256(`${url}:${sku || ''}`)}`;
+  const id = `product:${sha256(`${identityUrl}:${sku || ''}`)}`;
   const nutrition = extractNutrition(
     [
       snapshot.description || '',
@@ -166,7 +175,7 @@ export function parseProduct(
     requestedVariantMatches &&
     !(snapshot.variants?.length > 1 && !sku && !selected.length);
   const offer = {
-    id: `offer:${sha256(`${url}:${sku || ''}:${snapshot.seller || ''}`)}`,
+    id: `offer:${sha256(`${identityUrl}:${sku || ''}:${snapshot.seller || ''}`)}`,
     productId: id,
     url,
     market,

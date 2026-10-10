@@ -1,17 +1,18 @@
 {
-  "validatedAt": "2026-10-09T18:05:12.408Z",
+  "validatedAt": "2026-10-10T09:25:18.915Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 634,
-    "pass": 634,
+    "tests": 648,
+    "pass": 648,
     "fail": 0,
     "skipped": 0
   },
   "e2e": {
-    "tests": 7,
-    "pass": 7,
+    "tests": 12,
+    "pass": 12,
     "fail": 0,
-    "skipped": 0
+    "skipped": 0,
+    "nativeStore": "Passed separately with the real local clink executable; 11 other E2E checks passed in the standard suite."
   },
   "checks": {
     "lint": "passed",
@@ -25,7 +26,7 @@
     "browserStarts": 0,
     "downloads": 0,
     "missingListings": 76,
-    "missingSkuPrices": 168,
+    "missingSkuPrices": 78,
     "manufacturerVerified": 11,
     "unfinishedSearches": 10,
     "unclassifiedObservations": 5
@@ -35,23 +36,22 @@
   "committedCatalogReplay": {
     "networkRequests": 0,
     "preservesProductAndSkuCoverageGaps": true,
-    "sortableObservedFoodPrices": 57,
+    "sortableObservedFoodPrices": 140,
     "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
     "originalPriceTimestampsPreserved": true
   },
   "productionReady": false,
-  "reason": "Lazada reCAPTCHA and an anonymous cart block further collection and bulk freight. Remaining exact manufacturer identities, frozen delivery and authoritative whole-market coverage are unproven.",
+  "reason": "Collection is incomplete: 76 discovered listings, 78 distinct SKU prices and ten search scopes remain unresolved. Exact manufacturer specifications exist for eleven selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage are unproven.",
   "repositoryArchive": {
     "valid": true,
-    "records": 8136,
-    "blobs": 3023,
+    "records": 8705,
+    "blobs": 3135,
     "downloads": 0,
-    "manifestSha256": "9bbf2ca1b3119f5f5a0ece08732c33fe852d87945ab09939bdb8dd5538759534",
-    "htmlCapturesReExtracted": 71,
+    "manifestSha256": "5e71a0bbd1b3624329dc04ad41b2be2f01032c2a2153b863e7b838137178cba8",
+    "htmlCapturesReExtracted": 133,
     "originalPriceSelectionAndSkuInventoriesPreserved": true,
-    "securityUrlParameters": 0,
     "unchangedExport": {
-      "reused": 3068,
+      "reused": 3183,
       "rebuilt": 0,
       "downloads": 0
     }
@@ -67,5 +67,20 @@
     "pass": 14,
     "fail": 0,
     "skipped": 0
+  },
+  "authenticatedPublication": {
+    "published": 94,
+    "rejected": 3,
+    "manualVisualReview": false,
+    "privateAccountScreenshotsPublished": 0,
+    "downloads": 0
+  },
+  "publicationRegression": {
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "skipped": 0,
+    "realCommittedSkuCapturesChecked": 94,
+    "additionalTestBeyondFullUnitSuite": 1
   }
 }

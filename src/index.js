@@ -44,3 +44,4 @@ export {
   isTrustedManufacturer,
 } from './manufacturers.js';
 export { BROWSER_IDLE_MS, closeBrowserWindow } from './persistent-browser.js';
+export { publishAccountCaptures } from './public-captures.js';

@@ -337,6 +337,40 @@ test('exhausted searches cannot certify a whole-market catalog; unknown categori
   );
 });
 
+test('item URL aliases count each missing SKU once and reuse only the same item price', () => {
+  const base = 'https://www.lazada.vn/products/pdp-i100.html';
+  const alias = 'https://www.lazada.vn/products/new-slug-i100-s11.html';
+  const other = 'https://www.lazada.vn/products/pdp-i200.html';
+  const report = auditCoverage({
+    products: [{ ...fixture, url: base }],
+    offers: [
+      {
+        ...data.offers[0],
+        url: base,
+        sku: '100_VNAMZ-11',
+        price: 100000,
+        variantConfirmed: true,
+      },
+    ],
+    discoveries: [{ url: alias, category: 'whey' }],
+    skuInventories: [base, alias, other].map((url) => ({
+      url,
+      inventoryObserved: true,
+      skus: [
+        { sku: '11', url, options: [] },
+        { sku: '12', url: `${url}?skuId=12`, options: [] },
+      ],
+    })),
+  });
+  assert.deepEqual(report.missingListings, []);
+  assert.equal(report.missingSkuPrices.length, 3);
+  assert.equal(report.missingSkuPrices.filter((s) => s.sku === '12').length, 2);
+  assert.equal(
+    report.missingSkuPrices.filter((s) => s.listingUrl === other).length,
+    2
+  );
+});
+
 test('manufacturer domain identity cannot cross brands, follow fake subdomains or accept title/brand conflicts', () => {
   assert.equal(
     isTrustedManufacturer(

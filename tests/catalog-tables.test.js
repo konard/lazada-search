@@ -18,6 +18,49 @@ import { AssociativeStore, LazadaSearch } from '../src/index.js';
 
 const execute = promisify(execFile);
 
+test('published price tables contain every confirmed food price in ascending order per category', async () => {
+  const catalog = JSON.parse(
+    await readFile(new URL('../docs/tables/catalog.json', import.meta.url))
+  );
+  const markdown = await readFile(
+    new URL('../docs/tables/known-prices.md', import.meta.url),
+    'utf8'
+  );
+  const sections = markdown.split(/^## /mu).slice(1);
+  assert.equal(sections.length, 2);
+  for (const [index, section] of sections.entries()) {
+    const expected = catalog.comparisons.filter(
+      ({ product, offer }) =>
+        offer.price > 0 &&
+        offer.variantConfirmed &&
+        (index === 0
+          ? ['whey', 'protein-powder'].includes(product.category)
+          : product.category === 'chocolate-ice-cream')
+    );
+    const rows = section
+      .split('\n')
+      .filter((line) => line.startsWith('| ['))
+      .map((line) =>
+        line
+          .split('|')
+          .slice(1, -1)
+          .map((value) => value.trim())
+      );
+    assert.equal(rows.length, expected.length);
+    const prices = rows.map((row) => Number(row[3].replaceAll(',', '')));
+    assert.ok(prices.length > 0);
+    assert.ok(prices.every((price) => Number.isFinite(price) && price > 0));
+    assert.deepEqual(
+      prices,
+      [...prices].sort((a, b) => a - b)
+    );
+    assert.deepEqual(
+      rows.map((row) => `${row[2]}:${row[3].replaceAll(',', '')}`).sort(),
+      expected.map(({ offer }) => `${offer.sku}:${offer.price}`).sort()
+    );
+  }
+});
+
 test('Markdown export retains a newly collected product without a pre-existing manual-review entry', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-table-export-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

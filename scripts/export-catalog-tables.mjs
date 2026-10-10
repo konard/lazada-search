@@ -10,6 +10,11 @@ import {
 import { configuredStore, parseArguments } from '../src/config.js';
 
 const options = parseArguments(process.argv.slice(2));
+if (options.account) {
+  throw new Error(
+    'Publish redacted account captures before exporting public repository tables'
+  );
+}
 const style = await resolveConfig('docs/tables/README.md');
 async function writeFormatted(path, content) {
   await writeFile(
@@ -52,6 +57,10 @@ const products = await app.store.list('product');
 const audit = await app.audit();
 const discoveries = await app.store.list('discovery');
 const skuInventories = await app.store.list('sku-inventory');
+const publications = await app.store.list('publication');
+const publicationByOffer = new Map(
+  publications.map((record) => [record.offerId, record])
+);
 const comparison = await app.compare({ quantity: 1, allowStale: true });
 const entries = comparison.comparisons.filter(
   (row) => row.product.category !== 'unknown' || reviewByUrl.has(row.offer.url)
@@ -98,6 +107,9 @@ const pair = (before, after) => `${number(before)} → ${number(after)}`;
 const intro =
   'Rows are sorted by **captured package price, cheapest first**. Unit costs and specifications are provisional until their source and package identity are verified. Unknown means no confirmed value; it never means zero. Every row is retained, including conflicting and unavailable offers. Prices refer only to the captured selected SKU. Destination: **Nha Trang, Vietnam**, currency: **VND**, quantity: **one package**. Delivery for bulk quantities must be quoted separately. [Price-only table](known-prices.md) lists confirmed prices independently of specification gaps.\n\n';
 function visualReview(offer, label = 'review') {
+  if (publicationByOffer.get(offer.id)?.manualVisualReview === false) {
+    return 'Manual review pending';
+  }
   const sku = reviewedSkus.get(offer.sku);
   if (sku?.price === offer.price) {
     return link(
@@ -169,6 +181,7 @@ const priceOnlyHeaders = [
   'SKU',
   'Price VND',
   'Captured at',
+  'Price context',
   'Verification',
 ];
 const priceOnlyRows = (rows) =>
@@ -178,6 +191,9 @@ const priceOnlyRows = (rows) =>
     offer.sku || 'Not supplied by listing',
     number(offer.price),
     offer.observedAt,
+    offer.priceContext === 'authenticated-browser-observation'
+      ? 'Signed-in page'
+      : 'Public page',
     visualReview(offer, 'Screenshot checked'),
   ]);
 await save(
@@ -363,7 +379,7 @@ await save(
 );
 await save(
   'README.md',
-  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Visually checked selected-page prices | ${entries.filter((row) => visualReview(row.offer) !== 'Manual review pending').length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)\n- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Additional SKU screenshots and rejected selections](../acceptance/browser-sku-review/README.md)\n- [Factory label reviews and corrected values](../acceptance/manufacturer-labels/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode bin/lazada-search.js archive-verify --offline --no-ocr\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline --no-ocr\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use \`crawl --exhaustive\`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nThe attempted public backlog encountered an app-only page and Lazada security redirects. Further Lazada requests stopped. Official manufacturer sources are collected independently with caching and pacing. Existing Chrome access supplied additional selected-SKU captures, but Lazada subsequently presented a reCAPTCHA. The browser is not signed into Lazada. Bulk freight requires a signed-in cart quote. The saved evidence and verification work are reusable while that check is pending.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
+  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Captured confirmed food SKU prices | ${knownPriceRows.length} |\n| Visually checked selected-page prices | ${entries.filter((row) => visualReview(row.offer) !== 'Manual review pending').length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)\n- [Authenticated product-capture publication report](../acceptance/account-publication.json)\n- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Additional SKU screenshots and rejected selections](../acceptance/browser-sku-review/README.md)\n- [Factory label reviews and corrected values](../acceptance/manufacturer-labels/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode bin/lazada-search.js archive-verify --offline --no-ocr\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline --no-ocr\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use \`crawl --exhaustive\`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nPublic requests previously encountered app-only pages and security redirects. ${publications.length ? `${publications.length} product captures from the authenticated browser are now published as redacted product HTML and derived records. Account-collected price observations are marked as signed-in observations; they retain their capture times and are not manual visual reviews. [Publication report](../acceptance/account-publication.json) records published sources and rejected SKU selections. The account successfully signed in during collection; this snapshot does not attest to the current session state.` : `No authenticated product captures have been published in this snapshot.`} Exact manufacturer verification, current stock, Nha Trang freight, frozen delivery and complete search pagination remain unresolved. One-package quotes cannot establish bulk freight.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
 );
 const fixture = JSON.parse(
   await readFile('tests/fixtures/products.json', 'utf8')

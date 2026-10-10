@@ -88,7 +88,7 @@ export function sanitizePublicHtml(html) {
     }
   }
   for (const element of document.querySelectorAll(
-    'input[type="password"], input[type="email"], [data-customer], [data-account], #J_Header, #lazada-header'
+    'input[type="password"], input[type="email"], input[type="tel"], [data-customer], [data-account], #J_Header, #lazada-header, #topActionHeaderWrapper, #topActionUserAccont, #myAccountTrigger'
   )) {
     element.remove();
   }

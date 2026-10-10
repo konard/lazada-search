@@ -423,6 +423,15 @@ export declare class BrowserCollector {
 /** Collector-owned visible windows survive collector exits and close after idle. */
 export declare const BROWSER_IDLE_MS: number;
 export declare function closeBrowserWindow(directory: string): Promise<void>;
+export declare function publishAccountCaptures(
+  application: LazadaSearch,
+  accountStore: AssociativeStore
+): Promise<{
+  published: Array<Record<string, unknown>>;
+  rejected: Array<{ url: string; reason: string }>;
+  reused: number;
+  downloads: number;
+}>;
 export interface OcrResult {
   id: string;
   imageHash: string;

@@ -12,7 +12,7 @@ import { reconcileManufacturer } from './verification.js';
 import { captureDelivery } from './delivery.js';
 import { importBrowserCapture } from './capture-import.js';
 import { reviewManufacturer } from './manufacturer-review.js';
-import { canonicalUrl, positive, sha256 } from './util.js';
+import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 
 export const MARKETS = {
   vn: {
@@ -266,8 +266,8 @@ export class LazadaSearch {
     for (const older of await this.store.list('offer')) {
       if (
         older.id !== savedOffer.id &&
-        older.productId === savedOffer.productId &&
-        older.url === savedOffer.url &&
+        listingKey(older.url) === listingKey(savedOffer.url) &&
+        older.seller === savedOffer.seller &&
         older.sku === savedOffer.sku &&
         !older.supersededBy
       ) {
