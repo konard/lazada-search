@@ -9,7 +9,8 @@
     "skipped": 0,
     "fileTimeoutMs": 300000,
     "durationMs": 212258.232916,
-    "environment": "Local HTTP, Git/process and browser fixtures enabled"
+    "environment": "Local HTTP, Git/process and browser fixtures enabled",
+    "currentDistinctCasesValidatedAcrossRuns": 822
   },
   "e2e": {
     "currentDistinctCases": 25,
@@ -271,5 +272,13 @@
       "validationMethod": "Full suite17 passed, one shaker-fixture regression corrected, one native-store check originally skipped; both corrected flavour integration and actual clink native-store checks then passed2/2.",
       "recoveryPersistsSessionCookiesAcrossBrowserRelaunch": true
     }
+  },
+  "continuousRunnerStartup": {
+    "defaultQueryUndefinedHandled": true,
+    "explicitReplacementScopesRediscovered": true,
+    "targetedRegressionTests": 17,
+    "pass": 17,
+    "fail": 0,
+    "newCaseBeyondFullUnitRun": 1
   }
 }

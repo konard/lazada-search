@@ -3,7 +3,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { LazadaSearch, DomainScheduler } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
-import { runAccountCase } from './account-case-workflow.mjs';
+import {
+  runAccountCase,
+  reuseAccountDiscovery,
+} from './account-case-workflow.mjs';
 import { latestCrawl } from '../src/crawl.js';
 import { scopeAccountAudit } from './account-category-scope.mjs';
 import {
@@ -196,8 +199,7 @@ try {
     audit,
     publish,
     recollect,
-    reuseDiscovery:
-      !options.refresh && !options.query.length && !options.categoryUrl.length,
+    reuseDiscovery: reuseAccountDiscovery(options),
   });
   await store.put('case-run', {
     id: reportId,

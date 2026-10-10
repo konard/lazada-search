@@ -1,7 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { runAccountCase } from '../scripts/account-case-workflow.mjs';
+import {
+  runAccountCase,
+  reuseAccountDiscovery,
+} from '../scripts/account-case-workflow.mjs';
 import { latestCrawl } from '../src/crawl.js';
+import { parseArguments } from '../src/config.js';
+
+test('continuous collection accepts absent default queries but rediscovers explicitly replaced scopes', () => {
+  const defaults = parseArguments(['--account', 'default']);
+  assert.equal(defaults.query, undefined);
+  assert.equal(reuseAccountDiscovery(defaults), true);
+  for (const flags of [
+    ['--refresh'],
+    ['--query', 'whey chocolate'],
+    ['--category-url', 'https://www.lazada.vn/ice-cream/'],
+  ]) {
+    assert.equal(reuseAccountDiscovery(parseArguments(flags)), false);
+  }
+});
 
 test('phase admission selects the latest report even when legacy records omit start timestamps', () => {
   const old = { id: 'crawl:2026-10-09T09:45:40.007Z' };

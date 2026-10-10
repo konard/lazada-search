@@ -1,5 +1,11 @@
 import { sha256 } from '../src/util.js';
 
+export function reuseAccountDiscovery(options) {
+  return (
+    !options.refresh && !options.query?.length && !options.categoryUrl?.length
+  );
+}
+
 function backlogFingerprint(audit) {
   if (audit.collectableUrls) {
     return sha256(JSON.stringify([...audit.collectableUrls].sort()));
