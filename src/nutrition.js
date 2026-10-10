@@ -33,8 +33,11 @@ export function massGrams(value) {
     ),
   ].find(
     (entry) =>
-      !/(?:^|\n)\s*(?:protein|sugar|fat|đạm|đường|chất béo)\s*[:=]?\s*$/iu.test(
-        text.slice(0, entry.index)
+      !/\b(?:sugars?|fat|duong|chat beo)\s*[:=]?\s*$/u.test(
+        fold(text.slice(0, entry.index))
+      ) &&
+      !/(?:^|\n)\s*(?:protein|dam)\s*[:=]?\s*$/u.test(
+        fold(text.slice(0, entry.index))
       ) &&
       !/^\s*(?:protein|sugar|fat|đạm|đường|chất béo)/iu.test(
         text.slice(entry.index + entry[0].length)
@@ -51,6 +54,19 @@ export function massGrams(value) {
         ? 28.349523125
         : 1;
   return parseDecimal(match[1]) * factor;
+}
+
+export function packCountOf(value) {
+  const text = fold(String(value || ''));
+  const count =
+    text.match(
+      /\b(\d+)\s*(?:tui|goi|cay|que|vien|hop|ly|bags?|packs?|cups?|bars?|sticks?|pieces?|pcs)\b/u
+    )?.[1] ||
+    text.match(/\b(?:pack|box|set)\s+of\s+(\d+)\b/u)?.[1] ||
+    text.match(/\b(\d+)\s*[x×]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|ml|l)\b/u)?.[1] ||
+    text.match(/\b\d+(?:[.,]\d+)?\s*(?:kg|g|ml|l)\s*[x×]\s*(\d+)\b/u)?.[1];
+  const parsed = Number(count);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : undefined;
 }
 
 export function volumeMillilitres(value) {

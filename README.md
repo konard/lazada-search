@@ -2,7 +2,7 @@
 
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
-[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **140 confirmed selected-SKU prices are captured: 99 protein powders and 41 chocolate ice-cream candidates. Eleven selected SKUs have exact manufacturer specifications. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
+[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **149 confirmed selected-SKU food prices are captured: 125 protein powders and 24 chocolate ice-cream candidates. Thirteen selected SKUs have exact manufacturer specifications. The separate preliminary listing inventory contains 844 distinct observed listings; discovery continues before further product-page collection. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
 
 [Captured prices sorted cheapest first](docs/tables/known-prices.md) remain usable while other fields await verification. The [complete public evidence archive](data/cases/vietnam-nha-trang/README.md) is committed with the case, including source snapshots, HTML, images, OCR, correction histories, `.lino` and binary conversions. A fresh checkout can replay it without website requests.
 
@@ -19,7 +19,8 @@ npx playwright install chromium
 # Ubuntu: sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
 cp .lenv.example .lenv
 node bin/lazada-search.js compare --offline --no-ocr --allow-stale --sort totalBeforeDelivery
-node bin/lazada-search.js crawl --max-pages 5 --max-products 100
+node bin/lazada-search.js discover --exhaustive
+node bin/lazada-search.js crawl --exhaustive
 node bin/lazada-search.js compare --category whey --quantity 10
 node bin/lazada-search.js compare --category chocolate-ice-cream --quantity 10
 node bin/lazada-search.js serve
@@ -42,9 +43,11 @@ node bin/lazada-search.js archive --offline --no-ocr
 node bin/lazada-search.js archive-verify --offline --no-ocr
 ```
 
-Publication rebuilds records from redacted product HTML, preserves exact SKU prices and original observation times, and copies cached product images. Account headers, cookies, login forms and private screenshots are excluded. Unconfirmed requested-SKU prices are rejected. Repeating publication reuses its recorded results without downloading. [Publication receipts](docs/acceptance/account-publication.json) distinguish signed-in price observations from manual visual reviews. The library exposes the same operation as `publishAccountCaptures(application, accountStore)`.
+Publication rebuilds records from redacted product HTML, preserves exact SKU prices and original observation times, and copies cached product images. Account headers, cookies, login forms and private screenshots are excluded. Unconfirmed requested-SKU prices are rejected. Repeating publication reuses its recorded results without downloading. [Publication receipts](docs/acceptance/account-publication.json) distinguish signed-in price observations from manual visual reviews. The library exposes `publishAccountCaptures(application, accountStore)` and `publishAccountDiscovery(application, accountStore)`. Search publication preserves every product card and pagination observation while excluding private account UI and screenshots. The [preliminary listing inventory](docs/tables/discovered-listings.md) remains separate from [captured SKU discounts and promotion conditions](docs/tables/discounts.md).
 
 Collector-owned Chrome windows disable the `SessionRestoreInfobar` promo and Translate feature, and set `translate.enabled: false` in their dedicated profiles. Browser Commander's existing issue [#141](https://github.com/link-foundation/browser-commander/issues/141) describes both obstructing panels and these workarounds. Other caller-supplied feature switches are merged by Browser Commander. New navigations and variant-selection requests are spaced at least 60 seconds apart by default, including across persistent collector restarts.
+
+Scrolling uses animated, viewport-sized steps measured from the visible product sections. Search pages stop with the last product row and pager visible; the footer is excluded from the scroll target. Loading indicators and unstable content delay extraction. Empty search pages require an explicit empty-results state, and a displayed page number that differs from the requested page stops discovery.
 
 Visible owned windows and account browsers are reused across CLI and collector restarts. Closing a collector disconnects its client and leaves the same tab and window open. A private loopback worker closes the window after 30 minutes without collection or user interaction; the signed-in profile remains available for the next launch. `--browser-idle-ms` changes that timeout; `--no-persistent-browser` restores closing the owned window on exit. Concurrent collectors cannot drive the same window. Explicit `--cdp-url` attachment keeps its existing ownership rules.
 
@@ -228,7 +231,7 @@ Keep calculations deterministic, preserve ambiguous source claims, and add meani
 
 ## Catalog coverage and Markdown export
 
-`crawl --exhaustive` follows observed public pagination without page/product caps, retains every discovered candidate, inventories all public SKU combinations and stops on security challenges. Each SKU needs its own confirmed price. `audit --strict` fails while catalog completeness remains unproven; public search cannot certify a whole-market inventory.
+`discover --exhaustive` collects search lists without opening details. `crawl --exhaustive` finishes all configured search lists before entering its product phase, then follows observed public pagination without page/product caps, retains every discovered candidate, inventories all public SKU combinations and stops on security challenges. Each SKU needs its own confirmed price. `audit --strict` fails while catalog completeness remains unproven; public search cannot certify a whole-market inventory.
 
 Generate the repository tables with `node scripts/export-catalog-tables.mjs --offline`. Reprocess cached listings and OCR with `node scripts/audit-cached-catalog.mjs --offline`. `node scripts/collect-manufacturer-sources.mjs` follows the official-domain registry, retains unmatched source evidence and reuses cached pages, images and OCR. The [coverage table](docs/tables/README.md) lists every outstanding gap. Telegram supports `/audit --strict` and splits full comparisons across messages without a ten-row limit.
 

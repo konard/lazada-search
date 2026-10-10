@@ -131,7 +131,7 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
     if (url.pathname.includes('/catalog/')) {
       await route.fulfill({
         contentType: 'text/html',
-        body: `<h1>Whey search</h1><div data-product-card><a href="${listingUrl}">Fixture whey isolate 1 kg</a></div>`,
+        body: `<h1>Whey search</h1><div data-product-card><a href="${listingUrl}">Fixture whey isolate 1 kg</a></div><nav class="ant-pagination"><button class="ant-pagination-next ant-pagination-disabled" aria-disabled="true">Next</button></nav>`,
       });
     } else {
       await route.fulfill({
@@ -259,6 +259,11 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
   const replyCount = replies.length;
   await bot.handleUpdate(update('/compare', 999, 2));
   assert.equal(replies.length, replyCount);
+  await bot.handleUpdate(
+    update('/discover --query "whey protein" --exhaustive', 777, 3)
+  );
+  assert.match(replies.at(-1), /"discoveryComplete": true/u);
+  assert.match(replies.at(-1), /"products": \[\]/u);
   const server = await startServer({ application: restarted, port: 0 });
   t.after(() => close(server));
   await page.goto(`http://127.0.0.1:${server.address().port}`);

@@ -2,8 +2,10 @@ import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
 import { resolvePageDialogs } from './page-dialogs.js';
 import { acquireBrowserWindow } from './persistent-browser.js';
+import { waitForPageReady } from './page-readiness.js';
+import { scrollProductContent } from './page-scroll.js';
 
-export const EXTRACTOR_VERSION = 11;
+export const EXTRACTOR_VERSION = 15;
 
 async function boundedImageBody(response, timeoutMs = 30000) {
   let timer;
@@ -21,6 +23,7 @@ async function boundedImageBody(response, timeoutMs = 30000) {
 
 // Runs in the browser realm. Preserve all labels, descriptions, JSON-LD,
 // images and variant options, including fields the normalizer cannot parse.
+// eslint-disable-next-line max-lines-per-function -- This self-contained function is serialized into the browser realm; imported helpers are unavailable there.
 export function extractPage(context) {
   const document = context?.document || globalThis.document;
   const pageUrl = context?.url || globalThis.location.href;
@@ -55,7 +58,7 @@ export function extractPage(context) {
     .filter((url) => url && /^https?:/u.test(url));
   const productImages = [
     ...document.querySelectorAll(
-      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-information__media img, .product-images img, .product-thumb img, .product-gallery img, .product-description img, .product-description-wrapper img, #product-description img, .product__description img, .product-tabs-section img, .nutritional-info-image img, .rte img, .woocommerce-product-gallery img, img.wp-post-image, img.product-gallery-grid__image, img.product__media-item--variant, img.ps-spf-images__image, img[alt*="nutrition facts" i], img[alt*="supplement facts" i], [data-product-image]'
+      '[itemprop="associatedMedia"] img, .gallery-preview-panel img, .item-gallery img, .gallery-preview-panel-v2 img, .item-gallery-v2 img, .pdp-product-desc img, .pdp-product-desc-v2 img, .product__media img, .product-single__media img, .product-information__media img, .product-images img, .product-thumb img, .product-gallery img, .product-description img, .product-description-wrapper img, #product-description img, .product__description img, .product-tabs-section img, .nutritional-info-image img, .nutrition-facts-image img, .nut-facts img, .rte img, .woocommerce-product-gallery img, img.wp-post-image, img.product-gallery-grid__image, img.product__media-item--variant, img.product__media-image, img.ps-spf-images__image, img[alt*="nutrition facts" i], img[alt*="supplement facts" i], [data-product-image]'
     ),
   ]
     .flatMap((image) => {
@@ -64,11 +67,77 @@ export function extractPage(context) {
         image.parentElement?.getAttribute('data-image');
       return fullSize
         ? [fullSize]
-        : [image.currentSrc, image.src, image.getAttribute('data-src')];
+        : [
+            image.currentSrc,
+            image.src,
+            image.getAttribute('data-src'),
+            ...[
+              image.getAttribute('srcset'),
+              image.getAttribute('data-srcset'),
+            ].flatMap((value) =>
+              (value || '')
+                .split(',')
+                .map((choice) => choice.trim().split(/\s+/u)[0])
+            ),
+          ];
     })
     .map(absolute)
     .filter((url) => url && /^https?:/u.test(url));
   const preferredImages = new Map();
+  const variantGallery = {};
+  for (const script of document.querySelectorAll(
+    'script[type="application/json"][id^="VariantGalleryJSON-"]'
+  )) {
+    try {
+      Object.assign(variantGallery, JSON.parse(script.textContent));
+    } catch {
+      /* Malformed media JSON cannot establish an image or variant. */
+    }
+  }
+  const manufacturerVariants = [];
+  for (const script of document.querySelectorAll(
+    'script[type="application/json"].linked-product-selector__variants'
+  )) {
+    try {
+      const choices = JSON.parse(script.textContent);
+      if (!Array.isArray(choices)) {
+        continue;
+      }
+      for (const choice of choices) {
+        const gallery = (variantGallery[choice.id] || [])
+          .map((media) => {
+            const source = Object.entries(media.sources || {}).sort(
+              (a, b) => Number(b[0]) - Number(a[0])
+            )[0]?.[1];
+            return absolute(source || media.fallback);
+          })
+          .filter((url) => url && /^https?:/u.test(url));
+        const front = absolute(choice.featured_image?.src);
+        const images = [...new Set([...gallery, front].filter(Boolean))];
+        manufacturerVariants.push({
+          id: String(choice.id),
+          name: choice.name,
+          manufacturerSku: choice.sku,
+          gtin: choice.barcode,
+          options: choice.options,
+          available: choice.available,
+          images,
+        });
+        productImages.push(...images);
+      }
+    } catch {
+      /* Preserve other readable variants when metadata is malformed. */
+    }
+  }
+  const manufacturerLabels = [
+    ...document.querySelectorAll('.nut-facts option[data-file]'),
+  ]
+    .map((option) => ({
+      url: absolute(option.getAttribute('data-file')),
+      flavour: option.getAttribute('data-flavor') || option.textContent.trim(),
+    }))
+    .filter((label) => label.url && /^https?:/u.test(label.url));
+  productImages.push(...manufacturerLabels.map((label) => label.url));
   // WooCommerce publishes the images for unselected product variants in its
   // form attribute. Keep those exact URLs as evidence for flavour matching.
   for (const form of document.querySelectorAll('[data-product_variations]')) {
@@ -227,6 +296,9 @@ export function extractPage(context) {
             };
           }),
         available: fields.skuInfos?.[sku.skuId]?.operation?.disable !== true,
+        image: absolute(fields.skuInfos?.[sku.skuId]?.image),
+        minQuantity: fields.skuInfos?.[sku.skuId]?.quantity?.limit?.min,
+        maxQuantity: fields.skuInfos?.[sku.skuId]?.quantity?.limit?.max,
       }));
     } catch {
       // A malformed assignment is an unresolved SKU inventory, never a reason
@@ -241,6 +313,21 @@ export function extractPage(context) {
     priceText: text(
       '.pdp-price_type_normal, .pdp-v2-product-price-content-salePrice-amount, [data-product-price]'
     ),
+    originalPriceText: text(
+      '.pdp-price_type_deleted, .pdp-v2-product-price-content-originalPrice-amount, [data-original-price]'
+    ),
+    discountPercentText: text(
+      '.pdp-product-price__discount, .pdp-v2-product-price-content-originalPrice-discount, [data-discount-percent]'
+    ),
+    promotions: [
+      ...document.querySelectorAll(
+        '[data-product-promotion], .pdp-block__shop_promotion, .pdp-block__redmart-promotion, .pdp-promotion-item, .voucher-item, .coupon-item'
+      ),
+    ]
+      .map((element) => ({
+        text: (element.innerText || element.textContent || '').trim(),
+      }))
+      .filter((entry) => entry.text),
     seller: text(
       '.seller-name__detail, .seller-name-v2__detail-name, [data-seller]'
     ),
@@ -298,6 +385,8 @@ export function extractPage(context) {
     jsonLd,
     images: [...new Set(images)],
     productImages: [...preferredImages.values()].map((image) => image.url),
+    manufacturerLabels,
+    manufacturerVariants,
     links: anchors.map((anchor) => ({
       url: absolute(anchor.getAttribute('href')),
       text: anchor.innerText || anchor.title || '',
@@ -607,25 +696,17 @@ export class BrowserCollector {
     await resolvePageDialogs(page);
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
+    let scrolling;
     if (status === 'ok') {
+      await waitForPageReady(page);
       await this.selectRequestedVariant(url, snapshot);
       snapshot = await page.evaluate(extractPage);
     }
     if (status === 'ok') {
-      for (let index = 0; index < this.maxScrolls; index += 1) {
-        const finished = await page.evaluate(() => {
-          globalThis.scrollBy(0, 800);
-          return (
-            globalThis.scrollY + globalThis.innerHeight >=
-            globalThis.document.body.scrollHeight
-          );
-        });
-        await page.waitForTimeout(100);
-        await resolvePageDialogs(page);
-        if (finished) {
-          break;
-        }
-      }
+      scrolling = await scrollProductContent(page, {
+        maxSteps: this.maxScrolls,
+      });
+      await waitForPageReady(page);
       snapshot = await page.evaluate(extractPage);
       await resolvePageDialogs(page);
       status = classifyPage(snapshot);
@@ -644,6 +725,7 @@ export class BrowserCollector {
       screenshot,
       finalUrl,
       scrollLimit: this.maxScrolls,
+      scrolling,
       extractorVersion: EXTRACTOR_VERSION,
       imagesRefreshed: refresh,
     };
@@ -696,6 +778,7 @@ export class BrowserCollector {
       await choices.nth(index).click();
       await this.runtime.page.waitForTimeout(Math.max(500, this.settleMs));
       await resolvePageDialogs(this.runtime.page);
+      await waitForPageReady(this.runtime.page);
     }
     const selected = await this.runtime.page.evaluate(extractPage);
     if (

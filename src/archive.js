@@ -73,6 +73,18 @@ export function sanitizePublicHtml(html) {
       } catch {
         script.remove();
       }
+    } else if (
+      script.type === 'application/json' &&
+      (script.id.startsWith('VariantGalleryJSON-') ||
+        script.classList.contains('linked-product-selector__variants'))
+    ) {
+      try {
+        script.textContent = JSON.stringify(
+          sanitizePublicData(JSON.parse(script.textContent))
+        );
+      } catch {
+        script.remove();
+      }
     } else if (/__moduleData__\s*=/u.test(script.textContent)) {
       const match = script.textContent.match(
         /(?:var\s+|window\.)__moduleData__\s*=\s*(\{[^\n]+\});/u

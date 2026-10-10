@@ -4,15 +4,17 @@
 
 | Check                                      | Result                          |
 | ------------------------------------------ | ------------------------------- |
-| Captured confirmed food SKU prices         | 140                             |
+| Captured confirmed food SKU prices         | 149                             |
 | Visually checked selected-page prices      | 53                              |
-| Complete exact manufacturer specifications | 11                              |
-| Missing discovered product records         | 76                              |
-| Missing individual SKU prices              | 78                              |
+| Complete exact manufacturer specifications | 13                              |
+| Missing discovered product records         | 516                             |
+| Missing individual SKU prices              | 221                             |
 | Unfinished search scopes                   | 10                              |
-| Unclassified discovery observations        | 5                               |
+| Unclassified discovery observations        | 101                             |
 | Whole-market completeness                  | Unverifiable from public search |
 
+- [Separate preliminary listing inventory](discovered-listings.md)
+- [Sale discounts and promotion conditions](discounts.md)
 - [Captured selected-SKU prices, sorted cheapest first](known-prices.md)
 - [Authenticated product-capture publication report](../acceptance/account-publication.json)
 - [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)
@@ -36,8 +38,8 @@ node scripts/export-catalog-tables.mjs --offline
 node bin/lazada-search.js audit --strict --offline --no-ocr
 ```
 
-The last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use `crawl --exhaustive`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.
+The last command deliberately exits unsuccessfully while any completeness claim is unproven. Start with `discover --exhaustive` to collect and preliminarily classify search lists without visiting product details. Search progress is saved after every page. `crawl --exhaustive` can enter its product phase only after every configured search has reached an observed terminal page. Unknown and quarantined cards remain available for review. Both commands stop on challenges, unresolved dialogs, pagination mismatches or loading timeouts. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.
 
-Public requests previously encountered app-only pages and security redirects. 94 product captures from the authenticated browser are now published as redacted product HTML and derived records. Account-collected price observations are marked as signed-in observations; they retain their capture times and are not manual visual reviews. [Publication report](../acceptance/account-publication.json) records published sources and rejected SKU selections. The account successfully signed in during collection; this snapshot does not attest to the current session state. Exact manufacturer verification, current stock, Nha Trang freight, frozen delivery and complete search pagination remain unresolved. One-package quotes cannot establish bulk freight.
+Public requests previously encountered app-only pages and security redirects. 130 product captures from the authenticated browser are now published as redacted product HTML and derived records. Account-collected price observations are marked as signed-in observations; they retain their capture times and are not manual visual reviews. [Publication report](../acceptance/account-publication.json) records published sources and rejected SKU selections. The account successfully signed in during collection; this snapshot does not attest to the current session state. Exact manufacturer verification, current stock, Nha Trang freight, frozen delivery and complete search pagination remain unresolved. One-package quotes cannot establish bulk freight.
 
 Before/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.

@@ -154,6 +154,7 @@ export function parseArguments(argv) {
         .option('refresh', { type: 'boolean', default: false })
         .option('reprocess', { type: 'boolean', default: false })
         .option('exhaustive', { type: 'boolean', default: false })
+        .option('discovery-only', { type: 'boolean', default: false })
         .option('strict', { type: 'boolean', default: false })
         .option('require-manufacturer', { type: 'boolean', default: true })
         .option('max-pages', { type: 'number', default: 5 })

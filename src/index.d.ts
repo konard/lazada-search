@@ -124,6 +124,16 @@ export interface Offer {
   url: string;
   currency: string;
   price?: number;
+  originalPrice?: number;
+  saleSavings?: number;
+  saleDiscountPercent?: number;
+  displayedDiscountPercent?: number;
+  promotions?: Array<{
+    text: string;
+    evidenceId?: string;
+    observedAt?: string;
+    eligibilityConfirmed: boolean;
+  }>;
   priceInvalidated?: boolean;
   shippingInvalidated?: boolean;
   shipping?: number;
@@ -320,12 +330,25 @@ export interface Capture {
   cacheHit: boolean;
   stale: boolean;
   imagesRefreshed?: boolean;
+  scrolling?: {
+    known: boolean;
+    kind: 'product-grid' | 'product-content';
+    position: number;
+    target: number;
+    step: number;
+    pagerObserved: boolean;
+    steps: number;
+    settled: boolean;
+  };
   visibility?: 'public' | 'private';
 }
 export interface PageSnapshot {
   url: string;
   title: string;
   priceText?: string;
+  originalPriceText?: string;
+  discountPercentText?: string;
+  promotions?: Array<{ text: string }>;
   seller?: string;
   brand?: string;
   description?: string;
@@ -334,6 +357,16 @@ export interface PageSnapshot {
   jsonLd?: unknown[];
   images?: string[];
   productImages?: string[];
+  manufacturerLabels?: Array<{ url: string; flavour: string }>;
+  manufacturerVariants?: Array<{
+    id: string;
+    name?: string;
+    manufacturerSku?: string;
+    gtin?: string;
+    options?: string[];
+    available?: boolean;
+    images: string[];
+  }>;
   variants?: Product['variants'];
   selectedVariant?: Product['variants'];
   cards?: Array<{
@@ -349,6 +382,9 @@ export interface PageSnapshot {
     url?: string;
     options: Array<{ name: string; value: string }>;
     available: boolean;
+    image?: string;
+    minQuantity?: number;
+    maxQuantity?: number;
   }>;
   searchCoverage?: {
     currentPage: number;
@@ -432,6 +468,24 @@ export declare function publishAccountCaptures(
   reused: number;
   downloads: number;
 }>;
+export declare function publishAccountDiscovery(
+  application: LazadaSearch,
+  accountStore: AssociativeStore
+): Promise<{
+  published: Array<Record<string, unknown>>;
+  rejected: Array<{ url: string; reason: string }>;
+  downloads: number;
+}>;
+export declare function reviewListingCategory(
+  application: LazadaSearch,
+  url: string,
+  review: {
+    category: Product['category'];
+    evidenceId: string;
+    reviewedBy: string;
+    reason: string;
+  }
+): Promise<Record<string, unknown>>;
 export interface OcrResult {
   id: string;
   imageHash: string;
@@ -522,6 +576,7 @@ export declare class LazadaSearch {
   ): Promise<Product>;
   crawl(options?: {
     exhaustive?: boolean;
+    discoveryOnly?: boolean;
     queries?: string[];
     maxPages?: number;
     maxProducts?: number;

@@ -14,6 +14,90 @@ import {
 } from '../src/index.js';
 
 const observedAt = '2026-10-09T17:00:00Z';
+
+test('actual Lazada sale-price selectors retain the old price and conditional voucher text', () => {
+  const { document } = parseHTML(
+    '<h1>Whey 500g</h1><span class="pdp-v2-product-price-content-salePrice-amount">390.000</span><span class="pdp-v2-product-price-content-originalPrice-amount">480.000 ₫</span><span class="pdp-v2-product-price-content-originalPrice-discount">-19%</span><div class="pdp-block__shop_promotion">Giảm 50.000 ₫ cho đơn từ 500.000 ₫</div>'
+  );
+  const capture = extractPage({
+    document,
+    url: 'https://www.lazada.vn/products/fixture-i100.html',
+  });
+  assert.equal(capture.priceText, '390.000');
+  assert.equal(capture.originalPriceText, '480.000 ₫');
+  assert.equal(capture.discountPercentText, '-19%');
+  assert.deepEqual(capture.promotions, [
+    { text: 'Giảm 50.000 ₫ cho đơn từ 500.000 ₫' },
+  ]);
+});
+
+test('manufacturer gallery reuses the largest published srcset and preserves every flavour label without customer photos', () => {
+  const { document } = parseHTML(
+    '<body><img class="product__media-image" src="/cdn/shop/files/front.png?v=1&width=320" srcset="/cdn/shop/files/front.png?v=1&width=640 640w, /cdn/shop/files/front.png?v=1&width=1920 1920w"><div class="nut-facts"><div class="nutrition-facts-image"><img src="/label-chocolate.png"></div><select><option data-file="/label-chocolate.png" data-flavor="Chocolate Fudge">Chocolate Fudge</option><option data-file="/label-vanilla.png" data-flavor="Vanilla Creme">Vanilla Creme</option></select></div><img alt="Customer photo" src="https://customers.example/customer.png"></body>'
+  );
+  const page = extractPage({
+    document,
+    url: 'https://manufacturer.example/product',
+  });
+  assert.deepEqual(page.productImages, [
+    'https://manufacturer.example/cdn/shop/files/front.png?v=1&width=1920',
+    'https://manufacturer.example/label-chocolate.png',
+    'https://manufacturer.example/label-vanilla.png',
+  ]);
+  assert.deepEqual(page.manufacturerLabels, [
+    {
+      url: 'https://manufacturer.example/label-chocolate.png',
+      flavour: 'Chocolate Fudge',
+    },
+    {
+      url: 'https://manufacturer.example/label-vanilla.png',
+      flavour: 'Vanilla Creme',
+    },
+  ]);
+});
+
+test('unselected official package media retains flavour, barcode and largest observed image after archive redaction', async () => {
+  const { sanitizePublicHtml } = await import('../src/archive.js');
+  const gallery = {
+    22: [
+      {
+        sources: {
+          320: '/vanilla-5lb.png?width=320',
+          1920: '/vanilla-5lb.png?width=1920',
+        },
+        fallback: '/vanilla-5lb.png?width=1280',
+      },
+    ],
+  };
+  const variants = [
+    {
+      id: 22,
+      name: 'Whey Isolate - Vanilla / 5 lb',
+      sku: 'OFFICIAL-VANILLA-5',
+      barcode: '1234567890123',
+      options: ['Vanilla', '5 lb'],
+      available: true,
+      customerInfo: { email: 'private@example.com' },
+    },
+  ];
+  const html = `<script type="application/json" id="VariantGalleryJSON-product">${JSON.stringify(gallery)}</script><script type="application/json" class="linked-product-selector__variants">${JSON.stringify(variants)}</script><script>window.sessionToken='private';</script>`;
+  const safe = sanitizePublicHtml(html);
+  assert.doesNotMatch(safe, /private@example.com|sessionToken/u);
+  const { document } = parseHTML(safe);
+  const page = extractPage({
+    document,
+    url: 'https://manufacturer.example/product',
+  });
+  assert.deepEqual(page.productImages, [
+    'https://manufacturer.example/vanilla-5lb.png?width=1920',
+  ]);
+  assert.equal(
+    page.manufacturerVariants[0].manufacturerSku,
+    'OFFICIAL-VANILLA-5'
+  );
+  assert.equal(page.manufacturerVariants[0].gtin, '1234567890123');
+  assert.deepEqual(page.manufacturerVariants[0].options, ['Vanilla', '5 lb']);
+});
 const html = (
   sku = '11',
   price = '728.000',

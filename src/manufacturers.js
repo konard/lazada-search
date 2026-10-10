@@ -134,6 +134,9 @@ function candidateUrl(entry, product) {
   const selected = fold(
     (product.selectedVariant || []).map((option) => option.text).join(' ')
   );
+  if (entry.name === 'MusaKing' && /\bsoy\b/u.test(fold(product.title))) {
+    return 'https://musaking.com/products/soy-protein';
+  }
   if (entry.name === 'MusaKing' && product.netMassG > 1000) {
     return 'https://musaking.com/products/isolate-whey';
   }

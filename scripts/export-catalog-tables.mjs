@@ -8,6 +8,7 @@ import {
   specificationProblems,
 } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
+import { listingKey } from '../src/util.js';
 
 const options = parseArguments(process.argv.slice(2));
 if (options.account) {
@@ -63,7 +64,10 @@ const publicationByOffer = new Map(
 );
 const comparison = await app.compare({ quantity: 1, allowStale: true });
 const entries = comparison.comparisons.filter(
-  (row) => row.product.category !== 'unknown' || reviewByUrl.has(row.offer.url)
+  (row) =>
+    row.product.category !== 'unknown' ||
+    reviewByUrl.has(row.offer.url) ||
+    row.product.categoryReview
 );
 // Keep any manually quarantined candidate in the audit inventory as well.
 for (const offer of offers.filter((offer) => reviewByUrl.has(offer.url))) {
@@ -105,7 +109,7 @@ const variant = (product) =>
   ].join('; ') || 'No option selected';
 const pair = (before, after) => `${number(before)} → ${number(after)}`;
 const intro =
-  'Rows are sorted by **captured package price, cheapest first**. Unit costs and specifications are provisional until their source and package identity are verified. Unknown means no confirmed value; it never means zero. Every row is retained, including conflicting and unavailable offers. Prices refer only to the captured selected SKU. Destination: **Nha Trang, Vietnam**, currency: **VND**, quantity: **one package**. Delivery for bulk quantities must be quoted separately. [Price-only table](known-prices.md) lists confirmed prices independently of specification gaps.\n\n';
+  'Unit costs and specifications are provisional until their source and package identity are verified. Unknown means no confirmed value; it never means zero. Every row is retained, including conflicting and unavailable offers. Prices refer only to the captured selected SKU. Destination: **Nha Trang, Vietnam**, currency: **VND**, quantity: **one package**. Delivery for bulk quantities must be quoted separately. [Price-only table](known-prices.md) lists confirmed prices independently of specification gaps.\n\n';
 function visualReview(offer, label = 'review') {
   if (publicationByOffer.get(offer.id)?.manualVisualReview === false) {
     return 'Manual review pending';
@@ -136,8 +140,8 @@ function priceRows(rows) {
     offer.deliveryAvailable === false
       ? 'Unavailable'
       : offer.deliveryArea || 'Unknown',
-    number(product.netMassG),
-    number(product.netVolumeMl),
+    number(metrics.totalMassG),
+    number(metrics.totalVolumeMl),
     number(metrics.totalAfterDelivery),
     pair(metrics.costPerGramBeforeDelivery, metrics.costPerGramAfterDelivery),
     pair(metrics.costPerMlBeforeDelivery, metrics.costPerMlAfterDelivery),
@@ -155,8 +159,8 @@ const priceHeaders = [
   'Price',
   'Shipping',
   'Delivery',
-  'Mass g (provisional)',
-  'Volume ml (provisional)',
+  'Food mass sold g (provisional)',
+  'Food volume sold ml (provisional)',
   'Delivered total',
   'VND / food g before → after',
   'VND / ml before → after',
@@ -167,6 +171,103 @@ await mkdir('docs/tables', { recursive: true });
 async function save(name, text) {
   await writeFormatted(`docs/tables/${name}`, `${text}\n`);
 }
+const listingReviews = new Map(
+  (await app.store.list('category-review')).map((record) => [
+    listingKey(record.url),
+    record,
+  ])
+);
+const discoveredListings = new Map();
+for (const observation of discoveries) {
+  const key = listingKey(observation.url);
+  const group = discoveredListings.get(key) || [];
+  group.push(observation);
+  discoveredListings.set(key, group);
+}
+const discoveryHeaders = [
+  'Listing',
+  'Preliminary category',
+  'Search-card prices VND (unconfirmed)',
+  'Queries',
+  'Observed pages',
+  'Known priced SKUs',
+  'First → last observed',
+  'Filtering status',
+];
+const discoveryRows = [...discoveredListings]
+  .map(([key, observations]) => {
+    observations.sort((a, b) => a.observedAt.localeCompare(b.observedAt));
+    const latest = observations.at(-1);
+    const review = listingReviews.get(key);
+    const categories = [
+      ...new Set(
+        observations
+          .map((entry) => entry.category)
+          .filter((category) => category !== 'unknown')
+      ),
+    ];
+    const category = review?.category || categories.join('; ') || 'unknown';
+    const prices = [
+      ...new Set(
+        observations
+          .map((entry) => entry.searchPrice)
+          .filter((price) => price > 0)
+      ),
+    ].sort((a, b) => a - b);
+    const pages = [...new Set(observations.map((entry) => entry.sourceUrl))];
+    const known = new Set(
+      offers
+        .filter(
+          (offer) =>
+            listingKey(offer.url) === key &&
+            offer.price > 0 &&
+            offer.variantConfirmed
+        )
+        .map((offer) => offer.sku || offer.id)
+    );
+    return {
+      category,
+      row: [
+        link(latest.title, latest.url),
+        category,
+        prices.map(number).join('; ') || 'No price on search card',
+        [
+          ...new Set(
+            observations.map(
+              (entry) =>
+                entry.query || new URL(entry.sourceUrl).searchParams.get('q')
+            )
+          ),
+        ].join('; '),
+        `${pages.length}: ${link('First', pages[0])}; ${link('Latest', pages.at(-1))}`,
+        known.size,
+        `${observations[0].observedAt} → ${latest.observedAt}`,
+        review?.category === 'unknown'
+          ? `Quarantined: ${review.reason}`
+          : category === 'unknown'
+            ? 'Retained for category review'
+            : 'Preliminary food candidate',
+      ],
+    };
+  })
+  .sort(
+    (a, b) =>
+      a.category.localeCompare(b.category) || a.row[0].localeCompare(b.row[0])
+  );
+await save(
+  'discovered-listings.md',
+  `# Preliminary listing inventory\n\n**Discovery is in progress. Product-detail collection is paused until every configured search reaches its observed terminal page.** ${discoveredListings.size} distinct listings from ${discoveries.length} saved search-card observations. Every card remains in the evidence archive, including unclassified and quarantined results. Listing aliases and repeated observations are grouped; all source-page references remain in [catalog.json](catalog.json). Card prices are preliminary hints and cannot establish a selected-SKU or delivered price.\n\n## Preliminary food candidates\n\n${table(
+    discoveryHeaders,
+    discoveryRows
+      .filter((entry) => entry.category !== 'unknown')
+      .map((entry) => entry.row)
+  )}\n\n## Retained exclusions and classification review\n\n${table(
+    discoveryHeaders,
+    discoveryRows
+      .filter((entry) => entry.category === 'unknown')
+      .map((entry) => entry.row)
+  )}\n\n[Captured SKU prices](known-prices.md) · [Search and collection gaps](README.md)`
+);
 const knownPriceRows = entries.filter(
   (row) =>
     row.offer.price > 0 &&
@@ -174,6 +275,36 @@ const knownPriceRows = entries.filter(
     ['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
       row.product.category
     )
+);
+await save(
+  'discounts.md',
+  `# Captured sale discounts and promotion conditions\n\nPrices below already include the displayed sale reduction. It is never subtracted a second time. Voucher text is retained as conditional evidence; an unconfirmed voucher cannot reduce a comparison price. Each row refers to its own selected SKU.\n\n${table(
+    [
+      'Listing',
+      'Selected option',
+      'SKU',
+      'Sale price VND',
+      'Original price VND',
+      'Sale savings VND',
+      'Calculated reduction %',
+      'Displayed reduction %',
+      'Promotion conditions',
+      'Captured at',
+    ],
+    knownPriceRows.map(({ product, offer }) => [
+      link(product.title, offer.url),
+      variant(product),
+      offer.sku,
+      number(offer.price),
+      number(offer.originalPrice),
+      number(offer.saleSavings),
+      number(offer.saleDiscountPercent),
+      number(offer.displayedDiscountPercent),
+      offer.promotions?.map((promotion) => promotion.text).join('; ') ||
+        'No promotion conditions captured',
+      offer.observedAt,
+    ])
+  )}\n\n[Food unit costs](protein-powder.md) · [Ice-cream unit costs](chocolate-ice-cream.md)`
 );
 const priceOnlyHeaders = [
   'Listing',
@@ -200,24 +331,34 @@ await save(
   'known-prices.md',
   `# Captured selected-SKU prices, cheapest first\n\n${knownPriceRows.length} confirmed selected-SKU price observations. All rows have a positive captured price. These historical captures remain available offline; they do not establish current stock, freight, exact manufacturer specifications or the lowest price across uncollected listings.\n\n## Protein powders\n\n${table(priceOnlyHeaders, priceOnlyRows(knownPriceRows.filter((row) => ['whey', 'protein-powder'].includes(row.product.category))))}\n\n## Chocolate ice cream\n\n${table(priceOnlyHeaders, priceOnlyRows(knownPriceRows.filter((row) => row.product.category === 'chocolate-ice-cream')))}\n\n[Before/after delivery and unit costs for powders](protein-powder.md) · [Before/after delivery and unit costs for ice cream](chocolate-ice-cream.md) · [Missing prices requiring collection](missing-sku-prices.md)`
 );
-const powders = entries.filter((row) =>
-  ['whey', 'protein-powder'].includes(row.product.category)
-);
-const ice = entries.filter(
-  (row) => row.product.category === 'chocolate-ice-cream'
-);
+const powders = entries
+  .filter((row) => ['whey', 'protein-powder'].includes(row.product.category))
+  .sort(
+    (a, b) =>
+      (a.metrics.costPerGramBeforeDelivery ?? Infinity) -
+      (b.metrics.costPerGramBeforeDelivery ?? Infinity)
+  );
+const ice = entries
+  .filter((row) => row.product.category === 'chocolate-ice-cream')
+  .sort(
+    (a, b) =>
+      (a.metrics.costPerMlBeforeDelivery ?? Infinity) -
+      (b.metrics.costPerMlBeforeDelivery ?? Infinity)
+  );
 const quarantined = entries.filter((row) => row.product.category === 'unknown');
 await save(
   'protein-powder.md',
-  `# Captured protein-powder inventory\n\n${intro}${powders.length} observed selected SKUs. Isolate/concentrate/blend classification is determined from the ingredient list.\n\n${table(priceHeaders, priceRows(powders))}`
+  `# Captured protein-powder inventory\n\nRows are sorted by provisional **VND per gram of food before delivery**, cheapest first; missing denominators follow priced denominators.\n\n${intro}${powders.length} observed selected SKUs. Isolate/concentrate/blend classification is determined from the ingredient list.\n\n${table(priceHeaders, priceRows(powders))}`
 );
 await save(
   'chocolate-ice-cream.md',
-  `# Captured chocolate ice-cream candidates\n\n${intro}**No frozen delivery is confirmed for Nha Trang. No candidate is a verified ice-cream purchase winner.** Mixed-flavour tubs are identified by their full listing title.\n\n${table(priceHeaders, priceRows(ice))}\n\n## Quarantined candidates\n\n${table(
+  `# Captured chocolate ice-cream candidates\n\nRows are sorted by provisional **VND per milliliter before delivery**, cheapest first; missing denominators follow priced denominators.\n\n${intro}**No frozen delivery is confirmed for Nha Trang. No candidate is a verified ice-cream purchase winner.** Mixed-flavour tubs are identified by their full listing title.\n\n${table(priceHeaders, priceRows(ice))}\n\n## Quarantined candidates\n\n${table(
     ['Listing', 'Reason'],
     quarantined.map((row) => [
       link(row.product.title, row.offer.url),
-      reviewByUrl.get(row.offer.url)?.notes || 'Manual review pending',
+      row.product.categoryReview?.reason ||
+        reviewByUrl.get(row.offer.url)?.notes ||
+        'Manual review pending',
     ])
   )}`
 );
@@ -362,7 +503,7 @@ const verifiedHeaders = [
   'Price VND',
   'Freight (one package)',
   'Verified mass g',
-  'Whey type',
+  'Protein type',
   'Protein /100g',
   'Sugars /100g',
   'Fat /100g',
@@ -379,7 +520,7 @@ await save(
 );
 await save(
   'README.md',
-  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Captured confirmed food SKU prices | ${knownPriceRows.length} |\n| Visually checked selected-page prices | ${entries.filter((row) => visualReview(row.offer) !== 'Manual review pending').length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)\n- [Authenticated product-capture publication report](../acceptance/account-publication.json)\n- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Additional SKU screenshots and rejected selections](../acceptance/browser-sku-review/README.md)\n- [Factory label reviews and corrected values](../acceptance/manufacturer-labels/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode bin/lazada-search.js archive-verify --offline --no-ocr\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline --no-ocr\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. For a new public collection use \`crawl --exhaustive\`; it visits observed pagination, records every discovered candidate and stops on challenges. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nPublic requests previously encountered app-only pages and security redirects. ${publications.length ? `${publications.length} product captures from the authenticated browser are now published as redacted product HTML and derived records. Account-collected price observations are marked as signed-in observations; they retain their capture times and are not manual visual reviews. [Publication report](../acceptance/account-publication.json) records published sources and rejected SKU selections. The account successfully signed in during collection; this snapshot does not attest to the current session state.` : `No authenticated product captures have been published in this snapshot.`} Exact manufacturer verification, current stock, Nha Trang freight, frozen delivery and complete search pagination remain unresolved. One-package quotes cannot establish bulk freight.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
+  `# Lazada Vietnam catalog and comparison tables\n\n**Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.\n\n| Check | Result |\n| --- | --- |\n| Captured confirmed food SKU prices | ${knownPriceRows.length} |\n| Visually checked selected-page prices | ${entries.filter((row) => visualReview(row.offer) !== 'Manual review pending').length} |\n| Complete exact manufacturer specifications | ${audit.verifiedProducts} |\n| Missing discovered product records | ${audit.missingListings.length} |\n| Missing individual SKU prices | ${audit.missingSkuPrices.length} |\n| Unfinished search scopes | ${audit.unfinishedSearches.length} |\n| Unclassified discovery observations | ${audit.categoryReview.length} |\n| Whole-market completeness | Unverifiable from public search |\n\n- [Separate preliminary listing inventory](discovered-listings.md)\n- [Sale discounts and promotion conditions](discounts.md)\n- [Captured selected-SKU prices, sorted cheapest first](known-prices.md)\n- [Authenticated product-capture publication report](../acceptance/account-publication.json)\n- [Complete committed case archive](../../data/cases/vietnam-nha-trang/README.md)\n- [All captured protein-powder offers](protein-powder.md)\n- [All captured chocolate ice-cream candidates and quarantines](chocolate-ice-cream.md)\n- [Manufacturer links, missing specifications and raw nutrition for every candidate](manufacturer-specifications.md)\n- [Manufacturer-verified comparison](verified-comparison.md)\n- [Every missing discovered listing](missing-listings.md)\n- [Every known missing SKU price](missing-sku-prices.md)\n- [All category-review observations](category-review.md)\n- [Manual visual inspection with screenshots](../acceptance/visual-review/README.md)\n- [Additional SKU screenshots and rejected selections](../acceptance/browser-sku-review/README.md)\n- [Factory label reviews and corrected values](../acceptance/manufacturer-labels/README.md)\n- [Synthetic verified calculation example](synthetic-example.md)\n\n## Reproduce without website requests\n\n\`\`\`sh\nnode bin/lazada-search.js archive-verify --offline --no-ocr\nnode scripts/export-catalog-tables.mjs --offline\nnode bin/lazada-search.js audit --strict --offline --no-ocr\n\`\`\`\n\nThe last command deliberately exits unsuccessfully while any completeness claim is unproven. Start with \`discover --exhaustive\` to collect and preliminarily classify search lists without visiting product details. Search progress is saved after every page. \`crawl --exhaustive\` can enter its product phase only after every configured search has reached an observed terminal page. Unknown and quarantined cards remain available for review. Both commands stop on challenges, unresolved dialogs, pagination mismatches or loading timeouts. Exhausting those searches establishes only a searched scope, not an authoritative whole-market catalog. No global cheapest guarantee is issued.\n\nPublic requests previously encountered app-only pages and security redirects. ${publications.length ? `${publications.length} product captures from the authenticated browser are now published as redacted product HTML and derived records. Account-collected price observations are marked as signed-in observations; they retain their capture times and are not manual visual reviews. [Publication report](../acceptance/account-publication.json) records published sources and rejected SKU selections. The account successfully signed in during collection; this snapshot does not attest to the current session state.` : `No authenticated product captures have been published in this snapshot.`} Exact manufacturer verification, current stock, Nha Trang freight, frozen delivery and complete search pagination remain unresolved. One-package quotes cannot establish bulk freight.\n\nBefore/after unit costs use (price × quantity + quoted freight − confirmed fixed discount) divided by confirmed food mass, volume or protein mass. Unknown denominators and shipping stay unknown. One-package freight is never extrapolated to a bulk order. A standard ice-cream freight quote does not establish frozen delivery.`
 );
 const fixture = JSON.parse(
   await readFile('tests/fixtures/products.json', 'utf8')
@@ -447,7 +588,7 @@ await writeFormatted(
 await app.close();
 console.log(
   JSON.stringify({
-    tables: 11,
+    tables: 13,
     observed: entries.length,
     manufacturerVerified: verified.length,
     missingListings: audit.missingListings.length,

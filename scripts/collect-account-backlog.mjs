@@ -27,6 +27,14 @@ const app = new LazadaSearch({
     : false,
 });
 try {
+  const latest = (await app.store.list('crawl')).sort(
+    (a, b) => Date.parse(b.startedAt) - Date.parse(a.startedAt)
+  )[0];
+  if (latest?.discoveryComplete !== true) {
+    throw new Error(
+      'Complete category-list discovery before collecting product details'
+    );
+  }
   await app.collector.start();
   await resolvePageDialogs(app.collector.runtime.page);
   let session = await phoneLoginState(app.collector.runtime.page);
@@ -53,9 +61,16 @@ try {
   const audit = await app.audit();
   const urls = [
     ...new Set([
-      ...audit.missingSkuPrices.map((entry) => entry.url).filter(Boolean),
-      ...audit.missingPrices.map((entry) => entry.url),
       ...audit.missingListings,
+      ...audit.missingSkuPrices
+        .filter((entry) => entry.available !== false)
+        .map((entry) => entry.url)
+        .filter(Boolean),
+      ...audit.missingPrices.map((entry) => entry.url),
+      ...audit.missingSkuPrices
+        .filter((entry) => entry.available === false)
+        .map((entry) => entry.url)
+        .filter(Boolean),
     ]),
   ].slice(0, options.maxProducts);
   console.log(
@@ -82,7 +97,7 @@ try {
         JSON.stringify({ index: index + 1, url, error: error.message })
       );
       if (
-        /dialog|challenge|login|captcha|access.denied|HTTP (?:403|429)/iu.test(
+        /dialog|challenge|login|captcha|access.denied|loading did not settle|HTTP (?:403|429)/iu.test(
           error.message
         )
       ) {

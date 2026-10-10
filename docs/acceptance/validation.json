@@ -1,23 +1,23 @@
 {
-  "validatedAt": "2026-10-10T09:25:18.915Z",
+  "validatedAt": "2026-10-10T10:43:20.309923Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 648,
-    "pass": 648,
+    "tests": 662,
+    "pass": 662,
     "fail": 0,
     "skipped": 0
   },
   "e2e": {
-    "tests": 12,
-    "pass": 12,
+    "tests": 15,
+    "pass": 15,
     "fail": 0,
     "skipped": 0,
-    "nativeStore": "Passed separately with the real local clink executable; 11 other E2E checks passed in the standard suite."
+    "nativeStore": "Passed separately with the real local clink executable; fourteen other E2E checks passed. The manufacturer fixture was rechecked after correcting its review-record reference."
   },
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed",
+    "duplication": "passed (7.59%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -25,62 +25,66 @@
   "cachedAudit": {
     "browserStarts": 0,
     "downloads": 0,
-    "missingListings": 76,
-    "missingSkuPrices": 78,
-    "manufacturerVerified": 11,
+    "missingListings": 516,
+    "missingSkuPrices": 221,
+    "manufacturerVerified": 13,
     "unfinishedSearches": 10,
-    "unclassifiedObservations": 5
+    "unclassifiedObservations": 101
   },
   "manualPageReviews": 32,
-  "sourceChecks": 29,
-  "committedCatalogReplay": {
-    "networkRequests": 0,
-    "preservesProductAndSkuCoverageGaps": true,
-    "sortableObservedFoodPrices": 140,
-    "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
-    "originalPriceTimestampsPreserved": true
-  },
-  "productionReady": false,
-  "reason": "Collection is incomplete: 76 discovered listings, 78 distinct SKU prices and ten search scopes remain unresolved. Exact manufacturer specifications exist for eleven selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage are unproven.",
-  "repositoryArchive": {
-    "valid": true,
-    "records": 8705,
-    "blobs": 3135,
-    "downloads": 0,
-    "manifestSha256": "5e71a0bbd1b3624329dc04ad41b2be2f01032c2a2153b863e7b838137178cba8",
-    "htmlCapturesReExtracted": 133,
-    "originalPriceSelectionAndSkuInventoriesPreserved": true,
-    "unchangedExport": {
-      "reused": 3183,
-      "rebuilt": 0,
-      "downloads": 0
-    }
-  },
   "additionalSkuCaptures": {
     "accepted": 27,
     "distinctSkus": 26,
     "rejected": 7,
     "reviewSheets": 7
   },
-  "focusedBrowserReviewAndTablesTests": {
-    "tests": 14,
-    "pass": 14,
-    "fail": 0,
-    "skipped": 0
+  "committedCatalogReplay": {
+    "networkRequests": 0,
+    "preservesProductAndSkuCoverageGaps": true,
+    "sortableObservedFoodPrices": 149,
+    "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
+    "originalPriceTimestampsPreserved": true
+  },
+  "productionReady": false,
+  "reason": "Initial discovery remains in progress: 516 discovered listings and 221 known individual SKU prices await collection. Exact manufacturer specifications exist for thirteen selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
+  "repositoryArchive": {
+    "valid": true,
+    "records": 10611,
+    "blobs": 3510,
+    "downloads": 0,
+    "manifestSha256": "611f2d42a0ac98ff73ffab399fbb973228f19307fb59aa1f99d11c0c3b267b66",
+    "htmlCapturesReExtracted": 234,
+    "originalPriceSelectionAndSkuInventoriesPreserved": true,
+    "unchangedExport": {
+      "reused": 3567,
+      "rebuilt": 0,
+      "downloads": 0
+    }
   },
   "authenticatedPublication": {
-    "published": 94,
+    "published": 130,
     "rejected": 3,
     "manualVisualReview": false,
     "privateAccountScreenshotsPublished": 0,
-    "downloads": 0
+    "downloads": 0,
+    "searchPages": 16
   },
-  "publicationRegression": {
-    "tests": 3,
-    "pass": 3,
-    "fail": 0,
-    "skipped": 0,
-    "realCommittedSkuCapturesChecked": 94,
-    "additionalTestBeyondFullUnitSuite": 1
+  "savedExtractionAudit": {
+    "distinctCaptures": 142,
+    "errors": 0,
+    "downloads": 0,
+    "deferredLoadingMarkerRecollections": 22
+  },
+  "discovery": {
+    "preliminaryDistinctListings": 844,
+    "savedCardObservations": 971,
+    "productDetailsGatedOnCompleteSearchLists": true,
+    "everyUnstartedQueryRemainsCoverageGap": true
+  },
+  "animatedScrolling": {
+    "lastProductRowAndPagerVisible": true,
+    "footerOutsideViewport": true,
+    "intermediateAnimationFramesVerified": true,
+    "reusedWindowCorrectedWithoutNewNavigation": true
   }
 }

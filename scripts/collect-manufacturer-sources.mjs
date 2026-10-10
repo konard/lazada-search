@@ -3,6 +3,7 @@ import {
   LazadaSearch,
   TesseractOcr,
   manufacturerCandidates,
+  specificationProblems,
 } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 
@@ -29,6 +30,7 @@ const offers = (await app.store.list('offer')).filter(
 const products = (await app.store.list('product')).filter(
   (product) =>
     product.category !== 'unknown' &&
+    specificationProblems(product).length > 0 &&
     offers.some((offer) => offer.productId === product.id)
 );
 const report = {

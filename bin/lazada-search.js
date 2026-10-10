@@ -41,7 +41,9 @@ export async function runCli(
     if (
       options.sessionFrom &&
       !options.offline &&
-      ['crawl', 'collect', 'verify', 'bot', 'login'].includes(command)
+      ['discover', 'crawl', 'collect', 'verify', 'bot', 'login'].includes(
+        command
+      )
     ) {
       imported = await importSession({
         directory: store.directory,

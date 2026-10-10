@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { LazadaSearch } from '../src/application.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { publishAccountCaptures } from '../src/public-captures.js';
+import { publishAccountDiscovery } from '../src/public-discovery.js';
 
 const options = parseArguments(process.argv.slice(2));
 const source = configuredStore({
@@ -17,6 +18,7 @@ const application = new LazadaSearch({
 });
 try {
   const report = await publishAccountCaptures(application, source);
+  report.discovery = await publishAccountDiscovery(application, source);
   await mkdir('docs/acceptance', { recursive: true });
   await writeFile(
     'docs/acceptance/account-publication.json',
@@ -28,6 +30,7 @@ try {
       rejected: report.rejected.length,
       reused: report.reused,
       downloads: report.downloads,
+      searchPages: report.discovery.published.length,
     })
   );
 } finally {

@@ -11,6 +11,8 @@ These reviews compare saved Lazada selected options and package photos with the 
 
 The exact ingredients and every promoted field's evidence ID are in the [individual review JSON files](../manufacturer-reviews/). [Verified comparison](../../tables/verified-comparison.md) recalculates food and protein costs from these facts.
 
+[MusaKing Chocolate Soy Protein Isolate](../musa-soy-review/README.md) adds two selected 1 kg matches: 28 g protein per 40 g serving, 25 servings per bag. The review retains the conflicting 35 g usage illustration and calculates from the explicit nutrition panel.
+
 ## Label images
 
 The PNG previews preserve the manufacturer's label pixels. The archive retains the original downloaded image files and their SHA-256 references.

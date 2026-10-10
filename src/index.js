@@ -45,3 +45,5 @@ export {
 } from './manufacturers.js';
 export { BROWSER_IDLE_MS, closeBrowserWindow } from './persistent-browser.js';
 export { publishAccountCaptures } from './public-captures.js';
+export { reviewListingCategory } from './category-review.js';
+export { publishAccountDiscovery } from './public-discovery.js';

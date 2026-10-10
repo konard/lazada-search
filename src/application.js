@@ -12,6 +12,7 @@ import { reconcileManufacturer } from './verification.js';
 import { captureDelivery } from './delivery.js';
 import { importBrowserCapture } from './capture-import.js';
 import { reviewManufacturer } from './manufacturer-review.js';
+import { applyListingCategoryReview } from './category-review.js';
 import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 
 export const MARKETS = {
@@ -243,6 +244,7 @@ export class LazadaSearch {
         product[field] = previous[field];
       }
     }
+    await applyListingCategoryReview(this.store, product);
     await this.collectOcr(product, capture);
     const validated = validateProduct(product);
     await this.store.put('product', validated);
@@ -662,6 +664,7 @@ export class LazadaSearch {
       );
     }
     for (const product of products) {
+      await applyListingCategoryReview(this.store, product);
       product.specificationsInvalidated = invalidated.some(
         (source) =>
           source.url === product.url ||

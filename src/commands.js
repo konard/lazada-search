@@ -8,10 +8,12 @@ import { RepositoryArchive, exportRepositoryArchive } from './archive.js';
 import { parse as parseYaml } from 'yaml';
 import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
+import { reviewListingCategory } from './category-review.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
 Commands:
+  discover                      Collect category search lists without opening product details
   crawl                         Discover and collect whey and chocolate ice cream
   audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
@@ -23,6 +25,7 @@ Commands:
   verify <product-id> <url>      Cross-check an operator-supplied official page
   review-manufacturer <id> <review.json>  Record an exact visual variant and label review
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
+  review-category <url> <review.json> Review a listing category across all its SKUs
   quote <offer-id> <JSON>        Record shipping, bulk tiers and delivery checks
   export                        Export the associative network (--format lino|links)
   archive                       Commit-ready public sources, OCR, .lino and binary snapshot
@@ -40,6 +43,7 @@ Options:
   --province "Khánh Hòa" --locality "Phường Nha Trang"
   --query TEXT --max-pages 5 --max-products 100 --max-images 40
   --exhaustive --strict          Visit search pagination; fail an incomplete audit
+  --discovery-only               Finish and cache search lists without collecting details
   --no-require-manufacturer      Explore unverified observations without a purchase guarantee
   --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
@@ -60,6 +64,14 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'review-category':
+      return reviewListingCategory(
+        application,
+        required(args[0], 'Listing URL'),
+        JSON.parse(
+          await readFile(required(args[1], 'Category review JSON'), 'utf8')
+        )
+      );
     case 'archive':
       return exportRepositoryArchive({
         store: application.store,
@@ -80,6 +92,7 @@ export async function executeCommand(application, command, args, options = {}) {
       const report = await application.audit();
       return options.strict ? assertCompleteCoverage(report) : report;
     }
+    case 'discover':
     case 'crawl':
       return application.crawl({
         queries: options.query,
@@ -87,6 +100,7 @@ export async function executeCommand(application, command, args, options = {}) {
         maxProducts: options.maxProducts,
         refresh: options.refresh,
         exhaustive: options.exhaustive,
+        discoveryOnly: command === 'discover' || options.discoveryOnly,
       });
     case 'collect':
       return application.collect(required(args[0], 'Lazada URL'), {

@@ -3,6 +3,7 @@ import {
   extractNutrition,
   ingredientFlags,
   massGrams,
+  packCountOf,
   parsePrice,
   proteinTypeOf,
   volumeMillilitres,
@@ -56,6 +57,46 @@ function productIdentityUrl(value) {
     : value;
 }
 
+function selectedAmounts(selected, title, nutrition) {
+  const selectedText = selected.map((entry) => entry.text).join(' ');
+  const selectedCategory = categoryOf(selectedText);
+  const category =
+    selectedCategory === 'unknown' ? categoryOf(title) : selectedCategory;
+  return {
+    category,
+    weight:
+      massGrams(selectedText) || nutrition.fields.netMassG || massGrams(title),
+    packCount: packCountOf(selectedText) || packCountOf(title),
+    volume:
+      category === 'chocolate-ice-cream'
+        ? volumeMillilitres(selectedText) ||
+          nutrition.fields.netVolumeMl ||
+          volumeMillilitres(title)
+        : nutrition.fields.netVolumeMl,
+  };
+}
+
+function saleDetails(snapshot, price, currency) {
+  const originalPrice = parsePrice(snapshot.originalPriceText, currency);
+  const displayedDiscountPercent = Number(
+    snapshot.discountPercentText
+      ?.match(/(\d+(?:[.,]\d+)?)\s*%/u)?.[1]
+      ?.replace(',', '.')
+  );
+  return {
+    ...(originalPrice >= price && originalPrice > 0
+      ? {
+          originalPrice,
+          saleSavings: originalPrice - price,
+          saleDiscountPercent: (100 * (originalPrice - price)) / originalPrice,
+        }
+      : {}),
+    ...(displayedDiscountPercent >= 0 && displayedDiscountPercent <= 100
+      ? { displayedDiscountPercent }
+      : {}),
+  };
+}
+
 export function parseProduct(
   snapshot,
   {
@@ -89,18 +130,12 @@ export function parseProduct(
       snapshot.rawText || '',
     ].join('\n')
   );
-  const weight =
-    massGrams(selected.map((entry) => entry.text).join(' ')) ||
-    nutrition.fields.netMassG ||
-    massGrams(title);
+  const { weight, packCount, category, volume } = selectedAmounts(
+    selected,
+    title,
+    nutrition
+  );
   const ingredients = nutrition.fields.ingredients || [];
-  const category = categoryOf(title);
-  const volume =
-    category === 'chocolate-ice-cream'
-      ? nutrition.fields.netVolumeMl ||
-        volumeMillilitres(selected.map((entry) => entry.text).join(' ')) ||
-        volumeMillilitres(title)
-      : nutrition.fields.netVolumeMl;
   const marketplaceId = new URL(url).pathname.match(/-i(\d+)/u)?.[1];
   const manufacturerSku =
     structured.mpn && String(structured.mpn) !== marketplaceId
@@ -134,9 +169,10 @@ export function parseProduct(
           ),
         }
       : {}),
-    ...(volume ? { netVolumeMl: volume } : {}),
     ...nutrition.fields,
+    ...(volume ? { netVolumeMl: volume } : {}),
     ...(weight ? { netMassG: weight } : {}),
+    ...(packCount ? { packCount } : {}),
     ingredients,
     proteinType: proteinTypeOf(ingredients, category),
     ingredientFlags: ingredientFlags(ingredients),
@@ -151,6 +187,7 @@ export function parseProduct(
     ...nutrition.fields,
     ...(weight ? { netMassG: weight } : {}),
     ...(volume ? { netVolumeMl: volume } : {}),
+    ...(packCount ? { packCount } : {}),
   })) {
     product.claims.push({
       field,
@@ -182,6 +219,13 @@ export function parseProduct(
     currency: priceCurrency,
     seller: snapshot.seller || rawOffer.seller?.name || 'unknown',
     ...(Number.isFinite(price) && price > 0 ? { price } : {}),
+    ...saleDetails(snapshot, price, priceCurrency),
+    promotions: (snapshot.promotions || []).map((promotion) => ({
+      ...promotion,
+      evidenceId,
+      observedAt,
+      eligibilityConfirmed: false,
+    })),
     variantConfirmed,
     priceScope: variantConfirmed ? 'observed-variant' : 'unknown-variant',
     available:
@@ -196,8 +240,15 @@ export function parseProduct(
     ...(sku ? { sku: String(sku) } : {}),
   };
   for (const field of ['minQuantity', 'maxQuantity']) {
-    if (Number.isSafeInteger(snapshot[field]) && snapshot[field] > 0) {
-      offer[field] = snapshot[field];
+    const catalog = snapshot.skuCatalog?.find(
+      (entry) => skuNumber(entry.sku) === skuNumber(sku)
+    );
+    const limits = [snapshot[field], catalog?.[field]].filter(
+      (value) => Number.isSafeInteger(value) && value > 0
+    );
+    if (limits.length) {
+      offer[field] =
+        field === 'minQuantity' ? Math.max(...limits) : Math.min(...limits);
     }
   }
   if (!variantConfirmed) {

@@ -538,6 +538,98 @@ test('exhaustive crawling continues through duplicate cards and an unrelated pag
   );
 });
 
+test('incomplete discovery prevents product navigation and discovery-only retains every preliminary observation', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-discovery-first-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const app = new LazadaSearch({
+    store: new AssociativeStore({ directory }),
+    ocr: false,
+    collector: {
+      page: async (url) => ({
+        id: url,
+        fetchedAt: now,
+        status: 'ok',
+        cacheHit: true,
+        snapshot: {
+          cards: [
+            { title: 'Whey protein', url: fixture.url },
+            {
+              title: 'Ice cream molds',
+              url: 'https://www.lazada.vn/products/pdp-i999.html',
+            },
+          ],
+          searchCoverage: { terminalConfirmed: false },
+        },
+      }),
+    },
+  });
+  app.collect = async () => {
+    throw new Error('Discovery must finish before any product request');
+  };
+  const incomplete = await app.crawl({ queries: ['whey'], maxPages: 1 });
+  assert.equal(incomplete.products.length, 0);
+  assert.equal(incomplete.discoveryComplete, false);
+  assert.equal(incomplete.stopReason, 'discovery-incomplete');
+  app.collector.page = async (url) => ({
+    id: url,
+    fetchedAt: now,
+    status: 'ok',
+    cacheHit: true,
+    snapshot: {
+      cards: [{ title: 'Whey protein', url: fixture.url }],
+      searchCoverage: { terminalConfirmed: true },
+    },
+  });
+  const lists = await app.crawl({
+    queries: ['whey', 'protein'],
+    exhaustive: true,
+    discoveryOnly: true,
+  });
+  assert.equal(lists.discoveryComplete, true);
+  assert.equal(lists.products.length, 0);
+  assert.equal(lists.stopReason, 'discovery-complete');
+  assert.equal((await app.store.list('discovery')).length, 3);
+  assert.equal((await app.store.get('crawl', lists.id)).phase, 'discovery');
+});
+
+test('pagination mismatch halts discovery and retains every unstarted scope as a gap', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-pagination-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  let requests = 0;
+  const app = new LazadaSearch({
+    store: new AssociativeStore({ directory }),
+    ocr: false,
+    collector: {
+      page: async (url) => {
+        requests++;
+        return {
+          id: url,
+          fetchedAt: now,
+          status: 'ok',
+          snapshot: {
+            cards: [{ title: 'Whey protein', url: fixture.url }],
+            searchCoverage: { currentPage: 2, terminalConfirmed: true },
+          },
+        };
+      },
+    },
+  });
+  app.collect = async () => {
+    throw new Error('Must not collect details');
+  };
+  const report = await app.crawl({
+    queries: ['whey', 'chocolate ice cream'],
+    exhaustive: true,
+  });
+  assert.equal(requests, 1);
+  assert.equal(report.discoveryComplete, false);
+  assert.match(report.failures[0].error, /Pagination mismatch/u);
+  assert.equal(report.products.length, 0);
+  const audit = await app.audit();
+  assert.equal(audit.unfinishedSearches.length, 2);
+  assert.equal(audit.unfinishedSearches[1].stopReason, 'not-started');
+});
+
 test('a challenged detail page stops the exhaustive collector before another request', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-challenge-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

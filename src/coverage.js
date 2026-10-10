@@ -101,7 +101,17 @@ export function auditCoverage({
     title: product.title,
     problems: specificationProblems(product),
   }));
-  const scopes = crawl?.scopes || [];
+  const scopes = [...(crawl?.scopes || [])];
+  for (const query of crawl?.queries || []) {
+    if (!scopes.some((scope) => scope.query === query)) {
+      scopes.push({
+        query,
+        terminalConfirmed: false,
+        visitedPages: 0,
+        stopReason: 'not-started',
+      });
+    }
+  }
   const unfinishedSearches = scopes.filter((scope) => !scope.terminalConfirmed);
   const globalCoverage =
     crawl?.globalCoverage || 'unverifiable-with-public-search';

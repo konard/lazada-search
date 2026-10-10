@@ -14,6 +14,58 @@ import {
 } from '../../src/index.js';
 const execute = promisify(execFile);
 
+test('cached Soy Chocolate labels use the explicit nutrition serving and preserve ingredient and serving conflicts', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-soy-case-'));
+  const app = new LazadaSearch({
+    store: new AssociativeStore({
+      directory,
+      archive: 'data/cases/vietnam-nha-trang',
+    }),
+    offline: true,
+    ocr: false,
+  });
+  t.after(async () => {
+    await app.close();
+    await rm(directory, { recursive: true, force: true });
+  });
+  app.collector.start = () => {
+    throw Error('Manufacturer review replay must stay offline');
+  };
+  const report = await app.compare({
+    allowStale: true,
+    category: 'protein-powder',
+  });
+  for (const [sku, price] of [
+    ['3326435113_VNAMZ-16271820615', 380000],
+    ['13355860469_VNAMZ-116813785174', 428000],
+  ]) {
+    const row = report.comparisons.find((entry) => entry.offer.sku === sku);
+    assert.equal(row.manufacturerVerified, true);
+    assert.equal(row.offer.price, price);
+    assert.equal(row.product.netMassG, 1000);
+    assert.equal(row.product.packCount, 1);
+    assert.equal(row.product.servingMassG, 40);
+    assert.equal(row.product.proteinPer100g, 70);
+    assert.equal(row.product.sugarPer100g, 1);
+    assert.equal(row.metrics.totalProteinG, 700);
+    assert.equal(row.metrics.costPerProteinGramBeforeDelivery, price / 700);
+    assert.ok(row.product.ingredients.includes('soy protein isolate (85%)'));
+    assert.ok(
+      !row.product.ingredients.some((ingredient) => ingredient.includes('whey'))
+    );
+    const review = await app.store.get(
+      'manufacturer-review',
+      row.product.manufacturerVerification.reviewId
+    );
+    assert.match(review.reason, /35 g.*40 g/u);
+    assert.equal(
+      row.product.manufacturerVerification.sourceUrl,
+      'https://musaking.com/products/soy-protein'
+    );
+  }
+  assert.equal(app.cache.stats.downloads, 0);
+});
+
 test('verified public case keeps factory corrections and prices across library, CLI, HTTP and Telegram offline', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-verified-case-'));
   const app = new LazadaSearch({

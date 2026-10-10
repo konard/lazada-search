@@ -314,6 +314,14 @@ test('mass, volume and protein costs stay separate before and after order delive
 
 test('public titles distinguish food quantities from packet counts, protein claims and cosmetics', () => {
   assert.equal(
+    parseProduct({
+      url: 'https://www.lazada.vn/products/test.html',
+      title: 'Whey and casein protein powders',
+      selectedVariant: [{ text: 'Casein Vanilla 300g', selected: true }],
+    }).product.category,
+    'protein-powder'
+  );
+  assert.equal(
     categoryOf('Kem dưỡng ẩm cho bé Protein Whey da khô'),
     'unknown'
   );
@@ -369,6 +377,83 @@ test('public titles distinguish food quantities from packet counts, protein clai
     mismatched.product.warnings.some((warning) =>
       warning.includes('different SKU')
     )
+  );
+});
+
+test('bundles use food package counts and selected sizes without treating sugar as net mass', () => {
+  const snapshot = {
+    url: 'https://www.lazada.vn/products/bundle-i101.html',
+    title: 'Combo 2 Túi Whey Isolate Musaking 25G Protein Ít Đường 1G 500G',
+    priceText: '1.388.000 ₫',
+    sku: '101_VNAMZ-201',
+  };
+  const bundle = parseProduct(snapshot);
+  assert.equal(bundle.product.netMassG, 500);
+  assert.equal(bundle.product.packCount, 2);
+  const metrics = calculateOffer(bundle.product, bundle.offer, {
+    requireManufacturer: false,
+  }).metrics;
+  assert.equal(metrics.totalMassG, 1000);
+  assert.equal(metrics.costPerGramBeforeDelivery, 1388);
+  assert.equal(metrics.costPerGramAfterDelivery, null);
+  const single = parseProduct({
+    ...snapshot,
+    selectedVariant: [{ text: '1 túi 250g' }],
+  });
+  assert.equal(single.product.packCount, 1);
+  assert.equal(single.product.netMassG, 250);
+  for (const title of ['Whey 2 x 500g', 'Whey 500g x 2']) {
+    assert.equal(parseProduct({ ...snapshot, title }).product.packCount, 2);
+  }
+  assert.equal(
+    parseProduct({ ...snapshot, title: 'Whey 70 servings 25g protein' }).product
+      .packCount,
+    undefined
+  );
+  const ice = parseProduct({
+    ...snapshot,
+    title: 'Kem chocolate hộp 860ml',
+    selectedVariant: [{ text: 'Combo 5 cây 70ml' }],
+    description: 'Thể tích: 860ml',
+  }).product;
+  assert.equal(ice.netVolumeMl, 70);
+  assert.equal(ice.packCount, 5);
+  const capped = parseProduct({
+    ...snapshot,
+    maxQuantity: 999,
+    skuCatalog: [{ sku: '201', minQuantity: 1, maxQuantity: 5 }],
+  });
+  assert.equal(capped.offer.maxQuantity, 5);
+  assert.ok(
+    calculateOffer(capped.product, capped.offer, {
+      quantity: 10,
+    }).problems.includes('Quantity exceeds available offer')
+  );
+});
+
+test('displayed sale discounts retain original prices and voucher evidence without subtracting savings twice', () => {
+  const { offer, product } = parseProduct(
+    {
+      url: 'https://www.lazada.vn/products/whey-i101.html',
+      title: 'Whey 500g',
+      sku: '101_VNAMZ-201',
+      priceText: '390.000 ₫',
+      originalPriceText: '480.000 ₫',
+      discountPercentText: '-19%',
+      promotions: [{ text: 'Giảm 50.000 ₫ cho đơn từ 500.000 ₫' }],
+    },
+    { evidenceId: 'listing-evidence' }
+  );
+  assert.equal(offer.originalPrice, 480000);
+  assert.equal(offer.saleSavings, 90000);
+  assert.equal(offer.saleDiscountPercent, 18.75);
+  assert.equal(offer.displayedDiscountPercent, 19);
+  assert.equal(offer.promotions[0].evidenceId, 'listing-evidence');
+  assert.equal(offer.promotions[0].eligibilityConfirmed, false);
+  assert.equal(offer.discount, undefined);
+  assert.equal(
+    calculateOffer(product, offer, { quantity: 2 }).metrics.totalBeforeDelivery,
+    780000
   );
 });
 
@@ -550,7 +635,7 @@ test('cached HTML is reprocessed for newer Lazada selectors without navigation o
   );
 });
 
-test('a bounded crawl gives each query a share of the detail-page budget', async (t) => {
+test('completed search lists give each query a share of the bounded detail-page budget', async (t) => {
   const store = await temporary(t);
   const visited = [];
   const app = new LazadaSearch({
@@ -562,6 +647,7 @@ test('a bounded crawl gives each query a share of the detail-page budget', async
         status: 'ok',
         fetchedAt: Date.now(),
         snapshot: {
+          searchCoverage: { terminalConfirmed: true },
           cards: new URL(url).searchParams.get('q').includes('whey')
             ? [1, 2, 3].map((id) => ({
                 title: `Whey protein ${id}`,
