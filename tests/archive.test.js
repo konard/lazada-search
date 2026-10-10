@@ -16,6 +16,15 @@ import { parseHTML } from 'linkedom';
 import { executeCommand } from '../src/commands.js';
 import { sanitizePublicHtml, sanitizePublicData } from '../src/archive.js';
 
+test('public product capture excludes private floating cart contents', () => {
+  const html = sanitizePublicHtml(
+    '<h1>Chocolate ice cream130ml</h1><span data-product-price>27.000 ₫</span><div class="cart-drawer"><div id="floating-cart">Private cart seller and checkout totals</div></div>'
+  );
+  assert.match(html, /Chocolate ice cream130ml/u);
+  assert.match(html, /27.000/u);
+  assert.doesNotMatch(html, /Private cart|checkout totals|floating-cart/u);
+});
+
 async function setup(t) {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-repository-archive-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

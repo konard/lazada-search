@@ -28,3 +28,7 @@ Urgent follow-up: [handpicked list](tables/handpicked.md) records all six submit
 Metric weight parsing still needs a general fix: the case now corrects ON to its selected900g repack, ProSupps to printed907g, and Levels to printed2560g using original-label/source reviews. Add package-identity-aware metric priority and OCR regressions before relying on unreviewed imports; preserve conflicts and selectively invalidate affected derived fields.
 
 [Metric selling-unit parser defect#4](https://github.com/konard/lazada-search/issues/4) contains exact original/redacted source digests and reproduction cases.
+
+Expanded source pass: the ten-candidate truncation is fixed. Four additional exact Lazada prices bring the report to14 candidates, with6 usable gram rows,7 millilitre rows and2 protein-reference rows. Factory PowerCap labels establish131g/130ml; the24-bottle carton uses3,144g/3,120ml and explicitly refuses Nha Trang delivery. Cremo white-tub mass and Fanfare size/formula conflicts remain outstanding. General carton category/count parsing, label discovery, branch stock/VAT and frozen destination quotes remain required. [Expanded buying evidence](tables/ice-source-expansion.md) records sources, alternatives and unresolved work.
+
+[Issue #6](https://github.com/konard/lazada-search/issues/6) tracks general ice-cream carton category and package-count extraction. The 24-bottle source case is corrected in this report; the reusable parser fix remains open.

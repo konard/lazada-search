@@ -118,3 +118,72 @@ test('exact manufacturer correction takes priority and preserves seller claim', 
   assert.equal(row.supersededSpecificationFacts[0].fact.value, 80);
   assert.deepEqual(row.specificationConflicts, []);
 });
+
+test('manufacturer correction resolves earlier seller disagreement in either order', () => {
+  const reviews = [
+    review({
+      netVolumeMl: { ...fact(60), sourceAuthority: 'seller-promotional-panel' },
+    }),
+    review({
+      netVolumeMl: { ...fact(80), sourceAuthority: 'seller-promotional-panel' },
+    }),
+    review({ netVolumeMl: { ...fact(70), sourceAuthority: 'manufacturer' } }),
+  ];
+  for (const sources of [reviews, [...reviews].reverse()]) {
+    const row = enrichIceRow(base, sources);
+    assert.equal(row.volumeMl, 350);
+    assert.deepEqual(row.specificationConflicts, []);
+    assert.equal(row.supersededSpecificationFacts.length, 2);
+  }
+});
+
+test('conflicting measured mass cannot fall back to the disputed marketplace mass', () => {
+  const row = enrichIceRow(base, [
+    review({
+      netMassG: { ...fact(40), sourceAuthority: 'exact-package-label' },
+    }),
+    review({
+      netMassG: { ...fact(45), sourceAuthority: 'exact-package-label' },
+    }),
+  ]);
+  assert.equal(row.massG, null);
+  assert.equal(row.beforePerFoodGram, null);
+  assert.deepEqual(row.specificationConflicts, ['netMassG']);
+});
+
+test('a source-confirmed 24-bottle carton uses the entire selling unit once', () => {
+  const row = enrichIceRow(
+    {
+      ...base,
+      packagesPerSellingUnit: 1,
+      totalBeforeDelivery: 648000,
+    },
+    [
+      review(
+        {
+          packagesPerSellingUnit: fact(24),
+          netMassG: fact(131),
+          netVolumeMl: fact(130),
+          proteinPerPackageG: fact(1),
+        },
+        { deliveryUnavailable: true }
+      ),
+    ]
+  );
+  assert.equal(row.massG, 3144);
+  assert.equal(row.volumeMl, 3120);
+  assert.equal(row.proteinG, 24);
+  assert.equal(row.beforePerFoodGram, 27000 / 131);
+  assert.equal(row.beforePerMl, 27000 / 130);
+  assert.equal(row.beforePerProteinGram, 27000);
+  assert.equal(row.deliveryUnavailable, true);
+  assert.equal(row.afterPerFoodGram, null);
+});
+
+test('an invalidated marketplace mass stays unranked without a matched replacement', () => {
+  const row = enrichIceRow(base, [
+    review({}, { invalidatedFields: ['netMassG'] }),
+  ]);
+  assert.equal(row.massG, null);
+  assert.equal(row.beforePerFoodGram, null);
+});

@@ -8,11 +8,19 @@ const input = JSON.parse(
 );
 const reviews = [];
 const reviewFiles = [];
-for (const file of ['merino', 'korean', 'gelato-thai']) {
+for (const file of [
+  'merino',
+  'korean',
+  'gelato-thai',
+  'merino-expanded',
+  'korean-expanded',
+  'gelato-thai-expanded',
+  'root-expanded',
+]) {
   const path = `docs/acceptance/ice-dual-units/${file}-review.json`;
   try {
     const report = JSON.parse(await readFile(path, 'utf8'));
-    reviews.push(...(report.reviews || report.rows));
+    reviews.push(...(report.reviews || report.rows || []));
     reviewFiles.push(path);
   } catch (error) {
     if (error.code !== 'ENOENT') {
@@ -58,8 +66,8 @@ const nutrientNames = {
   sodiumPerPackageMg: 'Sodium / package',
 };
 const section = (title, before, after, amount, unit) => {
-  const values = rankings[before];
-  const delivered = rankings[after];
+  const values = rankings[before].slice(0, 10);
+  const delivered = rankings[after].slice(0, 10);
   return `## ${title}\n\n${
     values.length
       ? table(
@@ -69,6 +77,9 @@ const section = (title, before, after, amount, unit) => {
             'Sale VND',
             `Selling-unit ${unit}`,
             `VND/${unit} before delivery`,
+            'Quantity evidence',
+            'Price captured UTC',
+            'Delivery to Nha Trang',
           ],
           values.map((row, index) => [
             index + 1,
@@ -76,6 +87,21 @@ const section = (title, before, after, amount, unit) => {
             number(row.totalBeforeDelivery),
             number(row[amount]),
             number(row[before]),
+            row.specificationFacts[
+              amount === 'massG'
+                ? 'netMassG'
+                : amount === 'volumeMl'
+                  ? 'netVolumeMl'
+                  : row.proteinBasis === 'package'
+                    ? 'proteinPerPackageG'
+                    : row.proteinBasis === '100g'
+                      ? 'proteinPer100g'
+                      : 'proteinPer100ml'
+            ]?.sourceAuthority || 'Marketplace quantity; conditional',
+            row.observedAt,
+            row.deliveryUnavailable
+              ? 'Explicitly unavailable'
+              : 'Frozen service not confirmed',
           ])
         )
       : 'No current exact-product denominator is established for this metric.'

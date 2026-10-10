@@ -23,6 +23,7 @@ const authority = (fact) =>
     'manufacturer-product-endpoint': 3,
     'manufacturer-product-image': 3,
     'exact-package-label': 2,
+    'manufacturer-label-secondary-host': 2,
     'seller-promotional-panel': 1,
   })[fact.sourceAuthority] || 0;
 
@@ -30,28 +31,30 @@ function selectFacts(applicable) {
   const facts = {};
   const conflicts = [];
   const superseded = [];
+  const candidates = new Map();
   for (const review of applicable) {
     for (const [field, fact] of Object.entries(review.facts || {})) {
       if (!acceptedFact(field, fact)) {
         continue;
       }
-      if (facts[field] && authority(fact) > authority(facts[field])) {
-        superseded.push({ field, fact: facts[field] });
-        facts[field] = fact;
-      } else if (facts[field] && authority(fact) < authority(facts[field])) {
-        superseded.push({ field, fact });
-      } else if (
-        facts[field] &&
-        JSON.stringify(facts[field].value) !== JSON.stringify(fact.value)
-      ) {
-        conflicts.push(field);
-      } else {
-        facts[field] = fact;
-      }
+      const values = candidates.get(field) || [];
+      values.push(fact);
+      candidates.set(field, values);
     }
   }
-  for (const field of conflicts) {
-    delete facts[field];
+  for (const [field, values] of candidates) {
+    const highest = Math.max(...values.map(authority));
+    const preferred = values.filter((fact) => authority(fact) === highest);
+    superseded.push(
+      ...values
+        .filter((fact) => authority(fact) < highest)
+        .map((fact) => ({ field, fact }))
+    );
+    if (new Set(preferred.map((fact) => JSON.stringify(fact.value))).size > 1) {
+      conflicts.push(field);
+    } else {
+      facts[field] = preferred.at(-1);
+    }
   }
   return { facts, conflicts, superseded };
 }
@@ -92,12 +95,48 @@ const packageAmount = (fact, packages, fallback) =>
 const rate = (total, amount) =>
   Number.isFinite(total) && positive(amount) ? total / amount : null;
 
+function measuredAmount(
+  field,
+  facts,
+  conflicts,
+  invalidated,
+  packages,
+  fallback
+) {
+  if (
+    conflicts.includes(field) ||
+    (invalidated.includes(field) && !facts[field])
+  ) {
+    return null;
+  }
+  return packageAmount(facts[field], packages, fallback);
+}
+
 export function enrichIceRow(row, reviews = []) {
   const applicable = reviews.filter((review) => review.skus?.includes(row.sku));
   const { facts, conflicts, superseded } = selectFacts(applicable);
-  const packages = (row.packagesPerSellingUnit || 1) * (row.quantity || 1);
-  const massG = packageAmount(facts.netMassG, packages, row.massG);
-  const volumeMl = packageAmount(facts.netVolumeMl, packages, row.volumeMl);
+  const invalidated = applicable.flatMap(
+    (review) => review.invalidatedFields || []
+  );
+  const packageCount =
+    facts.packagesPerSellingUnit?.value || row.packagesPerSellingUnit || 1;
+  const packages = packageCount * (row.quantity || 1);
+  const massG = measuredAmount(
+    'netMassG',
+    facts,
+    conflicts,
+    invalidated,
+    packages,
+    row.massG
+  );
+  const volumeMl = measuredAmount(
+    'netVolumeMl',
+    facts,
+    conflicts,
+    invalidated,
+    packages,
+    row.volumeMl
+  );
   const { proteinG, proteinConflict, proteinBasis } = proteinAmount(
     facts,
     massG,
@@ -106,6 +145,13 @@ export function enrichIceRow(row, reviews = []) {
   );
   return {
     ...row,
+    packagesPerSellingUnit: packageCount,
+    invalidatedSpecificationFields: [...new Set(invalidated)],
+    deliveryUnavailable: applicable.some(
+      (review) => review.deliveryUnavailable === true
+    ),
+    deliveryNote:
+      applicable.find((review) => review.deliveryNote)?.deliveryNote || null,
     originalSellerName: row.originalSellerName || row.name,
     name:
       applicable.find((review) => review.productName)?.productName || row.name,

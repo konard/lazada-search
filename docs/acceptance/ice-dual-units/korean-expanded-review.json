@@ -1,0 +1,673 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10T17:36:44.978048+00:00",
+  "status": "complete expanded source review; printed PowerCap net mass approved; no manufacturer nutrition approval",
+  "policy": "Numeric fields are field-specific. Original manufacturer labels hosted by an importer can establish printed package mass, with market/revision provenance. Do not infer density, accept empty placeholder zero values, transfer195ml Fanfare nutrition to175ml, or treat GTIN alone as formula proof.",
+  "rows": [
+    {
+      "listingId": "2978009544",
+      "skuId": "14350953081",
+      "offerId": "2978009544_VNAMZ-14350953081",
+      "skus": [
+        "2978009544_VNAMZ-14350953081"
+      ],
+      "productName": "Binggrae Power Cap Choco / Pongta chocolate",
+      "facts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual chocolate export PowerCap package",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "manufacturerVerified": true,
+          "requestBody": "prod_idx=774&lang=EN",
+          "requestBodySha256": "7cc9bd02bea2f07a1b7573185dc1beeba89534a303d5bcf54c319d466c878988",
+          "reviewMethod": "exact manufacturer family57 export PowerCap -> Chocolate774 ->130ml variant796"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "netMassG": {
+          "value": 131,
+          "unit": "g",
+          "basis": "one individual chocolate export PowerCap 130 ml package",
+          "sourceUrl": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+          "sourceSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "excerpt": "130mL; 净含量131克",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-label-secondary-host",
+          "manufacturerVerified": false,
+          "manufacturerLabelVerified": true,
+          "approvalScope": "printed net mass only",
+          "reviewMethod": "Manual visual transcription of original factory wrapper; independent second reviewer confirmed both numbers. Target seller front matches Binggrae/PowerCap Choco Flavor Ice Tube, bilingual English/Chinese text, chocolate cube, brown cap and brown tube design.",
+          "marketProvenance": "Chinese/English export wrapper hosted by Brazilian importer ABC C&R; linked from its PowerCap Chocolate product page.",
+          "revisionLimit": "Image upload path is 2025/11. Exact seller lot, GTIN and formula revision are not visible. This approves the printed mass for the matched chocolate130ml wrapper, without transferring nutrition.",
+          "currentCapture": false,
+          "observedAt": "2026-10-10T17:30:16.574451+00:00"
+        }
+      },
+      "strictChocolateEligible": true,
+      "strictScopeReason": "explicit chocolate variant with no visible mixed-flavor core or nuts in the cached product depiction",
+      "blockingEvidenceGaps": [
+        "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
+      ],
+      "massKnown": true,
+      "manufacturerNutritionMatched": false,
+      "sellerFacts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "130ml; Kem Pongta vị Choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "manufacturerProductPage": "https://www.bing.co.kr/en/product/detail?PDT=57",
+      "manufacturerProductIdentity": {
+        "familyId": 57,
+        "productId": 774,
+        "variantId": 796,
+        "flavour": "Chocolate",
+        "volumeMl": 130,
+        "exactExportVariant": true
+      },
+      "manufacturerNutritionResponse": {
+        "sourceUrl": "https://www.bing.co.kr/en/product/get_idt_info",
+        "sourceSha256": "383c504103c19a8ae96530fc3424e263096433c33736f8d10a9ee356d5778bef",
+        "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-nutrition.json",
+        "requestBody": "prod_val_idx=796&prod_idx=57&lang=EN",
+        "requestBodySha256": "7acd2ad6786e71902fbbb5d9dd81953838070d0cc5f548ba2411d6f147917c4b",
+        "identityMatched": true,
+        "nutritionUsable": false,
+        "reason": "Placeholder response: all nutrient amounts0, daily amounts\"-\", energy unit empty, serving basisTOT_CONT_AMT0 and TOT_CONT_UNITempty; onlyAMT_INFO130ml remains. These are missing nutrition values, not valid measured zeros.",
+        "excerpt": "info:{CAL_AMT:0.0,CAL_BASE_UNIT:\"\",AMT_INFO:\"130ml\",TOT_CONT_AMT:0.0,TOT_CONT_UNIT:\"\",PROD_NAME:\"Chocolate\",PROD_IDX:774,PROD_VAL_IDX:796,VAL_UPDATE_DATE:\"25.09.24 Update\"}"
+      },
+      "manufacturerWrapperEvidence": {
+        "sourceUrl": "https://www.bing.co.kr/upload/product/2025/09/9daace13-dbc6-45be-9a64-9f08a18a6750.png",
+        "sourceSha256": "d2ba431373703c92f62f8a52fa46328c42e91114d115f433d64bdf44e0afbfae",
+        "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-front.png",
+        "identityMatched": true,
+        "excerpt": "Binggrae Power Cap Choco Flavor Ice Bar bilingual English/Chinese export wrapper matches the cached seller family/flavour front; manufacturer metadata confirms130ml.",
+        "matchedFields": [
+          "brand",
+          "export family",
+          "chocolate flavour",
+          "130ml manufacturer metadata",
+          "wrapper presentation"
+        ],
+        "unmatchedFields": [
+          "seller GTIN",
+          "exact sold lot/formula revision",
+          "factory back nutrition label"
+        ]
+      },
+      "evidenceMatches": [
+        {
+          "source": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "matched": "Chocolate flavor,130ml, Choco Flavor Ice Tube name, bilingual English/Chinese export design, browncap/tube/chocolatecube",
+          "targetOriginal": "docs/acceptance/ice-dual-units/2978009544-seller-0.webp",
+          "limitation": "No readable lot/GTIN on either front; imported-wrapper market/formula revision remains explicit."
+        }
+      ]
+    },
+    {
+      "listingId": "3047790409",
+      "skuId": "14661118301",
+      "offerId": "3047790409_VNAMZ-14661118301",
+      "skus": [
+        "3047790409_VNAMZ-14661118301"
+      ],
+      "productName": "Lotte Fanfare / 빵빠레 chocolate",
+      "facts": {
+        "netVolumeMl": {
+          "value": 175,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-5.webp",
+          "excerpt": "175ml; vị choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "strictChocolateEligible": true,
+      "strictScopeReason": "explicit chocolate variant with no visible mixed-flavor core or nuts in the cached product depiction",
+      "blockingEvidenceGaps": [
+        "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
+        "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
+        "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
+      ],
+      "massKnown": false,
+      "manufacturerNutritionMatched": false,
+      "manufacturerIdentityEvidence": [
+        {
+          "sourceUrl": "https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+          "sourceSha256": "0578cad32e0aef26915871e75fe2cbae7eb0583a9aceb04641eab33825594a7a",
+          "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-front-1.png",
+          "excerpt": "Original manufacturer image shows Lotte 빵빠레 초코 chocolate soft-serve cup.",
+          "identityMatched": true,
+          "matchedFields": [
+            "manufacturer",
+            "family",
+            "chocolate flavour",
+            "package shape"
+          ],
+          "unmatchedFields": [
+            "175ml export size",
+            "GTIN8801118251313",
+            "formula revision",
+            "nutrition"
+          ]
+        }
+      ],
+      "rejectedTransfers": [
+        {
+          "sourceUrl": "https://hpack.ca/ko/products/8801118251313",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-hmart.html",
+          "sourceSha256": "3812442536e5e39740fbe07a88e63ebadc78e0628e194a8b0193d3502b0c37c2",
+          "claim": "Fanfare Chocolate170ML; same GTIN8801118251313",
+          "reason": "Volume differs selected175ml; same barcode does not prove package revision."
+        },
+        {
+          "sourceUrl": "https://www.foodsafetykorea.go.kr/hilow/qfood/sfoodlist.do?menuKey=4&searchValue=%EB%B9%B5%EB%B9%A0%EB%A0%88",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-mfds-fanfare-query.html",
+          "sourceSha256": "3a749e456b2e47923fa3b35711b735e20e06ce12bf8402ada2fbcebbd681338f",
+          "claim": "Registry family 빵빠레, Lotte Foods Cheonan, total175g,95.43kcal",
+          "reason": "Family row does not identify chocolate flavor,175ml container or GTIN. Do not interpret175g as selected175ml weight."
+        },
+        {
+          "sourceUrl": "https://www.studocu.com/ph/document/our-lady-of-lourdes-college-valenzuela/bs-criminology/complete-loose-fanfare-choco/98457351",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-labelscan.html",
+          "sourceSha256": "8a24cef85a7adb29681e9eb86d188ed3809845e4a436ef2800f3afcae1b350c1",
+          "claim": "Search extract describes capacity195ml including snack/cone",
+          "reason": "Wrong volume revision; original URL returned403. Cached403 response is not a nutrition label."
+        }
+      ]
+    }
+  ],
+  "additionalLeads": [
+    {
+      "listingId": "1561263394",
+      "skuId": null,
+      "productName": "Binggrae Together Chocolate Milk710ml",
+      "status": "unranked discovery lead; no selected SKU or current Lazada availability/price approval",
+      "sourceUrl": "https://bachhoa.extra.vn/kem-hop-socola-sua-han-quoc-binggrae-together-chocolate-milk-710ml-l1561263394.html",
+      "sourceType": "Search-result discovery of mirrored Lazada listing; raw request failed TLS certificate hostname validation",
+      "manufacturerIdentity": {
+        "sourceUrl": "https://www.bing.co.kr/en/product/detail?PDT=1",
+        "artifact": "docs/acceptance/ice-dual-units/expanded-together-factory.html",
+        "sourceSha256": "61056aae299d0cfa041da2750ad1c498490c60e57234cc2b3b87d7972dba4b9e",
+        "familyId": 1,
+        "productId": 460,
+        "excerpt": "get_volume_list(460); Chocolate Milk",
+        "imageUrl": "https://www.bing.co.kr/upload/product/2024/05/12badf98-9291-4c57-a56d-8ae4aa241565.png"
+      },
+      "strictChocolateEligible": null,
+      "blockingEvidenceGaps": [
+        "Current selected Lazada SKU, availability, pack count, price and shipping not captured.",
+        "Chocolate Milk family name alone does not exclude a vanilla/mixed core; inspect exact710ml product and ingredients before scope approval.",
+        "No exact710ml factory nutrition or dual units have been verified."
+      ],
+      "noPricePromoted": true
+    }
+  ],
+  "sourceReceipts": [
+    {
+      "url": "https://abcf.com.br/produto/powercap-chocolate/",
+      "observedAt": "2026-10-10T17:29:39.648042+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://abcf.com.br/produto/powercap-chocolate/",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc.html",
+      "authority": "retailer or importer; field-specific identity must be reviewed",
+      "sourceSha256": "d05273c6434447456a4a1f42963d0d6f84e746bda5a20e372af1600ef0bed397",
+      "bytes": 632112,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-receipt.json"
+    },
+    {
+      "url": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+      "observedAt": "2026-10-10T17:30:16.574451+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+      "sourceSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+      "bytes": 183551,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front-receipt.json"
+    },
+    {
+      "url": "https://shop.villamarket.com/product/263719",
+      "observedAt": "2026-10-10T17:28:15.962344+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://shop.villamarket.com/product/263719",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-villa.html",
+      "authority": "retailer or hosted label scan; field-specific identity must be reviewed",
+      "sourceSha256": "10058ec444bda092a89e92d43a71a414a05c9d4598e08a1659e419eae7685e0e",
+      "bytes": 9570,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-powercap-villa-receipt.json"
+    },
+    {
+      "url": "https://www.vitaminhouse.vn/products/kem-loc-xoay-chocolate-175ml",
+      "observedAt": "2026-10-10T17:28:13.823859+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://www.vitaminhouse.vn/products/kem-loc-xoay-chocolate-175ml",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-vitaminhouse.html",
+      "authority": "retailer or hosted label scan; field-specific identity must be reviewed",
+      "sourceSha256": "3eb8f1c9485392587aa2527ffe8ca08774fd0ca2821f114ae6df9dee86afbc87",
+      "bytes": 461707,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-vitaminhouse-receipt.json"
+    },
+    {
+      "url": "https://www.vitaminhouse.vn/cdn/shop/files/taixuong_99_1600x.jpg?v=1744343047",
+      "observedAt": "2026-10-10T17:29:40.073120+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://www.vitaminhouse.vn/cdn/shop/files/taixuong_99_1600x.jpg?v=1744343047",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-photo-99.jpg",
+      "authority": "retailer or importer; field-specific identity must be reviewed",
+      "sourceSha256": "dc959245814f7a3483b56f539528991e3c2aa88cdb9d9e104ee1680fe7e067df",
+      "bytes": 4424,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-photo-99-receipt.json"
+    },
+    {
+      "url": "https://foodhouse.vn/kem/kem-lotte-foods/banh-bao-lam-chu-ngot-goi-200gr?limit=25&order=DESC&sort=pd.name",
+      "observedAt": "2026-10-10T17:28:14.676021+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://foodhouse.vn/kem/kem-lotte-foods/banh-bao-lam-chu-ngot-goi-200gr?limit=25&order=DESC&sort=pd.name",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-foodhouse.html",
+      "authority": "retailer or hosted label scan; field-specific identity must be reviewed",
+      "sourceSha256": "b0389ba8a61e773b605cb2a20d1bc5ded1b3c06f66a765886c692498e5743178",
+      "bytes": 393951,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-foodhouse-receipt.json"
+    },
+    {
+      "url": "https://image.foodhouse.vn/cache/cache/1-1000/61/main/50d8-kem-loc-xoay-fanfare-vi-so-co-la-175ml-0-1-800x800.png",
+      "observedAt": "2026-10-10T17:29:41.079289+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://image.foodhouse.vn/cache/cache/1-1000/61/main/50d8-kem-loc-xoay-fanfare-vi-so-co-la-175ml-0-1-800x800.png",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-foodhouse-front.png",
+      "authority": "retailer or importer; field-specific identity must be reviewed",
+      "sourceSha256": "e28c48cc9c875d41b739f9750e5974be61bc437f6d633d7ec427d8d0771b8bbe",
+      "bytes": 175284,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-foodhouse-front-receipt.json"
+    },
+    {
+      "url": "https://7-eleven.vn/en/product/8801118251313-kem-loc-xoay-socola-175ml-15465-normal",
+      "observedAt": "2026-10-10T17:28:15.293686+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://7-eleven.vn/product/8801118251313-kem-loc-xoay-socola-175ml-15465-normal",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-7eleven.html",
+      "authority": "retailer or hosted label scan; field-specific identity must be reviewed",
+      "sourceSha256": "d11c6dd67a20c32ec95bc67b7e30ea32cf300734a8dee8397d0f56ddf5915884",
+      "bytes": 74886,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-7eleven-receipt.json"
+    },
+    {
+      "url": "https://cdn.7-eleven.vn/production/attachment_v2s/files/6268_1766637531_original.png?1766637531",
+      "observedAt": "2026-10-10T17:29:40.765391+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://cdn.7-eleven.vn/production/attachment_v2s/files/6268_1766637531_original.png?1766637531",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-7eleven-front.png",
+      "authority": "retailer or importer; field-specific identity must be reviewed",
+      "sourceSha256": "a464e289dfa35d50a3a55cee01385a27ab89c43ee8c7128abfaffa8f70e84eb2",
+      "bytes": 235816,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-7eleven-front-receipt.json"
+    },
+    {
+      "url": "https://hpack.ca/ko/products/8801118251313",
+      "observedAt": "2026-10-10T17:30:17.493443+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://hpack.ca/ko/products/8801118251313",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-hmart.html",
+      "sourceSha256": "3812442536e5e39740fbe07a88e63ebadc78e0628e194a8b0193d3502b0c37c2",
+      "bytes": 344699,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-hmart-receipt.json"
+    },
+    {
+      "url": "https://www.studocu.com/ph/document/our-lady-of-lourdes-college-valenzuela/bs-criminology/complete-loose-fanfare-choco/98457351",
+      "observedAt": "2026-10-10T17:28:16.212674+00:00",
+      "requestMethod": "GET",
+      "httpResult": "403 https://www.studocu.com/ph/document/our-lady-of-lourdes-college-valenzuela/bs-criminology/complete-loose-fanfare-choco/98457351",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-fanfare-labelscan.html",
+      "authority": "retailer or hosted label scan; field-specific identity must be reviewed",
+      "sourceSha256": "8a24cef85a7adb29681e9eb86d188ed3809845e4a436ef2800f3afcae1b350c1",
+      "bytes": 61421,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-fanfare-labelscan-receipt.json"
+    },
+    {
+      "url": "https://www.foodsafetykorea.go.kr/hilow/qfood/sfoodlist.do?menuKey=4",
+      "observedAt": "2026-10-10T17:30:15.146639+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://www.foodsafetykorea.go.kr/hilow/qfood/sfoodlist.do?menuKey=4",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-mfds-search.html",
+      "sourceSha256": "ea5ece1530d3b9ed004ad5e68aad43257f602caefce26864116ac527082a3f0e",
+      "bytes": 7154,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-mfds-search-receipt.json"
+    },
+    {
+      "url": "https://www.foodsafetykorea.go.kr/hilow/qfood/sfoodlist.do?menuKey=4&searchValue=%EB%B9%B5%EB%B9%A0%EB%A0%88",
+      "observedAt": "2026-10-10T17:32:30.474040+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://www.foodsafetykorea.go.kr/hilow/qfood/sfoodlist.do?menuKey=4&searchValue=%EB%B9%B5%EB%B9%A0%EB%A0%88",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-mfds-fanfare-query.html",
+      "sourceSha256": "3a749e456b2e47923fa3b35711b735e20e06ce12bf8402ada2fbcebbd681338f",
+      "bytes": 8141,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-mfds-fanfare-query-receipt.json"
+    },
+    {
+      "url": "https://www.bing.co.kr/en/product/detail?PDT=1",
+      "observedAt": "2026-10-10T17:32:32.978744+00:00",
+      "requestMethod": "GET",
+      "httpResult": "200 https://www.bing.co.kr/en/product/detail?PDT=1",
+      "exitCode": 0,
+      "error": "",
+      "method": "curl with certificate verification; unchanged original bytes",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-together-factory.html",
+      "sourceSha256": "61056aae299d0cfa041da2750ad1c498490c60e57234cc2b3b87d7972dba4b9e",
+      "bytes": 67983,
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-together-factory-receipt.json"
+    },
+    {
+      "url": "https://bachhoa.extra.vn/kem-hop-socola-sua-han-quoc-binggrae-together-chocolate-milk-710ml-l1561263394.html",
+      "observedAt": "2026-10-10T17:32:33.476058+00:00",
+      "requestMethod": "GET",
+      "httpResult": "000 https://bachhoa.extra.vn/kem-hop-socola-sua-han-quoc-binggrae-together-chocolate-milk-710ml-l1561263394.html",
+      "exitCode": 60,
+      "error": "curl: (60) SSL: no alternative certificate subject name matches target host name 'bachhoa.extra.vn'\nMore details here: https://curl.se/docs/sslcerts.html\n\ncurl failed to verify the legitimacy of the server and therefore could not\nestablish a secure connection to it. To learn more about this situation and\nhow to fix it, please visit the web page mentioned above.\n",
+      "method": "TLS validation failed before HTTP; no HTML bytes obtained; certificate verification retained.",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-together-lazada-lead.html",
+      "receiptArtifact": "docs/acceptance/ice-dual-units/expanded-together-lazada-lead-receipt.json",
+      "responseBytesObtained": false
+    }
+  ],
+  "derivedArtifacts": [
+    {
+      "artifact": "docs/acceptance/ice-dual-units/expanded-pongta-selected-wrapper-mass-crop.png",
+      "sourceSha256": "4021d9c40ed95cf4f7bd44347ffd53e6928ad1f0ab9b6fe96fc98a1bb6a6cbbd",
+      "derivedFrom": "docs/acceptance/ice-dual-units/2978009544-seller-0.webp",
+      "cropBox": [
+        232,
+        590,
+        314,
+        616
+      ],
+      "outputDimensions": [
+        656,
+        208
+      ],
+      "method": "PIL crop then resize using default bicubic resampling; no AI modification",
+      "approvedAsIndependentMassEvidence": false,
+      "reason": "Seller front bottom text remains too small; approved131g comes from readable unchanged ABC factory wrapper image."
+    }
+  ],
+  "requestPacing": {
+    "goingForwardMinimumSameHostSeconds": 60,
+    "noRepeatedUrlRequests": true,
+    "priorABCPageToImageIntervalSeconds": 36.926409,
+    "note": "The first ABC page/image pair occurred before the same-host60sec guard was applied; subsequent research defers same-host requests until the interval is met. No Lazada requests or browser actions were performed."
+  },
+  "attemptedSearches": [
+    {
+      "scope": "Pongta/PowerCap export chocolate130ml",
+      "methods": [
+        "cached seller original gallery",
+        "official export variant endpoints from prior review",
+        "Brazil importer original wrapper",
+        "multilingual net-weight/imported-label web search"
+      ],
+      "result": "Readable matched original wrapper prints130ml and131g. Official nutrition endpoint remains an empty placeholder."
+    },
+    {
+      "scope": "Lotte Fanfare chocolate175ml",
+      "methods": [
+        "cached seller gallery",
+        "Vietnam importer/retailer VitaminHouse/Foodhouse/7-Eleven",
+        "HMart Canada sameGTIN",
+        "hosted importer label scan",
+        "official Korean MFDS family search"
+      ],
+      "result": "175ml identity corroborated in Vietnam; differing170/195ml and unflavored175g records prevent numeric transfer. Front-only labels do not resolve nutrition."
+    },
+    {
+      "scope": "additional strict chocolate products",
+      "methods": [
+        "Lazada mirrored-listing search",
+        "Binggrae official Together family page"
+      ],
+      "result": "Together Chocolate Milk710ml mirror listingi1561263394 found, exactSKU/scope/nutrition unresolved; no offer promoted."
+    }
+  ],
+  "validation": {
+    "sourceHashesChecked": 14,
+    "newExactMassFacts": 1,
+    "newManufacturerNutritionApprovals": 0,
+    "densityConversions": 0,
+    "wrongRevisionTransfers": 0,
+    "sellerProteinPromotedToFactory": false,
+    "sharedStoreWrites": false,
+    "browserActions": false,
+    "lazadaNetworkRequests": 0
+  }
+}

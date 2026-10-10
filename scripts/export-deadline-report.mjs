@@ -181,20 +181,19 @@ try {
           ? 'Sold out; excluded from buyable ranking'
           : 'Exact selected-SKU price; factory and frozen delivery pending',
       available: row.offer.available !== false,
+      sellerTitle: row.product.title,
+      selectedOptions: row.product.selectedVariant,
       originalPrice: row.offer.originalPrice ?? null,
       ...reportUnitCosts(row),
     })),
     ...extra,
-  ]
-    .sort(
-      (a, b) =>
-        (b.available !== false) - (a.available !== false) ||
-        (a.beforePerMl ?? Infinity) - (b.beforePerMl ?? Infinity) ||
-        (a.beforePerFoodGram ?? Infinity) - (b.beforePerFoodGram ?? Infinity) ||
-        a.price - b.price
-    )
-    .slice(0, 10);
-  assert.equal(iceCandidates.length, 10);
+  ].sort(
+    (a, b) =>
+      (b.available !== false) - (a.available !== false) ||
+      (a.beforePerMl ?? Infinity) - (b.beforePerMl ?? Infinity) ||
+      (a.beforePerFoodGram ?? Infinity) - (b.beforePerFoodGram ?? Infinity) ||
+      a.price - b.price
+  );
   const receipt = {
     generatedAt: new Date().toISOString(),
     market: 'Vietnam',
@@ -358,7 +357,7 @@ node scripts/export-deadline-report.mjs --configuration data/cases/vietnam-nha-t
       whey: whey.length,
       verified: verified.length,
       ice: iceCandidates.length,
-      confirmedIce: ice.length,
+      exactSelectedIcePrices: ice.length,
       downloads: receipt.downloads,
     })
   );

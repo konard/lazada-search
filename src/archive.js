@@ -100,7 +100,7 @@ export function sanitizePublicHtml(html) {
     }
   }
   for (const element of document.querySelectorAll(
-    'input[type="password"], input[type="email"], input[type="tel"], [data-customer], [data-account], #J_Header, #lazada-header, #topActionHeaderWrapper, #topActionUserAccont, #myAccountTrigger'
+    'input[type="password"], input[type="email"], input[type="tel"], [data-customer], [data-account], #J_Header, #lazada-header, #topActionHeaderWrapper, #topActionUserAccont, #myAccountTrigger, .cart-drawer, #floating-cart, .floating-cart-root'
   )) {
     element.remove();
   }

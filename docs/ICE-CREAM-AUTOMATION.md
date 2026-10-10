@@ -1,5 +1,11 @@
 # Ice-cream evidence and automation handoff
 
+The [expanded research report](tables/ice-source-expansion.md) records14 selected prices and new importer-label/retailer evidence. Candidate truncation is fixed: all captured options feed independent top-ten rankings. Source-authority corrections are independent of arrival order; conflicting measured quantities cannot fall back to disputed marketplace values. The factory PowerCap wrapper now establishes131g/130ml.
+
+General parser work remains: recognize `Thùng24 chai kem` as ice cream, count24 selling-unit bottles separately from each130ml inner package, and separate destination refusal from stock. The committed case uses a source-backed category/count correction. Retailer adapters must paginate capped APIs, check branch stock/VAT/cold delivery and reject shipping weight as edible mass. Moonmilk returns50 records forlimit250 and conflicting page/API stock; Azmart's carton has1,500g food rather than1,625g shipping weight.
+
+Match package family and formula revision along with barcode. White Cremo6L cannot inherit yellow confection3kg; Fanfare170/175/195ml cannot share an unchecked nutrition panel. Validate macronutrient mass balance and preserve rejected claims. Original factory labels hosted by importers can establish printed quantities while retaining source-host and market/revision limitations. Public HTML export now removes floating-cart drawers with a regression test preserving product data.
+
 The buyer needs strictly chocolate ice cream delivered frozen to Nha Trang. Compare each selected selling option independently by VND per gram of food, per millilitre, and per gram of protein, before and after delivery. [Current separate rankings](tables/ice-unit-rankings.md) and their [JSON](tables/ice-unit-rankings.json) preserve partial coverage instead of inventing missing quantities.
 
 ## Immediate evidence workflow

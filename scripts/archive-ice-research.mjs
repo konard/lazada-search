@@ -83,9 +83,25 @@ function provenanceMetadata(value) {
   }
   return result;
 }
-for (const group of ['merino', 'korean', 'gelato-thai']) {
+for (const group of [
+  'merino',
+  'korean',
+  'gelato-thai',
+  'merino-expanded',
+  'korean-expanded',
+  'gelato-thai-expanded',
+  'root-expanded',
+]) {
   const path = `${root}/${group}-review.json`;
-  const bytes = await readFile(path);
+  const bytes = await readFile(path).catch((error) => {
+    if (error.code === 'ENOENT') {
+      return null;
+    }
+    throw error;
+  });
+  if (!bytes) {
+    continue;
+  }
   const review = JSON.parse(bytes);
   await archiveArtifacts(review);
   await store.put('ice-review', {
@@ -104,7 +120,7 @@ const exported = await exportRepositoryArchive({
   directory,
   caseMetadata: {
     scope:
-      'Ten exact selected chocolate-ice-cream candidates; independent unit rankings and manufacturer research',
+      'All captured selected chocolate-ice-cream candidates; independent unit rankings and expanded manufacturer/importer/retailer research',
     market: 'Vietnam',
     deliveryArea: 'Nha Trang',
     publicEvidenceOnly: true,
