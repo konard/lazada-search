@@ -1,0 +1,37 @@
+{
+  "reviewedAt": "2026-10-10T13:47:00.000Z",
+  "method": "OCR of original manufacturer package images followed by manual visual reading of the full-resolution label",
+  "reviews": [
+    {
+      "manufacturerProductUrl": "https://aicevietnam.vn/san-pham/kem-que-miki-miki/",
+      "manufacturerImageUrl": "https://aicevietnam.vn/wp-content/uploads/2025/12/19.-MIKI-MIKI-1.png",
+      "imageSha256": "7f15474c59d7b43f6c0fc553d7297af65e3b389a8f221ef1f047f56ee9985c3c",
+      "path": "labels/7f15474c59d7b43f6c0fc553d7297af65e3b389a8f221ef1f047f56ee9985c3c.png",
+      "product": "Aice Miki-Miki",
+      "manualReading": "Vanilla flavored ice milk with Chocolate",
+      "netMassGPerStick": 25,
+      "netVolumeMlPerStick": 35,
+      "strictChocolateIceCreamEligible": false,
+      "reason": "Vanilla ice-milk core with chocolate coating is outside the requested strict chocolate flavour scope.",
+      "affectedListingIds": ["3320739703", "3320748329"],
+      "sellingPackCountConfirmed": false,
+      "nutritionPanelAvailable": false,
+      "ocrCorrection": "OCR incorrectly read 25g as '25) g' and did not reliably recover 35ml; both numbers were read visually from the original label."
+    },
+    {
+      "manufacturerProductUrl": "https://aicevietnam.vn/san-pham/kem-que-socola-gion/",
+      "manufacturerImageUrl": "https://aicevietnam.vn/wp-content/uploads/2025/12/10.-SOCOLA-GION.png",
+      "imageSha256": "704f1f8cd3c94a52e28674e11629336beec873885c482841458615bb82f47cb2",
+      "path": "labels/704f1f8cd3c94a52e28674e11629336beec873885c482841458615bb82f47cb2.png",
+      "product": "Aice Chocolate Crispy / Kem Socola Giòn",
+      "manualReading": "Vanilla & milk flavored ice milk coated with 2 layers of chocolate",
+      "netMassGPerStick": 60,
+      "strictChocolateIceCreamEligible": false,
+      "reason": "The official label identifies a vanilla and milk flavoured ice-milk core with chocolate coating.",
+      "affectedListingIds": ["3320713745", "3320794212", "13338109728"],
+      "sellingPackCountConfirmed": false,
+      "nutritionPanelAvailable": false,
+      "ocrCorrection": "OCR missed the prominent flavour and net-weight text; visual reading is authoritative for this manual review."
+    }
+  ]
+}

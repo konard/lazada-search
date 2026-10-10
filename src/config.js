@@ -4,6 +4,24 @@ import { join } from 'node:path';
 import { AssociativeStore } from './store.js';
 import { DEFAULT_ARCHIVE } from './archive.js';
 
+const flavourScopeOption = {
+  type: 'string',
+  choices: ['all', 'chocolate-or-unflavoured'],
+};
+const flavourScopeConfig = (getenv) => {
+  const scope = getenv('LAZADA_FLAVOUR_SCOPE', '');
+  return { ...flavourScopeOption, ...(scope ? { default: scope } : {}) };
+};
+const categoryOnlyConfig = (getenv) => ({
+  type: 'boolean',
+  default: getenv('LAZADA_CATEGORY_ONLY', 'false') === 'true',
+});
+const searchSortConfig = (getenv) => ({
+  type: 'string',
+  choices: ['default', 'priceasc', 'pricedesc'],
+  default: getenv('LAZADA_SEARCH_SORT', 'default'),
+});
+
 export function configuredStore(options) {
   const archive = options.archiveDir || DEFAULT_ARCHIVE;
   const shared = new AssociativeStore({
@@ -161,6 +179,8 @@ export function parseArguments(argv) {
         .option('max-products', { type: 'number', default: 100 })
         .option('query', { type: 'array', string: true })
         .option('category-url', { type: 'array', string: true })
+        .option('category-only', categoryOnlyConfig(getenv))
+        .option('search-sort', searchSortConfig(getenv))
         .option('quantity', { type: 'number', default: 1 })
         .option('currency', { type: 'string' })
         .option('category', {
@@ -179,6 +199,7 @@ export function parseArguments(argv) {
         .option('allow-stale', { type: 'boolean', default: false })
         .option('require-shipping', { type: 'boolean', default: true })
         .option('sort', { type: 'string', default: 'costPerProteinG' })
+        .option('flavour-scope', flavourScopeConfig(getenv))
         .option('port', { type: 'number', default: 8080 })
         .option('format', {
           type: 'string',
@@ -205,6 +226,7 @@ export const comparisonOptions = (options) =>
       deliveryArea: options.deliveryArea,
       category: options.category,
       proteinType: options.proteinType,
+      flavourScope: options.flavourScope,
       minProtein: options.minProtein,
       maxSugar: options.maxSugar,
       excludeIngredients: options.excludeIngredient,

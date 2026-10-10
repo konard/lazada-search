@@ -26,7 +26,7 @@ function listPackageLocks(directory = '.') {
   const locks = [];
 
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if (entry.name === '.git' || entry.name === 'node_modules') {
+    if (['.git', 'node_modules', '.lazada-search'].includes(entry.name)) {
       continue;
     }
 

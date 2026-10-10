@@ -1,6 +1,25 @@
 import { applyListingCategoryReview } from './category-review.js';
 import { listingKey } from './util.js';
 import { REQUIRED_SPEC_FIELDS } from './verification.js';
+import { ingredientFlags, proteinTypeOf } from './nutrition.js';
+
+function refreshIngredientFields(product) {
+  const identity = product.manufacturerVerification;
+  if (
+    identity?.identityMatched &&
+    identity.sourceAuthority === 'manufacturer' &&
+    identity.identityMethod === 'visual-exact-variant' &&
+    identity.identity?.brand
+  ) {
+    product.brand = identity.identity.brand;
+  }
+  product.proteinType = proteinTypeOf(
+    product.ingredients || [],
+    product.category
+  );
+  product.ingredientFlags = ingredientFlags(product.ingredients || []);
+  return product;
+}
 
 const reviewedSpecFields = new Set([
   ...REQUIRED_SPEC_FIELDS,
@@ -87,9 +106,11 @@ export async function resolveProductReviews(store, product) {
     return product;
   }
   const shared = await store.fallback?.get('product', product.id);
-  return await applyListingCategoryReview(
-    store,
-    mergeSharedManufacturerReview(product, shared)
+  return refreshIngredientFields(
+    await applyListingCategoryReview(
+      store,
+      mergeSharedManufacturerReview(product, shared)
+    )
   );
 }
 
@@ -104,9 +125,11 @@ export async function catalogProducts(store) {
   const resolved = [];
   for (const product of products) {
     resolved.push(
-      await applyListingCategoryReview(
-        store,
-        mergeSharedManufacturerReview(product, shared.get(product.id))
+      refreshIngredientFields(
+        await applyListingCategoryReview(
+          store,
+          mergeSharedManufacturerReview(product, shared.get(product.id))
+        )
       )
     );
   }

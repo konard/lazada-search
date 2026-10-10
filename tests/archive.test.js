@@ -136,6 +136,57 @@ test('failed export leaves the earlier manifest and all referenced sources intac
   assert.equal((await archive.verify()).valid, true);
 });
 
+test('source hash metadata preserves record identity and still copies nested blobs', async (t) => {
+  const { store, target, directory } = await setup(t);
+  const imageBytes = Buffer.from('original chocolate label image');
+  const image = await store.putBlob(imageBytes);
+  const records = [
+    {
+      id: 'manufacturer-source',
+      sha256: image.sha256,
+      bytes: image.bytes,
+      url: 'https://manufacturer.example/chocolate',
+      image,
+      description: 'Hash and size describe the source alongside other metadata',
+    },
+    {
+      id: 'source-metadata-only',
+      sha256: 'a'.repeat(64),
+      bytes: 123,
+      description: 'A recorded hash does not require a cached blob',
+    },
+  ];
+  for (const record of records) {
+    await store.put('research-attempt', record);
+  }
+  const exported = await exportRepositoryArchive({ store, directory: target });
+  assert.equal(exported.records, 2);
+  assert.equal(exported.blobs, 1);
+  const archive = new RepositoryArchive({ directory: target });
+  assert.deepEqual(await archive.verify(), {
+    valid: true,
+    records: 2,
+    blobs: 1,
+    downloads: 0,
+  });
+  for (const record of records) {
+    assert.deepEqual(await archive.get('research-attempt', record.id), record);
+    const graph = await archive.graph('research-attempt', record.id);
+    assert(graph.names.has(`record:research-attempt:${record.id}`));
+    assert(graph.names.has(`string:${record.sha256}`));
+  }
+  assert.deepEqual(await archive.blob(image.sha256), imageBytes);
+  const fresh = new AssociativeStore({
+    directory: join(directory, 'offline-replay'),
+    archive,
+  });
+  assert.deepEqual(await fresh.list('research-attempt'), records);
+  assert.equal(
+    (await exportRepositoryArchive({ store, directory: target })).rebuilt,
+    0
+  );
+});
+
 test('a corrected local URL alias overrides its older committed capture regardless of sort order', async (t) => {
   const { store, target, directory } = await setup(t);
   const url =

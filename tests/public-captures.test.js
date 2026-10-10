@@ -27,6 +27,7 @@ test('every published real SKU price re-extracts from committed redacted HTML an
     ),
   });
   const publications = await archive.list('publication');
+  const history = await archive.list('offer-history');
   assert.equal(publications.length, receipts.published.length);
   assert.ok(publications.length > 0);
   assert.equal(receipts.downloads, 0);
@@ -43,7 +44,17 @@ test('every published real SKU price re-extracts from committed redacted HTML an
     assert.equal(extracted.offer.sku, record.sku);
     assert.equal(extracted.offer.variantConfirmed, true);
     const offer = await archive.get('offer', record.offerId);
-    assert.equal(offer.observedAt, record.observedAt);
+    assert.ok(Date.parse(offer.observedAt) >= Date.parse(record.observedAt));
+    assert.ok(
+      history.some(
+        (observation) =>
+          observation.offerId === record.offerId &&
+          observation.observedAt === record.observedAt &&
+          observation.sku === record.sku &&
+          observation.price === record.price
+      ),
+      `Historical selected price is preserved for ${record.id}`
+    );
     assert.equal(offer.priceContext, 'authenticated-browser-observation');
     assert.notEqual(offer.visibility, 'private');
     const cache = await archive.get(
@@ -52,8 +63,16 @@ test('every published real SKU price re-extracts from committed redacted HTML an
     );
     assert.equal(cache.repositoryReusable, true);
     assert.equal(cache.snapshot.sku, record.sku);
-    assert.deepEqual(snapshot.skuCatalog, cache.snapshot.skuCatalog);
-    assert.deepEqual(snapshot.selectedVariant, cache.snapshot.selectedVariant);
+    const newest = publications
+      .filter((item) => item.sourceUrl === record.sourceUrl)
+      .sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
+    if (newest.id === record.id) {
+      assert.deepEqual(snapshot.skuCatalog, cache.snapshot.skuCatalog);
+      assert.deepEqual(
+        snapshot.selectedVariant,
+        cache.snapshot.selectedVariant
+      );
+    }
   }
 });
 

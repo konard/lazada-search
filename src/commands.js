@@ -45,6 +45,8 @@ Options:
   --exhaustive --strict          Visit search pagination; fail an incomplete audit
   --discovery-only               Finish and cache search lists without collecting details
   --category-url URL             Add an actual Lazada category listing scope (repeatable)
+  --category-only                Discover actual categories without broad keyword/tag searches
+  --search-sort priceasc|pricedesc  Order listing pages without a price-range cutoff
   --no-require-manufacturer      Explore unverified observations without a purchase guarantee
   --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
@@ -56,6 +58,7 @@ Options:
   --phone-env LAZADA_LOGIN_PHONE Phone login reads this environment variable
   --auth-channel zalo|sms        Zalo is the default verification channel
   --category whey|protein-powder|chocolate-ice-cream --protein-type isolate|concentrate|blend
+  --flavour-scope chocolate-or-unflavoured  Plain/chocolate powders and strictly chocolate ice cream
   --quantity 10 --currency VND --shipping 30000 --discount 50000
   --min-protein 70 --max-sugar 5 --exclude-ingredient sucralose
   --allow-stale --no-require-shipping --sort costPerProteinG|costPerKg|totalCost|proteinPer100g
@@ -98,6 +101,8 @@ export async function executeCommand(application, command, args, options = {}) {
       return application.crawl({
         queries: options.query,
         categoryUrls: options.categoryUrl,
+        categoryOnly: options.categoryOnly,
+        searchSort: options.searchSort,
         maxPages: options.maxPages,
         maxProducts: options.maxProducts,
         refresh: options.refresh,

@@ -3,6 +3,7 @@ import { extractPage, classifyPage } from './browser.js';
 import { parsePrice } from './nutrition.js';
 import { resolvePageDialogs } from './page-dialogs.js';
 import { storeViewport } from './page-capture.js';
+import { waitForPageReady } from './page-readiness.js';
 
 // Lazada's product-page estimate describes one selected package. Its quantity
 // picker does not establish a checkout freight quote for a bulk order.
@@ -40,12 +41,13 @@ export async function captureDelivery(
         });
         const page = collector.commander.page;
         await page.waitForTimeout(collector.settleMs);
-        await resolvePageDialogs(page);
+        await waitForPageReady(page);
         let snapshot = await page.evaluate(extractPage);
         if (classifyPage(snapshot) !== 'ok') {
           throw new Error(`Delivery stopped: ${classifyPage(snapshot)}`);
         }
         await collector.selectRequestedVariant(url, snapshot);
+        await waitForPageReady(page);
         if (await page.locator('.popup-btn-over').isVisible()) {
           await page.locator('.popup-btn-over').click({ timeout: 5000 });
         }
@@ -71,6 +73,7 @@ export async function captureDelivery(
           })
           .click({ timeout: 5000 });
         await page.waitForTimeout(1500);
+        await resolvePageDialogs(page);
         const address = (
           await page
             .locator('.location-v2__address, .location__address')

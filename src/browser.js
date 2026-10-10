@@ -739,9 +739,10 @@ export class BrowserCollector {
 
   async selectRequestedVariant(url, snapshot) {
     const parsed = new URL(url);
-    const requested =
+    const requestedValue =
       parsed.searchParams.get('skuId') ||
       parsed.pathname.match(/-s(\d+)\.html$/u)?.[1];
+    const requested = requestedValue?.split('_VNAMZ-').at(-1);
     if (
       !requested ||
       String(snapshot.sku || '')
@@ -750,7 +751,9 @@ export class BrowserCollector {
     ) {
       return;
     }
-    const target = snapshot.skuCatalog?.find((sku) => sku.sku === requested);
+    const target = snapshot.skuCatalog?.find(
+      (sku) => String(sku.sku).split('_VNAMZ-').at(-1) === requested
+    );
     if (!target) {
       throw new Error(
         'Requested SKU is absent from the observed variant inventory'

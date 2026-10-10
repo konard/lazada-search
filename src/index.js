@@ -14,6 +14,7 @@ export {
   volumeMillilitres,
 } from './nutrition.js';
 export { calculateOffer, compareOffers } from './compare.js';
+export { productFlavour, matchesFlavourScope } from './flavour-scope.js';
 export { createTelegramBot } from './telegram.js';
 export { startServer } from './server.js';
 export { importSession, sessionSources } from './session.js';

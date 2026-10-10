@@ -1,6 +1,7 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { positive } from './util.js';
+import { catalogProducts } from './catalog-products.js';
 
 export function apiComparisonOptions(params) {
   const options = {};
@@ -21,6 +22,7 @@ export function apiComparisonOptions(params) {
   for (const field of [
     'category',
     'proteinType',
+    'flavourScope',
     'currency',
     'sort',
     'deliveryArea',
@@ -63,7 +65,7 @@ export async function startServer({ application, port = 8080 } = {}) {
           apiComparisonOptions(url.searchParams)
         );
       } else if (url.pathname === '/api/products') {
-        result = await application.store.list('product');
+        result = await catalogProducts(application.store);
       } else if (url.pathname === '/api/coverage') {
         result = await application.audit();
       } else if (url.pathname === '/api/evidence') {

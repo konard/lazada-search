@@ -159,6 +159,7 @@ export interface Offer {
   supersededBy?: string;
 }
 export interface ComparisonOptions {
+  flavourScope?: 'all' | 'chocolate-or-unflavoured';
   category?: Category;
   proteinType?: ProteinType;
   quantity?: number;
@@ -227,6 +228,7 @@ export interface Metrics {
   shippingDestination: string | null;
 }
 export interface ComparisonRow {
+  observationConflicts?: string[];
   product: Product;
   offer: Offer;
   metrics: Metrics;
@@ -235,6 +237,11 @@ export interface ComparisonRow {
   problems: string[];
 }
 export interface ComparisonReport {
+  duplicateObservations: Array<{
+    skuKey: string;
+    selectedOfferId: string;
+    offerIds: string[];
+  }>;
   comparisons: ComparisonRow[];
   observedPrices: ComparisonRow[];
   unsortable: ComparisonRow[];
@@ -542,6 +549,7 @@ export declare class NativeLinkStore {
 }
 export declare class LazadaSearch {
   constructor(options?: {
+    flavourScope?: ComparisonOptions['flavourScope'];
     store?: AssociativeStore;
     cache?: EvidenceCache;
     collector?: BrowserCollector;
@@ -591,6 +599,8 @@ export declare class LazadaSearch {
     discoveryOnly?: boolean;
     queries?: string[];
     categoryUrls?: string[];
+    categoryOnly?: boolean;
+    searchSort?: 'default' | 'priceasc' | 'pricedesc';
     maxPages?: number;
     maxProducts?: number;
     refresh?: boolean;
@@ -706,6 +716,13 @@ export declare function compareOffers(
   offers: Offer[],
   options?: ComparisonOptions
 ): ComparisonReport;
+export declare function productFlavour(
+  product: Product
+): 'chocolate' | 'unflavoured' | 'other' | 'unknown';
+export declare function matchesFlavourScope(
+  product: Product,
+  scope?: ComparisonOptions['flavourScope']
+): boolean;
 export declare function createTelegramBot(options: {
   application: LazadaSearch;
   token: string;

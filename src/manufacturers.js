@@ -96,8 +96,11 @@ export const MANUFACTURERS = [
   {
     name: 'California Gold Nutrition',
     aliases: ['california gold nutrition'],
-    domains: ['californiagoldnutrition.com'],
-    url: 'https://www.californiagoldnutrition.com/collections/whey-protein',
+    // iHerb identifies CGN as its house brand; this authority applies only to
+    // CGN candidates, not other manufacturers sold by the same retailer.
+    // https://corporate.iherb.com/iherb-introduces-california-gold-nutrition-beauty/
+    domains: ['californiagoldnutrition.com', 'iherb.com', 'mu.iherb.com'],
+    url: 'https://www.iherb.com/c/california-gold-nutrition',
   },
   {
     name: 'SEEQ',
@@ -145,7 +148,7 @@ function candidateUrl(entry, product) {
     selected.includes('dark chocolate') &&
     product.netMassG === 907
   ) {
-    return 'https://www.californiagoldnutrition.com/products/california-gold-nutrition-sport-whey-protein-isolate-dark-chocolate-2-lb-907-g-82696';
+    return 'https://www.iherb.com/pr/california-gold-nutrition-sport-whey-protein-isolate-dark-chocolate-2-lb-907-g/82696';
   }
   if (entry.name === 'Clean Simple Eats' && selected.includes('coconut')) {
     return 'https://cleansimpleeats.com/products/coconut-protein-powder';

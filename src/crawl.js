@@ -21,6 +21,73 @@ function assertSearchPage(url, metadata) {
   }
 }
 
+function sortedUrl(value, sort) {
+  const url = new URL(value);
+  if (sort && sort !== 'default') {
+    url.searchParams.set('sort', sort);
+  }
+  return canonicalUrl(url.href);
+}
+
+function assertCategoryPage(source, finalUrl) {
+  if (source.type !== 'category' || !finalUrl) {
+    return;
+  }
+  const expected = new URL(source.url);
+  const actual = new URL(finalUrl);
+  if (
+    actual.hostname !== expected.hostname ||
+    actual.pathname.replace(/\/+$/u, '') !==
+      expected.pathname.replace(/\/+$/u, '')
+  ) {
+    throw new Error(
+      `Category scope mismatch at ${actual.pathname}; review the redirect before continuing`
+    );
+  }
+}
+
+function crawlSources(app, queries, categoryUrls, searchSort) {
+  if (!['default', 'priceasc', 'pricedesc'].includes(searchSort)) {
+    throw new Error('Unsupported search sort');
+  }
+  return [
+    ...queries.map((query) => ({
+      query,
+      url: sortedUrl(
+        `https://${app.host}/catalog/?q=${encodeURIComponent(query)}`,
+        searchSort
+      ),
+      type: 'keyword',
+    })),
+    ...categoryUrls.map((url) => {
+      app.assertMarket(url);
+      const canonical = sortedUrl(url, searchSort);
+      return {
+        query: `category:${canonical}`,
+        url: canonical,
+        type: 'category',
+      };
+    }),
+  ];
+}
+
+function selectListings(queryQueues, knownUrls, limit) {
+  const selected = [];
+  for (const revisit of [false, true]) {
+    const queues = queryQueues.map((queue) =>
+      queue.filter((entry) => knownUrls.has(entry) === revisit)
+    );
+    for (let index = 0; selected.length < limit; index += 1) {
+      const round = queues.map((queue) => queue[index]).filter(Boolean);
+      if (!round.length) {
+        break;
+      }
+      selected.push(...round.slice(0, limit - selected.length));
+    }
+  }
+  return selected;
+}
+
 async function finishCrawl(
   app,
   report,
@@ -34,8 +101,7 @@ async function finishCrawl(
     report.scopes.every((scope) => scope.terminalConfirmed) &&
     report.failures.length === 0 &&
     report.uncollected === 0;
-  // Search results have no authoritative whole-market inventory. Exhausting
-  // their public pages cannot prove that hidden/unindexed listings are absent.
+  // Search pagination cannot establish whether unindexed listings exist.
   report.globalCoverage = 'unverifiable-with-public-search';
   report.stopReason = stopped
     ? 'challenge-or-login'
@@ -66,28 +132,14 @@ export async function crawlMarketplace(
     refresh = false,
     exhaustive = false,
     discoveryOnly = false,
+    searchSort = 'default',
   } = {}
 ) {
   positive(maxPages, 'maxPages', { integer: true });
   positive(maxProducts, 'maxProducts', { integer: true });
   const pageLimit = exhaustive ? Number.MAX_SAFE_INTEGER : maxPages;
   const productLimit = exhaustive ? Number.MAX_SAFE_INTEGER : maxProducts;
-  const sources = [
-    ...queries.map((query) => ({
-      query,
-      url: `https://${app.host}/catalog/?q=${encodeURIComponent(query)}`,
-      type: 'keyword',
-    })),
-    ...categoryUrls.map((url) => {
-      app.assertMarket(url);
-      const canonical = canonicalUrl(url);
-      return {
-        query: `category:${canonical}`,
-        url: canonical,
-        type: 'category',
-      };
-    }),
-  ];
+  const sources = crawlSources(app, queries, categoryUrls, searchSort);
   const report = {
     id: `crawl:${new Date().toISOString()}`,
     startedAt: new Date().toISOString(),
@@ -111,6 +163,7 @@ export async function crawlMarketplace(
     coverage: exhaustive ? 'public-search-exhaustion' : 'bounded-search',
     phase: 'discovery',
     discoveryOnly,
+    searchSort,
     complete: false,
     cache: {},
   };
@@ -120,7 +173,8 @@ export async function crawlMarketplace(
   );
   const queryQueues = [];
   let stopped = false;
-  for (const { query, url: initialUrl } of sources) {
+  for (const source of sources) {
+    const { query, url: initialUrl } = source;
     const queue = [];
     queryQueues.push(queue);
     const scope = report.scopes.find((entry) => entry.query === query);
@@ -128,7 +182,7 @@ export async function crawlMarketplace(
     let url = initialUrl;
     const visited = new Set();
     for (let index = 0; index < pageLimit && !stopped; index += 1) {
-      url = canonicalUrl(url);
+      url = sortedUrl(url, searchSort);
       if (visited.has(url)) {
         scope.stopReason = 'pagination-loop';
         report.failures.push({
@@ -168,6 +222,7 @@ export async function crawlMarketplace(
           stopped = ['challenge', 'login', 'app-only'].includes(page.status);
           break;
         }
+        assertCategoryPage(source, page.snapshot.url);
         assertSearchPage(url, metadata);
         for (const card of page.snapshot.cards || []) {
           let productUrl;
@@ -246,19 +301,7 @@ export async function crawlMarketplace(
     report.scopes.length === sources.length &&
     report.scopes.every((scope) => scope.terminalConfirmed) &&
     report.failures.length === 0;
-  const selected = [];
-  for (const revisit of [false, true]) {
-    const queues = queryQueues.map((queue) =>
-      queue.filter((entry) => knownUrls.has(entry) === revisit)
-    );
-    for (let index = 0; selected.length < productLimit; index += 1) {
-      const round = queues.map((queue) => queue[index]).filter(Boolean);
-      if (!round.length) {
-        break;
-      }
-      selected.push(...round.slice(0, productLimit - selected.length));
-    }
-  }
+  const selected = selectListings(queryQueues, knownUrls, productLimit);
   if (!stopped && report.discoveryComplete && !discoveryOnly) {
     report.phase = 'details';
     for (const url of selected) {

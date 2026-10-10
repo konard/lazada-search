@@ -58,6 +58,7 @@ export async function runCli(
         scheduler: new DomainScheduler({ intervalMs: options.intervalMs }),
         market: options.market,
         deliveryArea: options.deliveryArea,
+        flavourScope: options.flavourScope,
         maxImages: options.maxImages,
         offline: options.offline,
         ocr: options.ocr

@@ -1,3 +1,5 @@
+import { ingredientFlags, proteinTypeOf } from './nutrition.js';
+
 export const REQUIRED_SPEC_FIELDS = [
   'netMassG',
   'proteinPer100g',
@@ -91,5 +93,12 @@ export function reconcileManufacturer(product, manufacturer, check) {
         .map((claim) => claim.field),
     ]),
   ];
+  refreshIngredientFields(updated);
   return updated;
+}
+
+function refreshIngredientFields(product) {
+  const ingredients = product.ingredients || [];
+  product.proteinType = proteinTypeOf(ingredients, product.category);
+  product.ingredientFlags = ingredientFlags(ingredients);
 }

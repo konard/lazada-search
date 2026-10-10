@@ -1,5 +1,7 @@
 import { positive } from './values.js';
 import { specificationProblems } from './verification.js';
+import { matchesFlavourScope } from './flavour-scope.js';
+import { uniqueComparisons } from './comparison-observations.js';
 
 function evidenceProblem(product, field) {
   if (
@@ -224,6 +226,12 @@ export function calculateOffer(product, offer, options = {}) {
 }
 
 export function compareOffers(products, offers, options = {}) {
+  if (
+    options.flavourScope &&
+    !['all', 'chocolate-or-unflavoured'].includes(options.flavourScope)
+  ) {
+    throw new Error('Unsupported flavour scope');
+  }
   const currency = options.currency || offers[0]?.currency;
   for (const field of ['minProtein', 'maxSugar', 'maxPriceAgeMs']) {
     if (options[field] !== undefined) {
@@ -231,11 +239,12 @@ export function compareOffers(products, offers, options = {}) {
     }
   }
   const byId = new Map(products.map((product) => [product.id, product]));
-  const results = [];
+  const observations = [];
   for (const offer of offers) {
     const product = byId.get(offer.productId);
     if (
       !product ||
+      !matchesFlavourScope(product, options.flavourScope) ||
       (options.category && product.category !== options.category) ||
       (options.proteinType && product.proteinType !== options.proteinType)
     ) {
@@ -268,8 +277,10 @@ export function compareOffers(products, offers, options = {}) {
     if (options.excludeIngredients?.length && !product.ingredients?.length) {
       continue;
     }
-    results.push(calculateOffer(product, offer, { ...options, currency }));
+    observations.push(calculateOffer(product, offer, { ...options, currency }));
   }
+  const { comparisons: results, duplicateObservations } =
+    uniqueComparisons(observations);
   const sort = options.sort || 'costPerProteinG';
   if (
     ![
@@ -327,6 +338,7 @@ export function compareOffers(products, offers, options = {}) {
   );
   return {
     comparisons: results,
+    duplicateObservations,
     observedPrices,
     unsortable: results.filter((row) => !observedPrices.includes(row)),
     ranked: results.filter((result) => result.eligible),
@@ -347,6 +359,7 @@ export function compareOffers(products, offers, options = {}) {
       requireShipping: options.requireShipping !== false,
       requireManufacturer: options.requireManufacturer !== false,
       sort,
+      flavourScope: options.flavourScope || 'all',
       discountScope:
         'Fixed amount per order, subtracted once; no assumed volume-to-mass conversion',
     },

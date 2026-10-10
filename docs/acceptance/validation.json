@@ -1,25 +1,43 @@
 {
-  "validatedAt": "2026-10-10T12:32:40.575Z",
+  "validatedAt": "2026-10-10T15:01:50.028Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 680,
-    "pass": 680,
+    "tests": 703,
+    "pass": 703,
     "fail": 0,
     "skipped": 0,
-    "fileTimeoutMs": 300000
+    "fileTimeoutMs": 300000,
+    "lastFullRunDependency": "browser-commander@0.28.0"
   },
   "e2e": {
-    "tests": 15,
-    "pass": 15,
+    "tests": 16,
+    "pass": 16,
     "fail": 0,
     "skipped": 0,
-    "nativeStore": "All fifteen E2E checks passed in one run with the real local clink executable, including Telegram, CLI, browser capture and persistent-window behavior. Delivery viewport evidence was rechecked separately after applying the same capture workaround.",
-    "lastFullRunValidatedAt": "2026-10-10T12:12:37.005Z"
+    "nativeStore": "All sixteen E2E checks passed with the real local clink executable, including library, CLI, HTTP, Telegram, strict flavours, browser capture and persistent-window behavior.",
+    "lastFullRunDependency": "browser-commander@0.27.0",
+    "latestDependencyTargeted": {
+      "version": "0.28.0",
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "checks": [
+        "capture-timeout",
+        "category pagination, no price cutoff and offline CLI/Telegram replay",
+        "animated page scrolling",
+        "persistent browser window"
+      ],
+      "finalCategoryRecheck": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0
+      }
+    }
   },
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.42%, threshold 10%)",
+    "duplication": "passed (7.32%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -27,11 +45,11 @@
   "cachedAudit": {
     "browserStarts": 0,
     "downloads": 0,
-    "missingListings": 1518,
+    "missingListings": 1637,
     "missingSkuPrices": 221,
-    "manufacturerVerified": 13,
-    "unfinishedSearches": 12,
-    "unclassifiedObservations": 1069
+    "manufacturerVerified": 16,
+    "unfinishedSearches": 10,
+    "unclassifiedObservations": 5970
   },
   "manualPageReviews": 32,
   "additionalSkuCaptures": {
@@ -43,33 +61,34 @@
   "committedCatalogReplay": {
     "networkRequests": 0,
     "preservesProductAndSkuCoverageGaps": true,
-    "sortableObservedFoodPrices": 149,
+    "sortableObservedFoodPrices": 143,
     "reusesSourcesUntilExplicitRefreshOrInvalidation": true,
-    "originalPriceTimestampsPreserved": true
+    "originalPriceTimestampsPreserved": true,
+    "canonicalSelectedSkuObservations": 190
   },
   "productionReady": false,
-  "reason": "Initial discovery remains in progress: 1518 discovered listings and 221 known individual SKU prices await collection. Exact manufacturer specifications exist for thirteen selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
+  "reason": "Exact manufacturer specifications exist for sixteen selected SKUs. The historical public catalog retains 1637 missing listings and221 missing SKU prices. Category-only discovery is active with no package-price cutoff. Bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
   "repositoryArchive": {
     "valid": true,
-    "records": 12955,
-    "blobs": 3562,
+    "records": 19323,
+    "blobs": 3720,
     "downloads": 0,
-    "manifestSha256": "140d21a8ecdefd5d4f6c6db51773e39d44a3fd2b7485cc875ebae3d2d9b1097e",
-    "htmlCapturesReExtracted": 288,
+    "manifestSha256": "e6b33d6ad2c9791a5a57f62803ba6e4886842257c147eb31fa89ed8a2ed464a7",
     "originalPriceSelectionAndSkuInventoriesPreserved": true,
-    "unchangedExport": {
-      "reused": 3619,
-      "rebuilt": 0,
+    "sourceAndConversionValidation": "passed",
+    "lastExport": {
+      "reused": 3585,
+      "rebuilt": 192,
       "downloads": 0
     }
   },
   "authenticatedPublication": {
-    "published": 130,
+    "published": 132,
     "rejected": 3,
     "manualVisualReview": false,
     "privateAccountScreenshotsPublished": 0,
     "downloads": 0,
-    "searchPages": 72
+    "searchPages": 219
   },
   "savedExtractionAudit": {
     "distinctCaptures": 142,
@@ -88,11 +107,30 @@
         "protein": 83,
         "iceCreamEach": 46
       },
-      "categoryPaginationAndTelegramE2E": "passed"
+      "categoryPaginationAndTelegramE2E": "passed",
+      "categoryOnlySortingNoPriceCutoffUnit": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0
+      }
     },
-    "committedSearchPagesReExtracted": 72,
+    "committedSearchPagesReExtracted": 219,
     "completedWheyProteinPages": 61,
-    "manualLastPagePricesChecked": 16
+    "manualLastPagePricesChecked": 16,
+    "completedWheyIsolatePages": 80,
+    "completedProteinPowderPages": 77,
+    "activeCase": {
+      "categoryOnly": true,
+      "sort": "priceasc",
+      "minimumPackagePrice": null,
+      "maximumPackagePrice": null,
+      "brandFilter": null,
+      "ratingFilter": null,
+      "sellerLocationFilter": null,
+      "promotionFilter": null,
+      "categoryRedirectGuard": true,
+      "detailsGatedOnAllLists": true
+    }
   },
   "animatedScrolling": {
     "lastProductRowAndPagerVisible": true,
@@ -156,7 +194,7 @@
     "conflictingClaimsPreserved": true,
     "newerPrivateReviewWins": true,
     "quarantinePolicyAppliedInAuditAndComparison": true,
-    "exactFactoryVerified": 13,
+    "exactFactoryVerified": 16,
     "downloads": 0,
     "e2eRechecked": {
       "tests": 6,
@@ -164,5 +202,17 @@
       "fail": 0,
       "explicitTwoSkuFixtureRechecked": true
     }
+  },
+  "finalCommittedCaseRecheck": {
+    "tests": 46,
+    "pass": 46,
+    "fail": 0,
+    "downloads": 0
+  },
+  "bulkArithmeticRecheck": {
+    "selectedSkuObservations": 190,
+    "quantityScenarios": 950,
+    "pass": true,
+    "downloads": 0
   }
 }

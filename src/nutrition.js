@@ -1,4 +1,4 @@
-import { fold, normalizeText } from './util.js';
+import { fold, normalizeText } from './text.js';
 
 export function parseDecimal(value) {
   const raw = String(value).replace(/[^\d.,-]/gu, '');
@@ -41,6 +41,9 @@ export function massGrams(value) {
       ) &&
       !/^\s*(?:protein|sugar|fat|đạm|đường|chất béo)/iu.test(
         text.slice(entry.index + entry[0].length)
+      ) &&
+      !/^\s*whey\s+(?:protein\s+)?(?:isolate|concentrate)\s*(?:moi\s+lan\s+dung|moi\s+khau\s+phan|per\s+serving|each\s+serving)\b/u.test(
+        fold(text.slice(entry.index + entry[0].length))
       )
   );
   if (!match) {
@@ -237,7 +240,9 @@ export function extractNutrition(text) {
     excerpts.netVolumeMl = netVolume[0];
   }
   const ingredientLine = [
-    ...text.matchAll(/(?:ingredients?|thành phần)[ \t]*(?::|\n)\s*([^\n]+)/giu),
+    ...text.matchAll(
+      /(?:^|\n)[ \t]*(?:ingredients?|thành phần)[ \t]*(?::|\n)\s*([^\n]+)/giu
+    ),
   ].find(
     (entry) =>
       !/^(?:allergy|nutrition|how to use|directions|thành phần|ingredients?)\s*$/iu.test(

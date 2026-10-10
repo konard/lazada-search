@@ -426,6 +426,7 @@ export async function exportRepositoryArchive({
     if (
       value &&
       typeof value === 'object' &&
+      typeof value.id !== 'string' &&
       /^[a-f\d]{64}$/u.test(value.sha256) &&
       Number.isSafeInteger(value.bytes)
     ) {

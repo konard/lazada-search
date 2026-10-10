@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import {
@@ -11,6 +11,36 @@ import {
 } from '../src/index.js';
 import { mergeSharedManufacturerReview } from '../src/catalog-products.js';
 import { listingKey } from '../src/util.js';
+
+test('corrected ingredients recompute isolate and allergen filters without changing raw observations', async (t) => {
+  const directory = await mkdtemp(
+    join(tmpdir(), 'lazada-derived-ingredients-')
+  );
+  const store = new AssociativeStore({ directory });
+  const fixture = JSON.parse(
+    await readFile(new URL('./fixtures/products.json', import.meta.url), 'utf8')
+  );
+  const product = {
+    ...fixture.products[0],
+    proteinType: 'unknown',
+    ingredientFlags: { milk: false, soy: true },
+  };
+  const offer = { ...fixture.offers[0], observedAt: new Date().toISOString() };
+  const app = new LazadaSearch({ store, offline: true, ocr: false });
+  t.after(async () => {
+    await app.close();
+    await rm(directory, { recursive: true, force: true });
+  });
+  await app.importRecords({ products: [product], offers: [offer] });
+  await store.put('product', product);
+  const report = await app.compare({ proteinType: 'isolate' });
+  assert.equal(report.comparisons.length, 1);
+  assert.equal(report.comparisons[0].product.proteinType, 'isolate');
+  assert.equal(report.comparisons[0].product.ingredientFlags.milk, true);
+  assert.equal(report.comparisons[0].product.ingredientFlags.soy, false);
+  assert.equal((await store.get('product', product.id)).proteinType, 'unknown');
+  assert.equal(app.cache.stats.downloads, 0);
+});
 
 const archive = new RepositoryArchive({
   directory: 'data/cases/vietnam-nha-trang',

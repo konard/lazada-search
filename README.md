@@ -2,7 +2,7 @@
 
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
-[Published catalog tables](docs/tables/README.md) include every captured candidate, manufacturer-source leads, missing listings, missing SKU prices, delivery arithmetic and manual screenshot reviews. **149 confirmed selected-SKU food prices are captured: 125 protein powders and 24 chocolate ice-cream candidates. Thirteen selected SKUs have exact manufacturer specifications. The separate preliminary listing inventory contains 2,798 distinct observed listings; the 61-page whey search is archived, and remaining discovery continues before further product-page collection. Collection, current stock and bulk freight remain incomplete.** The [verified comparison](docs/tables/verified-comparison.md) recalculates food and protein costs using the corrected factory facts.
+[The strict-flavour shopping table](docs/tables/shopping-shortlist.md) compares unflavoured or chocolate powders and chocolate-core ice cream, with exact selected-SKU links, sale prices and before/after delivery costs. Two unflavoured IT’S JUST 5 lb options have fresh 10.10 prices, exact manufacturer labels and one-container Nha Trang freight. The [complete catalog tables](docs/tables/README.md) retain captured candidates, rejected flavours, manufacturer-source leads, missing prices and manual screenshot reviews. Exhaustive discovery continues before the remaining product-page collection; bulk freight, frozen delivery and whole-market completeness remain unresolved. The [verified comparison](docs/tables/verified-comparison.md) recalculates costs using corrected factory facts.
 
 [Captured prices sorted cheapest first](docs/tables/known-prices.md) remain usable while other fields await verification. The [complete public evidence archive](data/cases/vietnam-nha-trang/README.md) is committed with the case, including source snapshots, HTML, images, OCR, correction histories, `.lino` and binary conversions. A fresh checkout can replay it without website requests.
 
@@ -19,14 +19,18 @@ npx playwright install chromium
 # Ubuntu: sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
 cp .lenv.example .lenv
 node bin/lazada-search.js compare --offline --no-ocr --allow-stale --sort totalBeforeDelivery
-node bin/lazada-search.js discover --exhaustive
-node bin/lazada-search.js crawl --exhaustive
-node bin/lazada-search.js compare --category whey --quantity 10
-node bin/lazada-search.js compare --category chocolate-ice-cream --quantity 10
+node bin/lazada-search.js discover --configuration data/cases/vietnam-nha-trang/preferences.lenv --exhaustive
+node bin/lazada-search.js crawl --configuration data/cases/vietnam-nha-trang/preferences.lenv --exhaustive
+node bin/lazada-search.js compare --configuration data/cases/vietnam-nha-trang/preferences.lenv --category whey --quantity 10
+node bin/lazada-search.js compare --configuration data/cases/vietnam-nha-trang/preferences.lenv --category chocolate-ice-cream --quantity 10
 node bin/lazada-search.js serve
 ```
 
 Open `http://127.0.0.1:8080` to change quantity, shipping, discounts and nutrition filters. Calculations read the current store on every request. Collected and imported fixture data are kept separate; the tool never seeds fictional products into your shopping database.
+
+The committed Nha Trang preferences collect actual protein and ice-cream categories with `--category-only --search-sort priceasc`. Keyword searches that can redirect to unrelated tag pages are skipped. Every category page is collected before product details; unexpected category redirects stop that scope for review. `--search-sort pricedesc` reverses collection order, and `default` uses Lazada's default order. Pagination preserves the requested sort.
+
+Collection has no minimum or maximum package-price cutoff. An expensive container or multipack can be cheaper per gram after quantity discounts, so every package price remains discoverable. Brand, rating, seller-location and promotion filters stay unset for the complete scan. For a focused scan, supply an exact category URL with the desired site filters using `--category-url`. Promotion badges are saved as conditions; advertised savings become calculated discounts only when eligibility and the selected quantity are confirmed.
 
 A public-page crawl works without `--session-from`. When an existing session is accessible, `--session-from auto` uses Browser Commander's domain-scoped import into a dedicated automation profile. You can choose `chrome`, `firefox`, `yandex` or `safari` and `--session-profile NAME`. Session contents stay local and are excluded from graph exports. `sessions` reports only availability, counts and access errors. A cookie count does **not** prove authentication. Safari files may require macOS Full Disk Access. If an existing debugging browser is available, `--cdp-url http://127.0.0.1:9222` collects in a new tab in its existing context. The original tabs remain open.
 
@@ -76,6 +80,9 @@ CLI options override environment defaults and `.lenv` configuration through [lin
 | `LAZADA_ARCHIVE_DIR`        | `data/cases/vietnam-nha-trang` | Committed public case fallback             |
 | `LAZADA_MARKET`             | `vn`                           | Also supports `th`, `sg`, `my`, `ph`, `id` |
 | `LAZADA_DELIVERY_AREA`      | `Nha Trang`                    | Delivery context for page cache            |
+| `LAZADA_CATEGORY_ONLY`      | `false`                        | Skip keywords and scan actual categories   |
+| `LAZADA_SEARCH_SORT`        | `default`                      | `default`, `priceasc` or `pricedesc`       |
+| `LAZADA_FLAVOUR_SCOPE`      | `all`                          | Case preferences use plain/chocolate       |
 | `LAZADA_SESSION_FROM`       | empty                          | Optional existing browser session          |
 | `LAZADA_BROWSER_EXECUTABLE` | auto                           | Browser Commander executable selection     |
 | `LAZADA_CDP_URL`            | empty                          | Optional running browser endpoint          |
@@ -166,9 +173,15 @@ const app = new LazadaSearch({
   store: new AssociativeStore({ directory: '.lazada-search' }),
   market: 'vn',
   deliveryArea: 'Nha Trang',
+  flavourScope: 'chocolate-or-unflavoured',
 });
 try {
-  await app.crawl({ maxPages: 5, maxProducts: 100 });
+  await app.crawl({
+    categoryOnly: true,
+    searchSort: 'priceasc',
+    maxPages: 5,
+    maxProducts: 100,
+  });
   const result = await app.compare({ category: 'whey', quantity: 10 });
   console.log(result.ranked, result.excluded, result.bestByCategory);
 } finally {
@@ -198,7 +211,7 @@ Native shards live under `.lazada-search/.native/`; `data.links` is the binary a
 ```bash
 export TELEGRAM_BOT_TOKEN='your-BotFather-token'
 export TELEGRAM_ALLOWED_USER_IDS='your-numeric-user-id'
-node bin/lazada-search.js bot
+node bin/lazada-search.js bot --configuration data/cases/vietnam-nha-trang/preferences.lenv
 ```
 
 Private-chat commands: `/crawl`, `/collect URL`, `/compare`, `/inspect KIND ID`, `/verify ID URL`, `/review ID FIELD VALUE EVIDENCE_ID`, `/quote OFFER_ID JSON`, `/help`. Options match the CLI. Quote whitespace-bearing strings with single quotes, including JSON objects. The bot requires an explicit allowlist, ignores other users and group chats, serializes work and uses plain-text replies. No production messages are sent by the test suite.

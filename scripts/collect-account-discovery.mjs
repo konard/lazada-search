@@ -45,6 +45,8 @@ try {
   const report = await app.crawl({
     queries: options.query,
     categoryUrls: options.categoryUrl,
+    categoryOnly: options.categoryOnly,
+    searchSort: options.searchSort,
     exhaustive: true,
     discoveryOnly: true,
     refresh: options.refresh,

@@ -1,0 +1,210 @@
+{
+  "id": "strict-ice-review:new-category-first-page-candidates",
+  "reviewedAt": "2026-10-10",
+  "status": "discovery-conflicts-pending-exact-labels",
+  "sourceMode": "public-indexed-source-extracts-and-manufacturer-pages",
+  "lazadaRequests": 0,
+  "sharedProductWrites": 0,
+  "priceWrites": 0,
+  "manufacturerReviewsApplied": 0,
+  "scope": "Strict chocolate core; exclude vanilla cores, mixed flavours, nuts and snacks",
+  "reviews": [
+    {
+      "candidate": "King's Heavenly Bites",
+      "gtinClaim": "8853815004808",
+      "recommendation": "Exclude pending original label: direct seller describes vanilla ice cream with chocolate coating",
+      "criticalQuantityCorrection": "One selling tray is claimed to total 60ml and contains five small bites. It is not five 60ml portions. A combo of five trays would instead total 300ml if the selected option and actual package label confirm it.",
+      "preliminaryArithmeticFromRootObservedPrice": {
+        "unitPriceVnd": 20000,
+        "oneTrayClaimedVolumeMl": 60,
+        "vndPerMlBeforeShipping": 333.3333333333333,
+        "incorrectFivefoldVolumeMl": 300,
+        "incorrectVndPerMl": 66.66666666666667,
+        "requiresExactSelectedSku": true,
+        "shippingUnverified": true
+      },
+      "sellerSource": {
+        "url": "https://kimphuc.net/kem-vien-socola-king-s-heavenly-bites-thai-lan-60ml",
+        "sourceAuthority": "direct-retailer",
+        "retrieval": "indexed public page extract",
+        "claims": [
+          "60ml per package of five bites; 30 packages per carton",
+          "Vanilla ice-cream core with a chocolate shell",
+          "Express ice-cream delivery limited to Ho Chi Minh City",
+          "The page also says Chocolate Almond elsewhere; exact flavour consistency requires a label"
+        ]
+      },
+      "manufacturerRelatedSource": {
+        "url": "https://magnoliaicecreamth.com/productsub.aspx?rp=1",
+        "sourceAuthority": "F&N United manufacturer",
+        "productName": "Magnolia Magic Bite",
+        "excerpt": "ไอศกรีมรสวานิลลา เคลือบช็อกโกแลต หนา กรอบ อร่อยชิ้นพอดีคำ 5 ชิ้น",
+        "translation": "Vanilla ice cream coated with thick crunchy chocolate; five bite-size pieces",
+        "exactHeavenlyBitesIdentityMatched": false,
+        "limitation": "Same manufacturer publishes a five-piece vanilla-core product, but export King's Heavenly Bites identity and volume require its own package label"
+      },
+      "requiredEvidence": [
+        "Exact export Heavenly Bites package front and back, GTIN and net quantity",
+        "Actual selected selling option: one tray versus five trays",
+        "Exact core flavour, ingredients and nutrition",
+        "Destination-specific frozen delivery if an eligible flavour is later demonstrated"
+      ]
+    },
+    {
+      "candidate": "Merino Yeah cacao chocolate 68g",
+      "gtinClaim": "8936011775403",
+      "recommendation": "Exclude nut-containing line from current strict scope when the actual selected package confirms peanut inclusion; preserve all prices",
+      "criticalSpecificationConflict": "Sources give incompatible chocolate/cocoa percentages, milk descriptions and some package masses. They must not be merged into one verified formulation.",
+      "sources": [
+        {
+          "url": "https://aeoneshop.com/product/35144/kido-kem-que-merino-yeah-cacao-68g",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "netMassGClaim": 68,
+          "chocolatePercentClaim": 7.6,
+          "cocoaPercentClaim": 0.7,
+          "ingredientsClaim": [
+            "Water",
+            "Sugar",
+            "Chocolate 7.6%",
+            "Milk",
+            "Vegetable oil",
+            "Cocoa powder 0.7%",
+            "Peanuts",
+            "Stabilisers E410, E412, E407",
+            "Emulsifier E471",
+            "Milk cream flavour",
+            "Food colouring"
+          ]
+        },
+        {
+          "url": "https://ahihimart.com/products/kem-merino-yeah-cacao-socola-dau-phong-68g",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "netMassGClaim": 68,
+          "chocolatePercentClaim": 15,
+          "cocoaPercentClaim": 1.9,
+          "ingredientsClaim": [
+            "Water",
+            "Chocolate 15%",
+            "Sugar",
+            "Milk powder",
+            "Glucose syrup",
+            "Vegetable oil",
+            "Cocoa powder 1.9%",
+            "Peanuts",
+            "Stabilisers"
+          ]
+        },
+        {
+          "url": "https://tomkhotucuc.com/kem-merino-yeah-cacao-chocolate",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "gtinClaim": "8936011775403",
+          "titleMassGClaim": 60,
+          "descriptionMassGClaim": 68,
+          "chocolatePercentClaim": 15,
+          "cocoaPercentClaim": 1.9,
+          "containsPeanutsClaim": true
+        },
+        {
+          "url": "https://kimphuc.net/kem-merino-cacao-socola-68g",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "netMassGClaim": 68,
+          "cartonStickCountClaim": 30,
+          "frozenDeliveryAreaClaim": "Ho Chi Minh City express only"
+        }
+      ],
+      "exactManufacturerSpecificationFound": false,
+      "nutritionValuesVerified": false,
+      "requiredEvidence": [
+        "Current exact GTIN package front/back and quantity",
+        "Peanut inclusion and chocolate core confirmation",
+        "Current original ingredient percentages",
+        "Protein, sugar, saturated fat and complete nutrition panel"
+      ]
+    },
+    {
+      "candidate": "Merino Kool Cutie Bear milk chocolate 64g",
+      "gtinClaim": "8936011775908",
+      "recommendation": "Identity review before strict-core inclusion; milk-chocolate naming alone does not resolve mixed vanilla/white-chocolate portions",
+      "criticalSpecificationConflict": "The 64g family is also listed as 75ml; these quantities cannot be interconverted without an exact package identity. Indexed retailers describe white chocolate, vanilla flavour and conflicting ingredient detail.",
+      "sources": [
+        {
+          "url": "https://kimphuc.net/kem-merino-cutie-bear-gau-socola-sua-64g",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "gtinClaim": "8936011775908",
+          "netMassGClaim": 64,
+          "cartonStickCountClaim": 30,
+          "ingredientsIncompleteClaim": "Water, sugar, glucose syrup, chocolate, ...",
+          "frozenDeliveryAreaClaim": "Ho Chi Minh City express only"
+        },
+        {
+          "url": "https://huicungshop.com/kem-merino-que-cutie-bear-milky-chocolate-64g",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "netMassGClaim": 64,
+          "whiteChocolatePercentClaim": 10,
+          "ingredientsClaim": [
+            "Water",
+            "Sugar",
+            "Milk",
+            "Vegetable oil",
+            "White chocolate 10%",
+            "Cocoa powder",
+            "Emulsifier E471",
+            "Stabilisers E410, E412, E407",
+            "Chocolate flavour",
+            "Vanilla flavour",
+            "Condensed milk flavour",
+            "Food colours E110, E102, E122"
+          ]
+        },
+        {
+          "url": "https://kingfoodmart.com/kem-cay-kem-que-oc-que/kem-que-kool-cutie-bear-milky-socola-merino-hop-75ml-1-hop-72895",
+          "sourceAuthority": "direct-retailer",
+          "retrieval": "indexed public page extract",
+          "netVolumeMlClaim": 75,
+          "containsWhiteChocolateClaim": true,
+          "containsVanillaFlavourClaim": true
+        }
+      ],
+      "exactManufacturerSpecificationFound": false,
+      "nutritionValuesVerified": false,
+      "requiredEvidence": [
+        "Current exact GTIN package front/back and quantity",
+        "Evidence whether the core is chocolate throughout or mixed with vanilla",
+        "Protein, sugar, saturated fat and complete ingredients"
+      ]
+    },
+    {
+      "candidate": "Bliss Chocoholic chocolate hazelnut 473ml",
+      "recommendation": "Excluded manufacturer-documented lead: contains hazelnuts and is outside current strict scope",
+      "manufacturerSource": {
+        "url": "https://ngoinhadinhduong.com/products/kem-so-co-la-hat-phi-473ml",
+        "sourceAuthority": "official manufacturer retail site",
+        "netVolumeMl": 473,
+        "netMassG": 330,
+        "cocoaPercent": 8.81,
+        "hazelnutPercent": 4.03,
+        "manufacturer": "CÔNG TY CỔ PHẦN SẢN XUẤT KEM BLISS",
+        "nutritionPanelFound": false,
+        "frozenDeliveryToNhaTrangVerified": false
+      }
+    }
+  ],
+  "manufacturerAccessConstraints": [
+    {
+      "url": "https://ngoinhadinhduong.com/collections/kem-merino",
+      "outcome": "Official collection exposes zero products",
+      "cache": "source-cache.json"
+    },
+    {
+      "url": "http://kidofoods.vn/kem/merino",
+      "outcome": "Legacy endpoint redirects to HTTPS with expired certificate",
+      "cache": "targeted-source-cache.json"
+    }
+  ]
+}

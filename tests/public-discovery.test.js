@@ -123,4 +123,54 @@ test('public discovery retains every preliminary listing and pagination while re
     (await shared.get('discovery', 'preliminary-whey')).visibility,
     undefined
   );
+
+  // Publication compares serialized original HTML with redacted HTML.
+  await privateStore.put('cache', {
+    ...(await privateStore.get('cache', cacheId)),
+    snapshot: {
+      ...snapshot,
+      cards: snapshot.cards.map((card) => ({
+        ...card,
+        title: 'Earlier live loading placeholder',
+      })),
+    },
+  });
+  const replayed = await publishAccountDiscovery(app, privateStore);
+  assert.equal(replayed.published.length, 1);
+  assert.equal(replayed.rejected.length, 0);
+  assert.equal(replayed.published[0].extractionReprocessed, true);
+  assert.deepEqual(
+    (await shared.get('cache', cacheId)).snapshot.cards,
+    JSON.parse(JSON.stringify(snapshot.cards))
+  );
+  assert.equal(replayed.downloads, 0);
+});
+
+test('discovery publication still rejects redaction that changes a product card', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-card-redaction-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const shared = new AssociativeStore({ directory: join(directory, 'public') });
+  const source = new AssociativeStore({
+    directory: join(directory, 'private'),
+    visibility: 'private',
+  });
+  const app = new LazadaSearch({ store: shared, offline: true, ocr: false });
+  t.after(() => app.close());
+  const url = 'https://www.lazada.vn/catalog/?q=redaction';
+  const html =
+    '<div data-product-card><a href="/products/pdp-i303.html"><span id="myAccountTrigger">Private Customer</span></a><span data-card-price>300.000 ₫</span></div>';
+  await source.put('cache', {
+    id: `search:vn:Nha Trang:${url}`,
+    url,
+    status: 'ok',
+    snapshot: extractPage({ document: parseHTML(html).document, url }),
+    html: await source.putBlob(html),
+    fetchedAt: 1,
+  });
+  const report = await publishAccountDiscovery(app, source);
+  assert.equal(report.published.length, 0);
+  assert.equal(report.rejected.length, 1);
+  assert.match(report.rejected[0].reason, /Redaction changed search cards/u);
+  assert.equal((await shared.list('discovery-publication')).length, 0);
+  assert.equal(report.downloads, 0);
 });

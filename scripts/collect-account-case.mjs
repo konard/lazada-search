@@ -29,6 +29,9 @@ const collectionFlags = [
   '--ocr-languages',
   options.ocrLanguages,
   ...(options.ocr ? [] : ['--no-ocr']),
+  ...(options.categoryOnly ? ['--category-only'] : []),
+  '--search-sort',
+  options.searchSort,
 ];
 if (options.ocrDataDir) {
   collectionFlags.push('--ocr-data-dir', options.ocrDataDir);

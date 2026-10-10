@@ -11,6 +11,50 @@ const cards = (snapshot) =>
     sku,
   }));
 
+const samePage = (first, second) =>
+  JSON.stringify(cards(first)) === JSON.stringify(cards(second)) &&
+  JSON.stringify(first.searchCoverage) ===
+    JSON.stringify(second.searchCoverage);
+
+async function publicSnapshot(accountStore, capture) {
+  const originalHtml = (
+    await accountStore.blob(capture.html.sha256)
+  ).toString();
+  const html = sanitizePublicHtml(originalHtml);
+  const snapshot = extractPage({
+    document: parseHTML(html).document,
+    url: capture.snapshot.url,
+  });
+  if (samePage(snapshot, capture.snapshot)) {
+    return { html, snapshot, extractionReprocessed: false };
+  }
+  // Compare serialized source bytes when live innerText differs from textContent.
+  const original = extractPage({
+    document: parseHTML(originalHtml).document,
+    url: capture.snapshot.url,
+  });
+  if (!samePage(snapshot, original)) {
+    throw new Error('Redaction changed search cards or pagination evidence');
+  }
+  return { html, snapshot, extractionReprocessed: true };
+}
+
+async function publishedCaches(store) {
+  const valid = new Set();
+  for (const record of await store.list('discovery-publication')) {
+    const cached = await store.get('cache', record.cacheId);
+    if (
+      cached?.status === 'ok' &&
+      cached.repositoryReusable &&
+      cached.extractorVersion === EXTRACTOR_VERSION &&
+      cached.html?.sha256 === record.html.sha256
+    ) {
+      valid.add(record.cacheId);
+    }
+  }
+  return valid;
+}
+
 export async function publishAccountDiscovery(application, accountStore) {
   if (
     application.store.visibility !== 'public' ||
@@ -23,7 +67,7 @@ export async function publishAccountDiscovery(application, accountStore) {
   }
   const published = [];
   const rejected = [];
-  const validCaches = new Set();
+  const validCaches = await publishedCaches(application.store);
   for (const capture of (await accountStore.list('cache')).filter(
     (record) =>
       record.visibility === 'private' &&
@@ -32,21 +76,10 @@ export async function publishAccountDiscovery(application, accountStore) {
       record.html
   )) {
     try {
-      const html = sanitizePublicHtml(
-        (await accountStore.blob(capture.html.sha256)).toString()
+      const { html, snapshot, extractionReprocessed } = await publicSnapshot(
+        accountStore,
+        capture
       );
-      const { document } = parseHTML(html);
-      const snapshot = extractPage({ document, url: capture.snapshot.url });
-      if (
-        JSON.stringify(cards(snapshot)) !==
-          JSON.stringify(cards(capture.snapshot)) ||
-        JSON.stringify(snapshot.searchCoverage) !==
-          JSON.stringify(capture.snapshot.searchCoverage)
-      ) {
-        throw new Error(
-          'Redaction changed search cards or pagination evidence'
-        );
-      }
       const blob = await application.store.putBlob(Buffer.from(html));
       await application.store.put('cache', {
         id: capture.id,
@@ -71,6 +104,7 @@ export async function publishAccountDiscovery(application, accountStore) {
         observedAt: new Date(capture.fetchedAt).toISOString(),
         cards: snapshot.cards.length,
         scrolling: capture.scrolling,
+        ...(extractionReprocessed ? { extractionReprocessed: true } : {}),
         ...snapshot.searchCoverage,
       };
       published.push(

@@ -21,21 +21,21 @@ export const MARKETS = {
     host: 'www.lazada.vn',
     currency: 'VND',
     categoryUrls: [
-      'https://www.lazada.vn/protein/',
       'https://www.lazada.vn/bach-hoa-online-kem-cac-loai/',
       'https://www.lazada.vn/bach-hoa-online-kem-daua/',
+      'https://www.lazada.vn/protein/',
     ],
     queries: [
       'whey protein',
       'whey isolate',
       'protein powder',
-      'bột protein',
-      'casein protein',
-      'soy protein',
       'kem chocolate',
       'kem sô cô la',
       'kem socola',
       'chocolate ice cream',
+      'bột protein',
+      'casein protein',
+      'soy protein',
     ],
   },
   th: {
@@ -73,6 +73,7 @@ export class LazadaSearch {
     ocr,
     market = 'vn',
     deliveryArea = 'Nha Trang',
+    flavourScope = 'all',
     maxImages = 40,
     offline = false,
     browserOptions,
@@ -81,6 +82,9 @@ export class LazadaSearch {
   } = {}) {
     if (!MARKETS[market]) {
       throw new Error('Unsupported Lazada market');
+    }
+    if (!['all', 'chocolate-or-unflavoured'].includes(flavourScope)) {
+      throw new Error('Unsupported flavour scope');
     }
     positive(maxImages, 'maxImages', { zero: true, integer: true });
     this.store = store;
@@ -93,6 +97,7 @@ export class LazadaSearch {
     this.host = MARKETS[market].host;
     this.currency = MARKETS[market].currency;
     this.deliveryArea = deliveryArea;
+    this.flavourScope = flavourScope;
     this.maxImages = maxImages;
     this.manufacturerRegistry = manufacturerRegistry;
   }
@@ -412,10 +417,14 @@ export class LazadaSearch {
   async crawl(options = {}) {
     return await crawlMarketplace(this, {
       ...options,
-      queries: options.queries || MARKETS[this.market].queries,
+      queries: options.categoryOnly
+        ? []
+        : options.queries || MARKETS[this.market].queries,
       categoryUrls:
         options.categoryUrls ??
-        (options.queries ? [] : MARKETS[this.market].categoryUrls || []),
+        (options.queries && !options.categoryOnly
+          ? []
+          : MARKETS[this.market].categoryUrls || []),
     });
   }
 
@@ -694,6 +703,7 @@ export class LazadaSearch {
     return compareOffers(products, offers, {
       currency: MARKETS[this.market].currency,
       deliveryArea: this.deliveryArea,
+      flavourScope: this.flavourScope,
       ...options,
     });
   }
