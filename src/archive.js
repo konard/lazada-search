@@ -317,6 +317,17 @@ function publicArchiveTarget(store, directory) {
   return target;
 }
 
+function discardFailedPageData(record) {
+  delete record.html;
+  delete record.screenshot;
+  delete record.screenshots;
+  record.snapshot = {
+    url: record.url,
+    title: record.snapshot?.title || '',
+    rawText: `Collection stopped: ${record.status}`,
+  };
+}
+
 export async function exportRepositoryArchive({
   store,
   directory = DEFAULT_ARCHIVE,
@@ -481,13 +492,7 @@ export async function exportRepositoryArchive({
         record.status &&
         !['ok', 'unavailable'].includes(record.status)
       ) {
-        delete record.html;
-        delete record.screenshot;
-        record.snapshot = {
-          url: record.url,
-          title: record.snapshot?.title || '',
-          rawText: `Collection stopped: ${record.status}`,
-        };
+        discardFailedPageData(record);
       }
       if (kind === 'cache') {
         record.repositoryReusable = true;

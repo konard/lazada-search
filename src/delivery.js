@@ -2,6 +2,7 @@ import { canonicalUrl, sha256 } from './util.js';
 import { extractPage, classifyPage } from './browser.js';
 import { parsePrice } from './nutrition.js';
 import { resolvePageDialogs } from './page-dialogs.js';
+import { storeViewport } from './page-capture.js';
 
 // Lazada's product-page estimate describes one selected package. Its quantity
 // picker does not establish a checkout freight quote for a bulk order.
@@ -89,9 +90,7 @@ export async function captureDelivery(
         const html = await collector.store.putBlob(
           Buffer.from(await page.content())
         );
-        const screenshot = await collector.store.putBlob(
-          await page.screenshot({ fullPage: true })
-        );
+        const view = await storeViewport(collector.store, page, 'delivery');
         return {
           snapshot,
           text,
@@ -99,7 +98,9 @@ export async function captureDelivery(
           shippingQuantity: 1,
           shippingDestination: destination,
           html,
-          screenshot,
+          screenshot: view.blob,
+          screenshotMode: 'viewport',
+          screenshots: [view],
           evidenceId: `delivery:${sha256(JSON.stringify({ url, snapshot, text, destination }))}`,
           observedAt: new Date().toISOString(),
         };

@@ -217,6 +217,8 @@ export class LazadaSearch {
       observedAt: new Date(capture.fetchedAt).toISOString(),
       html: capture.html,
       screenshot: capture.screenshot,
+      screenshots: capture.screenshots,
+      screenshotMode: capture.screenshotMode,
       cacheId: capture.id,
     });
     const { product, offer } = parseProduct(capture.snapshot, {
@@ -305,9 +307,19 @@ export class LazadaSearch {
     const allImages =
       capture.snapshot.productImages || capture.snapshot.images || [];
     const selected = allImages.slice(0, this.maxImages);
+    const screenshots = [
+      ...new Map(
+        [
+          capture.screenshot,
+          ...(capture.screenshots || []).map((view) => view.blob),
+        ]
+          .filter(Boolean)
+          .map((blob) => [blob.sha256, blob])
+      ).values(),
+    ];
     product.ocrCoverage = {
       discovered: allImages.length,
-      attempted: selected.length + Number(Boolean(capture.screenshot)),
+      attempted: selected.length + screenshots.length,
       skipped: allImages.length - selected.length,
       failed: 0,
       empty: 0,
@@ -381,8 +393,8 @@ export class LazadaSearch {
         );
       }
     }
-    if (capture.screenshot) {
-      await recognize(capture.screenshot, capture.snapshot.url);
+    for (const screenshot of screenshots) {
+      await recognize(screenshot, capture.snapshot.url);
     }
     product.evidenceIds = [...new Set(product.evidenceIds)];
     product.claims = [
@@ -448,6 +460,8 @@ export class LazadaSearch {
       extracted: manufacturer,
       html: capture.html,
       screenshot: capture.screenshot,
+      screenshots: capture.screenshots,
+      screenshotMode: capture.screenshotMode,
       observedAt: new Date(capture.fetchedAt).toISOString(),
     });
     const result = {
@@ -565,6 +579,8 @@ export class LazadaSearch {
       observedAt: result.observedAt,
       html: result.html,
       screenshot: result.screenshot,
+      screenshots: result.screenshots,
+      screenshotMode: result.screenshotMode,
       text: result.text,
       shippingQuantity: result.shippingQuantity,
       shippingDestination: result.shippingDestination,

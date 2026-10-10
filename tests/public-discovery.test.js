@@ -86,6 +86,7 @@ test('public discovery retains every preliminary listing and pagination while re
   const snapshot = extractPage({ document: parseHTML(html).document, url });
   const cacheId = `search:vn:Nha Trang:${url}`;
   const screenshot = await privateStore.putBlob('private screenshot');
+  const finalView = await privateStore.putBlob('private final viewport');
   await privateStore.put('cache', {
     id: cacheId,
     url,
@@ -93,6 +94,8 @@ test('public discovery retains every preliminary listing and pagination while re
     snapshot,
     html: await privateStore.putBlob(html),
     screenshot,
+    screenshots: [{ role: 'after-scroll', blob: finalView }],
+    screenshotMode: 'viewport',
     fetchedAt: 1,
     checkedAt: 1,
   });
@@ -114,6 +117,8 @@ test('public discovery retains every preliminary listing and pagination while re
     /Private Customer|private-secret|myAccountTrigger/u
   );
   assert.equal(await shared.blob(screenshot.sha256), undefined);
+  assert.equal(await shared.blob(finalView.sha256), undefined);
+  assert.equal(cached.screenshots, undefined);
   assert.equal(
     (await shared.get('discovery', 'preliminary-whey')).visibility,
     undefined

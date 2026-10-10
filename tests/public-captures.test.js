@@ -76,6 +76,7 @@ test('account publication preserves selected prices, timestamps and cached label
   const html = `<h1>Fixture whey isolate 500g chocolate</h1><div id="topActionHeaderWrapper"><span id="myAccountTrigger">TÀI KHOẢN Fictional Customer</span></div><input type="tel" value="0901234567"><div data-product-price>250.000 ₫</div><div class="key-li"><span class="key-title">SKU</span><span class="key-value">100_VNAMZ-11</span></div><img data-product-image src="${imageUrl}"><script>window.sessionToken='fictional-secret';</script>`;
   const { document } = parseHTML(html);
   const snapshot = extractPage({ document, url });
+  const finalView = await source.putBlob('private final viewport');
   const captured = await source.put('cache', {
     id: `lazada:vn:Nha Trang:${url}`,
     url,
@@ -83,6 +84,8 @@ test('account publication preserves selected prices, timestamps and cached label
     snapshot,
     html: await source.putBlob(html),
     screenshot: await source.putBlob('private account screenshot'),
+    screenshots: [{ role: 'after-scroll', blob: finalView }],
+    screenshotMode: 'viewport',
     fetchedAt: Date.parse('2026-10-09T09:00:00Z'),
     checkedAt: 1,
   });
@@ -113,6 +116,9 @@ test('account publication preserves selected prices, timestamps and cached label
   );
   assert.match(publishedHtml, /100_VNAMZ-11|250\.000/u);
   assert.equal(await shared.blob(captured.screenshot.sha256), undefined);
+  assert.equal(await shared.blob(finalView.sha256), undefined);
+  const publicCapture = await shared.get('cache', captured.id);
+  assert.equal(publicCapture.screenshots, undefined);
   assert.equal(
     (await shared.blob(label.sha256)).toString(),
     'public nutrition label'

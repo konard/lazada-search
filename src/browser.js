@@ -4,6 +4,7 @@ import { resolvePageDialogs } from './page-dialogs.js';
 import { acquireBrowserWindow } from './persistent-browser.js';
 import { waitForPageReady } from './page-readiness.js';
 import { scrollProductContent } from './page-scroll.js';
+import { storeViewport } from './page-capture.js';
 
 export const EXTRACTOR_VERSION = 15;
 
@@ -697,10 +698,12 @@ export class BrowserCollector {
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
     let scrolling;
+    const screenshots = [];
     if (status === 'ok') {
       await waitForPageReady(page);
       await this.selectRequestedVariant(url, snapshot);
       snapshot = await page.evaluate(extractPage);
+      screenshots.push(await storeViewport(this.store, page, 'before-scroll'));
     }
     if (status === 'ok') {
       scrolling = await scrollProductContent(page, {
@@ -712,9 +715,10 @@ export class BrowserCollector {
       status = classifyPage(snapshot);
     }
     const html = await this.store.putBlob(Buffer.from(await page.content()));
-    const screenshot = await this.store.putBlob(
-      await page.screenshot({ fullPage: true, timeout: 15000 })
-    );
+    screenshots.push(await storeViewport(this.store, page, 'after-scroll'));
+    const screenshot = (
+      snapshot.cards?.length ? screenshots.at(-1) : screenshots[0]
+    ).blob;
     const finalUrl = canonicalUrl(snapshot.url);
     await Promise.all([...this.imageTasks]);
     return {
@@ -723,6 +727,8 @@ export class BrowserCollector {
       html,
       extractedHtmlSha256: html.sha256,
       screenshot,
+      screenshotMode: 'viewport',
+      screenshots,
       finalUrl,
       scrollLimit: this.maxScrolls,
       scrolling,

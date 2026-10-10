@@ -324,6 +324,17 @@ export interface Capture {
   status: string;
   html?: BlobReference;
   screenshot?: BlobReference;
+  screenshotMode?: 'viewport';
+  screenshots?: Array<{
+    role: 'before-scroll' | 'after-scroll' | 'delivery';
+    blob: BlobReference;
+    method: 'cdp-view' | 'engine-viewport';
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    deviceScaleFactor: number;
+  }>;
   finalUrl?: string;
   fetchedAt: number;
   checkedAt: number;

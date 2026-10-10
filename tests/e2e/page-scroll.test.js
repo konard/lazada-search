@@ -10,6 +10,70 @@ import {
   DomainScheduler,
 } from '../../src/index.js';
 import { scrollProductContent } from '../../src/page-scroll.js';
+import { captureViewport } from '../../src/page-capture.js';
+
+async function assertStableCapture(page) {
+  await page.evaluate(() => {
+    globalThis.captureFrames = [];
+    globalThis.captureActive = true;
+    const record = () => {
+      globalThis.captureFrames.push([
+        globalThis.scrollX,
+        globalThis.scrollY,
+        globalThis.innerWidth,
+        globalThis.innerHeight,
+        globalThis.visualViewport.pageTop,
+        globalThis.visualViewport.height,
+      ]);
+      if (globalThis.captureActive) {
+        globalThis.requestAnimationFrame(record);
+      }
+    };
+    record();
+  });
+  const capture = await captureViewport(page);
+  await page.waitForTimeout(150);
+  const frames = await page.evaluate(() => {
+    globalThis.captureActive = false;
+    return globalThis.captureFrames;
+  });
+  assert.ok(['cdp-view', 'engine-viewport'].includes(capture.method));
+  assert.ok(frames.length > 2);
+  assert.ok(
+    frames.every(
+      (frame) => JSON.stringify(frame) === JSON.stringify(frames[0])
+    ),
+    'capture never scrolls or resizes the view between frames'
+  );
+  assert.equal(
+    capture.bytes.readUInt32BE(16),
+    capture.width * capture.deviceScaleFactor
+  );
+  assert.equal(
+    capture.bytes.readUInt32BE(20),
+    capture.height * capture.deviceScaleFactor
+  );
+
+  // The unsupported-CDP fallback obeys the same no-scroll viewport contract.
+  const fallback = await captureViewport(page, {
+    openSession: async () => {
+      throw new Error('Unsupported protocol');
+    },
+  });
+  assert.equal(fallback.method, 'engine-viewport');
+  assert.equal(fallback.y, capture.y);
+  assert.equal(
+    fallback.bytes.readUInt32BE(20),
+    fallback.height * fallback.deviceScaleFactor
+  );
+  const after = await page.evaluate(() => [
+    globalThis.scrollX,
+    globalThis.scrollY,
+    globalThis.innerWidth,
+    globalThis.innerHeight,
+  ]);
+  assert.deepEqual(after, frames[0].slice(0, 4));
+}
 
 test('animated search scrolling keeps the final products and pager visible above the footer', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-scroll-'));
@@ -40,6 +104,19 @@ test('animated search scrolling keeps the final products and pager visible above
   assert.equal(capture.scrolling.kind, 'product-grid');
   assert.equal(capture.scrolling.pagerObserved, true);
   assert.equal(capture.scrolling.settled, true);
+  assert.equal(capture.screenshotMode, 'viewport');
+  assert.deepEqual(
+    capture.screenshots.map((view) => view.role),
+    ['before-scroll', 'after-scroll']
+  );
+  assert.equal(capture.screenshots[0].y, 0);
+  assert.equal(capture.screenshots[1].y, capture.scrolling.position);
+  assert.equal(capture.screenshot.sha256, capture.screenshots[1].blob.sha256);
+  for (const view of capture.screenshots) {
+    const png = await store.blob(view.blob.sha256);
+    assert.equal(png.readUInt32BE(16), view.width * view.deviceScaleFactor);
+    assert.equal(png.readUInt32BE(20), view.height * view.deviceScaleFactor);
+  }
   const view = await page.evaluate(() => ({
     height: globalThis.innerHeight,
     pager: globalThis.document
@@ -109,6 +186,7 @@ test('animated search scrolling keeps the final products and pager visible above
   }));
   assert.ok(unobstructed.pagerBottom <= unobstructed.chatTop - 16);
   assert.ok(unobstructed.footerTop > unobstructed.height);
+  await assertStableCapture(page);
 
   // Pages without a recognized product region must never seek the body bottom.
   await page.setContent(

@@ -65,9 +65,18 @@ test('Browser Commander selects Nha Trang, caches the exact one-package estimate
   assert.equal(quote.shippingDestination, 'Khánh Hòa, Phường Nha Trang');
   assert.equal(quote.shippingQuantity, 1);
   assert.equal(quote.applied, true);
+  assert.equal(quote.screenshotMode, 'viewport');
+  assert.equal(quote.screenshots[0].role, 'delivery');
+  const view = quote.screenshots[0];
+  const png = await store.blob(view.blob.sha256);
+  assert.equal(png.readUInt32BE(20), view.height * view.deviceScaleFactor);
   const recorded = await store.get('offer', collected.offer.id);
   assert.equal(recorded.quoteEvidenceId, quote.evidenceId);
   assert.ok((await store.get('evidence', quote.evidenceId)).screenshot.sha256);
+  assert.deepEqual(
+    (await store.get('evidence', quote.evidenceId)).screenshots,
+    quote.screenshots
+  );
   const before = navigations;
   assert.equal((await app.delivery(powderUrl)).cacheHit, true);
   assert.equal(navigations, before);

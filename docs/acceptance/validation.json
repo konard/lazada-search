@@ -1,9 +1,9 @@
 {
-  "validatedAt": "2026-10-10T11:51:36.064Z",
+  "validatedAt": "2026-10-10T12:12:37.005Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 668,
-    "pass": 668,
+    "tests": 673,
+    "pass": 673,
     "fail": 0,
     "skipped": 0,
     "fileTimeoutMs": 300000
@@ -13,12 +13,12 @@
     "pass": 15,
     "fail": 0,
     "skipped": 0,
-    "nativeStore": "Passed separately with the real local clink executable; fourteen other E2E checks passed. The manufacturer fixture was rechecked after correcting its review-record reference."
+    "nativeStore": "All fifteen E2E checks passed in one run with the real local clink executable, including Telegram, CLI, browser capture and persistent-window behavior. Delivery viewport evidence was rechecked separately after applying the same capture workaround."
   },
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.49%, threshold 10%)",
+    "duplication": "passed (7.45%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -108,5 +108,44 @@
     "stableUnresolvedGapStop": "passed",
     "samePersistentWindow": true
   },
-  "manualSearchPageReviews": 1
+  "manualSearchPageReviews": 1,
+  "viewportCaptures": {
+    "fullPageRequests": false,
+    "screenshotScrollOrResize": false,
+    "beforeAndAfterViewsSaved": true,
+    "fullHtmlAndOriginalGalleryImagesPreserved": true,
+    "distinctScreenshotsOcrOnce": true,
+    "privateViewsExcludedFromPublication": true,
+    "localBrowserIntermediateGeometry": "passed",
+    "viewportOnlyFallback": "passed",
+    "deliveryViewportEvidence": "passed",
+    "visibleChrome": {
+      "method": "cdp-view",
+      "before": {
+        "x": 0,
+        "y": 4081,
+        "width": 1200,
+        "height": 885
+      },
+      "after": {
+        "x": 0,
+        "y": 4081,
+        "width": 1200,
+        "height": 885
+      },
+      "png": {
+        "width": 2400,
+        "height": 1770
+      }
+    },
+    "newLiveSearchPage": {
+      "page": 36,
+      "query": "whey isolate",
+      "beforeY": 0,
+      "afterY": 4081,
+      "method": "cdp-view"
+    },
+    "upstreamReport": "https://github.com/link-foundation/browser-commander/issues/142#issuecomment-6097318324",
+    "originalVisualTransientRootCause": "unproven; sampled JavaScript geometry stayed fixed"
+  }
 }

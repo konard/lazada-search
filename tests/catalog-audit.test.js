@@ -111,6 +111,42 @@ test('a newly captured page reuses a previously seen label without revalidating 
   await app.close();
 });
 
+test('OCR processes every distinct viewport once, including the legacy primary screenshot', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-viewport-ocr-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const store = new AssociativeStore({ directory });
+  const header = await store.putBlob('header nutrition label');
+  const final = await store.putBlob('final nutrition label');
+  const hashes = [];
+  const app = new LazadaSearch({
+    store,
+    offline: true,
+    ocr: {
+      recognize: async (blob) => {
+        hashes.push(blob.sha256);
+        return { id: blob.sha256, text: 'Protein 80 g', confidence: 1, psm: 6 };
+      },
+    },
+  });
+  t.after(() => app.close());
+  const product = {
+    id: 'viewport-product',
+    ingredients: [],
+    claims: [],
+    evidenceIds: [],
+    warnings: [],
+  };
+  await app.collectOcr(product, {
+    snapshot: { url: fixture.url, productImages: [] },
+    screenshot: header,
+    screenshots: [{ blob: header }, { blob: final }, { blob: header }],
+  });
+  assert.deepEqual(hashes, [header.sha256, final.sha256]);
+  assert.equal(product.ocrCoverage.attempted, 2);
+  assert.equal(product.ocrCoverage.passes, 2);
+  assert.equal(product.evidenceIds.length, 2);
+});
+
 test('Lazada challenge redirects are classified even when the title is blank', () => {
   assert.equal(
     classifyPage({

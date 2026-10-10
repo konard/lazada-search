@@ -38,6 +38,9 @@ test('delayed product and detail loaders settle before recording price, promotio
     'https://www.lazada.vn/products/fixture-i101.html'
   );
   assert.equal(capture.snapshot.priceText, '80.000 ₫');
+  assert.equal(capture.screenshotMode, 'viewport');
+  assert.equal(capture.screenshot.sha256, capture.screenshots[0].blob.sha256);
+  assert.equal(capture.screenshots[0].role, 'before-scroll');
   assert.match(capture.snapshot.description, /Net weight: 500g/u);
   assert.doesNotMatch(
     (await store.blob(capture.html.sha256)).toString(),
