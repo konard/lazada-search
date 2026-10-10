@@ -27,4 +27,4 @@ The [isolated associative archive](targeted-evidence-archive/manifest.json) stor
 node scripts/urgent-icecream-targeted-evidence.mjs
 ```
 
-`--online` fetches only candidate URLs without an existing success or failure record, with 10-second intervals. All three current targets already have cached outcomes.
+`--online` fetches only candidate URLs without an existing success or failure record, with 10-second intervals. The [new-category conflict follow-up](new-candidate-conflicts.md) adds two official manufacturer pages to the same cache and isolated archive; all five current targets have cached outcomes.

@@ -1,0 +1,138 @@
+{
+  "id": "strict-ice-review:binggrae-export-samanco-choco",
+  "reviewedAt": "2026-10-10T15:27:55.508Z",
+  "status": "manufacturer-family-exclusion-pending-exact-regional-label",
+  "scope": "Strict chocolate ice-cream core; exclude vanilla core with chocolate filling",
+  "listingIds": ["3040136213"],
+  "lazadaRequests": 0,
+  "sharedProductWrites": 0,
+  "priceWrites": 0,
+  "manufacturerReviewsApplied": 0,
+  "recommendation": "Quarantine this chocolate-labelled Samanco lead from the strict chocolate-core ranking. Primary manufacturer export documentation describes a vanilla core with fillings, and the manufacturer Choco front shows white ice cream plus dark filling. Preserve the listing and all observed prices. Exact Vietnam carton label identity remains unverified.",
+  "manufacturerFindings": {
+    "exportReport": {
+      "pageNumber": 18,
+      "pageIndex": 17,
+      "exactHeading": "Samanco, vanilla ice cream with various fillings in fish-shaped waffle!",
+      "paraphrase": "Binggrae identifies Samanco as an export product sold in Southeast Asia including Vietnam.",
+      "appliesTo": "Export Samanco product family",
+      "matchesExactVietnamCartonFormula": false
+    },
+    "chocoFront": {
+      "variantName": "Choco",
+      "internalProductId": 224,
+      "manualObservation": "White ice-cream layer and separate dark chocolate filling inside the fish-shaped wafer; front label does not supply full ingredients, nutrition, GTIN or selected carton quantity.",
+      "matchesExactVietnamListingPackage": false
+    },
+    "htmlDefaultSelection": {
+      "familyProductId": 55,
+      "selectedVariant": "Original",
+      "selectedProductValueId": 219,
+      "totalServingMlShown": 150,
+      "nutritionTable": "Dynamically populated for the selected variant; static table is empty except commented example rows",
+      "chocoRequiresSeparateVariantLookup": true
+    }
+  },
+  "preliminaryRootObservedSearchCard": {
+    "listingId": "3040136213",
+    "priceVnd": 768000,
+    "claimedCartonCount": 24,
+    "claimedVolumeMlPerPiece": 150,
+    "claimedTotalVolumeMl": 3600,
+    "vndPerMlBeforeShipping": 213.33333333333334,
+    "observationAuthority": "Root agent live category search-card observation; not independently requested by this review",
+    "exactSelectedSellingOptionVerified": false,
+    "shippingVerified": false,
+    "rankingEligible": false
+  },
+  "primaryCaptures": {
+    "html": {
+      "url": "https://www.bing.co.kr/en/product/detail?PDT=55",
+      "finalUrl": "https://www.bing.co.kr/en/product/detail?PDT=55",
+      "status": 200,
+      "observedAt": "2026-10-10T15:22:46.169Z",
+      "path": "docs/acceptance/urgent-icecream/sources/cec23c7b0edf34498235b9d1dd94a5d81802cd3ef79d7e61bd1f36255c36226d.html.gz",
+      "format": "html",
+      "contentSha256": "cec23c7b0edf34498235b9d1dd94a5d81802cd3ef79d7e61bd1f36255c36226d",
+      "byteLength": 67221
+    },
+    "pdf": {
+      "url": "https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf",
+      "finalUrl": "https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf",
+      "status": 200,
+      "observedAt": "2026-10-10T15:25:42.877Z",
+      "path": "docs/acceptance/urgent-icecream/sources/2d6abed2fcde0eba5269ffccb434754f8d77c2ca841f1c5f0cbd9ea58478cfda.pdf.gz",
+      "format": "pdf",
+      "previousAttempts": [
+        {
+          "url": "https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf",
+          "observedAt": "2026-10-10T15:23:41.180Z",
+          "error": "The operation was aborted due to timeout"
+        }
+      ],
+      "contentSha256": "2d6abed2fcde0eba5269ffccb434754f8d77c2ca841f1c5f0cbd9ea58478cfda",
+      "byteLength": 14399676
+    },
+    "image": {
+      "url": "https://www.bing.co.kr/upload/product/2025/09/a516b929-a423-4ee4-b7eb-fccde90b725f.png",
+      "finalUrl": "https://www.bing.co.kr/upload/product/2025/09/a516b929-a423-4ee4-b7eb-fccde90b725f.png",
+      "status": 200,
+      "observedAt": "2026-10-10T15:25:55.951Z",
+      "path": "docs/acceptance/urgent-icecream/sources/e6fb5cd5408b5250dc4d3cea866567c5479746e69d5a992307e2c3f865573e36.png.gz",
+      "format": "png",
+      "contentSha256": "e6fb5cd5408b5250dc4d3cea866567c5479746e69d5a992307e2c3f865573e36",
+      "byteLength": 93419
+    }
+  },
+  "artifacts": [
+    {
+      "id": "samanco-evidence:manufacturer-choco-package-front",
+      "role": "manufacturer-choco-package-front",
+      "format": "png",
+      "path": "docs/acceptance/urgent-icecream/targeted-labels/samanco-choco-manufacturer-front.png",
+      "contentSha256": "e6fb5cd5408b5250dc4d3cea866567c5479746e69d5a992307e2c3f865573e36",
+      "byteLength": 93419,
+      "sourceUrl": "https://www.bing.co.kr/upload/product/2025/09/a516b929-a423-4ee4-b7eb-fccde90b725f.png",
+      "manuallyReviewed": true
+    },
+    {
+      "id": "samanco-evidence:manufacturer-export-report-page-render",
+      "role": "manufacturer-export-report-page-render",
+      "format": "png",
+      "path": "docs/acceptance/urgent-icecream/targeted-labels/samanco-export-page-18.png",
+      "contentSha256": "5dfef6cdfe2f7c14df17126f4bdb528a90bab58602283b8524d1b70808ee70fe",
+      "byteLength": 809810,
+      "sourceUrl": "https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf",
+      "derivativeOf": "2d6abed2fcde0eba5269ffccb434754f8d77c2ca841f1c5f0cbd9ea58478cfda",
+      "pdfPageNumber": 18,
+      "pdfPageIndex": 17,
+      "manuallyReviewed": true
+    },
+    {
+      "id": "samanco-evidence:manufacturer-export-report-excerpt",
+      "role": "manufacturer-export-report-excerpt",
+      "format": "text",
+      "path": "docs/acceptance/urgent-icecream/samanco-export-page-18.txt",
+      "contentSha256": "daf30ea060da7dd543fdc38bbdaaa4de0a4481d5767e4514486815bc609186c8",
+      "byteLength": 72,
+      "sourceUrl": "https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf",
+      "derivativeOf": "2d6abed2fcde0eba5269ffccb434754f8d77c2ca841f1c5f0cbd9ea58478cfda",
+      "pdfPageNumber": 18,
+      "pdfPageIndex": 17,
+      "manuallyReviewed": true
+    }
+  ],
+  "nutritionPolicy": {
+    "manufacturerSpecificationWritten": false,
+    "genericProtein3gPromoted": false,
+    "reason": "The page starts on Original, while Choco is a distinct variant. A family-level or default-variant protein value cannot be attached to the exact Vietnam SKU."
+  },
+  "unresolvedEvidence": [
+    "Exact manufacturer/importer front/back label for the Vietnam chocolate 24-piece carton, including GTIN and ingredients",
+    "Exact selected selling option and quantity basis for the search-card price",
+    "Choco-specific manufacturer nutrition with quantity basis, protein, sugar and saturated fat",
+    "Destination-specific frozen shipping availability and delivered price to Nha Trang"
+  ],
+  "offlineArchive": "targeted-evidence-archive/manifest.json",
+  "cachePolicy": "Original HTML, PDF and manufacturer photo retained by hash. PDF initial timeout preserved, longer retry succeeded. Subsequent normal runs reuse all captures with zero network requests."
+}

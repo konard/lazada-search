@@ -1,4 +1,4 @@
-import { mkdir, readdir, rm } from 'node:fs/promises';
+import { mkdir, readdir, rm, stat } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { encode, decode } from 'lino-objects-codec';
@@ -157,23 +157,73 @@ export class RepositoryArchive {
     this.records = new Map();
     this.loading = new Map();
     this.indices = new Map();
+    this.generations = new WeakMap();
   }
 
   async manifest() {
-    if (!this.metadata) {
-      const text = await readOptional(
-        join(this.directory, 'manifest.json'),
-        'utf8'
-      );
-      if (!text) {
-        throw new Error(`Repository archive not found: ${this.directory}`);
-      }
-      this.metadata = JSON.parse(text);
-      if (this.metadata.version !== ARCHIVE_VERSION) {
-        throw new Error('Unsupported repository archive version');
+    const checking = (this.checking ||= this.readManifest());
+    try {
+      return await checking;
+    } finally {
+      if (this.checking === checking) {
+        this.checking = undefined;
       }
     }
+  }
+
+  async readManifest() {
+    const path = join(this.directory, 'manifest.json');
+    const info = await stat(path, { bigint: true }).catch((error) => {
+      if (error.code === 'ENOENT') {
+        throw new Error(`Repository archive not found: ${this.directory}`);
+      }
+      throw error;
+    });
+    const stamp = `${info.dev}:${info.ino}:${info.size}:${info.mtimeNs}:${info.ctimeNs}`;
+    if (this.metadata && this.manifestStamp === stamp) {
+      return this.metadata;
+    }
+    const text = await readOptional(path, 'utf8');
+    if (!text) {
+      throw new Error(`Repository archive not found: ${this.directory}`);
+    }
+    const metadata = JSON.parse(text);
+    if (metadata.version !== ARCHIVE_VERSION) {
+      throw new Error('Unsupported repository archive version');
+    }
+    const digest = sha256(text);
+    if (this.manifestDigest !== digest) {
+      this.metadata = metadata;
+      this.manifestDigest = digest;
+      // Replace maps so an old in-flight load cannot populate the new snapshot.
+      this.records = new Map();
+      this.loading = new Map();
+      this.indices = new Map();
+      this.generations.set(metadata, {
+        records: this.records,
+        loading: this.loading,
+        indices: this.indices,
+      });
+    }
+    this.manifestStamp = stamp;
     return this.metadata;
+  }
+
+  async current(action) {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const metadata = await this.manifest();
+      try {
+        const result = await action(metadata);
+        if ((await this.manifest()) === metadata) {
+          return result;
+        }
+      } catch (error) {
+        if ((await this.manifest()) === metadata) {
+          throw error;
+        }
+      }
+    }
+    throw new Error('Repository archive changed repeatedly while reading');
   }
 
   async file(file) {
@@ -195,112 +245,137 @@ export class RepositoryArchive {
   }
 
   async load(kind) {
-    if (!this.records.has(kind)) {
-      if (!this.loading.has(kind)) {
-        this.loading.set(
-          kind,
-          (async () => {
-            const entry = (await this.manifest()).kinds[kind];
-            const records = entry
-              ? JSON.parse((await this.file(entry.json)).toString())
-              : [];
-            this.records.set(kind, records);
-            this.indices.set(
-              kind,
-              new Map(records.map((record, index) => [record.id, index]))
-            );
-          })()
-        );
+    return await this.current(async (metadata) => {
+      const {
+        records: cached,
+        indices,
+        loading,
+      } = this.generations.get(metadata);
+      if (!cached.has(kind)) {
+        if (!loading.has(kind)) {
+          loading.set(
+            kind,
+            (async () => {
+              const entry = metadata.kinds[kind];
+              const records = entry
+                ? JSON.parse((await this.file(entry.json)).toString())
+                : [];
+              cached.set(kind, records);
+              indices.set(
+                kind,
+                new Map(records.map((record, index) => [record.id, index]))
+              );
+            })()
+          );
+        }
+        const pending = loading.get(kind);
+        try {
+          await pending;
+        } finally {
+          if (loading.get(kind) === pending) {
+            loading.delete(kind);
+          }
+        }
       }
-      try {
-        await this.loading.get(kind);
-      } finally {
-        this.loading.delete(kind);
-      }
-    }
-    return this.records.get(kind);
+      return {
+        records: cached.get(kind),
+        indices: indices.get(kind),
+        metadata,
+      };
+    });
   }
 
   async list(kind) {
-    return globalThis.structuredClone(await this.load(kind));
+    return globalThis.structuredClone((await this.load(kind)).records);
   }
 
   async get(kind, id) {
-    const records = await this.load(kind);
-    return globalThis.structuredClone(records[this.indices.get(kind).get(id)]);
+    const snapshot = await this.load(kind);
+    return globalThis.structuredClone(
+      snapshot.records[snapshot.indices.get(id)]
+    );
   }
 
   async graph(kind, id) {
-    await this.load(kind);
-    const index = this.indices.get(kind).get(id);
-    if (index === undefined) {
-      return undefined;
-    }
-    const bytes = await this.file((await this.manifest()).kinds[kind].binary);
-    if (bytes.subarray(0, 8).toString() !== 'LZARCH01') {
-      throw new Error('Invalid archived binary graph');
-    }
-    let offset = 8;
-    for (let current = 0; current <= index; current++) {
-      const length = bytes.readUInt32LE(offset);
-      offset += 4;
-      if (current === index) {
-        return DoubletGraph.fromBinary(bytes.subarray(offset, offset + length));
+    return await this.current(async () => {
+      const snapshot = await this.load(kind);
+      const index = snapshot.indices.get(id);
+      if (index === undefined) {
+        return undefined;
       }
-      offset += length;
-    }
+      const bytes = await this.file(snapshot.metadata.kinds[kind].binary);
+      if (bytes.subarray(0, 8).toString() !== 'LZARCH01') {
+        throw new Error('Invalid archived binary graph');
+      }
+      let offset = 8;
+      for (let current = 0; current <= index; current++) {
+        const length = bytes.readUInt32LE(offset);
+        offset += 4;
+        if (current === index) {
+          return DoubletGraph.fromBinary(
+            bytes.subarray(offset, offset + length)
+          );
+        }
+        offset += length;
+      }
+    });
   }
 
   async blob(hash) {
-    const file = (await this.manifest()).blobs[hash];
-    return file ? this.file(file) : undefined;
+    return await this.current(async (metadata) => {
+      const file = metadata.blobs[hash];
+      return file ? await this.file(file) : undefined;
+    });
   }
 
   async verify() {
-    const manifest = await this.manifest();
-    let records = 0;
-    for (const [kind, entry] of Object.entries(manifest.kinds)) {
-      const source = await this.list(kind);
-      const converted = decode({
-        notation: (await this.file(entry.lino)).toString(),
-      });
-      if (JSON.stringify(source) !== JSON.stringify(converted)) {
-        throw new Error(`JSON / Links Notation mismatch: ${kind}`);
-      }
-      const binary = await this.file(entry.binary);
-      if (binary.subarray(0, 8).toString() !== 'LZARCH01') {
-        throw new Error(`Invalid binary archive: ${kind}`);
-      }
-      let offset = 8;
-      for (const record of source) {
-        if (offset + 4 > binary.length) {
-          throw new Error(`Truncated binary archive: ${kind}`);
+    return await this.current(async (manifest) => {
+      let records = 0;
+      for (const [kind, entry] of Object.entries(manifest.kinds)) {
+        const source = await this.list(kind);
+        const converted = decode({
+          notation: (await this.file(entry.lino)).toString(),
+        });
+        if (JSON.stringify(source) !== JSON.stringify(converted)) {
+          throw new Error(`JSON / Links Notation mismatch: ${kind}`);
         }
-        const size = binary.readUInt32LE(offset);
-        offset += 4;
-        const graph = new DoubletGraph();
-        graph.addRecord(kind, record);
-        if (!binary.subarray(offset, offset + size).equals(graph.toBinary())) {
-          throw new Error(`Binary conversion mismatch: ${kind}:${record.id}`);
+        const binary = await this.file(entry.binary);
+        if (binary.subarray(0, 8).toString() !== 'LZARCH01') {
+          throw new Error(`Invalid binary archive: ${kind}`);
         }
-        offset += size;
+        let offset = 8;
+        for (const record of source) {
+          if (offset + 4 > binary.length) {
+            throw new Error(`Truncated binary archive: ${kind}`);
+          }
+          const size = binary.readUInt32LE(offset);
+          offset += 4;
+          const graph = new DoubletGraph();
+          graph.addRecord(kind, record);
+          if (
+            !binary.subarray(offset, offset + size).equals(graph.toBinary())
+          ) {
+            throw new Error(`Binary conversion mismatch: ${kind}:${record.id}`);
+          }
+          offset += size;
+        }
+        if (offset !== binary.length) {
+          throw new Error(`Trailing binary archive data: ${kind}`);
+        }
+        records += source.length;
       }
-      if (offset !== binary.length) {
-        throw new Error(`Trailing binary archive data: ${kind}`);
+      for (const [hash, file] of Object.entries(manifest.blobs)) {
+        if (sha256(await this.file(file)) !== hash) {
+          throw new Error('Evidence blob identity mismatch');
+        }
       }
-      records += source.length;
-    }
-    for (const [hash, file] of Object.entries(manifest.blobs)) {
-      if (sha256(await this.file(file)) !== hash) {
-        throw new Error('Evidence blob identity mismatch');
-      }
-    }
-    return {
-      valid: true,
-      records,
-      blobs: Object.keys(manifest.blobs).length,
-      downloads: 0,
-    };
+      return {
+        valid: true,
+        records,
+        blobs: Object.keys(manifest.blobs).length,
+        downloads: 0,
+      };
+    });
   }
 }
 

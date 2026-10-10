@@ -1,10 +1,29 @@
 import { specificationProblems } from './verification.js';
 import { listingKey } from './util.js';
+import { categorySourceKey } from './text.js';
 
 const skuNumber = (value) =>
   String(value || '')
     .split('_VNAMZ-')
     .at(-1);
+
+function matchesConfiguredScope(scope, { query, categoryUrl }) {
+  if (scope.query === query) {
+    return true;
+  }
+  if (
+    !categoryUrl ||
+    (scope.type && scope.type !== 'category') ||
+    (scope.type !== 'category' && !scope.query?.startsWith('category:'))
+  ) {
+    return false;
+  }
+  const expected = categorySourceKey(categoryUrl);
+  const observed = categorySourceKey(
+    scope.url || scope.query?.slice('category:'.length)
+  );
+  return expected !== null && expected === observed;
+}
 
 export function auditCoverage({
   crawl,
@@ -102,13 +121,16 @@ export function auditCoverage({
     problems: specificationProblems(product),
   }));
   const scopes = [...(crawl?.scopes || [])];
-  for (const query of [
-    ...(crawl?.queries || []),
-    ...(crawl?.categoryUrls || []).map((url) => `category:${url}`),
+  for (const configured of [
+    ...(crawl?.queries || []).map((query) => ({ query })),
+    ...(crawl?.categoryUrls || []).map((categoryUrl) => ({
+      query: `category:${categoryUrl}`,
+      categoryUrl,
+    })),
   ]) {
-    if (!scopes.some((scope) => scope.query === query)) {
+    if (!scopes.some((scope) => matchesConfiguredScope(scope, configured))) {
       scopes.push({
-        query,
+        query: configured.query,
         terminalConfirmed: false,
         visitedPages: 0,
         stopReason: 'not-started',

@@ -30,6 +30,19 @@ export function canonicalUrl(value) {
   return url.href;
 }
 
+// Sorting and page position do not change a category's filter scope.
+export function categorySourceKey(value) {
+  try {
+    const url = new URL(value);
+    url.searchParams.delete('sort');
+    url.searchParams.delete('page');
+    url.searchParams.sort();
+    return url.href;
+  } catch {
+    return null;
+  }
+}
+
 // Slugs, selected-SKU suffixes and tracking parameters can identify one item.
 export function listingKey(value) {
   const url = new URL(canonicalUrl(value));

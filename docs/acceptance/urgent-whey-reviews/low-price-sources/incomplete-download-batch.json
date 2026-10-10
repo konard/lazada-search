@@ -1,0 +1,15 @@
+{
+  "method": "Download session failure receipt",
+  "successful": false,
+  "sourceBytesCaptured": false,
+  "error": "ECONNRESET",
+  "date": "2026-10-10",
+  "command": "node scripts/urgent-whey-low-price-sources.mjs",
+  "note": "The first image/product follow-up batch exited when Promise.all encountered a TLS reset before any new source receipt was written. Other requests were in flight. Their completion is unknown; no image/HTML bytes from that incomplete batch are claimed. The collector was corrected to await and inspect all independent results and to retain transport failures. Later individual successful/failure receipts describe only the retained responses.",
+  "possibleAffectedSources": [
+    "ostrovit-wpc80-natural-700g",
+    "critical-whey-official-nutrition",
+    "warrior-double-chocolate-official-front",
+    "mutant-triple-chocolate-official-back"
+  ]
+}

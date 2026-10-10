@@ -3,11 +3,16 @@ import { createServer } from 'node:http';
 import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
-import { launchBrowser } from 'browser-commander';
+import {
+  launchBrowser,
+  connectBrowser,
+  saveStorageState,
+} from 'browser-commander';
 
 const directory = process.argv[2];
 const stateFile = join(directory, 'browser-window.json');
 const errorFile = join(directory, 'browser-window-error.txt');
+const recoveryFile = join(directory, 'browser-window-recovery.json');
 const lock = join(directory, 'browser-window-starting');
 let runtime;
 let server;
@@ -15,6 +20,42 @@ let stopping;
 let lastUsed = Date.now();
 let owner;
 let idleMs;
+let adopted = false;
+let sessionFile;
+
+async function removeOwnedState(path) {
+  const state = JSON.parse(await readFile(path, 'utf8').catch(() => 'null'));
+  if (state?.pid === process.pid) {
+    await rm(path, { force: true });
+  }
+}
+
+async function openWindow(options) {
+  const recovery = JSON.parse(
+    await readFile(recoveryFile, 'utf8').catch(() => 'null')
+  );
+  if (!recovery || !alive(recovery.browserPid)) {
+    return launchBrowser(options);
+  }
+  if (alive(recovery.pid)) {
+    throw new Error(
+      'An existing browser worker still owns the recovery window'
+    );
+  }
+  const endpoint = new URL(recovery.cdpEndpoint);
+  if (endpoint.hostname !== '127.0.0.1' || endpoint.protocol !== 'http:') {
+    throw new Error('Browser recovery requires a loopback CDP endpoint');
+  }
+  const connected = await connectBrowser({
+    engine: 'playwright',
+    cdpEndpoint: endpoint.href,
+    timeout: 30000,
+  });
+  adopted = true;
+  connected.browserPid = recovery.browserPid;
+  connected.cdpEndpoint = endpoint.href;
+  return connected;
+}
 
 function alive(pid) {
   if (!Number.isInteger(pid) || pid <= 0) {
@@ -31,8 +72,32 @@ function alive(pid) {
 function shutdown() {
   stopping ??= (async () => {
     server?.close();
-    await runtime?.close();
-    await rm(stateFile, { force: true });
+    if (adopted) {
+      if (sessionFile) {
+        const state = await saveStorageState(runtime.page).catch(() => null);
+        if (state) {
+          await writeFile(
+            sessionFile,
+            JSON.stringify({
+              cookies: state.cookies.filter((cookie) => !(cookie.expires > 0)),
+              origins: [],
+            }),
+            { mode: 0o600 }
+          );
+        }
+      }
+      await runtime.browser
+        .newBrowserCDPSession()
+        .then((session) => session.send('Browser.close'))
+        .catch(() => {});
+    }
+    if (runtime?.close) {
+      await runtime.close().catch(() => {});
+    } else {
+      await runtime?.detach?.().catch(() => {});
+    }
+    await removeOwnedState(stateFile);
+    await removeOwnedState(recoveryFile);
     await rm(lock, { recursive: true, force: true });
   })();
   return stopping;
@@ -108,7 +173,13 @@ try {
   idleMs = options.idleTimeoutMs;
   delete options.idleTimeoutMs;
   delete options.persistentWindow;
-  runtime = await launchBrowser(options);
+  if (options.persistSessionCookies && options.userDataDir) {
+    sessionFile =
+      typeof options.persistSessionCookies === 'string'
+        ? options.persistSessionCookies
+        : join(options.userDataDir, 'browser-commander-session.json');
+  }
+  runtime = await openWindow(options);
   if (!runtime.cdpEndpoint) {
     throw new Error(
       'Persistent windows require Browser Commander real-browser launch'
@@ -148,10 +219,24 @@ try {
     }),
     { mode: 0o600 }
   );
+  await writeFile(
+    recoveryFile,
+    JSON.stringify({
+      pid: process.pid,
+      browserPid: runtime.browserProcess?.pid || runtime.browserPid,
+      cdpEndpoint: runtime.cdpEndpoint,
+    }),
+    { mode: 0o600 }
+  );
   await rm(lock, { recursive: true, force: true });
-  runtime.browserProcess.once('exit', () => {
+  runtime.browserProcess?.once('exit', () => {
     void shutdown();
   });
+  if (adopted) {
+    runtime.browser.once('disconnected', () => {
+      void shutdown();
+    });
+  }
   process.once('SIGTERM', () => {
     void shutdown();
   });

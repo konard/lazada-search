@@ -303,6 +303,8 @@ export declare class AssociativeStore {
   recordPath(kind: string, id: string): string;
   locked<T>(action: () => Promise<T>): Promise<T>;
   put<T extends { id: string }>(kind: string, record: T): Promise<T>;
+  /** Bounded writes under one lock; duplicate IDs preserve input order. */
+  putMany<T extends { id: string }>(kind: string, records: T[]): Promise<T[]>;
   get<T = Record<string, unknown>>(
     kind: string,
     id: string
@@ -483,6 +485,8 @@ export declare function publishAccountCaptures(
   accountStore: AssociativeStore
 ): Promise<{
   published: Array<Record<string, unknown>>;
+  historicalPublished: Array<Record<string, unknown>>;
+  allPublished: Array<Record<string, unknown>>;
   rejected: Array<{ url: string; reason: string }>;
   reused: number;
   downloads: number;

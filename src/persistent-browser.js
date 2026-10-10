@@ -48,7 +48,20 @@ async function available(directory) {
   }
   try {
     return (await request(state, 'status')).available ? state : undefined;
-  } catch {
+  } catch (error) {
+    if (Number.isInteger(state.pid) && state.pid > 0) {
+      try {
+        process.kill(state.pid, 0);
+      } catch (failure) {
+        if (failure.code === 'ESRCH') {
+          return undefined;
+        }
+      }
+      throw new Error(
+        'The existing persistent browser worker is unreachable; reconnect with loopback access before launching another worker',
+        { cause: error }
+      );
+    }
     return undefined;
   }
 }

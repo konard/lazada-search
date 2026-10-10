@@ -28,10 +28,19 @@ test('every published real SKU price re-extracts from committed redacted HTML an
   });
   const publications = await archive.list('publication');
   const history = await archive.list('offer-history');
-  assert.equal(publications.length, receipts.published.length);
+  assert.deepEqual(
+    receipts.allPublished.map((record) => record.id).sort(),
+    publications.map((record) => record.id).sort()
+  );
+  assert.deepEqual(
+    [...receipts.published, ...receipts.historicalPublished]
+      .map((record) => record.id)
+      .sort(),
+    receipts.allPublished.map((record) => record.id).sort()
+  );
   assert.ok(publications.length > 0);
   assert.equal(receipts.downloads, 0);
-  for (const receipt of receipts.published) {
+  for (const receipt of receipts.allPublished) {
     const record = await archive.get('publication', receipt.id);
     assert.equal(record.sku, receipt.sku);
     assert.equal(record.manualVisualReview, false);
@@ -57,16 +66,33 @@ test('every published real SKU price re-extracts from committed redacted HTML an
     );
     assert.equal(offer.priceContext, 'authenticated-browser-observation');
     assert.notEqual(offer.visibility, 'private');
-    const cache = await archive.get(
-      'cache',
-      `lazada:vn:Nha Trang:${record.sourceUrl}`
-    );
-    assert.equal(cache.repositoryReusable, true);
-    assert.equal(cache.snapshot.sku, record.sku);
     const newest = publications
       .filter((item) => item.sourceUrl === record.sourceUrl)
       .sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
     if (newest.id === record.id) {
+      const cache = await archive.get(
+        'cache',
+        `lazada:vn:Nha Trang:${record.sourceUrl}`
+      );
+      assert.equal(cache.repositoryReusable, true);
+      const source = new URL(record.sourceUrl);
+      if (
+        !source.searchParams.has('skuId') &&
+        !/-s\d+\.html$/u.test(source.pathname) &&
+        cache.snapshot.sku !== record.sku
+      ) {
+        assert.ok(
+          publications.some(
+            (item) =>
+              item.sku === cache.snapshot.sku &&
+              item.html.sha256 === cache.html.sha256 &&
+              Date.parse(item.observedAt) >= Date.parse(record.observedAt)
+          ),
+          'An unqualified listing cache can represent a newer verified selected SKU'
+        );
+        continue;
+      }
+      assert.equal(cache.snapshot.sku, record.sku);
       assert.deepEqual(snapshot.skuCatalog, cache.snapshot.skuCatalog);
       assert.deepEqual(
         snapshot.selectedVariant,
@@ -119,6 +145,8 @@ test('account publication preserves selected prices, timestamps and cached label
   });
   const report = await publishAccountCaptures(app, source);
   assert.equal(report.published.length, 1);
+  assert.deepEqual(report.historicalPublished, []);
+  assert.deepEqual(report.allPublished, report.published);
   assert.equal(report.rejected.length, 0);
   assert.equal(report.downloads, 0);
   const offer = await shared.get('offer', report.published[0].offerId);
@@ -156,6 +184,102 @@ test('account publication preserves selected prices, timestamps and cached label
     (await source.get('cache', captured.id)).html.sha256,
     captured.html.sha256
   );
+});
+
+test('republishing an overwritten account cache reports current and historical exact prices without downloads', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-public-history-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const shared = new AssociativeStore({ directory: join(directory, 'public') });
+  const source = new AssociativeStore({
+    directory: join(directory, 'account'),
+    visibility: 'private',
+    fallback: shared,
+  });
+  const app = new LazadaSearch({ store: shared, offline: true, ocr: false });
+  t.after(() => app.close());
+  app.collector.start = () => {
+    throw new Error('Historical publication replay must remain offline');
+  };
+  const url = 'https://www.lazada.vn/products/fixture-whey-i100-s11.html';
+  const reports = [];
+  for (const [observedAt, price] of [
+    ['2026-10-09T09:00:00Z', '250.000'],
+    ['2026-10-10T09:00:00Z', '200.000'],
+  ]) {
+    const html = `<h1>Fixture whey isolate 500g chocolate</h1><div data-product-price>${price} ₫</div><div class="key-li"><span class="key-title">SKU</span><span class="key-value">100_VNAMZ-11</span></div>`;
+    const { document } = parseHTML(html);
+    await source.put('cache', {
+      id: `lazada:vn:Nha Trang:${url}`,
+      url,
+      status: 'ok',
+      html: await source.putBlob(html),
+      snapshot: extractPage({ document, url }),
+      fetchedAt: Date.parse(observedAt),
+    });
+    reports.push(await publishAccountCaptures(app, source));
+  }
+  const [first, second] = reports;
+  assert.equal(second.published.length, 1);
+  assert.equal(second.published[0].price, 200000);
+  assert.deepEqual(second.historicalPublished, first.published);
+  assert.equal(second.historicalPublished[0].price, 250000);
+  assert.equal(second.allPublished.length, 2);
+  assert.deepEqual(
+    second.allPublished.map((record) => record.id).sort(),
+    [...second.published, ...second.historicalPublished]
+      .map((record) => record.id)
+      .sort()
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(second)).allPublished,
+    second.allPublished
+  );
+  assert.equal(
+    (await source.list('cache')).filter(
+      (record) => record.visibility === 'private'
+    ).length,
+    1
+  );
+  assert.equal(second.downloads, 0);
+  assert.deepEqual(second.rejected, []);
+  const archivedAt = join(directory, 'archive');
+  await exportRepositoryArchive({ store: shared, directory: archivedAt });
+  const archive = new RepositoryArchive({ directory: archivedAt });
+  const publications = await archive.list('publication');
+  assert.deepEqual(publications, second.allPublished);
+  const history = await archive.list('offer-history');
+  for (const record of publications) {
+    const html = (await archive.blob(record.html.sha256)).toString();
+    const { document } = parseHTML(html);
+    const extracted = parseProduct(
+      extractPage({ document, url: record.sourceUrl })
+    );
+    assert.equal(extracted.offer.sku, record.sku);
+    assert.equal(extracted.offer.price, record.price);
+    assert.equal(extracted.offer.variantConfirmed, true);
+    assert.ok(
+      history.some(
+        (item) =>
+          item.offerId === record.offerId &&
+          item.observedAt === record.observedAt &&
+          item.price === record.price
+      )
+    );
+  }
+  const latest = second.published[0];
+  assert.equal((await archive.get('offer', latest.offerId)).price, 200000);
+  assert.equal(
+    parseProduct(
+      (await archive.get('cache', `lazada:vn:Nha Trang:${url}`)).snapshot
+    ).offer.price,
+    200000
+  );
+  assert.equal((await archive.verify()).valid, true);
+  const replay = await publishAccountCaptures(app, source);
+  assert.equal(replay.reused, 1);
+  assert.deepEqual(replay.allPublished, second.allPublished);
+  assert.deepEqual(replay.historicalPublished, first.published);
+  assert.equal(app.cache.stats.downloads, 0);
 });
 
 test('publication refuses unconfirmed default SKU prices and public sources', async (t) => {

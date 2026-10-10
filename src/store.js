@@ -7,11 +7,67 @@ import { RepositoryArchive } from './archive.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
 
 const validKind = (kind) => {
-  if (!/^[a-z][a-z-]*$/u.test(kind)) {
+  if (typeof kind !== 'string' || !/^[a-z][a-z-]*$/u.test(kind)) {
     throw new Error('Invalid record kind');
   }
   return kind;
 };
+
+function prepareGroups(store, kind, inputs) {
+  validKind(kind);
+  if (!Array.isArray(inputs)) {
+    throw new Error('Batch records require an array');
+  }
+  const groups = new Map();
+  for (const [index, input] of inputs.entries()) {
+    const record = clone(input);
+    if (!record || typeof record.id !== 'string' || !record.id) {
+      throw new Error('Records require a nonempty string id');
+    }
+    const entry = {
+      index,
+      record,
+      notation: encode({ obj: record }),
+      path: store.recordPath(kind, record.id),
+    };
+    if (!groups.has(record.id)) {
+      groups.set(record.id, []);
+    }
+    groups.get(record.id).push(entry);
+  }
+  return [...groups.values()];
+}
+
+async function writeGroups(groups, write) {
+  const results = [];
+  let cursor = 0,
+    failed = false,
+    failure;
+  const worker = async () => {
+    while (!failed && cursor < groups.length) {
+      const group = groups[cursor++];
+      try {
+        for (const entry of group) {
+          if (failed) {
+            return;
+          }
+          results[entry.index] = await write(entry);
+        }
+      } catch (error) {
+        if (!failed) {
+          failure = error;
+          failed = true;
+        }
+      }
+    }
+  };
+  // A failure must drain every in-flight write before releasing the writer lock.
+  await Promise.all(Array.from({ length: Math.min(8, groups.length) }, worker));
+  if (failed) {
+    throw failure;
+  }
+  return results;
+}
 
 export class AssociativeStore {
   constructor({
@@ -89,33 +145,38 @@ export class AssociativeStore {
   }
 
   async put(kind, input) {
-    const record = clone(input);
-    if (typeof record.id !== 'string' || !record.id) {
-      throw new Error('Records require a nonempty string id');
+    return (await this.putMany(kind, [input]))[0];
+  }
+
+  async putMany(kind, inputs) {
+    const groups = prepareGroups(this, kind, inputs);
+    if (!groups.length) {
+      return [];
     }
-    const path = this.recordPath(kind, record.id);
+    return await this.locked(() =>
+      writeGroups(groups, (entry) => this.writeRecord(kind, entry))
+    );
+  }
+
+  async writeRecord(kind, { record, notation, path }) {
+    const previous = await readOptional(path, 'utf8');
     if (this.visibility === 'private') {
-      const shared = await this.fallback?.get(kind, record.id);
-      if (
-        !record.visibility &&
-        shared &&
-        encode({ obj: shared }) === encode({ obj: record }) &&
-        (await readOptional(path)) === undefined
-      ) {
-        return shared;
+      if (!record.visibility && previous === undefined) {
+        const shared = await this.fallback?.get(kind, record.id);
+        if (shared && encode({ obj: shared }) === notation) {
+          return shared;
+        }
       }
       record.visibility = 'private';
+      notation = encode({ obj: record });
     }
-    const notation = encode({ obj: record });
-    await this.locked(async () => {
-      if ((await readOptional(path, 'utf8')) === notation) {
-        return;
-      }
-      // Canonical text commits first. A failed or interrupted binary write is
-      // rebuilt on read from the exact canonical file and its digest.
-      await atomicWrite(path, notation);
-      await this.project(kind, record, notation, path);
-    });
+    if (previous === notation) {
+      return record;
+    }
+    // Canonical text commits first. A failed or interrupted binary write is
+    // rebuilt on read from the exact canonical file and its digest.
+    await atomicWrite(path, notation);
+    await this.project(kind, record, notation, path);
     return record;
   }
 

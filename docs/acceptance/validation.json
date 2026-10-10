@@ -1,55 +1,45 @@
 {
-  "validatedAt": "2026-10-10T15:01:50.028Z",
+  "validatedAt": "2026-10-10T16:05:57.300805+00:00",
   "node": "v22.23.0",
   "unit": {
-    "tests": 703,
-    "pass": 703,
+    "tests": 745,
+    "pass": 745,
     "fail": 0,
     "skipped": 0,
     "fileTimeoutMs": 300000,
-    "lastFullRunDependency": "browser-commander@0.28.0"
+    "durationMs": 173882.898667,
+    "lastFullRunDependency": "browser-commander@0.28.0",
+    "environment": "Local HTTP and Git/process fixtures enabled outside the restricted sandbox",
+    "initialRestrictedRun": {
+      "pass": 723,
+      "fail": 22,
+      "note": "Local-server/Git/process restrictions caused21 failures; historical unqualified-cache assertion corrected. Focused retry93/93 and complete final rerun745/745 passed."
+    }
   },
   "e2e": {
-    "tests": 16,
-    "pass": 16,
+    "tests": 19,
+    "pass": 19,
     "fail": 0,
     "skipped": 0,
-    "nativeStore": "All sixteen E2E checks passed with the real local clink executable, including library, CLI, HTTP, Telegram, strict flavours, browser capture and persistent-window behavior.",
-    "lastFullRunDependency": "browser-commander@0.27.0",
-    "latestDependencyTargeted": {
-      "version": "0.28.0",
-      "tests": 4,
-      "pass": 4,
-      "fail": 0,
-      "checks": [
-        "capture-timeout",
-        "category pagination, no price cutoff and offline CLI/Telegram replay",
-        "animated page scrolling",
-        "persistent browser window"
-      ],
-      "finalCategoryRecheck": {
-        "tests": 1,
-        "pass": 1,
-        "fail": 0
-      }
-    }
+    "lastFullRunDependency": "browser-commander@0.28.0",
+    "validationMethod": "Full suite17 passed, one shaker-fixture regression corrected, one native-store check originally skipped; both corrected flavour integration and actual clink native-store checks then passed2/2.",
+    "recoveryPersistsSessionCookiesAcrossBrowserRelaunch": true
   },
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.32%, threshold 10%)",
+    "duplication": "passed (7.23%, threshold10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
-    "strictCoverageAudit": "expected failure"
+    "strictCoverageAudit": "expected failure",
+    "strictChangedCodeLint": "passed with zero warnings"
   },
   "cachedAudit": {
-    "browserStarts": 0,
     "downloads": 0,
-    "missingListings": 1637,
-    "missingSkuPrices": 221,
-    "manufacturerVerified": 16,
-    "unfinishedSearches": 10,
-    "unclassifiedObservations": 5970
+    "missingListings": 1656,
+    "missingSkuPrices": 242,
+    "unfinishedSearches": 0,
+    "manufacturerVerified": 16
   },
   "manualPageReviews": 32,
   "additionalSkuCaptures": {
@@ -67,28 +57,32 @@
     "canonicalSelectedSkuObservations": 190
   },
   "productionReady": false,
-  "reason": "Exact manufacturer specifications exist for sixteen selected SKUs. The historical public catalog retains 1637 missing listings and221 missing SKU prices. Category-only discovery is active with no package-price cutoff. Bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
+  "reason": "Partial report published; full-market completeness, remaining product/SKU extraction, exact manufacturer revision matching, bulk and frozen freight, and complete Vietnamese-English translation remain unresolved. See docs/REQUIREMENTS.md.",
   "repositoryArchive": {
     "valid": true,
-    "records": 19323,
-    "blobs": 3720,
+    "records": 20739,
+    "blobs": 3790,
     "downloads": 0,
-    "manifestSha256": "e6b33d6ad2c9791a5a57f62803ba6e4886842257c147eb31fa89ed8a2ed464a7",
-    "originalPriceSelectionAndSkuInventoriesPreserved": true,
-    "sourceAndConversionValidation": "passed",
+    "manifestSha256": "73830c9a51b56c8dc92acac320eb638364c3f3946d445038c1fa15762f0903d0",
     "lastExport": {
-      "reused": 3585,
-      "rebuilt": 192,
+      "directory": "/Users/konard/Code/Archive/konard/lazada-search/data/cases/vietnam-nha-trang",
+      "records": 20739,
+      "blobs": 3790,
+      "reused": 3782,
+      "rebuilt": 65,
       "downloads": 0
-    }
+    },
+    "sourceAndConversionValidation": "passed;20739 records and3790 blobs; zero downloads"
   },
   "authenticatedPublication": {
-    "published": 132,
+    "published": 140,
+    "historicalPublished": 2,
+    "allPublished": 142,
     "rejected": 3,
-    "manualVisualReview": false,
-    "privateAccountScreenshotsPublished": 0,
     "downloads": 0,
-    "searchPages": 219
+    "privateAccountScreenshotsPublished": 0,
+    "searchPages": 252,
+    "manualVisualReview": false
   },
   "savedExtractionAudit": {
     "distinctCaptures": 142,
@@ -120,8 +114,8 @@
     "completedWheyIsolatePages": 80,
     "completedProteinPowderPages": 77,
     "activeCase": {
-      "categoryOnly": true,
-      "sort": "priceasc",
+      "categoryOnly": false,
+      "sort": "default",
       "minimumPackagePrice": null,
       "maximumPackagePrice": null,
       "brandFilter": null,
@@ -129,7 +123,11 @@
       "sellerLocationFilter": null,
       "promotionFilter": null,
       "categoryRedirectGuard": true,
-      "detailsGatedOnAllLists": true
+      "detailsGatedOnAllLists": true,
+      "relevantScopesTerminalConfirmed": 5,
+      "scopePages": [61, 80, 77, 10, 10],
+      "cachedRelevantPages": 238,
+      "fullMarketGuarantee": false
     }
   },
   "animatedScrolling": {
@@ -214,5 +212,52 @@
     "quantityScenarios": 950,
     "pass": true,
     "downloads": 0
-  }
+  },
+  "previousValidatedBaseline": {
+    "unit": {
+      "tests": 703,
+      "pass": 703,
+      "fail": 0,
+      "skipped": 0,
+      "fileTimeoutMs": 300000,
+      "lastFullRunDependency": "browser-commander@0.28.0"
+    },
+    "e2e": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "skipped": 0,
+      "nativeStore": "All sixteen E2E checks passed with the real local clink executable, including library, CLI, HTTP, Telegram, strict flavours, browser capture and persistent-window behavior.",
+      "lastFullRunDependency": "browser-commander@0.27.0",
+      "latestDependencyTargeted": {
+        "version": "0.28.0",
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "checks": [
+          "capture-timeout",
+          "category pagination, no price cutoff and offline CLI/Telegram replay",
+          "animated page scrolling",
+          "persistent browser window"
+        ],
+        "finalCategoryRecheck": {
+          "tests": 1,
+          "pass": 1,
+          "fail": 0
+        }
+      }
+    }
+  },
+  "partialDeadlineReport": {
+    "wheyRows": 10,
+    "verifiedProteinRows": 10,
+    "iceRows": 10,
+    "exactSelectedIcePrices": 5,
+    "searchCardIceLeads": 5,
+    "downloads": 0,
+    "path": "docs/tables/top-10-partial.md",
+    "hydropureFormulaConditionalOnSellerIdentity": true
+  },
+  "requirementsTracker": "docs/REQUIREMENTS.md",
+  "roadmap": "docs/ROADMAP.md"
 }

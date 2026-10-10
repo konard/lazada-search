@@ -18,6 +18,10 @@ Public manufacturer HTML and original label images are cached in this directory;
 
 Further cached-gallery review found a chocolate-specific Happy Gelato laboratory report with **4.60g protein, 4.80g fat, 24.0g carbohydrate and 158kcal per 100g**. Its 2021 tested-sample identity does not establish current selling-SKU weight or formulation. [The targeted evidence report](targeted-evidence.md) links original report images, the partial review, local availability leads and concrete manufacturer-access failures; its isolated associative archive is excluded from purchase ranking.
 
+[New-category candidate conflicts](new-candidate-conflicts.md) record the King's five-bite/60 ml quantity trap, contradictory Merino 68 g formulas and unresolved bear-package identity. The Bliss hazelnut product remains an excluded manufacturer-documented lead under the strict chocolate scope.
+
+[Binggrae export Samanco review](samanco-export-evidence.md) preserves primary evidence that the manufacturer describes a vanilla core with fillings. Its 24 × 150 ml chocolate-labelled carton remains outside the strict chocolate-core ranking until the exact regional label is matched; default Original-variant nutrition is not promoted to the chocolate SKU.
+
 ```sh
 node scripts/urgent-icecream-report.mjs
 node scripts/urgent-icecream-sources.mjs

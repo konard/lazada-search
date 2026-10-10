@@ -53,6 +53,24 @@ test('strict shopping scope includes plain/chocolate and rejects mixed or unspec
 
 test('selected SKU and exact manufacturer flavour take precedence over general advertising', () => {
   assert.equal(
+    matchesFlavourScope(
+      powder('Chocolate whey', {
+        selectedVariant: [{ text: 'Chocolate + Shaker' }],
+      }),
+      scope
+    ),
+    false
+  );
+  assert.equal(
+    matchesFlavourScope(
+      powder('Chocolate whey, free shaker promotion', {
+        selectedVariant: [{ text: 'Chocolate' }],
+      }),
+      scope
+    ),
+    true
+  );
+  assert.equal(
     productFlavour(
       powder('Chocolate Vanilla whey', {
         selectedVariant: [{ text: 'Chocolate 1kg' }, { text: 'Gift shaker' }],

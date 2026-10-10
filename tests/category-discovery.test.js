@@ -167,7 +167,7 @@ test('invalid sorting is rejected before a category request', async (t) => {
   assert.equal(visits, 0);
 });
 
-test('committed buying preferences load category-only and ascending sort, while explicit flags override them', () => {
+test('committed buying preferences use cached relevant mixed sources, while explicit filters override them', () => {
   const names = [
     'LAZADA_MARKET',
     'LAZADA_DELIVERY_AREA',
@@ -185,18 +185,26 @@ test('committed buying preferences load category-only and ascending sort, while 
       'data/cases/vietnam-nha-trang/preferences.lenv',
     ];
     const configured = parseArguments(args);
-    assert.equal(configured.categoryOnly, true);
-    assert.equal(configured.searchSort, 'priceasc');
+    assert.equal(configured.categoryOnly, false);
+    assert.equal(configured.searchSort, 'default');
+    assert.deepEqual(MARKETS.vn.queries, [
+      'whey protein',
+      'whey isolate',
+      'protein powder',
+    ]);
+    assert.ok(
+      MARKETS.vn.categoryUrls.every((url) => !url.endsWith('/protein/'))
+    );
     assert.equal(configured.flavourScope, 'chocolate-or-unflavoured');
     assert.equal(configured.market, 'vn');
     assert.equal(configured.deliveryArea, 'Nha Trang');
     const overridden = parseArguments([
       ...args,
-      '--no-category-only',
+      '--category-only',
       '--search-sort',
       'pricedesc',
     ]);
-    assert.equal(overridden.categoryOnly, false);
+    assert.equal(overridden.categoryOnly, true);
     assert.equal(overridden.searchSort, 'pricedesc');
   } finally {
     for (const [name, value] of original) {

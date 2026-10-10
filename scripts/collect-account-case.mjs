@@ -5,6 +5,8 @@ import { LazadaSearch, DomainScheduler } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { runAccountCase } from './account-case-workflow.mjs';
 import { latestCrawl } from '../src/crawl.js';
+import { scopeAccountAudit } from './account-category-scope.mjs';
+import { accountBacklogFlags } from './account-backlog-order.mjs';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -29,7 +31,7 @@ const collectionFlags = [
   '--ocr-languages',
   options.ocrLanguages,
   ...(options.ocr ? [] : ['--no-ocr']),
-  ...(options.categoryOnly ? ['--category-only'] : []),
+  ...accountBacklogFlags(options),
   '--search-sort',
   options.searchSort,
 ];
@@ -77,7 +79,13 @@ async function audit() {
   try {
     const latest = latestCrawl(await store.list('crawl'));
     return {
-      ...(await app.audit()),
+      ...scopeAccountAudit(await app.audit(), {
+        categoryOnly: options.categoryOnly,
+        flavourScope: options.flavourScope,
+        activeSourcesOnly: true,
+        crawl: latest,
+        discoveries: await store.list('discovery'),
+      }),
       discoveryComplete: latest?.discoveryComplete === true,
     };
   } finally {

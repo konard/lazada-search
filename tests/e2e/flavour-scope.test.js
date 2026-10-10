@@ -26,8 +26,13 @@ async function scopedFixtures() {
     {
       id: 'selected',
       title: 'Scope chocolate vanilla whey, choose flavour',
-      selectedVariant: [{ text: 'Chocolate 1 kg' }, { text: 'Gift shaker' }],
+      selectedVariant: [{ text: 'Chocolate 1 kg' }, { text: 'Gift gloves' }],
       included: true,
+    },
+    {
+      id: 'shaker-bundle',
+      title: 'Scope chocolate whey plus shaker',
+      selectedVariant: [{ text: 'Chocolate + Shaker' }],
     },
     { id: 'vanilla', title: 'Scope vanilla whey' },
     { id: 'mixed-powder', title: 'Scope chocolate banana whey' },

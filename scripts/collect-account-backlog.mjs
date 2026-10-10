@@ -7,6 +7,11 @@ import {
 import { configuredStore, parseArguments } from '../src/config.js';
 import { resolvePageDialogs } from '../src/page-dialogs.js';
 import { latestCrawl } from '../src/crawl.js';
+import { scopeAccountAudit } from './account-category-scope.mjs';
+import {
+  accountBacklogBatch,
+  VN_FACTORY_PRIORITY_URLS,
+} from './account-backlog-order.mjs';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -63,25 +68,31 @@ try {
       'The dedicated account profile needs sign-in before collecting its backlog'
     );
   }
-  const audit = await app.audit();
-  const urls = [
-    ...new Set([
-      ...audit.missingListings,
-      ...audit.missingSkuPrices
-        .filter((entry) => entry.available !== false)
-        .map((entry) => entry.url)
-        .filter(Boolean),
-      ...audit.missingPrices.map((entry) => entry.url),
-      ...audit.unknownSkuInventories,
-      ...audit.missingSkuPrices
-        .filter((entry) => entry.available === false)
-        .map((entry) => entry.url)
-        .filter(Boolean),
-    ]),
-  ].slice(0, options.exhaustive ? Infinity : options.maxProducts);
+  const auditScope = {
+    categoryOnly: options.categoryOnly,
+    flavourScope: options.flavourScope,
+    activeSourcesOnly: true,
+    crawl: latest,
+    discoveries: await app.store.list('discovery'),
+  };
+  const audit = scopeAccountAudit(await app.audit(), auditScope);
+  const batch = accountBacklogBatch(audit, {
+    batchSize: options.batchSize,
+    exhaustive: options.exhaustive,
+    maxProducts: options.maxProducts,
+    priorityUrls: options.priorityUrl.length
+      ? options.priorityUrl
+      : options.market === 'vn'
+        ? VN_FACTORY_PRIORITY_URLS
+        : [],
+  });
+  const { urls } = batch;
   console.log(
     JSON.stringify({
       queued: urls.length,
+      totalQueued: batch.totalQueued,
+      remainingAfterBatch: batch.remainingAfterBatch,
+      batchLimit: batch.batchLimit,
       intervalMs: Math.max(60000, options.intervalMs),
     })
   );
@@ -113,7 +124,7 @@ try {
       }
     }
   }
-  const remaining = await app.audit();
+  const remaining = scopeAccountAudit(await app.audit(), auditScope);
   console.log(
     JSON.stringify({
       remainingListings: remaining.missingListings.length,

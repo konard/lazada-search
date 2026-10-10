@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { AssociativeStore } from './store.js';
 import { DEFAULT_ARCHIVE } from './archive.js';
+import { positive } from './values.js';
 
 const flavourScopeOption = {
   type: 'string',
@@ -20,6 +21,19 @@ const searchSortConfig = (getenv) => ({
   type: 'string',
   choices: ['default', 'priceasc', 'pricedesc'],
   default: getenv('LAZADA_SEARCH_SORT', 'default'),
+});
+const backlogConfig = (getenv) => ({
+  'category-only': categoryOnlyConfig(getenv),
+  'search-sort': searchSortConfig(getenv),
+  'batch-size': {
+    type: 'number',
+    default: Number(getenv('LAZADA_BATCH_SIZE', '25')),
+  },
+  'priority-url': {
+    type: 'array',
+    string: true,
+    default: getenv('LAZADA_PRIORITY_URL', '').split(/\s+/u).filter(Boolean),
+  },
 });
 
 export function configuredStore(options) {
@@ -177,10 +191,9 @@ export function parseArguments(argv) {
         .option('require-manufacturer', { type: 'boolean', default: true })
         .option('max-pages', { type: 'number', default: 5 })
         .option('max-products', { type: 'number', default: 100 })
+        .options(backlogConfig(getenv))
         .option('query', { type: 'array', string: true })
         .option('category-url', { type: 'array', string: true })
-        .option('category-only', categoryOnlyConfig(getenv))
-        .option('search-sort', searchSortConfig(getenv))
         .option('quantity', { type: 'number', default: 1 })
         .option('currency', { type: 'string' })
         .option('category', {
@@ -211,6 +224,7 @@ export function parseArguments(argv) {
         .option('help', { alias: 'h', type: 'boolean' })
         .option('version', { alias: 'v', type: 'boolean' }),
   });
+  positive(config.batchSize, 'batchSize', { integer: true });
   return {
     ...config,
     ...(configuration ? { configuration } : {}),

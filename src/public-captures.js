@@ -108,8 +108,14 @@ export async function publishAccountCaptures(application, accountStore) {
       });
     }
   }
+  const allPublished = await application.store.list('publication');
+  const currentIds = new Set(published.map((record) => record.id));
   return {
     published,
+    historicalPublished: allPublished.filter(
+      (record) => !currentIds.has(record.id)
+    ),
+    allPublished,
     rejected,
     reused,
     downloads: application.cache.stats.downloads,

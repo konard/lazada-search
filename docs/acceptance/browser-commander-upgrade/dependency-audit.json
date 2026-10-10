@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-10T15:04:42.853Z",
+  "nodeVersion": "v20.19.4",
+  "commentUrl": "https://github.com/link-foundation/browser-commander/issues/136#issuecomment-6098863210",
+  "commentVerified": true,
+  "issueAlreadyReported": true,
+  "newDuplicateIssueCreated": false,
+  "advisory": {
+    "id": "GHSA-vfj7-8cjw-p6xm",
+    "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+    "affectedBraces": "<=3.0.3",
+    "patchedRelease": null
+  },
+  "installedChain": [
+    {
+      "package": "browser-commander",
+      "version": "0.28.0"
+    },
+    {
+      "package": "command-stream",
+      "version": "1.6.2"
+    },
+    {
+      "package": "shelljs",
+      "version": "0.10.0"
+    },
+    {
+      "package": "fast-glob",
+      "version": "3.3.3"
+    },
+    {
+      "package": "micromatch",
+      "version": "4.0.8"
+    },
+    {
+      "package": "braces",
+      "version": "3.0.3"
+    }
+  ],
+  "existingReports": [
+    "https://github.com/micromatch/braces/issues/70",
+    "https://github.com/micromatch/braces/issues/73",
+    "https://github.com/mrmlnc/fast-glob/issues/532"
+  ],
+  "cleanConsumerResolution": {
+    "browserCommander": "0.28.0",
+    "commandStream": "1.6.2",
+    "installScriptsRun": false,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 5,
+      "critical": 0,
+      "total": 5
+    }
+  },
+  "auditFixDryRun": {
+    "exitCode": 1,
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 5,
+      "critical": 0,
+      "total": 5
+    }
+  },
+  "isolatedScopedOverride": {
+    "browserCommander": "0.28.0",
+    "commandStream": "1.4.0",
+    "installScriptsRun": false,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "bracesAbsent": true,
+    "appliedToRepository": false
+  },
+  "guardProbe": {
+    "checkedAt": "2026-10-10T14:58:54.423Z",
+    "nodeVersion": "v22.23.0",
+    "patternLength": 9001,
+    "braceDepth": 4500,
+    "directBraces": {
+      "outcome": "rejected",
+      "name": "RangeError",
+      "message": "Maximum call stack size exceeded"
+    },
+    "commandStreamShellJsPath": {
+      "outcome": "rejected",
+      "name": "SyntaxError",
+      "code": "ERR_SHELLJS_GLOB_DEPTH",
+      "message": "ShellJS glob nesting exceeds 100 levels"
+    }
+  },
+  "compatibility": {
+    "processRunnerExportPresentIn140": true,
+    "onlyBrowserCommanderRuntimeImport": "command-stream/process-runner",
+    "detachedLifecycleUsesRunnerInternals": true,
+    "detachedLifecycleAgainst140RuntimeTested": false,
+    "productionOverrideRecommended": false
+  },
+  "qualification": "One braces advisory propagates into five npm audit package findings. Installed command-stream 1.6.2 rejects the tested nested pattern through its ShellJS guard. No exploitable Browser Commander path was demonstrated. Zero-audit isolated resolution is not full runtime compatibility evidence.",
+  "repositoryPackageFilesModified": false,
+  "liveBrowserRequests": 0,
+  "browserRestarted": false
+}

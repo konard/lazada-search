@@ -11,7 +11,7 @@ function fromText(value, category) {
   const text = fold(value || '').replaceAll('-', ' ');
   if (
     other.test(text) ||
-    /hanh\s*nhan|ca\s*phe|mut\s*dau|nhan\s*(?:cam|dau)|tra\s*xanh/u.test(
+    /hanh\s*nhan|ca\s*phe|mut\s*dau|nhan\s*(?:cam|dau)|tra\s*xanh|green\s*tea/u.test(
       text
     ) ||
     /dâu/iu.test(value || '') ||
@@ -57,6 +57,9 @@ export function matchesFlavourScope(product, scope) {
   if (scope !== 'chocolate-or-unflavoured') {
     throw new Error('Unsupported flavour scope');
   }
+  if (isShakerBundle(product)) {
+    return false;
+  }
   const flavour = productFlavour(product);
   if (product.category === 'chocolate-ice-cream') {
     return flavour === 'chocolate';
@@ -64,5 +67,11 @@ export function matchesFlavourScope(product, scope) {
   return (
     ['whey', 'protein-powder'].includes(product.category) &&
     ['chocolate', 'unflavoured'].includes(flavour)
+  );
+}
+
+export function isShakerBundle(product) {
+  return (product.selectedVariant || []).some((option) =>
+    /\bshaker\b|binh\s*(?:lac|shake)/u.test(fold(option.text || ''))
   );
 }

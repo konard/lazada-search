@@ -22,6 +22,8 @@ Listing [i2326481300](https://www.lazada.vn/products/pdp-i2326481300.html) has a
 
 ## Lower advertised prices requiring identity verification
 
+The [expanded cheaper-candidate audit](low-price-identity-audit.md) now checks all four NZMP selling options, exact generic Gold-like chocolate, ON 3 kg repack, VBest chocolate and the VOLAC-titled bag. Its [receipt](low-price-identity-audit.json) validates 46 original source digests and each captured selected SKU offline. It also lists five larger-package search leads worth exact price/flavour/delivery collection. None of these pending records was promoted into factory-verified ranking.
+
 | Captured candidate                                           | Advertised selected price |             Declared mass | Evidence limitation                                                                                                                                                                             |
 | ------------------------------------------------------------ | ------------------------: | ------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NZMP WPC 80%, i2126595433, SKU 10014178624                   |               498,300 VND |                    1000 g | Seller repack. A generic factory ingredient page cannot establish this repack's exact full nutrition, purity, batch or package identity. No factory-verified protein-cost ranking.              |

@@ -23,20 +23,8 @@ export const MARKETS = {
     categoryUrls: [
       'https://www.lazada.vn/bach-hoa-online-kem-cac-loai/',
       'https://www.lazada.vn/bach-hoa-online-kem-daua/',
-      'https://www.lazada.vn/protein/',
     ],
-    queries: [
-      'whey protein',
-      'whey isolate',
-      'protein powder',
-      'kem chocolate',
-      'kem sô cô la',
-      'kem socola',
-      'chocolate ice cream',
-      'bột protein',
-      'casein protein',
-      'soy protein',
-    ],
+    queries: ['whey protein', 'whey isolate', 'protein powder'],
   },
   th: {
     host: 'www.lazada.co.th',
@@ -137,7 +125,9 @@ export class LazadaSearch {
     for (const [kind, records] of metadata) {
       if (
         !Array.isArray(records) ||
-        records.some((record) => !record || typeof record.id !== 'string')
+        records.some(
+          (record) => !record || typeof record.id !== 'string' || !record.id
+        )
       ) {
         throw new Error(`Imported ${kind} records require string IDs`);
       }
@@ -154,8 +144,12 @@ export class LazadaSearch {
       await this.saveOffer(offer);
     }
     for (const [kind, records] of metadata) {
-      for (const record of records) {
-        await this.store.put(kind, record);
+      if (typeof this.store.putMany === 'function') {
+        await this.store.putMany(kind, records);
+      } else {
+        for (const record of records) {
+          await this.store.put(kind, record);
+        }
       }
     }
     return { products: products.length, offers: offers.length };

@@ -77,6 +77,35 @@ const review = JSON.parse(
   await readFile(`${directory}/targeted-spec-review.json`, 'utf8')
 );
 await store.put('spec-review', review);
+const optionalReviews = [];
+for (const filename of [
+  'new-candidate-conflict-review.json',
+  'samanco-export-review.json',
+]) {
+  try {
+    const candidateReview = JSON.parse(
+      await readFile(`${directory}/${filename}`, 'utf8')
+    );
+    await store.put('spec-review', candidateReview);
+    optionalReviews.push(candidateReview);
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error;
+    }
+  }
+}
+const reviewArtifacts = optionalReviews.flatMap(
+  (candidateReview) => candidateReview.artifacts ?? []
+);
+for (const artifact of reviewArtifacts) {
+  const bytes = await readFile(artifact.path);
+  assert.equal(sha256(bytes), artifact.contentSha256);
+  assert.equal(bytes.length, artifact.byteLength);
+  await store.put('evidence', {
+    ...artifact,
+    source: await store.putBlob(bytes),
+  });
+}
 
 const attemptsFile = `${directory}/targeted-source-cache.json`;
 let attempts = [];
@@ -91,22 +120,39 @@ const targets = [
   'https://happydurian.vn/',
   'http://kidofoods.vn/kem/merino',
   'https://www.kdc.vn/',
+  'https://magnoliaicecreamth.com/productsub.aspx?rp=1',
+  'https://ngoinhadinhduong.com/products/kem-so-co-la-hat-phi-473ml',
+  'https://www.bing.co.kr/en/product/detail?PDT=55',
+  'https://eng.bing.co.kr/upload/esg/2025%20BINGGRAE%20SUSTAINABILITY%20REPORT.pdf',
+  'https://www.bing.co.kr/upload/product/2025/09/a516b929-a423-4ee4-b7eb-fccde90b725f.png',
 ];
 let manufacturerRequestsPerformed = 0;
 if (process.argv.includes('--online')) {
   for (const url of targets) {
-    if (attempts.some((attempt) => attempt.url === url)) {
+    const prior = attempts.find((attempt) => attempt.url === url);
+    const format = /\.(pdf|png)$/.exec(new URL(url).pathname)?.[1] ?? 'html';
+    if (
+      prior &&
+      !(
+        prior.error &&
+        format === 'pdf' &&
+        process.argv.includes('--retry-failed-pdf')
+      )
+    ) {
       continue;
     }
     let attempt;
     try {
       manufacturerRequestsPerformed++;
       const response = await fetch(url, {
-        signal: AbortSignal.timeout(15000),
+        signal: AbortSignal.timeout(format === 'pdf' ? 180000 : 15000),
       });
       const bytes = Buffer.from(await response.arrayBuffer());
+      if (format === 'pdf' && response.ok) {
+        assert.equal(bytes.subarray(0, 5).toString(), '%PDF-');
+      }
       const hash = sha256(bytes);
-      const path = `${directory}/sources/${hash}.html.gz`;
+      const path = `${directory}/sources/${hash}.${format}.gz`;
       await writeFile(path, gzipSync(bytes));
       attempt = {
         url,
@@ -116,6 +162,7 @@ if (process.argv.includes('--online')) {
         sha256: hash,
         bytes: bytes.length,
         path,
+        format,
       };
     } catch (error) {
       attempt = {
@@ -125,7 +172,12 @@ if (process.argv.includes('--online')) {
         causeCode: error.cause?.code,
       };
     }
-    attempts.push(attempt);
+    if (prior) {
+      attempt.previousAttempts = [...(prior.previousAttempts ?? []), prior];
+      attempts[attempts.indexOf(prior)] = attempt;
+    } else {
+      attempts.push(attempt);
+    }
     await writeFile(attemptsFile, `${JSON.stringify(attempts, null, 2)}\n`);
     if (url !== targets.at(-1)) {
       await delay(10000);
@@ -143,7 +195,8 @@ for (const attempt of attempts) {
     record.source = await store.putBlob(
       gunzipSync(await readFile(attempt.path))
     );
-    record.format = 'html';
+    assert.equal(record.source.sha256, contentSha256);
+    record.format = attempt.format ?? 'html';
   }
   await store.put('research-attempt', record);
 }
@@ -162,6 +215,18 @@ const replay = new RepositoryArchive({
 const verification = await replay.verify();
 assert.equal(verification.valid, true);
 assert.deepEqual(await replay.get('spec-review', review.id), review);
+for (const optionalReview of optionalReviews) {
+  assert.deepEqual(
+    await replay.get('spec-review', optionalReview.id),
+    optionalReview
+  );
+}
+for (const artifact of reviewArtifacts) {
+  assert.equal(
+    sha256(await replay.blob(artifact.contentSha256)),
+    artifact.contentSha256
+  );
+}
 for (const image of images) {
   assert.equal(sha256(await replay.blob(image.hash)), image.hash);
   assert(
@@ -175,6 +240,7 @@ const validation = {
   isolatedArchive: exported,
   verification,
   validatedOriginalImages: images.length,
+  validatedReviewArtifacts: reviewArtifacts.length,
   sharedStoreWrites: 0,
   lazadaDownloads: 0,
   manufacturerRequestsRecorded: attempts.length,

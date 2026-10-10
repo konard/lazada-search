@@ -48,7 +48,9 @@ export function inspectScrollBoundary() {
   const bottom = content.length
     ? Math.max(...content.map((entry) => entry.bottom + position))
     : position + viewport;
-  const footer = bounds('footer, [role="contentinfo"], #footer');
+  const footer = bounds(
+    'footer, [role="contentinfo"], #footer, .new-desktop-footer, .lzd-footer'
+  );
   const footerTop = footer.length
     ? Math.min(...footer.map((entry) => entry.top + position))
     : Infinity;

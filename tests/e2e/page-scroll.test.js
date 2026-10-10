@@ -196,3 +196,81 @@ test('animated search scrolling keeps the final products and pager visible above
   assert.equal(unknown.known, false);
   assert.equal(unknown.steps, 0);
 });
+
+async function assertLazadaFooterBoundary(page, className) {
+  const view = await page.evaluate(
+    (footerClass) => ({
+      height: globalThis.innerHeight,
+      pager: globalThis.document
+        .querySelector('[data-pagination]')
+        .getBoundingClientRect()
+        .toJSON(),
+      finalRow: [...globalThis.document.querySelectorAll('[data-product-card]')]
+        .slice(-4)
+        .map((card) => card.getBoundingClientRect().toJSON()),
+      footerTop: globalThis.document
+        .querySelector(`.${footerClass}`)
+        .getBoundingClientRect().top,
+      semanticFooters: globalThis.document.querySelectorAll(
+        'footer, [role="contentinfo"], #footer'
+      ).length,
+    }),
+    className
+  );
+  assert.equal(view.semanticFooters, 0, 'the real footer classes are required');
+  assert.equal(view.finalRow.length, 4);
+  assert.ok(
+    view.finalRow.every(
+      (card) => card.top >= 110 && card.bottom <= view.height
+    ),
+    `${className}: the complete final product row remains visible`
+  );
+  assert.ok(
+    view.pager.top >= 110 && view.pager.bottom <= view.height + 1,
+    `${className}: the pager remains visible`
+  );
+  assert.ok(
+    view.footerTop > view.height,
+    `${className}: no footer pixels enter the viewport`
+  );
+  await assertStableCapture(page);
+}
+
+test('nonsemantic Lazada footer classes stop scrolling before clipped footer text while retaining the final product row and pager', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-footer-scroll-'));
+  const store = new AssociativeStore({ directory });
+  const collector = new BrowserCollector({
+    store,
+    cache: new EvidenceCache({
+      store,
+      scheduler: new DomainScheduler({ intervalMs: 0 }),
+    }),
+    settleMs: 0,
+    browserOptions: { launch: 'engine', persistent: false },
+  });
+  t.after(async () => {
+    await collector.close();
+    await rm(directory, { recursive: true, force: true });
+  });
+  await collector.start();
+  const page = collector.runtime.page;
+  await page.route('https://www.lazada.vn/**', (route) =>
+    route.fulfill({
+      contentType: 'text/html; charset=utf-8',
+      body: `<style>body{margin:0}header{position:fixed;top:0;height:110px;width:100%;background:white}main{padding-top:140px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.card{height:220px}nav{height:50px;margin-top:24px}.new-desktop-footer,.lzd-footer{height:1000px;margin-top:8px;background:red}</style><header>Products</header><main><div class="grid">${Array.from({ length: 24 }, (_, index) => `<article class="card" data-product-card><a href="/products/whey-i${index + 8000}.html" title="Chocolate whey 500g">Chocolate whey 500g</a><span data-card-price>100.000 ₫</span></article>`).join('')}</div><nav data-pagination><span aria-current="page">1</span><button data-next-page aria-disabled="true">Next</button></nav></main><section class="new-desktop-footer"><div class="footer-first"><div class="lzd-footer-inner">LAZADA VIỆT NAM</div></div></section>`,
+    })
+  );
+  const captured = await collector.page('https://www.lazada.vn/protein/');
+  assert.equal(captured.snapshot.cards.length, 24);
+  assert.equal(captured.scrolling.settled, true);
+  assert.equal(captured.scrolling.pagerObserved, true);
+  await assertLazadaFooterBoundary(page, 'new-desktop-footer');
+  await page.evaluate(() => {
+    globalThis.document.querySelector('.new-desktop-footer').className =
+      'lzd-footer';
+    globalThis.scrollTo(0, 0);
+  });
+  const alternate = await scrollProductContent(page, { durationMs: 80 });
+  assert.equal(alternate.settled, true);
+  await assertLazadaFooterBoundary(page, 'lzd-footer');
+});
