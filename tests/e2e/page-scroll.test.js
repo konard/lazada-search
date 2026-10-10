@@ -82,6 +82,34 @@ test('animated search scrolling keeps the final products and pager visible above
   assert.equal(corrected.settled, true);
   assert.ok(Math.abs(corrected.position - capture.scrolling.position) < 2);
 
+  // The real minimized Lazada chat control must not cover the pager.
+  await page.evaluate(() => {
+    globalThis.document.querySelector('footer').style.marginTop = '120px';
+    const chat = globalThis.document.createElement('button');
+    chat.className = 'im-app__cont-minimize';
+    chat.style.cssText =
+      'position:fixed;bottom:0;right:0;width:180px;height:48px';
+    chat.textContent = 'Chat';
+    globalThis.document.body.append(chat);
+  });
+  const withChat = await scrollProductContent(page);
+  assert.equal(withChat.settled, true);
+  assert.equal(withChat.bottomInset, 64);
+  const unobstructed = await page.evaluate(() => ({
+    pagerBottom: globalThis.document
+      .querySelector('[data-pagination]')
+      .getBoundingClientRect().bottom,
+    chatTop: globalThis.document
+      .querySelector('.im-app__cont-minimize')
+      .getBoundingClientRect().top,
+    footerTop: globalThis.document
+      .querySelector('footer')
+      .getBoundingClientRect().top,
+    height: globalThis.innerHeight,
+  }));
+  assert.ok(unobstructed.pagerBottom <= unobstructed.chatTop - 16);
+  assert.ok(unobstructed.footerTop > unobstructed.height);
+
   // Pages without a recognized product region must never seek the body bottom.
   await page.setContent(
     '<header>Empty search</header><footer style="height:5000px">Footer</footer>'

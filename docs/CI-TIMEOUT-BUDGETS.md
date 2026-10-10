@@ -40,8 +40,11 @@ dependent release workflow reported `skipped`.
 ## Per-test timeouts do not bound a suite
 
 `bun test --timeout 30000` bounds a **single test** at 30 seconds.
-Node's `--test-timeout=120000` bounds each test file at two minutes, allowing
-the Git-fixture suites to finish; `--test-concurrency=4` limits contention.
+Node's `--test-timeout=300000` bounds each test file at five minutes, allowing
+the growing committed catalog to complete its durable offline import. The
+2,798-listing snapshot took 116 seconds in isolation and exceeded the former
+two-minute file limit under concurrent test load. `--test-concurrency=4`
+limits contention; the full catalog equality assertions remain enabled.
 Neither replaces the overall suite budget. Many passing tests or files can
 still exhaust the job's deadline.
 

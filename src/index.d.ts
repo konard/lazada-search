@@ -337,6 +337,7 @@ export interface Capture {
     target: number;
     step: number;
     pagerObserved: boolean;
+    bottomInset?: number;
     steps: number;
     settled: boolean;
   };

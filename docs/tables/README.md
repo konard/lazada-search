@@ -7,10 +7,10 @@
 | Captured confirmed food SKU prices         | 149                             |
 | Visually checked selected-page prices      | 53                              |
 | Complete exact manufacturer specifications | 13                              |
-| Missing discovered product records         | 516                             |
+| Missing discovered product records         | 1518                            |
 | Missing individual SKU prices              | 221                             |
-| Unfinished search scopes                   | 10                              |
-| Unclassified discovery observations        | 101                             |
+| Unfinished search scopes                   | 12                              |
+| Unclassified discovery observations        | 1069                            |
 | Whole-market completeness                  | Unverifiable from public search |
 
 - [Separate preliminary listing inventory](discovered-listings.md)

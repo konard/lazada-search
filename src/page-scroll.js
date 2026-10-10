@@ -52,7 +52,25 @@ export function inspectScrollBoundary() {
   const footerTop = footer.length
     ? Math.min(...footer.map((entry) => entry.top + position))
     : Infinity;
-  const target = Math.max(0, Math.min(bottom + 16, footerTop - 8) - viewport);
+  // Lazada's minimized chat button can cover the final pagination controls.
+  const bottomInset = Math.max(
+    16,
+    ...bounds('.im-app__cont-minimize, [data-scroll-overlay]')
+      .filter(
+        (entry) =>
+          entry.top >= 0 &&
+          entry.bottom >= viewport - 80 &&
+          pager.some(
+            (control) =>
+              control.left < entry.right && control.right > entry.left
+          )
+      )
+      .map((entry) => viewport - entry.top + 16)
+  );
+  const target = Math.max(
+    0,
+    Math.min(bottom + bottomInset, footerTop - 8) - viewport
+  );
   const headerBottom = Math.max(
     0,
     ...bounds('header, [role="banner"], .lzd-header, .lzd-header-content')
@@ -66,6 +84,7 @@ export function inspectScrollBoundary() {
     target,
     step: Math.max(80, Math.floor((viewport - headerBottom) * 0.65)),
     pagerObserved: pager.length > 0,
+    bottomInset,
   };
 }
 

@@ -1,11 +1,12 @@
 {
-  "validatedAt": "2026-10-10T11:05:41.324616Z",
+  "validatedAt": "2026-10-10T11:51:36.064Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 667,
-    "pass": 667,
+    "tests": 668,
+    "pass": 668,
     "fail": 0,
-    "skipped": 0
+    "skipped": 0,
+    "fileTimeoutMs": 300000
   },
   "e2e": {
     "tests": 15,
@@ -17,7 +18,7 @@
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.53%, threshold 10%)",
+    "duplication": "passed (7.49%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -25,11 +26,11 @@
   "cachedAudit": {
     "browserStarts": 0,
     "downloads": 0,
-    "missingListings": 516,
+    "missingListings": 1518,
     "missingSkuPrices": 221,
     "manufacturerVerified": 13,
-    "unfinishedSearches": 10,
-    "unclassifiedObservations": 101
+    "unfinishedSearches": 12,
+    "unclassifiedObservations": 1069
   },
   "manualPageReviews": 32,
   "additionalSkuCaptures": {
@@ -46,17 +47,17 @@
     "originalPriceTimestampsPreserved": true
   },
   "productionReady": false,
-  "reason": "Initial discovery remains in progress: 516 discovered listings and 221 known individual SKU prices await collection. Exact manufacturer specifications exist for thirteen selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
+  "reason": "Initial discovery remains in progress: 1518 discovered listings and 221 known individual SKU prices await collection. Exact manufacturer specifications exist for thirteen selected SKUs. Current stock, bulk freight, frozen delivery and authoritative whole-market coverage remain unproven.",
   "repositoryArchive": {
     "valid": true,
-    "records": 10611,
-    "blobs": 3510,
+    "records": 12955,
+    "blobs": 3562,
     "downloads": 0,
-    "manifestSha256": "611f2d42a0ac98ff73ffab399fbb973228f19307fb59aa1f99d11c0c3b267b66",
-    "htmlCapturesReExtracted": 234,
+    "manifestSha256": "140d21a8ecdefd5d4f6c6db51773e39d44a3fd2b7485cc875ebae3d2d9b1097e",
+    "htmlCapturesReExtracted": 288,
     "originalPriceSelectionAndSkuInventoriesPreserved": true,
     "unchangedExport": {
-      "reused": 3567,
+      "reused": 3619,
       "rebuilt": 0,
       "downloads": 0
     }
@@ -67,7 +68,7 @@
     "manualVisualReview": false,
     "privateAccountScreenshotsPublished": 0,
     "downloads": 0,
-    "searchPages": 16
+    "searchPages": 72
   },
   "savedExtractionAudit": {
     "distinctCaptures": 142,
@@ -76,8 +77,8 @@
     "deferredLoadingMarkerRecollections": 22
   },
   "discovery": {
-    "preliminaryDistinctListings": 844,
-    "savedCardObservations": 971,
+    "preliminaryDistinctListings": 2798,
+    "savedCardObservations": 3149,
     "productDetailsGatedOnCompleteSearchLists": true,
     "everyUnstartedQueryRemainsCoverageGap": true,
     "categoryScopes": {
@@ -87,13 +88,17 @@
         "iceCreamEach": 46
       },
       "categoryPaginationAndTelegramE2E": "passed"
-    }
+    },
+    "committedSearchPagesReExtracted": 72,
+    "completedWheyProteinPages": 61,
+    "manualLastPagePricesChecked": 16
   },
   "animatedScrolling": {
     "lastProductRowAndPagerVisible": true,
     "footerOutsideViewport": true,
     "intermediateAnimationFramesVerified": true,
-    "reusedWindowCorrectedWithoutNewNavigation": true
+    "reusedWindowCorrectedWithoutNewNavigation": true,
+    "minimizedChatClearance": true
   },
   "accountCaseWorkflow": {
     "legacyCrawlTimestampOrdering": "passed",
@@ -102,5 +107,6 @@
     "challengeAndDialogStop": "passed",
     "stableUnresolvedGapStop": "passed",
     "samePersistentWindow": true
-  }
+  },
+  "manualSearchPageReviews": 1
 }
