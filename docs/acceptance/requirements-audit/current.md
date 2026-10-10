@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-10T19:53:57.810Z, from the published catalog observed at 2026-10-10T19:51:52.342Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-10T20:19:26.796Z, from the published catalog observed at 2026-10-10T19:51:52.342Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1478 uncollected listings**, **169 unpriced SKU options**, and **6570 unresolved category observations**. 213 clearly identified hardware or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -29,8 +29,8 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 | Issue                                                  | Requirement                                                                                 | State  |
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ------ |
 | [#6](https://github.com/konard/lazada-search/issues/6) | Recognize ice-cream carton category and exact selling-unit package count                    | CLOSED |
-| [#5](https://github.com/konard/lazada-search/issues/5) | Distinguish capture provenance metadata from stored blob references during archive export   | OPEN   |
-| [#4](https://github.com/konard/lazada-search/issues/4) | Prefer selected metric selling-unit weights over imperial headline conversions              | OPEN   |
+| [#5](https://github.com/konard/lazada-search/issues/5) | Distinguish capture provenance metadata from stored blob references during archive export   | CLOSED |
+| [#4](https://github.com/konard/lazada-search/issues/4) | Prefer selected metric selling-unit weights over imperial headline conversions              | CLOSED |
 | [#3](https://github.com/konard/lazada-search/issues/3) | Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage | OPEN   |
 | [#2](https://github.com/konard/lazada-search/issues/2) | Failed persistent browser reconnect deletes another live worker descriptor                  | CLOSED |
 | [#1](https://github.com/konard/lazada-search/issues/1) | Account workflow retains stale archive shards after re-export                               | CLOSED |

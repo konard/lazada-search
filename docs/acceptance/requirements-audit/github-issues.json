@@ -11,7 +11,7 @@
     "body": "When an archived review contains provenance metadata shaped as {sha256, bytes}, exportRepositoryArchive walks it as a stored blob reference, even if sha256 is the original pre-redaction capture digest and bytes is descriptive metadata. Export then fails with Missing source evidence although the sanitized original is present. Reproduced while archiving docs/acceptance/ice-dual-units/merino-review.json: historical capture digest a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414 differs from sanitized artifact digest8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89.\n\nCurrent producer workaround in scripts/archive-ice-research.mjs renames provenance metadata to contentSha256/byteLength while keeping original review JSON as a blob. Required general fix: distinguish typed stored-blob references from source-digest metadata, preserve source rewrite relationships, and add an archive round-trip regression. The workaround archive validates59records/58blobs with zero downloads.\n",
     "labels": [],
     "number": 5,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Distinguish capture provenance metadata from stored blob references during archive export",
     "url": "https://github.com/konard/lazada-search/issues/5"
   },
@@ -19,7 +19,7 @@
     "body": "The urgent original-source audit found that imperial headline parsing can override more precise metric selling-unit declarations. This affects per-gram comparisons.\n\nReproducible captured cases:\n- Optimum Nutrition seller repack item3265021607 / SKU15762183506: title says2lbs and900gam; NetContent says2lbs(900g); description explicitly states a single900g zip bag repacked from a10lb parent bag. Raw parser reports907.18474g; selected unit is900g. Original private product source SHA f235ca5d2116d8aca18f0e5510a685e1e511c52c061aefe61a0af494bf359995; publicly redacted source SHA7020b63493f5878b2509f19fde2ca420521434f77776fd8bfeff0f6b17bb8ea3.\n- ProSupps Chocolate Ice Cream powder item1553990700 / SKU6552645102: selected seller front prints907g; title2lb conversion produces907.18474g.\n- Levels80-serving Vanilla item13451810835 / SKU117268785502: original selected bag prints2.56kg. Net mass was missing until the cached image was visually reviewed. It is sold out and outside the requested flavour scope, so excluded from buying ranks.\n\nThe committed case uses source-attributed field reviews and reproducible offline correction scripts; table calculations and source checks pass. General extraction still needs metric-priority and OCR package-matching regressions, handling seller repacks separately from factory and parent-package weights. Corrected fields must preserve original claims and trigger selective re-review when a genuine new selling unit is observed. See docs/acceptance/top10-check/ and scripts/review-handpicked-selling-mass.mjs. No fabricated manufacturer formula or density is approved.\n",
     "labels": [],
     "number": 4,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
     "url": "https://github.com/konard/lazada-search/issues/4"
   },
