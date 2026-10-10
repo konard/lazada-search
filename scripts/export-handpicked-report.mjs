@@ -144,6 +144,13 @@ try {
         ) || null,
     };
   });
+  rows.sort((a, b) => {
+    const pricePerGram = (row) =>
+      Number.isFinite(row.costs?.beforePerFoodGram)
+        ? row.costs.beforePerFoodGram
+        : Infinity;
+    return pricePerGram(a) - pricePerGram(b);
+  });
   const resolvedListingIds = rows
     .filter((row) => row.listingId)
     .map((row) => row.listingId);
@@ -180,6 +187,11 @@ try {
     market: 'Vietnam',
     deliveryArea: 'Nha Trang',
     currency: 'VND',
+    sort: {
+      field: 'costs.beforePerFoodGram',
+      direction: 'ascending',
+      missing: 'last',
+    },
     complete: rows.every(
       (row) =>
         row.costs && row.strictChocolateOrPlain && row.manufacturerVerified
@@ -202,7 +214,7 @@ try {
     rows,
   };
   assert.equal(app.cache.stats.downloads, 0);
-  const body = `# User-picked Lazada links: exact identity and unit costs\n\nUpdated ${receipt.generatedAt}. Public cached sources only, Vietnam / Nha Trang, VND. ${receipt.limits}\n\n${rows.length} submitted rows; ${receipt.counts.resolvedListingRows} resolved listing identities; ${receipt.counts.resolvedExactSkuRows} resolved selling SKUs; ${receipt.counts.capturedExactSkuRows} exact SKUs with cached observations. Duplicate counts are ${receipt.counts.duplicateResolvedListingRows} resolved listing rows and ${receipt.counts.duplicateResolvedExactSkuRows} resolved exact SKU rows. Two similarly named links are never assumed to be duplicates.\n\n${table(
+  const body = `# User-picked Lazada links: exact identity and unit costs\n\nUpdated ${receipt.generatedAt}. Public cached sources only, Vietnam / Nha Trang, VND. ${receipt.limits}\n\n${rows.length} submitted rows; ${receipt.counts.resolvedListingRows} resolved listing identities; ${receipt.counts.resolvedExactSkuRows} resolved selling SKUs; ${receipt.counts.capturedExactSkuRows} exact SKUs with cached observations. Duplicate counts are ${receipt.counts.duplicateResolvedListingRows} resolved listing rows and ${receipt.counts.duplicateResolvedExactSkuRows} resolved exact SKU rows. Two similarly named links are never assumed to be duplicates.\n\nSorted by **VND per gram of powder before delivery, cheapest first**. Missing gram prices appear last.\n\n${table(
     [
       'Submitted label / link',
       'Exact resolved SKU',
