@@ -578,6 +578,7 @@ export declare class LazadaSearch {
     exhaustive?: boolean;
     discoveryOnly?: boolean;
     queries?: string[];
+    categoryUrls?: string[];
     maxPages?: number;
     maxProducts?: number;
     refresh?: boolean;
@@ -644,7 +645,7 @@ export declare function exportRepositoryArchive(options: {
 }>;
 export declare const MARKETS: Record<
   string,
-  { host: string; currency: string; queries: string[] }
+  { host: string; currency: string; queries: string[]; categoryUrls?: string[] }
 >;
 export declare function extractPage(context?: {
   document: unknown;

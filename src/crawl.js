@@ -1,6 +1,17 @@
 import { categoryOf, parsePrice } from './nutrition.js';
 import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 
+export function latestCrawl(reports) {
+  const observed = (report) =>
+    Date.parse(
+      report.finishedAt ||
+        report.startedAt ||
+        report.id.match(/\d{4}-\d{2}-\d{2}T[\d:.]+Z/u)?.[0] ||
+        ''
+    ) || 0;
+  return [...reports].sort((a, b) => observed(b) - observed(a))[0];
+}
+
 function assertSearchPage(url, metadata) {
   const expectedPage = Number(new URL(url).searchParams.get('page') || 1);
   if (metadata.currentPage && metadata.currentPage !== expectedPage) {
@@ -49,6 +60,7 @@ export async function crawlMarketplace(
   app,
   {
     queries,
+    categoryUrls = [],
     maxPages = 5,
     maxProducts = 100,
     refresh = false,
@@ -60,17 +72,36 @@ export async function crawlMarketplace(
   positive(maxProducts, 'maxProducts', { integer: true });
   const pageLimit = exhaustive ? Number.MAX_SAFE_INTEGER : maxPages;
   const productLimit = exhaustive ? Number.MAX_SAFE_INTEGER : maxProducts;
+  const sources = [
+    ...queries.map((query) => ({
+      query,
+      url: `https://${app.host}/catalog/?q=${encodeURIComponent(query)}`,
+      type: 'keyword',
+    })),
+    ...categoryUrls.map((url) => {
+      app.assertMarket(url);
+      const canonical = canonicalUrl(url);
+      return {
+        query: `category:${canonical}`,
+        url: canonical,
+        type: 'category',
+      };
+    }),
+  ];
   const report = {
     id: `crawl:${new Date().toISOString()}`,
     startedAt: new Date().toISOString(),
     market: app.market,
     deliveryArea: app.deliveryArea,
     queries,
+    categoryUrls,
     pages: [],
     products: [],
     failures: [],
-    scopes: queries.map((query) => ({
+    scopes: sources.map(({ query, url, type }) => ({
       query,
+      url,
+      type,
       visitedPages: 0,
       terminalConfirmed: false,
       reportedTotal: null,
@@ -89,12 +120,12 @@ export async function crawlMarketplace(
   );
   const queryQueues = [];
   let stopped = false;
-  for (const query of queries) {
+  for (const { query, url: initialUrl } of sources) {
     const queue = [];
     queryQueues.push(queue);
     const scope = report.scopes.find((entry) => entry.query === query);
     scope.stopReason = 'page-limit';
-    let url = `https://${app.host}/catalog/?q=${encodeURIComponent(query)}`;
+    let url = initialUrl;
     const visited = new Set();
     for (let index = 0; index < pageLimit && !stopped; index += 1) {
       url = canonicalUrl(url);
@@ -212,7 +243,7 @@ export async function crawlMarketplace(
     }
   }
   report.discoveryComplete =
-    report.scopes.length === queries.length &&
+    report.scopes.length === sources.length &&
     report.scopes.every((scope) => scope.terminalConfirmed) &&
     report.failures.length === 0;
   const selected = [];
@@ -255,7 +286,7 @@ export async function crawlMarketplace(
   return finishCrawl(app, report, {
     discovered,
     knownUrls,
-    queries,
+    queries: sources.map((source) => source.query),
     stopped,
     selected,
   });

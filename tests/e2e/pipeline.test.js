@@ -128,7 +128,7 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
   await page.route('https://www.lazada.vn/**', async (route) => {
     const url = new URL(route.request().url());
     navigations.push(url.href);
-    if (url.pathname.includes('/catalog/')) {
+    if (url.pathname.includes('/catalog/') || url.pathname === '/protein/') {
       await route.fulfill({
         contentType: 'text/html',
         body: `<h1>Whey search</h1><div data-product-card><a href="${listingUrl}">Fixture whey isolate 1 kg</a></div><nav class="ant-pagination"><button class="ant-pagination-next ant-pagination-disabled" aria-disabled="true">Next</button></nav>`,
@@ -148,6 +148,7 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
   );
   const crawl = await app.crawl({
     queries: ['whey protein'],
+    categoryUrls: ['https://www.lazada.vn/protein/'],
     maxPages: 2,
     maxProducts: 5,
   });
@@ -260,7 +261,11 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
   await bot.handleUpdate(update('/compare', 999, 2));
   assert.equal(replies.length, replyCount);
   await bot.handleUpdate(
-    update('/discover --query "whey protein" --exhaustive', 777, 3)
+    update(
+      '/discover --query "whey protein" --category-url https://www.lazada.vn/protein/ --exhaustive',
+      777,
+      3
+    )
   );
   assert.match(replies.at(-1), /"discoveryComplete": true/u);
   assert.match(replies.at(-1), /"products": \[\]/u);

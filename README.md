@@ -231,8 +231,18 @@ Keep calculations deterministic, preserve ambiguous source claims, and add meani
 
 ## Catalog coverage and Markdown export
 
+Vietnam defaults include ten keyword searches and three actual [protein and ice-cream category URLs](docs/acceptance/category-sources.json), observed in cached product breadcrumbs. Repeat `--category-url URL` to add a category scope. An explicit `--query` list restricts keyword scope and disables default categories unless you supply category URLs.
+
 `discover --exhaustive` collects search lists without opening details. `crawl --exhaustive` finishes all configured search lists before entering its product phase, then follows observed public pagination without page/product caps, retains every discovered candidate, inventories all public SKU combinations and stops on security challenges. Each SKU needs its own confirmed price. `audit --strict` fails while catalog completeness remains unproven; public search cannot certify a whole-market inventory.
 
 Generate the repository tables with `node scripts/export-catalog-tables.mjs --offline`. Reprocess cached listings and OCR with `node scripts/audit-cached-catalog.mjs --offline`. `node scripts/collect-manufacturer-sources.mjs` follows the official-domain registry, retains unmatched source evidence and reuses cached pages, images and OCR. The [coverage table](docs/tables/README.md) lists every outstanding gap. Telegram supports `/audit --strict` and splits full comparisons across messages without a ten-row limit.
 
 The committed [catalog snapshot](docs/tables/catalog.json) includes products, offers, discoveries, public SKU inventories and crawl reports. Import it into a fresh cache with `node bin/lazada-search.js import docs/tables/catalog.json --offline`. It reproduces the same explicit coverage gaps and provisional calculations without website requests. Original private browser state is not part of the published snapshot.
+
+## Continue the account case across collection phases
+
+```sh
+node scripts/collect-account-case.mjs --account default --exhaustive --max-images 64 --ocr-languages eng+vie
+```
+
+The workflow reuses the persistent signed-in window and cached listing pages, completes discovery before details, and runs further detail passes when new SKU inventories appear. It publishes redacted cached evidence, tables and a verified repository archive after each phase without website downloads for publication. Dialogs, challenges and loading failures stop collection. Unchanged unresolved gaps are retained instead of being retried repeatedly. Previously flagged loading captures are refreshed only after the initial backlog has been resolved. Exact manufacturer review, destination bulk quotes and frozen transport verification remain subsequent requirements. The generated files remain available for validation and committing.

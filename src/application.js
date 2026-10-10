@@ -5,7 +5,7 @@ import { TesseractOcr } from './ocr.js';
 import { parseProduct, validateOffer, validateProduct } from './products.js';
 import { crossCheck, extractNutrition } from './nutrition.js';
 import { compareOffers } from './compare.js';
-import { crawlMarketplace } from './crawl.js';
+import { crawlMarketplace, latestCrawl } from './crawl.js';
 import { auditCoverage } from './coverage.js';
 import { MANUFACTURERS, isTrustedManufacturer } from './manufacturers.js';
 import { reconcileManufacturer } from './verification.js';
@@ -19,6 +19,11 @@ export const MARKETS = {
   vn: {
     host: 'www.lazada.vn',
     currency: 'VND',
+    categoryUrls: [
+      'https://www.lazada.vn/protein/',
+      'https://www.lazada.vn/bach-hoa-online-kem-cac-loai/',
+      'https://www.lazada.vn/bach-hoa-online-kem-daua/',
+    ],
     queries: [
       'whey protein',
       'whey isolate',
@@ -392,21 +397,15 @@ export class LazadaSearch {
     return await crawlMarketplace(this, {
       ...options,
       queries: options.queries || MARKETS[this.market].queries,
+      categoryUrls:
+        options.categoryUrls ??
+        (options.queries ? [] : MARKETS[this.market].categoryUrls || []),
     });
   }
 
   async audit() {
     const crawls = await this.store.list('crawl');
-    const observed = (report) =>
-      Date.parse(
-        report.finishedAt ||
-          report.startedAt ||
-          report.id.match(/\d{4}-\d{2}-\d{2}T[\d:.]+Z/u)?.[0] ||
-          ''
-      ) || 0;
-    const crawl = crawls.sort(
-      (left, right) => observed(right) - observed(left)
-    )[0];
+    const crawl = latestCrawl(crawls);
     return auditCoverage({
       crawl,
       products: await this.store.list('product'),

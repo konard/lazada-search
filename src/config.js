@@ -160,6 +160,7 @@ export function parseArguments(argv) {
         .option('max-pages', { type: 'number', default: 5 })
         .option('max-products', { type: 'number', default: 100 })
         .option('query', { type: 'array', string: true })
+        .option('category-url', { type: 'array', string: true })
         .option('quantity', { type: 'number', default: 1 })
         .option('currency', { type: 'string' })
         .option('category', {

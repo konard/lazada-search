@@ -1,9 +1,9 @@
 {
-  "validatedAt": "2026-10-10T10:43:20.309923Z",
+  "validatedAt": "2026-10-10T11:05:41.324616Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 662,
-    "pass": 662,
+    "tests": 667,
+    "pass": 667,
     "fail": 0,
     "skipped": 0
   },
@@ -17,7 +17,7 @@
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.59%, threshold 10%)",
+    "duplication": "passed (7.53%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -79,12 +79,28 @@
     "preliminaryDistinctListings": 844,
     "savedCardObservations": 971,
     "productDetailsGatedOnCompleteSearchLists": true,
-    "everyUnstartedQueryRemainsCoverageGap": true
+    "everyUnstartedQueryRemainsCoverageGap": true,
+    "categoryScopes": {
+      "defaultCategories": 3,
+      "breadcrumbSourceObservations": {
+        "protein": 83,
+        "iceCreamEach": 46
+      },
+      "categoryPaginationAndTelegramE2E": "passed"
+    }
   },
   "animatedScrolling": {
     "lastProductRowAndPagerVisible": true,
     "footerOutsideViewport": true,
     "intermediateAnimationFramesVerified": true,
     "reusedWindowCorrectedWithoutNewNavigation": true
+  },
+  "accountCaseWorkflow": {
+    "legacyCrawlTimestampOrdering": "passed",
+    "growingSkuBacklogs": "passed",
+    "deferredRecollectionOrder": "passed",
+    "challengeAndDialogStop": "passed",
+    "stableUnresolvedGapStop": "passed",
+    "samePersistentWindow": true
   }
 }

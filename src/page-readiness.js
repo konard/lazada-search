@@ -32,7 +32,9 @@ export function inspectPageReadiness(context) {
     /\/products\//u.test(new URL(url).pathname);
   const searchPage =
     /lazada\./u.test(new URL(url).hostname) &&
-    /\/catalog\//u.test(new URL(url).pathname);
+    /\/(?:catalog|protein|bach-hoa-online-kem-(?:cac-loai|daua))\//u.test(
+      new URL(url).pathname
+    );
   const searchCards = [
     ...document.querySelectorAll(
       '[data-qa-locator="product-item"], .Bm3ON, [data-product-card]'

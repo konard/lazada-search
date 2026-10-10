@@ -6,6 +6,7 @@ import {
 } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { resolvePageDialogs } from '../src/page-dialogs.js';
+import { latestCrawl } from '../src/crawl.js';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -14,6 +15,7 @@ const app = new LazadaSearch({
   store,
   market: options.market,
   deliveryArea: options.deliveryArea,
+  maxImages: options.maxImages,
   scheduler: new DomainScheduler({
     intervalMs: Math.max(60000, options.intervalMs),
   }),
@@ -27,9 +29,7 @@ const app = new LazadaSearch({
     : false,
 });
 try {
-  const latest = (await app.store.list('crawl')).sort(
-    (a, b) => Date.parse(b.startedAt) - Date.parse(a.startedAt)
-  )[0];
+  const latest = latestCrawl(await app.store.list('crawl'));
   if (latest?.discoveryComplete !== true) {
     throw new Error(
       'Complete category-list discovery before collecting product details'
@@ -38,6 +38,11 @@ try {
   await app.collector.start();
   await resolvePageDialogs(app.collector.runtime.page);
   let session = await phoneLoginState(app.collector.runtime.page);
+  if (session.status === 'challenge') {
+    throw new Error(
+      'Resolve the current verification challenge before navigation'
+    );
+  }
   if (session.status !== 'authenticated') {
     await app.collector.runtime.pace?.(
       'https://cart.lazada.vn/cart',
@@ -67,18 +72,20 @@ try {
         .map((entry) => entry.url)
         .filter(Boolean),
       ...audit.missingPrices.map((entry) => entry.url),
+      ...audit.unknownSkuInventories,
       ...audit.missingSkuPrices
         .filter((entry) => entry.available === false)
         .map((entry) => entry.url)
         .filter(Boolean),
     ]),
-  ].slice(0, options.maxProducts);
+  ].slice(0, options.exhaustive ? Infinity : options.maxProducts);
   console.log(
     JSON.stringify({
       queued: urls.length,
       intervalMs: Math.max(60000, options.intervalMs),
     })
   );
+  let blocked;
   for (const [index, url] of urls.entries()) {
     try {
       const result = await app.collect(url, { refresh: options.refresh });
@@ -101,6 +108,7 @@ try {
           error.message
         )
       ) {
+        blocked = error.message;
         break;
       }
     }
@@ -112,6 +120,9 @@ try {
       remainingSkuPrices: remaining.missingSkuPrices.length,
     })
   );
+  if (blocked) {
+    throw new Error(blocked);
+  }
 } finally {
   await app.close();
 }

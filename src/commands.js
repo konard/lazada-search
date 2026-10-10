@@ -44,6 +44,7 @@ Options:
   --query TEXT --max-pages 5 --max-products 100 --max-images 40
   --exhaustive --strict          Visit search pagination; fail an incomplete audit
   --discovery-only               Finish and cache search lists without collecting details
+  --category-url URL             Add an actual Lazada category listing scope (repeatable)
   --no-require-manufacturer      Explore unverified observations without a purchase guarantee
   --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
@@ -96,6 +97,7 @@ export async function executeCommand(application, command, args, options = {}) {
     case 'crawl':
       return application.crawl({
         queries: options.query,
+        categoryUrls: options.categoryUrl,
         maxPages: options.maxPages,
         maxProducts: options.maxProducts,
         refresh: options.refresh,

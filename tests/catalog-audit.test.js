@@ -592,6 +592,63 @@ test('incomplete discovery prevents product navigation and discovery-only retain
   assert.equal((await app.store.get('crawl', lists.id)).phase, 'discovery');
 });
 
+test('actual category scopes paginate before details and retain unrelated cards for preliminary review', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'lazada-category-scope-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const visited = [];
+  const category = 'https://www.lazada.vn/protein/';
+  const app = new LazadaSearch({
+    store: new AssociativeStore({ directory }),
+    ocr: false,
+    collector: {
+      page: async (url) => {
+        visited.push(url);
+        const page = Number(new URL(url).searchParams.get('page') || 1);
+        return {
+          id: url,
+          fetchedAt: now,
+          status: 'ok',
+          snapshot: {
+            cards: [
+              { url: fixture.url, title: 'Whey protein' },
+              {
+                url: 'https://www.lazada.vn/products/bottle-i77.html',
+                title: 'Shaker bottle',
+              },
+            ],
+            searchCoverage: {
+              currentPage: page,
+              terminalConfirmed: page === 2,
+            },
+          },
+        };
+      },
+    },
+  });
+  app.collect = async () => {
+    assert.equal(visited.length, 2);
+    return { product: { id: fixture.id } };
+  };
+  const report = await app.crawl({
+    queries: [],
+    categoryUrls: [category],
+    exhaustive: true,
+  });
+  assert.deepEqual(visited, [category, `${category}?page=2`]);
+  assert.equal(report.scopes[0].type, 'category');
+  assert.equal(report.scopes[0].visitedPages, 2);
+  assert.equal(report.discoveryComplete, true);
+  assert.equal(report.products.length, 1);
+  assert.equal((await app.store.list('discovery')).length, 4);
+  await assert.rejects(
+    app.crawl({
+      queries: [],
+      categoryUrls: ['https://www.lazada.sg/protein/'],
+    }),
+    /market/iu
+  );
+});
+
 test('pagination mismatch halts discovery and retains every unstarted scope as a gap', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-pagination-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

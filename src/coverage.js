@@ -102,7 +102,10 @@ export function auditCoverage({
     problems: specificationProblems(product),
   }));
   const scopes = [...(crawl?.scopes || [])];
-  for (const query of crawl?.queries || []) {
+  for (const query of [
+    ...(crawl?.queries || []),
+    ...(crawl?.categoryUrls || []).map((url) => `category:${url}`),
+  ]) {
     if (!scopes.some((scope) => scope.query === query)) {
       scopes.push({
         query,
