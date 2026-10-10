@@ -246,6 +246,7 @@ node scripts/collect-promotions.mjs --campaign sale-11-11-2026 --require-login
 | `--code-source URL`                                     | Extra coupon site to scan; repeatable                                                                           |
 | `--skip-lazada`                                         | Skip the browser and scan coupon sites only                                                                     |
 | `--skip-codes`                                          | Skip coupon sites                                                                                               |
+| `--since ISO-TIME`                                      | Rebuild the report offline from records saved since that time; no Lazada or coupon-site requests                |
 | `--require-login`                                       | Stop unless the browser session is signed in                                                                    |
 | `--interval-ms`, `--cdp-url`, `--headless`, `--account` | Shared collector options (see the README)                                                                       |
 
@@ -254,5 +255,21 @@ Raw evidence (HTML, screenshots, API JSON) stays in the private account store as
 Without `--account`, the run is logged out. It shows public platform, campaign and shop vouchers, but not vouchers already collected or targeted to an account. Lazada's router closes the tab for unknown campaign routes, so the collector ignores `window.close()` and keeps going. Use Node.js 22.13 or newer.
 
 Chrome 155 rejects Playwright 1.64's `connectOverCDP` ("Browser.setDownloadBehavior: Browser context management is not supported"). Every collector that reattaches to an already-open persistent window hits this, not only this script. A fresh launch still works. Until Playwright supports Chrome 155, either run logged out with `--no-persistent-browser`, or close the account's collector window and run with `--account default --no-persistent-browser`.
+
+### Lazada page and API notes
+
+- **Campaign and channel pages** (`pages.lazada.vn/…/upr-router/vn?wh_pid=…`) load their modules through `mtop.lazada.kangaroo.core.service.route.lzdPageRecommendService` and `…lzdAldLampService`.
+- **Voucher module entries** are `VoucherWrapper` objects with these fields:
+  - `voucherId`, `name`, `mainTitle`, `newVoucherTag`, `toolCode`, `sellerId`
+  - `discountValue` (`discountValueFormat` ends in `%` for percentage vouchers), `maxDiscountAmount`, `minOrderAmount`
+  - `startTimestamp` / `endTimestamp`, `collectStartTimestamp` / `collectEndTimestamp`
+  - `usageLimitPerCustomer`, `leftBudget` / `totalBudget` (99,999,999 means unlimited), `voucherCode`, `termInfo`
+- **Product pages:** `window.__moduleData__.data.root.fields.globalConfig.voucherListApi` names `mtop.lazada.detail.getVouchers`. The page calls it with session-bound `voucherListParams`, and it only loads for signed-in sessions.
+- **Do not call** `mtop.lazada.promotion.voucher.spread`, the `voucherCollectApi`: it collects a voucher into the account.
+- **Signatures:** mtop requests are signed and time-bound. Capture responses inside the live page; replaying the URLs does not work.
+- **Links:** page links carry HTML-escaped `&amp;` in their `href`, which hides `wh_pid` until it is unescaped.
+- **Search filter:** search and catalog URLs accept `promotion=1` (e.g. `https://www.lazada.vn/catalog/?q=whey&promotion=1`).
+- **Image-only offers:** payment-offer and bank pages (VIB LazCard, Citi) carry their terms in banner images only. OCR the cached banners with `tesseract IMAGE - -l vie+eng --tessdata-dir .lazada-search/tessdata`.
+- **Logged-out behaviour:** the voucher hub redirects to `https://pages.lazada.vn/#?`. The bare campaign root returns "Page Not Found". No CAPTCHA appeared at 60-second spacing over 20 pages.
 
 The parsing functions live in `src/promotions.js` and are tested in `tests/promotions.test.js` and `tests/promotion-collector.test.js`. They can re-parse saved HTML and API bodies offline after a pattern fix.
