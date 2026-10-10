@@ -70,6 +70,11 @@ export function calculateOffer(product, offer, options = {}) {
   if (!(product.proteinPer100g > 0)) {
     problems.push('Unknown protein density');
   }
+  if (product.packageCountUnresolved) {
+    problems.push(
+      'The selling unit has no confirmed count of inner food packages'
+    );
+  }
   for (const field of ['netMassG', 'proteinPer100g']) {
     const problem = evidenceProblem(product, field);
     if (problem) {
@@ -142,9 +147,11 @@ export function calculateOffer(product, offer, options = {}) {
   if (discount > unitPrice * quantity + (shippingKnown ? shipping : 0)) {
     problems.push('Discount exceeds the confirmed order cost');
   }
-  const totalMassG = product.netMassG * (product.packCount || 1) * quantity;
-  const totalVolumeMl =
-    product.netVolumeMl * (product.packCount || 1) * quantity;
+  const packages = product.packageCountUnresolved
+    ? undefined
+    : product.packCount || 1;
+  const totalMassG = product.netMassG * packages * quantity;
+  const totalVolumeMl = product.netVolumeMl * packages * quantity;
   const totalProteinG = (totalMassG * product.proteinPer100g) / 100;
   const merchandiseSubtotal = unitPrice * quantity;
   // The fixed order discount is subtracted once. Unknown delivery stays null.

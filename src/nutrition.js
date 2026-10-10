@@ -33,6 +33,12 @@ export function massGrams(value) {
     ),
   ].find(
     (entry) =>
+      !/(?:gross|shipping|shipment|packaging|delivery)\s*(?:weight|mass)?\s*[:=]?\s*$/u.test(
+        fold(text.slice(0, entry.index))
+      ) &&
+      !/(?:trong luong|khoi luong)\s*(?:ca bi|van chuyen|giao hang|dong goi)\s*[:=]?\s*$/u.test(
+        fold(text.slice(0, entry.index))
+      ) &&
       !/\b(?:sugars?|fat|duong|chat beo)\s*[:=]?\s*$/u.test(
         fold(text.slice(0, entry.index))
       ) &&
@@ -60,12 +66,15 @@ export function massGrams(value) {
 }
 
 export function packCountOf(value) {
-  const text = fold(String(value || ''));
+  const text = fold(String(value || '')).replace(
+    /\b(thung|carton|combo|pack)(?=\d)/gu,
+    '$1 '
+  );
   const count =
     text.match(
-      /\b(\d+)\s*(?:tui|goi|cay|que|vien|hop|ly|bags?|packs?|cups?|bars?|sticks?|pieces?|pcs)\b/u
+      /\b(\d+)\s*(?:chai|lon|bich|tui|goi|cay|que|vien|hop|ly|cai|bottles?|cans?|bags?|packs?|cups?|bars?|sticks?|pieces?|pcs)\b/u
     )?.[1] ||
-    text.match(/\b(?:pack|box|set)\s+of\s+(\d+)\b/u)?.[1] ||
+    text.match(/\b(?:pack|box|set|carton|case)\s+of\s+(\d+)\b/u)?.[1] ||
     text.match(/\b(\d+)\s*[x×]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|ml|l)\b/u)?.[1] ||
     text.match(/\b\d+(?:[.,]\d+)?\s*(?:kg|g|ml|l)\s*[x×]\s*(\d+)\b/u)?.[1];
   const parsed = Number(count);
@@ -85,14 +94,14 @@ export function volumeMillilitres(value) {
 export function categoryOf(title) {
   const value = fold(title).replace(/[-–—]/gu, ' ');
   if (
-    /duong (?:am|da)|duong da mat|nhuom toc|skin cream|face cream|hair dye|\blotion\b/u.test(
+    /duong (?:am|da)|duong da mat|nhuom toc|skin cream|face cream|hair dye|\blotion\b|\binfant\b|\bbaby formula\b|\bnan\s+(?:supremepro|optipro)\b|tre so sinh/u.test(
       value
     )
   ) {
     return 'unknown';
   }
   if (
-    /ice\s*cream|gelato|\bkem\s+(?:hop|ly|que|oc que|vien|socola|so co la|chocolate|sua|vi|celano|merino|haagen|wall|aice|khoai|tuoi|lanh|hu)\b/u.test(
+    /ice\s*cream|gelato|\bkem\s+(?:hop|ly|que|oc que|vien|chai|choco|socola|so co la|chocolate|sua|vi|celano|merino|haagen|wall|aice|khoai|tuoi|lanh|hu|mochi)\b/u.test(
       value
     ) &&
     /choco|socola|so co la/u.test(value) &&
@@ -108,7 +117,9 @@ export function categoryOf(title) {
     return 'chocolate-ice-cream';
   }
   if (/\bwhey\b/u.test(value)) {
-    return 'whey';
+    return /\b(?:thuc vat|vegan|plant based|non dairy)\b/u.test(value)
+      ? 'protein-powder'
+      : 'whey';
   }
   if (
     /\bcasein\b|\bprotein powder\b|\bbot\b.*\bprotein\b/u.test(value) &&

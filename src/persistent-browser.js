@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { atomicWrite } from './util.js';
+import { connectPersistentBrowser } from './browser-connection.js';
 
 export const BROWSER_IDLE_MS = 30 * 60 * 1000;
 
@@ -134,8 +135,7 @@ export async function acquireBrowserWindow(directory, options = {}) {
   }
   const lease = await request(state, 'acquire', { idleMs });
   try {
-    const { connectBrowser } = await import('browser-commander');
-    const runtime = await connectBrowser({
+    const runtime = await connectPersistentBrowser({
       engine: 'playwright',
       cdpEndpoint: lease.cdpEndpoint,
       timeout: 30000,

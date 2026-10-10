@@ -1,5 +1,6 @@
 import { listingKey } from '../src/util.js';
 import { positive } from '../src/values.js';
+import { canonicalUrl, fold } from '../src/text.js';
 
 export const MAX_ACCOUNT_BATCH_SIZE = 25;
 export const VN_FACTORY_PRIORITY_URLS = Object.freeze(
@@ -24,6 +25,22 @@ function selectedSkuUrl(entry) {
   return url.href;
 }
 
+// Search categories contain unrelated recommendations. Ambiguous cards remain
+// in the category-review audit; food cues admit additional detail candidates.
+export function categoryReviewCandidate(entry) {
+  const title = fold(entry.title);
+  return (
+    /\b(?:whey|hydropure|nitrotech|prostar)\b/u.test(title) ||
+    (/\b(?:protein|isolate)\b/u.test(title) &&
+      /\b(?:bot|powder)\b/u.test(title)) ||
+    (/\b(?:ice cream|icecream|gelato|kem)\b/u.test(title) &&
+      /\b(?:chocolate|choco|socola|soco|cacao|cocoa|binggrae|lotte|merino|cremo|celano|aice)\b/u.test(
+        title
+      ) &&
+      !/\b(?:duong da|chong nang|skincare|face cream)\b/u.test(title))
+  );
+}
+
 // Each selected URL remains a separate task; priority groups sibling options
 // by their listing identity without inferring quality from search-card prices.
 export function orderAccountBacklog(audit, { priorityUrls = [] } = {}) {
@@ -37,6 +54,9 @@ export function orderAccountBacklog(audit, { priorityUrls = [] } = {}) {
           .map(selectedSkuUrl),
         ...(audit.missingPrices || []).map(selectedSkuUrl),
         ...(audit.unknownSkuInventories || []),
+        ...(audit.categoryReview || [])
+          .filter(categoryReviewCandidate)
+          .map((entry) => entry.url),
         ...skuGaps
           .filter((entry) => entry.available === false)
           .map(selectedSkuUrl),
@@ -61,6 +81,7 @@ export function accountBacklogBatch(
     batchSize = MAX_ACCOUNT_BATCH_SIZE,
     exhaustive = false,
     maxProducts = 100,
+    attemptedUrls = [],
   } = {}
 ) {
   positive(batchSize, 'batchSize', { integer: true });
@@ -68,15 +89,19 @@ export function accountBacklogBatch(
     positive(maxProducts, 'maxProducts', { integer: true });
   }
   const ordered = orderAccountBacklog(audit, { priorityUrls });
+  const attempted = new Set(attemptedUrls.map(canonicalUrl));
+  const pending = ordered.filter((url) => !attempted.has(canonicalUrl(url)));
   const limit = Math.min(
     batchSize,
     MAX_ACCOUNT_BATCH_SIZE,
     exhaustive ? Infinity : maxProducts
   );
   return {
-    urls: ordered.slice(0, limit),
+    urls: pending.slice(0, limit),
     totalQueued: ordered.length,
-    remainingAfterBatch: Math.max(0, ordered.length - limit),
+    unattemptedQueued: pending.length,
+    deferred: ordered.length - pending.length,
+    remainingAfterBatch: Math.max(0, pending.length - limit),
     batchLimit: limit,
   };
 }

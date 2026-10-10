@@ -12,6 +12,10 @@ import {
   accountBacklogBatch,
   VN_FACTORY_PRIORITY_URLS,
 } from './account-backlog-order.mjs';
+import {
+  attemptedCollectionUrls,
+  recordCollectionAttempt,
+} from './account-collection-attempts.mjs';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -41,33 +45,20 @@ try {
     );
   }
   await app.collector.start();
+  await app.collector.assertCollecting();
   await resolvePageDialogs(app.collector.runtime.page);
-  let session = await phoneLoginState(app.collector.runtime.page);
+  const session = await phoneLoginState(app.collector.runtime.page);
   if (session.status === 'challenge') {
     throw new Error(
       'Resolve the current verification challenge before navigation'
     );
   }
-  if (session.status !== 'authenticated') {
-    await app.collector.runtime.pace?.(
-      'https://cart.lazada.vn/cart',
-      app.cache.scheduler.intervalMs
-    );
-    await app.collector.commander.goto({
-      url: 'https://cart.lazada.vn/cart',
-      waitUntil: 'domcontentloaded',
-      waitForNetworkIdle: false,
-    });
-    await app.collector.runtime.page.waitForTimeout(1500);
-    await resolvePageDialogs(app.collector.runtime.page);
-    session = await phoneLoginState(app.collector.runtime.page);
-  }
-  console.log(JSON.stringify({ session: session.status }));
-  if (session.status !== 'authenticated') {
-    throw new Error(
-      'The dedicated account profile needs sign-in before collecting its backlog'
-    );
-  }
+  console.log(
+    JSON.stringify({
+      session: session.status,
+      access: session.status === 'authenticated' ? 'account' : 'public',
+    })
+  );
   const auditScope = {
     categoryOnly: options.categoryOnly,
     flavourScope: options.flavourScope,
@@ -80,6 +71,7 @@ try {
     batchSize: options.batchSize,
     exhaustive: options.exhaustive,
     maxProducts: options.maxProducts,
+    attemptedUrls: await attemptedCollectionUrls(app.store, options),
     priorityUrls: options.priorityUrl.length
       ? options.priorityUrl
       : options.market === 'vn'
@@ -91,6 +83,7 @@ try {
     JSON.stringify({
       queued: urls.length,
       totalQueued: batch.totalQueued,
+      deferred: batch.deferred,
       remainingAfterBatch: batch.remainingAfterBatch,
       batchLimit: batch.batchLimit,
       intervalMs: Math.max(60000, options.intervalMs),
@@ -100,6 +93,11 @@ try {
   for (const [index, url] of urls.entries()) {
     try {
       const result = await app.collect(url, { refresh: options.refresh });
+      await recordCollectionAttempt(app.store, url, {
+        status: 'captured',
+        sku: result.offer.sku,
+        price: result.offer.price,
+      });
       console.log(
         JSON.stringify({
           index: index + 1,
@@ -111,6 +109,12 @@ try {
         })
       );
     } catch (error) {
+      if (error.code !== 'COLLECTION_STOPPED') {
+        await recordCollectionAttempt(app.store, url, {
+          status: 'deferred',
+          reason: error.message,
+        });
+      }
       console.log(
         JSON.stringify({ index: index + 1, url, error: error.message })
       );

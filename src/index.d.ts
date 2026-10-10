@@ -6,6 +6,8 @@ export type Category =
   | 'chocolate-ice-cream'
   | 'unknown';
 export declare function categoryOf(title: string): Category;
+export declare function massGrams(value: string): number | undefined;
+export declare function packCountOf(value: string): number | undefined;
 export declare function volumeMillilitres(value: string): number | undefined;
 export declare function captureDelivery(
   collector: BrowserCollector,
@@ -70,9 +72,14 @@ export interface Product {
   manufacturerSku?: string;
   gtin?: string;
   specificationsInvalidated?: boolean;
+  /** Edible net mass of one inner food package; shipping weight is excluded. */
   netMassG?: number;
+  /** Declared volume of one inner food package; never inferred from mass. */
   netVolumeMl?: number;
+  /** Number of inner food packages in one selected selling unit. */
   packCount?: number;
+  /** An unresolved carton count prevents food and protein unit-price metrics. */
+  packageCountUnresolved?: boolean;
   servingMassG?: number;
   proteinPer100g?: number;
   sugarPer100g?: number;
@@ -464,6 +471,8 @@ export declare class BrowserCollector {
     captureTimeoutMs?: number;
   });
   start(): Promise<void>;
+  assertCollecting(): Promise<void>;
+  resumeCollection(): Promise<CollectionStopState>;
   page(
     url: string,
     options?: {
@@ -477,6 +486,32 @@ export declare class BrowserCollector {
   capture(url: string): Promise<Partial<Capture>>;
   close(): Promise<void>;
 }
+export interface PageChallenge {
+  detected: boolean;
+  signals: string[];
+  url: string;
+}
+export interface CollectionStopState {
+  id: string;
+  active: boolean;
+  reason?: 'challenge';
+  detectedAt?: string;
+  resumedAt?: string;
+  origin?: string | null;
+  signals?: string[];
+}
+export declare const COLLECTION_STOP_ID: string;
+export declare class CollectionStoppedError extends Error {
+  code: 'COLLECTION_STOPPED';
+  reason: 'challenge';
+}
+export declare function inspectPageChallenge(context?: {
+  document: Document;
+  url: string;
+}): PageChallenge;
+export declare function assertPageNotChallenged(
+  page: any
+): Promise<PageChallenge>;
 /** Collector-owned visible windows survive collector exits and close after idle. */
 export declare const BROWSER_IDLE_MS: number;
 export declare function closeBrowserWindow(directory: string): Promise<void>;

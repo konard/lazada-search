@@ -3,11 +3,8 @@ import { createServer } from 'node:http';
 import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
-import {
-  launchBrowser,
-  connectBrowser,
-  saveStorageState,
-} from 'browser-commander';
+import { launchBrowser, saveStorageState } from 'browser-commander';
+import { connectPersistentBrowser } from './browser-connection.js';
 
 const directory = process.argv[2];
 const stateFile = join(directory, 'browser-window.json');
@@ -46,7 +43,7 @@ async function openWindow(options) {
   if (endpoint.hostname !== '127.0.0.1' || endpoint.protocol !== 'http:') {
     throw new Error('Browser recovery requires a loopback CDP endpoint');
   }
-  const connected = await connectBrowser({
+  const connected = await connectPersistentBrowser({
     engine: 'playwright',
     cdpEndpoint: endpoint.href,
     timeout: 30000,

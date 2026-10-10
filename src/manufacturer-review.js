@@ -2,6 +2,7 @@ import { fold, sha256 } from './util.js';
 import { validateProduct } from './products.js';
 import { isTrustedManufacturer } from './manufacturers.js';
 import { reconcileManufacturer, REQUIRED_SPEC_FIELDS } from './verification.js';
+import { productFlavour } from './flavour-scope.js';
 
 const identityFields = ['brand', 'name', 'flavour', 'netMassG', 'packCount'];
 const allowedFields = [
@@ -15,6 +16,21 @@ function sameIdentityValue(left, right) {
   return typeof left === 'string'
     ? Boolean(fold(left)) && fold(left) === fold(right)
     : left === right;
+}
+
+function assertFlavourMatches(observed, reviewed, message) {
+  const observedFlavour = productFlavour(observed);
+  const reviewedFlavour = productFlavour({
+    category: observed.category,
+    title: reviewed,
+  });
+  if (
+    observedFlavour !== 'unknown' &&
+    reviewedFlavour !== 'unknown' &&
+    observedFlavour !== reviewedFlavour
+  ) {
+    throw new Error(message);
+  }
 }
 
 async function attachedEvidence(application, productId, review) {
@@ -73,9 +89,33 @@ function checkIdentity(product, review) {
   ) {
     throw new Error('Reviewed brand conflicts with listing identity');
   }
+  assertFlavourMatches(
+    { category: product.category, selectedVariant: product.selectedVariant },
+    review.identity.manufacturer.flavour,
+    'Reviewed manufacturer flavour conflicts with selected SKU'
+  );
 }
 
-async function checkPublishedImage(application, official, evidenceId) {
+function checkPublishedFlavour(snapshot, url, review, category) {
+  const publishedLabel = snapshot?.manufacturerLabels?.find(
+    (label) => label.url === url
+  );
+  if (publishedLabel?.flavour) {
+    assertFlavourMatches(
+      { title: publishedLabel.flavour, category },
+      review.identity.manufacturer.flavour,
+      'Published manufacturer label flavour conflicts with review'
+    );
+  }
+}
+
+async function checkPublishedImage(
+  application,
+  official,
+  evidenceId,
+  review,
+  category
+) {
   if (evidenceId === official.id) {
     return;
   }
@@ -102,15 +142,22 @@ async function checkPublishedImage(application, official, evidenceId) {
       'Manufacturer label bytes do not match the captured source'
     );
   }
+  checkPublishedFlavour(page.snapshot, leaf.url, review, category);
 }
 
-async function reviewedClaims(application, official, review) {
+async function reviewedClaims(application, official, review, category) {
   const claims = [];
   for (const [field, fact] of Object.entries(review.facts || {})) {
     if (!allowedFields.includes(field) || !fact.excerpt?.trim()) {
       throw new Error(`Unsupported or unsourced manufacturer field: ${field}`);
     }
-    await checkPublishedImage(application, official, fact.evidenceId);
+    await checkPublishedImage(
+      application,
+      official,
+      fact.evidenceId,
+      review,
+      category
+    );
     claims.push({
       field,
       value: fact.value,
@@ -172,7 +219,12 @@ export async function reviewManufacturer(application, productId, review) {
     review
   );
   checkIdentity(product, review);
-  const claims = await reviewedClaims(application, official, review);
+  const claims = await reviewedClaims(
+    application,
+    official,
+    review,
+    product.category
+  );
   const { updated, result } = applyReview(
     product,
     official,

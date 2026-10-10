@@ -64,6 +64,30 @@ export const MANUFACTURERS = [
     url: 'https://prosupps.com/products/whey-isolate',
   },
   {
+    name: 'Nutrabolics',
+    aliases: ['nutrabolics', 'hydropure'],
+    domains: ['nutrabolics.com'],
+    url: 'https://nutrabolics.com/products/hydropure-ultra-pure-hydrolyzed-whey-protein',
+  },
+  {
+    name: 'Warrior',
+    aliases: ['warrior'],
+    domains: ['teamwarrior.com'],
+    url: 'https://teamwarrior.com/products/warrior-whey-protein-2kg',
+  },
+  {
+    name: 'Mutant',
+    aliases: ['mutant'],
+    domains: ['mutantnation.com'],
+    url: 'https://mutantnation.com/products/whey-protein-mix',
+  },
+  {
+    name: 'OstroVit',
+    aliases: ['ostrovit'],
+    domains: ['ostrovit.com'],
+    url: 'https://ostrovit.com/en/products/ostrovit-wpc-80-700-g-26507.html',
+  },
+  {
     name: 'Muscle Nation',
     aliases: ['musclenation', 'muscle nation'],
     domains: ['musclenation.org'],
@@ -110,13 +134,21 @@ export const MANUFACTURERS = [
   },
 ];
 
+function aliasInTitle(title, alias) {
+  const words = (value) =>
+    fold(value)
+      .replace(/[^\p{L}\p{N}]+/gu, ' ')
+      .trim();
+  return ` ${words(title)} `.includes(` ${words(alias)} `);
+}
+
 export function manufacturerCandidates(product, registry = MANUFACTURERS) {
   const brand = fold(product.brand || '');
   const title = fold(product.title || '');
   return registry
     .filter((entry) =>
       entry.aliases.some(
-        (alias) => brand === fold(alias) || title.includes(fold(alias))
+        (alias) => brand === fold(alias) || aliasInTitle(title, alias)
       )
     )
     .map((entry) => ({
@@ -162,7 +194,15 @@ function candidateUrl(entry, product) {
 export function isTrustedManufacturer(product, url, registry = MANUFACTURERS) {
   let hostname;
   try {
-    hostname = new URL(url).hostname.replace(/^www\./u, '');
+    const source = new URL(url);
+    if (
+      !['http:', 'https:'].includes(source.protocol) ||
+      source.username ||
+      source.password
+    ) {
+      return false;
+    }
+    hostname = source.hostname.replace(/^www\./u, '');
   } catch {
     return false;
   }

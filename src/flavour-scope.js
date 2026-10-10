@@ -7,15 +7,39 @@ const plain =
 const other =
   /\b(?:vanilla|vani|banana|chuoi|strawberry|matcha|coffee|cafe|caramel|mint|peppermint|taro|khoai|durian|sau\s*rieng|coconut|dua|mango|xoai|peanut|almond|hazelnut|pistachio|blueberry|raspberry|orange|lemon|cookies?|oreo|birthday|cheesecake|tiramisu|butterscotch)\b|(?:vi\s*dau|dau\s*tay)|3\s*(?:in|trong|vi|[/-])\s*1|ba\s*vi/u;
 
+function outsideChocolateCore(text) {
+  if (
+    /\bwhite\s*(?:chocolate|ice\s*cream)\b|(?:socola|so\s*co\s*la)\s*trang|\bkem\s*trang\b|\b(?:white|milk|non\s*chocolate)\s*(?:ice\s*cream\s*)?core\b|\b(?:core|loi(?:\s*kem)?|nhan(?:\s*kem)?)\s*(?:is\s*)?(?:white|milk|sua|kem\s*trang|trang)\b/u.test(
+      text
+    )
+  ) {
+    return true;
+  }
+  const coating =
+    /\b(?:coated|coating|covered|dipped)\b|\bphu\b|lop\s*(?:vo|phu)|vo\s*(?:socola|so\s*co\s*la|chocolate)/u.test(
+      text
+    );
+  const chocolateCore =
+    /\b(?:chocolate|choco|cocoa|cacao|socola|so\s*co\s*la)\s*(?:ice\s*cream|gelato|core)\b|\b(?:ice\s*cream|gelato|kem|core|loi(?:\s*kem)?|nhan)\s*(?:(?:vi|huong)\s*)?(?:chocolate|choco|cocoa|cacao|socola|so\s*co\s*la)\b/u.test(
+      text
+    );
+  // A coating does not establish the flavour of the ice cream underneath.
+  return coating && !chocolateCore;
+}
+
 function fromText(value, category) {
-  const text = fold(value || '').replaceAll('-', ' ');
+  const text = fold(value || '')
+    .replaceAll('-', ' ')
+    .replace(/natural\s*(?:(?:and|&)\s*artificial\s*)?flavou?rs?\b/gu, ' ')
+    .replace(/an\s*co\s*tu\s*nhien/gu, ' ');
   if (
     other.test(text) ||
-    /hanh\s*nhan|ca\s*phe|mut\s*dau|nhan\s*(?:cam|dau)|tra\s*xanh|green\s*tea/u.test(
+    /hanh\s*nhan|dau\s*phong|peanutbutter|hat\s*dieu|hat\s*de|ca\s*phe|mut\s*dau|nhan\s*(?:cam|dau)|tra\s*xanh|green\s*tea/u.test(
       text
     ) ||
     /dâu/iu.test(value || '') ||
-    (category === 'chocolate-ice-cream' && /\b(?:dau|cam)\b/u.test(text))
+    (category === 'chocolate-ice-cream' &&
+      (/\b(?:dau|cam)\b/u.test(text) || outsideChocolateCore(text)))
   ) {
     return 'other';
   }
@@ -36,9 +60,8 @@ export function productFlavour(product) {
     verified?.identityMatched &&
     verified.sourceAuthority === 'manufacturer'
   ) {
-    const identity = fromText(verified.identity?.flavour, product.category);
-    if (identity !== 'unknown') {
-      return identity;
+    if (verified.identity?.flavour?.trim()) {
+      return fromText(verified.identity.flavour, product.category);
     }
   }
   const selected = (product.selectedVariant || [])
@@ -72,6 +95,8 @@ export function matchesFlavourScope(product, scope) {
 
 export function isShakerBundle(product) {
   return (product.selectedVariant || []).some((option) =>
-    /\bshaker\b|binh\s*(?:lac|shake|bot)/u.test(fold(option.text || ''))
+    /\bshaker\b|binh\s*(?:lac|shake|bot)|\b(?:co|kem|them)\s*binh\b/u.test(
+      fold(option.text || '')
+    )
   );
 }

@@ -3,11 +3,14 @@ import {
   extractNutrition,
   ingredientFlags,
   massGrams,
-  packCountOf,
   parsePrice,
   proteinTypeOf,
   volumeMillilitres,
 } from './nutrition.js';
+import {
+  resolvePackageCountReview,
+  sellingPackCount,
+} from './package-quantity.js';
 import {
   canonicalUrl,
   clone,
@@ -57,16 +60,20 @@ function productIdentityUrl(value) {
     : value;
 }
 
-function selectedAmounts(selected, title, nutrition) {
+function selectedAmounts(selected, title, nutrition, description) {
   const selectedText = selected.map((entry) => entry.text).join(' ');
   const selectedCategory = categoryOf(selectedText);
   const category =
     selectedCategory === 'unknown' ? categoryOf(title) : selectedCategory;
+  const count = sellingPackCount({ selectedText, title, description });
   return {
     category,
     weight:
       massGrams(selectedText) || nutrition.fields.netMassG || massGrams(title),
-    packCount: packCountOf(selectedText) || packCountOf(title),
+    packCount: count.packCount,
+    packCountExcerpt: count.excerpt,
+    quantityFields: count.unresolved ? { packageCountUnresolved: true } : {},
+    quantityWarnings: count.warning ? [count.warning] : [],
     volume:
       category === 'chocolate-ice-cream'
         ? volumeMillilitres(selectedText) ||
@@ -130,11 +137,16 @@ export function parseProduct(
       snapshot.rawText || '',
     ].join('\n')
   );
-  const { weight, packCount, category, volume } = selectedAmounts(
-    selected,
-    title,
-    nutrition
-  );
+  const {
+    weight,
+    packCount,
+    category,
+    volume,
+    packCountExcerpt,
+    quantityFields,
+    quantityWarnings,
+  } = selectedAmounts(selected, title, nutrition, snapshot.description);
+  const amountExcerpts = { ...nutrition.excerpts, packCount: packCountExcerpt };
   const ingredients = nutrition.fields.ingredients || [];
   const marketplaceId = new URL(url).pathname.match(/-i(\d+)/u)?.[1];
   const manufacturerSku =
@@ -173,12 +185,13 @@ export function parseProduct(
     ...(volume ? { netVolumeMl: volume } : {}),
     ...(weight ? { netMassG: weight } : {}),
     ...(packCount ? { packCount } : {}),
+    ...quantityFields,
     ingredients,
     proteinType: proteinTypeOf(ingredients, category),
     ingredientFlags: ingredientFlags(ingredients),
     evidenceIds: [evidenceId].filter(Boolean),
     claims: [],
-    warnings: nutrition.warnings,
+    warnings: [...nutrition.warnings, ...quantityWarnings],
     variants: snapshot.variants || [],
     selectedVariant: selected,
     observedAt,
@@ -196,7 +209,7 @@ export function parseProduct(
       source,
       confidence: source === 'ocr' ? 0 : 1,
       requiresReview: source === 'ocr',
-      excerpt: nutrition.excerpts[field] || title,
+      excerpt: amountExcerpts[field] || title,
     });
   }
   const rawOffer = Array.isArray(structured.offers)
@@ -286,6 +299,12 @@ export function validateProduct(input) {
     throw new Error('Product requires id, title and a supported category');
   }
   product.url = canonicalUrl(product.url);
+  if (
+    product.packageCountUnresolved !== undefined &&
+    typeof product.packageCountUnresolved !== 'boolean'
+  ) {
+    throw new Error('packageCountUnresolved must be a boolean');
+  }
   for (const field of NUMERIC_PRODUCT_FIELDS) {
     if (product[field] !== undefined) {
       positive(product[field], field, {
@@ -315,6 +334,7 @@ export function validateProduct(input) {
   product.ingredients ||= [];
   product.claims ||= [];
   product.evidenceIds ||= [];
+  resolvePackageCountReview(product);
   product.proteinType = proteinTypeOf(product.ingredients, product.category);
   product.ingredientFlags = ingredientFlags(product.ingredients);
   return product;

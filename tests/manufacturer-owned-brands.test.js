@@ -48,3 +48,57 @@ test('CGN trust rejects unrelated retailers and deceptive iHerb hosts', () => {
     assert.equal(isTrustedManufacturer(cgn, url), false);
   }
 });
+
+test('manufacturer aliases match complete words and never a similarly named brand', () => {
+  for (const title of [
+    'SuperProSupps chocolate whey',
+    'MusaKingdom natural whey',
+    'Rule 10 whey protein',
+    'Clean Simple EatsPlus whey',
+  ]) {
+    assert.deepEqual(manufacturerCandidates({ title }), [], title);
+  }
+  assert.equal(
+    manufacturerCandidates({ title: '[ProSupps] Chocolate whey' })[0].name,
+    'ProSupps'
+  );
+  assert.equal(
+    manufacturerCandidates({ title: 'RULE-1 whey protein' })[0].name,
+    'Rule One Proteins'
+  );
+});
+
+test('a trusted hostname does not authorize credentials or unsupported URL schemes', () => {
+  for (const url of [
+    'ftp://www.iherb.com/pr/82696',
+    'https://operator:password@www.iherb.com/pr/82696',
+  ]) {
+    assert.equal(isTrustedManufacturer(cgn, url), false, url);
+  }
+});
+
+test('cached factory lead brands provide scoped candidates without approving package or formula', () => {
+  for (const [brand, url] of [
+    [
+      'Nutrabolics',
+      'https://nutrabolics.com/products/hydropure-ultra-pure-hydrolyzed-whey-protein',
+    ],
+    ['Warrior', 'https://teamwarrior.com/products/warrior-whey-protein-2kg'],
+    ['Mutant', 'https://mutantnation.com/products/whey-protein-mix'],
+    [
+      'OstroVit',
+      'https://ostrovit.com/en/products/ostrovit-wpc-80-700-g-26507.html',
+    ],
+  ]) {
+    const product = { brand, title: `${brand} chocolate whey` };
+    const [candidate] = manufacturerCandidates(product);
+    assert.equal(candidate.name, brand);
+    assert.equal(candidate.url, url);
+    assert.equal(candidate.identityStatus, 'candidate-only');
+    assert.equal(isTrustedManufacturer(product, url), true);
+    assert.equal(
+      isTrustedManufacturer({ ...product, brand: 'ProSupps' }, url),
+      false
+    );
+  }
+});

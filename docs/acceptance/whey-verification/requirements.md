@@ -1,0 +1,25 @@
+# Whey verification requirements and resumable evidence worklist
+
+Generated 2026-10-10T18:47:24.987Z from the public catalog snapshot observed 2026-10-10T18:46:10.316Z. Source SHA256: `526a7d6cc6b0aa5c483f8ba40ca7a56c4f1533bf8d3f0b841bb6d7b9e448e1fd`. This is an offline evidence audit; source prices are timestamped observations.
+
+| Requirement                                      | Evidence and current state                                                                                                                                                                                                                                                                                    |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chocolate/plain whey; soy separately             | 44 scoped whey SKUs; 1 scoped soy SKUs. Reviewed protein ingredients distinguish the sources; soy lecithin is not soy protein.                                                                                                                                                                                |
+| Exact manufacturer package and formula           | 11 strict whey SKUs have all required sourced specifications; 33 scoped powder SKUs still need an exact factory match. Each captured row retains field claims, original evidence IDs and matching problems.                                                                                                   |
+| Complete selling-option inventory                | 6237 listing/category tasks and 140 uncaptured SKU tasks remain. Vanilla listing titles never exclude chocolate/plain siblings. Known other flavours and selected shaker options remain documented separately.                                                                                                |
+| Food and protein denominators                    | Each priced row carries package count, declared mass and separate food/protein costs. Pending factory denominators remain explicit seller observations; shaker millilitres and guessed densities are excluded.                                                                                                |
+| Delivery                                         | Quotes must match Nha Trang and quantity1 for this snapshot; bulk orders require a newly matched quantity quote.                                                                                                                                                                                              |
+| Manufacturer source trust                        | Four cached primary brands were added: Nutrabolics, Warrior, Mutant and OstroVit. Whole-word aliases reject unrelated names; URLs with credentials or unsupported schemes are rejected. A trusted domain supplies a candidate, never exact identity by itself.                                                |
+| Flavour correctness                              | Tests reject selected-SKU/factory contradictions, another official flavour’s label, generic natural-flavour marketing, and ice cream where chocolate is only a coating or the core is explicitly white/nonchocolate.                                                                                          |
+| Library/CLI/HTTP/Telegram                        | Shared comparison options support strict flavour scope. Existing end-to-end tests exercise offline comparison and Telegram delivery across all rows. Collection commands route through the shared application/crawl; the root-owned CAPTCHA guard must stop subsequent requests across interface invocations. |
+| Source preservation and zero repeated collection | 1565 original cache/evidence pointers are retained; 0 pointers are explicitly unresolved. The producer reads public snapshots/cache only, makes0 requests and0 shared-store writes, and can be rerun after collection without re-downloading products.                                                        |
+
+[Structured worklist](worklist.json) contains every captured powder SKU, manufacturer source candidates, source field claims, pending exact identities, and all resumable discovery/SKU tasks. Manufacturer specification completeness does not establish seller authenticity. Availability and price age must be refreshed before ordering.
+
+Rebuild after the root publishes a fresh catalog:
+
+```sh
+node scripts/export-whey-verification-worklist.mjs docs/tables/catalog.json
+```
+
+Relevant checks: `tests/flavour-scope.test.js`, `tests/manufacturer-owned-brands.test.js`, `tests/browser-import-review.test.js`, `tests/whey-verification-worklist.test.js`, `tests/e2e/flavour-scope.test.js`, `tests/e2e/telegram.test.js`, and `tests/e2e/verified-case.test.js`.

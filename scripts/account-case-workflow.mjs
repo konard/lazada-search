@@ -1,6 +1,9 @@
 import { sha256 } from '../src/util.js';
 
 function backlogFingerprint(audit) {
+  if (audit.collectableUrls) {
+    return sha256(JSON.stringify([...audit.collectableUrls].sort()));
+  }
   return sha256(
     JSON.stringify(
       [
@@ -16,12 +19,36 @@ function backlogFingerprint(audit) {
 }
 
 function pending(audit) {
+  if (audit.collectableUrls) {
+    return audit.collectableUrls.length;
+  }
   return (
     audit.missingListings.length +
     audit.missingSkuPrices.length +
     audit.missingPrices.length +
     (audit.unknownSkuInventories?.length || 0)
   );
+}
+
+async function ensureDiscovery({ reuseDiscovery, audit, discover }) {
+  const existing = reuseDiscovery ? await audit() : undefined;
+  if (!existing?.discoveryComplete || existing.failures.length) {
+    await discover();
+  }
+}
+
+const canRecollect = (state) =>
+  !state.deferredUrls?.length && !state.categoryReview?.length;
+
+function caseCompletion(state, passes) {
+  return {
+    phase: 'initial-product-pass-finished',
+    passes,
+    manufacturerVerificationPending: true,
+    deliveryVerificationPending: true,
+    deferredProducts: state.deferredUrls?.length || 0,
+    categoryReviewPending: state.categoryReview?.length || 0,
+  };
 }
 
 // Each step owns the same persistent profile in sequence. Publication is local.
@@ -31,8 +58,9 @@ export async function runAccountCase({
   audit,
   publish,
   recollect,
+  reuseDiscovery = false,
 }) {
-  await discover();
+  await ensureDiscovery({ reuseDiscovery, audit, discover });
   await publish();
   let state = await audit();
   if (!state.discoveryComplete || state.failures.length) {
@@ -65,14 +93,9 @@ export async function runAccountCase({
     }
   }
   // Old captures are refreshed only after the entire initial product backlog.
-  if (recollect) {
+  if (recollect && canRecollect(state)) {
     await recollect();
     await publish();
   }
-  return {
-    phase: 'initial-product-pass-finished',
-    passes,
-    manufacturerVerificationPending: true,
-    deliveryVerificationPending: true,
-  };
+  return caseCompletion(state, passes);
 }

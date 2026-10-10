@@ -109,3 +109,29 @@ test('a dialog or challenge failure publishes saved evidence locally and stops b
   );
   assert.equal(published, 2);
 });
+
+test('completed cached lists are reused and unresolved attempts do not permit premature old-product recollection', async () => {
+  let collected = 0;
+  const result = await runAccountCase({
+    reuseDiscovery: true,
+    discover: () => {
+      throw Error('Completed lists must not be downloaded again');
+    },
+    collect: async () => collected++,
+    publish: async () => {},
+    audit: async () =>
+      state({
+        missingListings: ['unavailable', 'next'],
+        collectableUrls: collected ? [] : ['next'],
+        deferredUrls: collected ? ['unavailable', 'next'] : ['unavailable'],
+        categoryReview: [{ url: 'ambiguous', title: 'Unresolved card' }],
+      }),
+    recollect: () => {
+      throw Error('Do not refresh old products while initial gaps remain');
+    },
+  });
+  assert.equal(collected, 1);
+  assert.equal(result.deferredProducts, 2);
+  assert.equal(result.categoryReviewPending, 1);
+  assert.equal(result.manufacturerVerificationPending, true);
+});

@@ -1,0 +1,105 @@
+{
+  "provenance": "Synthetic selling-option fixtures derived from the published Pongta 24-bottle failure. Nutrition and shipping in these fixtures are never manufacturer or market observations.",
+  "cases": [
+    {
+      "name": "carton24",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-chocolate-carton-i9201-s102.html",
+        "sku": "9201_VNAMZ-102",
+        "title": "Thùng24 chai kem choco Power Cap Chocolate 130ml/131g",
+        "priceText": "648.000 ₫",
+        "description": "Gross shipping weight: 3500g\nNet weight: 131g\nThể tích: 130ml\nQuy cách: 24 chai/thùng",
+        "selectedVariant": [{ "text": "1 thùng" }]
+      },
+      "expected": {
+        "packCount": 24,
+        "netMassG": 131,
+        "netVolumeMl": 130,
+        "price": 648000
+      }
+    },
+    {
+      "name": "single",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-chocolate-carton-i9201-s101.html",
+        "sku": "9201_VNAMZ-101",
+        "title": "Thùng24 chai kem choco Power Cap Chocolate 130ml/131g",
+        "priceText": "30.000 ₫",
+        "description": "Gross shipping weight: 3500g\nNet weight: 131g\nThể tích: 130ml\nQuy cách: 24 chai/thùng",
+        "selectedVariant": [{ "text": "1 chai chocolate 130ml/131g" }]
+      },
+      "expected": {
+        "packCount": 1,
+        "netMassG": 131,
+        "netVolumeMl": 130,
+        "price": 30000
+      }
+    },
+    {
+      "name": "two-cartons",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-chocolate-carton-i9201-s103.html",
+        "sku": "9201_VNAMZ-103",
+        "title": "Thùng 24 chai kem chocolate Power Cap 130ml/131g",
+        "priceText": "1.260.000 ₫",
+        "description": "Trọng lượng vận chuyển: 7kg\nNet weight: 131g\nThể tích: 130ml\nQuy cách: 24 chai/thùng",
+        "selectedVariant": [{ "text": "2 thùng" }]
+      },
+      "expected": {
+        "packCount": 48,
+        "netMassG": 131,
+        "netVolumeMl": 130,
+        "price": 1260000
+      }
+    },
+    {
+      "name": "unresolved-carton",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-chocolate-carton-i9202-s201.html",
+        "sku": "9202_VNAMZ-201",
+        "title": "Kem chai Power Cap Chocolate 130ml/131g",
+        "priceText": "600.000 ₫",
+        "description": "Shipping weight: 3.5kg\nNet weight: 131g\nThể tích: 130ml\nNumber of Servings: 24",
+        "selectedVariant": [{ "text": "1 thùng" }]
+      },
+      "expected": {
+        "netMassG": 131,
+        "netVolumeMl": 130,
+        "price": 600000,
+        "packageCountUnresolved": true
+      }
+    },
+    {
+      "name": "white-core",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-aice-white-core-i9203-s301.html",
+        "sku": "9203_VNAMZ-301",
+        "title": "Kem Aice chocolate with white ice-cream core 60g",
+        "priceText": "1.000 ₫",
+        "selectedVariant": [{ "text": "1 cây" }]
+      },
+      "expected": {
+        "packCount": 1,
+        "netMassG": 60,
+        "price": 1000,
+        "strictChocolateEligible": false
+      }
+    },
+    {
+      "name": "unknown-core",
+      "snapshot": {
+        "url": "https://www.lazada.vn/products/fixture-coating-i9204-s401.html",
+        "sku": "9204_VNAMZ-401",
+        "title": "Chocolate-coated ice cream 60g, core unspecified",
+        "priceText": "500 ₫",
+        "selectedVariant": [{ "text": "1 cây" }]
+      },
+      "expected": {
+        "packCount": 1,
+        "netMassG": 60,
+        "price": 500,
+        "strictChocolateEligible": false
+      }
+    }
+  ]
+}

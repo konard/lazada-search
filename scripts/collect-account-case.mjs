@@ -1,12 +1,17 @@
 import { spawn } from 'node:child_process';
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { LazadaSearch, DomainScheduler } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { runAccountCase } from './account-case-workflow.mjs';
 import { latestCrawl } from '../src/crawl.js';
 import { scopeAccountAudit } from './account-category-scope.mjs';
-import { accountBacklogFlags } from './account-backlog-order.mjs';
+import {
+  accountBacklogFlags,
+  orderAccountBacklog,
+} from './account-backlog-order.mjs';
+import { attemptedCollectionUrls } from './account-collection-attempts.mjs';
+import { canonicalUrl } from '../src/text.js';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -78,16 +83,47 @@ async function audit() {
   });
   try {
     const latest = latestCrawl(await store.list('crawl'));
-    return {
-      ...scopeAccountAudit(await app.audit(), {
-        categoryOnly: options.categoryOnly,
-        flavourScope: options.flavourScope,
-        activeSourcesOnly: true,
-        crawl: latest,
-        discoveries: await store.list('discovery'),
-      }),
+    const scoped = scopeAccountAudit(await app.audit(), {
+      categoryOnly: options.categoryOnly,
+      flavourScope: options.flavourScope,
+      activeSourcesOnly: true,
+      crawl: latest,
+      discoveries: await store.list('discovery'),
+    });
+    const attempted = new Set(await attemptedCollectionUrls(store, options));
+    const urls = orderAccountBacklog(scoped);
+    const result = {
+      ...scoped,
+      collectableUrls: urls.filter((url) => !attempted.has(canonicalUrl(url))),
+      deferredUrls: urls.filter((url) => attempted.has(canonicalUrl(url))),
       discoveryComplete: latest?.discoveryComplete === true,
     };
+    await writeFile(
+      'docs/acceptance/collection-progress.json',
+      `${JSON.stringify(
+        {
+          checkedAt: new Date().toISOString(),
+          market: options.market,
+          deliveryArea: options.deliveryArea,
+          flavourScope: options.flavourScope,
+          minimumIntervalMs: Math.max(60000, options.intervalMs),
+          discoveryComplete: result.discoveryComplete,
+          scopes: latest?.scopes || [],
+          collectableUrls: result.collectableUrls,
+          deferredUrls: result.deferredUrls,
+          missingListings: result.missingListings,
+          missingSkuPrices: result.missingSkuPrices,
+          categoryReview: result.categoryReview,
+          stop:
+            (await store.get('collection-stop', 'browser-collection'))
+              ?.active === true,
+          purchaseReady: false,
+        },
+        null,
+        2
+      )}\n`
+    );
+    return result;
   } finally {
     await app.close();
   }
@@ -103,6 +139,20 @@ async function publish() {
     ...sharedFlags,
     '--offline',
     '--no-ocr',
+  ]);
+  await run('export-deadline-report.mjs', [
+    ...sharedFlags,
+    '--offline',
+    '--no-ocr',
+  ]);
+  await run('export-handpicked-report.mjs', [
+    ...sharedFlags,
+    '--offline',
+    '--no-ocr',
+  ]);
+  await run('export-ice-unit-report.mjs', []);
+  await run('export-whey-verification-worklist.mjs', [
+    'docs/tables/catalog.json',
   ]);
   await run('archive-case.mjs', [...sharedFlags, '--offline', '--no-ocr']);
   await run('../bin/lazada-search.js', [
@@ -146,6 +196,8 @@ try {
     audit,
     publish,
     recollect,
+    reuseDiscovery:
+      !options.refresh && !options.query.length && !options.categoryUrl.length,
   });
   await store.put('case-run', {
     id: reportId,

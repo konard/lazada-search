@@ -2,6 +2,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { positive } from './util.js';
 import { catalogProducts } from './catalog-products.js';
+import { COLLECTION_STOP_ID } from './page-challenge.js';
 
 export function apiComparisonOptions(params) {
   const options = {};
@@ -68,6 +69,14 @@ export async function startServer({ application, port = 8080 } = {}) {
         result = await catalogProducts(application.store);
       } else if (url.pathname === '/api/coverage') {
         result = await application.audit();
+      } else if (url.pathname === '/api/collection-status') {
+        result = (await application.store.get(
+          'collection-stop',
+          COLLECTION_STOP_ID
+        )) || {
+          id: COLLECTION_STOP_ID,
+          active: false,
+        };
       } else if (url.pathname === '/api/evidence') {
         result = await application.store.get(
           'evidence',

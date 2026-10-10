@@ -3,6 +3,12 @@ export { AssociativeStore } from './store.js';
 export { DoubletGraph } from './doublets.js';
 export { EvidenceCache, DomainScheduler } from './cache.js';
 export { BrowserCollector, extractPage, classifyPage } from './browser.js';
+export {
+  CollectionStoppedError,
+  inspectPageChallenge,
+  assertPageNotChallenged,
+  COLLECTION_STOP_ID,
+} from './page-challenge.js';
 export { TesseractOcr, parseTsv } from './ocr.js';
 export { parseProduct, validateProduct, validateOffer } from './products.js';
 export {
@@ -11,6 +17,8 @@ export {
   ingredientFlags,
   proteinTypeOf,
   categoryOf,
+  massGrams,
+  packCountOf,
   volumeMillilitres,
 } from './nutrition.js';
 export { calculateOffer, compareOffers } from './compare.js';

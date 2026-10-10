@@ -207,3 +207,29 @@ test('account workflow publishes each batch and continues until every preserved 
   assert.equal(result.passes, 3);
   assert.equal(result.phase, 'initial-product-pass-finished');
 });
+
+test('unresolved early products do not starve unattempted URLs or discard the original gaps', () => {
+  const state = audit({ missingListings: [ostrovit, ordinary, warrior] });
+  const batch = accountBacklogBatch(state, {
+    exhaustive: true,
+    batchSize: 1,
+    attemptedUrls: [ostrovit],
+  });
+  assert.deepEqual(batch.urls, [ordinary]);
+  assert.equal(batch.totalQueued, 3);
+  assert.equal(batch.deferred, 1);
+  assert.equal(batch.remainingAfterBatch, 1);
+  assert.deepEqual(state.missingListings, [ostrovit, ordinary, warrior]);
+});
+
+test('review candidates include ambiguous food cards while unrelated search recommendations remain review tasks', () => {
+  const cards = [
+    { url: ordinary, title: 'Bột Protein Chocolate 1kg' },
+    { url: warrior, title: 'Kem Binggrae hương chocolate' },
+    { url: ostrovit, title: 'Kem dưỡng da chocolate face cream' },
+    { url: vanilla, title: 'Vitamin hữu cơ' },
+  ];
+  const state = audit({ categoryReview: cards });
+  assert.deepEqual(orderAccountBacklog(state), [ordinary, warrior]);
+  assert.deepEqual(state.categoryReview, cards);
+});

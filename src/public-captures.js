@@ -4,6 +4,9 @@ import { canonicalUrl, sha256 } from './util.js';
 import { extractPage } from './browser.js';
 import { parseProduct } from './products.js';
 
+const capturePriceContext = (capture) =>
+  capture.priceContext || 'private-profile-browser-observation';
+
 // Rebuild public records from redacted product DOM. Account records, account
 // screenshots, cookies, authentication forms and private raw text are not copied.
 export async function publishAccountCaptures(application, accountStore) {
@@ -92,7 +95,7 @@ export async function publishAccountCaptures(application, accountStore) {
         observedAt,
         html: publicPage.html,
         offerId: result.offer.id,
-        priceContext: 'authenticated-browser-observation',
+        priceContext: capturePriceContext(capture),
         exactSkuConfirmed: true,
         manualVisualReview: false,
       };

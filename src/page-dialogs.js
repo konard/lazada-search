@@ -1,4 +1,7 @@
+import { assertPageNotChallenged } from './page-challenge.js';
+
 export async function resolvePageDialogs(page) {
+  await assertPageNotChallenged(page);
   const confirm = page.getByText('Xác nhận', { exact: true });
   if (await confirm.isVisible()) {
     let dialog = confirm;
@@ -31,8 +34,10 @@ export async function resolvePageDialogs(page) {
     ) {
       await checkbox.check();
     }
+    await assertPageNotChallenged(page);
     await confirm.click();
     await dialog.waitFor({ state: 'hidden', timeout: 5000 });
+    await assertPageNotChallenged(page);
   }
   if (
     await page

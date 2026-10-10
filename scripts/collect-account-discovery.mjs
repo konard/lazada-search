@@ -20,14 +20,10 @@ const app = new LazadaSearch({
 });
 try {
   await app.collector.start();
+  await app.collector.assertCollecting();
   await resolvePageDialogs(app.collector.runtime.page);
   const session = await phoneLoginState(app.collector.runtime.page);
   console.log(JSON.stringify({ session: session.status, phase: 'discovery' }));
-  if (session.status !== 'authenticated') {
-    throw new Error(
-      'Sign-in is required in the existing account profile before discovery'
-    );
-  }
   const collectPage = app.collector.page.bind(app.collector);
   app.collector.page = async (url, settings) => {
     const page = await collectPage(url, settings);

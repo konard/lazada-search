@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { categoryOf } from '../src/nutrition.js';
 import {
   powderCategory,
   reportUnitCosts,
@@ -52,6 +53,21 @@ test('whey and soy stay separate; soy lecithin does not classify whey as soy', (
   assert.equal(
     powderCategory({ category: 'whey', title: 'Soy Protein Isolate' }),
     'soy'
+  );
+  assert.equal(
+    powderCategory({
+      category: 'whey',
+      title: 'Sữa Whey Thực Vật Tăng Cơ AFIT Protein 1kg',
+    }),
+    'other-protein'
+  );
+  assert.equal(
+    categoryOf('Sữa Whey Thực Vật Tăng Cơ AFIT Protein 1kg'),
+    'protein-powder'
+  );
+  assert.equal(
+    categoryOf('Sữa bột Nestle NAN SUPREMEPRO 3 800g với đạm Whey thủy phân'),
+    'unknown'
   );
   assert.equal(
     powderCategory({ category: 'protein-powder', title: 'Unknown blend' }),

@@ -169,3 +169,98 @@ test('a requested full SKU already selected never triggers another variant actio
     /absent/
   );
 });
+
+test('natural flavour additives and grass-fed marketing do not prove an unflavoured SKU', () => {
+  for (const title of [
+    'Whey protein with natural flavors',
+    'Whey protein natural and artificial flavours',
+    'Critical Whey chiết xuất từ nguồn bò sữa ăn cỏ tự nhiên',
+  ]) {
+    assert.equal(productFlavour(powder(title)), 'unknown', title);
+    assert.equal(matchesFlavourScope(powder(title), scope), false, title);
+  }
+  assert.equal(
+    productFlavour(
+      powder('Critical Whey', { selectedVariant: [{ text: 'NATURAL' }] })
+    ),
+    'unflavoured'
+  );
+  assert.equal(
+    productFlavour(powder('Natural flavors chocolate whey')),
+    'chocolate'
+  );
+});
+
+test('chocolate coating never proves chocolate ice-cream core or white core vanilla identity', () => {
+  for (const title of [
+    'Kem Aice chocolate white ice-cream core',
+    'Kem chocolate lõi kem trắng',
+    'Chocolate-coated ice cream, core unspecified',
+    'Kem socola phủ ngoài, nhân sữa',
+    'White chocolate ice cream',
+    'Kem socola đậu phộng',
+  ]) {
+    assert.equal(matchesFlavourScope(ice(title), scope), false, title);
+    assert.equal(productFlavour(ice(title)), 'other', title);
+  }
+  for (const title of [
+    'Chocolate ice cream with chocolate coating',
+    'Milk chocolate ice cream',
+    'Kem socola với vỏ socola',
+  ]) {
+    assert.equal(matchesFlavourScope(ice(title), scope), true, title);
+  }
+  const reviewed = ice('Chocolate ice cream', {
+    selectedVariant: [{ text: 'Chocolate' }],
+    manufacturerVerification: {
+      identityMatched: true,
+      sourceAuthority: 'manufacturer',
+      identity: { flavour: 'white ice cream with chocolate coating' },
+    },
+  });
+  assert.equal(productFlavour(reviewed), 'other');
+  assert.equal(matchesFlavourScope(reviewed, scope), false);
+});
+
+test('an exact manufacturer flavour outside the vocabulary does not fall back to chocolate marketing', () => {
+  assert.equal(
+    productFlavour(
+      powder('Chocolate whey', {
+        selectedVariant: [{ text: 'Chocolate' }],
+        manufacturerVerification: {
+          identityMatched: true,
+          sourceAuthority: 'manufacturer',
+          identity: { flavour: 'Mystery seasonal flavour' },
+        },
+      })
+    ),
+    'unknown'
+  );
+});
+
+test('Vietnamese with-bottle selling options exclude shaker choices and retain without-bottle siblings', () => {
+  for (const option of ['Có bình', 'Kèm bình', 'Thêm bình']) {
+    assert.equal(
+      matchesFlavourScope(
+        powder('BioX chocolate whey', {
+          selectedVariant: [{ text: 'Socola' }, { text: option }],
+        }),
+        scope
+      ),
+      false,
+      option
+    );
+  }
+  for (const option of ['Kh bình', 'Không bình', 'Không']) {
+    assert.equal(
+      matchesFlavourScope(
+        powder('BioX chocolate whey', {
+          selectedVariant: [{ text: 'Socola' }, { text: option }],
+        }),
+        scope
+      ),
+      true,
+      option
+    );
+  }
+});

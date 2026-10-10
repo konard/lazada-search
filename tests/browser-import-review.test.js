@@ -311,6 +311,64 @@ test('seller images and omitted nutrition facts cannot become verified manufactu
   );
 });
 
+test('equal reviewer declarations cannot replace a contradicting selected SKU flavour', async (t) => {
+  const { app, store, product, review } = await reviewedFixture(t);
+  product.selectedVariant = [{ text: 'Vanilla', selected: true }];
+  await store.put('product', product);
+  await assert.rejects(
+    app.reviewManufacturer(product.id, review),
+    /flavour conflicts with selected SKU/u
+  );
+  assert.equal(
+    (await store.get('product', product.id)).manufacturerVerification,
+    undefined
+  );
+  assert.deepEqual(await store.list('manufacturer-review'), []);
+});
+
+test('an official gallery label for another flavour cannot supply reviewed chocolate nutrition', async (t) => {
+  const { app, store, product, review } = await reviewedFixture(t);
+  const id = 'manufacturer:https://musaking.com/products/whey-isolate';
+  const page = await store.get('cache', id);
+  const labelUrl = page.snapshot.productImages[0];
+  page.snapshot.manufacturerLabels = [
+    { url: labelUrl, flavour: 'Vanilla Creme' },
+  ];
+  await store.put('cache', page);
+  await assert.rejects(
+    app.reviewManufacturer(product.id, review),
+    /label flavour conflicts/u
+  );
+  assert.deepEqual(await store.list('manufacturer-review'), []);
+  page.snapshot.manufacturerLabels[0].flavour = 'Chocolate Fudge';
+  await store.put('cache', page);
+  const matched = await app.reviewManufacturer(product.id, review);
+  assert.deepEqual(specificationProblems(matched), []);
+});
+
+test('manufacturer image flavour checks use the product category to reject a white ice-cream core', async (t) => {
+  const { app, store, product, review } = await reviewedFixture(t);
+  product.category = 'chocolate-ice-cream';
+  product.selectedVariant = [{ text: 'Chocolate' }];
+  await store.put('product', product);
+  const page = await store.get(
+    'cache',
+    'manufacturer:https://musaking.com/products/whey-isolate'
+  );
+  page.snapshot.manufacturerLabels = [
+    {
+      url: page.snapshot.productImages[0],
+      flavour: 'White ice cream with chocolate coating',
+    },
+  ];
+  await store.put('cache', page);
+  await assert.rejects(
+    app.reviewManufacturer(product.id, review),
+    /label flavour conflicts/u
+  );
+  assert.deepEqual(await store.list('manufacturer-review'), []);
+});
+
 test('selected SKU availability ignores hidden application notices and preserves quantity limits', () => {
   const { document } = parseHTML(
     `<html><body><h1>Whey</h1><div data-product-price>728.000 ₫</div><button class="add-to-cart-buy-now-btn">Mua ngay</button><div class="sku-quantity-selection-v2"><input min="1" max="30"></div><script>const hidden='hết hàng';</script></body></html>`

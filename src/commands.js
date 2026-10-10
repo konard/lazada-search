@@ -9,6 +9,7 @@ import { parse as parseYaml } from 'yaml';
 import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
+import { COLLECTION_STOP_ID } from './page-challenge.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
@@ -17,6 +18,8 @@ Commands:
   crawl                         Discover and collect whey and chocolate ice cream
   audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
+  collection-status             Show the persistent CAPTCHA stop checkpoint
+  resume-collection             Resume only after the current challenge is cleared
   import-capture <capture.json>  Import HTML/screenshot from an existing browser
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
@@ -68,6 +71,15 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'collection-status':
+      return (
+        (await application.store.get(
+          'collection-stop',
+          COLLECTION_STOP_ID
+        )) || { id: COLLECTION_STOP_ID, active: false }
+      );
+    case 'resume-collection':
+      return application.collector.resumeCollection();
     case 'review-category':
       return reviewListingCategory(
         application,
@@ -219,8 +231,15 @@ export async function executeCommand(application, command, args, options = {}) {
         return phoneLoginState(application.collector.runtime.page);
       }
       await application.collector.start();
+      await application.collector.assertCollecting();
+      const url = `https://${(await import('./application.js')).MARKETS[application.market].host}/`;
+      await application.collector.runtime.pace?.(
+        url,
+        application.cache.scheduler.intervalMs
+      );
+      await application.collector.assertCollecting();
       await application.collector.commander.goto({
-        url: `https://${(await import('./application.js')).MARKETS[application.market].host}/`,
+        url,
         waitForNetworkIdle: false,
       });
       console.log(

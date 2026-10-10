@@ -1,6 +1,10 @@
 // Phone numbers and verification codes belong to the private browser profile,
 // never to product records or public evidence. Return only authentication state.
 import { resolvePageDialogs } from './page-dialogs.js';
+import {
+  assertPageNotChallenged,
+  assertCollectionRunning,
+} from './page-challenge.js';
 export function vietnamPhoneNumber(value) {
   const digits = String(value || '').replace(/[\s()+.-]/gu, '');
   const national = digits.startsWith('84') ? `0${digits.slice(2)}` : digits;
@@ -10,7 +14,15 @@ export function vietnamPhoneNumber(value) {
   return national;
 }
 
-export function phoneLoginState(page) {
+export async function phoneLoginState(page) {
+  try {
+    await assertPageNotChallenged(page);
+  } catch (error) {
+    if (error.code === 'COLLECTION_STOPPED') {
+      return { status: 'challenge' };
+    }
+    throw error;
+  }
   return page.evaluate(() => {
     const document = globalThis.document;
     const visible = (element) => {
@@ -99,6 +111,7 @@ export async function startPhoneLogin(
     throw new Error('Phone login requires a private account store');
   }
   const national = vietnamPhoneNumber(phone);
+  await assertCollectionRunning(collector.store);
   await collector.start();
   await collector.runtime.touch?.();
   const existing = await phoneLoginState(collector.runtime.page);
@@ -107,6 +120,7 @@ export async function startPhoneLogin(
   }
   await resolvePageDialogs(collector.runtime.page);
   await collector.runtime.pace?.(url, collector.cache.scheduler.intervalMs);
+  await assertPageNotChallenged(collector.runtime.page);
   await collector.commander.goto({
     url,
     waitUntil: 'domcontentloaded',
@@ -118,6 +132,7 @@ export async function startPhoneLogin(
     return current;
   }
   await selectPhoneTab(page);
+  await assertPageNotChallenged(page);
   const input = page.locator('input:visible[placeholder*="phone number" i]');
   await input.fill(national.slice(1));
   // Only one request per invocation; resending requires a deliberate new run.
@@ -151,6 +166,7 @@ export async function submitPhoneCode(
   if (!/^\d{4,8}$/u.test(String(code))) {
     throw new Error('Verification code must contain 4 to 8 digits');
   }
+  await assertCollectionRunning(collector.store);
   const page = collector.runtime?.page;
   if (!page || (await phoneLoginState(page)).status !== 'otp-required') {
     throw new Error('No active OTP form; start phone login first');
@@ -163,6 +179,7 @@ export async function submitPhoneCode(
     throw new Error('The verification form does not have a single code field');
   }
   await input.fill(String(code));
+  await assertPageNotChallenged(page);
   await page
     .getByRole('button', { name: /^(?:Confirm|Verify|LOGIN)$/u })
     .click();

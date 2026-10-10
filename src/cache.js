@@ -1,5 +1,6 @@
 import { setTimeout as delay } from 'node:timers/promises';
 import { canonicalUrl, positive, sha256 } from './util.js';
+import { assertCollectionRunning } from './page-challenge.js';
 
 export class DomainScheduler {
   constructor({ intervalMs = 60000, sleep = delay } = {}) {
@@ -101,7 +102,12 @@ export class EvidenceCache {
       );
     }
     this.stats.misses += 1;
-    const loaded = await this.scheduler.run(url, () => load(cached));
+    await assertCollectionRunning(this.store);
+    const loaded = await this.scheduler.run(url, async () => {
+      await assertCollectionRunning(this.store);
+      await this.beforeDownload?.();
+      return load(cached);
+    });
     if (loaded.notModified && !cached) {
       throw new Error('304 response without cached evidence');
     }

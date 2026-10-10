@@ -1,5 +1,5 @@
 {
-  "reportedAt": "2026-10-10T17:15:32.612631+00:00",
+  "reportedAt": "2026-10-10T18:40:04.563102+00:00",
   "issues": [
     {
       "repository": "link-foundation/browser-commander",
@@ -41,7 +41,7 @@
       "repository": "konard/lazada-search",
       "url": "https://github.com/konard/lazada-search/issues/6",
       "kind": "ice-carton-category-and-package-count",
-      "status": "exact 24-bottle case corrected; general category and package-count extraction remain open"
+      "status": "fixed; selected-carton/single-unit parsing, unresolved inner-count denominator guard, unit and library/CLI/HTTP/Telegram E2E regressions passed"
     }
   ],
   "noPrivateAccountEvidencePublished": true,
@@ -53,8 +53,14 @@
     {
       "url": "https://github.com/link-foundation/browser-commander/issues/142",
       "kind": "screenshot geometry and transient jumping"
+    },
+    {
+      "url": "https://github.com/link-foundation/browser-commander/issues/159",
+      "kind": "CDP reconnect with zero-page headed Chrome and noDefaults forwarding",
+      "consumerWorkaround": "src/browser-connection.js; create a page only when the existing default context has none, then reconnect through Browser Commander"
     }
   ],
   "iceResearchUpdate": "https://github.com/konard/lazada-search/issues/3#issuecomment-6100117871",
-  "expandedIceResearch": "14 selected prices; 6 gram rows, 7 millilitre rows and 2 seller-protein reference rows; no confirmed frozen Nha Trang delivery winner"
+  "expandedIceResearch": "14 selected prices; 6 gram rows, 7 millilitre rows and 2 seller-protein reference rows; no confirmed frozen Nha Trang delivery winner",
+  "continuation": "Persistent CAPTCHA stop and guarded explicit resume implemented;212 original public product captures reprocessed offline with0 downloads and0 errors; detailed coverage and manufacturer work continues with at most2 subagents."
 }

@@ -64,7 +64,10 @@ test('every published real SKU price re-extracts from committed redacted HTML an
       ),
       `Historical selected price is preserved for ${record.id}`
     );
-    assert.equal(offer.priceContext, 'authenticated-browser-observation');
+    const latestOfferReceipt = publications
+      .filter((item) => item.offerId === record.offerId)
+      .sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
+    assert.equal(offer.priceContext, latestOfferReceipt.priceContext);
     assert.notEqual(offer.visibility, 'private');
     const newest = publications
       .filter((item) => item.sourceUrl === record.sourceUrl)
@@ -153,7 +156,7 @@ test('account publication preserves selected prices, timestamps and cached label
   assert.equal(offer.price, 250000);
   assert.equal(offer.variantConfirmed, true);
   assert.equal(offer.observedAt, '2026-10-09T09:00:00.000Z');
-  assert.equal(offer.priceContext, 'authenticated-browser-observation');
+  assert.equal(offer.priceContext, 'private-profile-browser-observation');
   const publishedHtml = (
     await shared.blob(report.published[0].html.sha256)
   ).toString();

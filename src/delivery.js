@@ -4,6 +4,10 @@ import { parsePrice } from './nutrition.js';
 import { resolvePageDialogs } from './page-dialogs.js';
 import { storeViewport } from './page-capture.js';
 import { waitForPageReady } from './page-readiness.js';
+import {
+  assertPageNotChallenged,
+  assertCollectionRunning,
+} from './page-challenge.js';
 
 // Lazada's product-page estimate describes one selected package. Its quantity
 // picker does not establish a checkout freight quote for a bulk order.
@@ -24,6 +28,7 @@ export async function captureDelivery(
     refresh,
     load: async () => {
       const action = async () => {
+        await assertCollectionRunning(collector.store);
         await collector.start();
         await collector.runtime?.touch?.();
         if (collector.runtime?.page) {
@@ -33,6 +38,10 @@ export async function captureDelivery(
           url,
           collector.cache.scheduler.intervalMs
         );
+        await assertCollectionRunning(collector.store);
+        if (collector.runtime?.page) {
+          await assertPageNotChallenged(collector.runtime.page);
+        }
         await collector.commander.goto({
           url,
           timeout: 30000,
@@ -48,12 +57,14 @@ export async function captureDelivery(
         }
         await collector.selectRequestedVariant(url, snapshot);
         await waitForPageReady(page);
+        await assertPageNotChallenged(page);
         if (await page.locator('.popup-btn-over').isVisible()) {
           await page.locator('.popup-btn-over').click({ timeout: 5000 });
         }
         await page
           .locator('.automation-location-link-change')
           .click({ timeout: 5000 });
+        await assertPageNotChallenged(page);
         await page
           .locator('.automation-location-list-item')
           .filter({
@@ -63,6 +74,7 @@ export async function captureDelivery(
             ),
           })
           .click({ timeout: 5000 });
+        await assertPageNotChallenged(page);
         await page
           .locator('.automation-location-list-item')
           .filter({
@@ -111,6 +123,9 @@ export async function captureDelivery(
       const pending = collector.tail
         .then(action, action)
         .catch(async (error) => {
+          if (error.code === 'COLLECTION_STOPPED') {
+            throw error;
+          }
           const snapshot = await collector.runtime?.page
             ?.evaluate(extractPage)
             .catch(() => undefined);

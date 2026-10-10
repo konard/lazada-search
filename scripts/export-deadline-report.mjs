@@ -45,6 +45,8 @@ const englishNames = {
   1561301337: 'Merino chocolate cocoa-crisp ice-cream stick',
   1880785864: 'Happy Gelato Belgian chocolate ice cream',
   2978009544: 'Binggrae Pongta Chocolate bottle ice cream',
+  3040048563: 'Binggrae Pongta Chocolate, 24-bottle carton',
+  3047760589: 'Cremo chocolate ice cream, white 6 L tub',
   3039951845: 'Lotte Crispy Crunch Chocolate cone',
   3047790409: 'Lotte Fanfare Chocolate ice cream',
   497264871: 'Merino chocolate cone, five-cone pack',
@@ -53,7 +55,7 @@ const englishNames = {
 };
 const name = (row) =>
   englishNames[row.offer.sku.split('_VNAMZ-')[0]] ||
-  `${row.product.brand || 'Manufacturer pending'} ${productFlavour(row.product)} protein powder`;
+  `${row.product.brand || 'Manufacturer pending'} ${productFlavour(row.product)} ${row.product.category === 'chocolate-ice-cream' ? 'ice cream' : 'protein powder'}`;
 try {
   const report = await app.compare({ quantity: 1, allowStale: true });
   const available = report.comparisons.filter(

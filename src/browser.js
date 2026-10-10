@@ -5,6 +5,15 @@ import { acquireBrowserWindow } from './persistent-browser.js';
 import { waitForPageReady } from './page-readiness.js';
 import { scrollProductContent } from './page-scroll.js';
 import { storeViewport } from './page-capture.js';
+import {
+  inspectPageChallenge,
+  assertPageNotChallenged,
+  assertCollectionRunning,
+  stopForChallenge,
+  COLLECTION_STOP_ID,
+  registerChallengeStore,
+  CollectionStoppedError,
+} from './page-challenge.js';
 
 export const EXTRACTOR_VERSION = 15;
 
@@ -413,6 +422,7 @@ export function extractPage(context) {
 export function classifyPage(page) {
   const title = page.title || '';
   if (
+    page.challenge?.detected ||
     /\/_____tmd_____\/punish|\/captcha(?:\/|\?|$)/iu.test(page.url || '') ||
     /captcha|verify (?:your|you)|security verification|access denied|robot check|xác minh/iu.test(
       title
@@ -467,6 +477,9 @@ export class BrowserCollector {
     }
     this.captureTimeoutMs = captureTimeoutMs;
     this.tail = Promise.resolve();
+    if (this.cache) {
+      this.cache.beforeDownload = () => this.assertCollecting();
+    }
   }
 
   async start() {
@@ -511,6 +524,7 @@ export class BrowserCollector {
       if (this.attached) {
         this.runtime.page = await this.runtime.page.context().newPage();
       }
+      registerChallengeStore(this.runtime.page, this.store);
       this.imageTasks = new Set();
       this.imageRoute = async (route) => {
         if (route.request().resourceType() !== 'image') {
@@ -618,6 +632,10 @@ export class BrowserCollector {
           document,
           url: result.finalUrl || result.snapshot.url,
         });
+        snapshot.challenge = inspectPageChallenge({
+          document,
+          url: result.finalUrl || result.snapshot.url,
+        });
         snapshot.rawText = result.snapshot.rawText;
         const updated = {
           ...result,
@@ -658,6 +676,9 @@ export class BrowserCollector {
         }),
       ]);
     } catch (error) {
+      if (error.code === 'COLLECTION_STOPPED') {
+        await stopForChallenge(this.store, error.challenge || {});
+      }
       if (timedOut) {
         // Close the collector-owned page so a late navigation cannot modify
         // the next capture. Existing attached-browser tabs stay untouched.
@@ -680,6 +701,7 @@ export class BrowserCollector {
   }
 
   async capture(url, { refresh = false } = {}) {
+    await assertCollectionRunning(this.store);
     await this.start();
     await this.runtime.touch?.();
     // A previous blocked dialog must be resolved before any new navigation.
@@ -687,6 +709,7 @@ export class BrowserCollector {
     this.refreshImages = refresh;
     const page = this.runtime.page;
     await this.runtime.pace?.(url, this.cache.scheduler.intervalMs);
+    await this.assertCollecting();
     await this.commander.goto({
       url,
       timeout: 30000,
@@ -697,6 +720,12 @@ export class BrowserCollector {
     await resolvePageDialogs(page);
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
+    if (status === 'challenge') {
+      throw new CollectionStoppedError({
+        url: snapshot.url,
+        signals: ['page-classification'],
+      });
+    }
     let scrolling;
     const screenshots = [];
     if (status === 'ok') {
@@ -713,6 +742,12 @@ export class BrowserCollector {
       snapshot = await page.evaluate(extractPage);
       await resolvePageDialogs(page);
       status = classifyPage(snapshot);
+      if (status === 'challenge') {
+        throw new CollectionStoppedError({
+          url: snapshot.url,
+          signals: ['page-classification'],
+        });
+      }
     }
     const html = await this.store.putBlob(Buffer.from(await page.content()));
     screenshots.push(await storeViewport(this.store, page, 'after-scroll'));
@@ -799,6 +834,37 @@ export class BrowserCollector {
         'Requested SKU did not become the selected SKU; no price was recorded'
       );
     }
+  }
+
+  async assertCollecting() {
+    await assertCollectionRunning(this.store);
+    if (this.runtime) {
+      try {
+        await assertPageNotChallenged(this.runtime.page);
+      } catch (error) {
+        if (error.code === 'COLLECTION_STOPPED') {
+          await stopForChallenge(this.store, error.challenge);
+        }
+        throw error;
+      }
+    }
+  }
+
+  async resumeCollection() {
+    await this.start();
+    await assertPageNotChallenged(this.runtime.page);
+    const previous = await this.store.get(
+      'collection-stop',
+      COLLECTION_STOP_ID
+    );
+    const state = {
+      ...(previous || {}),
+      id: COLLECTION_STOP_ID,
+      active: false,
+      resumedAt: new Date().toISOString(),
+    };
+    await this.store.put('collection-stop', state);
+    return state;
   }
 
   async close() {

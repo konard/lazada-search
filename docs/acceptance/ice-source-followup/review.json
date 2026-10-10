@@ -1,0 +1,1608 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10T18:42:34.085599+00:00",
+  "status": "reviewed; exact current manufacturer nutrition remains unresolved",
+  "complete": false,
+  "policy": {
+    "noDensityInference": true,
+    "exactManufacturerFormulaRequiredForNutrition": true,
+    "manufacturerFamilyFactsKeptConditionalUnlessExactSkuMatched": true,
+    "noLazadaRequests": true,
+    "noBrowserControl": true,
+    "noSharedStoreWrites": true,
+    "networkPacingSecondsPerDomain": 60,
+    "knownFailuresReusedWithoutUnnecessaryRetry": true
+  },
+  "reviews": [
+    {
+      "id": "ice-source-followup:1561216831_VNAMZ-6599331044",
+      "skus": ["1561216831_VNAMZ-6599331044"],
+      "productName": "iBerri Thai chocolate tub 6L (seller description identity)",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i1561216831.html?skuId=6599331044",
+      "currentCaseQuantity": {
+        "massG": 3000,
+        "volumeMl": 6000,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 6000,
+          "unit": "ml",
+          "basis": "exact-selected-marketplace-SKU declared volume",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561216831.html?skuId=6599331044",
+          "sourceSha256": "cada4334b344933c02437a7b42d3a5fae81056a4fa81f60015a881249ff1a552",
+          "excerpt": "Thể tích : 6 lít",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "confidence": 1
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+          "id": "ice-dual-units:1561216831_VNAMZ-6599331044",
+          "productName": "iBerri Thai chocolate tub 6L (seller description identity)",
+          "status": "partial-evidence-exact-export-product-not-verified"
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Seller title/specification 3kg conflicts with description 3–3.3kg depending on flavour; exact chocolate net mass unresolved",
+        "Manufacturer 6L/3kg Cremo family lacks iBerri exact export-product mapping, barcode and current formula",
+        "No full factory chocolate ingredient list; seller prose is generic and incomplete",
+        "No current nutrition label on any of four cached product images",
+        "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
+        "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement",
+        "Distributor title3kg conflicts with its own3–3.6kg flavour-dependent range; exact chocolate grams still absent",
+        "Distributor EAN8850387013085 not printed on available Lazada package photos",
+        "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
+        "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:3047760589_VNAMZ-14661082727",
+      "skus": ["3047760589_VNAMZ-14661082727"],
+      "productName": "Cremo chocolate 6 L, selected white-tub SKU",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i3047760589.html?skuId=14661082727",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": 6000,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {},
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+          "id": "ice-expanded:3047760589_VNAMZ-14661082727",
+          "productName": "Cremo chocolate6000ml selected SKU",
+          "status": null
+        }
+      ],
+      "conditionalFacts": {
+        "netMassG": {
+          "value": 3000,
+          "unit": "g",
+          "basis": "manufacturer white 6 L ice-cream family; Thai page declares net mass independently, not inferred from density",
+          "sourceUrl": "https://www.chomthana.com/products/icecreams/?lang=th",
+          "sourceSha256": "13333f0a5e23bad1dc4d7c50bc79a8c34716080055594ebd27632eafc61e3bbd",
+          "artifact": "docs/acceptance/ice-source-followup/original-13333f0a5e23bad1dc4d7c50bc79a8c34716080055594ebd27632eafc61e3bbd.html.gz",
+          "excerpt": "น้ำหนักสุทธิ: 3 กก. / 6 ลิตรไอศกรีม",
+          "translation": "Net weight: 3 kg / 6 litre ice cream",
+          "identityMatched": false,
+          "manufacturerVerified": true,
+          "verificationScope": "Cremo white 6 L family only",
+          "exactSelectedSkuVerified": false,
+          "exactGtinVerified": false,
+          "applied": false,
+          "confidence": 1,
+          "reasonNotApplied": "The manufacturer catalog identifies the white 6 L family and chocolate as one of its flavours, but does not publish GTIN8850387009361 or identify the current Vietnam export formula."
+        },
+        "ingredients": {
+          "value": [
+            "water",
+            "sugar",
+            "palm and palm-kernel fats",
+            "milk-derived whey powder",
+            "cocoa powder",
+            "fructose syrup",
+            "emulsifier INS 471",
+            "stabilizers INS 412, INS 410 and INS 407",
+            "chocolate flavouring"
+          ],
+          "basis": "distributor text for Cremo Chocolate 6 L; cocoa declaration is 3%; formula identity to current Vietnam selected SKU remains unconfirmed",
+          "sourceUrl": "https://mvo.com.sg/cremo1/cremo-6l-chocolate",
+          "sourceSha256": "f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a",
+          "artifact": "docs/acceptance/ice-source-followup/original-f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a.html.gz",
+          "excerpt": "Cocoa powder 3%",
+          "identityMatched": false,
+          "manufacturerVerified": false,
+          "authority": "distributor transcription",
+          "exactSelectedSkuVerified": false,
+          "applied": false,
+          "reasonNotApplied": "No exact selected GTIN is published. The associated historical factory-label photo is unreadable at original resolution and has a visible 2015 expiry; it cannot establish the current export formula."
+        }
+      },
+      "blockingEvidenceGaps": [
+        "No exact current nutrition/ingredients label for selected chocolate factory SKU",
+        "Frozen shipping and quantity-specific freight require parent collector verification",
+        "Manufacturer white 6 L family now independently declares 3 kg, but exact GTIN/current export revision still missing; keep family mass conditional."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "newFamilyEvidence": {
+        "manufacturerImage": {
+          "url": "https://www.chomthana.com/wp-content/uploads/2017/03/6L.jpg",
+          "sha256": "0525fcde98953249316222529f2be7f46dfe71436ce6d9099214ec9ae37cf673",
+          "artifact": "docs/acceptance/ice-source-followup/original-0525fcde98953249316222529f2be7f46dfe71436ce6d9099214ec9ae37cf673.jpg.gz",
+          "description": "147 x 160 white cylindrical lidded tub; small label unreadable; no nutrition panel"
+        },
+        "targetImage": {
+          "sha256": "8a2cbc2728a33c19833757824bc2af4b3cdbcfa0d9c99c5527ad1e1a94d4d197",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-root-8a2cbc2728a33c19833757824bc2af4b3cdbcfa0d9c99c5527ad1e1a94d4d197.source.gz",
+          "description": "Exact selected seller promotional image shows Cremo, chocolate, 6000ml and white tub, with no readable factory label"
+        },
+        "exactGtinLead": "8850387009361",
+        "englishThaiDifference": "The cached English white-family column omits mass. The Thai white-family column explicitly declares 3 kg; its yellow-family column separately declares 6 L / 3 kg. The new white-family mass is primary evidence and is not borrowed from the yellow tub.",
+        "distributorPage": {
+          "url": "https://mvo.com.sg/cremo1/cremo-6l-chocolate",
+          "sha256": "f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a",
+          "artifact": "docs/acceptance/ice-source-followup/original-f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a.html.gz",
+          "publishedVolumeMl": 6000,
+          "publishedPackageCount": 1,
+          "manufacturerNutritionFieldsPresent": false,
+          "exactGtinPresent": false,
+          "description": "Distributor publishes a named chocolate 6 L one-tub product and ingredient transcription, but no numeric nutrition or net mass."
+        },
+        "historicalFactoryLabelImage": {
+          "url": "https://mvo.com.sg/image/catalog/product/cremo_ice_cream_6l_tub_19.jpg",
+          "sha256": "8faa7df20dec9ab3be74b623b25de0e857d8eee31d455a12799e0e8fd06907dd",
+          "artifact": "docs/acceptance/ice-source-followup/original-8faa7df20dec9ab3be74b623b25de0e857d8eee31d455a12799e0e8fd06907dd.jpg.gz",
+          "originalWidthPx": 700,
+          "originalHeightPx": 700,
+          "visibleExpiryYear": 2015,
+          "exactExpiryDayReadable": false,
+          "productNameReadable": "Chocolate Flavoured Ice Cream",
+          "nutritionReadable": false,
+          "barcodeDigitsReadable": false,
+          "massOrVolumeReadable": false,
+          "currentRevisionMatched": false,
+          "applied": false,
+          "inspection": "Manufacturer-style white-tub lid label has barcode and ingredient text. Original 700 x 700 photo provides only approximately 200 x 90 pixels for the oblique label. Enlarging and OCR do not recover reliable numeric specifications."
+        }
+      },
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:2978009544_VNAMZ-14350953081",
+      "skus": ["2978009544_VNAMZ-14350953081"],
+      "productName": "Binggrae Power Cap Choco / Pongta chocolate",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i2978009544.html?skuId=14350953081",
+      "currentCaseQuantity": {
+        "massG": 131,
+        "volumeMl": 130,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual chocolate export PowerCap package",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "manufacturerVerified": true,
+          "requestBody": "prod_idx=774&lang=EN",
+          "requestBodySha256": "7cc9bd02bea2f07a1b7573185dc1beeba89534a303d5bcf54c319d466c878988",
+          "reviewMethod": "exact manufacturer family57 export PowerCap -> Chocolate774 ->130ml variant796"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "netMassG": {
+          "value": 131,
+          "unit": "g",
+          "basis": "one individual chocolate export PowerCap 130 ml package",
+          "sourceUrl": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+          "sourceSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "excerpt": "130mL; 净含量131克",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-label-secondary-host",
+          "manufacturerVerified": false,
+          "manufacturerLabelVerified": true,
+          "approvalScope": "printed net mass only",
+          "reviewMethod": "Manual visual transcription of original factory wrapper; independent second reviewer confirmed both numbers. Target seller front matches Binggrae/PowerCap Choco Flavor Ice Tube, bilingual English/Chinese text, chocolate cube, brown cap and brown tube design.",
+          "marketProvenance": "Chinese/English export wrapper hosted by Brazilian importer ABC C&R; linked from its PowerCap Chocolate product page.",
+          "revisionLimit": "Image upload path is 2025/11. Exact seller lot, GTIN and formula revision are not visible. This approves the printed mass for the matched chocolate130ml wrapper, without transferring nutrition.",
+          "currentCapture": false,
+          "observedAt": "2026-10-10T17:30:16.574451+00:00"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": true,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/korean-expanded-review.json",
+          "id": null,
+          "productName": "Binggrae Power Cap Choco / Pongta chocolate",
+          "status": null
+        },
+        {
+          "path": "docs/acceptance/ice-dual-units/korean-review.json",
+          "id": null,
+          "productName": "Binggrae Power Cap Choco / Pongta chocolate",
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "priorObservationsSuperseded": [
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted."
+      ],
+      "quantityCrossCheck": "Prior expanded review includes a factory front wrapper declaring 130 ml and 131 g. This resolves the family quantity lead, while selected-current-revision nutrient approval remains absent. Carton count is separately 24; shipping/package weights are excluded.",
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:3047790409_VNAMZ-14661118301",
+      "skus": ["3047790409_VNAMZ-14661118301"],
+      "productName": "Lotte Fanfare / 빵빠레 chocolate",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i3047790409.html?skuId=14661118301",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": 175,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 175,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-5.webp",
+          "excerpt": "175ml; vị choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": true,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/korean-expanded-review.json",
+          "id": null,
+          "productName": "Lotte Fanfare / 빵빠레 chocolate",
+          "status": null
+        },
+        {
+          "path": "docs/acceptance/ice-dual-units/korean-review.json",
+          "id": null,
+          "productName": "Lotte Fanfare / 빵빠레 chocolate",
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
+        "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
+        "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "rejectedTransfers": [
+        {
+          "claim": "195ml domestic Fanfare Pasteur chocolate nutrition4g protein/180kcal",
+          "applied": false,
+          "reason": "Selected seller declares175ml; GTIN8801118251313 has conflicting170ml retailer descriptions. Current195ml domestic factory formula cannot define an unidentified175ml export revision."
+        },
+        {
+          "claim": "MFDS generic Fanfare family175g",
+          "applied": false,
+          "reason": "No exact chocolate flavour, GTIN or175ml package identity; not a ml-to-g measurement."
+        }
+      ],
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:3039951845_VNAMZ-14623703963",
+      "skus": ["3039951845_VNAMZ-14623703963"],
+      "productName": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i3039951845.html?skuId=14623703963",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": 160,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 160,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "160ml; vị choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "proteinPerPackageG": {
+          "value": 3.2,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Đạm/Protein: 3.2g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 296,
+          "unit": "kcal",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Năng lượng/Energy: 296 Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 15,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Chất béo/Total Fat: 15g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 37,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Carbohydrate: 37g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 29,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Đường/Total Sugars: 29 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": false,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/korean-review.json",
+          "id": null,
+          "productName": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "Peanut topping excludes this exact listing from the requested nut-free strict chocolate scope. Seller English name is not the Korean manufacturer family name."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "nameCollision": {
+        "selectedManufacturerFamily": "World Cone / 월드콘",
+        "sellerEnglishAlias": "Crispy Crunch",
+        "differentManufacturerFamily": "PigCone / 돼지콘 sold as Crispy Crunch160ml in Canada/US",
+        "differentFamilyNutritionNotApplied": true,
+        "reason": "Manufacturer and exact seller images already match World Cone with peanut topping. The similarly named PigCone uses strawberry syrup and vanilla base; its nutrition is not selected World Cone nutrition."
+      },
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:1880785864_VNAMZ-8527716007",
+      "skus": ["1880785864_VNAMZ-8527716007"],
+      "productName": "Happy Gelato Belgian chocolate 475ml",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716007",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": 475,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 475,
+          "unit": "ml",
+          "basis": "exact-selected-marketplace-SKU and package-front volume",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716007",
+          "sourceSha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "excerpt": "475ml",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "confidence": 1
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+          "id": "ice-dual-units:1880785864_VNAMZ-8527716007",
+          "productName": "Happy Gelato Belgian chocolate 475ml",
+          "status": "partial-evidence-current-nutrition-not-verified"
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "No exact current package net grams for this volume; density must not be inferred",
+        "No current chocolate formula or GTIN linking the 2021 tested sample to this selected SKU",
+        "No current package nutrition per 100g, per 100ml, or per package",
+        "No full current ingredient/allergen list or sugar/saturated-fat values",
+        "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
+        "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "reusedHistoricalReference": {
+        "path": "docs/acceptance/urgent-icecream/targeted-spec-review.json",
+        "reportNumber": "MMI2111.271022372",
+        "reportIssuedAt": "2021-12-08",
+        "sampleName": "KEM CHOCOLATE BỈ",
+        "customer": "CÔNG TY TNHH TMDV HAPPY DURIAN",
+        "proteinPer100g": 4.6,
+        "fatPer100g": 4.8,
+        "carbohydratePer100g": 24,
+        "kcalPer100g": 158,
+        "exactCurrentSkuIdentityMatched": false,
+        "applied": false,
+        "reason": "No GTIN,125ml/475ml pack identity or current formulation linkage. Carbohydrate24g is not sugar24g."
+      },
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:1880785864_VNAMZ-8527716006",
+      "skus": ["1880785864_VNAMZ-8527716006"],
+      "productName": "Happy Gelato Belgian chocolate 125ml",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716006",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": 125,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 125,
+          "unit": "ml",
+          "basis": "exact-selected-marketplace-SKU and package-front volume",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716006",
+          "sourceSha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "excerpt": "125ml",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "confidence": 1
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+          "id": "ice-dual-units:1880785864_VNAMZ-8527716006",
+          "productName": "Happy Gelato Belgian chocolate 125ml",
+          "status": "partial-evidence-current-nutrition-not-verified"
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "No exact current package net grams for this volume; density must not be inferred",
+        "No current chocolate formula or GTIN linking the 2021 tested sample to this selected SKU",
+        "No current package nutrition per 100g, per 100ml, or per package",
+        "No full current ingredient/allergen list or sugar/saturated-fat values",
+        "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
+        "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "reusedHistoricalReference": {
+        "path": "docs/acceptance/urgent-icecream/targeted-spec-review.json",
+        "reportNumber": "MMI2111.271022372",
+        "reportIssuedAt": "2021-12-08",
+        "sampleName": "KEM CHOCOLATE BỈ",
+        "customer": "CÔNG TY TNHH TMDV HAPPY DURIAN",
+        "proteinPer100g": 4.6,
+        "fatPer100g": 4.8,
+        "carbohydratePer100g": 24,
+        "kcalPer100g": 158,
+        "exactCurrentSkuIdentityMatched": false,
+        "applied": false,
+        "reason": "No GTIN,125ml/475ml pack identity or current formulation linkage. Carbohydrate24g is not sugar24g."
+      },
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:3040048563_VNAMZ-14623760583",
+      "skus": ["3040048563_VNAMZ-14623760583"],
+      "productName": "Binggrae Power Cap chocolate carton, 24 x 130 ml bottles",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i3040048563.html?skuId=14623760583",
+      "currentCaseQuantity": {
+        "massG": 3144,
+        "volumeMl": 3120,
+        "packagesPerSellingUnit": 24,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual chocolate export PowerCap package",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "manufacturerVerified": true,
+          "requestBody": "prod_idx=774&lang=EN",
+          "requestBodySha256": "7cc9bd02bea2f07a1b7573185dc1beeba89534a303d5bcf54c319d466c878988",
+          "reviewMethod": "exact manufacturer family57 export PowerCap -> Chocolate774 ->130ml variant796"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "netMassG": {
+          "value": 131,
+          "unit": "g",
+          "basis": "one individual chocolate export PowerCap 130 ml package",
+          "sourceUrl": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+          "sourceSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "artifact": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "excerpt": "130mL; 净含量131克",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-label-secondary-host",
+          "manufacturerVerified": false,
+          "manufacturerLabelVerified": true,
+          "approvalScope": "printed net mass only",
+          "reviewMethod": "Manual visual transcription of original factory wrapper; independent second reviewer confirmed both numbers. Target seller front matches Binggrae/PowerCap Choco Flavor Ice Tube, bilingual English/Chinese text, chocolate cube, brown cap and brown tube design.",
+          "marketProvenance": "Chinese/English export wrapper hosted by Brazilian importer ABC C&R; linked from its PowerCap Chocolate product page.",
+          "revisionLimit": "Image upload path is 2025/11. Exact seller lot, GTIN and formula revision are not visible. This approves the printed mass for the matched chocolate130ml wrapper, without transferring nutrition.",
+          "currentCapture": false,
+          "observedAt": "2026-10-10T17:30:16.574451+00:00"
+        },
+        "packagesPerSellingUnit": {
+          "value": 24,
+          "unit": "packages",
+          "basis": "one selected selling unit",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i3040048563.html?skuId=14623760583",
+          "sourceSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+          "artifactPath": "docs/acceptance/ice-dual-units/expanded-root-pongta-carton.html.gz",
+          "excerpt": "Thùng24 chai; Quy cách:24 cây/ thùng",
+          "identityMatched": true,
+          "sourceAuthority": "exact-selling-unit-description"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": true,
+      "previousReviews": [],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "priorObservationsSuperseded": [],
+      "quantityCrossCheck": "Prior expanded review includes a factory front wrapper declaring 130 ml and 131 g. This resolves the family quantity lead, while selected-current-revision nutrient approval remains absent. Carton count is separately 24; shipping/package weights are excluded.",
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:367656830_VNAMZ-116917756014",
+      "skus": ["367656830_VNAMZ-116917756014"],
+      "productName": "Merino chocolate cocoa-crisp ice-cream stick",
+      "selectedSkuUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html?skuId=116917756014",
+      "currentCaseQuantity": {
+        "massG": 200,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 5,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netMassG": {
+          "value": 40,
+          "unit": "g",
+          "basis": "one inner stick/cone",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "sourceSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "excerpt": "Trọng lượng : 40g/ câyQuy cách : 40 cây thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "packCount": {
+          "value": 5,
+          "unit": "count",
+          "basis": "selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "sourceSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "excerpt": "COMBO 5 cây; COMBO 5 cây",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "totalNetMassG": {
+          "value": 200,
+          "unit": "g",
+          "basis": "whole selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "sourceSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "excerpt": "5 × 40 g = 200 g; carton count excluded",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/merino-expanded-review.json",
+          "id": null,
+          "productName": null,
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+        "Volume declaration for this exact inner stick/cone",
+        "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+        "Complete ingredients and allergens for the same formula",
+        "Current lot/formula versus historical seller artwork",
+        "Exact Nha Trang delivery and selected-order shipping",
+        "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "rejectedTransfers": [
+        {
+          "claim": "Merino generic12077 food table3.8g protein/100g",
+          "applied": false,
+          "reason": "No current package/GTIN/formula revision; prior provenance search does not link this row to exact40g or60g factory product."
+        },
+        {
+          "claim": "Merino Super Teen retailer2.8g protein/100g",
+          "applied": false,
+          "reason": "No original panel; its same prose claims94%water alongside incompatible macros, so cannot verify current nutrition."
+        }
+      ],
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:1561301337_VNAMZ-6599253417",
+      "skus": ["1561301337_VNAMZ-6599253417"],
+      "productName": "Merino chocolate cocoa-crisp ice-cream stick",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i1561301337.html?skuId=6599253417",
+      "currentCaseQuantity": {
+        "massG": 40,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netMassG": {
+          "value": 40,
+          "unit": "g",
+          "basis": "one inner stick/cone",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "sourceSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "excerpt": "Định lượng 40g Hạn sử dụng 24 tháng Loại bao bì Đơn Nhu cầu dinh dưỡng Halal Loại hình lưu trữ Đông lạnh Warranty Type Không bảo hành Delivery_Option_Instant Đúng Loại sô",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "packCount": {
+          "value": 1,
+          "unit": "count",
+          "basis": "selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "sourceSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "excerpt": "1 cây; 1 cây",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "totalNetMassG": {
+          "value": 40,
+          "unit": "g",
+          "basis": "whole selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "sourceSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "excerpt": "1 × 40 g = 40 g; carton count excluded",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/merino-expanded-review.json",
+          "id": null,
+          "productName": null,
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+        "Volume declaration for this exact inner stick/cone",
+        "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+        "Complete ingredients and allergens for the same formula",
+        "Current lot/formula versus historical seller artwork",
+        "Exact Nha Trang delivery and selected-order shipping",
+        "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "rejectedTransfers": [
+        {
+          "claim": "Merino generic12077 food table3.8g protein/100g",
+          "applied": false,
+          "reason": "No current package/GTIN/formula revision; prior provenance search does not link this row to exact40g or60g factory product."
+        },
+        {
+          "claim": "Merino Super Teen retailer2.8g protein/100g",
+          "applied": false,
+          "reason": "No original panel; its same prose claims94%water alongside incompatible macros, so cannot verify current nutrition."
+        }
+      ],
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:367656830_VNAMZ-610790405",
+      "skus": ["367656830_VNAMZ-610790405"],
+      "productName": "Merino chocolate cocoa-crisp ice-cream stick",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i367656830.html?skuId=610790405",
+      "currentCaseQuantity": {
+        "massG": 40,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netMassG": {
+          "value": 40,
+          "unit": "g",
+          "basis": "one inner stick/cone",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "sourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "excerpt": "Trọng lượng : 40g/ câyQuy cách : 40 cây thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "packCount": {
+          "value": 1,
+          "unit": "count",
+          "basis": "selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "sourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "excerpt": "1 cây; 1 cây",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "totalNetMassG": {
+          "value": 40,
+          "unit": "g",
+          "basis": "whole selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "sourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "excerpt": "1 × 40 g = 40 g; carton count excluded",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/merino-expanded-review.json",
+          "id": null,
+          "productName": null,
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+        "Volume declaration for this exact inner stick/cone",
+        "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+        "Complete ingredients and allergens for the same formula",
+        "Current lot/formula versus historical seller artwork",
+        "Exact Nha Trang delivery and selected-order shipping",
+        "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "rejectedTransfers": [
+        {
+          "claim": "Merino generic12077 food table3.8g protein/100g",
+          "applied": false,
+          "reason": "No current package/GTIN/formula revision; prior provenance search does not link this row to exact40g or60g factory product."
+        },
+        {
+          "claim": "Merino Super Teen retailer2.8g protein/100g",
+          "applied": false,
+          "reason": "No original panel; its same prose claims94%water alongside incompatible macros, so cannot verify current nutrition."
+        }
+      ],
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:2042258411_VNAMZ-9532010624",
+      "skus": ["2042258411_VNAMZ-9532010624"],
+      "productName": "Aice chocolate cone",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i2042258411.html?skuId=9532010624",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {},
+      "newFacts": {},
+      "strictChocolateEligible": false,
+      "previousReviews": [],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+        "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:2042294681_VNAMZ-9532082441",
+      "skus": ["2042294681_VNAMZ-9532082441"],
+      "productName": "Aice chocolate mochi",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i2042294681.html?skuId=9532082441",
+      "currentCaseQuantity": {
+        "massG": null,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 1,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {},
+      "newFacts": {},
+      "strictChocolateEligible": false,
+      "previousReviews": [],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+        "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    },
+    {
+      "id": "ice-source-followup:497264871_VNAMZ-15825435034",
+      "skus": ["497264871_VNAMZ-15825435034"],
+      "productName": "Merino chocolate cone, five-cone pack",
+      "selectedSkuUrl": "https://www.lazada.vn/products/pdp-i497264871.html?skuId=15825435034",
+      "currentCaseQuantity": {
+        "massG": 300,
+        "volumeMl": null,
+        "packagesPerSellingUnit": 5,
+        "basis": "already reviewed case snapshot; not new manufacturer approval"
+      },
+      "facts": {
+        "netMassG": {
+          "value": 60,
+          "unit": "g",
+          "basis": "one inner stick/cone",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "sourceSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "excerpt": "Trọng lượng : 60g/ câyQuy cách : 25 cây/ thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam If you want to report ",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "packCount": {
+          "value": 5,
+          "unit": "count",
+          "basis": "selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "sourceSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "excerpt": "COMBO 5 cây; COMBO 5 cây",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        },
+        "totalNetMassG": {
+          "value": 300,
+          "unit": "g",
+          "basis": "whole selected selling option",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "sourceSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "excerpt": "5 × 60 g = 300 g; carton count excluded",
+          "identityMatched": true,
+          "authority": "marketplace seller",
+          "confidence": "selected exact SKU; manufacturer quantities unverified"
+        }
+      },
+      "newFacts": {},
+      "strictChocolateEligible": null,
+      "previousReviews": [
+        {
+          "path": "docs/acceptance/ice-dual-units/merino-expanded-review.json",
+          "id": null,
+          "productName": null,
+          "status": null
+        }
+      ],
+      "conditionalFacts": {},
+      "blockingEvidenceGaps": [
+        "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+        "Volume declaration for this exact inner stick/cone",
+        "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+        "Complete ingredients and allergens for the same formula",
+        "Current lot/formula versus historical seller artwork",
+        "Exact Nha Trang delivery and selected-order shipping",
+        "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+      ],
+      "manufacturerNutritionNewlyVerified": false,
+      "rejectedTransfers": [
+        {
+          "claim": "Merino generic12077 food table3.8g protein/100g",
+          "applied": false,
+          "reason": "No current package/GTIN/formula revision; prior provenance search does not link this row to exact40g or60g factory product."
+        },
+        {
+          "claim": "Merino Super Teen retailer2.8g protein/100g",
+          "applied": false,
+          "reason": "No original panel; its same prose claims94%water alongside incompatible macros, so cannot verify current nutrition."
+        }
+      ],
+      "nextEvidenceRequired": {
+        "requiredArtifact": "Legible manufacturer package panel or exact regulatory declaration for the selected flavour, GTIN and current formula revision.",
+        "fields": [
+          "GTIN and formula/lot crosswalk",
+          "declared net mass and net volume when both exist",
+          "selling-unit inner package count",
+          "protein with explicit per-package, per-100-g or per-100-ml basis",
+          "ingredients, sugar, total fat, saturated fat and energy with stated serving basis"
+        ],
+        "contactAuthorizationRequiredBeforeSending": true,
+        "noDensityInference": true,
+        "noNutritionTransferFromOtherFlavoursOrRevisions": true
+      }
+    }
+  ],
+  "newEvidenceSummary": {
+    "newManufacturerFamilyMassDeclarations": 1,
+    "newExactSkuNutritionApprovals": 0,
+    "newOriginalSuccessfulResponses": 6,
+    "originalBodiesArchived": 11,
+    "totalSourceAttempts": 12
+  },
+  "sourceAttempts": [
+    {
+      "url": "https://www.chomthana.com/products/icecreams/?lang=th",
+      "requestedAt": "2026-10-10T18:28:42.189493+00:00",
+      "status": null,
+      "finalUrl": "https://www.chomthana.com/products/icecreams/?lang=th",
+      "contentType": "",
+      "bytes": 0,
+      "sha256": null,
+      "path": null,
+      "compression": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "authority": "manufacturer"
+    },
+    {
+      "url": "https://www.chomthana.com/products/icecreams/?lang=th",
+      "requestedAt": "2026-10-10T18:29:53.322144+00:00",
+      "status": 200,
+      "finalUrl": "https://www.chomthana.com/products/icecreams/?lang=th",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 300949,
+      "sha256": "13333f0a5e23bad1dc4d7c50bc79a8c34716080055594ebd27632eafc61e3bbd",
+      "path": "docs/acceptance/ice-source-followup/original-13333f0a5e23bad1dc4d7c50bc79a8c34716080055594ebd27632eafc61e3bbd.html.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "manufacturer",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://www.chomthana.com/wp-content/uploads/2017/03/6L.jpg",
+      "requestedAt": "2026-10-10T18:31:05.016393+00:00",
+      "status": 200,
+      "finalUrl": "https://www.chomthana.com/wp-content/uploads/2017/03/6L.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 3211,
+      "sha256": "0525fcde98953249316222529f2be7f46dfe71436ce6d9099214ec9ae37cf673",
+      "path": "docs/acceptance/ice-source-followup/original-0525fcde98953249316222529f2be7f46dfe71436ce6d9099214ec9ae37cf673.jpg.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "manufacturer",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/api/v2/product/8850387009361?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "requestedAt": "2026-10-10T18:31:45.542800+00:00",
+      "status": 404,
+      "finalUrl": "https://world.openfoodfacts.org/api/v2/product/8850387009361?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 72,
+      "sha256": "329b6d56002f09b6b2d892d600e7f5c0f0b230f334af31bb046f4c99a108db22",
+      "path": "docs/acceptance/ice-source-followup/original-329b6d56002f09b6b2d892d600e7f5c0f0b230f334af31bb046f4c99a108db22.json.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "package-label-discovery-secondary",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://www.icecremo.com/products",
+      "requestedAt": "2026-10-10T18:32:44.575781+00:00",
+      "status": 200,
+      "finalUrl": "https://www.icecremo.com/products",
+      "contentType": "text/html;charset=utf-8",
+      "bytes": 396023,
+      "sha256": "eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606",
+      "path": "docs/acceptance/ice-source-followup/original-eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606.html.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "manufacturer",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/api/v2/product/8936011773683?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "requestedAt": "2026-10-10T18:33:04.178157+00:00",
+      "status": 404,
+      "finalUrl": "https://world.openfoodfacts.org/api/v2/product/8936011773683?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 72,
+      "sha256": "180b0534ece9f917a569701d507b6551474c5a424de7c7a144fc5401a3c8c272",
+      "path": "docs/acceptance/ice-source-followup/original-180b0534ece9f917a569701d507b6551474c5a424de7c7a144fc5401a3c8c272.json.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "package-label-discovery-secondary",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://www.chomthana.com/export/",
+      "requestedAt": "2026-10-10T18:33:54.375940+00:00",
+      "status": 404,
+      "finalUrl": "https://www.chomthana.com/export/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 52454,
+      "sha256": "f46e4acb118b417d98846a10917dcef184fdef21f8a197f303a29bac468e00dc",
+      "path": "docs/acceptance/ice-source-followup/original-f46e4acb118b417d98846a10917dcef184fdef21f8a197f303a29bac468e00dc.html.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "manufacturer",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/api/v2/product/8850387013085?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "requestedAt": "2026-10-10T18:34:19.201644+00:00",
+      "status": 404,
+      "finalUrl": "https://world.openfoodfacts.org/api/v2/product/8850387013085?fields=code,product_name,quantity,product_quantity,nutriments,ingredients_text,images",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 72,
+      "sha256": "0f63c18844d06dd6951ffb6f8a9d21f9babf4c0adc9063b9a54597b9413bd336",
+      "path": "docs/acceptance/ice-source-followup/original-0f63c18844d06dd6951ffb6f8a9d21f9babf4c0adc9063b9a54597b9413bd336.json.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "package-label-discovery-secondary",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://mvo.com.sg/cremo1/cremo-6l-chocolate",
+      "requestedAt": "2026-10-10T18:36:32.639950+00:00",
+      "status": 200,
+      "finalUrl": "https://mvo.com.sg/cremo1/cremo-6l-chocolate",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 63343,
+      "sha256": "f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a",
+      "path": "docs/acceptance/ice-source-followup/original-f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a.html.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "distributor-original-package-label-discovery",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://mvo.com.sg/image/cache/catalog/product/cremo_ice_cream_6l_tub_19-900x700.jpg",
+      "requestedAt": "2026-10-10T18:39:20.599792+00:00",
+      "status": 200,
+      "finalUrl": "https://mvo.com.sg/image/cache/catalog/product/cremo_ice_cream_6l_tub_19-900x700.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 43116,
+      "sha256": "1f02c9433d02d0a311fc7a8540c917c9d80b869b4eceec632dfb706ef55f950a",
+      "path": "docs/acceptance/ice-source-followup/original-1f02c9433d02d0a311fc7a8540c917c9d80b869b4eceec632dfb706ef55f950a.jpg.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "distributor-hosted manufacturer package image; identity unconfirmed until inspected",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://mvo.com.sg/image/catalog/product/cremo_ice_cream_6l_tub_19.jpg",
+      "requestedAt": "2026-10-10T18:40:30.536865+00:00",
+      "status": 200,
+      "finalUrl": "https://mvo.com.sg/image/catalog/product/cremo_ice_cream_6l_tub_19.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 38893,
+      "sha256": "8faa7df20dec9ab3be74b623b25de0e857d8eee31d455a12799e0e8fd06907dd",
+      "path": "docs/acceptance/ice-source-followup/original-8faa7df20dec9ab3be74b623b25de0e857d8eee31d455a12799e0e8fd06907dd.jpg.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "historical manufacturer package label hosted by distributor; exact current revision unverified",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    },
+    {
+      "url": "https://www.mvo.com.sg/uploader/CremoCatalogue.pdf",
+      "requestedAt": "2026-10-10T18:41:40.605766+00:00",
+      "status": 404,
+      "finalUrl": "https://mvo.com.sg/uploader/CremoCatalogue.pdf",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 31037,
+      "sha256": "544eacbb3e9eccd48db6b5df285c90af59628d371278122779f4c325981fb260",
+      "path": "docs/acceptance/ice-source-followup/original-544eacbb3e9eccd48db6b5df285c90af59628d371278122779f4c325981fb260.html.gz",
+      "compression": "gzip",
+      "error": null,
+      "authority": "distributor-hosted Cremo product catalogue; manufacturer-label nutrition unverified",
+      "tlsVerification": "system curl trust, no certificate bypass"
+    }
+  ],
+  "cachedReviewsReused": [
+    "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+    "docs/acceptance/ice-dual-units/korean-expanded-review.json",
+    "docs/acceptance/ice-dual-units/korean-review.json",
+    "docs/acceptance/ice-dual-units/merino-expanded-review.json"
+  ],
+  "validation": {
+    "candidateCount": 14,
+    "all14SkuMappingsPresent": true,
+    "originalChecks": [
+      {
+        "path": "docs/acceptance/ice-source-followup/original-13333f0a5e23bad1dc4d7c50bc79a8c34716080055594ebd27632eafc61e3bbd.html.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-0525fcde98953249316222529f2be7f46dfe71436ce6d9099214ec9ae37cf673.jpg.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-329b6d56002f09b6b2d892d600e7f5c0f0b230f334af31bb046f4c99a108db22.json.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606.html.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-180b0534ece9f917a569701d507b6551474c5a424de7c7a144fc5401a3c8c272.json.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-f46e4acb118b417d98846a10917dcef184fdef21f8a197f303a29bac468e00dc.html.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-0f63c18844d06dd6951ffb6f8a9d21f9babf4c0adc9063b9a54597b9413bd336.json.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-f1c77464ee4ff954bf0f1bc8a14938a1f29ea42f8e75bfac5aa4870bc7a7861a.html.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-1f02c9433d02d0a311fc7a8540c917c9d80b869b4eceec632dfb706ef55f950a.jpg.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-8faa7df20dec9ab3be74b623b25de0e857d8eee31d455a12799e0e8fd06907dd.jpg.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      },
+      {
+        "path": "docs/acceptance/ice-source-followup/original-544eacbb3e9eccd48db6b5df285c90af59628d371278122779f4c325981fb260.html.gz",
+        "sha256Matched": true,
+        "bytesMatched": true
+      }
+    ],
+    "allOriginalChecksPassed": true,
+    "whiteFamilyMassAdjacentToWhiteImageAndHeadingVerified": true,
+    "newExactSkuFactsApplied": 0
+  }
+}

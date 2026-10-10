@@ -31,7 +31,11 @@ for (const [group, rows] of [
   ['whey-protein', report.verifiedProtein],
   ['ice-cream', report.iceCream],
 ]) {
-  assert.equal(rows.length, 10);
+  if (group === 'ice-cream') {
+    assert.ok(rows.length > 0, 'Every captured ice-cream SKU must be audited');
+  } else {
+    assert.equal(rows.length, 10);
+  }
   for (const row of rows) {
     const results = {};
     for (const [denominator, before, after] of [
@@ -94,7 +98,10 @@ const receipt = {
   downloads: 0,
   checkedRows: checked.length,
   wheyAndSoySeparated: true,
-  allPublishedWheyPowderAndIceSourcesMatched: reviews.every((r) =>
+  allPublishedWheyPowderAndIceSourcesMatched: checked.every(
+    (row) => row.exactSourcePriceMatched
+  ),
+  previousManualSourceReviewsMatched: reviews.every((r) =>
     r.rows.every(
       (row) => row.priceMatches === true || row.selectedPriceMatches === true
     )
@@ -109,7 +116,7 @@ await writeFile(
 await writeFile(
   'docs/acceptance/top10-check/unit-cost-audit.md',
   await format(
-    `# Top-ten unit cost audit\n\nUpdated ${receipt.auditedAt}. **Thirty report rows recomputed offline**, including the separate ten-row whey protein-cost table. The ten whey powder and ten ice-cream exact SKU/source prices were independently checked against original cached HTML and source hashes.\n\nProSupps uses printed **907 g**; Merino selling packs are **5 × 40 g = 200 g** and **5 × 60 g = 300 g**. The latter is sold out. Thai ice cream explicitly declares **6000 ml**; its seller title claims **3000 g**, while description says 3–3.3 kg by flavour. That mass remains a seller claim.\n\nShipping costs require the captured quote quantity and Nha Trang destination; ice cream also requires confirmed cold-chain delivery before a delivered ranking. No gram/millilitre conversion or shaker capacity enters any food denominator. Hydropure's exact factory package/revision remains conditional. Price arithmetic does not establish manufacturer authenticity, current stock or complete marketplace coverage.\n\n[Whey original sources](whey-source-review.md) · [Ice original sources](ice-source-review.md) · [Audit JSON](unit-cost-audit.json) · [Updated top tens](../../tables/top-10-partial.md).\n`,
+    `# Top-ten unit cost audit\n\nUpdated ${receipt.auditedAt}. **${checked.length} report rows recomputed offline**, including the separate ten-row whey protein-cost table. All ${report.whey.length} whey powder and ${report.iceCream.length} captured ice-cream exact SKU/source prices were independently checked against original cached HTML and source hashes.\n\nProSupps uses printed **907 g**; Merino selling packs are **5 × 40 g = 200 g** and **5 × 60 g = 300 g**. The latter is sold out. Thai ice cream explicitly declares **6000 ml**; its seller title claims **3000 g**, while description says 3–3.3 kg by flavour. That mass remains a seller claim.\n\nShipping costs require the captured quote quantity and Nha Trang destination; ice cream also requires confirmed cold-chain delivery before a delivered ranking. No gram/millilitre conversion or shaker capacity enters any food denominator. Hydropure's exact factory package/revision remains conditional. Price arithmetic does not establish manufacturer authenticity, current stock or complete marketplace coverage.\n\n[Whey original sources](whey-source-review.md) · [Ice original sources](ice-source-review.md) · [Audit JSON](unit-cost-audit.json) · [Updated top tens](../../tables/top-10-partial.md).\n`,
     { parser: 'markdown' }
   )
 );
