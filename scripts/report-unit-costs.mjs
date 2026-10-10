@@ -63,6 +63,7 @@ export function reportUnitCosts(
     packagesPerSellingUnit: product.packCount || 1,
     massG: metrics.totalMassG,
     volumeMl: metrics.totalVolumeMl,
+    proteinG: metrics.totalProteinG,
     totalBeforeDelivery: metrics.totalBeforeDelivery,
     totalAfterDelivery: metrics.totalAfterDelivery,
     shippingVnd: metrics.shipping,

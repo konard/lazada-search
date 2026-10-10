@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Binggrae</title>
+    <meta name="description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">		    
+	<meta name="robots" content="noodp">
+	<meta name="NaverBot" content="All">
+	<meta name="NaverBot" content="index, follow">	
+	<meta name="Yeti" content="All">
+	<meta name="Yeti" content="index, follow">
+    <!-- <meta name="keywords" content="" /> -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="빙그레">
+    <meta property="og:description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">
+    <meta property="og:url" content="https://www.bing.co.kr/">
+    <meta property="og:image" content="http://bing.musign.net/img/main/og_img_binggrae.jpg">
+    <meta property="og:site_name" content="binggrae">    
+    <meta name="twitter:title" content="빙그레">
+    <meta name="twitter:description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">
+    <link rel="shortcut icon" href="/img/main/ico_favicon.ico">
+    <!--나이스셀렉트-->
+    <!-- <link rel="stylesheet" th:href="@{/niceSelect/nice-select2.css}"> -->
+    <link rel="stylesheet" href="/css/front/nice-select.css">
+    <link rel="stylesheet" href="/css/front/musign.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49649065-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-49649065-2');
+    </script>
+
+    <script src="/js/front/jquery.js"></script>
+    <script src="/js/front/slick.js"></script>
+    <script src="/js/front/masonry.pkgd.min.js"></script>
+    <script src="/js/front/common.js"></script>
+    <script src="/js/front/main.js"></script>
+    <script src="/js/front/sub.js"></script>
+    <script src="/js/function.js"></script>
+    <script src="//malsup.github.io/min/jquery.form.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=tz2w3a0shp&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps-geocoder.js"></script>
+    <script type="text/javascript" src="/js/front/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/front/jquery.nice-select.js"></script>
+    <!--나이스셀렉트-->
+     <!-- <script th:src="@{/niceSelect/nice-select2.js}"></script> -->
+     <script type="text/javascript" src="/js/front/aes.js"></script> 
+    
+     
+</head>
+<body>
+    <div id="wrap" class="front_layout">
+        <div class="front_header en">
+        <header id="header" class="header">
+            <!-- <div class="header_top">
+                <ul class="flex_center">
+                    <li>
+                        <a href="https://srm.bing.co.kr/" target="_blank" class="flex_center">
+                            <span>구매포털시스템</span>
+                            <img src="/img/main/link_arrow02.png" alt="binggrae">
+                            <img src="/img/main/link_arrow02_w.png" alt="binggrae" class="hover">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://recruit.bing.co.kr/app/web/main/index_new.jsp" target="_blank" class="flex_center">
+                            <span>인재채용</span>
+                            <img src="/img/main/link_arrow02.png" alt="binggrae">
+                            <img src="/img/main/link_arrow02_w.png" alt="binggrae" class="hover">
+                        </a>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="header_container flex_center">
+                <h1 class="header_sec01 logo">
+                    빙그레
+                    <a href="/en">
+                    <img src="/img/main/logo-pc.png" alt="binggrae" class="pc">
+                    <img src="/img/main/logo_mo.png" alt="binggrae" class="mo">
+                    </a>
+                </h1>
+                <div class="header_sec02">
+                    <nav class="gnb01 en" >
+                        <ul class="flex_center depth01">
+                            <li>
+                                <a href="/en/company/ceo" class="en">Company</a>
+                                <ul class="depth02">
+                                    <li ><a href="/en/company/ceo" class="en">CEO Message</a></li>
+                                    <li><a href="/en/company/philosophy" class="en">Management Philosophy</a></li>
+                                    <li><a href="/en/company/business" class="en">Business Field</a></li>
+                                    <li><a href="/en/company/history" class="en">History</a></li>
+                                </ul>
+                            </li>
+                            <li class="active">
+                                <a href="/en/product/list" class="en">Product</a>
+                                <!-- <a href="javascript:alert('Coming Soon')" class="en">Product</a> -->
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Product</a> -->
+                                <ul class="depth02">
+                                    <li >
+                                        <a href="/en/product/list?type=1">Ice Cream</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=2">Milk/Cheese</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=3">Fermented Milk</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=4">Coffee</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=10">Juice</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=9">Beverage</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=5">Snack/Dessert</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=11">Nutritional Supplements</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li class="active" >
+                                        <a href="/en/product/list?type=7">Export Product</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=icecream' } ? 'active'"><a href="/en/product/list?type=icecream" class="en">Ice Cream</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=milk' } ? 'active'"><a href="/en/product/list?type=milk" class="en">Milk/Cheese</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=yogurt' } ? 'active'"><a href="/en/product/list?type=yogurt" class="en">Fermented Milk</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=coffee' } ? 'active'"><a href="/en/product/list?type=coffee" class="en">Coffee</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=juice' } ? 'active'"><a href="/en/product/list?type=juice" class="en">Juice</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=beverage' } ? 'active'"><a href="/en/product/list?type=beverage" class="en">Beverage</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=snack' } ? 'active'"><a href="/en/product/list?type=snack" class="en">Snack/Dessert</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=health' } ? 'active'"><a href="/en/product/list?type=health" class="en">Nutritional Supplements</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=export' } ? 'active'"><a href="/en/product/list?type=export">Export Products</a></li>-->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/en/esg/esg" class="en">Sustainability</a>
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Sustainability</a> -->
+                                <ul class="depth02">
+                                    <li><a href="/en/esg/esg" class="en">Sustainable Mangement System</a></li>
+                                    <li><a href="/en/esg/eco" class="en">Eco-Friendly</a></li>
+                                    <li><a href="/en/esg/value" class="en">Shared Value</a></li>
+                                    <li><a href="/en/esg/global" class="en">Global Integrity</a></li>
+                                    <li><a href="/en/esg/ethics" class="en">Ethical Business Management System</a></li>
+                                    <li><a href="/en/esg/contribution" class="en">Social Responsibility Activity</a></li>
+                                    <li><a href="/en/esg/reports" class="en">Reports</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <!-- <a href="/en/investment/invest_announce">IR</a> -->
+                                <a href="/en/investment/stocks" class="en">IR</a>
+                                <ul class="depth02">
+                                    <!-- <li th:class="${#httpServletRequest.requestURI.contains('invest_announce')} ? 'active'"><a href="/en/investment/invest_announce">전자공고</a></li> -->
+                                    <li><a href="/en/investment/stocks" class="en">Stock Information</a></li>
+                                    <!-- <li><a href="javascript:alert('준비중입니다')">공시정보</a></li> -->
+                                    <li><a href="/en/investment/invest_finance" class="en">Financial Information</a></li>
+                                    <li><a href="/en/investment/ir" class="en">IR Information</a></li>
+                                </ul>
+                            </li>
+                            <!--<li>
+                                 <a href="/en/news/news_home">뉴스룸</a>
+                                <ul class="depth02">
+                                    <li><a href="/en/news/board01">새소식</a></li>
+                                    <li><a href="/en/news/board02">보도자료</a></li>
+                                    <li><a href="/en/news/board03">빙그레 스토리</a></li>
+                                    <li><a href="/en/news/media">미디어 라이브러리</a></li>
+                                </ul> -->
+                                <!-- <a href="javascript:alert('준비중입니다')">뉴스룸</a>
+                                <ul class="depth02">
+                                    <li><a href="javascript:alert('준비중입니다')">새소식</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">보도자료</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">빙그레 스토리</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">미디어 라이브러리</a></li>
+                                </ul> 
+                            </li>-->
+                            <!-- <li th:class="${#httpServletRequest.requestURI.contains('center')} ? 'active'">
+                                <a href="/en/center/service">고객센터</a>
+                                <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul>
+                            </li> -->
+                            <li>
+                                <a href="/en/clip/clip_list" class="en">Video Clip</a>
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Video Clip</a> -->
+                                <!-- <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul> -->
+                            </li>
+                            <li>
+                                <a href="/en/clip/contact" class="en">Contact US</a>
+                                <!-- <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul> -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header_sec03 flex_center">
+                   
+                    <div class="right flex_center">
+                        <div class="lang">
+                            <p class="flex_center"><span class="font_poppin">EN</span><span class="triangle"><img src="/img/layout/lang_btn.png" alt="binggrae"></span></p>
+                            <ul>
+                                <li><a href="/en" class="font_poppin">EN</a></li>
+                                <li><a href="/" class="font_poppin">KR</a></li>                                <li><a href="http://www.bingerui.cn" target="_blank" class="font_poppin">CN</a></li>
+                            </ul>                            
+                        </div>
+                        <div class="hamberger">
+                            <a href="#">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>                            
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </header>
+        <nav class="hamberger_menu">
+            <div class="black_bg"></div>
+            <div class="hm_container">
+                <div class="hm_sec01 flex_center mo">
+                    <!-- <ul class="flex_center">
+                        <li><a href="https://srm.bing.co.kr/" target="_blank" class="flex_center"><span>구매포털시스템</span><img src="/img/main/link_arrow02.png" alt="binggrae"></a></li>
+                        <li><a href="https://recruit.bing.co.kr/app/web/main/index_new.jsp"  target="_blank" class="flex_center"><span>인재채용</span><img src="/img/main/link_arrow02.png" alt="binggrae"></a></li>
+                    </ul> -->
+                    <button class="hm_close"><img src="/img/main/ham_close.png" alt="binggrae"></button>
+                </div>
+                <div class="hm_sec02">
+                    <ul class="depth01">
+                        <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Company</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li ><a href="/en/company/ceo" class="en">CEO Message</a><span class="circle"></span></li>
+                                <li><a href="/en/company/philosophy" class="en">Management Philosophy</a><span class="circle"></span></li>
+                                <li><a href="/en/company/business" class="en">Business Field</a><span class="circle"></span></li>
+                                <li><a href="/en/company/history" class="en">History</a><span class="circle"></span></li>
+                            </ul>
+                        </li>
+                        <li class="active">                     
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Product</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li class="active">
+                                    <a href="/en/product/list" class="en">all</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" class="en">all</a> -->
+                                    <span class="circle"></span>
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=1">Ice Cream</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=2">Milk/Cheese</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=3">Fermented Milk</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=4">Coffee</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=10">Juice</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=9">Beverage</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=5">Snack/Dessert</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=11">Nutritional Supplements</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li class="active" >
+                                    <a href="/en/product/list?type=7">Export Product</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+
+                                <!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=icecream' } ? 'active'"><a href="/en/product/list?type=icecream" class="en">Ice Cream</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=milk' } ? 'active'"><a href="/en/product/list?type=milk" class="en">Milk/Cheese</a></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=yogurt' } ? 'active'"><a href="/en/product/list?type=yogurt" class="en">Fermented Milk</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=coffee' } ? 'active'"><a href="/en/product/list?type=coffee" class="en">Coffee</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=juice' } ? 'active'"><a href="/en/product/list?type=juice" class="en">Juice</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=beverage' } ? 'active'"><a href="/en/product/list?type=beverage" class="en">Beverage</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=snack' } ? 'active'"><a href="/en/product/list?type=snack" class="en">Snack/Dessert</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=health' } ? 'active'"><a href="/en/product/list?type=health" class="en">Nutritional Supplements</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=export' } ? 'active'"><a href="/en/product/list?type=export">Export Products</a><span class="circle"></span></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <!-- <a href="#" class="flex_center"><span class="font_bingbold en">Sustainability</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a> -->
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Sustainability</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li><a href="/en/esg/esg" class="en">Sustainable Mangement System</a></li>
+                                <li><a href="/en/esg/eco" class="en">Eco-Friendly</a></li>
+                                <li><a href="/en/esg/value" class="en">Shared Value</a></li>
+                                <li><a href="/en/esg/global" class="en">Global Integrity</a></li>
+                                <li><a href="/en/esg/ethics" class="en">Ethical Business Management System</a></li>
+                                <li><a href="/en/esg/contribution" class="en">Social Responsibility Activity</a></li>
+                                <li><a href="/en/esg/reports" class="en">Reports</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold en">IR</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <!-- <li th:class="${#httpServletRequest.requestURI.contains('invest_announce')} ? 'active'"><a href="/en/investment/invest_announce">전자공고</a><span class="circle"></span></li> -->
+                                <li><a href="/en/investment/stocks" class="en">Stock Information</a><span class="circle"></span></li>
+                                <!-- <li><a href="javascript:alert('준비중입니다')">공시정보</a><span class="circle"></span></li> -->
+                                <li><a href="/en/investment/invest_finance" class="en">Financial Information</a><span class="circle"></span></li>
+                                <li><a href="/en/investment/ir" class="en">IR Information</a><span class="circle"></span></li>
+                            </ul>
+                        </li>
+                        <!-- <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold">뉴스룸</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li><a href="/en/news/board01">새소식</a><span class="circle"></span></li>
+                                <li><a href="/en/news/board02">보도자료</a><span class="circle"></span></li>
+                                <li><a href="/en/news/board03">빙그레 스토리</a><span class="circle"></span></li>
+                                <li><a href="/en/news/media">미디어 라이브러리</a><span class="circle"></span></li> 
+                                <li><a href="javascript:alert('준비중입니다')">새소식</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">보도자료</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">빙그레 스토리</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">미디어 라이브러리</a><span class="circle"></span></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li th:class="${#httpServletRequest.requestURI.contains('center')} ? 'active'">
+                            <a href="#" class="flex_center"><span class="font_bingbold en">고객센터</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul>
+                        </li> -->
+                        <li>
+                            <a href="/en/clip/clip_list" class="flex_center"><span class="font_bingbold en">Video Clip</span></a>
+                            <!-- <a href="javascript:alert('Coming soon')" class="flex_center"><span class="font_bingbold en">Video Clip</span></a> -->
+                            <!-- <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul> -->
+                        </li>
+                        <li>
+                            <a href="/en/clip/contact" class="flex_center"><span class="font_bingbold en">Contact Us</span></a>
+                            <!-- <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul> -->
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class="hm_sec03">
+                    <ul class="lang2 flex_center">
+                        <li><a href="/">KR</a></li>
+                        <li class="on"><a href="/en/">EN</a></li>
+                    </ul>
+                    <!-- <a href="/en/support/location">오시는길</a> -->
+                </div>
+                
+            </div>
+            
+        </nav>
+        <aside>
+            <div class="btn_wr cf">
+                <!-- <div class="quick_btn">
+                    <img src="/img/layout/chat_img.png" class="down" alt="image" />         
+                    <p class="quick_message">무엇을 도와드릴까요?</p>        
+                </div> -->
+                <!-- <div class="aside_btn shop">
+                    <a href="https://brand.naver.com/binggrae" class="btn font_poppin">SHOP</a>
+                </div> -->
+                <div class="aside_btn">
+                    <button class="btn to_down">
+                        <img src="/img/layout/fix_arrow.png" class="down" alt="to down" />
+                    </button>        
+                    <button class="btn to_top">
+                        <img src="/img/layout/fix_arrow.png" class="down" alt="to down" />
+                    </button>           
+                </div>			
+            </div>
+        </aside>
+    </div>
+        <div class="front_container">
+            <main id="container">
+                
+    <script>
+        var page_cnt=1;
+        $(document).ready(function() {
+            let type = '7';
+            let search_name = '';
+            $('#search_name').val(search_name);
+            change_act(type);
+            getList('1', type);
+        });
+
+        //addProduct() 를 위한 전역변수 선언
+        var temp_code_nm='';
+        function getList(tagType, target_pdt_code)
+        {
+            $('.list_btn_wr').show();
+
+            // temp_code_nm = target_pdt_code;
+            // let pdt_code = convert_code(target_pdt_code);
+            change_act(target_pdt_code);
+            $("#prod_cat_idx").val(target_pdt_code);
+
+            start_loading();
+            $.ajax({
+                type : "POST",
+                url : "./getEnProductList",
+                dataType : "text",
+                data : {
+                    pdt_code : target_pdt_code
+                    ,page_cnt : page_cnt*16
+                    ,search_name : $('#search_name').val()
+                    ,tag_type : tagType
+                    ,lang: 'EN'
+                },
+                error : function() {
+                    console.log("AJAX ERROR");
+                },
+                success : function(data) {
+                    //   console.log(data);
+                    var result = JSON.parse(data);
+                    var inner = "";
+
+                    if (result.listCount == 0) {
+                        inner += '<tr>';
+                        inner += '	<td colspan="18"><div class="no-data">검색결과가 없습니다.</div></td>';
+                        inner += '</tr>';
+                        $('.list_btn_wr').hide()
+                    }
+                    else {
+                        $.each(result.list, function(index, entry) {
+                            inner += '<li class="product_item" onclick="location.href=\'/en/product/detail?lang=EN&PDT='+entry.FAMILY_IDX+'\'">';
+                            inner += '  <div class="product_box box_hover">';
+                            inner += '      <ul class="feature_wr inb">';
+                            inner += '          <li class="feature_it">'+entry.FAMILY_NAME+'</li>';
+                            // inner += '          <li class="feature_it">'+entry.SUB_CNT+'개 제품</li>';
+                            
+                            if(entry.SUB_CNT==0){
+                            	inner += '          <li class="feature_it">'+entry.SUB_CNT2+'Products</li>';
+                            }else {
+                            	inner += '          <li class="feature_it">'+entry.SUB_CNT+'Products</li>';
+                            }
+                            
+                            inner += '      </ul>';
+                            inner += '      <div class="img_wr">';
+                            inner += '          <img src="'+entry.PROD_IMG_FILE+'" alt="'+entry.FAMILY_NAME+'" onerror="this.src=\'/upload/product/bing_default.png\'" >';
+                            inner += '      </div>';
+                            inner += '      <div class="btn_wr">';
+                            inner += '          <button class="view_more red">';
+                            inner += '              VIEW MORE';
+                            inner += '          </button>';
+                            inner += '      </div>';
+                            inner += '  </div>';
+                            inner += '  <div class="product_name">'+entry.FAMILY_NAME+'</div>';
+                            inner += '</li>';
+                        });
+
+                        if (result.listCount <= page_cnt*16) {
+                            $('.list_btn_wr').hide();
+                        }
+
+                    }
+
+                    $('#listCnt').text(result.listCount);
+                    $("#product_area").html(inner);
+                    end_loading();
+
+                }
+            });
+        }
+
+        function getList1(target_pdt_code) {
+            // getList('1', target_pdt_code);
+            location.href = '/en/product/list?type='+target_pdt_code;
+        }
+
+        function getList2(target_pdt_code) {
+            getList('2', target_pdt_code);
+        }
+
+        function addProduct(){
+            page_cnt++;
+            getList('1', $("#prod_cat_idx").val());
+        }
+
+        function change_act(code_nm){
+            $('.list_it').removeClass('act');
+            // if (code_nm==''){$('.n1').addClass('act');}
+            // else if (code_nm=='icecream') { $('.n2').addClass('act'); }
+            // else if (code_nm=='milk')     { $('.n3').addClass('act'); }
+            // else if (code_nm=='yogurt')   { $('.n4').addClass('act'); }
+            // else if (code_nm=='coffee')   { $('.n5').addClass('act'); }
+            // else if (code_nm=='beverage') { $('.n6').addClass('act'); }
+            // else if (code_nm=='juice')    { $('.n7').addClass('act'); }
+            // else if (code_nm=='snack')    { $('.n8').addClass('act'); }
+            // else if (code_nm=='health')   { $('.n9').addClass('act'); }
+            // else if (code_nm=='export')   { $('.n10').addClass('act'); }
+            // $('.n'+code_nm).addClass('act');
+            if (!code_nm==''){
+                $('.n'+code_nm).addClass('act');
+            }
+            else {
+                $('.n0').addClass('act');
+            }
+        }
+
+        function reset_cnt(){
+            page_cnt = 1;
+        }
+
+        function goSearch(){
+            location.href = './search?'+'type='+ $("#prod_cat_idx").val()+'&search_name='+$("#search_name").val();
+        }
+
+    </script>
+    <!-- <div class="popup_wrap">
+        <div class="popup_bg"></div>
+        <div class="popup_container">
+            <div class="img_box"><img src="/img/sub/product/popup.png" alt="binggrae" /></div>
+            <div class="close_box flex_center">
+                <button type="button" class="close_day_btn"  ><img src="img/day-btn-check.png" alt="binggrae" ><span>오늘 하루 보지 않기</span></button>
+                <button type="button" class="close_btn" ><span>닫기</span></button>
+            </div>
+            <img src="/img/sub/product/popup_close.png" alt="binggrae" class="popup_close">
+        </div>
+    </div> -->
+    <div id="product" class="content_wrapper content_list_wrapper product list">
+        <div class="tit_wr">
+            <div class="main_tit_wr">
+        <nav class="breadcrumb">
+            <ul class="brec_wr inb">
+                <li class="brec n1 home">
+                    <a href="/">
+                        <img src="/img/icon/btn_icon_home.png" alt="to home">home
+                    </a>
+                </li>
+                <li class="brec n2"><a href="/en/product/list" class="en">Brand</a></li>
+            </ul>
+        </nav>
+        <div class="main_tit">
+            <h3 class="font_bingbold en">Brand</h3>
+        </div>
+    </div>
+        </div><!-- //tit_wr -->
+
+        <div class="cont_wr">
+            <input type="hidden" id="prod_cat_idx" name="prod_cat_idx" value="7" />
+            <section class="section sec01">
+                <div class="inner">
+                    <p class="tit en">Search Binggrae's brand, product and taste.</p>
+                    <div class="sub search_box">
+                        <div class="search flex_center">
+                            <!-- <input type="text" id="search_name" class="en" placeholder="Enter product name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter product name'" onkeypress="javascript:excuteEnter(getList);"> -->
+                            <input type="text" id="search_name" name="search_name" placeholder="search" onfocus="this.placeholder=''" onblur="this.placeholder='search'" onkeyup="excuteEnter(goSearch);">
+                            <button class="flex_center font_poppin en" onclick="goSearch()">SEARCH</button>
+                        </div>
+                    </div>
+                    <ul class="font_bing keyword_box flex_center">
+                        <!--                        <li class="flex_center font_bing" th:each="item, loop : ${tagList}" th:onclick="|location.href='@{/product/detail(kwd=${item.KWD_NAME})}'|" th:text="${item.TAG_NAME}">#아카페라</li>-->
+                        
+
+                        <!-- <li class="flex_center font_bing en" onclick="location.href='/en/product/detail?PDT=183'">#A Cafe la</li>
+                        <li class="flex_center font_bing en" onclick="location.href='/en/product/detail?PDT=1'">#Together</li>
+                        <li class="flex_center font_bing en" onclick="location.href='/en/product/detail?PDT=21'">#Melona</li> -->
+                        <!-- <li class="flex_center font_bing" onclick="do_search(this)">#투게더</li> -->
+                        <!-- <li class="flex_center font_bing" onclick="do_search(this)">#메로나</li> -->
+                    </ul>
+                </div>
+            </section><!-- //sec01 -->
+            <section class="section sec02">
+                <div class="product_list_slide list_wr inb">
+                    <!-- [D] 활성화시 list_it에 act 추가 -->
+                    <div class="list_it n0">
+                        <a onclick="reset_cnt(); getList('')" class="txt_box">
+                            <div class="img_box"><img src="/img/sub/product/ico_list.png" alt="binggrae" /></div>
+                            <span class="en">All</span>
+                        </a>
+                    </div>
+                    <div class="list_it n1" >
+                        <a myName="1" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/7776fc97-f44b-43bd-b469-4682a64b55ed.png" alt="binggrae" /></div>
+                            <span>Ice Cream</span>
+                        </a>
+                    </div>
+                    <div class="list_it n2" >
+                        <a myName="2" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/8d865faa-6e6c-4fb0-9fa1-ec25f269b438.png" alt="binggrae" /></div>
+                            <span>Milk/Cheese</span>
+                        </a>
+                    </div>
+                    <div class="list_it n3" >
+                        <a myName="3" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/942085d5-91db-434c-bd2e-67d5fde3ddcf.png" alt="binggrae" /></div>
+                            <span>Fermented Milk</span>
+                        </a>
+                    </div>
+                    <div class="list_it n4" >
+                        <a myName="4" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/63e07735-2af0-4508-ac3f-2df31dfc9e26.png" alt="binggrae" /></div>
+                            <span>Coffee</span>
+                        </a>
+                    </div>
+                    <div class="list_it n10" >
+                        <a myName="10" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/648df8c4-c544-4550-958d-9915461f54de.png" alt="binggrae" /></div>
+                            <span>Juice</span>
+                        </a>
+                    </div>
+                    <div class="list_it n9" >
+                        <a myName="9" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/10da4e01-8158-4656-8d84-032e4bce504a.png" alt="binggrae" /></div>
+                            <span>Beverage</span>
+                        </a>
+                    </div>
+                    <div class="list_it n5" >
+                        <a myName="5" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/b8d5cc47-29b6-4edd-9f19-7d630ee70942.png" alt="binggrae" /></div>
+                            <span>Snack/Dessert</span>
+                        </a>
+                    </div>
+                    <div class="list_it n11" >
+                        <a myName="11" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/ce9e143c-c169-47e6-b7cd-4c40ff7aa9a0.png" alt="binggrae" /></div>
+                            <span>Nutritional Supplements</span>
+                        </a>
+                    </div>
+                    <div class="list_it n7" >
+                        <a myName="7" onclick="reset_cnt(); getList1(this.getAttribute(&#39;myName&#39;))" class="txt_box">
+                            <div class="img_box"><img src="/upload/category/2026/03/fc8f2f69-1c73-42b1-8ff1-bb61165de039.png" alt="binggrae" /></div>
+                            <span>Export Product</span>
+                        </a>
+                    </div>
+                </div>
+            </section><!-- //sec02 -->
+            <section class="section sec03">
+                <p class="sec_tit">빙그레의 대표 브랜드를 만나보세요</p>
+                <div class="inner sec02_slider sec02_slider02">
+                    <div class="prev sec02_arrow"><img src="/img/icon/prev_arrow.png" alt="binggrae"></div>
+                    <div class="next sec02_arrow"><img src="/img/icon/next_arrow.png" alt="binggrae"></div>
+                    <ul class="list_wr sec02_slider02_list">
+                        <li class="slider02_brand01 top_bottom img_ani sec02_li01">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo01.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo01.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://www.tftmall.co.kr/goods/goods_list.php?cateCd=003003" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand02 top_bottom img_ani sec02_li02">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo02.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo02.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://brand.naver.com/binggrae/category/5f4772ab0acb4f0baf703ea0ecd0dd75?cp=1" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand03 top_bottom img_ani sec02_li03">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo03.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo03.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://brand.naver.com/binggrae/category/f3c09a683ba74e35b73d5da3f53d1dfc?cp=1" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand04 top_bottom img_ani sec02_li04">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo04.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo04.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://brand.naver.com/binggrae/category/ebe532b5eb6b4dad8977a20c39d27154?cp=1" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand05 top_bottom img_ani sec02_li05">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo05.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo05.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://brand.naver.com/binggrae/category/ea14e33c462c41e2a5f4a505caf135a1?cp=1" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand06 top_bottom img_ani sec02_li06">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo06.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo06.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://www.tftmall.co.kr/goods/goods_list.php?cateCd=003002" target="_blank" class="view_more red">
+                                        더보기
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="slider02_brand07 top_bottom img_ani sec02_li07">
+                            <div class="logo_box product_item">
+                                <img src="/img/main/sec02_logo07.png" alt="binggrae" class="pc"/>
+                                <img src="/img/main/m_sec02_logo07.png" alt="binggrae" class="mo"/>
+                                <div class="btn_wr">
+                                    <a href="https://www.tftmall.co.kr/goods/goods_list.php?cateCd=003001" target="_blank" class="view_more red">
+                                        VIEW MORE
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section><!-- //sec03 -->
+            <section class="section sec04 product_list_wr">
+                <h4 class="product_tit font_bingbold b_txt">
+                    Total(<span id="listCnt" class="num font_bingbold b_txt"></span>)
+                </h4>
+                <ul id="product_area" class="product_list inb">
+
+                </ul>
+                <div class="list_btn_wr flex_center">
+                    <button class="view_more en" onclick="addProduct();">
+                        VIEW MORE
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+                <!-- <th:block th:replace="front/product/list :: subContent" >컨텐츠 영역</th:block> -->
+            </main>
+            <div>
+    <footer id="footer" class="footer en">
+        <div class="footer_sec01">
+            <!-- <div class="f_logo">
+                <img src="/img/layout/f_logo.png" alt="binggrae">
+            </div>             -->
+            <ul class="f_sec01_right">
+                <!-- <li><a href="/en/support/privacy">개인정보처리방침</a></li> -->
+                <!-- <li><a href="/en/support/location">오시는길</a></li>                     -->
+            </ul>            
+        </div>
+        <div class="footer_sec02">
+            <!-- <div class="f_sec02_box01">
+                <p class="phone">080.022.0056</p>
+                <ul>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">1:1이메일문의</a></li>                           
+                </ul>
+            </div> -->
+            <div class="f_sec02_box02"> 
+                <ul>
+                    <!-- <li>
+                        <span class="subject">회사명 : </span>
+                        <span class="con">빙그레</span>
+                    </li> -->
+                    <li>
+                        <a href="/en/support/location" class="subject en">Direction</a>
+                        <a href="/en/clip/contact" class="subject contact en">Contact Us</a>
+                        <span class="num">080. 022. 0056</span>
+                    </li>
+                    <li>
+                        <!-- <span class="subject">본사 : </span> -->
+                        <span class="con en">
+                            <!-- 080-022-0056(Hours weekdays 9:00-17:30)<br> -->
+                            <span class="w_time">Hours weekdays 9:00-17:30</span><br>
+                            45, Dasansunhwan-ro,Namyangju-si, Gyeonggi-do
+                        </span>
+                    </li>
+                    <!-- <li>
+                        <span class="subject">전화 : </span>
+                        <span class="con">02 - 920 - 8114</span>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="footer_sec03">
+            <div class="f_logo">
+                <img src="/img/layout/f_logo.png" alt="binggrae">
+                <p class="copyright">ⓒ Binggrae all rights reserved.</p>
+            </div>            
+            <div class="f_sec03_box01">
+                <div class="sns_box">
+                    <ul>
+                        <li>
+                            <a href="https://www.instagram.com/binggraekorea/" target="_blank"><img src="/img/layout/footer_sns01.png" alt="binggrae"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCOmz8eDBQ04h6i0_8p_V7eg" target="_blank"><img src="/img/layout/footer_sns02.png" alt="binggrae"></a>
+                        </li>
+                        <!-- <li>
+                            <a href="https://www.tftmall.co.kr/main/index.php" target="_blank"><img src="/img/layout/footer_sns03.png" alt="binggrae"></a>
+                        </li>                         -->
+                    </ul>
+                </div>
+                <!-- <div class="flag_store"> -->
+                    <!-- <a href="http://www.thesoftlab.co.kr/"><img src="/img/layout/flag_store.png" alt="binggrae"><span>Flagship store <strong>Soft Lab</strong></span></a> -->
+                    <!-- <ul>
+                        <li><a href="https://www.instagram.com/binggraekorea/">빙그레 기업 인스타그램</a></li>
+                        <li><a href="https://www.youtube.com/c/binggrae">빙그레 기업 유튜브</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCsCjDynxKUOu7nY6tIXT25Q">빙그레 바나나맛우유 유튜브</a></li>     
+                        <li><a href="https://www.instagram.com/bingicecream.official/   ">빙그레 아이스크림 인스타그램</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCxjERPPVyHbina73g8Grn-g">빙그레 아이스크림 유튜브</a></li>                        
+                    </ul> -->
+                    <!-- <img src="/img/layout/select_btn01.png" alt="binggrae"> -->
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="footer_sec04 mo flex_center">
+            <!-- <ul>
+                <li><a href="/en/center/service">고객센터</a></li>
+                <li><a href="/en/center/service_email">1:1이메일문의</a></li>                           
+            </ul> -->
+            <p class="copyright">ⓒ Binggrae all rights reserved.</p>
+        </div>
+        
+        
+        
+    </footer>
+</div>
+        </div>
+    </div>
+    <div id="do_loading" style="display: none;">
+        hello
+    </div>
+</body>
+</html>

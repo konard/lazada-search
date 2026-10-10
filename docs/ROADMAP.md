@@ -2,6 +2,8 @@
 
 The complete [requirement tracker](REQUIREMENTS.md) records every requested capability and its current evidence/status. [Partial buying report](tables/top-10-partial.md) · [Full captured catalog](tables/README.md) · [Defect register](acceptance/issue-reports.json).
 
+The [ice-cream automation handoff](ICE-CREAM-AUTOMATION.md) records the urgent manufacturer research, separate gram/millilitre/protein rankings, source conflicts and exact acceptance requirements. Current missing denominators are research tasks; no assumed density can fill them. Per-package/per100ml protein support must reach the library, CLI and Telegram after the report implementation.
+
 | Priority | Remaining outcome                                    | Acceptance condition                                                                                                                                                                  |
 | -------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | P0       | Confirm cheaper Hydropure Extreme Chocolate lead     | Seller supplies the exact factory Extreme Chocolate 2,050 g package/revision shown in the cached manufacturer label; recompute protein costs and exact bulk freight.                  |

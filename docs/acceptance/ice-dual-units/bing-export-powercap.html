@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Binggrae</title>
+    <meta name="description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">		    
+	<meta name="robots" content="noodp">
+	<meta name="NaverBot" content="All">
+	<meta name="NaverBot" content="index, follow">	
+	<meta name="Yeti" content="All">
+	<meta name="Yeti" content="index, follow">
+    <!-- <meta name="keywords" content="" /> -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="빙그레">
+    <meta property="og:description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">
+    <meta property="og:url" content="https://www.bing.co.kr/">
+    <meta property="og:image" content="http://bing.musign.net/img/main/og_img_binggrae.jpg">
+    <meta property="og:site_name" content="binggrae">    
+    <meta name="twitter:title" content="빙그레">
+    <meta name="twitter:description" content="건강과 행복을 함께 나누는 밝은 미소의 메신저">
+    <link rel="shortcut icon" href="/img/main/ico_favicon.ico">
+    <!--나이스셀렉트-->
+    <!-- <link rel="stylesheet" th:href="@{/niceSelect/nice-select2.css}"> -->
+    <link rel="stylesheet" href="/css/front/nice-select.css">
+    <link rel="stylesheet" href="/css/front/musign.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49649065-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-49649065-2');
+    </script>
+
+    <script src="/js/front/jquery.js"></script>
+    <script src="/js/front/slick.js"></script>
+    <script src="/js/front/masonry.pkgd.min.js"></script>
+    <script src="/js/front/common.js"></script>
+    <script src="/js/front/main.js"></script>
+    <script src="/js/front/sub.js"></script>
+    <script src="/js/function.js"></script>
+    <script src="//malsup.github.io/min/jquery.form.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=tz2w3a0shp&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps-geocoder.js"></script>
+    <script type="text/javascript" src="/js/front/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="/js/front/jquery.nice-select.js"></script>
+    <!--나이스셀렉트-->
+     <!-- <script th:src="@{/niceSelect/nice-select2.js}"></script> -->
+     <script type="text/javascript" src="/js/front/aes.js"></script> 
+    
+     
+</head>
+<body>
+    <div id="wrap" class="front_layout">
+        <div class="front_header en">
+        <header id="header" class="header">
+            <!-- <div class="header_top">
+                <ul class="flex_center">
+                    <li>
+                        <a href="https://srm.bing.co.kr/" target="_blank" class="flex_center">
+                            <span>구매포털시스템</span>
+                            <img src="/img/main/link_arrow02.png" alt="binggrae">
+                            <img src="/img/main/link_arrow02_w.png" alt="binggrae" class="hover">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://recruit.bing.co.kr/app/web/main/index_new.jsp" target="_blank" class="flex_center">
+                            <span>인재채용</span>
+                            <img src="/img/main/link_arrow02.png" alt="binggrae">
+                            <img src="/img/main/link_arrow02_w.png" alt="binggrae" class="hover">
+                        </a>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="header_container flex_center">
+                <h1 class="header_sec01 logo">
+                    빙그레
+                    <a href="/en">
+                    <img src="/img/main/logo-pc.png" alt="binggrae" class="pc">
+                    <img src="/img/main/logo_mo.png" alt="binggrae" class="mo">
+                    </a>
+                </h1>
+                <div class="header_sec02">
+                    <nav class="gnb01 en" >
+                        <ul class="flex_center depth01">
+                            <li>
+                                <a href="/en/company/ceo" class="en">Company</a>
+                                <ul class="depth02">
+                                    <li ><a href="/en/company/ceo" class="en">CEO Message</a></li>
+                                    <li><a href="/en/company/philosophy" class="en">Management Philosophy</a></li>
+                                    <li><a href="/en/company/business" class="en">Business Field</a></li>
+                                    <li><a href="/en/company/history" class="en">History</a></li>
+                                </ul>
+                            </li>
+                            <li class="active">
+                                <a href="/en/product/list" class="en">Product</a>
+                                <!-- <a href="javascript:alert('Coming Soon')" class="en">Product</a> -->
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Product</a> -->
+                                <ul class="depth02">
+                                    <li >
+                                        <a href="/en/product/list?type=1">Ice Cream</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=2">Milk/Cheese</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=3">Fermented Milk</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=4">Coffee</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=10">Juice</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=9">Beverage</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=5">Snack/Dessert</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=11">Nutritional Supplements</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+                                    <li >
+                                        <a href="/en/product/list?type=7">Export Product</a>
+                                        <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                    </li>
+
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=icecream' } ? 'active'"><a href="/en/product/list?type=icecream" class="en">Ice Cream</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=milk' } ? 'active'"><a href="/en/product/list?type=milk" class="en">Milk/Cheese</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=yogurt' } ? 'active'"><a href="/en/product/list?type=yogurt" class="en">Fermented Milk</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=coffee' } ? 'active'"><a href="/en/product/list?type=coffee" class="en">Coffee</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=juice' } ? 'active'"><a href="/en/product/list?type=juice" class="en">Juice</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=beverage' } ? 'active'"><a href="/en/product/list?type=beverage" class="en">Beverage</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=snack' } ? 'active'"><a href="/en/product/list?type=snack" class="en">Snack/Dessert</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=health' } ? 'active'"><a href="/en/product/list?type=health" class="en">Nutritional Supplements</a></li>-->
+<!--                                    <li th:class="${#httpServletRequest.getQueryString() == 'type=export' } ? 'active'"><a href="/en/product/list?type=export">Export Products</a></li>-->
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/en/esg/esg" class="en">Sustainability</a>
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Sustainability</a> -->
+                                <ul class="depth02">
+                                    <li><a href="/en/esg/esg" class="en">Sustainable Mangement System</a></li>
+                                    <li><a href="/en/esg/eco" class="en">Eco-Friendly</a></li>
+                                    <li><a href="/en/esg/value" class="en">Shared Value</a></li>
+                                    <li><a href="/en/esg/global" class="en">Global Integrity</a></li>
+                                    <li><a href="/en/esg/ethics" class="en">Ethical Business Management System</a></li>
+                                    <li><a href="/en/esg/contribution" class="en">Social Responsibility Activity</a></li>
+                                    <li><a href="/en/esg/reports" class="en">Reports</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <!-- <a href="/en/investment/invest_announce">IR</a> -->
+                                <a href="/en/investment/stocks" class="en">IR</a>
+                                <ul class="depth02">
+                                    <!-- <li th:class="${#httpServletRequest.requestURI.contains('invest_announce')} ? 'active'"><a href="/en/investment/invest_announce">전자공고</a></li> -->
+                                    <li><a href="/en/investment/stocks" class="en">Stock Information</a></li>
+                                    <!-- <li><a href="javascript:alert('준비중입니다')">공시정보</a></li> -->
+                                    <li><a href="/en/investment/invest_finance" class="en">Financial Information</a></li>
+                                    <li><a href="/en/investment/ir" class="en">IR Information</a></li>
+                                </ul>
+                            </li>
+                            <!--<li>
+                                 <a href="/en/news/news_home">뉴스룸</a>
+                                <ul class="depth02">
+                                    <li><a href="/en/news/board01">새소식</a></li>
+                                    <li><a href="/en/news/board02">보도자료</a></li>
+                                    <li><a href="/en/news/board03">빙그레 스토리</a></li>
+                                    <li><a href="/en/news/media">미디어 라이브러리</a></li>
+                                </ul> -->
+                                <!-- <a href="javascript:alert('준비중입니다')">뉴스룸</a>
+                                <ul class="depth02">
+                                    <li><a href="javascript:alert('준비중입니다')">새소식</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">보도자료</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">빙그레 스토리</a></li>
+                                    <li><a href="javascript:alert('준비중입니다')">미디어 라이브러리</a></li>
+                                </ul> 
+                            </li>-->
+                            <!-- <li th:class="${#httpServletRequest.requestURI.contains('center')} ? 'active'">
+                                <a href="/en/center/service">고객센터</a>
+                                <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul>
+                            </li> -->
+                            <li>
+                                <a href="/en/clip/clip_list" class="en">Video Clip</a>
+                                <!-- <a href="javascript:alert('Coming soon')" class="en">Video Clip</a> -->
+                                <!-- <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul> -->
+                            </li>
+                            <li>
+                                <a href="/en/clip/contact" class="en">Contact US</a>
+                                <!-- <ul class="depth02">
+                                    <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a></li>
+                                    <li><a href="#">제품공급문의</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a></li>
+                                    <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a></li>
+                                </ul> -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header_sec03 flex_center">
+                   
+                    <div class="right flex_center">
+                        <div class="lang">
+                            <p class="flex_center"><span class="font_poppin">EN</span><span class="triangle"><img src="/img/layout/lang_btn.png" alt="binggrae"></span></p>
+                            <ul>
+                                <li><a href="/en" class="font_poppin">EN</a></li>
+                                <li><a href="/" class="font_poppin">KR</a></li>                                <li><a href="http://www.bingerui.cn" target="_blank" class="font_poppin">CN</a></li>
+                            </ul>                            
+                        </div>
+                        <div class="hamberger">
+                            <a href="#">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>                            
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </header>
+        <nav class="hamberger_menu">
+            <div class="black_bg"></div>
+            <div class="hm_container">
+                <div class="hm_sec01 flex_center mo">
+                    <!-- <ul class="flex_center">
+                        <li><a href="https://srm.bing.co.kr/" target="_blank" class="flex_center"><span>구매포털시스템</span><img src="/img/main/link_arrow02.png" alt="binggrae"></a></li>
+                        <li><a href="https://recruit.bing.co.kr/app/web/main/index_new.jsp"  target="_blank" class="flex_center"><span>인재채용</span><img src="/img/main/link_arrow02.png" alt="binggrae"></a></li>
+                    </ul> -->
+                    <button class="hm_close"><img src="/img/main/ham_close.png" alt="binggrae"></button>
+                </div>
+                <div class="hm_sec02">
+                    <ul class="depth01">
+                        <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Company</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li ><a href="/en/company/ceo" class="en">CEO Message</a><span class="circle"></span></li>
+                                <li><a href="/en/company/philosophy" class="en">Management Philosophy</a><span class="circle"></span></li>
+                                <li><a href="/en/company/business" class="en">Business Field</a><span class="circle"></span></li>
+                                <li><a href="/en/company/history" class="en">History</a><span class="circle"></span></li>
+                            </ul>
+                        </li>
+                        <li class="active">                     
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Product</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li class="active">
+                                    <a href="/en/product/list" class="en">all</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" class="en">all</a> -->
+                                    <span class="circle"></span>
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=1">Ice Cream</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=2">Milk/Cheese</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=3">Fermented Milk</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=4">Coffee</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=10">Juice</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=9">Beverage</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=5">Snack/Dessert</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=11">Nutritional Supplements</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+                                <li >
+                                    <a href="/en/product/list?type=7">Export Product</a>
+                                    <!-- <a href="javascript:alert('Coming Soon')" th:text="${item.CAT_NAME}"></a> -->
+                                </li>
+
+                                <!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=icecream' } ? 'active'"><a href="/en/product/list?type=icecream" class="en">Ice Cream</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=milk' } ? 'active'"><a href="/en/product/list?type=milk" class="en">Milk/Cheese</a></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=yogurt' } ? 'active'"><a href="/en/product/list?type=yogurt" class="en">Fermented Milk</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=coffee' } ? 'active'"><a href="/en/product/list?type=coffee" class="en">Coffee</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=juice' } ? 'active'"><a href="/en/product/list?type=juice" class="en">Juice</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=beverage' } ? 'active'"><a href="/en/product/list?type=beverage" class="en">Beverage</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=snack' } ? 'active'"><a href="/en/product/list?type=snack" class="en">Snack/Dessert</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=health' } ? 'active'"><a href="/en/product/list?type=health" class="en">Nutritional Supplements</a><span class="circle"></span></li>-->
+<!--                                <li th:class="${#httpServletRequest.getQueryString() == 'type=export' } ? 'active'"><a href="/en/product/list?type=export">Export Products</a><span class="circle"></span></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <!-- <a href="#" class="flex_center"><span class="font_bingbold en">Sustainability</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a> -->
+                            <a href="#" class="flex_center"><span class="font_bingbold en">Sustainability</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li><a href="/en/esg/esg" class="en">Sustainable Mangement System</a></li>
+                                <li><a href="/en/esg/eco" class="en">Eco-Friendly</a></li>
+                                <li><a href="/en/esg/value" class="en">Shared Value</a></li>
+                                <li><a href="/en/esg/global" class="en">Global Integrity</a></li>
+                                <li><a href="/en/esg/ethics" class="en">Ethical Business Management System</a></li>
+                                <li><a href="/en/esg/contribution" class="en">Social Responsibility Activity</a></li>
+                                <li><a href="/en/esg/reports" class="en">Reports</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold en">IR</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <!-- <li th:class="${#httpServletRequest.requestURI.contains('invest_announce')} ? 'active'"><a href="/en/investment/invest_announce">전자공고</a><span class="circle"></span></li> -->
+                                <li><a href="/en/investment/stocks" class="en">Stock Information</a><span class="circle"></span></li>
+                                <!-- <li><a href="javascript:alert('준비중입니다')">공시정보</a><span class="circle"></span></li> -->
+                                <li><a href="/en/investment/invest_finance" class="en">Financial Information</a><span class="circle"></span></li>
+                                <li><a href="/en/investment/ir" class="en">IR Information</a><span class="circle"></span></li>
+                            </ul>
+                        </li>
+                        <!-- <li>
+                            <a href="#" class="flex_center"><span class="font_bingbold">뉴스룸</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li><a href="/en/news/board01">새소식</a><span class="circle"></span></li>
+                                <li><a href="/en/news/board02">보도자료</a><span class="circle"></span></li>
+                                <li><a href="/en/news/board03">빙그레 스토리</a><span class="circle"></span></li>
+                                <li><a href="/en/news/media">미디어 라이브러리</a><span class="circle"></span></li> 
+                                <li><a href="javascript:alert('준비중입니다')">새소식</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">보도자료</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">빙그레 스토리</a><span class="circle"></span></li>
+                                <li><a href="javascript:alert('준비중입니다')">미디어 라이브러리</a><span class="circle"></span></li>
+                            </ul>
+                        </li> -->
+                        <!-- <li th:class="${#httpServletRequest.requestURI.contains('center')} ? 'active'">
+                            <a href="#" class="flex_center"><span class="font_bingbold en">고객센터</span><img src="/img/main/m_ham_menu_btn.png" alt="binggrae" class="mo"></a>
+                            <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul>
+                        </li> -->
+                        <li>
+                            <a href="/en/clip/clip_list" class="flex_center"><span class="font_bingbold en">Video Clip</span></a>
+                            <!-- <a href="javascript:alert('Coming soon')" class="flex_center"><span class="font_bingbold en">Video Clip</span></a> -->
+                            <!-- <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul> -->
+                        </li>
+                        <li>
+                            <a href="/en/clip/contact" class="flex_center"><span class="font_bingbold en">Contact Us</span></a>
+                            <!-- <ul class="depth02">
+                                <li th:class="${#httpServletRequest.requestURI.contains('service')} ? 'active'"><a href="/en/center/service">고객상담</a><span class="circle"></span>
+                                    <ul class="depth03">
+                                        <li><a href="/en/center/service">FAQ</a></li>
+                                        <li><a href="/en/center/service_email" class="letter_spacing0">1:1 이메일상담</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">제품공급문의</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('cyber')} ? 'active'"><a href="/en/center/cyber">사이버신고</a><span class="circle"></span></li>
+                                <li th:class="${#httpServletRequest.requestURI.contains('safe')} ? 'active'"><a href="/en/center/safe">안전신문고</a><span class="circle"></span></li>
+                            </ul> -->
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class="hm_sec03">
+                    <ul class="lang2 flex_center">
+                        <li><a href="/">KR</a></li>
+                        <li class="on"><a href="/en/">EN</a></li>
+                    </ul>
+                    <!-- <a href="/en/support/location">오시는길</a> -->
+                </div>
+                
+            </div>
+            
+        </nav>
+        <aside>
+            <div class="btn_wr cf">
+                <!-- <div class="quick_btn">
+                    <img src="/img/layout/chat_img.png" class="down" alt="image" />         
+                    <p class="quick_message">무엇을 도와드릴까요?</p>        
+                </div> -->
+                <!-- <div class="aside_btn shop">
+                    <a href="https://brand.naver.com/binggrae" class="btn font_poppin">SHOP</a>
+                </div> -->
+                <div class="aside_btn">
+                    <button class="btn to_down">
+                        <img src="/img/layout/fix_arrow.png" class="down" alt="to down" />
+                    </button>        
+                    <button class="btn to_top">
+                        <img src="/img/layout/fix_arrow.png" class="down" alt="to down" />
+                    </button>           
+                </div>			
+            </div>
+        </aside>
+    </div>
+        <div class="front_container">
+            <main id="container">
+                
+    <script>
+
+        $(document).ready(function() {
+            // var prod_idx = '';
+            // if (prod_idx != '0') {
+            //     //get_volume_list(prod_idx);
+            // }
+            get_idt_info($("#prod_val_idx").val());
+
+            // 용량 클릭
+            $('#volume_area button').first().addClass('act')
+            $('#volume_area button').click(function(){
+                $('#volume_area button').removeClass('act')
+                $(this).addClass('act')
+            })
+
+            // 맛 클릭
+            $('#taste_area .product_cont').first().addClass('act')
+
+            $('#taste_area .product_cont').click(function(){
+                $('#taste_area .product_cont').removeClass('act')
+                $(this).addClass('act')
+            })
+
+            // 개별 브랜드 클릭
+            $('.product.detail .product_list .product_item').first().addClass('on')
+
+            $('.product.detail .product_list .product_item').click(function(){
+                $('.product.detail .product_list .product_item').removeClass('on')
+                $(this).addClass('on')
+            })
+        });
+
+        function choose_cate(family_ind_idx) {
+            $.ajax({
+                type : "POST",
+                url : "/product/get_family_ind_info",
+                dataType : "text",
+                data : {
+                    family_ind_idx : family_ind_idx
+                    ,PDT: $("#prod_idx").val()
+                    ,lang: 'EN'
+                },
+                error : function() {
+                    console.log("AJAX ERROR");
+                },
+                success : function(data) {
+                    //  console.log(data);
+                    var result = JSON.parse(data);
+
+                    //prodList
+                    //prodValList
+                    //prodValSize
+                    //prodCalList
+                    //prod_val_idx
+
+                    var html = "";
+                    var len = Object.keys(result.prodList).length;
+                    if (len > 1) {
+                        $.each(result.prodList, function (index, entry) {
+                            html += "<li class=\"product_cont\" onclick=\"get_volume_list(" + entry.PROD_IDX + ")\">";
+                            html += " <div class=\"img_wr b_shadow_in flex_center\">";
+                            value = entry.PROD_IMG_FILE;
+                            if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+                                html += "<img th:src=\"@{/upload/product/bing_default.png}\">";
+                            } else {
+                                html += "   <img src=\"" + entry.PROD_IMG_FILE + "\" onError=\"this.src='/upload/product/bing_default.png'\">";
+                            }
+                            html += " </div>";
+                            html += " <p class=\"name\">" + entry.PROD_NAME + "</p>";
+                            html += "</li>";
+                        });
+
+                        $("#taste_area").css("display","");
+                    }
+
+                    $("#taste_area").html(html);
+                    if (result.prodValSize > 0) {
+                        $("#prod_val_idx").val(result.prod_val_idx);
+                        get_idt_info($("#prod_val_idx").val());
+
+                        html = "";
+                        $.each(result.prodValList, function (index, entry) {
+                            html += "<button class=\"b_shadow_in2\" onclick=\"get_idt_info(" + entry.PROD_VAL_IDX + ")\">" + entry.AMT_INFO + "</button>";
+                        });
+                        $("#volume_area").html(html);
+
+                        // 개별 브랜드 선택 시 맛 표시 유지
+                        $('#taste_area .product_cont').first().addClass('act')
+
+                        $('#taste_area .product_cont').click(function(){
+                            $('#taste_area .product_cont').removeClass('act')
+                            $(this).addClass('act')
+                        })
+                        
+                        // 용량 클릭
+                        $('#volume_area button').first().addClass('act')
+                        $('#volume_area button').click(function(){
+                            $('#volume_area button').removeClass('act')
+                            $(this).addClass('act')
+                        })
+                    }
+                    else {
+                        $("#prod_val_idx").val("");
+                        $("#volume_area").html("");
+                        $('#pdt_idt_info').html("");
+                        $('#volume_img_pc').html("");
+                        $('#sd_calorie_area').text("");
+                    }
+                }
+            });
+
+        }
+        function get_volume_list(prod_idx){
+            $.ajax({
+                type : "POST",
+                url : "/product/get_volume_list",
+                dataType : "text",
+                data : {
+                    prod_idx : prod_idx
+                    ,lang: 'EN'
+                },
+                error : function() {
+                    console.log("AJAX ERROR");
+                },
+                success : function(data) {
+                    //  console.log(data);
+                    var result = JSON.parse(data);
+                    var inner = "";
+
+                    $.each(result.list, function(index, entry) {
+                        if (index == 0) {
+                            get_idt_info(entry.PROD_VAL_IDX);
+                        }
+                        inner +='<button class="b_shadow_in2" onclick="get_idt_info('+entry.PROD_VAL_IDX+')">'+entry.AMT_INFO+'</button>';
+                    });
+                    $('#volume_area').html(inner);
+
+                    // 맛 클릭
+                    // $('#taste_area .product_cont').click(function(){
+                    //     $('#taste_area .product_cont').removeClass('act')
+                    //     $(this).addClass('act')
+                    // })
+
+                    // 용량 클릭
+                    $('#volume_area button').first().addClass('act')
+                    $('#volume_area button').click(function(){
+                        $('#volume_area button').removeClass('act')
+                        $(this).addClass('act')
+                    })
+
+                    // document.getElementById('target_taste_627').getElementsByTagName('img')[0].src = "/upload/product/taste_ttaom_organic_apple.png";
+
+                }
+            });
+        }
+
+        function get_idt_info(prod_val_idx){
+
+            $("#div_main_link_url").html("");
+            $("#igd_update").html("");
+            $.ajax({
+                type : "POST",
+                url : "/en/product/get_idt_info",
+                dataType : "text",
+                data : {
+                    prod_val_idx : prod_val_idx
+                    ,prod_idx: $("#prod_idx").val()
+                    ,lang: 'EN'
+                },
+                error : function() {
+                    console.log("AJAX ERROR");
+                },
+                success : function(data)
+                {
+                    //   console.log(data);
+                    var result = JSON.parse(data);
+
+                    if (nullChk(result.info) == ''){
+                        $(".product_info").css("display", "none");
+                        $("#shadow_out04").hide();
+                    }
+                    
+                    //-----------------------------------------------------------
+                    if (result.info.BUY_LINK_URL != '') {
+                        var html = "<a href=\"" + result.info.BUY_LINK_URL + "\" target=\"_blank\">Buy Now</a>";
+                        $("#div_main_link_url").html(html);
+                        $("#div_main_link_url").css("display", "");
+                    }
+                    else {
+                        $("#div_main_link_url").css("display", "none");
+                    }
+                    $('#igd_update').text(result.info.VAL_UPDATE_DATE);
+
+                    html = "";
+                    var last_tr = false;
+                    var cnt = 0;
+                    $.each(result.list, function(index, entry) {
+				
+                        if (index%2 == 0 || index == 0) {
+                            html += "<tr>";
+                        }
+                        console.log("###"+entry.CAL_BASE_UNIT.substring(0, 9))
+
+						if ( (nullChk(entry.CAL_BASE_UNIT) == 'less than' || nullChk(entry.CAL_BASE_UNIT) == 'Less Than') && nullChk(entry.CAL_BASE_UNIT).length ==9  ){
+							html += "<td class=\"bg ko\">"+nullChk(entry.CAL_CAT)+" "+entry.CAL_BASE_UNIT+" "+nullChk(entry.CAL_AMT)+"</td>";
+                        	html += "<td>"+entry.CAL_BASE_AMT_EXT+"</td>";
+						} else if ((nullChk(entry.CAL_BASE_UNIT).substring(0, 9) == 'less than' || nullChk(entry.CAL_BASE_UNIT).substring(0, 9) == 'Less Than') && nullChk(entry.CAL_BASE_UNIT).length >9 ) {
+							html += "<td class=\"bg ko\">"+nullChk(entry.CAL_CAT)+" "+entry.CAL_BASE_UNIT.substring(0, 9)+" "+nullChk(entry.CAL_AMT)+  " "+entry.CAL_BASE_UNIT.substring(9)+ "</td>";
+                        	html += "<td>"+entry.CAL_BASE_AMT_EXT+"</td>";
+						} else {
+							html += "<td class=\"bg ko\">"+nullChk(entry.CAL_CAT)+" "+entry.CAL_AMT+" "+nullChk(entry.CAL_BASE_UNIT)+"</td>";
+                        	html += "<td>"+entry.CAL_BASE_AMT_EXT+"</td>";
+						}
+
+                        if (index % 2 == 1 && index != 0) {
+                            html += '</tr>';
+                            last_tr = true;
+                        }
+                        else {
+                            last_tr = false;
+                        }
+
+                        console.log(html);
+                        cnt++;
+                    });
+
+                    if (cnt%2 == 1) {
+                        html += "<td></td><td></td>";
+                    }
+
+                    if (!last_tr) {
+                        html += '</tr>';
+                    }
+
+                    $('#pdt_idt_info').html(html);
+                    $('#volume_img_pc').html("<img src=\""+result.info.PROD_IMG_FILE+"\" alt=\"투게더\" onerror=\"this.src=\"/upload/product/bing_default.png\">");
+                    // $('#volume_img_mo').html('<img src="/upload/product/mo_'+result.volume_img+'" alt="투게더" onerror="this.src=\'/upload/product/bing_default.png\'">');
+
+                    str = 'Calories('+result.info.CAL_AMT+''+result.info.CAL_BASE_UNIT+')per Serving size '+result.info.TOT_CONT_AMT+''+result.info.TOT_CONT_UNIT+' / *The % Daily Value(DV) tells you how much a nutrient in a serving of food contributes to a daily diet.';
+                    $('#sd_calorie_area').text(str);
+
+                    // % > 0%
+                    $('#pdt_idt_info td').each(function(){
+                        var $this = $(this);
+                        if($this.html() == "%"){
+                            $this.html('0%');
+                        }
+                    })
+                }
+            });
+        }
+
+    </script>
+    <div id="product" class="content_wrapper content_list_wrapper product detail">
+        <div class="tit_wr">
+            <div class="main_tit_wr">
+        <nav class="breadcrumb">
+            <ul class="brec_wr inb">
+                <li class="brec n1 home">
+                    <a href="/">
+                        <img src="/img/icon/btn_icon_home.png" alt="to home">home
+                    </a>
+                </li>
+                <li class="brec n2"><a href="/en/product/list" class="en">Brand</a></li>
+            </ul>
+        </nav>
+        <div class="main_tit">
+            <h3 class="font_bingbold en">Brand</h3>
+        </div>
+    </div>
+        </div><!-- //tit_wr -->
+
+        <div class="cont_wr">
+            <input type="hidden" name="prod_val_idx" id="prod_val_idx" value="225" />
+            <input type="hidden" name="prod_idx" id="prod_idx" value="57" />
+<!--            <th:block th:if="${!#maps.isEmpty(pdt_head)}">-->
+                <section class="section sec01 tit_img">
+                    <div class="inner">
+                        <div class="txt_box">
+
+                            <p class="tit sec_tit">[Export Product]PowerCap</p>
+                            <p class="txt b_txt">Water ice in various and refreshing flavors</p>
+                            <p class="txt b_txt" ></p>
+                            <!-- BRAND_IMG  src="/img/sub/product/detail/product_tit_bg_pc.png"-->
+                        </div>
+                        <!-- <div class="pc img_box">
+                            <img th:if="${not #strings.isEmpty(pdt_head.BRAND_IMG)}" th:src="'/upload/product/'+${pdt_head.BRAND_IMG}"  alt="binggrae" onerror="this.style.display='none'" >
+                            <img th:unless="${not #strings.isEmpty(pdt_head.BRAND_IMG)}" th:src="@{/img/sub/product/detail/product_tit_bg_pc.png}"  alt="binggrae">
+                        </div>
+                        <div class="mo img_box">
+                            <img th:if="${not #strings.isEmpty(pdt_head.BRAND_IMG)}" th:src="'/upload/product/mo_'+${pdt_head.BRAND_IMG}"  alt="binggrae" onerror="this.style.display='none'" >
+                            <img th:unless="${not #strings.isEmpty(pdt_head.BRAND_IMG)}" th:src="@{/img/sub/product/detail/product_tit_bg_mo.png}"  alt="binggrae">
+                        </div> -->
+                    </div>
+                </section><!-- //sec01 -->
+<!--            </th:block>-->
+
+            
+            <section id="list" class="section sec03 product_list_wr">
+                <!--<p class="sec_tit"><span th:text="${pdt_info.FAMILY_EN_NAME}"></span> </p>-->
+                <ul class="product_list inb" style="margin-top : 40px;">
+                    
+
+                </ul>
+            </section><!-- //sec03 -->
+            <section id="info" class="section sec04 product_info_wr">
+                <div class="b_shadow_out" id="shadow_out04">
+                    <ul id="taste_area" class="product_cate inb" style="display:block">
+                        
+                            <li class="product_cont" onclick="get_volume_list(228)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/e6dd9706-0d4e-4656-98b9-33c2c84361a3.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Soda</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(229)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/9bfbc3bd-e40c-46c5-ad8e-9eca77fa82ab.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Watermelon</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(230)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/3086080d-3355-4d14-832b-571e2f1ae976.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Banana</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(773)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/eb91b038-2ef0-4b7c-92d6-0e7615730251.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Grape</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(774)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/9daace13-dbc6-45be-9a64-9f08a18a6750.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Chocolate</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(775)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2025/09/9521679b-7d2c-465b-a41d-fbfedc5bffb3.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Mandarin</p>
+                            </li>
+                        
+                            <li class="product_cont" onclick="get_volume_list(1066)">
+                                <div class="img_wr b_shadow_in flex_center">
+                                    <img src="/upload/product/2026/05/19691a78-33ed-45ef-b0f2-5129133fa73d.png" onerror="this.src='/upload/product/bing_default.png'">
+                                    
+                                </div>
+                                <p class="name">Green apple </p>
+                            </li>
+                        
+
+                        <!-- [D] li 선택되면 act 클래스 추가 -->
+                        <!--
+                        <li class="product_cont act">
+                            <div class="img_wr b_shadow_in flex_center">
+                                <img src="/img/sub/product/detail/cate_thumb_01.png" alt="binggrae">
+                            </div>
+                            <p class="name">오리지널 바닐라</p>
+                        </li>
+                        -->
+                    </ul><!-- //product_cate -->
+                    <p class="sec_tit" id="taste_nm"></p>
+                    <div class="product_info inb">
+                        <div class="l_wr">
+                            <div class="capacity_wr">
+                                <p class="b_txt">Total Serving</p>
+                                <div id="volume_area" class="btn_box">
+                                    <button class="b_shadow_in2" myName="225" onclick="get_idt_info(this.getAttribute(&#39;myName&#39;))">130ml</button>
+                                    <!-- [D] 활성화시 act 클래스 추가 -->
+                                    <!--
+                                    <button class="b_shadow_in2 act">900ml</button>
+                                    <button class="b_shadow_in2">240ml</button>
+                                    -->
+                                </div>
+                            </div>
+                            <div class="nutrition_wr">
+                                <p class="b_txt">Nutrition Facts <span id="igd_update" class="update">22.03.30 Update</span></p>
+                                <table id="pdt_idt_info">
+
+                                    <!--
+                                        <tr>
+                                            <td class="bg ko">나트륨 45mg</td>
+                                            <td>2%</td>
+                                            <td class="bg ko">지방 5g</td>
+                                            <td>9%</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg ko">탄수화물 11g</td>
+                                            <td>3%</td>
+                                            <td class="bg ko">트랜스지방 0g</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg ko">당류 10g</td>
+                                            <td>10%</td>
+                                            <td class="bg ko">포화지방 3.5g</td>
+                                            <td>23%</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg ko">단백질 2g</td>
+                                            <td>4%</td>
+                                            <td class="bg ko">콜레스테롤 20mg</td>
+                                            <td>7%</td>
+                                        </tr>
+                                    -->
+                                </table>
+                                <div class="sub_txt">
+                                    <p id="sd_calorie_area" class="">
+                                        기준용량(100ml)당 열량 100kcal / *영양성분 기준치 : 1일 영양성분 기준치에 대한 비율
+                                    </p>
+                                    <!--                                    <th:block th:if="${#httpServletRequest.getQueryString() == 'PDT=180' } ">-->
+                                    <!--                                        <p>-->
+                                    <!--                                            (* 제조업소 합동산업 기준)-->
+                                    <!--                                        </p>-->
+                                    <!--                                    </th:block>    -->
+                                </div>
+
+                                <!--                                <th:block th:if="${not #strings.isEmpty(pdt_info.MAIN_LINK_URL)}">-->
+                                <div class="view_more b_shadow_in bg_grad_red" id="div_main_link_url">
+                                    <a href="#" target="_blank">
+                                        Buy Now
+                                    </a>
+                                </div>
+                                <!--                                </th:block>-->
+                            </div>
+                        </div>
+                        <div class="r_wr b_shadow_in">
+                            <div class="product_slide">
+                                <div id="volume_img_pc" class="img_box">
+
+                                </div>
+                                <div id="volume_img_mo" class="img_box">
+
+                                </div>
+                            </div>
+                            <div class="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <button class="view_more top_bottom img_ani img_aniload" onclick="location.href='/en/product/list'">list</button>
+        </div>
+    </div>
+
+                <!-- <th:block th:replace="front/product/list :: subContent" >컨텐츠 영역</th:block> -->
+            </main>
+            <div>
+    <footer id="footer" class="footer en">
+        <div class="footer_sec01">
+            <!-- <div class="f_logo">
+                <img src="/img/layout/f_logo.png" alt="binggrae">
+            </div>             -->
+            <ul class="f_sec01_right">
+                <!-- <li><a href="/en/support/privacy">개인정보처리방침</a></li> -->
+                <!-- <li><a href="/en/support/location">오시는길</a></li>                     -->
+            </ul>            
+        </div>
+        <div class="footer_sec02">
+            <!-- <div class="f_sec02_box01">
+                <p class="phone">080.022.0056</p>
+                <ul>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">1:1이메일문의</a></li>                           
+                </ul>
+            </div> -->
+            <div class="f_sec02_box02"> 
+                <ul>
+                    <!-- <li>
+                        <span class="subject">회사명 : </span>
+                        <span class="con">빙그레</span>
+                    </li> -->
+                    <li>
+                        <a href="/en/support/location" class="subject en">Direction</a>
+                        <a href="/en/clip/contact" class="subject contact en">Contact Us</a>
+                        <span class="num">080. 022. 0056</span>
+                    </li>
+                    <li>
+                        <!-- <span class="subject">본사 : </span> -->
+                        <span class="con en">
+                            <!-- 080-022-0056(Hours weekdays 9:00-17:30)<br> -->
+                            <span class="w_time">Hours weekdays 9:00-17:30</span><br>
+                            45, Dasansunhwan-ro,Namyangju-si, Gyeonggi-do
+                        </span>
+                    </li>
+                    <!-- <li>
+                        <span class="subject">전화 : </span>
+                        <span class="con">02 - 920 - 8114</span>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="footer_sec03">
+            <div class="f_logo">
+                <img src="/img/layout/f_logo.png" alt="binggrae">
+                <p class="copyright">ⓒ Binggrae all rights reserved.</p>
+            </div>            
+            <div class="f_sec03_box01">
+                <div class="sns_box">
+                    <ul>
+                        <li>
+                            <a href="https://www.instagram.com/binggraekorea/" target="_blank"><img src="/img/layout/footer_sns01.png" alt="binggrae"></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCOmz8eDBQ04h6i0_8p_V7eg" target="_blank"><img src="/img/layout/footer_sns02.png" alt="binggrae"></a>
+                        </li>
+                        <!-- <li>
+                            <a href="https://www.tftmall.co.kr/main/index.php" target="_blank"><img src="/img/layout/footer_sns03.png" alt="binggrae"></a>
+                        </li>                         -->
+                    </ul>
+                </div>
+                <!-- <div class="flag_store"> -->
+                    <!-- <a href="http://www.thesoftlab.co.kr/"><img src="/img/layout/flag_store.png" alt="binggrae"><span>Flagship store <strong>Soft Lab</strong></span></a> -->
+                    <!-- <ul>
+                        <li><a href="https://www.instagram.com/binggraekorea/">빙그레 기업 인스타그램</a></li>
+                        <li><a href="https://www.youtube.com/c/binggrae">빙그레 기업 유튜브</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCsCjDynxKUOu7nY6tIXT25Q">빙그레 바나나맛우유 유튜브</a></li>     
+                        <li><a href="https://www.instagram.com/bingicecream.official/   ">빙그레 아이스크림 인스타그램</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCxjERPPVyHbina73g8Grn-g">빙그레 아이스크림 유튜브</a></li>                        
+                    </ul> -->
+                    <!-- <img src="/img/layout/select_btn01.png" alt="binggrae"> -->
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="footer_sec04 mo flex_center">
+            <!-- <ul>
+                <li><a href="/en/center/service">고객센터</a></li>
+                <li><a href="/en/center/service_email">1:1이메일문의</a></li>                           
+            </ul> -->
+            <p class="copyright">ⓒ Binggrae all rights reserved.</p>
+        </div>
+        
+        
+        
+    </footer>
+</div>
+        </div>
+    </div>
+    <div id="do_loading" style="display: none;">
+        hello
+    </div>
+</body>
+</html>

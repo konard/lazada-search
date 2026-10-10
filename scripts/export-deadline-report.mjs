@@ -305,44 +305,11 @@ ${table(
   ])
 )}
 
-## Chocolate ice cream: exact selling-unit comparison
+## Chocolate ice cream: separate unit-price rankings
 
-**No frozen delivery to Nha Trang is confirmed.** Every denominator below is a captured seller declaration; exact manufacturer/chocolate-core checks remain pending. Rank millilitre prices against millilitre prices and gram prices against gram prices; these units are not interchangeable. This table orders available volume-known options by VND/ml, then mass-only options by VND/g; sold-out options are last. The five named ice-cream selling options have exact selected-SKU page observations. Package prices alone are not the ranking metric.
+The [ice-cream report](ice-unit-rankings.md) independently sorts **VND per gram**, **VND per millilitre**, and **VND per gram of protein**. Its compact tables contain only comparable denominators; stock, source timestamps and missing evidence are tracked separately. The [machine-readable report](ice-unit-rankings.json) retains every captured SKU, original quantity and manufacturer-source review.
 
-${table(
-  [
-    'Order',
-    'Chocolate ice cream',
-    'Selected SKU',
-    'Sale VND',
-    'Food g',
-    'Food ml',
-    'Food packages/unit',
-    'VND/g before',
-    'VND/g delivered',
-    'VND/ml before',
-    'VND/ml delivered',
-    'Evidence / stock',
-    'Observed UTC',
-  ],
-  iceCandidates.map((row, i) => [
-    i + 1,
-    row.name,
-    `[${row.sku}](${row.url})`,
-    number(row.price),
-    number(row.massG),
-    number(row.volumeMl),
-    number(row.packagesPerSellingUnit),
-    number(row.beforePerFoodGram),
-    number(row.afterPerFoodGram),
-    number(row.beforePerMl),
-    number(row.afterPerMl),
-    row.status,
-    row.observedAt,
-  ])
-)}
-
-**Lowest captured volume price: Thai chocolate tub, 539,000 VND / 6000 ml = 89.83 VND/ml**; declared mass 3000 g also gives **179.67 VND/g**. Its title says express HCM delivery, so Nha Trang availability is unresolved. **Merino five 40 g sticks: 39,000 / 200 g = 195 VND/g**. The separately captured Merino five 60 g cones total **300 g** at 89,000 VND (**296.67 VND/g**) and were **sold out**. Grams and millilitres are never converted without measured density; powders have no inferred millilitre price or shaker-volume denominator.
+Manufacturer-matched package facts override seller declarations only for the exact product. Nutrition may be expressed per package, per100g or per100ml; no assumed density is used. Current exact-formula protein facts are required for a protein-price ranking. Historical laboratory tests remain sample-specific evidence. Nha Trang frozen delivery must be confirmed before delivered prices are ranked.
 
 ## Soy protein: separate reference category
 

@@ -1,5 +1,5 @@
 {
-  "validatedAt": "2026-10-10T16:49:18.702831+00:00",
+  "validatedAt": "2026-10-10T17:14:42.432107+00:00",
   "node": "v22.23.0",
   "unit": {
     "tests": 745,
@@ -125,7 +125,13 @@
       "categoryRedirectGuard": true,
       "detailsGatedOnAllLists": true,
       "relevantScopesTerminalConfirmed": 5,
-      "scopePages": [61, 80, 77, 10, 10],
+      "scopePages": [
+        61,
+        80,
+        77,
+        10,
+        10
+      ],
       "cachedRelevantPages": 238,
       "fullMarketGuarantee": false
     }
@@ -277,7 +283,12 @@
       "tests": 4,
       "pass": 4,
       "fail": 0,
-      "interfaces": ["library", "CLI", "HTTP", "Telegram"]
+      "interfaces": [
+        "library",
+        "CLI",
+        "HTTP",
+        "Telegram"
+      ]
     },
     "soySeparated": true,
     "printedProSuppsMassG": 907,
@@ -289,5 +300,49 @@
     "handpickedExactPricesAndMasses": 6,
     "handpickedFoodGramTop10Matches": 3,
     "handpickedWheyProteinGramTop10Matches": 1
+  },
+  "iceDualUnitsRecheck": {
+    "coverage": {
+      "exactSelectedPrices": 10,
+      "bothMassAndVolume": 1,
+      "currentProteinDenominator": 2,
+      "manufacturerChocolateIdentity": 1
+    },
+    "beforeGramRankRows": 4,
+    "beforeMlRankRows": 5,
+    "beforeProteinRankRows": 1,
+    "targetedUnit": {
+      "tests": 20,
+      "pass": 20,
+      "fail": 0
+    },
+    "changedCodeLint": "passed, zero warnings",
+    "sourcePriceReparse": {
+      "rows": 30,
+      "downloads": 0
+    },
+    "evidenceArchive": {
+      "validatedAt": "2026-10-10T17:13:57.871Z",
+      "sourceArtifacts": 55,
+      "lazadaDownloads": 0,
+      "exporterDownloads": 0,
+      "exported": {
+        "directory": "/Users/konard/Code/Archive/konard/lazada-search/docs/acceptance/ice-dual-units/evidence-archive",
+        "records": 59,
+        "blobs": 58,
+        "reused": 64,
+        "rebuilt": 3,
+        "downloads": 0
+      },
+      "verification": {
+        "valid": true,
+        "records": 59,
+        "blobs": 58,
+        "downloads": 0
+      }
+    },
+    "manufacturerNutritionPlaceholderRejected": true,
+    "worldConePeanutVariantExcluded": true,
+    "interfaceExtensionPending": "Per-package/per100ml protein support currently in report module; library/CLI/Telegram parity remains acceptance work"
   }
 }

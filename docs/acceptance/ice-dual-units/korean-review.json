@@ -1,0 +1,871 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10T17:11:19.318076+00:00",
+  "status": "complete source review; no manufacturer nutrition approval",
+  "policy": "Keep seller observations separate from manufacturer-approved facts. Volume and protein-package metrics do not require mass. Never infer density, map another flavour/revision, or turn shipping case count into selling-unit pack count.",
+  "rows": [
+    {
+      "listingId": "2978009544",
+      "skuId": "14350953081",
+      "offerId": "2978009544_VNAMZ-14350953081",
+      "skus": [
+        "2978009544_VNAMZ-14350953081"
+      ],
+      "productName": "Binggrae Power Cap Choco / Pongta chocolate",
+      "facts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual chocolate export PowerCap package",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "manufacturerVerified": true,
+          "requestBody": "prod_idx=774&lang=EN",
+          "requestBodySha256": "7cc9bd02bea2f07a1b7573185dc1beeba89534a303d5bcf54c319d466c878988",
+          "reviewMethod": "exact manufacturer family57 export PowerCap -> Chocolate774 ->130ml variant796"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "strictChocolateEligible": true,
+      "strictScopeReason": "explicit chocolate variant with no visible mixed-flavor core or nuts in the cached product depiction",
+      "blockingEvidenceGaps": [
+        "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
+      ],
+      "massKnown": false,
+      "manufacturerNutritionMatched": false,
+      "sellerFacts": {
+        "netVolumeMl": {
+          "value": 130,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "130ml; Kem Pongta vị Choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "proteinPerPackageG": {
+          "value": 1,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 135,
+          "unit": "kcal",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 3,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 26,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 25,
+          "unit": "g",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 130 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "manufacturerProductPage": "https://www.bing.co.kr/en/product/detail?PDT=57",
+      "manufacturerProductIdentity": {
+        "familyId": 57,
+        "productId": 774,
+        "variantId": 796,
+        "flavour": "Chocolate",
+        "volumeMl": 130,
+        "exactExportVariant": true
+      },
+      "manufacturerNutritionResponse": {
+        "sourceUrl": "https://www.bing.co.kr/en/product/get_idt_info",
+        "sourceSha256": "383c504103c19a8ae96530fc3424e263096433c33736f8d10a9ee356d5778bef",
+        "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-nutrition.json",
+        "requestBody": "prod_val_idx=796&prod_idx=57&lang=EN",
+        "requestBodySha256": "7acd2ad6786e71902fbbb5d9dd81953838070d0cc5f548ba2411d6f147917c4b",
+        "identityMatched": true,
+        "nutritionUsable": false,
+        "reason": "Placeholder response: all nutrient amounts0, daily amounts\"-\", energy unit empty, serving basisTOT_CONT_AMT0 and TOT_CONT_UNITempty; onlyAMT_INFO130ml remains. These are missing nutrition values, not valid measured zeros.",
+        "excerpt": "info:{CAL_AMT:0.0,CAL_BASE_UNIT:\"\",AMT_INFO:\"130ml\",TOT_CONT_AMT:0.0,TOT_CONT_UNIT:\"\",PROD_NAME:\"Chocolate\",PROD_IDX:774,PROD_VAL_IDX:796,VAL_UPDATE_DATE:\"25.09.24 Update\"}"
+      },
+      "manufacturerWrapperEvidence": {
+        "sourceUrl": "https://www.bing.co.kr/upload/product/2025/09/9daace13-dbc6-45be-9a64-9f08a18a6750.png",
+        "sourceSha256": "d2ba431373703c92f62f8a52fa46328c42e91114d115f433d64bdf44e0afbfae",
+        "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-front.png",
+        "identityMatched": true,
+        "excerpt": "Binggrae Power Cap Choco Flavor Ice Bar bilingual English/Chinese export wrapper matches the cached seller family/flavour front; manufacturer metadata confirms130ml.",
+        "matchedFields": [
+          "brand",
+          "export family",
+          "chocolate flavour",
+          "130ml manufacturer metadata",
+          "wrapper presentation"
+        ],
+        "unmatchedFields": [
+          "seller GTIN",
+          "exact sold lot/formula revision",
+          "factory back nutrition label"
+        ]
+      }
+    },
+    {
+      "listingId": "3047790409",
+      "skuId": "14661118301",
+      "offerId": "3047790409_VNAMZ-14661118301",
+      "skus": [
+        "3047790409_VNAMZ-14661118301"
+      ],
+      "productName": "Lotte Fanfare / 빵빠레 chocolate",
+      "facts": {
+        "netVolumeMl": {
+          "value": 175,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-5.webp",
+          "excerpt": "175ml; vị choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        }
+      },
+      "strictChocolateEligible": true,
+      "strictScopeReason": "explicit chocolate variant with no visible mixed-flavor core or nuts in the cached product depiction",
+      "blockingEvidenceGaps": [
+        "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it."
+      ],
+      "massKnown": false,
+      "manufacturerNutritionMatched": false,
+      "manufacturerIdentityEvidence": [
+        {
+          "sourceUrl": "https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+          "sourceSha256": "0578cad32e0aef26915871e75fe2cbae7eb0583a9aceb04641eab33825594a7a",
+          "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-front-1.png",
+          "excerpt": "Original manufacturer image shows Lotte 빵빠레 초코 chocolate soft-serve cup.",
+          "identityMatched": true,
+          "matchedFields": [
+            "manufacturer",
+            "family",
+            "chocolate flavour",
+            "package shape"
+          ],
+          "unmatchedFields": [
+            "175ml export size",
+            "GTIN8801118251313",
+            "formula revision",
+            "nutrition"
+          ]
+        }
+      ]
+    },
+    {
+      "listingId": "3039951845",
+      "skuId": "14623703963",
+      "offerId": "3039951845_VNAMZ-14623703963",
+      "skus": [
+        "3039951845_VNAMZ-14623703963"
+      ],
+      "productName": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+      "facts": {
+        "netVolumeMl": {
+          "value": 160,
+          "unit": "ml",
+          "basis": "one individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "160ml; vị choco",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "proteinPerPackageG": {
+          "value": 3.2,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Đạm/Protein: 3.2g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "energyPerPackageKcal": {
+          "value": 296,
+          "unit": "kcal",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Năng lượng/Energy: 296 Kcal",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "fatPerPackageG": {
+          "value": 15,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Chất béo/Total Fat: 15g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "carbohydratePerPackageG": {
+          "value": 37,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Carbohydrate: 37g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sugarPerPackageG": {
+          "value": 29,
+          "unit": "g",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Đường/Total Sugars: 29 g",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "sodiumPerPackageMg": {
+          "value": 80,
+          "unit": "mg",
+          "basis": "one 160 ml individual package",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "excerpt": "Sodium: 80mg",
+          "identityMatched": true,
+          "sourceAuthority": "seller-promotional-panel",
+          "manufacturerVerified": false,
+          "currentCapture": false,
+          "reviewMethod": "manual visual transcription of original cached gallery image"
+        },
+        "peanutToppingVisible": {
+          "value": true,
+          "unit": "boolean",
+          "basis": "manufacturer WorldCone chocolate depiction and exact seller gallery depiction",
+          "sourceUrl": "https://www.lottewellfood.com/images/brand/img_hp05_04.png",
+          "sourceSha256": "0b743a3ba6f4a5d083190862b7abbd50cb13a7cd1e56365a581e2eaa3af0ceca",
+          "artifact": "docs/acceptance/ice-dual-units/lotte-worldcone-choco-hero.png",
+          "excerpt": "Official chocolate WorldCone wrapper shows mixed nut pieces/peanuts and chocolate topping, matching seller chocolate cone depiction.",
+          "identityMatched": true,
+          "sourceAuthority": "manufacturer-product-image",
+          "manufacturerVerified": true,
+          "verificationLimit": "Visual peanut depiction supports conservative scope exclusion; no complete factory ingredient/allergen panel was provided."
+        }
+      },
+      "strictChocolateEligible": false,
+      "strictScopeReason": "World Cone chocolate has visible peanut topping",
+      "blockingEvidenceGaps": [
+        "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+        "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+        "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+        "Peanut topping excludes this exact listing from the requested nut-free strict chocolate scope. Seller English name is not the Korean manufacturer family name."
+      ],
+      "massKnown": false,
+      "manufacturerNutritionMatched": false,
+      "manufacturerIdentityEvidence": [
+        {
+          "sourceUrl": "https://www.lottewellfood.com/images/brand/img_hp05_04.png",
+          "sourceSha256": "0b743a3ba6f4a5d083190862b7abbd50cb13a7cd1e56365a581e2eaa3af0ceca",
+          "artifact": "docs/acceptance/ice-dual-units/lotte-worldcone-choco-hero.png",
+          "excerpt": "LOTTE 월드콘 초코; visible peanut/nut topping",
+          "identityMatched": true,
+          "matchedFields": [
+            "manufacturer",
+            "family",
+            "chocolate flavour",
+            "nuts depicted"
+          ],
+          "unmatchedFields": [
+            "160ml export size",
+            "GTIN",
+            "formula revision",
+            "nutrition"
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 0,
+      "sourceUrl": "https://img.lazcdn.com/g/p/fce691bea4d397a442b66321d69b8777.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "cacc2ad008346e3b80997d069153b5f9e813acc457a1837578f7d5e40a6fcbff",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-0.webp",
+      "bytes": 59656,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 1,
+      "sourceUrl": "https://img.lazcdn.com/g/p/c6b11243ec352e213cce34953a5c58b2.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "2dbacdef41b6e7c81e4909fa5ad8360e4d8a691dcb18e25258d7f0c935fbbaf4",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-1.webp",
+      "bytes": 31722,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 2,
+      "sourceUrl": "https://img.lazcdn.com/g/p/f50de01c9eb5066b9a6d0f680e30a785.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "0209f39e73c8d48cf1f44ea85ff8f6304fbdc4f917d107ec37b13f779dd0a28b",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-2.webp",
+      "bytes": 45574,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 3,
+      "sourceUrl": "https://img.lazcdn.com/g/p/f5ab5a2d9bfbd74e2d6a84a5fbce6e34.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "a6efc922ac98846dbb7cc0afbc956becbbdb463a2fa09389cb05ae756ff869d3",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-3.webp",
+      "bytes": 55876,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 4,
+      "sourceUrl": "https://img.lazcdn.com/g/p/85d7c975f5bbb962c4bc76608f73c720.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "f1040b253af38654b71620a9fceded1ba011d78c1eb51051e1592e5ea57460ef",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-4.webp",
+      "bytes": 23114,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "2978009544",
+      "galleryIndex": 5,
+      "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+      "artifact": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+      "bytes": 31354,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 0,
+      "sourceUrl": "https://img.lazcdn.com/g/p/0139ab68425631644174e4ac693393f3.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "a8696e16c593a83413f54f275f2e6eb06e0d6d5739680751f552e922e54462d5",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-0.webp",
+      "bytes": 54632,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 1,
+      "sourceUrl": "https://img.lazcdn.com/g/p/a41b034a2e5447d8bbe121d79a8af66d.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "981c7445ea61051ca9ab7bb03ab9eaf897c752a952011fb4495bceb0443d99c4",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-1.webp",
+      "bytes": 24022,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 2,
+      "sourceUrl": "https://img.lazcdn.com/g/p/9b7904ca30158b0f57d849c4406b96a1.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "7e2e96a36ebb5c79653a34de653ebdc7bb03232ecd13b20f6ec6894c64998b77",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-2.webp",
+      "bytes": 25900,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 3,
+      "sourceUrl": "https://img.lazcdn.com/g/p/7de854431d43079de10a5146b585211c.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "4381a60b1988d99cdbb60b87ecbd8f8ae709c08c0bfc34f23c90f0db921390f0",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-3.webp",
+      "bytes": 28810,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 4,
+      "sourceUrl": "https://img.lazcdn.com/g/p/0b8d9653b10a13560ae37ec1755746be.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "ea0664f0a0b976b6fb2d40a342aefba33479d2f6590ce9265578f8b0592a3a90",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-4.webp",
+      "bytes": 27282,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3047790409",
+      "galleryIndex": 5,
+      "sourceUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+      "artifact": "docs/acceptance/ice-dual-units/3047790409-seller-5.webp",
+      "bytes": 21432,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 0,
+      "sourceUrl": "https://img.lazcdn.com/g/p/d09ecec79d48e455be2f67553114dd82.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "079fe1db4da2abb5ea54008c7792b2fd3815d2df97798f7740a741899434b14d",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-0.webp",
+      "bytes": 66004,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 1,
+      "sourceUrl": "https://img.lazcdn.com/g/p/06e5ed22831b778683f66287c748c2c6.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "4147c50a66704db91739080c9b4fa115db918a85318838f51436adb2f18038a3",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-1.webp",
+      "bytes": 33762,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 2,
+      "sourceUrl": "https://img.lazcdn.com/g/p/86f24de88d2620de4789180a1570267a.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "014cf1c423c50bf8a69d5b9c1e606485aefdf2524ee2b574bd0ded0dd8ad5025",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-2.webp",
+      "bytes": 59540,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 3,
+      "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+      "bytes": 23926,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 4,
+      "sourceUrl": "https://img.lazcdn.com/g/p/ab9285571784761b64115febba16e731.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "87a19b4f190bd14e480525f1415376daee542dd434895e0ad11a9983aa925213",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-4.webp",
+      "bytes": 30852,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    },
+    {
+      "listingId": "3039951845",
+      "galleryIndex": 5,
+      "sourceUrl": "https://img.lazcdn.com/g/p/39e7b1d8a1c22706b2bfd7a483053ada.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27",
+      "artifact": "docs/acceptance/ice-dual-units/3039951845-seller-5.webp",
+      "bytes": 46972,
+      "sourceAuthority": "seller-promotional-panel",
+      "acquisition": "unchanged bytes copied from existing repository associative blob cache; no Lazada requests"
+    }
+  ],
+  "primarySourceAttempts": [
+    {
+      "url": "https://www.bing.co.kr/en/product/list?type=7",
+      "observedAt": "2026-10-10T17:06:29.415549+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/en/product/list?type=7",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-export-directory.html",
+      "sourceSha256": "87a1b0b7e8766844dfd7b51718fdc450a20ea4d7a0cfc46319909a25047e3f2b",
+      "bytes": 59254
+    },
+    {
+      "url": "https://www.bing.co.kr/en/product/detail?PDT=57",
+      "observedAt": "2026-10-10T17:08:23.971527+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/en/product/detail?PDT=57",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-export-powercap.html",
+      "sourceSha256": "b4eae259abe69ffb8d0d5f0b29661f46546f540c6c0e2361f422ca40801a123a",
+      "bytes": 62834
+    },
+    {
+      "url": "https://www.bing.co.kr/product/detail?PDT=173",
+      "observedAt": "2026-10-10T17:05:29.574162+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/product/detail?PDT=173",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-pongta-domestic.html",
+      "sourceSha256": "841c85ca5498f4f4e11b4f913215eae8cd0ae67acc7fbfed4ba8f7df373859cf",
+      "bytes": 72707
+    },
+    {
+      "url": "https://www.bing.co.kr/en/product/getEnProductList",
+      "requestMethod": "POST",
+      "requestBody": "pdt_code=&page_cnt=16&search_name=Power&tag_type=1&lang=EN",
+      "observedAt": "2026-10-10T17:07:55.204547+00:00",
+      "method": "curl; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/en/product/getEnProductList",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-power-list.json",
+      "sourceSha256": "189e58eba3ada9145ee6ca27b162216d1d967765beada85bbbb0327ff756221d",
+      "bytes": 1438,
+      "requestBodySha256": "cafcf9a3a999aa86d3e362a04cf8ee2d20bff2e59abbef2f59cc5a2cc2e22db4"
+    },
+    {
+      "url": "https://www.bing.co.kr/upload/product/2025/09/9daace13-dbc6-45be-9a64-9f08a18a6750.png",
+      "requestMethod": "GET",
+      "requestBody": null,
+      "observedAt": "2026-10-10T17:08:54.931548+00:00",
+      "method": "curl; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/upload/product/2025/09/9daace13-dbc6-45be-9a64-9f08a18a6750.png",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-front.png",
+      "sourceSha256": "d2ba431373703c92f62f8a52fa46328c42e91114d115f433d64bdf44e0afbfae",
+      "bytes": 60935
+    },
+    {
+      "url": "https://www.bing.co.kr/en/product/get_idt_info",
+      "requestMethod": "POST",
+      "requestBody": "prod_val_idx=796&prod_idx=57&lang=EN",
+      "requestBodySha256": "7acd2ad6786e71902fbbb5d9dd81953838070d0cc5f548ba2411d6f147917c4b",
+      "observedAt": "2026-10-10T17:10:14.061910+00:00",
+      "method": "curl read-only product-nutrition POST copied from official HTML; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/en/product/get_idt_info",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-nutrition.json",
+      "sourceSha256": "383c504103c19a8ae96530fc3424e263096433c33736f8d10a9ee356d5778bef",
+      "bytes": 1788
+    },
+    {
+      "url": "https://www.bing.co.kr/product/get_volume_list",
+      "requestMethod": "POST",
+      "requestBody": "prod_idx=774&lang=EN",
+      "observedAt": "2026-10-10T17:08:52.455359+00:00",
+      "method": "curl; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.bing.co.kr/product/get_volume_list",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+      "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+      "bytes": 286,
+      "requestBodySha256": "7cc9bd02bea2f07a1b7573185dc1beeba89534a303d5bcf54c319d466c878988"
+    },
+    {
+      "url": "https://www.lottewellfood.com/brand/detail/product?seq=269&lang=ko",
+      "observedAt": "2026-10-10T17:06:25.721354+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.lottewellfood.com/brand/detail/product?seq=269&lang=ko",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-detail.html",
+      "sourceSha256": "4570d1e82b5bd87dc5ddd2870949ba3c5d6352810c809e78ae8a1bfd4ef64952",
+      "bytes": 1494
+    },
+    {
+      "url": "https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+      "requestMethod": "GET",
+      "requestBody": null,
+      "observedAt": "2026-10-10T17:07:56.152930+00:00",
+      "method": "curl; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-front-1.png",
+      "sourceSha256": "0578cad32e0aef26915871e75fe2cbae7eb0583a9aceb04641eab33825594a7a",
+      "bytes": 79461
+    },
+    {
+      "url": "https://www.lottewellfood.com/brand/product?searchType1=LC700",
+      "observedAt": "2026-10-10T17:05:30.974166+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.lottewellfood.com/brand/product?searchType1=LC700",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-ice-directory.html",
+      "sourceSha256": "1b8edab8db1e0319f686723fefb81187ecbdfd7b0b800df7bd41b19ee74a119c",
+      "bytes": 64606
+    },
+    {
+      "url": "https://www.lottewellfood.com/images/brand/img_hp05_04.png",
+      "requestMethod": "GET",
+      "requestBody": null,
+      "observedAt": "2026-10-10T17:07:58.261935+00:00",
+      "method": "curl; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.lottewellfood.com/images/brand/img_hp05_04.png",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-worldcone-choco-hero.png",
+      "sourceSha256": "0b743a3ba6f4a5d083190862b7abbd50cb13a7cd1e56365a581e2eaa3af0ceca",
+      "bytes": 125503
+    },
+    {
+      "url": "https://www.lottewellfood.com/brand/hero/worldcon",
+      "observedAt": "2026-10-10T17:05:32.428537+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.lottewellfood.com/brand/hero/worldcon",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-worldcone.html",
+      "sourceSha256": "f4582926e864027babff20d381d7d7c5b67e06a7885d0094dff62334524b6394",
+      "bytes": 58905
+    },
+    {
+      "url": "https://www.lottewellfood.com/brand/detail/product?seq=263&lang=ko",
+      "observedAt": "2026-10-10T17:06:26.904565+00:00",
+      "method": "curl GET; certificate verification enabled; exact original response bytes retained",
+      "httpResult": "200 https://www.lottewellfood.com/brand/detail/product?seq=263&lang=ko",
+      "exitCode": 0,
+      "error": "",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-worldcone-detail.html",
+      "sourceSha256": "ee2b86388f8ab5441a1eb57245a6dfb16ad745faee2d910d997ba6aa9b8e9e79",
+      "bytes": 2436
+    }
+  ],
+  "searchesAttempted": [
+    "site.bing.co.kr \"Power Cap\"",
+    "site.bing.co.kr \"뽕따\" \"초코\"",
+    "site.lottewellfood.com \"빵빠레\"",
+    "official Lotte product directory ice cream category LC700",
+    "official Lotte World Cone hero page and its chocolate image",
+    "official Bing product directory export category7 and ice category1",
+    "Official /en/product/getEnProductList POST bodypdt_code=&page_cnt=16&search_name=Power&tag_type=1&lang=EN:3family results; selected export family57, rejected domestic158.",
+    "Official family57 HTML:exactChocolateproduct774.",
+    "Official /product/get_volume_list POST bodyprod_idx=774&lang=EN:130ml,variant796only.",
+    "Official /en/product/get_idt_info POST bodyprod_val_idx=796&prod_idx=57&lang=EN:exactidentity, empty nutrient placeholders."
+  ],
+  "automationRequirements": [
+    "Read gallery images beyond the first three: the Pongta nutrient panel is image5, WorldCone image3, and Fanfare empty nutrient panel image5.",
+    "OCR/transcription must retain source authority, variant and nutrition basis; empty cells must remain missing.",
+    "Manufacturer pages populate nutrition through documented public product-detail endpoints; archive response bytes and identity images together.",
+    "Reject manufacturer nutrient placeholders when serving basis is0/empty and all daily amounts are\"-\"; do not accept numeric0alone as verified nutrition.",
+    "Reuse cached manufacturer product responses by endpoint, complete request body hash and language; separate identity, serving basis and numeric nutrition validation.",
+    "Use minimum60seconds between further requests to the same manufacturer host; no repeatedURLs were fetched.",
+    "Retain selling-unit pack count separately from shipping-case text; these seller descriptions24/15percase do not establish purchased pack size."
+  ],
+  "failedTransportAttempts": [
+    {
+      "name": "bing-pongta-domestic",
+      "url": "https://www.bing.co.kr/product/detail?PDT=173",
+      "observedAt": "2026-10-10T17:02:57.789210+00:00",
+      "method": "Attempted Python urllib GET; TLS CA validation failed before HTTP; no original response bytes obtained",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)>"
+    },
+    {
+      "name": "lotte-home",
+      "url": "https://www.lottewellfood.com/",
+      "observedAt": "2026-10-10T17:02:59.035683+00:00",
+      "method": "Attempted Python urllib GET; TLS CA validation failed before HTTP; no original response bytes obtained",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)>"
+    }
+  ],
+  "rejectedSources": [
+    {
+      "sourceUrl": "https://www.bing.co.kr/product/detail?PDT=173",
+      "reason": "Unrelated domestic product default190ml; not PowerCapChoco130ml. Template comments are placeholders, never nutrition evidence."
+    }
+  ],
+  "validation": {
+    "exactSkusReviewed": 3,
+    "originalSellerImagesRetained": 18,
+    "factoryProductNutritionApproved": 0,
+    "factoryVolumeIdentityMatched": 1,
+    "sellerNutritionPackagesAvailable": 2,
+    "strictScopeExcludedPackages": 1,
+    "netMassValuesInvented": 0,
+    "LazadaRequestsMade": 0,
+    "sharedStoreMutations": 0
+  }
+}
