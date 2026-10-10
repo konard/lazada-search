@@ -1,6 +1,6 @@
 # User-picked Lazada links: exact identity and unit costs
 
-Updated 2026-10-10T20:23:59.890Z. Public cached sources only, Vietnam / Nha Trang, VND. No identity inferred from user labels or similar titles. A resolved listing alone does not identify its selling option. Cached observations retain their timestamps. Delivery metrics require the exact Nha Trang one-unit quote. Source-derived unit costs remain separate from any published conditional factory calculation. Manufacturer matching does not establish seller authenticity.
+Updated 2026-10-10T20:54:22.326Z. Public cached sources only, Vietnam / Nha Trang, VND. No identity inferred from user labels or similar titles. A resolved listing alone does not identify its selling option. Cached observations retain their timestamps. Delivery metrics require the exact Nha Trang one-unit quote. Source-derived unit costs remain separate from any published conditional factory calculation. Manufacturer matching does not establish seller authenticity.
 
 6 submitted rows; 6 resolved listing identities; 6 resolved selling SKUs; 6 exact SKUs with cached observations. Duplicate counts are 1 resolved listing rows and 0 resolved exact SKU rows. Two similarly named links are never assumed to be duplicates.
 
@@ -21,7 +21,7 @@ Listing-level membership means another selling option from that listing may appe
 
 | Ranking         | Submitted listing matches | Submitted exact-SKU matches | Unique listing matches | Unique exact-SKU matches |
 | --------------- | ------------------------- | --------------------------- | ---------------------- | ------------------------ |
-| wheyFoodGram    | 3                         | 2                           | 2                      | 2                        |
+| wheyFoodGram    | 2                         | 1                           | 1                      | 1                        |
 | wheyProteinGram | 1                         | 1                           | 1                      | 1                        |
 | soyProteinGram  | 0                         | 0                           | 0                      | 0                        |
 
