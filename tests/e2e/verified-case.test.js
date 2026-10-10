@@ -14,13 +14,36 @@ import {
 } from '../../src/index.js';
 const execute = promisify(execFile);
 
-test('cached Soy Chocolate labels use the explicit nutrition serving and preserve ingredient and serving conflicts', async (t) => {
+test('account comparisons reuse exact published Soy Chocolate reviews over older private captures', async (t) => {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-soy-case-'));
+  const shared = new AssociativeStore({
+    directory: join(directory, 'public'),
+    archive: 'data/cases/vietnam-nha-trang',
+  });
+  const store = new AssociativeStore({
+    directory: join(directory, 'account'),
+    visibility: 'private',
+    fallback: shared,
+  });
+  const originals = (await shared.list('product')).filter(
+    (p) =>
+      p.category === 'protein-powder' &&
+      p.manufacturerVerification?.sourceUrl ===
+        'https://musaking.com/products/soy-protein'
+  );
+  assert.equal(originals.length, 2);
+  for (const product of originals) {
+    await store.put('product', {
+      ...product,
+      proteinPer100g: 20,
+      ingredients: ['seller ingredient claim'],
+      claims: product.claims.filter((c) => c.source !== 'manufacturer'),
+      reviewedFields: [],
+      manufacturerVerification: undefined,
+    });
+  }
   const app = new LazadaSearch({
-    store: new AssociativeStore({
-      directory,
-      archive: 'data/cases/vietnam-nha-trang',
-    }),
+    store,
     offline: true,
     ocr: false,
   });
@@ -64,6 +87,7 @@ test('cached Soy Chocolate labels use the explicit nutrition serving and preserv
     );
   }
   assert.equal(app.cache.stats.downloads, 0);
+  assert.equal((await app.audit()).verifiedProducts, 13);
 });
 
 test('verified public case keeps factory corrections and prices across library, CLI, HTTP and Telegram offline', async (t) => {

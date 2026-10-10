@@ -1,9 +1,9 @@
 {
-  "validatedAt": "2026-10-10T12:12:37.005Z",
+  "validatedAt": "2026-10-10T12:32:40.575Z",
   "node": "v22.23.0",
   "unit": {
-    "tests": 673,
-    "pass": 673,
+    "tests": 680,
+    "pass": 680,
     "fail": 0,
     "skipped": 0,
     "fileTimeoutMs": 300000
@@ -13,12 +13,13 @@
     "pass": 15,
     "fail": 0,
     "skipped": 0,
-    "nativeStore": "All fifteen E2E checks passed in one run with the real local clink executable, including Telegram, CLI, browser capture and persistent-window behavior. Delivery viewport evidence was rechecked separately after applying the same capture workaround."
+    "nativeStore": "All fifteen E2E checks passed in one run with the real local clink executable, including Telegram, CLI, browser capture and persistent-window behavior. Delivery viewport evidence was rechecked separately after applying the same capture workaround.",
+    "lastFullRunValidatedAt": "2026-10-10T12:12:37.005Z"
   },
   "checks": {
     "lint": "passed",
     "formatting": "passed",
-    "duplication": "passed (7.45%, threshold 10%)",
+    "duplication": "passed (7.42%, threshold 10%)",
     "webExampleBuild": "passed",
     "packageDryRun": "passed",
     "strictCoverageAudit": "expected failure"
@@ -147,5 +148,21 @@
     },
     "upstreamReport": "https://github.com/link-foundation/browser-commander/issues/142#issuecomment-6097318324",
     "originalVisualTransientRootCause": "unproven; sampled JavaScript geometry stayed fixed"
+  },
+  "sharedAccountReviews": {
+    "sameCapturedSkuOnly": true,
+    "sameObservationTimestampOnly": true,
+    "privatePricesPreserved": true,
+    "conflictingClaimsPreserved": true,
+    "newerPrivateReviewWins": true,
+    "quarantinePolicyAppliedInAuditAndComparison": true,
+    "exactFactoryVerified": 13,
+    "downloads": 0,
+    "e2eRechecked": {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "explicitTwoSkuFixtureRechecked": true
+    }
   }
 }

@@ -13,6 +13,7 @@ import { captureDelivery } from './delivery.js';
 import { importBrowserCapture } from './capture-import.js';
 import { reviewManufacturer } from './manufacturer-review.js';
 import { applyListingCategoryReview } from './category-review.js';
+import { catalogProducts, resolveProductReviews } from './catalog-products.js';
 import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 
 export const MARKETS = {
@@ -227,7 +228,10 @@ export class LazadaSearch {
       evidenceId: id,
       observedAt: new Date(capture.fetchedAt).toISOString(),
     });
-    const previous = await this.store.get('product', product.id);
+    const previous = await resolveProductReviews(
+      this.store,
+      await this.store.get('product', product.id)
+    );
     // A refresh keeps reviewed facts but preserves fresh contradictory claims.
     if (previous) {
       product.claims = [...previous.claims, ...product.claims].filter(
@@ -420,7 +424,7 @@ export class LazadaSearch {
     const crawl = latestCrawl(crawls);
     return auditCoverage({
       crawl,
-      products: await this.store.list('product'),
+      products: await catalogProducts(this.store),
       offers: await this.store.list('offer'),
       discoveries: await this.store.list('discovery'),
       skuInventories: await this.store.list('sku-inventory'),
@@ -655,7 +659,7 @@ export class LazadaSearch {
   }
 
   async compare(options = {}) {
-    const products = await this.store.list('product');
+    const products = await catalogProducts(this.store);
     const offers = (await this.store.list('offer')).filter(
       (offer) => !offer.supersededBy
     );
@@ -679,7 +683,6 @@ export class LazadaSearch {
       );
     }
     for (const product of products) {
-      await applyListingCategoryReview(this.store, product);
       product.specificationsInvalidated = invalidated.some(
         (source) =>
           source.url === product.url ||
