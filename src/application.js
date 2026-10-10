@@ -2,7 +2,13 @@ import { AssociativeStore } from './store.js';
 import { EvidenceCache, evidenceId } from './cache.js';
 import { BrowserCollector } from './browser.js';
 import { TesseractOcr } from './ocr.js';
-import { parseProduct, validateOffer, validateProduct } from './products.js';
+import {
+  applySelectedPackageMass,
+  parseProduct,
+  validateOffer,
+  validateProduct,
+} from './products.js';
+import { selectedPackageImage } from './package-image.js';
 import { crossCheck, extractNutrition } from './nutrition.js';
 import { compareOffers } from './compare.js';
 import { crawlMarketplace, latestCrawl } from './crawl.js';
@@ -15,6 +21,7 @@ import { reviewManufacturer } from './manufacturer-review.js';
 import { applyListingCategoryReview } from './category-review.js';
 import { catalogProducts, resolveProductReviews } from './catalog-products.js';
 import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
+import { CachedTranslator, translateProductText } from './translation.js';
 
 export const MARKETS = {
   vn: {
@@ -67,6 +74,9 @@ export class LazadaSearch {
     browserOptions,
     scheduler,
     manufacturerRegistry = MANUFACTURERS,
+    translationProvider,
+    translationProviderId,
+    translationProviderVersion,
   } = {}) {
     if (!MARKETS[market]) {
       throw new Error('Unsupported Lazada market');
@@ -88,6 +98,23 @@ export class LazadaSearch {
     this.flavourScope = flavourScope;
     this.maxImages = maxImages;
     this.manufacturerRegistry = manufacturerRegistry;
+    this.translator = new CachedTranslator({
+      store,
+      provider: translationProvider,
+      providerId: translationProviderId,
+      providerVersion: translationProviderVersion,
+      scheduler: this.cache.scheduler,
+      offline: this.cache.offline,
+      beforeDownload: () => this.cache.beforeDownload?.(),
+    });
+  }
+
+  translate(text, options) {
+    return this.translator.translate(text, options);
+  }
+
+  translateProduct(productId, options) {
+    return translateProductText(this, productId, options);
   }
 
   assertMarket(url) {
@@ -242,6 +269,8 @@ export class LazadaSearch {
       product.evidenceIds = [...new Set([...previous.evidenceIds, id])];
       product.crossChecks = previous.crossChecks || [];
       product.corrections = previous.corrections || [];
+      product.pendingSpecificationReview =
+        previous.pendingSpecificationReview || [];
       product.manufacturerVerification =
         previous.observedAt === product.observedAt
           ? previous.manufacturerVerification
@@ -358,14 +387,33 @@ export class LazadaSearch {
             excerpt: extracted.excerpts[field],
           });
           if (
-            product[field] === undefined ||
-            (field === 'ingredients' && !product.ingredients.length)
+            field !== 'netMassG' &&
+            (product[field] === undefined ||
+              (field === 'ingredients' && !product.ingredients.length))
           ) {
             product[field] = value;
           }
           if (JSON.stringify(product[field]) !== JSON.stringify(value)) {
             product.warnings.push(`OCR disagrees about ${field}`);
           }
+        }
+        const boundImage = selectedPackageImage(
+          capture.snapshot,
+          product,
+          imageUrl
+        );
+        if (boundImage && result.imageHash === blob.sha256) {
+          applySelectedPackageMass(product, {
+            text: result.text,
+            evidenceId: id,
+            sku: boundImage.sku,
+            selectedOptions: product.selectedVariant,
+            imageSha256: blob.sha256,
+            matchedImageSha256: result.imageHash,
+            selectionConfirmed: true,
+            method: 'selected-sku-image-ocr',
+            confidence: result.confidence,
+          });
         }
         if (
           retry &&
@@ -510,10 +558,16 @@ export class LazadaSearch {
       'packCount',
       'servingMassG',
       'proteinPer100g',
+      'proteinPer100ml',
+      'proteinPerPackageG',
       'sugarPer100g',
+      'sugarPer100ml',
       'fatPer100g',
+      'fatPer100ml',
       'saturatedFatPer100g',
+      'saturatedFatPer100ml',
       'kcalPer100g',
+      'kcalPer100ml',
       'ingredients',
     ];
     if (!allowed.includes(field)) {
@@ -540,6 +594,9 @@ export class LazadaSearch {
       });
     }
     product[field] = value;
+    product.pendingSpecificationReview = (
+      product.pendingSpecificationReview || []
+    ).filter((pending) => pending !== field);
     product.reviewedFields = [
       ...new Set([...(product.reviewedFields || []), field]),
     ];

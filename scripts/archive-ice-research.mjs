@@ -58,31 +58,6 @@ async function archiveArtifacts(value) {
   }
 }
 
-// Capture digests describe provenance; only stored blob references carry bytes.
-function provenanceMetadata(value) {
-  if (Array.isArray(value)) {
-    return value.map(provenanceMetadata);
-  }
-  if (!value || typeof value !== 'object') {
-    return value;
-  }
-  const result = Object.fromEntries(
-    Object.entries(value).map(([key, child]) => [
-      key,
-      provenanceMetadata(child),
-    ])
-  );
-  if (
-    /^[a-f\d]{64}$/u.test(result.sha256 || '') &&
-    Number.isSafeInteger(result.bytes)
-  ) {
-    result.contentSha256 = result.sha256;
-    result.byteLength = result.bytes;
-    delete result.sha256;
-    delete result.bytes;
-  }
-  return result;
-}
 for (const group of [
   'merino',
   'korean',
@@ -108,7 +83,7 @@ for (const group of [
     id: `ice-review:${group}`,
     path,
     original: await store.putBlob(bytes),
-    review: provenanceMetadata(review),
+    review,
   });
 }
 const rankings = JSON.parse(

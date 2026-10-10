@@ -10,6 +10,7 @@ import { startServer } from '../src/server.js';
 import { createTelegramBot } from '../src/telegram.js';
 import { importSession, sessionSources } from '../src/session.js';
 import { DomainScheduler } from '../src/cache.js';
+import { createHttpTranslationProvider } from '../src/translation.js';
 
 export async function runCli(
   argv,
@@ -61,6 +62,16 @@ export async function runCli(
         flavourScope: options.flavourScope,
         maxImages: options.maxImages,
         offline: options.offline,
+        translationProviderId: options.translationProvider,
+        translationProviderVersion: options.translationVersion,
+        translationProvider: options.translationEndpoint
+          ? createHttpTranslationProvider({
+              endpoint: options.translationEndpoint,
+              id: options.translationProvider,
+              version: options.translationVersion,
+              tokenEnv: options.translationTokenEnv,
+            })
+          : undefined,
         ocr: options.ocr
           ? new TesseractOcr({
               store,

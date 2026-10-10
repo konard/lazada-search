@@ -365,7 +365,9 @@ export function dedupeVouchers(vouchers) {
   return [...merged.values()];
 }
 
-// Sort by the largest guaranteed saving first, then by lower thresholds.
+// Potential face-value saving only. This helper does not establish current
+// validity, buyer/product/payment eligibility, stacking or basket application.
+// Only a confirmed checkout discount may reduce a delivered buying price.
 export function voucherValue(voucher, orderTotal) {
   if (voucher.minSpend && orderTotal < voucher.minSpend) {
     return 0;

@@ -1,3 +1,5 @@
+import { proteinAmount } from '../src/protein-amount.js';
+
 // Package mass, volume and protein are independent measured quantities. A label
 // expressed per 100 ml can price protein without inventing a package weight.
 const positive = (value) => Number.isFinite(value) && value > 0;
@@ -59,29 +61,6 @@ function selectFacts(applicable) {
   return { facts, conflicts, superseded };
 }
 
-function proteinAmount(facts, massG, volumeMl, packages) {
-  const proteinCandidates = [
-    ['package', facts.proteinPerPackageG?.value * packages],
-    ['100g', (facts.proteinPer100g?.value * massG) / 100],
-    ['100ml', (facts.proteinPer100ml?.value * volumeMl) / 100],
-  ].filter(([, value]) => Number.isFinite(value) && value >= 0);
-  // Printed nutrition bases must agree within their rounding tolerance.
-  const proteinConflict = proteinCandidates.some(
-    ([, value]) =>
-      Math.abs(value - proteinCandidates[0][1]) >
-      Math.max(0.05 * packages, 0.02 * proteinCandidates[0][1])
-  );
-  const proteinG =
-    proteinConflict || !proteinCandidates.length
-      ? null
-      : proteinCandidates[0][1];
-  return {
-    proteinG,
-    proteinConflict,
-    proteinBasis: proteinG !== null ? proteinCandidates[0][0] : null,
-  };
-}
-
 function eligibility(applicable) {
   return applicable.some((review) => review.strictChocolateEligible === false)
     ? false
@@ -138,7 +117,9 @@ export function enrichIceRow(row, reviews = []) {
     row.volumeMl
   );
   const { proteinG, proteinConflict, proteinBasis } = proteinAmount(
-    facts,
+    Object.fromEntries(
+      Object.entries(facts).map(([field, fact]) => [field, fact.value])
+    ),
     massG,
     volumeMl,
     packages

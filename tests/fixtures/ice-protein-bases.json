@@ -1,0 +1,53 @@
+{
+  "synthetic": true,
+  "purpose": "Interface replay of declared nutrition bases, without a factory identity or a real freight quote",
+  "products": [
+    {
+      "id": "fixture-package-protein",
+      "url": "https://www.lazada.vn/products/pdp-i9991.html?skuId=101",
+      "title": "Chocolate ice cream carton 24 bottles",
+      "category": "chocolate-ice-cream",
+      "sku": "9991_VNAMZ-101",
+      "netMassG": 131,
+      "netVolumeMl": 130,
+      "packCount": 24,
+      "proteinPerPackageG": 1,
+      "selectedVariant": [{ "text": "Chocolate" }]
+    },
+    {
+      "id": "fixture-volume-protein",
+      "url": "https://www.lazada.vn/products/pdp-i9992.html?skuId=102",
+      "title": "Chocolate ice cream 5 bars",
+      "category": "chocolate-ice-cream",
+      "sku": "9992_VNAMZ-102",
+      "netVolumeMl": 60,
+      "packCount": 5,
+      "proteinPer100ml": 2,
+      "selectedVariant": [{ "text": "Chocolate" }]
+    }
+  ],
+  "offers": [
+    {
+      "id": "fixture-package-price",
+      "productId": "fixture-package-protein",
+      "url": "https://www.lazada.vn/products/pdp-i9991.html?skuId=101",
+      "currency": "VND",
+      "price": 648000,
+      "sku": "9991_VNAMZ-101",
+      "variantConfirmed": true,
+      "available": true,
+      "observedAt": "2026-10-10T17:00:00Z"
+    },
+    {
+      "id": "fixture-volume-price",
+      "productId": "fixture-volume-protein",
+      "url": "https://www.lazada.vn/products/pdp-i9992.html?skuId=102",
+      "currency": "VND",
+      "price": 39000,
+      "sku": "9992_VNAMZ-102",
+      "variantConfirmed": true,
+      "available": true,
+      "observedAt": "2026-10-10T17:00:00Z"
+    }
+  ]
+}

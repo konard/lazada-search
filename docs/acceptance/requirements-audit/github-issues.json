@@ -1,0 +1,50 @@
+[
+  {
+    "body": "Bulk chocolate ice-cream cartons can be parsed as `unknown` and use an inner-package amount as the selling-unit amount.\n\nReproduction: selected SKU `3040048563_VNAMZ-14623760583`, title `Thùng 24 chai kem choco Hàn Quốc Binggrae Pongta Chocolate 130ml ABetterLife`, selected price648,000VND. Original description explicitly says24 bottles/carton. Current automatic import produces category `unknown`,130ml and no packCount. Correct selling unit is24×130=3,120ml; the matched original factory wrapper prints131g per bottle, giving3,144g. Both unit-price results should equal a27,000VND single bottle.\n\nAn evidence-backed category/count correction is included in the committed expanded case, but a general library parser fix remains required. Frozen-destination availability is independent of stock: this exact page explicitly refuses Nha Trang delivery despite available stock.\n\nAcceptance: CLI/library/Telegram handle carton titles and counts; original cached source replays offline; single and carton prices match independently; no duplicated carton multiplier; stock and destination refusal remain separate; no transfer of factory carton counts to a one-bottle offer.\n\nEvidence: `docs/acceptance/ice-dual-units/expanded-root-pongta-carton.html.gz`, `root-expanded-review.json`, and `docs/tables/ice-source-expansion.md`.\n",
+    "labels": [],
+    "number": 6,
+    "state": "CLOSED",
+    "title": "Recognize ice-cream carton category and exact selling-unit package count",
+    "url": "https://github.com/konard/lazada-search/issues/6"
+  },
+  {
+    "body": "When an archived review contains provenance metadata shaped as {sha256, bytes}, exportRepositoryArchive walks it as a stored blob reference, even if sha256 is the original pre-redaction capture digest and bytes is descriptive metadata. Export then fails with Missing source evidence although the sanitized original is present. Reproduced while archiving docs/acceptance/ice-dual-units/merino-review.json: historical capture digest a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414 differs from sanitized artifact digest8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89.\n\nCurrent producer workaround in scripts/archive-ice-research.mjs renames provenance metadata to contentSha256/byteLength while keeping original review JSON as a blob. Required general fix: distinguish typed stored-blob references from source-digest metadata, preserve source rewrite relationships, and add an archive round-trip regression. The workaround archive validates59records/58blobs with zero downloads.\n",
+    "labels": [],
+    "number": 5,
+    "state": "OPEN",
+    "title": "Distinguish capture provenance metadata from stored blob references during archive export",
+    "url": "https://github.com/konard/lazada-search/issues/5"
+  },
+  {
+    "body": "The urgent original-source audit found that imperial headline parsing can override more precise metric selling-unit declarations. This affects per-gram comparisons.\n\nReproducible captured cases:\n- Optimum Nutrition seller repack item3265021607 / SKU15762183506: title says2lbs and900gam; NetContent says2lbs(900g); description explicitly states a single900g zip bag repacked from a10lb parent bag. Raw parser reports907.18474g; selected unit is900g. Original private product source SHA f235ca5d2116d8aca18f0e5510a685e1e511c52c061aefe61a0af494bf359995; publicly redacted source SHA7020b63493f5878b2509f19fde2ca420521434f77776fd8bfeff0f6b17bb8ea3.\n- ProSupps Chocolate Ice Cream powder item1553990700 / SKU6552645102: selected seller front prints907g; title2lb conversion produces907.18474g.\n- Levels80-serving Vanilla item13451810835 / SKU117268785502: original selected bag prints2.56kg. Net mass was missing until the cached image was visually reviewed. It is sold out and outside the requested flavour scope, so excluded from buying ranks.\n\nThe committed case uses source-attributed field reviews and reproducible offline correction scripts; table calculations and source checks pass. General extraction still needs metric-priority and OCR package-matching regressions, handling seller repacks separately from factory and parent-package weights. Corrected fields must preserve original claims and trigger selective re-review when a genuine new selling unit is observed. See docs/acceptance/top10-check/ and scripts/review-handpicked-selling-mass.mjs. No fabricated manufacturer formula or density is approved.\n",
+    "labels": [],
+    "number": 4,
+    "state": "OPEN",
+    "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
+    "url": "https://github.com/konard/lazada-search/issues/4"
+  },
+  {
+    "body": "The configured Vietnam protein category /protein/ currently redirects to the Lazada homepage. The collector correctly stopped with \"Category scope mismatch at /\" rather than treating the empty result as a completed category. Two ice-cream category scopes reached their displayed terminal page10, each showing386card observations, but that is not proof of all-market coverage.\n\nResolve the current exact category URL from Lazada navigation and verify every page, page identity and terminal control before the product-detail phase. Collect every relevant plain/unflavoured or chocolate powder SKU and strict chocolate-core ice-cream SKU, preserving all package quantities and selling options. Apply no minimum/maximum package-price filter. Search-card prices remain preliminary until the exact selected SKU, stock and manufacturer package have been matched.\n\nCurrent independent gaps remain:221historical SKU prices, exact manufacturer/batch identity for newly discovered products, quantity-specific Nha Trang freight, frozen-delivery eligibility and discount applicability. These must remain explicit coverage gaps, not be assigned zero prices or assumed shipping. VBest's package and lab report disagree on protein(71.65% versus68.9%) and ingredient ratios, so the cheaper ratio must not silently win.\n\nEvidence and published comparison tables live under docs/acceptance and docs/tables. Collection and corrections continue; this issue tracks missing coverage and does not claim a globally cheapest offer.",
+    "labels": [],
+    "number": 3,
+    "state": "OPEN",
+    "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+    "url": "https://github.com/konard/lazada-search/issues/3"
+  },
+  {
+    "body": "When a client cannot reach the loopback control endpoint, available() currently treats every connection error as an absent browser and launches another worker. If that second worker fails to launch, its shutdown() unconditionally removes browser-window.json belonging to the first live worker. The existing Chrome window remains open but loses its reusable authenticated control descriptor.\n\nReproduced with restricted loopback access: the second worker first failed with listen EPERM, then an unrestricted retry failed with Browser exited before its DevTools endpoint was ready(exit0). The original supervisor and Chrome process remained alive while the descriptor was gone.\n\nFix in progress: refuse replacement when the descriptor identifies a live but unreachable owner, only remove state owned by the terminating worker, and persist recovery metadata so a replacement supervisor can adopt the same owned Chrome window after an orphaned supervisor exits. Browser requests must retain their pacing history and the30-minute unused-window close rule. The live window was recovered without closing Chrome. No credentials, endpoints, tokens or account screenshots are published.",
+    "labels": [],
+    "number": 2,
+    "state": "CLOSED",
+    "title": "Failed persistent browser reconnect deletes another live worker descriptor",
+    "url": "https://github.com/konard/lazada-search/issues/2"
+  },
+  {
+    "body": "The account workflow can stop immediately after a successful archive export and verification. A long-lived private store's shared RepositoryArchive fallback retains the old manifest and cached record indexes. Re-export replaces hashed shards and removes old filenames; the next audit tries to read a removed crawl shard and reports \"Corrupt repository archive file\" even though the new archive verifies successfully.\n\nReproduced on Node22.23.0: archive export and verification both passed with20635records/3749blobs, then the same workflow's audit attempted the removed records/crawl.78d68c51a348335d87bb224285ca835b278aff35f658d9a4ea76fe7278f1d3ef.json.gz.\n\nFix in progress: detect changed manifest generations, invalidate old record/index caches, and retry a read only when the generation actually changed. Real corruption must continue to fail. Regression must reuse the same private fallback across export and cover replacement during an active read. No account data is included in this report.",
+    "labels": [],
+    "number": 1,
+    "state": "CLOSED",
+    "title": "Account workflow retains stale archive shards after re-export",
+    "url": "https://github.com/konard/lazada-search/issues/1"
+  }
+]

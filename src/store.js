@@ -4,6 +4,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
 import { RepositoryArchive } from './archive.js';
+import { storedBlobReference } from './blob-reference.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
 
 const validKind = (kind) => {
@@ -265,13 +266,13 @@ export class AssociativeStore {
     const bytes = Buffer.from(contents);
     const id = sha256(bytes);
     if (await this.blob(id)) {
-      return { sha256: id, bytes: bytes.length };
+      return storedBlobReference(id, bytes.length);
     }
     const path = join(this.directory, 'blobs', id.slice(0, 2), id);
     if (!(await readOptional(path))) {
       await atomicWrite(path, bytes);
     }
-    return { sha256: id, bytes: bytes.length };
+    return storedBlobReference(id, bytes.length);
   }
 
   async blob(id) {

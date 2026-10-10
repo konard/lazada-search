@@ -226,7 +226,9 @@ Private-chat commands: `/crawl`, `/collect URL`, `/compare`, `/inspect KIND ID`,
 
 ## Coverage and acceptance
 
-A crawl is a bounded search, not proof that every Lazada SKU has been enumerated. Default search queries include whey, isolate, and English/Vietnamese chocolate ice cream. Reports preserve searched pages, found products, failures, cache counts, limits and uncollected URLs. `complete` stays false because inventory, personalization and lazy-loading can hide products. Page and image limits are explicit; all original page evidence and unparsed fields are retained. Repeating a crawl reuses visited search pages, prioritizes unseen product URLs across the queries, and advances through cached results before requesting new search pages.
+[Current requirements and issue acceptance](docs/acceptance/requirements-audit/current.md) is recalculated from the saved catalog. [Cached Vietnamese-to-English translation](docs/translation.md) preserves original evidence and is available through the library, CLI and Telegram.
+
+A crawl is a bounded search, not proof that every Lazada SKU has been enumerated. Vietnam defaults use whey, isolate and protein-powder keywords plus two observed ice-cream routes. The saved ice routes currently overlap completely and contain mixed products, so their terminal pages do not establish strict chocolate-category completeness. Reports preserve searched pages, found products, failures, cache counts, limits and uncollected URLs. `complete` stays false because inventory, personalization and lazy-loading can hide products. Page and image limits are explicit; all original page evidence and unparsed fields are retained. Repeating a crawl reuses visited search pages, prioritizes unseen product URLs across the queries, and advances through cached results before requesting new search pages.
 
 ```bash
 npm test
@@ -256,7 +258,7 @@ Keep calculations deterministic, preserve ambiguous source claims, and add meani
 
 ## Catalog coverage and Markdown export
 
-Vietnam defaults include ten keyword searches and three actual [protein and ice-cream category URLs](docs/acceptance/category-sources.json), observed in cached product breadcrumbs. Repeat `--category-url URL` to add a category scope. An explicit `--query` list restricts keyword scope and disables default categories unless you supply category URLs.
+Vietnam defaults include three powder keyword searches and two observed ice-cream routes. The historical [category-source record](docs/acceptance/category-sources.json) includes a protein route that redirected to home; [the independent coverage review](docs/acceptance/requirements-audit/coverage-review.md) records that failure and the overlapping mixed ice lists. Repeat `--category-url URL` to add a category scope. An explicit `--query` list restricts keyword scope and disables default categories unless you supply category URLs.
 
 `discover --exhaustive` collects search lists without opening details. `crawl --exhaustive` finishes all configured search lists before entering its product phase, then follows observed public pagination without page/product caps, retains every discovered candidate, inventories all public SKU combinations and stops on security challenges. Each SKU needs its own confirmed price. `audit --strict` fails while catalog completeness remains unproven; public search cannot certify a whole-market inventory.
 

@@ -64,11 +64,13 @@ export async function runAccountCase({
   audit,
   publish,
   recollect,
+  checkpoint = async () => {},
   reuseDiscovery = false,
 }) {
   await ensureDiscovery({ reuseDiscovery, audit, discover });
   await publish();
   let state = await audit();
+  await checkpoint();
   if (!state.discoveryComplete || state.failures.length) {
     return {
       phase: 'discovery',
@@ -83,11 +85,14 @@ export async function runAccountCase({
       await collect();
     } catch (error) {
       await publish();
+      await audit();
+      await checkpoint();
       throw error;
     }
     passes++;
     await publish();
     state = await audit();
+    await checkpoint();
     if (pending(state) && backlogFingerprint(state) === before) {
       return {
         phase: 'details',
@@ -102,6 +107,8 @@ export async function runAccountCase({
   if (recollect && canRecollect(state)) {
     await recollect();
     await publish();
+    await audit();
+    await checkpoint();
   }
   return caseCompletion(state, passes);
 }

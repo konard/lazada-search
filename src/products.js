@@ -2,7 +2,7 @@ import {
   categoryOf,
   extractNutrition,
   ingredientFlags,
-  massGrams,
+  massEvidence,
   parsePrice,
   proteinTypeOf,
   volumeMillilitres,
@@ -11,9 +11,11 @@ import {
   resolvePackageCountReview,
   sellingPackCount,
 } from './package-quantity.js';
+import { productFlavour } from './flavour-scope.js';
 import {
   canonicalUrl,
   clone,
+  fold,
   normalizeText,
   positive,
   sha256,
@@ -60,16 +62,79 @@ function productIdentityUrl(value) {
     : value;
 }
 
-function selectedAmounts(selected, title, nutrition, description) {
+function sellingMass(selectedText, title, nutrition, description, specs) {
+  const selectedAmount = massEvidence(selectedText).selected;
+  const inputs = [
+    ['selected-option', selectedText, 6, 3],
+    ...specs.map((text) => ['specification', text, 5, 2]),
+    ['description', description, 5, 2],
+    ['title', title, 4, 1],
+    ['nutrition-net', nutrition.excerpts.netMassG, 5, 2],
+  ];
+  const candidates = inputs.flatMap(
+    ([origin, text, metricRank, imperialRank]) =>
+      massEvidence(text).candidates.map((candidate) => ({
+        ...candidate,
+        origin,
+        context: String(text || '').slice(
+          Math.max(0, candidate.index - 100),
+          candidate.index + candidate.excerpt.length + 100
+        ),
+        priority:
+          !['selected-option', 'title'].includes(origin) &&
+          selectedAmount &&
+          !selectedAmount.metric &&
+          candidate.metric &&
+          Math.abs(candidate.value - selectedAmount.value) >
+            0.02 * selectedAmount.value
+            ? 2
+            : ['selected-option', 'title'].includes(origin) ||
+                ['net', 'selling'].includes(candidate.scope)
+              ? candidate.metric
+                ? metricRank
+                : imperialRank
+              : 0,
+      }))
+  );
+  const eligible = candidates.filter(
+    (candidate) =>
+      candidate.priority > 0 &&
+      ['net', 'selling', 'headline'].includes(candidate.scope)
+  );
+  eligible.sort(
+    (left, right) => right.priority - left.priority || left.index - right.index
+  );
+  const winner = eligible[0];
+  const conflicting = eligible.filter(
+    (candidate) =>
+      candidate.priority === winner?.priority &&
+      candidate.value !== winner.value
+  );
+  return {
+    selected: winner,
+    candidates,
+    conflicting: conflicting.length > 0,
+    method: 'selected-metric-selling-unit-v1',
+  };
+}
+
+function selectedAmounts(selected, title, nutrition, description, specs = []) {
   const selectedText = selected.map((entry) => entry.text).join(' ');
   const selectedCategory = categoryOf(selectedText);
   const category =
     selectedCategory === 'unknown' ? categoryOf(title) : selectedCategory;
   const count = sellingPackCount({ selectedText, title, description });
+  const weightEvidence = sellingMass(
+    selectedText,
+    title,
+    nutrition,
+    description,
+    specs
+  );
   return {
     category,
-    weight:
-      massGrams(selectedText) || nutrition.fields.netMassG || massGrams(title),
+    weight: weightEvidence.selected?.value,
+    weightEvidence,
     packCount: count.packCount,
     packCountExcerpt: count.excerpt,
     quantityFields: count.unresolved ? { packageCountUnresolved: true } : {},
@@ -81,6 +146,147 @@ function selectedAmounts(selected, title, nutrition, description) {
           volumeMillilitres(title)
         : nutrition.fields.netVolumeMl,
   };
+}
+
+// OCR alone cannot identify a selling package. The caller must attach the
+// current SKU/options and identical original image digest; manual gallery
+// matching additionally requires an explicit reviewer and rationale.
+export function applySelectedPackageMass(product, evidence) {
+  const options = (values) =>
+    [
+      ...new Set(
+        (values || []).map((value) =>
+          fold(typeof value === 'string' ? value : value.text)
+        )
+      ),
+    ].sort();
+  const reviewed =
+    evidence.method === 'visual-exact-package' &&
+    evidence.reviewedBy?.trim() &&
+    evidence.reason?.trim();
+  const selectedFlavour = productFlavour({
+    category: product.category,
+    title: product.title,
+    selectedVariant: product.selectedVariant,
+  });
+  const labelFlavour = productFlavour({
+    category: product.category,
+    title: evidence.text,
+  });
+  const contradictsFlavour =
+    selectedFlavour !== 'unknown' &&
+    labelFlavour !== 'unknown' &&
+    selectedFlavour !== labelFlavour;
+  const matched =
+    evidence.selectionConfirmed === true &&
+    product.sku &&
+    evidence.sku === product.sku &&
+    JSON.stringify(options(evidence.selectedOptions)) ===
+      JSON.stringify(options(product.selectedVariant)) &&
+    /^[a-f\d]{64}$/u.test(evidence.imageSha256 || '') &&
+    evidence.imageSha256 === evidence.matchedImageSha256 &&
+    (reviewed ||
+      (evidence.method === 'selected-sku-image-ocr' &&
+        evidence.confidence >= 0.9));
+  const mass = massEvidence(evidence.text).selected;
+  if (
+    !matched ||
+    contradictsFlavour ||
+    !mass?.metric ||
+    mass.scope !== 'net' ||
+    !evidence.evidenceId
+  ) {
+    return {
+      applied: false,
+      reason:
+        'Exact selected package image and declared metric net mass require matching evidence',
+    };
+  }
+  const previous = product.netMassG;
+  const protectedMass =
+    product.reviewedFields?.includes('netMassG') ||
+    product.manufacturerVerification?.identityMatched ||
+    (!reviewed &&
+      product.massEvidence?.selected?.origin === 'selected-option' &&
+      product.massEvidence.selected.metric);
+  const changed = Number.isFinite(previous) && previous !== mass.value;
+  const claim = {
+    field: 'netMassG',
+    value: mass.value,
+    evidenceId: evidence.evidenceId,
+    source: reviewed ? 'selected-package-label-review' : 'selected-package-ocr',
+    confidence: reviewed ? 1 : evidence.confidence,
+    requiresReview: Boolean(protectedMass && changed),
+    excerpt: evidence.text,
+    imageSha256: evidence.imageSha256,
+    selectedSku: evidence.sku,
+    selectionMethod: evidence.method,
+    ...(reviewed
+      ? { reviewedBy: evidence.reviewedBy, reason: evidence.reason }
+      : {}),
+  };
+  product.claims ||= [];
+  if (
+    !product.claims.some(
+      (entry) => JSON.stringify(entry) === JSON.stringify(claim)
+    )
+  ) {
+    product.claims.push(claim);
+  }
+  product.evidenceIds = [
+    ...new Set([...(product.evidenceIds || []), evidence.evidenceId]),
+  ];
+  if (protectedMass && changed) {
+    product.pendingSpecificationReview = [
+      ...new Set([...(product.pendingSpecificationReview || []), 'netMassG']),
+    ];
+    product.warnings ||= [];
+    product.warnings.push(
+      'Selected package label conflicts with declared net mass; evidence review required'
+    );
+    if (evidence.packageIdentityChanged === true) {
+      product.invalidatedSpecificationFields = [
+        ...new Set([
+          ...(product.invalidatedSpecificationFields || []),
+          'netMassG',
+        ]),
+      ];
+      product.specificationsInvalidated = true;
+      if (product.manufacturerVerification) {
+        product.manufacturerVerification = {
+          ...product.manufacturerVerification,
+          identityMatched: false,
+          invalidationReason:
+            'A newly matched selected selling package contradicts reviewed net mass',
+        };
+      }
+    }
+    return { applied: false, requiresReview: true, candidateMassG: mass.value };
+  }
+  if (changed) {
+    product.corrections ||= [];
+    product.corrections.push({
+      field: 'netMassG',
+      previous,
+      corrected: mass.value,
+      evidenceId: evidence.evidenceId,
+      imageSha256: evidence.imageSha256,
+      reason:
+        'Matched selected package printed metric mass overrides an unreviewed headline conversion',
+    });
+  }
+  product.netMassG = mass.value;
+  product.massEvidence = {
+    ...(product.massEvidence || {}),
+    selected: {
+      ...mass,
+      origin: evidence.method,
+      evidenceId: evidence.evidenceId,
+      imageSha256: evidence.imageSha256,
+    },
+    method: 'exact-selected-package-label-v1',
+  };
+  return { applied: true, massG: mass.value };
 }
 
 function saleDetails(snapshot, price, currency) {
@@ -102,6 +308,53 @@ function saleDetails(snapshot, price, currency) {
       ? { displayedDiscountPercent }
       : {}),
   };
+}
+
+function appendAmountClaims(
+  product,
+  { fields, weightEvidence, amountExcerpts, title, evidenceId, source }
+) {
+  for (const [field, value] of Object.entries(fields)) {
+    if (field === 'netMassG') {
+      continue;
+    }
+    product.claims.push({
+      field,
+      value,
+      evidenceId,
+      source,
+      confidence: source === 'ocr' ? 0 : 1,
+      requiresReview: source === 'ocr',
+      excerpt: amountExcerpts[field] || title,
+    });
+  }
+  for (const candidate of weightEvidence.candidates) {
+    if (candidate.scope === 'nutrition') {
+      continue;
+    }
+    const selectedMass = candidate === weightEvidence.selected;
+    product.claims.push({
+      field:
+        candidate.scope === 'parent'
+          ? 'parentPackageMassG'
+          : candidate.scope === 'gross'
+            ? 'grossMassG'
+            : 'netMassG',
+      value: candidate.value,
+      evidenceId,
+      source,
+      confidence: source === 'ocr' ? 0 : 1,
+      requiresReview:
+        source === 'ocr' || !selectedMass || weightEvidence.conflicting,
+      excerpt: candidate.context,
+      massUnit: candidate.unit,
+      massScope: candidate.scope,
+      amountOrigin: candidate.origin,
+      ...(selectedMass
+        ? { selectionMethod: weightEvidence.method }
+        : { supersededForSellingMass: true }),
+    });
+  }
 }
 
 export function parseProduct(
@@ -145,8 +398,19 @@ export function parseProduct(
     packCountExcerpt,
     quantityFields,
     quantityWarnings,
-  } = selectedAmounts(selected, title, nutrition, snapshot.description);
-  const amountExcerpts = { ...nutrition.excerpts, packCount: packCountExcerpt };
+    weightEvidence,
+  } = selectedAmounts(
+    selected,
+    title,
+    nutrition,
+    snapshot.description,
+    snapshot.specs || []
+  );
+  const amountExcerpts = {
+    ...nutrition.excerpts,
+    packCount: packCountExcerpt,
+    netMassG: weightEvidence.selected?.context,
+  };
   const ingredients = nutrition.fields.ingredients || [];
   const marketplaceId = new URL(url).pathname.match(/-i(\d+)/u)?.[1];
   const manufacturerSku =
@@ -183,7 +447,7 @@ export function parseProduct(
       : {}),
     ...nutrition.fields,
     ...(volume ? { netVolumeMl: volume } : {}),
-    ...(weight ? { netMassG: weight } : {}),
+    netMassG: weight,
     ...(packCount ? { packCount } : {}),
     ...quantityFields,
     ingredients,
@@ -191,27 +455,31 @@ export function parseProduct(
     ingredientFlags: ingredientFlags(ingredients),
     evidenceIds: [evidenceId].filter(Boolean),
     claims: [],
-    warnings: [...nutrition.warnings, ...quantityWarnings],
+    massEvidence: weightEvidence,
+    warnings: [
+      ...nutrition.warnings,
+      ...quantityWarnings,
+      ...(weightEvidence.conflicting
+        ? ['Conflicting selected selling-unit metric masses require review']
+        : []),
+    ],
     variants: snapshot.variants || [],
     selectedVariant: selected,
     observedAt,
   };
-  for (const [field, value] of Object.entries({
-    ...nutrition.fields,
-    ...(weight ? { netMassG: weight } : {}),
-    ...(volume ? { netVolumeMl: volume } : {}),
-    ...(packCount ? { packCount } : {}),
-  })) {
-    product.claims.push({
-      field,
-      value,
-      evidenceId,
-      source,
-      confidence: source === 'ocr' ? 0 : 1,
-      requiresReview: source === 'ocr',
-      excerpt: amountExcerpts[field] || title,
-    });
-  }
+  appendAmountClaims(product, {
+    fields: {
+      ...nutrition.fields,
+      ...(weight ? { netMassG: weight } : {}),
+      ...(volume ? { netVolumeMl: volume } : {}),
+      ...(packCount ? { packCount } : {}),
+    },
+    weightEvidence,
+    amountExcerpts,
+    title,
+    evidenceId,
+    source,
+  });
   const rawOffer = Array.isArray(structured.offers)
     ? structured.offers.length === 1
       ? structured.offers[0]
@@ -281,6 +549,12 @@ const NUMERIC_PRODUCT_FIELDS = [
   'packCount',
   'servingMassG',
   'proteinPer100g',
+  'proteinPer100ml',
+  'proteinPerPackageG',
+  'sugarPer100ml',
+  'fatPer100ml',
+  'saturatedFatPer100ml',
+  'kcalPer100ml',
   'sugarPer100g',
   'fatPer100g',
   'saturatedFatPer100g',

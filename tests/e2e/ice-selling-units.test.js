@@ -231,6 +231,70 @@ test('actual saved 24-bottle page replays without downloads and retains its unav
   assert.equal(app.cache.stats.downloads, 0);
 });
 
+test('package and per100ml protein ranks agree across library, CLI, HTTP and Telegram without invented mass', async (t) => {
+  const { app, directory } = await application(t);
+  const nutrition = JSON.parse(
+    await readFile(
+      new URL('../fixtures/ice-protein-bases.json', import.meta.url)
+    )
+  );
+  await app.importRecords(nutrition);
+  const options = {
+    quantity: 2,
+    shipping: 84000,
+    allowStale: true,
+    flavourScope: scope,
+    sort: 'costPerProteinGramAfterDelivery',
+  };
+  const check = (report) => {
+    assert.deepEqual(
+      report.observedPrices.map((row) => row.offer.sku),
+      ['9992_VNAMZ-102', '9991_VNAMZ-101']
+    );
+    const [volume, carton] = report.observedPrices;
+    assert.equal(volume.metrics.totalProteinG, 12);
+    assert.equal(volume.metrics.totalMassG, null);
+    assert.equal(volume.metrics.costPerProteinGramBeforeDelivery, 6500);
+    assert.equal(volume.metrics.costPerProteinGramAfterDelivery, 13500);
+    assert.equal(volume.metrics.proteinBasis, '100ml');
+    assert.equal(carton.metrics.totalProteinG, 48);
+    assert.equal(carton.metrics.totalMassG, 6288);
+    assert.equal(carton.metrics.costPerProteinGramBeforeDelivery, 27000);
+    assert.equal(carton.metrics.costPerProteinGramAfterDelivery, 28750);
+    assert.equal(carton.metrics.proteinBasis, 'package');
+    assert.equal(report.ranked.length, 0);
+  };
+  check(await app.compare(options));
+  check(
+    await cli(directory, 'compare', [
+      '--quantity',
+      '2',
+      '--shipping',
+      '84000',
+      '--allow-stale',
+      '--flavour-scope',
+      scope,
+      '--sort',
+      options.sort,
+    ])
+  );
+  const http = await startServer({ application: app, port: 0 });
+  t.after(() => new Promise((resolve) => http.close(resolve)));
+  const response = await fetch(
+    `http://127.0.0.1:${http.address().port}/api/compare?${new URLSearchParams(options)}`
+  );
+  assert.equal(response.status, 200);
+  check(await response.json());
+  const bot = await telegram(t, app);
+  const text = await bot.compare(
+    `/compare --quantity 2 --shipping 84000 --allow-stale --flavour-scope ${scope} --sort ${options.sort}`
+  );
+  assert.match(text, /Sorted costPerProteinGramAfterDelivery: 13500/u);
+  assert.match(text, /Sorted costPerProteinGramAfterDelivery: 28750/u);
+  assert.match(text, /Manufacturer verification pending/u);
+  assert.equal(app.cache.stats.downloads, 0);
+});
+
 test('Aice manual white-core quarantine survives recapture while all SKU prices and official source proof remain stored', async (t) => {
   const { app, directory } = await application(t);
   const review = JSON.parse(

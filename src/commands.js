@@ -18,6 +18,8 @@ Commands:
   crawl                         Discover and collect whey and chocolate ice cream
   audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
+  translate <text>               Cache VI-to-EN presentation text; preserve the source
+  translate-product <id>         Translate cached title, description and ingredients
   collection-status             Show the persistent CAPTCHA stop checkpoint
   resume-collection             Resume only after the current challenge is cleared
   import-capture <capture.json>  Import HTML/screenshot from an existing browser
@@ -53,6 +55,9 @@ Options:
   --no-require-manufacturer      Explore unverified observations without a purchase guarantee
   --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
+  --translation-provider ID --translation-version VERSION --translation-endpoint URL
+  --translation-token-env NAME  Read HTTP credentials from an environment variable
+  --source-language vi --target-language en --evidence-id ID --evidence-hash SHA256
   --session-from auto|chrome|firefox|yandex|safari --session-profile NAME --cdp-url URL
   --account NAME                Read shared public data; save new account evidence privately
   --interval-ms 60000           Minimum gap between new requests to the same host
@@ -71,6 +76,23 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'translate':
+    case 'translate-product': {
+      const input = required(
+        args.join(' '),
+        command === 'translate' ? 'Source text' : 'Product ID'
+      );
+      const translationOptions = {
+        sourceLanguage: options.sourceLanguage,
+        targetLanguage: options.targetLanguage,
+        refresh: options.refresh,
+        sourceEvidenceId: options.evidenceId,
+        sourceEvidenceHash: options.evidenceHash,
+      };
+      return command === 'translate'
+        ? application.translate(input, translationOptions)
+        : application.translateProduct(input, translationOptions);
+    }
     case 'collection-status':
       return (
         (await application.store.get(

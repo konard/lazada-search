@@ -69,7 +69,14 @@ export function uniqueComparisons(rows) {
     if (
       !chosen.manufacturerVerified &&
       latest.some((row) =>
-        ['netMassG', 'netVolumeMl', 'packCount'].some(
+        [
+          'netMassG',
+          'netVolumeMl',
+          'packCount',
+          'proteinPer100g',
+          'proteinPer100ml',
+          'proteinPerPackageG',
+        ].some(
           (field) =>
             (row.product[field] ?? (field === 'packCount' ? 1 : null)) !==
             (chosen.product[field] ?? (field === 'packCount' ? 1 : null))
@@ -82,6 +89,8 @@ export function uniqueComparisons(rows) {
       for (const field of massMetrics) {
         chosen.metrics[field] = null;
       }
+      chosen.metrics.proteinBasis = null;
+      chosen.metrics.proteinConflict = true;
     }
     if (conflicts.length) {
       chosen.problems.push(...conflicts);

@@ -13,6 +13,9 @@ export const REQUIRED_SPEC_FIELDS = [
 export function specificationProblems(product) {
   const verification = product.manufacturerVerification;
   const problems = [];
+  for (const field of product.pendingSpecificationReview || []) {
+    problems.push(`New selected-package evidence review required: ${field}`);
+  }
   if (
     !verification?.identityMatched ||
     verification.sourceAuthority !== 'manufacturer' ||

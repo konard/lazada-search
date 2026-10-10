@@ -9,6 +9,12 @@ const allowedFields = [
   ...REQUIRED_SPEC_FIELDS,
   'servingMassG',
   'netVolumeMl',
+  'proteinPer100ml',
+  'proteinPerPackageG',
+  'sugarPer100ml',
+  'fatPer100ml',
+  'saturatedFatPer100ml',
+  'kcalPer100ml',
   'packCount',
 ];
 
@@ -199,6 +205,9 @@ function applyReview(product, official, listing, check, review, claims) {
   const updated = validateProduct(
     reconcileManufacturer(product, { claims }, result)
   );
+  updated.pendingSpecificationReview = (
+    updated.pendingSpecificationReview || []
+  ).filter((field) => !claims.some((claim) => claim.field === field));
   updated.manufacturerVerification.reviewId = result.id;
   updated.manufacturerVerification.identity = review.identity.manufacturer;
   updated.crossChecks = [...(updated.crossChecks || []), result];

@@ -117,6 +117,8 @@ async function audit() {
           missingListings: result.missingListings,
           missingSkuPrices: result.missingSkuPrices,
           categoryReview: result.categoryReview,
+          excludedCategoryListings: result.excludedCategoryListings || [],
+          excludedFlavourTasks: result.excludedFlavourTasks || [],
           stop:
             (await store.get('collection-stop', 'browser-collection'))
               ?.active === true,
@@ -166,6 +168,13 @@ async function publish() {
   ]);
 }
 
+async function checkpoint() {
+  if (options.commitCheckpoints) {
+    await run('audit-case-requirements.mjs', []);
+    await run('publish-collection-checkpoint.mjs', ['--push']);
+  }
+}
+
 async function recollect() {
   const saved = JSON.parse(
     await readFile('docs/acceptance/saved-extraction-audit.json', 'utf8')
@@ -198,6 +207,7 @@ try {
     collect: () => run('collect-account-backlog.mjs', collectionFlags),
     audit,
     publish,
+    checkpoint,
     recollect,
     reuseDiscovery: reuseAccountDiscovery(options),
   });

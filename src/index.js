@@ -1,4 +1,8 @@
 export { LazadaSearch, MARKETS } from './application.js';
+export {
+  CachedTranslator,
+  createHttpTranslationProvider,
+} from './translation.js';
 export { AssociativeStore } from './store.js';
 export { DoubletGraph } from './doublets.js';
 export { EvidenceCache, DomainScheduler } from './cache.js';

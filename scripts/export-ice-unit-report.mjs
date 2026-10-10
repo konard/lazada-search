@@ -222,7 +222,7 @@ node scripts/export-ice-unit-report.mjs
 `;
 await writeFile(
   'docs/tables/ice-unit-rankings.json',
-  `${JSON.stringify(receipt, null, 2)}\n`
+  await format(JSON.stringify(receipt), { parser: 'json' })
 );
 await writeFile(
   'docs/tables/ice-unit-rankings.md',

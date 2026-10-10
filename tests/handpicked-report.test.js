@@ -9,6 +9,9 @@ const report = JSON.parse(
   )
 );
 const bySku = (sku) => report.rows.find((row) => row.exactSku === sku);
+const top = JSON.parse(
+  await readFile(new URL('../docs/tables/top-10-partial.json', import.meta.url))
+);
 
 test('all six handpicked selections have prices and explicit gram denominators', () => {
   assert.equal(report.rows.length, 6);
@@ -41,9 +44,19 @@ test('handpicked matches distinguish exact flavours and exclude vanilla and pean
     bySku('3095127497_VNAMZ-14849213308').eligibleWheyRanking,
     false
   );
-  assert.equal(report.counts.memberships.wheyFoodGram.uniqueExactSkuMatches, 3);
-  assert.equal(
-    report.counts.memberships.wheyProteinGram.uniqueExactSkuMatches,
-    1
-  );
+  for (const [ranking, ranked] of [
+    ['wheyFoodGram', top.whey],
+    ['wheyProteinGram', top.verifiedProtein],
+  ]) {
+    const selected = new Set(report.rows.map((row) => row.exactSku));
+    const intersection = new Set(
+      ranked.filter((row) => selected.has(row.sku)).map((row) => row.sku)
+    );
+    assert.equal(
+      report.counts.memberships[ranking].uniqueExactSkuMatches,
+      intersection.size
+    );
+    assert.ok(!intersection.has(levels.exactSku));
+    assert.ok(!intersection.has('3095127497_VNAMZ-14849213308'));
+  }
 });

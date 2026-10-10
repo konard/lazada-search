@@ -35,6 +35,28 @@ const backlogConfig = (getenv) => ({
     default: getenv('LAZADA_PRIORITY_URL', '').split(/\s+/u).filter(Boolean),
   },
 });
+const translationConfig = (getenv) => ({
+  'translation-provider': {
+    type: 'string',
+    default: getenv('LAZADA_TRANSLATION_PROVIDER', 'unconfigured'),
+  },
+  'translation-version': {
+    type: 'string',
+    default: getenv('LAZADA_TRANSLATION_VERSION', '1'),
+  },
+  'translation-endpoint': {
+    type: 'string',
+    default: getenv('LAZADA_TRANSLATION_ENDPOINT', ''),
+  },
+  'translation-token-env': {
+    type: 'string',
+    default: 'LAZADA_TRANSLATION_TOKEN',
+  },
+  'source-language': { type: 'string', default: 'vi' },
+  'target-language': { type: 'string', default: 'en' },
+  'evidence-id': { type: 'string' },
+  'evidence-hash': { type: 'string' },
+});
 
 export function configuredStore(options) {
   const archive = options.archiveDir || DEFAULT_ARCHIVE;
@@ -79,7 +101,7 @@ function loadConfiguration(path, override) {
   }
 }
 
-export function parseArguments(argv) {
+function configurationArguments(argv) {
   // makeConfig 0.3.0 logs .lenv loads to stdout, which corrupts JSON and
   // binary CLI output. Load its exported LinoEnv object quietly first.
   const argumentsWithoutConfig = [];
@@ -107,6 +129,12 @@ export function parseArguments(argv) {
     }
     loadConfiguration(configuration, true);
   }
+  return { argumentsWithoutConfig, configuration };
+}
+
+export function parseArguments(argv) {
+  const { argumentsWithoutConfig, configuration } =
+    configurationArguments(argv);
   let positional = [];
   const config = makeConfig({
     argv: [process.execPath, 'lazada-search', ...argumentsWithoutConfig],
@@ -188,10 +216,12 @@ export function parseArguments(argv) {
         .option('exhaustive', { type: 'boolean', default: false })
         .option('discovery-only', { type: 'boolean', default: false })
         .option('strict', { type: 'boolean', default: false })
+        .option('commit-checkpoints', { type: 'boolean', default: false })
         .option('require-manufacturer', { type: 'boolean', default: true })
         .option('max-pages', { type: 'number', default: 5 })
         .option('max-products', { type: 'number', default: 100 })
         .options(backlogConfig(getenv))
+        .options(translationConfig(getenv))
         .option('query', { type: 'array', string: true })
         .option('category-url', { type: 'array', string: true })
         .option('quantity', { type: 'number', default: 1 })

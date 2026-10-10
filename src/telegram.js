@@ -95,7 +95,7 @@ export function createTelegramBot({
   });
   bot.command(['start', 'help'], (ctx) =>
     ctx.reply(
-      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /collection_status, /resume_collection. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
+      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /collection_status, /resume_collection. Translations are presentation only; original product facts remain authoritative. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
     )
   );
   bot.command(
@@ -112,6 +112,8 @@ export function createTelegramBot({
       'verify',
       'review',
       'quote',
+      'translate',
+      'translate_product',
     ],
     async (ctx) => {
       const command = ctx.message.text

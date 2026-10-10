@@ -82,6 +82,14 @@ export interface Product {
   packageCountUnresolved?: boolean;
   servingMassG?: number;
   proteinPer100g?: number;
+  /** Declared protein per 100 ml; no density conversion is implied. */
+  proteinPer100ml?: number;
+  /** Declared grams of protein in one inner food package. */
+  proteinPerPackageG?: number;
+  sugarPer100ml?: number;
+  fatPer100ml?: number;
+  saturatedFatPer100ml?: number;
+  kcalPer100ml?: number;
   sugarPer100g?: number;
   fatPer100g?: number;
   saturatedFatPer100g?: number;
@@ -92,6 +100,7 @@ export interface Product {
   evidenceIds?: string[];
   claims?: Claim[];
   reviewedFields?: string[];
+  pendingSpecificationReview?: string[];
   manufacturerVerification?: {
     identityMatched: boolean;
     sourceAuthority: string;
@@ -213,6 +222,8 @@ export interface Metrics {
   totalMassG: number | null;
   totalVolumeMl: number | null;
   totalProteinG: number | null;
+  proteinBasis: 'package' | '100g' | '100ml' | null;
+  proteinConflict: boolean;
   costPerGramBeforeDelivery: number | null;
   costPerGramAfterDelivery: number | null;
   costPerMlBeforeDelivery: number | null;
@@ -271,6 +282,7 @@ export interface CrossCheck {
   corroborated: string[];
 }
 export interface BlobReference {
+  type?: 'stored-blob';
   sha256: string;
   bytes: number;
 }
@@ -586,6 +598,75 @@ export declare class NativeLinkStore {
     store: AssociativeStore
   ): Promise<{ backend: string; shards: unknown[]; reused: number }>;
 }
+export interface TranslationOptions {
+  sourceLanguage?: string;
+  targetLanguage?: string;
+  refresh?: boolean;
+  sourceEvidenceId?: string;
+  sourceEvidenceHash?: string;
+}
+export interface TranslationRecord {
+  id: string;
+  originalText: string;
+  sourceSha256: string;
+  sourceLanguage: string;
+  targetLanguage: string;
+  providerId: string;
+  providerVersion: string;
+  presentationOnly: true;
+  authoritative: false;
+  status: 'translated' | 'pending';
+  translatedText?: string;
+  translatedSha256?: string;
+  translatedAt?: string;
+  reason?: string;
+  cacheHit: boolean;
+  sourceEvidenceId?: string;
+  sourceEvidenceHash?: string;
+}
+export interface TranslationInput {
+  originalText: string;
+  sourceLanguage: string;
+  targetLanguage: string;
+  sourceSha256: string;
+  stop(challenge: { url: string; signals: string[] }): Promise<unknown>;
+}
+export interface TranslationProvider {
+  id: string;
+  version: string;
+  endpoint?: string;
+  translate(input: TranslationInput): Promise<string> | string;
+}
+export declare function createHttpTranslationProvider(options: {
+  endpoint: string;
+  id: string;
+  version: string;
+  tokenEnv?: string;
+  timeoutMs?: number;
+  fetch?: typeof fetch;
+}): TranslationProvider;
+export declare class CachedTranslator {
+  constructor(options: {
+    store: AssociativeStore;
+    provider?: TranslationProvider | TranslationProvider['translate'];
+    providerId?: string;
+    providerVersion?: string;
+    scheduler?: DomainScheduler;
+    offline?: boolean;
+    beforeDownload?: () => Promise<unknown> | unknown;
+  });
+  translate(
+    text: string,
+    options?: TranslationOptions
+  ): Promise<TranslationRecord>;
+}
+export interface ProductTranslationReport {
+  productId: string;
+  presentationOnly: true;
+  authoritative: false;
+  complete: boolean;
+  translations: Array<TranslationRecord & { field: string; index: number }>;
+}
 export declare class LazadaSearch {
   constructor(options?: {
     flavourScope?: ComparisonOptions['flavourScope'];
@@ -600,12 +681,26 @@ export declare class LazadaSearch {
     browserOptions?: Record<string, unknown>;
     scheduler?: DomainScheduler;
     manufacturerRegistry?: Manufacturer[];
+    translationProvider?:
+      | TranslationProvider
+      | TranslationProvider['translate'];
+    translationProviderId?: string;
+    translationProviderVersion?: string;
   });
   store: AssociativeStore;
   cache: EvidenceCache;
   collector: BrowserCollector;
   market: string;
   deliveryArea: string;
+  translator: CachedTranslator;
+  translate(
+    text: string,
+    options?: TranslationOptions
+  ): Promise<TranslationRecord>;
+  translateProduct(
+    productId: string,
+    options?: TranslationOptions
+  ): Promise<ProductTranslationReport>;
   importRecords(records: {
     products?: Product[];
     offers?: Offer[];

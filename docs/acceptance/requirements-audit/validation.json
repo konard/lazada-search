@@ -1,0 +1,266 @@
+{
+  "checkedAt": "2026-10-10T20:14:50.891407+00:00",
+  "draftsPreparedBeforeCoordinatedTesting": true,
+  "reviewCorrectionsRetested": true,
+  "unitFullSuite": {
+    "tests": 862,
+    "passed": 862,
+    "failed": 0,
+    "skipped": 0,
+    "caveat": "The final additional repack guard was checked afterwards by all 84 selected-package, extraction and comparison cases; it introduces no additional case count."
+  },
+  "e2eDistinctCasesValidated": 15,
+  "e2eCaveat": "Distinct local cases across the saved runs, including real Chromium/Tesseract and native link-cli; no live Telegram sends or Lazada requests. This is not a full live-market acceptance run.",
+  "finalTargetedCases": 84,
+  "checks": {
+    "lint": "passed; no new warnings",
+    "format": "passed",
+    "duplicationPercent": 6.92,
+    "thresholdPercent": 10,
+    "checkedAt": "2026-10-10T20:10:51.449037+00:00",
+    "strictStagedJavaScript": {
+      "files": 43,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "initialFailuresResolved": [
+    {
+      "test": "public source replay",
+      "reason": "New batch publication receipt was newer than the committed archive",
+      "resolution": "Rebuilt public records, catalog and source archive together; full replay passed."
+    },
+    {
+      "test": "ProSupps top-ten membership",
+      "reason": "New lower-priced captures moved the preserved ProSupps offer below the top-ten cutoff",
+      "resolution": "Check original 907g source and captured offer without requiring a fixed top-ten membership; also assert ranking monotonicity."
+    },
+    {
+      "test": "handpicked membership count",
+      "reason": "New ranking has two exact submitted SKU intersections, replacing the old three",
+      "resolution": "Check intersections against the current source SKUs and reject the disallowed vanilla/peanut-butter selections."
+    },
+    {
+      "test": "lint",
+      "reason": "Two structuredClone references lacked explicit globalThis qualification",
+      "resolution": "Qualified references and reran repository checks."
+    },
+    {
+      "test": "strict staged-file commit hook",
+      "reason": "General lint did not block the parser complexity warning; staged-file lint requires zero warnings",
+      "resolution": "Extracted amount evidence construction into a helper without changing claims or quantities; all 43 staged JavaScript files pass strict lint and all 84 affected cases pass."
+    }
+  ],
+  "corrections": [
+    {
+      "requirements": ["R011", "R038", "R043"],
+      "change": "Shared per-package/per-100g/per-100ml protein calculations, non-mixed nutrition ratios and conflict withholding",
+      "state": "tested mechanics; full nutrition and shipping data still incomplete"
+    },
+    {
+      "requirements": ["R016", "R018"],
+      "issue": 4,
+      "change": "Metric selected selling mass, original-label provenance, precise SKU/image/digest checks, repack protection and blocking label conflicts",
+      "state": "tested; exact manufacturer coverage remains incomplete"
+    },
+    {
+      "requirements": ["R019", "R020", "R022"],
+      "issue": 5,
+      "change": "Typed stored-blob references, legacy compatibility, rich provenance preservation and original/sanitized source rewrite history",
+      "state": "tested and actual public/research archives verified"
+    },
+    {
+      "requirements": ["R002", "R004", "R039", "R042"],
+      "change": "Whey queue rejects sourced standalone hardware, plant-only/soy products and paid shaker selections while retaining unknowns and possible flavour siblings",
+      "state": "tested; all category reviews remain incomplete"
+    },
+    {
+      "requirements": ["R017", "R023", "R024"],
+      "change": "Provider-versioned cached translation with original Unicode, source-position provenance, opt-in HTTP and library/CLI/Telegram paths",
+      "state": "tested local adapters; whole-catalog English and real-provider accuracy remain incomplete"
+    },
+    {
+      "requirements": ["R036", "R041", "R042"],
+      "change": "Opt-in public-only Git batch checkpoints, fresh acceptance audit and publication on a persisted collection stop",
+      "state": "tested local Git fixtures; persistent live collection resumes after commit"
+    }
+  ],
+  "currentAcceptance": {
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "activeScope": {
+      "missingListings": 1478,
+      "missingSkuPrices": 169,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6570,
+      "specifications": 198,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 213,
+      "excludedExactOptions": 327
+    }
+  },
+  "cachedReprocessing": {
+    "captures": 251,
+    "errors": 0,
+    "downloads": 0
+  },
+  "mainArchive": {
+    "valid": true,
+    "records": 24086,
+    "blobs": 5927,
+    "downloads": 0
+  },
+  "iceResearchArchive": {
+    "valid": true,
+    "records": 117,
+    "blobs": 116,
+    "downloads": 0
+  },
+  "browserCommander": {
+    "installed": "0.28.0",
+    "latestRegistryCheckThisTurn": "0.28.0"
+  },
+  "testEvidence": [
+    {
+      "path": "docs/acceptance/requirements-audit/unit-full.tap.gz",
+      "sha256": "fb5d0957514deaa8ea014f5657b6dbfb64a5f3a2802e49c98ed6f0886d327a9c",
+      "storedSha256": "6b25fe8d8500b6c4699391c7620413b35b4e382481a1e8bcd50586a92c1a530b",
+      "bytes": 207057,
+      "tests": 862,
+      "pass": 862,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/e2e-interfaces.tap.gz",
+      "sha256": "4216d7f73cc2644fa91afd8ccf3209c14a5a286c08fae94c29644a776931f990",
+      "storedSha256": "7d29f48e0a331ef21d45ca50036e9035733b6e22bc1eff88b55756b353e03149",
+      "bytes": 3924,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/e2e-archive-native.tap.gz",
+      "sha256": "ec5afcca0dacb249dd5d2dea5383bf2dff090caf3fb37545a550b2fec2b5e6d1",
+      "storedSha256": "cae154134769d396e8b22ec42eea785f80b38e96cf1d4655d109f62e7b37f6bc",
+      "bytes": 2898,
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/e2e-translation-final.tap.gz",
+      "sha256": "ad625bee46672dc9e1ad6a309e8619afb6723dadf2e30f3799d45ee71f8a5564",
+      "storedSha256": "b285f5b7924139a93b2d84f15809c31244d018fdb0d0b357e3ac693ef2f6fbc2",
+      "bytes": 1133,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/selected-package-final.tap.gz",
+      "sha256": "b3a3371ba42657f0186396b93e3c47c8e6346773e1f95343141d097b69889110",
+      "storedSha256": "ca8d65c4619cdcdcdfc8a5122688cb76e495828a6d752cd9c76057a9e34c134a",
+      "bytes": 20344,
+      "tests": 84,
+      "pass": 84,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/parser-final.tap.gz",
+      "sha256": "46886579a244fb62bd92c82d74945f8630f31efbc6d48e059d422438e9bf7dcf",
+      "storedSha256": "8848e5497c863ef4fe9cb5bcc2dff7413f04844b1c9bd894bc9cfdef43f05064",
+      "bytes": 20334,
+      "tests": 84,
+      "pass": 84,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "codeEvidence": [
+    {
+      "path": "src/package-image.js",
+      "sha256": "78dfcd7823dd9f79aedc37584e9a06132fd825ac30bb63b640fdabcdce13e134",
+      "bytes": 1523
+    },
+    {
+      "path": "src/products.js",
+      "sha256": "56cbbc376e89bcce41da6a41a4e5be29c15d315414d9f861e185a97dbf54aa25",
+      "bytes": 20112
+    },
+    {
+      "path": "src/application.js",
+      "sha256": "c6475fe151e33527f88a2da89bdbf5994c00ae5d426c31d65b8769b6db0c8f60",
+      "bytes": 24280
+    },
+    {
+      "path": "src/compare.js",
+      "sha256": "457f6174b38684b7098a043351ff045a7609b3bae4dfab1d8ad794959d2eb33e",
+      "bytes": 14433
+    },
+    {
+      "path": "src/nutrition.js",
+      "sha256": "183535c3acdd80abefb44041e4f99f3081c902137719eb1f32a56e86a312b72e",
+      "bytes": 13676
+    },
+    {
+      "path": "src/archive.js",
+      "sha256": "9733d4585341fd26f5219e2bcd030cf4d004031613521adb470a81d3aaac40f6",
+      "bytes": 22639
+    },
+    {
+      "path": "src/blob-reference.js",
+      "sha256": "ca977673604a1b35477493743321542d45df97216533f0dde6ad346791451a1d",
+      "bytes": 712
+    },
+    {
+      "path": "src/translation.js",
+      "sha256": "6d8e4607b7f10168ac986fa065185a9fcaa67c4f215cf990c4a3bd1429cd7840",
+      "bytes": 10812
+    },
+    {
+      "path": "src/config.js",
+      "sha256": "936be275b76a8538de17449f366843e7d6f60d4940c5b8718172985c5db2cd85",
+      "bytes": 10193
+    },
+    {
+      "path": "scripts/account-case-workflow.mjs",
+      "sha256": "a0ca9312f09fbbc27fef2ad07409af7f67bd637986fb1529ea455d6708fb0a80",
+      "bytes": 2919
+    },
+    {
+      "path": "scripts/account-category-scope.mjs",
+      "sha256": "a893364b5c5d1ee9da04e1dc6c8d2a47426b3c517eb8a0b49484bc9d8084fdd0",
+      "bytes": 5577
+    },
+    {
+      "path": "scripts/collection-checkpoint.mjs",
+      "sha256": "cfe4c1f3e9dbca22d5ae1ea11aab2a0431596b835ea4d42f7c12f78885800cb8",
+      "bytes": 2180
+    },
+    {
+      "path": "scripts/audit-case-requirements.mjs",
+      "sha256": "769928442d84f78c56bcf6955188bba5351478c9e904e90d99fedd0d687a80af",
+      "bytes": 8715
+    },
+    {
+      "path": "scripts/archive-case.mjs",
+      "sha256": "d72f0ac793eddd6abbb9cae126cd517e625931f0312911b174ebaed7fd9285c2",
+      "bytes": 1273
+    }
+  ],
+  "repositoryCheckEvidence": {
+    "path": "docs/acceptance/requirements-audit/repository-checks.log.gz",
+    "sha256": "89bcf3ead712a3a30c82e06d052ac1d7ba11cd8164e040780883e6768aee9145",
+    "storedSha256": "371a9a3065d3e099ad5d291523ab78c7ba5ab42e22dcaa3b53947f49ba909d8e",
+    "bytes": 79118,
+    "exitCode": 0
+  }
+}

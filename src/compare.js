@@ -2,8 +2,12 @@ import { positive } from './values.js';
 import { specificationProblems } from './verification.js';
 import { matchesFlavourScope } from './flavour-scope.js';
 import { uniqueComparisons } from './comparison-observations.js';
+import { proteinAmount } from './protein-amount.js';
 
 function evidenceProblem(product, field) {
+  if (product.pendingSpecificationReview?.includes(field)) {
+    return `Selected package conflicts with reviewed ${field}; new evidence review required`;
+  }
   if (
     product.crossChecks?.some((check) =>
       check.conflicts?.some((conflict) => conflict.field === field)
@@ -67,15 +71,18 @@ export function calculateOffer(product, offer, options = {}) {
   if (!(product.netMassG > 0)) {
     problems.push('Unknown net mass');
   }
-  if (!(product.proteinPer100g > 0)) {
-    problems.push('Unknown protein density');
-  }
   if (product.packageCountUnresolved) {
     problems.push(
       'The selling unit has no confirmed count of inner food packages'
     );
   }
-  for (const field of ['netMassG', 'proteinPer100g']) {
+  for (const field of [
+    'netMassG',
+    'netVolumeMl',
+    'proteinPer100g',
+    'proteinPer100ml',
+    'proteinPerPackageG',
+  ]) {
     const problem = evidenceProblem(product, field);
     if (problem) {
       problems.push(problem);
@@ -150,9 +157,37 @@ export function calculateOffer(product, offer, options = {}) {
   const packages = product.packageCountUnresolved
     ? undefined
     : product.packCount || 1;
-  const totalMassG = product.netMassG * packages * quantity;
-  const totalVolumeMl = product.netVolumeMl * packages * quantity;
-  const totalProteinG = (totalMassG * product.proteinPer100g) / 100;
+  const totalMassG = product.pendingSpecificationReview?.includes('netMassG')
+    ? undefined
+    : product.netMassG * packages * quantity;
+  const totalVolumeMl = product.pendingSpecificationReview?.includes(
+    'netVolumeMl'
+  )
+    ? undefined
+    : product.netVolumeMl * packages * quantity;
+  const proteinFields = Object.fromEntries(
+    ['proteinPer100g', 'proteinPer100ml', 'proteinPerPackageG'].map((field) => [
+      field,
+      evidenceProblem(product, field) ? undefined : product[field],
+    ])
+  );
+  const {
+    proteinG: totalProteinG,
+    proteinBasis,
+    proteinConflict,
+  } = proteinAmount(
+    proteinFields,
+    evidenceProblem(product, 'netMassG') ? undefined : totalMassG,
+    evidenceProblem(product, 'netVolumeMl') ? undefined : totalVolumeMl,
+    packages * quantity
+  );
+  if (proteinConflict) {
+    problems.push(
+      'Conflicting protein amounts across declared nutrition bases'
+    );
+  } else if (!(totalProteinG > 0)) {
+    problems.push('Unknown protein density');
+  }
   const merchandiseSubtotal = unitPrice * quantity;
   // The fixed order discount is subtracted once. Unknown delivery stays null.
   const totalBeforeDelivery = Math.max(0, merchandiseSubtotal - discount);
@@ -161,6 +196,28 @@ export function calculateOffer(product, offer, options = {}) {
     total !== null && Number.isFinite(total) && amount > 0
       ? (scale * total) / amount
       : null;
+  const nutritionRatio = (denominator, scale) => {
+    for (const basis of ['100g', '100ml']) {
+      const numerator = product[`proteinPer${basis}`];
+      const value = product[`${denominator}Per${basis}`];
+      if (
+        !proteinConflict &&
+        !evidenceProblem(product, `proteinPer${basis}`) &&
+        !evidenceProblem(product, `${denominator}Per${basis}`) &&
+        Number.isFinite(numerator) &&
+        numerator > 0 &&
+        Number.isFinite(value) &&
+        value >= 0
+      ) {
+        return denominator === 'kcal'
+          ? value > 0
+            ? (scale * numerator) / value
+            : null
+          : (scale * value) / numerator;
+      }
+    }
+    return null;
+  };
   const metrics = {
     quantity,
     currency,
@@ -180,6 +237,8 @@ export function calculateOffer(product, offer, options = {}) {
     totalMassG: Number.isFinite(totalMassG) ? totalMassG : null,
     totalVolumeMl: Number.isFinite(totalVolumeMl) ? totalVolumeMl : null,
     totalProteinG: Number.isFinite(totalProteinG) ? totalProteinG : null,
+    proteinBasis,
+    proteinConflict,
     costPerGramBeforeDelivery: unitCost(totalBeforeDelivery, totalMassG),
     costPerGramAfterDelivery: unitCost(totalAfterDelivery, totalMassG),
     costPerMlBeforeDelivery: unitCost(totalBeforeDelivery, totalVolumeMl),
@@ -209,14 +268,8 @@ export function calculateOffer(product, offer, options = {}) {
       totalProteinG > 0 ? (25 * totalCost) / totalProteinG : null,
     costPerKg: totalMassG > 0 ? (1000 * totalCost) / totalMassG : null,
     proteinPer100g: product.proteinPer100g ?? null,
-    proteinPer100kcal:
-      product.kcalPer100g > 0
-        ? (100 * product.proteinPer100g) / product.kcalPer100g
-        : null,
-    sugarPer25gProtein:
-      product.proteinPer100g > 0 && product.sugarPer100g !== undefined
-        ? (25 * product.sugarPer100g) / product.proteinPer100g
-        : null,
+    proteinPer100kcal: nutritionRatio('kcal', 100),
+    sugarPer25gProtein: nutritionRatio('sugar', 25),
     priceAgeMs,
     shippingKnown,
     shippingQuantity: offer.shippingQuantity ?? null,

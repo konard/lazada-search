@@ -7,6 +7,7 @@ import { parse as parseYaml, stringify as stringifyYaml } from 'yaml';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DoubletGraph } from './doublets.js';
+import { isStoredBlobReference } from './blob-reference.js';
 import { atomicWrite, readOptional, sha256 } from './util.js';
 
 export const ARCHIVE_VERSION = 1;
@@ -414,7 +415,7 @@ export async function exportRepositoryArchive({
   const previous = oldText ? JSON.parse(oldText) : undefined;
   const manifest = {
     version: ARCHIVE_VERSION,
-    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), sanitizeImportedSource.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
+    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), sanitizeImportedSource.toString(), isStoredBlobReference.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
     case: sanitizePublicData(caseMetadata),
     kinds: {},
     blobs: {},
@@ -455,7 +456,7 @@ export async function exportRepositoryArchive({
   const copyBlob = async (reference, format) => {
     const key = `${reference.sha256}:${format || 'binary'}`;
     if (rewrite.has(key)) {
-      return rewrite.get(key);
+      return { ...reference, ...rewrite.get(key) };
     }
     const original = await store.blob(reference.sha256);
     if (!original) {
@@ -495,16 +496,10 @@ export async function exportRepositoryArchive({
           'Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data',
       });
     }
-    return updated;
+    return { ...reference, ...updated };
   };
   const walk = async (value, field, format) => {
-    if (
-      value &&
-      typeof value === 'object' &&
-      typeof value.id !== 'string' &&
-      /^[a-f\d]{64}$/u.test(value.sha256) &&
-      Number.isSafeInteger(value.bytes)
-    ) {
+    if (isStoredBlobReference(value)) {
       return copyBlob(
         value,
         field === 'html' ? 'html' : field === 'source' ? format : undefined

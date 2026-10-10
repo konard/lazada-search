@@ -1,4 +1,5 @@
 import { fold, normalizeText } from './text.js';
+import { targetCategoryExclusion } from './target-category.js';
 
 export function parseDecimal(value) {
   const raw = String(value).replace(/[^\d.,-]/gu, '');
@@ -25,44 +26,113 @@ export function parsePrice(value, currency = 'VND') {
   );
 }
 
-export function massGrams(value) {
-  const text = String(value || '');
-  const match = [
-    ...text.matchAll(
-      /(\d+(?:[.,]\d+)?)\s*(kg|g|gam|gr|grams?|kilograms?|lbs?|oz)(?![\p{L}\p{N}])/giu
-    ),
-  ].find(
-    (entry) =>
-      !/(?:gross|shipping|shipment|packaging|delivery)\s*(?:weight|mass)?\s*[:=]?\s*$/u.test(
-        fold(text.slice(0, entry.index))
-      ) &&
-      !/(?:trong luong|khoi luong)\s*(?:ca bi|van chuyen|giao hang|dong goi)\s*[:=]?\s*$/u.test(
-        fold(text.slice(0, entry.index))
-      ) &&
-      !/\b(?:sugars?|fat|duong|chat beo)\s*[:=]?\s*$/u.test(
-        fold(text.slice(0, entry.index))
-      ) &&
-      !/(?:^|\n)\s*(?:protein|dam)\s*[:=]?\s*$/u.test(
-        fold(text.slice(0, entry.index))
-      ) &&
-      !/^\s*(?:protein|sugar|fat|đạm|đường|chất béo)/iu.test(
-        text.slice(entry.index + entry[0].length)
-      ) &&
-      !/^\s*whey\s+(?:protein\s+)?(?:isolate|concentrate)\s*(?:moi\s+lan\s+dung|moi\s+khau\s+phan|per\s+serving|each\s+serving)\b/u.test(
-        fold(text.slice(entry.index + entry[0].length))
-      )
-  );
-  if (!match) {
-    return undefined;
+function massScope(prefix, suffix) {
+  if (
+    /(?:from|tu)\s+(?:(?:a|the|bich|tui|goi|bao)\s+)*(?:larger|large|lon|parent|original)?\s*$/u.test(
+      prefix
+    ) ||
+    /(?:parent|original|source)\s*(?:bag|pack(?:age)?|tub)?\s*(?:weight|mass)?\s*[:=]?\s*$/u.test(
+      prefix
+    ) ||
+    /^\s*(?:parent|original)\s*(?:bag|pack|tub)/u.test(suffix)
+  ) {
+    return 'parent';
   }
-  const factor = /^(?:kg|kilogram)/iu.test(match[2])
-    ? 1000
-    : /^lb/iu.test(match[2])
-      ? 453.59237
-      : /^oz/iu.test(match[2])
-        ? 28.349523125
-        : 1;
-  return parseDecimal(match[1]) * factor;
+  if (
+    /(?:gross|shipping|shipment|packaging|delivery)\s*(?:weight|mass)?\s*[:=]?\s*$/u.test(
+      prefix
+    ) ||
+    /(?:trong luong|khoi luong)\s*(?:ca bi|van chuyen|giao hang|dong goi)\s*[:=]?\s*$/u.test(
+      prefix
+    )
+  ) {
+    return 'gross';
+  }
+  if (
+    /\b(?:sugars?|fat|duong|chat beo|serving size|khau phan)\s*[:=]?\s*$/u.test(
+      prefix
+    ) ||
+    /(?:^|\n)\s*(?:protein|dam)\s*[:=]?\s*$/u.test(prefix) ||
+    /\b(?:per|moi|tren|\/|amount per)\s*$/u.test(prefix) ||
+    /^\s*(?:protein|sugar|fat|dam|duong|chat beo)/u.test(suffix) ||
+    /^\s*(?:per\s+serving|each\s+serving|moi\s+(?:khau\s+phan|lan\s+dung))/u.test(
+      suffix
+    ) ||
+    /^\s*whey\s+(?:protein\s+)?(?:isolate|concentrate)\s*(?:moi\s+lan\s+dung|moi\s+khau\s+phan|per\s+serving|each\s+serving)\b/u.test(
+      suffix
+    )
+  ) {
+    return 'nutrition';
+  }
+  if (
+    /(?:net\s*(?:wt\.?|weight|mass|content)|khoi luong tinh|trong luong(?: tinh)?)\s*[:=]?\s*(?:[\d.,]+\s*(?:lbs?|oz|pounds?|ounces?)\s*[()\s]*)*$/u.test(
+      prefix
+    )
+  ) {
+    return 'net';
+  }
+  return /\b(?:goi|tui(?: zip)?|bich|bag|pack|repack|share)\s*$/u.test(prefix)
+    ? 'selling'
+    : 'headline';
+}
+
+// Keep every declaration so metric preference never erases a parent package,
+// rounded imperial headline, gross weight or conflicting food-size claim.
+export function massEvidence(value) {
+  const text = String(value || '');
+  const candidates = [
+    ...text.matchAll(
+      /(\d+(?:[.,]\d+)*)\s*(kilograms?|kgs?|grams?|gam|gr|g|pounds?|lbs?|ounces?|oz)(?![\p{L}\p{N}])/giu
+    ),
+  ]
+    .map((match) => {
+      const unit = match[2].toLowerCase();
+      const metric = !/^(?:lb|pound|oz|ounce)/u.test(unit);
+      const factor = /^(?:kg|kilogram)/u.test(unit)
+        ? 1000
+        : /^(?:lb|pound)/u.test(unit)
+          ? 453.59237
+          : /^(?:oz|ounce)/u.test(unit)
+            ? 28.349523125
+            : 1;
+      const number =
+        factor === 1 && /^[1-9]\d{0,2}(?:[.,]\d{3})+$/u.test(match[1])
+          ? Number(match[1].replace(/[.,]/gu, ''))
+          : parseDecimal(match[1]);
+      return {
+        value: number * factor,
+        unit,
+        metric,
+        excerpt: match[0],
+        scope: massScope(
+          fold(text.slice(Math.max(0, match.index - 160), match.index)),
+          fold(
+            text.slice(
+              match.index + match[0].length,
+              match.index + match[0].length + 100
+            )
+          )
+        ),
+        index: match.index,
+      };
+    })
+    .filter(
+      (candidate) => Number.isFinite(candidate.value) && candidate.value > 0
+    );
+  const rank = { net: 2, selling: 1, headline: 0 };
+  const eligible = candidates
+    .filter((candidate) => candidate.scope in rank && candidate.value > 0)
+    .sort(
+      (left, right) =>
+        Number(right.metric) - Number(left.metric) ||
+        rank[right.scope] - rank[left.scope] ||
+        left.index - right.index
+    );
+  return { candidates, selected: eligible[0] };
+}
+
+export function massGrams(value) {
+  return massEvidence(value).selected?.value;
 }
 
 export function packCountOf(value) {
@@ -93,6 +163,9 @@ export function volumeMillilitres(value) {
 
 export function categoryOf(title) {
   const value = fold(title).replace(/[-–—]/gu, ' ');
+  if (targetCategoryExclusion(title)?.startsWith('Standalone')) {
+    return 'unknown';
+  }
   if (
     /duong (?:am|da)|duong da mat|nhuom toc|skin cream|face cream|hair dye|\blotion\b|\binfant\b|\bbaby formula\b|\bnan\s+(?:supremepro|optipro)\b|tre so sinh/u.test(
       value
@@ -117,7 +190,9 @@ export function categoryOf(title) {
     return 'chocolate-ice-cream';
   }
   if (/\bwhey\b/u.test(value)) {
-    return /\b(?:thuc vat|vegan|plant based|non dairy)\b/u.test(value)
+    return /\b(?:thuc vat|vegan|thuan chay|plant based|plant protein|non dairy)\b/u.test(
+      value
+    )
       ? 'protein-powder'
       : 'whey';
   }
@@ -202,33 +277,32 @@ export function extractNutrition(text) {
       text
     );
   const volume = /(?:per|trên|mỗi|\/)\s*100\s*ml\b/iu.test(text);
-  const ambiguous = per100 && perServing;
-  if (ambiguous || volume) {
-    warnings.push(
-      ambiguous
-        ? 'Multiple nutrition columns need review'
-        : 'Volume nutrition needs a measured density to convert to grams'
-    );
+  const ambiguous = [per100, perServing, volume].filter(Boolean).length > 1;
+  if (ambiguous) {
+    warnings.push('Multiple nutrition columns need review');
   }
   const factor =
     !ambiguous && !volume && per100
       ? 1
       : !ambiguous && !volume && perServing && fields.servingMassG > 0
         ? 100 / fields.servingMassG
-        : undefined;
+        : !ambiguous && volume
+          ? 1
+          : undefined;
   for (const [key, expression] of Object.entries(NUTRIENTS)) {
     const matches = [
       ...text.matchAll(new RegExp(expression.source, `${expression.flags}g`)),
     ];
     const values = [...new Set(matches.map((match) => parseDecimal(match[1])))];
+    const targetKey = volume ? key.replace('Per100g', 'Per100ml') : key;
     if (values.length === 1 && factor !== undefined) {
       const value = parseDecimal(matches[0][1]) * factor;
       if (
         value >= 0 &&
         (key === 'kcalPer100g' ? value <= 1000 : value <= 100)
       ) {
-        fields[key] = value;
-        excerpts[key] = matches[0][0];
+        fields[targetKey] = value;
+        excerpts[targetKey] = matches[0][0];
       } else {
         warnings.push(`Implausible ${key} needs review`);
       }

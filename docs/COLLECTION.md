@@ -21,12 +21,25 @@ Telegram uses `/collection_status` and `/resume_collection` with the same applic
 node scripts/collect-account-case.mjs --account default --exhaustive \
   --flavour-scope chocolate-or-unflavoured --interval-ms 60000 \
   --batch-size 25 --max-images 40 --ocr-languages eng+vie \
-  --ocr-data-dir .lazada-search/tessdata
+  --ocr-data-dir .lazada-search/tessdata --commit-checkpoints
 ```
 
 The runner reuses completed configured lists when no replacement scopes or refresh are requested. It uses one persistent browser window and a minimum 60-second navigation interval. Supported educational disclosures express interest in learning; unsupported dialogs, unsettled loading, rate limits and CAPTCHA stop further collection. The window remains reusable between commands and closes after 30 minutes without a lease.
 
 Each detail batch publishes sanitized product sources, regenerated tables and the public associative archive locally. Attempt records survive restarts: unavailable early products cannot starve later unattempted URLs. Their errors and pending specification/category tasks remain unresolved in the audit. Explicit source invalidation or `--refresh` reopens affected attempts. Ambiguous category cards retain their source references; food cues admit additional candidates without downloading obviously unrelated recommendations.
+
+With `--commit-checkpoints`, each successful archive verification and fresh progress audit produces a Git commit and pushes the current branch to `origin`. Only `docs/tables`, `docs/acceptance` and `data/cases/vietnam-nha-trang` are staged. Private profiles and unrelated working files are excluded; an existing staged change blocks publication so it can be resolved separately. A failed push can be retried without downloading product pages again. The same offline checkpoint is published when a CAPTCHA interrupts a batch.
+
+The case excludes clearly identified standalone shaker/blender hardware and plant-only/soy protein using cached title evidence. Exclusion reasons and source pointers are saved in the progress receipt. It retains uncertain titles and listings advertised with another flavour, because their exact SKU inventory may include chocolate/plain whey. Preliminary card classification does not verify a manufacturer or package.
+
+Regenerate the full requirement/GitHub-issue acceptance report without marketplace requests:
+
+```sh
+node scripts/audit-case-requirements.mjs
+node scripts/audit-case-requirements.mjs --strict
+```
+
+The strict command exits unsuccessfully while any recorded acceptance gate remains open. See [current acceptance](acceptance/requirements-audit/current.md). The saved independent reviews are dated baselines; current backlog counts are recalculated from the latest published catalog. Both observed ice routes returned the same mixed 386-item set, so terminal pagination alone does not prove category completeness.
 
 An exhausted task queue does not prove that all marketplace inventory or manufacturers are verified. Remaining category reviews, exact factory labels, stock, bulk freight and frozen Nha Trang delivery remain required acceptance work. Old captures are not recollected while those initial collection gaps remain.
 

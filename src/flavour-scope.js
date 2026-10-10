@@ -5,7 +5,7 @@ const chocolate =
 const plain =
   /\b(?:unflavou?red|unflavou?r|flavou?rless|plain|natural|original)\b|khong\s*(?:mui|vi)|nguyen\s*vi|tu\s*nhien/u;
 const other =
-  /\b(?:vanilla|vani|banana|chuoi|strawberry|matcha|coffee|cafe|caramel|mint|peppermint|taro|khoai|durian|sau\s*rieng|coconut|dua|mango|xoai|peanut|almond|hazelnut|pistachio|blueberry|raspberry|orange|lemon|cookies?|oreo|birthday|cheesecake|tiramisu|butterscotch)\b|(?:vi\s*dau|dau\s*tay)|3\s*(?:in|trong|vi|[/-])\s*1|ba\s*vi/u;
+  /\b(?:vanilla|vani|banana|chuoi|strawberry|matcha|coffee|cafe|caramel|mint|peppermint|taro|khoai|durian|sau\s*rieng|coconut|dua|mango|xoai|peach|peanut|almond|hazelnut|pistachio|blueberry|raspberry|orange|lemon|cookies?|oreo|birthday|cheesecake|tiramisu|butterscotch)\b|(?:vi\s*dau|dau\s*tay|tra\s*dao)|3\s*(?:in|trong|vi|[/-])\s*1|ba\s*vi/u;
 
 function outsideChocolateCore(text) {
   if (
@@ -96,7 +96,10 @@ export function matchesFlavourScope(product, scope) {
 export function isShakerBundle(product) {
   return (product.selectedVariant || []).some((option) =>
     /\bshaker\b|binh\s*(?:lac|shake|bot)|\b(?:co|kem|them)\s*binh\b/u.test(
-      fold(option.text || '')
+      fold(option.text || '').replace(
+        /\b(?:no|without|khong(?:\s*kem)?)\s*(?:shaker|binh\s*(?:lac|shake|bot)?)/gu,
+        ' '
+      )
     )
   );
 }

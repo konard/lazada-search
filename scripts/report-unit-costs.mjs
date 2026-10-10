@@ -1,5 +1,6 @@
 import { calculateOffer } from '../src/compare.js';
 import { fold } from '../src/text.js';
+import { targetCategoryExclusion } from '../src/target-category.js';
 
 // Ingredients may contain soy lecithin in a whey product. Classify the actual
 // powder, not incidental ingredients or a promotional gift.
@@ -26,6 +27,9 @@ export function powderCategory(product) {
     )
   ) {
     return 'soy';
+  }
+  if (targetCategoryExclusion(product.title)) {
+    return 'other-protein';
   }
   if (/\b(?:thuc vat|vegan|plant based|non dairy)\b/u.test(fold(identity))) {
     return 'other-protein';

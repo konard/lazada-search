@@ -1,5 +1,6 @@
 import { categorySourceKey, listingKey } from '../src/text.js';
 import { productFlavour, isShakerBundle } from '../src/flavour-scope.js';
+import { targetCategoryExclusion } from '../src/target-category.js';
 
 export { categorySourceKey };
 
@@ -44,6 +45,71 @@ function filterFlavourTasks(audit, flavourScope) {
   return { ...audit, missingSkuPrices, excludedFlavourTasks };
 }
 
+function filterTargetCategoryTasks(audit, discoveries, flavourScope) {
+  if (flavourScope !== 'chocolate-or-unflavoured') {
+    return audit;
+  }
+  const byListing = new Map();
+  for (const record of [
+    ...discoveries,
+    ...(audit.categoryReview || []),
+    ...(audit.specifications || []),
+  ]) {
+    if (!record.title?.trim()) {
+      continue;
+    }
+    for (const key of recordListingKeys(record)) {
+      const entries = byListing.get(key) || [];
+      entries.push(record);
+      byListing.set(key, entries);
+    }
+  }
+  const exclusions = new Map();
+  for (const [key, records] of byListing) {
+    const reasons = records.map((record) =>
+      targetCategoryExclusion(record.title)
+    );
+    // Conflicting or uncertain titles remain in the collection backlog.
+    if (reasons.every(Boolean)) {
+      exclusions.set(key, {
+        listingKey: key,
+        titles: [...new Set(records.map((record) => record.title))],
+        sourceUrls: [
+          ...new Set(
+            records
+              .flatMap((record) => [
+                record.sourceUrl,
+                ...(record.sourceUrls || []),
+              ])
+              .filter(Boolean)
+          ),
+        ],
+        reasons: [...new Set(reasons)],
+      });
+    }
+  }
+  const result = {
+    ...audit,
+    excludedCategoryListings: [...exclusions.values()],
+  };
+  for (const field of [
+    'missingListings',
+    'missingSkuPrices',
+    'missingPrices',
+    'unknownSkuInventories',
+    'categoryReview',
+    'specifications',
+  ]) {
+    result[field] = (audit[field] || []).filter(
+      (record) => !recordListingKeys(record).some((key) => exclusions.has(key))
+    );
+  }
+  result.verifiedProducts = result.specifications.filter(
+    (entry) => entry.problems.length === 0
+  ).length;
+  return result;
+}
+
 function activeSourceKeys(crawl, categoryOnly) {
   return new Set(
     (crawl?.scopes || [])
@@ -79,7 +145,10 @@ export function scopeAccountAudit(
   } = {}
 ) {
   if (!categoryOnly && !activeSourcesOnly) {
-    return filterFlavourTasks(audit, flavourScope);
+    return filterFlavourTasks(
+      filterTargetCategoryTasks(audit, discoveries, flavourScope),
+      flavourScope
+    );
   }
   const sources = activeSourceKeys(crawl, categoryOnly);
   if (!sources.size) {
@@ -110,5 +179,12 @@ export function scopeAccountAudit(
     sourceUrls: [...sources],
     listingCount: listings.size,
   };
-  return filterFlavourTasks(filtered, flavourScope);
+  return filterFlavourTasks(
+    filterTargetCategoryTasks(
+      filtered,
+      discoveries.filter(inScope),
+      flavourScope
+    ),
+    flavourScope
+  );
 }

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { reportUnitCosts } from '../scripts/report-unit-costs.mjs';
 
 const report = JSON.parse(
   await readFile(
@@ -10,21 +11,44 @@ const report = JSON.parse(
 );
 
 test('both whey top tens exclude soy and paid shaker selection', () => {
-  for (const rows of [report.whey, report.verifiedProtein]) {
+  for (const [rows, metric] of [
+    [report.whey, 'beforePerFoodGram'],
+    [report.verifiedProtein, 'beforePerProteinGram'],
+  ]) {
     assert.equal(rows.length, 10);
     assert.ok(rows.every((r) => r.category === 'whey'));
     assert.ok(rows.every((r) => r.sku !== '3326435113_VNAMZ-16271820615'));
     assert.ok(rows.every((r) => r.sku !== '13335359191_VNAMZ-116522825388'));
+    assert.ok(
+      rows.every((row) => Number.isFinite(row[metric]) && row[metric] > 0)
+    );
+    assert.deepEqual(
+      rows.map((row) => row[metric]),
+      rows.map((row) => row[metric]).sort((a, b) => a - b)
+    );
   }
   assert.equal(report.soyProtein[0].sku, '3326435113_VNAMZ-16271820615');
-  assert.equal(report.verifiedProtein[9].sku, '13335359191_VNAMZ-116522825390');
 });
 
-test('ProSupps uses printed 907 g and never the title pound conversion', () => {
-  const row = report.whey.find((r) => r.sku === '1553990700_VNAMZ-6552645102');
+test('ProSupps retains printed 907 g when newly captured cheaper offers move it outside the top ten', async () => {
+  const catalog = JSON.parse(
+    await readFile(new URL('../docs/tables/catalog.json', import.meta.url))
+  );
+  const captured = catalog.comparisons.find(
+    ({ offer }) => offer.sku === '1553990700_VNAMZ-6552645102'
+  );
+  assert.ok(
+    captured,
+    'The original selected offer must remain in the complete captured catalog'
+  );
+  const row = reportUnitCosts(captured);
   assert.equal(row.massG, 907);
   assert.equal(row.beforePerFoodGram, 1150000 / 907);
   assert.equal(row.beforePerMl, null);
+  const ranked = report.whey.find((r) => r.sku === captured.offer.sku);
+  if (ranked) {
+    assert.equal(ranked.massG, 907);
+  }
 });
 
 test('ice cream selling units preserve the five-stick and five-cone quantities', () => {

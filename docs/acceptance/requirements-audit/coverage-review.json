@@ -1,0 +1,4252 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10T19:21:22.521Z",
+  "mode": "read-only cached sources; no browser, network or shared-store mutation",
+  "scopeRequested": {
+    "market": "vn",
+    "deliveryArea": "Nha Trang",
+    "wheyFlavours": ["chocolate", "unflavoured"],
+    "iceCreamCore": "strict chocolate",
+    "noPriceRangeCutoff": true
+  },
+  "observedConfiguration": {
+    "preferences": "LAZADA_MARKET: vn\nLAZADA_DELIVERY_AREA: 'Nha Trang'\nLAZADA_FLAVOUR_SCOPE: 'chocolate-or-unflavoured'\nLAZADA_CATEGORY_ONLY: false\nLAZADA_SEARCH_SORT: 'default'\n",
+    "collectionProgressCheckedAt": "2026-10-10T19:04:38.776Z",
+    "catalogCheckedAt": "2026-10-10T19:03:27.837Z",
+    "latestCrawlId": "crawl:2026-10-10T15:28:15.849Z",
+    "latestCrawlFinishedAt": "2026-10-10T15:29:36.294Z",
+    "categoryOnly": false,
+    "searchSort": "default",
+    "iceScopesOverrideSort": "priceasc"
+  },
+  "inputs": [
+    {
+      "path": "docs/tables/catalog.json",
+      "sha256": "819c577c2312b97953d9f07121fe6843356393f78706a390a8e9f9cf9e1a6c26",
+      "bytes": 19862479
+    },
+    {
+      "path": "docs/acceptance/collection-progress.json",
+      "sha256": "9c70780a301692c959b978c26fff0090edfc1ede906f7ff93e4ed8a2e192ef4b",
+      "bytes": 5270664
+    },
+    {
+      "path": "docs/acceptance/catalog-audit.json",
+      "sha256": "b5e2c1d465fb800bfd4ca349d34948d9a57c0988c340bf62c48f04e692735b60",
+      "bytes": 1056256
+    },
+    {
+      "path": "docs/acceptance/discovery-publication.json",
+      "sha256": "78e30b51f8ddb0737412aa7efd1bb7f8582c00fb5d000273e9ccb6d6b7b75796",
+      "bytes": 197830
+    },
+    {
+      "path": "data/cases/vietnam-nha-trang/manifest.json",
+      "sha256": "22b2489c59d3d912212954827c0791e4064851151a614a1f259f84cf74c7af5c",
+      "bytes": 2394812
+    },
+    {
+      "path": "data/cases/vietnam-nha-trang/preferences.lenv",
+      "sha256": "06a9bf9d7b3122444361e60f3753cb9188a7bced4c256b5ecb1684c1e67fd435",
+      "bytes": 159
+    },
+    {
+      "path": "src/coverage.js",
+      "sha256": "ac6d61e57101d12e689630dbd7cda8ae474f6013484e1fb51699a3fa5905d12e",
+      "bytes": 5767
+    },
+    {
+      "path": "src/flavour-scope.js",
+      "sha256": "0a7b3ee919f63ca1bf5a6679fb57ab00b8ff6161f138774596660fa6152a5030",
+      "bytes": 3735
+    },
+    {
+      "path": "src/crawl.js",
+      "sha256": "9ab6ccc8fbd77b8adfd861b2dfda174fc3455cee714a047a675c9fc992c34fef",
+      "bytes": 10689
+    },
+    {
+      "path": "scripts/account-category-scope.mjs",
+      "sha256": "4569c7643be877bece013cab6890f208a4e92bec64bc60429be66bf6c2fe9e37",
+      "bytes": 5258
+    },
+    {
+      "path": "scripts/account-backlog-order.mjs",
+      "sha256": "a2de3473537be134cae463cd444e265136d15cc6ad7e6a417b21ca06e3a7bacc",
+      "bytes": 3921
+    },
+    {
+      "path": "data/cases/vietnam-nha-trang/records/cache.623f66840e0477e4200b11cc9ac3636a729882901738afd0d2d9b6e5f4ec0813.json.gz",
+      "sha256": "062555a478d735b6122b407442acd3ebbf982fdbd7fc5d5f8680849f943e4408",
+      "originalSha256": "623f66840e0477e4200b11cc9ac3636a729882901738afd0d2d9b6e5f4ec0813",
+      "compressedHashMatched": true,
+      "originalHashMatched": true
+    }
+  ],
+  "scopeReviews": [
+    {
+      "query": "whey protein",
+      "url": "https://www.lazada.vn/catalog/?q=whey+protein",
+      "type": "keyword",
+      "visitedPages": 61,
+      "terminalConfirmed": true,
+      "reportedTotal": 2413,
+      "lastPage": 61,
+      "stopReason": "terminal-page",
+      "sourceKey": "https://www.lazada.vn/catalog/?q=whey+protein",
+      "pagesPresent": [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+        57, 58, 59, 60, 61
+      ],
+      "missingConsecutivePages": [],
+      "cachedCardCounts": {
+        "observations": 2416,
+        "distinctListings": 2416,
+        "distinctListingSkuPairs": 2416
+      },
+      "discoveryRecordCounts": {
+        "observations": 2427,
+        "distinctListings": 2416,
+        "distinctListingSkuPairs": 2418
+      },
+      "categoryHistogram": {
+        "unknown": 885,
+        "protein-powder": 110,
+        "whey": 1432
+      },
+      "allRequestedSortPreserved": true,
+      "priceCutoffParameters": [],
+      "pageEvidence": [
+        {
+          "url": "https://www.lazada.vn/catalog/?q=whey+protein",
+          "observedAt": "2026-10-10T10:14:53.310Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "f08cfe3cbf6041839f63dc613e193f7aefd64b6ea8fe3b8f873de8100d02f095",
+          "coverage": {
+            "currentPage": 1,
+            "lastPage": 60,
+            "reportedTotal": 2400,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=2&q=whey+protein",
+          "observedAt": "2026-10-10T10:15:53.126Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "4e3b2aed4be439888717a3d068a6945d79d8ba9a2b750ade2e9aaf287f8e84ec",
+          "coverage": {
+            "currentPage": 2,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=3&q=whey+protein",
+          "observedAt": "2026-10-10T10:16:53.206Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "24823c56f93bd201312b21755a79b2c32105aa8898e71d3d84c99863e44042e2",
+          "coverage": {
+            "currentPage": 3,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=4&q=whey+protein",
+          "observedAt": "2026-10-10T10:17:53.146Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "0afb5bd242d4e1800111fdcdcc1465b2c78ec2cc751d1bde65c874c802bb2a05",
+          "coverage": {
+            "currentPage": 4,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=5&q=whey+protein",
+          "observedAt": "2026-10-10T10:18:53.092Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "17e71f70f77c1ccc0a019a706d40deb44a7d437e61f9c30aed05f0c56a2aa452",
+          "coverage": {
+            "currentPage": 5,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=6&q=whey+protein",
+          "observedAt": "2026-10-10T10:19:53.331Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "75c63f34ea3641ead0bb0d4eff8d2f77cd8e83fc3415e8219fed4f5de2dbc9d2",
+          "coverage": {
+            "currentPage": 6,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=7&q=whey+protein",
+          "observedAt": "2026-10-10T10:20:53.209Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "5534e5875fecc562ccfa339b5df55030ed9c2ed47250c5673a1658766e411088",
+          "coverage": {
+            "currentPage": 7,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=8&q=whey+protein",
+          "observedAt": "2026-10-10T10:21:53.052Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "198029ad75d6685f2e7d2d7edcc19664ef4323fe8d1b44a86eb3b91ef2e3b007",
+          "coverage": {
+            "currentPage": 8,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
+          "observedAt": "2026-10-10T10:22:53.182Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "ef145305574946e1be115b430ca05aa61823b8b21cbf1f44e77364f3b291c003",
+          "coverage": {
+            "currentPage": 9,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=10&q=whey+protein",
+          "observedAt": "2026-10-10T10:23:52.643Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "9b4668b0c2b81a1f3c6b5357024046253b92fa4c0fc2a9519022b5523882d485",
+          "coverage": {
+            "currentPage": 10,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=11&q=whey+protein",
+          "observedAt": "2026-10-10T10:24:53.033Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "8e002ca03d1df8d1b5568bb72d08ea81f553cc842b6081084412275ad8345322",
+          "coverage": {
+            "currentPage": 11,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=12&q=whey+protein",
+          "observedAt": "2026-10-10T10:30:15.126Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "6bab1eec7d6616aef4b90791532487bfc1993ccc40de1d99be7f95b3ef6b09da",
+          "coverage": {
+            "currentPage": 12,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=13&q=whey+protein",
+          "observedAt": "2026-10-10T10:31:15.072Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "c240c0ec89920d2f2bcabda243c29402cb78a1fe786a131201f3533f92f2e1f5",
+          "coverage": {
+            "currentPage": 13,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
+          "observedAt": "2026-10-10T10:32:15.120Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "fca95feb69d318ed122dd94d9c8f42d7bd3544bcaa9c4922d31d00c05bdfe191",
+          "coverage": {
+            "currentPage": 14,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=15&q=whey+protein",
+          "observedAt": "2026-10-10T10:33:15.122Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "569205a9084baa0c079302c4a37ca452ab32b21eb68c28bfd2e7aa881f735998",
+          "coverage": {
+            "currentPage": 15,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=16&q=whey+protein",
+          "observedAt": "2026-10-10T10:34:15.329Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "87c9deb3ba803987effd74094e660367ed0538dc328e13c9ec1c5dab2225aaff",
+          "coverage": {
+            "currentPage": 16,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=17&q=whey+protein",
+          "observedAt": "2026-10-10T10:35:15.222Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "efe6f2c285a33eb282df106bfb7bb9ea63d63fcc6d666ff2bfe1d8e53863348f",
+          "coverage": {
+            "currentPage": 17,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=18&q=whey+protein",
+          "observedAt": "2026-10-10T10:36:15.211Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "7a3d6b339494550dcc8323e4ab680e0ff643fa8178410d4e266085e5ee3a4f0a",
+          "coverage": {
+            "currentPage": 18,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=19&q=whey+protein",
+          "observedAt": "2026-10-10T10:37:15.977Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "e52042b93c44c0218220e66d9673081b94394af2e3c69faa4e201611ccd04197",
+          "coverage": {
+            "currentPage": 19,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=20&q=whey+protein",
+          "observedAt": "2026-10-10T10:38:16.124Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "d4796b62f4a86eb57dab7ec10a91a2ae63da8563d9a23a794825b522c4f1863f",
+          "coverage": {
+            "currentPage": 20,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=21&q=whey+protein",
+          "observedAt": "2026-10-10T10:39:15.122Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "000154f25487ec11601a4f4497115463c95ddbcdcd0212c4096311ffcd0bc7d6",
+          "coverage": {
+            "currentPage": 21,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=22&q=whey+protein",
+          "observedAt": "2026-10-10T10:40:15.351Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "999c400e752ea80927b3b11e0a40adf794cda068159a6b1ae8b99c359e8706ba",
+          "coverage": {
+            "currentPage": 22,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=23&q=whey+protein",
+          "observedAt": "2026-10-10T10:41:15.412Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "bb36881c83036f6ea9c6a6a54c240998aead053cab04ce521b01a240afa2da6b",
+          "coverage": {
+            "currentPage": 23,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=24&q=whey+protein",
+          "observedAt": "2026-10-10T10:42:15.260Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "15c5a9abfc45d0ea2c19b4e51ab6419a87a3e0601a43326d47c473ce2857c560",
+          "coverage": {
+            "currentPage": 24,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=25&q=whey+protein",
+          "observedAt": "2026-10-10T10:43:15.147Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "17e851ff0380914438ad092cb4e814deec7dc86a44219b705d0439655bdeaa57",
+          "coverage": {
+            "currentPage": 25,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=26&q=whey+protein",
+          "observedAt": "2026-10-10T10:44:15.336Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "e04bc3a6c1acf6c26527b35749aee780bac079d249d96bf1c0b5268f23356e42",
+          "coverage": {
+            "currentPage": 26,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=27&q=whey+protein",
+          "observedAt": "2026-10-10T10:45:15.474Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "b074200f1be98a2361f3819128aa08178361162f26349b9702ca176559a71404",
+          "coverage": {
+            "currentPage": 27,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=28&q=whey+protein",
+          "observedAt": "2026-10-10T10:46:15.702Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "8a80fe0dd8cec9f35b2a31143133aecbd0606c595c818f7dd3015d86e2d16c5d",
+          "coverage": {
+            "currentPage": 28,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=29&q=whey+protein",
+          "observedAt": "2026-10-10T10:47:15.237Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "ed888707584a4a80edd1c945bfcb4c82657470a1d6b279c5bcaf472966a10331",
+          "coverage": {
+            "currentPage": 29,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=30&q=whey+protein",
+          "observedAt": "2026-10-10T10:48:15.615Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "6b018354db498d4ee47ab2ecca5a24e68a760c53bbcc175850820d42bdaeaff5",
+          "coverage": {
+            "currentPage": 30,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=31&q=whey+protein",
+          "observedAt": "2026-10-10T10:49:15.332Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "6498352a3f4f1c6265d367145a2063bc0c1dd8ccb3db798e09deafa69aa8d8a3",
+          "coverage": {
+            "currentPage": 31,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=32&q=whey+protein",
+          "observedAt": "2026-10-10T10:50:15.278Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "b011893d520449865ffc75d12c5688d7975d9f387ba622ae5027e12dea24d9d6",
+          "coverage": {
+            "currentPage": 32,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=33&q=whey+protein",
+          "observedAt": "2026-10-10T10:51:15.079Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "444c850b5519fde3e381fc9fc1f87e4d106b4f711fb117dfed61d1e34c2df3f8",
+          "coverage": {
+            "currentPage": 33,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=34&q=whey+protein",
+          "observedAt": "2026-10-10T10:52:15.050Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "55eb89475988a3c8c110314369771bb0a315e73ab92fd86f5dd2c2df7e9aa07e",
+          "coverage": {
+            "currentPage": 34,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=35&q=whey+protein",
+          "observedAt": "2026-10-10T10:53:15.201Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "e4bafaf5e2cb97d4db1ec0c1783e8cb763a8db796ee72ca35cc7a770673f6f7a",
+          "coverage": {
+            "currentPage": 35,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=36&q=whey+protein",
+          "observedAt": "2026-10-10T10:54:15.199Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "6e47e4fa5f3a6040d5d50a2928236590b817146f7cf7800cfac4d761c468e002",
+          "coverage": {
+            "currentPage": 36,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=37&q=whey+protein",
+          "observedAt": "2026-10-10T10:55:15.295Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "25b417aec2b782e387b3d2a59992eccc4a3ecc5c46aa63748ade419fc3a5be3f",
+          "coverage": {
+            "currentPage": 37,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=38&q=whey+protein",
+          "observedAt": "2026-10-10T10:56:15.122Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "272d1cff59bdb2ef16b7456a94931fd75599dfe5e07dcdceccb4f1c853c325c0",
+          "coverage": {
+            "currentPage": 38,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=39&q=whey+protein",
+          "observedAt": "2026-10-10T10:57:15.232Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "f271d1b744da862584386d330273796e20d5cc0b832460478ab5e5e3ea14da71",
+          "coverage": {
+            "currentPage": 39,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=40&q=whey+protein",
+          "observedAt": "2026-10-10T10:58:16.860Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "fd0b3bf304c3c0b2dd41c8d93452d05686431f57709f9b8fc00bbcecbbb75bea",
+          "coverage": {
+            "currentPage": 40,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=41&q=whey+protein",
+          "observedAt": "2026-10-10T10:59:15.310Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "9a565dab66e8d7e1db6e907c34eb94330b19cdb6d9966013474629bebfde9a81",
+          "coverage": {
+            "currentPage": 41,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=42&q=whey+protein",
+          "observedAt": "2026-10-10T11:00:15.517Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "69c29d5b68c13ba8fda8f441d68b4f572937b6ff12e414918914beee751c7379",
+          "coverage": {
+            "currentPage": 42,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=43&q=whey+protein",
+          "observedAt": "2026-10-10T11:01:15.263Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "942a46ce65d0028de78a3d26a5e44b0d633571319eb18c98f9ef0ed5a1fe7658",
+          "coverage": {
+            "currentPage": 43,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=44&q=whey+protein",
+          "observedAt": "2026-10-10T11:02:15.188Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "ba7699deabc6bde0e222d78ebc0fd299c1a65823b488507dac34a65e2749354a",
+          "coverage": {
+            "currentPage": 44,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=45&q=whey+protein",
+          "observedAt": "2026-10-10T11:03:14.879Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "e6b86c49b843ccc44925b6b82da69ab1c9d44ed22cb3d6ae9ff9338421f42dc6",
+          "coverage": {
+            "currentPage": 45,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=46&q=whey+protein",
+          "observedAt": "2026-10-10T11:04:15.449Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "94dd0301059b9c9b05b79360709256bb518943de3377b9a4857da6dec35ae790",
+          "coverage": {
+            "currentPage": 46,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=47&q=whey+protein",
+          "observedAt": "2026-10-10T11:05:15.222Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "4b76a5f2d13679e23f0a0bf6b655a45c089cb5f0c1dd116eba90350d08b278eb",
+          "coverage": {
+            "currentPage": 47,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=48&q=whey+protein",
+          "observedAt": "2026-10-10T11:06:15.020Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "da857ca5d0e87b61372f6417f8ca8840eb4cf9d37ef796a392c75624f903af1a",
+          "coverage": {
+            "currentPage": 48,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=49&q=whey+protein",
+          "observedAt": "2026-10-10T11:07:14.919Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "0d92dbf7845d1e9e2abbd0bfa5a76e143efec9790af1c53934258a6fe4453bc3",
+          "coverage": {
+            "currentPage": 49,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=50&q=whey+protein",
+          "observedAt": "2026-10-10T11:08:15.193Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "20e52b8051d848482b2e8524ed9a60bf833b71ae043724ad4ac634ca111f86e5",
+          "coverage": {
+            "currentPage": 50,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=51&q=whey+protein",
+          "observedAt": "2026-10-10T11:09:15.154Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "e1dcf780c81b604f173326ad92014ede5f0121f6ceec702d56ab521f7de18738",
+          "coverage": {
+            "currentPage": 51,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=52&q=whey+protein",
+          "observedAt": "2026-10-10T11:10:15.133Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "13f59895a47e7cb63c9e7230695e3b70c9042dc0b9cf5837aadee47c0281ec62",
+          "coverage": {
+            "currentPage": 52,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=53&q=whey+protein",
+          "observedAt": "2026-10-10T11:11:14.912Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "697119605900b206c6fbd5ca173e3a517ff145db812efcfd5f4b597c5e31e8f6",
+          "coverage": {
+            "currentPage": 53,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=54&q=whey+protein",
+          "observedAt": "2026-10-10T11:12:15.045Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "a718324a28bcac9bf76ae627fd4dbda2bdace9eaffdf21ff725564bb80beebb6",
+          "coverage": {
+            "currentPage": 54,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=55&q=whey+protein",
+          "observedAt": "2026-10-10T11:13:14.936Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "78da563ab99777be7c406710105126575b60cf36224af1479caaeec41004d5ca",
+          "coverage": {
+            "currentPage": 55,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=56&q=whey+protein",
+          "observedAt": "2026-10-10T11:14:15.468Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "cb0d296638edcad5c5a25d7ff2b3b0088792aadda37f85f500c5bd13556e59b5",
+          "coverage": {
+            "currentPage": 56,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=57&q=whey+protein",
+          "observedAt": "2026-10-10T11:15:15.051Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "07d18a29287e783661bdeccc1093ac16a87d6e702fc1c2ba71bab12b9b765f72",
+          "coverage": {
+            "currentPage": 57,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=58&q=whey+protein",
+          "observedAt": "2026-10-10T11:16:15.022Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "d7fe4ef114874f0a785367040a2c0bd8e94a81dce8fc7bb4927a90047591054a",
+          "coverage": {
+            "currentPage": 58,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=59&q=whey+protein",
+          "observedAt": "2026-10-10T11:17:15.498Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "40caac8b8ccf048758322213134222cdfd6d2c4a42299b0b251c2aaccbb84c1a",
+          "coverage": {
+            "currentPage": 59,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=60&q=whey+protein",
+          "observedAt": "2026-10-10T11:18:14.861Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 40,
+          "htmlSha256": "fce028696fd4b73979c0836999998601d5e57234b0ced22b41f44cd0b724e1dc",
+          "coverage": {
+            "currentPage": 60,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=61&q=whey+protein",
+          "observedAt": "2026-10-10T11:19:05.596Z",
+          "status": "ok",
+          "title": "whey protein",
+          "cards": 16,
+          "htmlSha256": "52c930d3eca8f12bf41368fbb890bd45ec16f1e253cac67b080bbe93315b9594",
+          "coverage": {
+            "currentPage": 61,
+            "lastPage": 61,
+            "reportedTotal": 2413,
+            "terminalConfirmed": true,
+            "nextAvailable": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "whey isolate",
+      "url": "https://www.lazada.vn/catalog/?q=whey+isolate",
+      "type": "keyword",
+      "visitedPages": 80,
+      "terminalConfirmed": true,
+      "reportedTotal": 3176,
+      "lastPage": 80,
+      "stopReason": "terminal-page",
+      "sourceKey": "https://www.lazada.vn/catalog/?q=whey+isolate",
+      "pagesPresent": [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+        57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+        75, 76, 77, 78, 79, 80
+      ],
+      "missingConsecutivePages": [],
+      "cachedCardCounts": {
+        "observations": 3200,
+        "distinctListings": 3200,
+        "distinctListingSkuPairs": 3200
+      },
+      "discoveryRecordCounts": {
+        "observations": 3242,
+        "distinctListings": 3200,
+        "distinctListingSkuPairs": 3201
+      },
+      "categoryHistogram": {
+        "unknown": 2419,
+        "whey": 744,
+        "protein-powder": 79
+      },
+      "allRequestedSortPreserved": true,
+      "priceCutoffParameters": [],
+      "pageEvidence": [
+        {
+          "url": "https://www.lazada.vn/catalog/?q=whey+isolate",
+          "observedAt": "2026-10-10T11:20:15.327Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "300352d85cfac143b4d50b7232edf0a6e0fd7fdc6d24afcdd47118e540dd2635",
+          "coverage": {
+            "currentPage": 1,
+            "lastPage": 81,
+            "reportedTotal": 3207,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=2&q=whey+isolate",
+          "observedAt": "2026-10-10T11:21:15.183Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "539095f5c6d2a8435234f4b4e5038267f57e77878a670cc85e563030cb1bc13b",
+          "coverage": {
+            "currentPage": 2,
+            "lastPage": 81,
+            "reportedTotal": 3202,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=3&q=whey+isolate",
+          "observedAt": "2026-10-10T11:22:16.129Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "49c2c7d39ad2cd2a3fdc88ff6067dc3fa5cec88273a2716b49db04c66f9a8c74",
+          "coverage": {
+            "currentPage": 3,
+            "lastPage": 81,
+            "reportedTotal": 3206,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=4&q=whey+isolate",
+          "observedAt": "2026-10-10T11:23:15.744Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "e7d7f17347952e43fd6beb608ef01962cf277d0cd707257c51563e865e4ab974",
+          "coverage": {
+            "currentPage": 4,
+            "lastPage": 80,
+            "reportedTotal": 3200,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=5&q=whey+isolate",
+          "observedAt": "2026-10-10T11:24:15.711Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8d6f01dfd47c47884af73caa2771ba39ff7ee38ab83f2a0e44a459512ee39099",
+          "coverage": {
+            "currentPage": 5,
+            "lastPage": 80,
+            "reportedTotal": 3200,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=6&q=whey+isolate",
+          "observedAt": "2026-10-10T11:25:15.312Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "af97bdea7d1c7f7ef681704174565d69a15537bf5b055b68187fc402dd923808",
+          "coverage": {
+            "currentPage": 6,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=7&q=whey+isolate",
+          "observedAt": "2026-10-10T11:26:15.292Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8a220150b8f46c9ab3205bcaea1c71350a6a7e65074ab2cec8c033d3512cae04",
+          "coverage": {
+            "currentPage": 7,
+            "lastPage": 80,
+            "reportedTotal": 3186,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=8&q=whey+isolate",
+          "observedAt": "2026-10-10T11:27:15.247Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "a6420985574fc3620c2cac1349d4ae27f1d3425acd0fa21dc60fe83cf89956cf",
+          "coverage": {
+            "currentPage": 8,
+            "lastPage": 80,
+            "reportedTotal": 3186,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=9&q=whey+isolate",
+          "observedAt": "2026-10-10T11:28:15.293Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "83af0eb67b3a512be222632c23a5e2d70f91e9f62e57259bf2257f0f7c279657",
+          "coverage": {
+            "currentPage": 9,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=10&q=whey+isolate",
+          "observedAt": "2026-10-10T11:30:05.739Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "0efb446a88ff042a97dafe1234f1dbe100ff073bc934ffafad1b10b47e2a36db",
+          "coverage": {
+            "currentPage": 10,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=11&q=whey+isolate",
+          "observedAt": "2026-10-10T11:31:05.539Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "6e094f3646324605f15d0368e33f0513ca443ba2a585b43b95e770da7e533cdf",
+          "coverage": {
+            "currentPage": 11,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=12&q=whey+isolate",
+          "observedAt": "2026-10-10T11:32:05.607Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "f9cdfe6651a04e14a39daabcc569f1ed6f94c791a3e81f3aed35e0d0f046cec8",
+          "coverage": {
+            "currentPage": 12,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=13&q=whey+isolate",
+          "observedAt": "2026-10-10T11:33:05.333Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "aa1670a1fb2fe294c47c5dc5d89f7c951e6d857fbef08c3421d3ac392bccd744",
+          "coverage": {
+            "currentPage": 13,
+            "lastPage": 80,
+            "reportedTotal": 3185,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=14&q=whey+isolate",
+          "observedAt": "2026-10-10T11:34:05.947Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "43bc21ae13a684e75e5e6b659ed14c76b4892770c40fed4208d1c98ded19f1be",
+          "coverage": {
+            "currentPage": 14,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=15&q=whey+isolate",
+          "observedAt": "2026-10-10T11:35:05.451Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "b37843e467976b9af637f6fc805745c1e2882d4ec18d7d480fe9bc0038332147",
+          "coverage": {
+            "currentPage": 15,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=16&q=whey+isolate",
+          "observedAt": "2026-10-10T11:36:05.460Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "b15a9c8ded4d8d4b4762414d0c0758fc0ab57e81d9242670a58ffb12e3ffa1cc",
+          "coverage": {
+            "currentPage": 16,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=17&q=whey+isolate",
+          "observedAt": "2026-10-10T11:37:55.955Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "dee865604290093baf41a0a00995dc96c3f4604414245a66332bc315f87cc53e",
+          "coverage": {
+            "currentPage": 17,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=18&q=whey+isolate",
+          "observedAt": "2026-10-10T11:38:55.823Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "cd0bc16f517d7fb0a8c3a05d1a3bf21a8328fd4aaa9623f43ec3aa81a5008931",
+          "coverage": {
+            "currentPage": 18,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=19&q=whey+isolate",
+          "observedAt": "2026-10-10T11:39:55.808Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "111c4592bab01bb5298daf5f74745c47fcb7e2ad77df3364e88722916f1d2d9d",
+          "coverage": {
+            "currentPage": 19,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=20&q=whey+isolate",
+          "observedAt": "2026-10-10T11:40:55.837Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "606b22794618e9230eab037c3698be73ec288c04a1e09a2cb79526f59892e5b4",
+          "coverage": {
+            "currentPage": 20,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=21&q=whey+isolate",
+          "observedAt": "2026-10-10T11:41:55.782Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "9216cdce9ce1346e8345138206627e08361996e6795eb96337e2e7e8d91413bb",
+          "coverage": {
+            "currentPage": 21,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=22&q=whey+isolate",
+          "observedAt": "2026-10-10T11:42:56.139Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "28041d2e2d7666b25b06e403455aee9ba150a58544eb7a2b5f9f3ab715913954",
+          "coverage": {
+            "currentPage": 22,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=23&q=whey+isolate",
+          "observedAt": "2026-10-10T11:43:55.880Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "509dc60aaace1e56b33135636110f24dcd0cd8890d2289f20cf0933b4702dfc5",
+          "coverage": {
+            "currentPage": 23,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=24&q=whey+isolate",
+          "observedAt": "2026-10-10T11:44:55.972Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "7a21ed6e60ceccd22f0303b0deadd253e450df48d5bd1e1559a28fdf117354d6",
+          "coverage": {
+            "currentPage": 24,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=25&q=whey+isolate",
+          "observedAt": "2026-10-10T11:45:56.037Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "1e119dfc40298bf9b60fe0870287255d8dbcfdb2429b1460d19372b008405229",
+          "coverage": {
+            "currentPage": 25,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=26&q=whey+isolate",
+          "observedAt": "2026-10-10T11:46:56.154Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "c6346171ae56ed5d3c39fcf99cb955976e0a65f5e27c3f3ecb2b30b0e9dfe177",
+          "coverage": {
+            "currentPage": 26,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=27&q=whey+isolate",
+          "observedAt": "2026-10-10T11:47:55.668Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "82963c30af771b7604ce3662055b45afe38ce8a2dbc0d694353e82f6d5f00dcd",
+          "coverage": {
+            "currentPage": 27,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=28&q=whey+isolate",
+          "observedAt": "2026-10-10T11:48:55.808Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "5a0d8cca999e5aab5171fae99c2b36a9cc75e4474fa70dcecf360de0481161bc",
+          "coverage": {
+            "currentPage": 28,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=29&q=whey+isolate",
+          "observedAt": "2026-10-10T11:49:55.834Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "176235d01acfb1ed620ed7a21e762654185678c073830b64d9f47a5eb51a2aad",
+          "coverage": {
+            "currentPage": 29,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=30&q=whey+isolate",
+          "observedAt": "2026-10-10T11:50:56.280Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "e74e7fd99d13578c0dec997db95d9e1bc45fbe7d9de1e7457e5e8c1ebcdd5083",
+          "coverage": {
+            "currentPage": 30,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=31&q=whey+isolate",
+          "observedAt": "2026-10-10T11:51:56.313Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "0de8f1a14b6b71270578279067a6936541af8bfb376b097773ac210883cca62b",
+          "coverage": {
+            "currentPage": 31,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=32&q=whey+isolate",
+          "observedAt": "2026-10-10T11:52:55.923Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "aa5a42286ecc12939207b477c23dde23cde1b287dff3036fc56d93121b016a57",
+          "coverage": {
+            "currentPage": 32,
+            "lastPage": 80,
+            "reportedTotal": 3184,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=33&q=whey+isolate",
+          "observedAt": "2026-10-10T11:53:55.937Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "fa8b78a2fcb4520450a2624abf7069e6402a540147d6f0bee5352a63ebd145e4",
+          "coverage": {
+            "currentPage": 33,
+            "lastPage": 80,
+            "reportedTotal": 3182,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=34&q=whey+isolate",
+          "observedAt": "2026-10-10T11:54:56.141Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "38d060d19f4996fec88965b038f75a861e9f36b4ac2aef3ba77187c5b5613679",
+          "coverage": {
+            "currentPage": 34,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=35&q=whey+isolate",
+          "observedAt": "2026-10-10T11:55:56.066Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "0dec4e0470f5423c5db380ed3dd6ae220c702dd244c15a7a8e49f3014114877e",
+          "coverage": {
+            "currentPage": 35,
+            "lastPage": 80,
+            "reportedTotal": 3183,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=36&q=whey+isolate",
+          "observedAt": "2026-10-10T12:09:26.081Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "fb15f004140b43cdd457690c530bb0211272e6f05dd7ac57fdb84527ebc07c28",
+          "coverage": {
+            "currentPage": 36,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=37&q=whey+isolate",
+          "observedAt": "2026-10-10T12:10:26.011Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "b22e6fe71f99d0222b89d6265a7bd14332c5e8362c6a6b98065b4d4d3ee2eb0f",
+          "coverage": {
+            "currentPage": 37,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=38&q=whey+isolate",
+          "observedAt": "2026-10-10T12:11:26.225Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8fa1d7d574e8a8706e151baf3e6ab1f90f54e398e749c126cde7a3d256491988",
+          "coverage": {
+            "currentPage": 38,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=39&q=whey+isolate",
+          "observedAt": "2026-10-10T12:12:26.042Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "e36160ed852e5f2a2c069801758161683d12480109c7824832b5a449f29fa5f8",
+          "coverage": {
+            "currentPage": 39,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=40&q=whey+isolate",
+          "observedAt": "2026-10-10T12:13:26.336Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "a711ea1b1fb0d2924a8a8946ea820bed24b27a534570439826d1167ccd2e4213",
+          "coverage": {
+            "currentPage": 40,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=41&q=whey+isolate",
+          "observedAt": "2026-10-10T12:14:26.013Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "a1cb796f670aa8dcd17f03e4feae183fa6acdb99d6e557cb9617d09e19cb1f36",
+          "coverage": {
+            "currentPage": 41,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=42&q=whey+isolate",
+          "observedAt": "2026-10-10T12:15:26.155Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "052c051e199ef7d87ef8325e26adaceca4b314073ee5314e3d5ccd1d7b03f645",
+          "coverage": {
+            "currentPage": 42,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=43&q=whey+isolate",
+          "observedAt": "2026-10-10T12:16:25.879Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "61261abbf76113d9e1b7cd261cc91fdd7f9ab914fb1ad4dfc16c398f821d1525",
+          "coverage": {
+            "currentPage": 43,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=44&q=whey+isolate",
+          "observedAt": "2026-10-10T12:17:26.269Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "88111bd47f59fa203f84c8569c8d50bab4419a1cb53d6b62d6d1f82b6560a506",
+          "coverage": {
+            "currentPage": 44,
+            "lastPage": 80,
+            "reportedTotal": 3180,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=45&q=whey+isolate",
+          "observedAt": "2026-10-10T12:18:26.346Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "217c80ee16490c2af9f1455c8096adb46b8752ce9902cbe02909babf03717a34",
+          "coverage": {
+            "currentPage": 45,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=46&q=whey+isolate",
+          "observedAt": "2026-10-10T12:19:26.056Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "b1dde7c46be7808e2a41f8e29b118422deef8d79964adabb1f883b1ca838bd61",
+          "coverage": {
+            "currentPage": 46,
+            "lastPage": 80,
+            "reportedTotal": 3180,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=47&q=whey+isolate",
+          "observedAt": "2026-10-10T12:20:25.942Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "a0578aa401bf6d5b82df1db829febb57de85d7c70247d0ed0ac07a715596b6d5",
+          "coverage": {
+            "currentPage": 47,
+            "lastPage": 80,
+            "reportedTotal": 3180,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=48&q=whey+isolate",
+          "observedAt": "2026-10-10T12:21:26.095Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "be99ed25e202093b986b12683a681ca6fdfdfa222f4d24404c16a584a2858bd1",
+          "coverage": {
+            "currentPage": 48,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=49&q=whey+isolate",
+          "observedAt": "2026-10-10T12:22:26.023Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "e619f2d4148a53a6679b428ab80996a914e42ab25f51dae76f4deea33079a935",
+          "coverage": {
+            "currentPage": 49,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=50&q=whey+isolate",
+          "observedAt": "2026-10-10T12:23:25.887Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "c889d07b07545990706a09a0cbfc0bed014edba3b3bc42f6647951220a4b10f6",
+          "coverage": {
+            "currentPage": 50,
+            "lastPage": 80,
+            "reportedTotal": 3181,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=51&q=whey+isolate",
+          "observedAt": "2026-10-10T12:24:26.488Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "3903b8a145790e215a298d6e2a0d5700e5dae1ae25ce44ab48ff7f6b19f9e4f5",
+          "coverage": {
+            "currentPage": 51,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=52&q=whey+isolate",
+          "observedAt": "2026-10-10T12:25:26.006Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "0ff6d2ebf34518ee9cc59123b24c0b6d3e69871bc78e5edf35ac8eb83c10b721",
+          "coverage": {
+            "currentPage": 52,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=53&q=whey+isolate",
+          "observedAt": "2026-10-10T12:26:26.434Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "5db05f941c4c5d7494bdeeb91b48bade71db792cbdd708ca8d76722cf3f4e109",
+          "coverage": {
+            "currentPage": 53,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=54&q=whey+isolate",
+          "observedAt": "2026-10-10T12:27:31.104Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "cfcc7a65e2d5faf14dba0da38a7cb0d43308b5e6694131208c0b75777a7723bf",
+          "coverage": {
+            "currentPage": 54,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=55&q=whey+isolate",
+          "observedAt": "2026-10-10T12:28:26.092Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8f7b041b4988d29dfaed39908fd35d60e8a343af1676fe68cee5dbda8e0bc5af",
+          "coverage": {
+            "currentPage": 55,
+            "lastPage": 80,
+            "reportedTotal": 3178,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=56&q=whey+isolate",
+          "observedAt": "2026-10-10T12:29:26.724Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "46fd2636114fa599d6403d50f5bd999c74f23cc03269ab7bb3163a952e0cb37e",
+          "coverage": {
+            "currentPage": 56,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=57&q=whey+isolate",
+          "observedAt": "2026-10-10T12:30:26.340Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8b83e4ba9a0fdd20d7a0d12d8981f3a3afcc31062278bb9cc7421f104cd96bff",
+          "coverage": {
+            "currentPage": 57,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=58&q=whey+isolate",
+          "observedAt": "2026-10-10T12:31:26.105Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "2fd971ef9880859a4906c0263c6a57bfee74b57e7e283618faf5f0b00a960ce9",
+          "coverage": {
+            "currentPage": 58,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=59&q=whey+isolate",
+          "observedAt": "2026-10-10T12:32:26.170Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "5efe539a1d7f23d25ea1c05c4b2722d41c26307e0abd29bf8b06abf5ece356e0",
+          "coverage": {
+            "currentPage": 59,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=60&q=whey+isolate",
+          "observedAt": "2026-10-10T12:33:25.931Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "7be52fe4f02b0af03897734a727b2e89d4368a61587ad0a72af8bd936dde8262",
+          "coverage": {
+            "currentPage": 60,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=61&q=whey+isolate",
+          "observedAt": "2026-10-10T12:34:26.295Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "300b9d00c60ab171cd065c8b59bb1d3d8424ebf2aa1f71a86185b79eb277df04",
+          "coverage": {
+            "currentPage": 61,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=62&q=whey+isolate",
+          "observedAt": "2026-10-10T12:35:26.067Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "2f9746713bf08e70381fcc418e293e5eb53ffac19d2ab3934d205f0d3ce22178",
+          "coverage": {
+            "currentPage": 62,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=63&q=whey+isolate",
+          "observedAt": "2026-10-10T12:36:26.195Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "87dbd782e54bdfe802c812c6ead88823f6a370bb766566ae2bee96c07ffbc829",
+          "coverage": {
+            "currentPage": 63,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=64&q=whey+isolate",
+          "observedAt": "2026-10-10T12:37:27.353Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "c4e56504ac799ffcb0044d27d88d3151b66355c530f548103fc329fb569a83d2",
+          "coverage": {
+            "currentPage": 64,
+            "lastPage": 80,
+            "reportedTotal": 3179,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=65&q=whey+isolate",
+          "observedAt": "2026-10-10T12:38:27.370Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "ec1b31ca52de3f5aefce085cf09501e01f21e1dd997bfdb1809117f2681fa130",
+          "coverage": {
+            "currentPage": 65,
+            "lastPage": 80,
+            "reportedTotal": 3178,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=66&q=whey+isolate",
+          "observedAt": "2026-10-10T12:39:27.652Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "8a299431d0cae37dcb1d78846d54eea78ac2ebd54910ccbddf03b98e9ebe2e53",
+          "coverage": {
+            "currentPage": 66,
+            "lastPage": 80,
+            "reportedTotal": 3178,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=67&q=whey+isolate",
+          "observedAt": "2026-10-10T12:40:26.710Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "69062a61a3f50f28620955221a721a28240cfa6ac805dcb7eff7f099b4b1a81d",
+          "coverage": {
+            "currentPage": 67,
+            "lastPage": 80,
+            "reportedTotal": 3178,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=68&q=whey+isolate",
+          "observedAt": "2026-10-10T12:41:26.305Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "cbd05a9f711dfd3e88c0b6e77f8be9cc2d21ef440df662e42f9486c7bdd04fe1",
+          "coverage": {
+            "currentPage": 68,
+            "lastPage": 80,
+            "reportedTotal": 3178,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=69&q=whey+isolate",
+          "observedAt": "2026-10-10T12:42:26.006Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "09ac8c9767e3b725c9612d2a9c15d36ebb6458080d4cedea22fc070fffc9f06f",
+          "coverage": {
+            "currentPage": 69,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=70&q=whey+isolate",
+          "observedAt": "2026-10-10T12:43:26.049Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "4b32f5036bdfe5a8bd22e3700c840f533d2bc585f0a0e5400f1e683bc1c6f560",
+          "coverage": {
+            "currentPage": 70,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=71&q=whey+isolate",
+          "observedAt": "2026-10-10T12:44:26.162Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "ddbffb4307e6c81d98c3bc0fba9ccfee581cafadd81a1c6fceac9f41aba12c4b",
+          "coverage": {
+            "currentPage": 71,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=72&q=whey+isolate",
+          "observedAt": "2026-10-10T12:45:25.998Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "a7766d42d9290d8b85076ea8e444613d648fdbe32b6c3f365dc430d4c3da8858",
+          "coverage": {
+            "currentPage": 72,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=73&q=whey+isolate",
+          "observedAt": "2026-10-10T12:46:25.940Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "6468b4c53a2029f0fb44e77dfcd7d4da27df1a5ee56210ec0a83555dcfe6085a",
+          "coverage": {
+            "currentPage": 73,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=74&q=whey+isolate",
+          "observedAt": "2026-10-10T12:47:26.048Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "85914c704f3952d883a55503e439ae74e9e2eb8c7a1a168bfd9cd274a36a0543",
+          "coverage": {
+            "currentPage": 74,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=75&q=whey+isolate",
+          "observedAt": "2026-10-10T12:48:26.057Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "acf5b60422840d68aa8a8811523a86aac0b351e85e18b4de1dc01e6c6fdcaab1",
+          "coverage": {
+            "currentPage": 75,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=76&q=whey+isolate",
+          "observedAt": "2026-10-10T12:49:25.983Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "9803dfb5d050af76d149feaf4805b555cb13fd3bdbec91bcb2ee83ecca13419a",
+          "coverage": {
+            "currentPage": 76,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=77&q=whey+isolate",
+          "observedAt": "2026-10-10T12:50:26.017Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "d6ef9c59ee0fb80c83c69c11a2071576423466d6592b0b24c4ac39f0143f62b7",
+          "coverage": {
+            "currentPage": 77,
+            "lastPage": 80,
+            "reportedTotal": 3177,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=78&q=whey+isolate",
+          "observedAt": "2026-10-10T12:51:26.489Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "50f9cc4dd6bcd6f2a852552dc64ba883e1b1af9a34b244d254875b51e6e075e3",
+          "coverage": {
+            "currentPage": 78,
+            "lastPage": 80,
+            "reportedTotal": 3176,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=79&q=whey+isolate",
+          "observedAt": "2026-10-10T12:52:25.951Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "fd49979821d0e5e745b58072d9f08a41e58b6904610f1109d88d85ee951113ab",
+          "coverage": {
+            "currentPage": 79,
+            "lastPage": 80,
+            "reportedTotal": 3176,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=80&q=whey+isolate",
+          "observedAt": "2026-10-10T12:53:26.127Z",
+          "status": "ok",
+          "title": "whey isolate",
+          "cards": 40,
+          "htmlSha256": "2ce81f9ff236ad818df436c6f9276d11357846130ab41037639f30f7b96a3385",
+          "coverage": {
+            "currentPage": 80,
+            "lastPage": 80,
+            "reportedTotal": 3176,
+            "terminalConfirmed": true,
+            "nextAvailable": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "protein powder",
+      "url": "https://www.lazada.vn/catalog/?q=protein+powder",
+      "type": "keyword",
+      "visitedPages": 77,
+      "terminalConfirmed": true,
+      "reportedTotal": 3080,
+      "lastPage": 77,
+      "stopReason": "terminal-page",
+      "sourceKey": "https://www.lazada.vn/catalog/?q=protein+powder",
+      "pagesPresent": [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+        57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+        75, 76, 77
+      ],
+      "missingConsecutivePages": [],
+      "cachedCardCounts": {
+        "observations": 3080,
+        "distinctListings": 3080,
+        "distinctListingSkuPairs": 3080
+      },
+      "discoveryRecordCounts": {
+        "observations": 3080,
+        "distinctListings": 3080,
+        "distinctListingSkuPairs": 3080
+      },
+      "categoryHistogram": {
+        "unknown": 2655,
+        "whey": 280,
+        "protein-powder": 145
+      },
+      "allRequestedSortPreserved": true,
+      "priceCutoffParameters": [],
+      "pageEvidence": [
+        {
+          "url": "https://www.lazada.vn/catalog/?q=protein+powder",
+          "observedAt": "2026-10-10T12:54:29.941Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "de26c158931d7e0602fe19f327c1737abb8ec0fa03112ac02770b18ac3685445",
+          "coverage": {
+            "currentPage": 1,
+            "lastPage": 76,
+            "reportedTotal": 3031,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=2&q=protein+powder",
+          "observedAt": "2026-10-10T12:55:29.686Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "ba2687226b786e927cc10f1cb561f39485b11792d94bf2778aed12acdf606529",
+          "coverage": {
+            "currentPage": 2,
+            "lastPage": 77,
+            "reportedTotal": 3047,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=3&q=protein+powder",
+          "observedAt": "2026-10-10T12:56:29.651Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "b11fbd640429e1d1215e74c16f349b6a94d4ac61f66e86d5fd73b5537c5a2080",
+          "coverage": {
+            "currentPage": 3,
+            "lastPage": 77,
+            "reportedTotal": 3047,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=4&q=protein+powder",
+          "observedAt": "2026-10-10T12:57:30.252Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "4ba00de746ee7a9e1932b24027ca2f526cbf5f0650240f738ff7f151b3f0ae22",
+          "coverage": {
+            "currentPage": 4,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=5&q=protein+powder",
+          "observedAt": "2026-10-10T12:58:29.724Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "2d7ae88cf5d804f47c2f5767629e1792119d9d7e73267e7af8ca959199b7abf9",
+          "coverage": {
+            "currentPage": 5,
+            "lastPage": 77,
+            "reportedTotal": 3045,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=6&q=protein+powder",
+          "observedAt": "2026-10-10T12:59:29.447Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "12e073605361a3d23df9a42ad71c98dfcdd78ea134f5b9c1e81fa0581be12083",
+          "coverage": {
+            "currentPage": 6,
+            "lastPage": 77,
+            "reportedTotal": 3044,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=7&q=protein+powder",
+          "observedAt": "2026-10-10T13:00:29.729Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "e0e58a1b96828311852bd4b6764b346b08e5b44bbdeae3eb88f9a4fedc4d6766",
+          "coverage": {
+            "currentPage": 7,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=8&q=protein+powder",
+          "observedAt": "2026-10-10T13:01:30.705Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "b8e3d5bab831fed5cc268af9abbe1dba65448fcfa36f66c2677a1a963f56ceb6",
+          "coverage": {
+            "currentPage": 8,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=9&q=protein+powder",
+          "observedAt": "2026-10-10T13:02:29.546Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "234ad26ffabc98e77a859e390ab45482f98ff2376e5adf1ecc64cc2115b7fcf3",
+          "coverage": {
+            "currentPage": 9,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=10&q=protein+powder",
+          "observedAt": "2026-10-10T13:03:29.580Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "aaaea6bd909ee739f1005eb4785ad74770b18aba29b060b32d408bd7b3cdca1a",
+          "coverage": {
+            "currentPage": 10,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=11&q=protein+powder",
+          "observedAt": "2026-10-10T13:04:29.369Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "c618688a631be681dff0377409a58186c254287b5becaa957204b0d7b2b45ec8",
+          "coverage": {
+            "currentPage": 11,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=12&q=protein+powder",
+          "observedAt": "2026-10-10T13:05:29.478Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "66a4ecdb33d05ab9f5aa061aa247c9ae3783bc25545d6fe5cc5a9c7dfa70a0c8",
+          "coverage": {
+            "currentPage": 12,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=13&q=protein+powder",
+          "observedAt": "2026-10-10T13:06:29.248Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "b0c2710cef541b719be049532e2fb51f90f0581d2d3f20a3d9660d6107cda1ae",
+          "coverage": {
+            "currentPage": 13,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=14&q=protein+powder",
+          "observedAt": "2026-10-10T13:07:29.585Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "1d974263849408f0705059f321abde68c5306b817e45a29c5e2b2ddbed4b293b",
+          "coverage": {
+            "currentPage": 14,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=15&q=protein+powder",
+          "observedAt": "2026-10-10T13:08:29.224Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "c26bbe65a5711b525d77e92de365cc2a17cbc4fabdb294700b8807917021f601",
+          "coverage": {
+            "currentPage": 15,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=16&q=protein+powder",
+          "observedAt": "2026-10-10T13:09:29.335Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "eb45b97290b628702239b937bfb312b5324c3df1aa054afe740f4629cc5d4d19",
+          "coverage": {
+            "currentPage": 16,
+            "lastPage": 77,
+            "reportedTotal": 3074,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=17&q=protein+powder",
+          "observedAt": "2026-10-10T13:10:29.210Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "a29e291867f09d735789cacb0da1b67e720a50f51b761185472fa59871d5f833",
+          "coverage": {
+            "currentPage": 17,
+            "lastPage": 77,
+            "reportedTotal": 3045,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=18&q=protein+powder",
+          "observedAt": "2026-10-10T13:11:29.451Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "702b8976d922140f6e0da4c1a8124f6f807e90919404b9c107fd90c517383380",
+          "coverage": {
+            "currentPage": 18,
+            "lastPage": 77,
+            "reportedTotal": 3074,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=19&q=protein+powder",
+          "observedAt": "2026-10-10T13:12:29.747Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "37b772fc9034b926fb6d0df9aa513b6407ffe895d97313ff0f82ba675626ea7e",
+          "coverage": {
+            "currentPage": 19,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=20&q=protein+powder",
+          "observedAt": "2026-10-10T13:13:29.407Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "405f0db9c30c782085f438a121085430ac29c92415b1687fcce2a0b35984db04",
+          "coverage": {
+            "currentPage": 20,
+            "lastPage": 77,
+            "reportedTotal": 3046,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=21&q=protein+powder",
+          "observedAt": "2026-10-10T13:14:29.343Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "84400a346c2fac8473d743b5635bb2b9bb2a6455bd55eddeec93b84fb1e27029",
+          "coverage": {
+            "currentPage": 21,
+            "lastPage": 77,
+            "reportedTotal": 3047,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=22&q=protein+powder",
+          "observedAt": "2026-10-10T13:15:29.468Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "17de4f66f0997608011f8ccacff5d63a7062c7922288233cd1118ed7d6146d25",
+          "coverage": {
+            "currentPage": 22,
+            "lastPage": 77,
+            "reportedTotal": 3047,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=23&q=protein+powder",
+          "observedAt": "2026-10-10T13:16:29.396Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "da5a3eb4016a8da78b919cbce5c1dca8bb9d372f8e33a46f4242b5a94cfcc435",
+          "coverage": {
+            "currentPage": 23,
+            "lastPage": 77,
+            "reportedTotal": 3074,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=24&q=protein+powder",
+          "observedAt": "2026-10-10T13:17:29.349Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "99dbe31d7a468ff6325cbc0a58e03ebd022c5a6be24247e48a845be350a992e0",
+          "coverage": {
+            "currentPage": 24,
+            "lastPage": 77,
+            "reportedTotal": 3076,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=25&q=protein+powder",
+          "observedAt": "2026-10-10T13:18:29.640Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "e7cd2b3e6a0b7801f08b4662376deaca21ac69148142e20d7e8eac2550614865",
+          "coverage": {
+            "currentPage": 25,
+            "lastPage": 77,
+            "reportedTotal": 3048,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=26&q=protein+powder",
+          "observedAt": "2026-10-10T13:19:29.910Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "95ca9fedaf0752ab362e68aa1e517f340f77ca50de2fba4f4ee0d268419d80c6",
+          "coverage": {
+            "currentPage": 26,
+            "lastPage": 77,
+            "reportedTotal": 3048,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=27&q=protein+powder",
+          "observedAt": "2026-10-10T13:20:30.093Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "e87a33095cd52f0c7bfb6726fcb544a73762cf74a576b0ea2d5afaedff5e94c0",
+          "coverage": {
+            "currentPage": 27,
+            "lastPage": 77,
+            "reportedTotal": 3048,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=28&q=protein+powder",
+          "observedAt": "2026-10-10T13:21:30.259Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "f54d86245e5bed3d152ff9f672682d8154885f0cada8332759a31b2de3e051ea",
+          "coverage": {
+            "currentPage": 28,
+            "lastPage": 77,
+            "reportedTotal": 3048,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=29&q=protein+powder",
+          "observedAt": "2026-10-10T13:22:29.813Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "0231ca13b0f49d0242eb01abec81ed3a246522fc4d321ef7ed4bb015b8a673ea",
+          "coverage": {
+            "currentPage": 29,
+            "lastPage": 78,
+            "reportedTotal": 3100,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=30&q=protein+powder",
+          "observedAt": "2026-10-10T13:23:29.663Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "46316b0d41117cf1cdc6ede1dd6e08184d5d77f39089c36574cf756caea4fc28",
+          "coverage": {
+            "currentPage": 30,
+            "lastPage": 78,
+            "reportedTotal": 3098,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=31&q=protein+powder",
+          "observedAt": "2026-10-10T13:24:30.025Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "e0eebe7df7345859e3a01e251d9ea794d35234120011aad922a3177e7d07b30a",
+          "coverage": {
+            "currentPage": 31,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=32&q=protein+powder",
+          "observedAt": "2026-10-10T13:25:29.474Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "fbb5d77b8219d65a2fb6f9638f143b1b8ae42b3a85814e4b4066853ab5b9ddb0",
+          "coverage": {
+            "currentPage": 32,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=33&q=protein+powder",
+          "observedAt": "2026-10-10T13:26:29.546Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "6b500b294524a8a041ea37bec0a654d6979d9b0f067bd53f549248352bbb362d",
+          "coverage": {
+            "currentPage": 33,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=34&q=protein+powder",
+          "observedAt": "2026-10-10T13:27:30.395Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "dcc789b5d1ca43e7ff88be41f484ff925b81fa357790d9c075079ed50ffdd449",
+          "coverage": {
+            "currentPage": 34,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=35&q=protein+powder",
+          "observedAt": "2026-10-10T13:28:29.590Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "62510d6d6e74917503cb55e3bb2949fc30f0404d9a9079a844323dd02e691007",
+          "coverage": {
+            "currentPage": 35,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=36&q=protein+powder",
+          "observedAt": "2026-10-10T13:29:29.809Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "a5df8a897cd4be6f12476e62aa8c963da103cc2ecfaaeadb82668cbfad5f8443",
+          "coverage": {
+            "currentPage": 36,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=37&q=protein+powder",
+          "observedAt": "2026-10-10T13:30:29.837Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "9688c3badf54d15214862c8e78e8844c125195b71527646497728635f1b286e8",
+          "coverage": {
+            "currentPage": 37,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=38&q=protein+powder",
+          "observedAt": "2026-10-10T13:31:29.697Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "42fb8e923c7f4ecb39acf34420bc1bb8b226a5d78aa2ce31e763cb95f499873e",
+          "coverage": {
+            "currentPage": 38,
+            "lastPage": 78,
+            "reportedTotal": 3095,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=39&q=protein+powder",
+          "observedAt": "2026-10-10T13:32:29.687Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "1f90188dbb277c394cfbc257279babb210cc6009324b5d92e97e49dd95283107",
+          "coverage": {
+            "currentPage": 39,
+            "lastPage": 78,
+            "reportedTotal": 3095,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=40&q=protein+powder",
+          "observedAt": "2026-10-10T13:33:29.520Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "d53d8075e718fbe1695d08705ec666b11681e04d0d1e81bb2127eb6c7f581b0c",
+          "coverage": {
+            "currentPage": 40,
+            "lastPage": 78,
+            "reportedTotal": 3095,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=41&q=protein+powder",
+          "observedAt": "2026-10-10T13:34:29.741Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "59cd2a4b77e8b5d0775e1cb9ffb38e8566c7bca4c76e649d6cc87014ef5011ac",
+          "coverage": {
+            "currentPage": 41,
+            "lastPage": 78,
+            "reportedTotal": 3095,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=42&q=protein+powder",
+          "observedAt": "2026-10-10T13:35:29.869Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "94b38f2e510a406f77b7c13bf38ff3eae0bf1c4ec827181b853630fc2c13817c",
+          "coverage": {
+            "currentPage": 42,
+            "lastPage": 78,
+            "reportedTotal": 3094,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=43&q=protein+powder",
+          "observedAt": "2026-10-10T13:36:29.600Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "727dfa4970eb8afae1cc2b7fc5fdb3da2c009b37c4a83d2a7333765dd4a6982a",
+          "coverage": {
+            "currentPage": 43,
+            "lastPage": 78,
+            "reportedTotal": 3094,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=44&q=protein+powder",
+          "observedAt": "2026-10-10T13:37:29.456Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "c56b3428aa47eb023731de68ffb84bf90c5d5142f1158264aea9f42367dcffce",
+          "coverage": {
+            "currentPage": 44,
+            "lastPage": 78,
+            "reportedTotal": 3094,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=45&q=protein+powder",
+          "observedAt": "2026-10-10T13:38:29.682Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "3bc945e68b4b18ecf0c4f0a9692321784a518e063e15a046ee6033ed10e58405",
+          "coverage": {
+            "currentPage": 45,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=46&q=protein+powder",
+          "observedAt": "2026-10-10T13:39:29.989Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "9b81d86cb8a59b26d15680ca03944f3a3a2f167656c73511042cdceaf7f01aff",
+          "coverage": {
+            "currentPage": 46,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=47&q=protein+powder",
+          "observedAt": "2026-10-10T13:40:29.660Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "7bf90958a892c9a12c4d0c148103008ef5b819feafe6312abad7573715729358",
+          "coverage": {
+            "currentPage": 47,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=48&q=protein+powder",
+          "observedAt": "2026-10-10T13:41:29.448Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "7a2af101876b57ffcb736f82c108c96e65f3630b3fff43b800e68f442f2042f7",
+          "coverage": {
+            "currentPage": 48,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=49&q=protein+powder",
+          "observedAt": "2026-10-10T13:42:29.388Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "aa6beb2b869a868cdaf80b64753c598b2a6cd3d0d523ad1209f71df284a99a8f",
+          "coverage": {
+            "currentPage": 49,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=50&q=protein+powder",
+          "observedAt": "2026-10-10T13:43:29.719Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "3cef09ec40d32d947a040ea9203b4529de4801c8ce8c5631d04144d0992d1e72",
+          "coverage": {
+            "currentPage": 50,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=51&q=protein+powder",
+          "observedAt": "2026-10-10T13:44:29.730Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "47f06bbe09d5a5e6062fb9e157cbe25866bf585e6858419feeb8d5603383d0de",
+          "coverage": {
+            "currentPage": 51,
+            "lastPage": 78,
+            "reportedTotal": 3096,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=52&q=protein+powder",
+          "observedAt": "2026-10-10T13:45:29.514Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "5b5a4169a03e716f812de47dcfe6cb835367b1b0312cabb551f3c238fd576a23",
+          "coverage": {
+            "currentPage": 52,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=53&q=protein+powder",
+          "observedAt": "2026-10-10T13:46:29.542Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "eeb0bca9a268f56517dee1f927114c7a5e4f81ee32859f7cdb5ad225ff5f32d5",
+          "coverage": {
+            "currentPage": 53,
+            "lastPage": 78,
+            "reportedTotal": 3097,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=54&q=protein+powder",
+          "observedAt": "2026-10-10T14:05:37.083Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "b4e7b9d5bb2bc0a07f0983e4747bfb496e46d3edd84fc5e1660cbb0f1e6d2a86",
+          "coverage": {
+            "currentPage": 54,
+            "lastPage": 78,
+            "reportedTotal": 3088,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=55&q=protein+powder",
+          "observedAt": "2026-10-10T14:06:37.987Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "ac3c83850cddfffbe700054d42872295712047db4cfd7cbb6e496a92eab0d5da",
+          "coverage": {
+            "currentPage": 55,
+            "lastPage": 78,
+            "reportedTotal": 3116,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=56&q=protein+powder",
+          "observedAt": "2026-10-10T14:07:37.276Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "4f2696c10106feb62936898c321a9c8df1ce775a494150f9146c6d432692d7b4",
+          "coverage": {
+            "currentPage": 56,
+            "lastPage": 78,
+            "reportedTotal": 3087,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=57&q=protein+powder",
+          "observedAt": "2026-10-10T14:08:37.054Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "327e95f484be97baff78b0bdf085a143e9cdaf66205c6688cf0e4ab0eda3620c",
+          "coverage": {
+            "currentPage": 57,
+            "lastPage": 78,
+            "reportedTotal": 3114,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=58&q=protein+powder",
+          "observedAt": "2026-10-10T14:09:36.894Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "1cf021aed2630c26f97a1cb47e8b5703894b0184c679de8f8c32a075d9b04166",
+          "coverage": {
+            "currentPage": 58,
+            "lastPage": 78,
+            "reportedTotal": 3086,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=59&q=protein+powder",
+          "observedAt": "2026-10-10T14:10:36.947Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "7c7a9098fe2b299827ea7548f97ef8bd59527c80dc6bf1c547dd09ad33f9df5e",
+          "coverage": {
+            "currentPage": 59,
+            "lastPage": 78,
+            "reportedTotal": 3086,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=60&q=protein+powder",
+          "observedAt": "2026-10-10T14:11:37.095Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "f9a775ddde7a52885dab9ce019f4c84f76970cb29b1a5be8814a8bce9a7b9d32",
+          "coverage": {
+            "currentPage": 60,
+            "lastPage": 78,
+            "reportedTotal": 3086,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=61&q=protein+powder",
+          "observedAt": "2026-10-10T14:12:37.060Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "0632c7300d9f311e5ef80ec29279a0316792a88191c028fff4bc8ffe749e5d61",
+          "coverage": {
+            "currentPage": 61,
+            "lastPage": 78,
+            "reportedTotal": 3086,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=62&q=protein+powder",
+          "observedAt": "2026-10-10T14:13:37.264Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "894696bcd122a7741be2b1bd0509e4d055f08fde5aef5f5c73fb49b009c942da",
+          "coverage": {
+            "currentPage": 62,
+            "lastPage": 78,
+            "reportedTotal": 3086,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=63&q=protein+powder",
+          "observedAt": "2026-10-10T14:14:37.093Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "7bfea280f4ec896484b7905b1325ec9d880c1640d183bb9702cb1ad38376620d",
+          "coverage": {
+            "currentPage": 63,
+            "lastPage": 78,
+            "reportedTotal": 3084,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=64&q=protein+powder",
+          "observedAt": "2026-10-10T14:15:37.025Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "9e2e041fa420a35984f971f14b3298b4db97b6d34ccf715fe7168d4837cbe17b",
+          "coverage": {
+            "currentPage": 64,
+            "lastPage": 78,
+            "reportedTotal": 3083,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=65&q=protein+powder",
+          "observedAt": "2026-10-10T14:16:37.394Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "6ad576ac433a9ddbb38c263872b171193499515c12421ba71a5f19a59075e908",
+          "coverage": {
+            "currentPage": 65,
+            "lastPage": 78,
+            "reportedTotal": 3083,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=66&q=protein+powder",
+          "observedAt": "2026-10-10T14:17:37.245Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "799e258130cb3a47655c449c6e53fbfce6732e5fe34fa7c9e3c608a7781a1055",
+          "coverage": {
+            "currentPage": 66,
+            "lastPage": 78,
+            "reportedTotal": 3083,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=67&q=protein+powder",
+          "observedAt": "2026-10-10T14:18:37.392Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "8c170e4d89980864dcf3acdfbcb761f2a35b47557eae7784edb9e6307d037985",
+          "coverage": {
+            "currentPage": 67,
+            "lastPage": 78,
+            "reportedTotal": 3083,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=68&q=protein+powder",
+          "observedAt": "2026-10-10T14:19:37.088Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "516fd94687b5fbb2efb06dca361893abdfeaac6d3128fa0c346f7d95547b658d",
+          "coverage": {
+            "currentPage": 68,
+            "lastPage": 78,
+            "reportedTotal": 3082,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=69&q=protein+powder",
+          "observedAt": "2026-10-10T14:20:37.395Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "5328cb07f41ad7224d3dab8bd9a8d4bb34818daaf1e0cfc25ae516354142ea5e",
+          "coverage": {
+            "currentPage": 69,
+            "lastPage": 78,
+            "reportedTotal": 3081,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=70&q=protein+powder",
+          "observedAt": "2026-10-10T14:21:37.370Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "8f9f0c0bd2a9e883f535af2c20b3dcfba8ed4b6e22c002bb3f2ac72d522bb5ee",
+          "coverage": {
+            "currentPage": 70,
+            "lastPage": 78,
+            "reportedTotal": 3109,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=71&q=protein+powder",
+          "observedAt": "2026-10-10T14:22:37.305Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "5a23a4b361a008f7c78ee5f7fb0bbff170aa4b6b6e813c6450a257a928a306e4",
+          "coverage": {
+            "currentPage": 71,
+            "lastPage": 78,
+            "reportedTotal": 3109,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=72&q=protein+powder",
+          "observedAt": "2026-10-10T14:23:37.014Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "2c0eb6f8eb29dac178acc9c13435dc6dc4017037f30482f58ec2ed799fbe986a",
+          "coverage": {
+            "currentPage": 72,
+            "lastPage": 78,
+            "reportedTotal": 3081,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=73&q=protein+powder",
+          "observedAt": "2026-10-10T14:24:37.260Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "6567159413b26956a6698e3836dd3709f6eb8718af2a568381f7aed08d541045",
+          "coverage": {
+            "currentPage": 73,
+            "lastPage": 77,
+            "reportedTotal": 3080,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=74&q=protein+powder",
+          "observedAt": "2026-10-10T14:25:37.064Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "94312bacac999edaaa27df4d8fa95ac603a8bdc7f079a17fb5e861b41e5448f7",
+          "coverage": {
+            "currentPage": 74,
+            "lastPage": 77,
+            "reportedTotal": 3080,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=75&q=protein+powder",
+          "observedAt": "2026-10-10T14:26:37.220Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "6bbaa2ce8834bf21f7d52b55f781d515a471ea113b4ffd6aae06834a2913893e",
+          "coverage": {
+            "currentPage": 75,
+            "lastPage": 77,
+            "reportedTotal": 3080,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=76&q=protein+powder",
+          "observedAt": "2026-10-10T14:27:37.103Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "c05f557ca8cff4fc13b286493bfa42a584e50eb41f77455f9276f713433730c0",
+          "coverage": {
+            "currentPage": 76,
+            "lastPage": 77,
+            "reportedTotal": 3080,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/catalog/?page=77&q=protein+powder",
+          "observedAt": "2026-10-10T14:28:37.210Z",
+          "status": "ok",
+          "title": "protein powder",
+          "cards": 40,
+          "htmlSha256": "17ec52772bd6b8f22087bd0b58279ad60e3e90a70cc6e8a3e5a5a3739fdeb089",
+          "coverage": {
+            "currentPage": 77,
+            "lastPage": 77,
+            "reportedTotal": 3080,
+            "terminalConfirmed": true,
+            "nextAvailable": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "category:https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?sort=priceasc",
+      "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?sort=priceasc",
+      "type": "category",
+      "visitedPages": 10,
+      "terminalConfirmed": true,
+      "reportedTotal": null,
+      "lastPage": 10,
+      "stopReason": "terminal-page",
+      "sourceKey": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/",
+      "pagesPresent": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "missingConsecutivePages": [],
+      "cachedCardCounts": {
+        "observations": 386,
+        "distinctListings": 386,
+        "distinctListingSkuPairs": 386
+      },
+      "discoveryRecordCounts": {
+        "observations": 386,
+        "distinctListings": 386,
+        "distinctListingSkuPairs": 386
+      },
+      "categoryHistogram": {
+        "unknown": 354,
+        "chocolate-ice-cream": 32
+      },
+      "allRequestedSortPreserved": true,
+      "priceCutoffParameters": [],
+      "pageEvidence": [
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?sort=priceasc",
+          "observedAt": "2026-10-10T14:44:43.762Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "9bea1baa0dc0408eea43eec1819b735c7945ed58b0dde535a9ed77647617d53a",
+          "coverage": {
+            "currentPage": 1,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=2&sort=priceasc",
+          "observedAt": "2026-10-10T14:54:55.186Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "720b7af6c45690664b65736a28f2f8faeea8c46c452d36a5c41f71825e9194c2",
+          "coverage": {
+            "currentPage": 2,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=3&sort=priceasc",
+          "observedAt": "2026-10-10T14:55:54.879Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "46dc69be0e540289c8d8942708149c7edcbefe1f915b8c8d92c60187396e0e5b",
+          "coverage": {
+            "currentPage": 3,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=4&sort=priceasc",
+          "observedAt": "2026-10-10T14:56:55.433Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "db5d041165bba496203ff80648434089587083e06396c8538c5dc65394f06490",
+          "coverage": {
+            "currentPage": 4,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=5&sort=priceasc",
+          "observedAt": "2026-10-10T14:57:55.081Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "1b8e6f77eb348e2cc0c203fd51f3a99ae62a2ef4dabac37789c68763d89152bd",
+          "coverage": {
+            "currentPage": 5,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=6&sort=priceasc",
+          "observedAt": "2026-10-10T14:58:54.921Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "fc70ace791155eec3b51b7f87efb7f4357b8e3466512c1132f07678ed54ed74d",
+          "coverage": {
+            "currentPage": 6,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=7&sort=priceasc",
+          "observedAt": "2026-10-10T14:59:55.138Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "efe60071e22395fae3eb4d75ab50eeb3d107faf7626e4a4774a8b304529e3d63",
+          "coverage": {
+            "currentPage": 7,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=8&sort=priceasc",
+          "observedAt": "2026-10-10T15:00:55.231Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "bf08d58ca83b08770ba10b9c867b5e404afa7758ae040b249bd29f3c9884886f",
+          "coverage": {
+            "currentPage": 8,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=9&sort=priceasc",
+          "observedAt": "2026-10-10T15:01:55.436Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 40,
+          "htmlSha256": "b8cae0bf412e49ed53ec470ed253d2a7550578e7a0bf57ab4bd7337ddea2306a",
+          "coverage": {
+            "currentPage": 9,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?page=10&sort=priceasc",
+          "observedAt": "2026-10-10T15:02:50.062Z",
+          "status": "ok",
+          "title": "Kem Đá, Kem Ngon, Nhiều Hương Vị",
+          "cards": 26,
+          "htmlSha256": "172990ddf7712bb248f2672283d23cbf4400ace525169804e39e5f78210fbd2e",
+          "coverage": {
+            "currentPage": 10,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": true,
+            "nextAvailable": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "category:https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc",
+      "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc",
+      "type": "category",
+      "visitedPages": 10,
+      "terminalConfirmed": true,
+      "reportedTotal": null,
+      "lastPage": 10,
+      "stopReason": "terminal-page",
+      "sourceKey": "https://www.lazada.vn/bach-hoa-online-kem-daua/",
+      "pagesPresent": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "missingConsecutivePages": [],
+      "cachedCardCounts": {
+        "observations": 386,
+        "distinctListings": 386,
+        "distinctListingSkuPairs": 386
+      },
+      "discoveryRecordCounts": {
+        "observations": 386,
+        "distinctListings": 386,
+        "distinctListingSkuPairs": 386
+      },
+      "categoryHistogram": {
+        "unknown": 354,
+        "chocolate-ice-cream": 32
+      },
+      "allRequestedSortPreserved": true,
+      "priceCutoffParameters": [],
+      "pageEvidence": [
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc",
+          "observedAt": "2026-10-10T15:03:55.255Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "0d814a58163deefd3b125ccfcf686764ac4f8229b4970cd17a95a6344d99df75",
+          "coverage": {
+            "currentPage": 1,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=2&sort=priceasc",
+          "observedAt": "2026-10-10T15:04:55.138Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "872734fc7442e94b5c9834b8f46d9c8faf6ee1a9b3160f547e6e87b7b2d20baa",
+          "coverage": {
+            "currentPage": 2,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=3&sort=priceasc",
+          "observedAt": "2026-10-10T15:05:55.279Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "f3560c983b8136cb79e8c6300bc4c1967abbdf518d9a0d4e5d51330804970052",
+          "coverage": {
+            "currentPage": 3,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=4&sort=priceasc",
+          "observedAt": "2026-10-10T15:06:55.154Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "fba1810a860b8b7115c964a9ddac6366043709a0241ae35b3860d7355299baa2",
+          "coverage": {
+            "currentPage": 4,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=5&sort=priceasc",
+          "observedAt": "2026-10-10T15:07:54.761Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "11bec2327fac84d60641d6a3fa78ba1e4891f4cfd5cd01feef7a559e74bfb8d6",
+          "coverage": {
+            "currentPage": 5,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=6&sort=priceasc",
+          "observedAt": "2026-10-10T15:08:55.052Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "9ec6dcc82e25e3746c65fd5201cf533da8334ef899f8a683ccca0a12136084db",
+          "coverage": {
+            "currentPage": 6,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=7&sort=priceasc",
+          "observedAt": "2026-10-10T15:09:54.988Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "6948efd704241e29cdea8016288a1161266c0fbb645324c663fb5517a06fff4c",
+          "coverage": {
+            "currentPage": 7,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=8&sort=priceasc",
+          "observedAt": "2026-10-10T15:10:55.265Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "cd4b1fadabc30c6f53cbe6b5b71a632e4ff665f7a7de91077335bc3e14dfa672",
+          "coverage": {
+            "currentPage": 8,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=9&sort=priceasc",
+          "observedAt": "2026-10-10T15:11:55.071Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 40,
+          "htmlSha256": "f62f2a86d901b04232cb761d75c7a1d877fe3e1c2c6aaaf4a75bff988a868025",
+          "coverage": {
+            "currentPage": 9,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": false,
+            "nextAvailable": true
+          }
+        },
+        {
+          "url": "https://www.lazada.vn/bach-hoa-online-kem-daua/?page=10&sort=priceasc",
+          "observedAt": "2026-10-10T15:13:00.469Z",
+          "status": "ok",
+          "title": "Bột Làm Kem",
+          "cards": 26,
+          "htmlSha256": "24a7307777c4fe2184156833323fd5393e369635c0e46d7f787c9cbe1f7e4b27",
+          "coverage": {
+            "currentPage": 10,
+            "lastPage": 10,
+            "reportedTotal": null,
+            "terminalConfirmed": true,
+            "nextAvailable": false
+          }
+        }
+      ]
+    }
+  ],
+  "currentDiscoveryScopeExhausted": true,
+  "authoritativeCategoryInventoryCollected": false,
+  "wholeMarketCompletenessProven": false,
+  "allRequiredProductsCollected": false,
+  "discoveryCounts": {
+    "allSavedObservations": {
+      "observations": 10237,
+      "distinctListings": 6493,
+      "distinctListingSkuPairs": 6498
+    },
+    "currentCachedCards": {
+      "observations": 9468,
+      "distinctListings": 5949,
+      "distinctListingSkuPairs": 5949
+    },
+    "overlappingObservationsAreNotAdditionalProducts": true
+  },
+  "duplicateIceRoutes": {
+    "routes": [
+      "https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?sort=priceasc",
+      "https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc"
+    ],
+    "eachDistinctListingCount": [386, 386],
+    "intersectionDistinctListings": 386,
+    "unionDistinctListings": 386,
+    "identicalListingSets": true,
+    "reportedTotalUnavailable": true,
+    "interpretation": "Two differently titled routes expose the same mixed 386-item result list. This is duplicated visible coverage, not independent strict-chocolate category coverage."
+  },
+  "skuCoverage": {
+    "productRecords": 240,
+    "distinctCapturedListings": 110,
+    "distinctCapturedListingSkuPairs": 240,
+    "activeOffers": 236,
+    "positiveConfirmedPricedPairs": 236,
+    "inventoryRecords": 227,
+    "inventoryOptionObservations": 2118,
+    "distinctInventoryListingSkuPairs": 642,
+    "inventoryPricedPairs": 236,
+    "inventoryUnpricedPairs": 406
+  },
+  "activeScopeBacklog": {
+    "missingDistinctListings": 1498,
+    "missingSkuPricesAfterExactOptionFilter": 140,
+    "excludedExactOptionTasks": 256,
+    "categoryReviewObservations": 6570,
+    "categoryReviewDistinctListings": 4159,
+    "unfilteredQueuedTasks": 1824,
+    "queuedDistinctListings": 1720,
+    "unknownInventoryCountAmongAlreadyCaptured": 0,
+    "missingPriceCountAmongAlreadyCapturedActiveOffers": 0
+  },
+  "semanticReview": {
+    "titleChecks": [
+      {
+        "kind": "hardware-or-free-gift-cue",
+        "titleMatchesAreNotAutomaticExclusions": true,
+        "missingDistinctListings": 44,
+        "queuedTaskMatches": 51,
+        "examples": [
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13468305268.html",
+            "sku": "13468305268_VNAMZ-117369650942",
+            "title": "[TẶNG SHAKER] Bột Whey Tinh Khiết Nhất IT'S JUST Whey Protein Isolate 2.3kg (5lbs)",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13328759575.html",
+            "sku": "13328759575_VNAMZ-116446052066",
+            "title": "LocknLock | Bình Lắc Pha Whey Protein Dung Tích Lớn",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i2580578606.html",
+            "sku": "2580578606_VNAMZ-12581670450",
+            "title": "[HCM]Bình Nước Thể Thao Tập Gym Bình Lắc Whey Spider Đựng Protein có 3 Ngăn Tiện Dụng 600 ML-3 miền food vina",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i3326411232.html",
+            "sku": "3326411232_VNAMZ-116172038472",
+            "title": "Bột sữa Gold Whey Protein Blend Musaking túi 500g - Tăng Cơ Giảm Mỡ + Tặng bình lắc Shaker 600ml",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13449259217.html",
+            "sku": "13449259217_VNAMZ-117278788702",
+            "title": "Bình Lắc Protein Đa Năng Có Vạch Chia Độ, Tích Hợp Cốc Nước Và Máy Xay Để Pha Bột Protein, Cocktail, Matcha - Bình Lắc Đồ Uống Bằng Nhựa",
+            "storedCategory": "protein-powder"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13438694804.html",
+            "sku": "13438694804_VNAMZ-117235376240",
+            "title": "GIANXI | Bình Nước Thể Thao Dung Lượng Lớn Shaker Bột Protein",
+            "storedCategory": "protein-powder"
+          }
+        ]
+      },
+      {
+        "kind": "plant-or-soy-cue",
+        "titleMatchesAreNotAutomaticExclusions": true,
+        "missingDistinctListings": 23,
+        "queuedTaskMatches": 39,
+        "examples": [
+          {
+            "url": "https://www.lazada.vn/products/pdp-i2667351603.html",
+            "sku": "2667351603_VNAMZ-13059456739",
+            "title": "Bột Protein Hướng Dương 400 g/thùng bột protein Whey Protein bột protein đậu nành để tăng cường khả năng miễn dịch người lớn trung niên và người cao tuổi 葵花蛋白粉 400g/",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13456799942.html",
+            "sku": "13456799942_VNAMZ-117315884351",
+            "title": "Thương hiệu weishiya bột protein 600g cho người trung niên và người cao tuổi để bổ sung và tăng cường với đậu nành và Whey Protein, có sẵn để vận chuyển trực tiếp",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13409791776.html",
+            "sku": "13409791776_VNAMZ-117104725882",
+            "title": "Grandpa's Farm | Bột Đậu Nành Ít Protein Để Hấp Bánh Bao Bột Làm Bánh Nhiều Protein",
+            "storedCategory": "protein-powder"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i2434132401.html",
+            "sku": "2434132401_VNAMZ-12635125606",
+            "title": "WHEY ISO XP Applied Nutrition, Sữa Tăng Cơ Giảm Mỡ, 100% Whey Protein Isolate Từ Sữa Bò Ăn Cỏ, Không Chứa Đậu Nành, Chính Hãng Nhập Từ Anh",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13335616319.html",
+            "sku": "13335616319_VNAMZ-116527493252",
+            "title": "Bộ 2 hộp Preventra Whey Protein (đạm sữa đậu nành, sữa dê, sữa non) chăm sóc sức khỏe, dùng trong",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i3329065032.html",
+            "sku": "3329065032_VNAMZ-16292875157",
+            "title": "SHIZHIDIAN | Bột Đậu Nành Cao Protein Không GMO cho đồ uống bữa sáng",
+            "storedCategory": "protein-powder"
+          }
+        ]
+      },
+      {
+        "kind": "other-flavour-title-cue",
+        "titleMatchesAreNotAutomaticExclusions": true,
+        "missingDistinctListings": 160,
+        "queuedTaskMatches": 221,
+        "examples": [
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13431708422.html",
+            "sku": "13431708422_VNAMZ-117225068882",
+            "title": "Scitec Nutrition 100% Whey Isolate 1816g vị Vani - Whey Isolate Tinh Khiết Cho Người Tập Gym",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i2009753691.html",
+            "sku": "2009753691_VNAMZ-10272044583",
+            "title": "Bột Protein Orgain Organic Protein & 50 Superfoods của Mỹ [Vị Socola & Vani]",
+            "storedCategory": "protein-powder"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i885430243.html",
+            "sku": "885430243_VNAMZ-117162810675",
+            "title": "Bột uống Orgain Organic Protein hương Vanilla Hàng Mỹ",
+            "storedCategory": "protein-powder"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13461839525.html",
+            "sku": "13461839525_VNAMZ-117324283519",
+            "title": "Hydro Whey Isolate Protein – Whey Thủy Phân Hỗ Trợ Tăng Cơ, Duy Trì Khối Cơ Cho Người Tập Gym Vị Vani 2lbs",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13451916244.html",
+            "sku": "13451916244_VNAMZ-117283634964",
+            "title": "Clear Protein Whey Protein Isolate + Collagen Peptides : Bloom bổ sung đạm trái cây - giúp phục hồi xây dựng cơ bắp, đồng thời hỗ trợ da tóc mỏng khỏe mạnh và rạng rỡ hơn.",
+            "storedCategory": "whey"
+          },
+          {
+            "url": "https://www.lazada.vn/products/pdp-i13441880675.html",
+            "sku": "13441880675_VNAMZ-117248512752",
+            "title": "NurtureNova Whey Protein Powder Banana Flavor Nutrition for Muscle Building Sports Recovery and Fitness Training 2LB 33 Servings",
+            "storedCategory": "whey"
+          }
+        ]
+      }
+    ],
+    "unequivocalHardwareExamples": [
+      "https://www.lazada.vn/products/pdp-i3285738311.html",
+      "https://www.lazada.vn/products/pdp-i3331880839.html",
+      "https://www.lazada.vn/products/pdp-i13328759575.html"
+    ],
+    "plantOnlyExamples": [
+      "https://www.lazada.vn/products/pdp-i3101290314.html",
+      "https://www.lazada.vn/products/pdp-i2453678681.html"
+    ],
+    "soyChocolateStillPassesGeneralProteinPowderScope": [
+      {
+        "sku": "3326435113_VNAMZ-16271820615",
+        "category": "protein-powder",
+        "extractedFlavour": "chocolate",
+        "matchesGeneralFlavourScope": true
+      }
+    ],
+    "otherFlavourTitlesMustRetainChocolateOrPlainSiblingWork": true,
+    "exactSkuFilterEvidence": {
+      "implementation": "scripts/account-category-scope.mjs filters missingSkuPrices using selected options with title empty; missingListings remain in scope until inventory inspection.",
+      "includedChocolateOrPlainExamples": [
+        {
+          "listingUrl": "https://www.lazada.vn/products/pdp-i3138222228.html",
+          "sku": "14976608984",
+          "url": "https://www.lazada.vn/products/impact-protein-whey-myprotein-tang-co-giam-mo-share-i3138222228-s14976608984.html",
+          "options": [
+            {
+              "name": "Trọng Lượng",
+              "value": "Share 500gam"
+            },
+            {
+              "name": "Mùi vị",
+              "value": "Chocolate Smooth"
+            }
+          ],
+          "available": true
+        },
+        {
+          "listingUrl": "https://www.lazada.vn/products/pdp-i3138222228.html",
+          "sku": "14976608985",
+          "url": "https://www.lazada.vn/products/impact-protein-whey-myprotein-tang-co-giam-mo-share-i3138222228-s14976608985.html",
+          "options": [
+            {
+              "name": "Trọng Lượng",
+              "value": "Share 1Kg"
+            },
+            {
+              "name": "Mùi vị",
+              "value": "Chocolate Smooth"
+            }
+          ],
+          "available": true
+        },
+        {
+          "listingUrl": "https://www.lazada.vn/products/pdp-i3138222228.html",
+          "sku": "14976608986",
+          "url": "https://www.lazada.vn/products/impact-protein-whey-myprotein-tang-co-giam-mo-share-i3138222228-s14976608986.html",
+          "options": [
+            {
+              "name": "Trọng Lượng",
+              "value": "Share 2Kg"
+            },
+            {
+              "name": "Mùi vị",
+              "value": "Chocolate Smooth"
+            }
+          ],
+          "available": true
+        },
+        {
+          "listingUrl": "https://www.lazada.vn/products/pdp-i3138222228.html",
+          "sku": "16169950890",
+          "url": "https://www.lazada.vn/products/impact-protein-whey-myprotein-tang-co-giam-mo-share-i3138222228-s16169950890.html",
+          "options": [
+            {
+              "name": "Trọng Lượng",
+              "value": "Share 500gam"
+            },
+            {
+              "name": "Mùi vị",
+              "value": "Chocolate Bạc Hà"
+            }
+          ],
+          "available": true
+        },
+        {
+          "listingUrl": "https://www.lazada.vn/products/pdp-i3138222228.html",
+          "sku": "16169950891",
+          "url": "https://www.lazada.vn/products/impact-protein-whey-myprotein-tang-co-giam-mo-share-i3138222228-s16169950891.html",
+          "options": [
+            {
+              "name": "Trọng Lượng",
+              "value": "Share 1Kg"
+            },
+            {
+              "name": "Mùi vị",
+              "value": "Chocolate Bạc Hà"
+            }
+          ],
+          "available": true
+        }
+      ]
+    },
+    "snapshotWarning": "Saved category labels are the hashed catalog snapshot. The current runtime backlog filter already reflects conservative title-triage changes made during this review; its counts can be lower before saved classifications are reprocessed."
+  },
+  "manufacturerCoverage": {
+    "specificationRows": 188,
+    "fullyVerifiedSpecificationRows": 16,
+    "unresolvedSpecificationRows": 172,
+    "allProductsVerified": false
+  },
+  "shippingCoverage": {
+    "offersWithNumericShipping": 37,
+    "quantityHistogram": {
+      "1": 37
+    },
+    "confirmedBulkQuantityQuotes": 0,
+    "comparisonsWithAfterDeliveryTotal": 37,
+    "allShippingCollected": false
+  },
+  "discountCoverage": {
+    "activeOffersWithLowerSaleThanOriginal": 121,
+    "activeOffersWithPromotionRecords": 3,
+    "allVoucherEligibilityAndStackingVerified": false
+  },
+  "comparisonCoverage": [
+    {
+      "category": "whey",
+      "capturedComparisonRows": 157,
+      "flavourMatchedRows": 42,
+      "manufacturerIdentityVerifiedRows": 11,
+      "fullyEligibleRows": 8,
+      "computedMetricCounts": {
+        "costPerGramBeforeDelivery": 38,
+        "costPerMlBeforeDelivery": 0,
+        "costPerProteinGramBeforeDelivery": 12,
+        "costPerGramAfterDelivery": 13,
+        "costPerMlAfterDelivery": 0,
+        "costPerProteinGramAfterDelivery": 9
+      },
+      "qualification": "Flavour matching is preliminary; seller-only identities and denominators are not manufacturer approvals."
+    },
+    {
+      "category": "protein-powder",
+      "capturedComparisonRows": 4,
+      "flavourMatchedRows": 1,
+      "manufacturerIdentityVerifiedRows": 1,
+      "fullyEligibleRows": 0,
+      "computedMetricCounts": {
+        "costPerGramBeforeDelivery": 1,
+        "costPerMlBeforeDelivery": 0,
+        "costPerProteinGramBeforeDelivery": 1,
+        "costPerGramAfterDelivery": 0,
+        "costPerMlAfterDelivery": 0,
+        "costPerProteinGramAfterDelivery": 0
+      },
+      "qualification": "Flavour matching is preliminary; seller-only identities and denominators are not manufacturer approvals."
+    },
+    {
+      "category": "chocolate-ice-cream",
+      "capturedComparisonRows": 27,
+      "flavourMatchedRows": 14,
+      "manufacturerIdentityVerifiedRows": 0,
+      "fullyEligibleRows": 0,
+      "computedMetricCounts": {
+        "costPerGramBeforeDelivery": 6,
+        "costPerMlBeforeDelivery": 8,
+        "costPerProteinGramBeforeDelivery": 0,
+        "costPerGramAfterDelivery": 1,
+        "costPerMlAfterDelivery": 1,
+        "costPerProteinGramAfterDelivery": 0
+      },
+      "qualification": "Flavour matching is preliminary; seller-only identities and denominators are not manufacturer approvals."
+    }
+  ],
+  "staleAcceptanceReports": {
+    "catalogAudit": {
+      "path": "docs/acceptance/catalog-audit.json",
+      "searchedScopes": 13,
+      "unfinishedScopes": 12,
+      "missingListings": 1518,
+      "currentCatalogSearchedScopes": 5,
+      "currentCatalogUnfinishedScopes": 0
+    },
+    "discoveryPublication": {
+      "currentReportReceipts": 230,
+      "cumulativeArchiveReceipts": 252,
+      "historyMustBePreserved": true
+    }
+  },
+  "omittedFailedProteinCategory": [
+    {
+      "crawlId": "crawl:2026-10-10T15:12:34.863Z",
+      "url": "https://www.lazada.vn/protein/?sort=priceasc",
+      "error": "Category scope mismatch at /; review the redirect before continuing"
+    }
+  ],
+  "actionableGaps": [
+    {
+      "priority": 1,
+      "action": "Find a valid authoritative whey category/taxonomy route; preserve the failed /protein/ redirect evidence and do not infer category completeness from three keyword searches."
+    },
+    {
+      "priority": 1,
+      "action": "Treat the two identical mixed ice routes as one observed inventory; find and cross-check strict chocolate candidates across the valid food taxonomy, seller inventory and selected SKU siblings."
+    },
+    {
+      "priority": 1,
+      "action": "Apply conservative cached-title triage to unequivocal standalone hardware and plant/soy-only powders while retaining uncertain listings and every potential chocolate/plain sibling."
+    },
+    {
+      "priority": 1,
+      "action": "Collect the remaining 140 exact in-scope SKU prices and inspect 1,498 missing listings plus 4,159 distinct unclassified listings; a discovery-card price is not an exact SKU price."
+    },
+    {
+      "priority": 1,
+      "action": "Resolve exact current manufacturer formula, ingredient and nutrient evidence; only 16 of 188 captured relevant specification rows satisfy the existing verifier."
+    },
+    {
+      "priority": 1,
+      "action": "Capture destination- and quantity-specific Nha Trang bulk freight and applicable voucher stacking; all current numeric shipping quotes are quantity one."
+    },
+    {
+      "priority": 2,
+      "action": "Regenerate stale acceptance summaries with explicit current versus cumulative archive counts while preserving historical source evidence."
+    }
+  ],
+  "limitations": [
+    "A terminal search pager proves only the observed result set ended; it does not establish an authoritative full marketplace or category inventory.",
+    "The snapshot predates any live collection after its recorded catalog timestamp.",
+    "This audit uses stored semantic classifications, independent source counts and current flavour functions; manufacturer review remains a separate exact-formula requirement."
+  ]
+}

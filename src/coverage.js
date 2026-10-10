@@ -140,8 +140,12 @@ export function auditCoverage({
   const unfinishedSearches = scopes.filter((scope) => !scope.terminalConfirmed);
   const globalCoverage =
     crawl?.globalCoverage || 'unverifiable-with-public-search';
+  const sourceListsComplete =
+    scopes.length > 0 &&
+    unfinishedSearches.length === 0 &&
+    !(crawl?.failures || []).length;
   const visibleSearchComplete =
-    Boolean(crawl?.visibleSearchComplete) &&
+    sourceListsComplete &&
     missingListings.length === 0 &&
     missingSkuPrices.length === 0 &&
     missingPrices.length === 0 &&
@@ -154,6 +158,7 @@ export function auditCoverage({
     complete: false,
     purchaseReady: false,
     globalCoverage,
+    sourceListsComplete,
     visibleSearchComplete,
     scopedDatasetReady: ready,
     searchedScopes: scopes.length,

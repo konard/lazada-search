@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-10T19:53:57.810Z",
+  "catalogObservedAt": "2026-10-10T19:51:52.342Z",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "gates": {
+    "authoritativeCategoryInventory": false,
+    "visibleListsTerminal": true,
+    "allDiscoveredTargetListingsCaptured": false,
+    "allRelevantSkuPricesCaptured": false,
+    "allSkuInventoriesObserved": true,
+    "allCategoryReviewsResolved": false,
+    "allExactManufacturerSpecificationsVerified": false,
+    "iceMassVolumeAndProteinComplete": false,
+    "allCapturedTargetDeliveryQuotesExact": false,
+    "bulkDestinationQuotesCaptured": false,
+    "frozenNhaTrangDeliveryConfirmed": false,
+    "allRequirementsAccepted": false,
+    "allGithubIssuesClosed": false
+  },
+  "activeScope": {
+    "missingListings": 1478,
+    "missingSkuPrices": 169,
+    "missingPrices": 0,
+    "unknownSkuInventories": 0,
+    "categoryReview": 6570,
+    "specifications": 198,
+    "verifiedProducts": 14,
+    "excludedCategoryListings": 213,
+    "excludedExactOptions": 327
+  },
+  "broaderArchive": {
+    "missingListings": 1605,
+    "missingSkuPrices": 521,
+    "missingPrices": 0,
+    "unknownSkuInventories": 0,
+    "categoryReview": 7107,
+    "specifications": 210,
+    "verifiedProducts": 16
+  },
+  "wheyCoverage": {
+    "capturedPowderSkus": 187,
+    "strictWheySkus": 51,
+    "strictSoySkus": 1,
+    "verifiedStrictWheySkus": 11,
+    "missingFactoryMatches": 41,
+    "discoveryTasks": 6215,
+    "pendingSkuTasks": 174,
+    "excludedSkuOptions": 330,
+    "originalSourcePointers": 1641,
+    "unresolvedEvidencePointers": 0
+  },
+  "iceCoverage": {
+    "exactSelectedPrices": 14,
+    "bothMassAndVolume": 3,
+    "currentProteinDenominator": 3,
+    "manufacturerChocolateIdentity": 2
+  },
+  "openRequirements": [
+    {
+      "id": "R001",
+      "requirement": "Vietnam, VND, delivery to Nha Trang",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/application.js:19",
+        "src/delivery.js:14",
+        "tests/browser-import-review.test.js:164"
+      ]
+    },
+    {
+      "id": "R002",
+      "requirement": "Plain/unflavoured or chocolate protein powder only",
+      "status": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/flavour-scope.js:57",
+        "tests/flavour-scope.test.js:24",
+        "tests/e2e/flavour-scope.test.js"
+      ]
+    },
+    {
+      "id": "R003",
+      "requirement": "Strict chocolate ice-cream core, no other flavours",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/flavour-scope.js:10",
+        "tests/flavour-scope.test.js:194",
+        "docs/tables/ice-unit-rankings.json"
+      ]
+    },
+    {
+      "id": "R006",
+      "requirement": "Relevant category filters and price sorting",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/crawl.js:24",
+        "src/application.js:19",
+        "docs/acceptance/issue-reports.json"
+      ]
+    },
+    {
+      "id": "R008",
+      "requirement": "Every product and every selling option captured",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/coverage.js:28",
+        "docs/acceptance/collection-progress.json",
+        "docs/tables/catalog.json"
+      ]
+    },
+    {
+      "id": "R009",
+      "requirement": "Verify exact selected SKU price and availability",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/browser.js:704",
+        "src/capture-import.js",
+        "tests/browser-import-review.test.js:144",
+        "tests/lazada.test.js:524"
+      ]
+    },
+    {
+      "id": "R010",
+      "requirement": "Extract every discount and its eligibility",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/promotions.js:147",
+        "src/promotions.js:369",
+        "tests/promotions.test.js",
+        "tests/lazada.test.js:434"
+      ]
+    },
+    {
+      "id": "R011",
+      "requirement": "Before/after shipping cost per g, ml and protein g",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/compare.js:27",
+        "scripts/ice-unit-rankings.mjs",
+        "tests/report-unit-costs.test.js",
+        "docs/tables/ice-unit-rankings.json"
+      ]
+    },
+    {
+      "id": "R012",
+      "requirement": "Exact bulk freight and best basket price",
+      "status": "partial",
+      "realDataAcceptance": "missing-live-acceptance",
+      "evidence": [
+        "src/compare.js:100",
+        "src/delivery.js:14",
+        "tests/browser-import-review.test.js:164",
+        "docs/acceptance/collection-readiness.md"
+      ]
+    },
+    {
+      "id": "R013",
+      "requirement": "Frozen ice-cream delivery to Nha Trang",
+      "status": "missing",
+      "realDataAcceptance": "missing",
+      "evidence": [
+        "src/compare.js:95",
+        "docs/acceptance/collection-readiness.md",
+        "docs/tables/ice-unit-rankings.json"
+      ]
+    },
+    {
+      "id": "R014",
+      "requirement": "Manufacturer page/specification for every product",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/manufacturer-review.js:215",
+        "src/verification.js:13",
+        "docs/acceptance/whey-verification/worklist.json",
+        "docs/acceptance/whey-source-expansion/review.json"
+      ]
+    },
+    {
+      "id": "R015",
+      "requirement": "Manufacturer corrections override Lazada errors",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/verification.js:46",
+        "tests/browser-import-review.test.js:261",
+        "tests/e2e/verified-case.test.js:93"
+      ]
+    },
+    {
+      "id": "R016",
+      "requirement": "OCR of original images and labels",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/ocr.js:48",
+        "src/application.js:305",
+        "tests/public-cache.test.js",
+        "tests/e2e/pipeline.test.js"
+      ]
+    },
+    {
+      "id": "R017",
+      "requirement": "Parse all Vietnamese marketplace text and provide proper English",
+      "status": "partial",
+      "realDataAcceptance": "missing-complete-translation",
+      "evidence": [
+        "src/text.js",
+        "src/nutrition.js:190",
+        "src/page-dialogs.js",
+        "src/ocr.js:48",
+        "docs/REQUIREMENTS.md:23"
+      ]
+    },
+    {
+      "id": "R018",
+      "requirement": "Manual extraction and completeness verification",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "docs/acceptance/top10-check/unit-cost-audit.md",
+        "docs/acceptance/whey-source-expansion/review.json",
+        "docs/acceptance/validation.json"
+      ]
+    },
+    {
+      "id": "R022",
+      "requirement": "Entire public case reproducible from repository",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/archive.js:406",
+        "tests/public-cache.test.js",
+        "tests/e2e/archive.test.js",
+        "data/cases/vietnam-nha-trang/manifest.json"
+      ]
+    },
+    {
+      "id": "R023",
+      "requirement": "Library, CLI and HTTP interfaces",
+      "status": "implemented",
+      "realDataAcceptance": "partial-operation-parity",
+      "evidence": [
+        "src/index.js",
+        "src/commands.js:72",
+        "src/server.js:42",
+        "tests/e2e/verified-case.test.js:93"
+      ]
+    },
+    {
+      "id": "R025",
+      "requirement": "Fully automated existing account / separate profile login",
+      "status": "partial",
+      "realDataAcceptance": "credential-dependent-unconfirmed-current-session",
+      "evidence": [
+        "src/login.js:100",
+        "src/persistent-browser.js",
+        "tests/e2e/account-login.test.js",
+        "docs/acceptance/collection-readiness.md"
+      ]
+    },
+    {
+      "id": "R029",
+      "requirement": "No restore/translation/promotional browser chrome obstruction",
+      "status": "partial",
+      "realDataAcceptance": "upstream-state-not-live-rechecked",
+      "evidence": [
+        "src/browser.js:490",
+        "tests/e2e/persistent-window.test.js",
+        "docs/acceptance/issue-reports.json"
+      ]
+    },
+    {
+      "id": "R034",
+      "requirement": "At most2 agents for continued work, root also works",
+      "status": "implemented",
+      "realDataAcceptance": "historical-not-independently-replayed",
+      "evidence": [
+        "docs/REQUIREMENTS.md:40",
+        "docs/acceptance/collection-readiness.md"
+      ]
+    },
+    {
+      "id": "R035",
+      "requirement": "Publish top10 partial prices immediately",
+      "status": "implemented",
+      "realDataAcceptance": "partial-buying-data",
+      "evidence": [
+        "docs/tables/top-10-partial.json",
+        "docs/tables/handpicked.json",
+        "docs/tables/ice-unit-rankings.json",
+        "tests/deadline-report.test.js"
+      ]
+    },
+    {
+      "id": "R036",
+      "requirement": "Commit/push code, tests and precached public evidence",
+      "status": "partial",
+      "realDataAcceptance": "commit-push-not-independently-checked",
+      "evidence": [
+        "docs/acceptance/validation.json",
+        "data/cases/vietnam-nha-trang/manifest.json",
+        "tests/fixtures/public-cache/manifest.json"
+      ]
+    },
+    {
+      "id": "R037",
+      "requirement": "Production ready and exhaustive market winner",
+      "status": "missing",
+      "realDataAcceptance": "missing",
+      "evidence": [
+        "src/coverage.js:165",
+        "docs/acceptance/validation.json",
+        "docs/acceptance/collection-progress.json"
+      ]
+    },
+    {
+      "id": "R038",
+      "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "scripts/ice-unit-rankings.mjs",
+        "docs/tables/ice-unit-rankings.json"
+      ]
+    },
+    {
+      "id": "R039",
+      "requirement": "Separate whey and soy categories in buying tables",
+      "status": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "scripts/report-unit-costs.mjs",
+        "tests/report-unit-costs.test.js:41",
+        "docs/tables/top-10-partial.json"
+      ]
+    },
+    {
+      "id": "R040",
+      "requirement": "All submitted short-link options and exact top10 membership tracked",
+      "status": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "docs/tables/handpicked.json",
+        "docs/acceptance/top10-check/handpicked-manufacturer-review.json"
+      ]
+    },
+    {
+      "id": "R041",
+      "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
+      "status": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/page-challenge.js:117",
+        "src/cache.js:112",
+        "tests/page-challenge.test.js:78",
+        "tests/e2e/captcha-stop.test.js"
+      ]
+    },
+    {
+      "id": "R042",
+      "requirement": "Uncollected backlog precedes old recollection, with resumable failures",
+      "status": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "scripts/account-backlog-order.mjs",
+        "scripts/account-collection-attempts.mjs",
+        "tests/account-backlog-order.test.js",
+        "tests/account-collection-attempts.test.js"
+      ]
+    },
+    {
+      "id": "R043",
+      "requirement": "Protein type, ingredients and disclosed nutritional components for healthy-buy comparison",
+      "status": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/nutrition.js:142",
+        "src/compare.js:212",
+        "src/verification.js:3"
+      ]
+    }
+  ],
+  "githubIssues": [
+    {
+      "number": 6,
+      "title": "Recognize ice-cream carton category and exact selling-unit package count",
+      "state": "CLOSED",
+      "url": "https://github.com/konard/lazada-search/issues/6"
+    },
+    {
+      "number": 5,
+      "title": "Distinguish capture provenance metadata from stored blob references during archive export",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/5"
+    },
+    {
+      "number": 4,
+      "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/4"
+    },
+    {
+      "number": 3,
+      "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/3"
+    },
+    {
+      "number": 2,
+      "title": "Failed persistent browser reconnect deletes another live worker descriptor",
+      "state": "CLOSED",
+      "url": "https://github.com/konard/lazada-search/issues/2"
+    },
+    {
+      "number": 1,
+      "title": "Account workflow retains stale archive shards after re-export",
+      "state": "CLOSED",
+      "url": "https://github.com/konard/lazada-search/issues/1"
+    }
+  ],
+  "snapshots": [
+    {
+      "path": "docs/tables/catalog.json",
+      "sha256": "7a2f1d3ca5bb22a0dcc0549c7b3ebe72c83390c6581fb87e84ac458688f310ab",
+      "bytes": 26355425,
+      "observedAt": "2026-10-10T19:51:52.342Z"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/implementation-review.json",
+      "sha256": "d8ca26a3af4098dbf65be4f4b5a5553f2be08b850de167a5aef1bacb86f9400d",
+      "bytes": 5378123,
+      "observedAt": "2026-10-10T19:20:49.680532+00:00"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/coverage-review.json",
+      "sha256": "032ff7b7a38076079c088ecd505633c2bfda4afd7c511c307869faf2b4e32d92",
+      "bytes": 153053,
+      "observedAt": "2026-10-10T19:21:22.521Z"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/github-issues.json",
+      "sha256": "04a8cbacfcf9778d7a68982ad2758229e0eb7be9df6049a51451a88945f6c307",
+      "bytes": 9102,
+      "observedAt": null
+    },
+    {
+      "path": "docs/tables/ice-unit-rankings.json",
+      "sha256": "bf72f5c4e2e8db30b1ff84a3aecba87f09e86a22d791240019c6d0cca570afc7",
+      "bytes": 181726,
+      "observedAt": "2026-10-10T19:52:05.074Z"
+    },
+    {
+      "path": "docs/acceptance/whey-verification/worklist.json",
+      "sha256": "afdd841de7f9e08d9f5cec729687f65f2081d1ff78aedd03246a8748ad31143b",
+      "bytes": 10343074,
+      "observedAt": "2026-10-10T19:52:10.136Z"
+    }
+  ],
+  "downloads": 0,
+  "caveats": [
+    "Finished visible pagination does not establish an authoritative marketplace inventory.",
+    "The independent implementation and coverage reviews are dated baselines; current counts are recalculated from the published catalog.",
+    "Unknown shipping, exact formula identity or ice-cream density is never replaced with estimates."
+  ]
+}
