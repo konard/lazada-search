@@ -17,6 +17,12 @@ export { calculateOffer, compareOffers } from './compare.js';
 export { createTelegramBot } from './telegram.js';
 export { startServer } from './server.js';
 export { importSession, sessionSources } from './session.js';
+export {
+  startPhoneLogin,
+  submitPhoneCode,
+  phoneLoginState,
+  vietnamPhoneNumber,
+} from './login.js';
 export { NativeLinkStore } from './native-store.js';
 export {
   RepositoryArchive,
@@ -37,3 +43,4 @@ export {
   manufacturerCandidates,
   isTrustedManufacturer,
 } from './manufacturers.js';
+export { BROWSER_IDLE_MS, closeBrowserWindow } from './persistent-browser.js';

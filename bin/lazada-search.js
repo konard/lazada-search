@@ -9,6 +9,7 @@ import { configuredStore, parseArguments } from '../src/config.js';
 import { startServer } from '../src/server.js';
 import { createTelegramBot } from '../src/telegram.js';
 import { importSession, sessionSources } from '../src/session.js';
+import { DomainScheduler } from '../src/cache.js';
 
 export async function runCli(
   argv,
@@ -52,6 +53,7 @@ export async function runCli(
       application ||
       new LazadaSearch({
         store,
+        scheduler: new DomainScheduler({ intervalMs: options.intervalMs }),
         market: options.market,
         deliveryArea: options.deliveryArea,
         maxImages: options.maxImages,
@@ -65,6 +67,12 @@ export async function runCli(
           : false,
         browserOptions: {
           headless: command === 'login' ? false : options.headless,
+          persistentWindow:
+            options.persistentBrowser &&
+            (command === 'login' ||
+              Boolean(options.account) ||
+              !options.headless),
+          idleTimeoutMs: options.browserIdleMs,
           ...(options.cdpUrl ? { cdpEndpoint: options.cdpUrl } : {}),
           ...(imported ? { seedCookies: imported.cookies } : {}),
           ...(options.executablePath

@@ -292,15 +292,25 @@ export class RepositoryArchive {
   }
 }
 
+function publicArchiveTarget(store, directory) {
+  if (store.visibility === 'private' || store.fallback) {
+    throw new Error(
+      'Account evidence is private; run archive without --account to publish the public case'
+    );
+  }
+  const target = resolve(directory);
+  if (target === store.directory || target.startsWith(`${store.directory}/`)) {
+    throw new Error('Archive must be separate from the private working store');
+  }
+  return target;
+}
+
 export async function exportRepositoryArchive({
   store,
   directory = DEFAULT_ARCHIVE,
   caseMetadata = {},
 }) {
-  const target = resolve(directory);
-  if (target === store.directory || target.startsWith(`${store.directory}/`)) {
-    throw new Error('Archive must be separate from the private working store');
-  }
+  const target = publicArchiveTarget(store, directory);
   await mkdir(target, { recursive: true });
   const oldText = await readOptional(join(target, 'manifest.json'), 'utf8');
   const previous = oldText ? JSON.parse(oldText) : undefined;
@@ -430,7 +440,9 @@ export async function exportRepositoryArchive({
       (entry) =>
         entry.isDirectory() &&
         /^[a-z][a-z-]*$/u.test(entry.name) &&
-        !['blobs', 'browser-profile', 'tessdata', 'bin'].includes(entry.name)
+        !['blobs', 'browser-profile', 'accounts', 'tessdata', 'bin'].includes(
+          entry.name
+        )
     )
     .map((entry) => entry.name);
   const archivedKinds = store.archive
@@ -441,6 +453,11 @@ export async function exportRepositoryArchive({
     const recordsById = new Map();
     const originalIds = new Map();
     for (const input of await store.list(kind)) {
+      if (input.visibility === 'private') {
+        throw new Error(
+          'Private account records cannot be published in a public archive'
+        );
+      }
       if (kind === 'cache' && input.blob?.bytes === 0) {
         manifest.excluded.emptyTrackingResponses++;
         continue;

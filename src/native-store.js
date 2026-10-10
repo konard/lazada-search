@@ -156,11 +156,7 @@ export class NativeLinkStore {
   async mirror(store) {
     return await store.locked(async () => {
       const results = [];
-      for (const kind of (await readdir(store.directory)).filter(
-        (name) =>
-          /^[a-z][a-z-]*$/u.test(name) &&
-          !['blobs', 'browser-profile'].includes(name)
-      )) {
+      for (const kind of await store.kinds()) {
         for (const record of await store.list(kind)) {
           const { DoubletGraph } = await import('./doublets.js');
           const graph = new DoubletGraph();

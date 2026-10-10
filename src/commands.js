@@ -7,6 +7,7 @@ import { assertCompleteCoverage } from './coverage.js';
 import { RepositoryArchive, exportRepositoryArchive } from './archive.js';
 import { parse as parseYaml } from 'yaml';
 import { sha256 } from './util.js';
+import { startPhoneLogin, phoneLoginState } from './login.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
@@ -30,7 +31,7 @@ Commands:
   serve                         Start the online calculator on localhost:8080
   bot                           Start Telegram polling using configured credentials
   sessions                      Inspect Lazada session availability, without credentials
-  login                         Open the dedicated browser for manual login
+  login                         Open a private profile; autofill phone from its environment variable
   mirror                        Build verified native link-cli binary shards
 
 Options:
@@ -43,6 +44,12 @@ Options:
   --headless=false --executable-path PATH --refresh --reprocess --offline --no-ocr
   --ocr-languages eng+vie --ocr-data-dir PATH
   --session-from auto|chrome|firefox|yandex|safari --session-profile NAME --cdp-url URL
+  --account NAME                Read shared public data; save new account evidence privately
+  --interval-ms 60000           Minimum gap between new requests to the same host
+  --browser-idle-ms 1800000     Reuse owned windows; close after 30 idle minutes
+  --no-persistent-browser       Close the owned window when the command exits
+  --phone-env LAZADA_LOGIN_PHONE Phone login reads this environment variable
+  --auth-channel zalo|sms        Zalo is the default verification channel
   --category whey|protein-powder|chocolate-ice-cream --protein-type isolate|concentrate|blend
   --quantity 10 --currency VND --shipping 30000 --discount 50000
   --min-protein 70 --max-sugar 5 --exclude-ingredient sucralose
@@ -172,6 +179,24 @@ export async function executeCommand(application, command, args, options = {}) {
         application.store
       );
     case 'login': {
+      const phone = process.env[options.phoneEnv || 'LAZADA_LOGIN_PHONE'];
+      if (phone) {
+        if (application.market !== 'vn') {
+          throw new Error('Automatic phone login currently supports Vietnam');
+        }
+        const state = await startPhoneLogin(application.collector, {
+          phone,
+          channel: options.authChannel || 'zalo',
+        });
+        if (state.status === 'authenticated') {
+          return state;
+        }
+        console.log(
+          `Phone login: ${state.status}. Complete any verification in the browser. Press Ctrl+C when finished; the persistent window stays available.`
+        );
+        await new Promise((resolve) => process.once('SIGINT', resolve));
+        return phoneLoginState(application.collector.runtime.page);
+      }
       await application.collector.start();
       await application.collector.commander.goto({
         url: `https://${(await import('./application.js')).MARKETS[application.market].host}/`,

@@ -164,6 +164,28 @@ export class LazadaSearch {
       refresh,
       reprocess,
       namespace: `lazada:${this.market}:${this.deliveryArea}`,
+      ...(this.store.visibility === 'private'
+        ? {
+            acceptCached: (cached) => {
+              if (cached.status !== 'ok') {
+                return cached.visibility === 'private';
+              }
+              try {
+                const { offer } = parseProduct(cached.snapshot, {
+                  market: this.market,
+                  currency: MARKETS[this.market].currency,
+                });
+                return (
+                  Number.isFinite(offer.price) &&
+                  offer.price > 0 &&
+                  offer.variantConfirmed
+                );
+              } catch {
+                return false;
+              }
+            },
+          }
+        : {}),
     });
     if (capture.status !== 'ok') {
       throw new Error(`Collection stopped: ${capture.status} at ${url}`);

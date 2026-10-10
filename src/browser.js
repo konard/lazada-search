@@ -1,5 +1,7 @@
 import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
+import { resolvePageDialogs } from './page-dialogs.js';
+import { acquireBrowserWindow } from './persistent-browser.js';
 
 export const EXTRACTOR_VERSION = 11;
 
@@ -363,7 +365,7 @@ export class BrowserCollector {
     browserOptions = {},
     settleMs = 1000,
     maxScrolls = 20,
-    captureTimeoutMs = 90000,
+    captureTimeoutMs = 240000,
   } = {}) {
     this.cache = cache;
     this.store = store;
@@ -382,23 +384,45 @@ export class BrowserCollector {
       const { launchBrowser, connectBrowser, makeBrowserCommander } =
         await import('browser-commander');
       this.attached = Boolean(this.browserOptions.cdpEndpoint);
+      const launchOptions = {
+        engine: 'playwright',
+        headless: true,
+        userDataDir: join(this.store.directory, 'browser-profile'),
+        ...(this.store.visibility === 'private'
+          ? { persistSessionCookies: true }
+          : {}),
+        ...this.browserOptions,
+        preferences: {
+          ...this.browserOptions.preferences,
+          translate: {
+            ...this.browserOptions.preferences?.translate,
+            enabled: false,
+          },
+        },
+        extraArgs: [
+          ...(this.browserOptions.extraArgs || []),
+          '--disable-features=SessionRestoreInfobar,Translate',
+        ],
+      };
+      this.persistent =
+        !this.attached &&
+        (this.browserOptions.persistentWindow ??
+          (launchOptions.headless === false &&
+            launchOptions.launch !== 'engine'));
       this.runtime = this.attached
         ? await connectBrowser({
             engine: 'playwright',
             cdpEndpoint: this.browserOptions.cdpEndpoint,
             timeout: 30000,
           })
-        : await launchBrowser({
-            engine: 'playwright',
-            headless: true,
-            userDataDir: join(this.store.directory, 'browser-profile'),
-            ...this.browserOptions,
-          });
+        : this.persistent
+          ? await acquireBrowserWindow(this.store.directory, launchOptions)
+          : await launchBrowser(launchOptions);
       if (this.attached) {
         this.runtime.page = await this.runtime.page.context().newPage();
       }
       this.imageTasks = new Set();
-      await this.runtime.page.route('**/*', async (route) => {
+      this.imageRoute = async (route) => {
         if (route.request().resourceType() !== 'image') {
           await route.continue();
           return;
@@ -420,8 +444,9 @@ export class BrowserCollector {
         } else {
           await route.continue();
         }
-      });
-      this.runtime.page.on('response', (response) => {
+      };
+      await this.runtime.page.route('**/*', this.imageRoute);
+      this.imageResponse = (response) => {
         if (response.request().resourceType() !== 'image' || !response.ok()) {
           return;
         }
@@ -458,7 +483,8 @@ export class BrowserCollector {
         })().catch(() => {});
         this.imageTasks.add(capture);
         capture.finally(() => this.imageTasks.delete(capture));
-      });
+      };
+      this.runtime.page.on('response', this.imageResponse);
       this.commander = makeBrowserCommander({
         page: this.runtime.page,
         enableNetworkTracking: false,
@@ -468,6 +494,14 @@ export class BrowserCollector {
 
   async page(url, options = {}) {
     const result = await this.cache.get(url, {
+      // A public login wall must not suppress a later account collection.
+      // Account failures remain cached, so retries require explicit refresh.
+      ...(this.store.visibility === 'private'
+        ? {
+            acceptCached: (cached) =>
+              cached.visibility === 'private' || cached.status === 'ok',
+          }
+        : {}),
       ...options,
       load: () => {
         // One page owns one navigation at a time, even for different hosts.
@@ -537,8 +571,13 @@ export class BrowserCollector {
       if (timedOut) {
         // Close the collector-owned page so a late navigation cannot modify
         // the next capture. Existing attached-browser tabs stay untouched.
+        if (this.persistent) {
+          await this.runtime.page.context().newPage();
+        }
         await this.runtime?.page.close();
-        if (!this.attached) {
+        if (this.persistent) {
+          await this.runtime?.release();
+        } else if (!this.attached) {
           await this.runtime?.browser.close();
         }
         this.runtime = undefined;
@@ -552,8 +591,12 @@ export class BrowserCollector {
 
   async capture(url, { refresh = false } = {}) {
     await this.start();
+    await this.runtime.touch?.();
+    // A previous blocked dialog must be resolved before any new navigation.
+    await resolvePageDialogs(this.runtime.page);
     this.refreshImages = refresh;
     const page = this.runtime.page;
+    await this.runtime.pace?.(url, this.cache.scheduler.intervalMs);
     await this.commander.goto({
       url,
       timeout: 30000,
@@ -561,8 +604,13 @@ export class BrowserCollector {
       waitForNetworkIdle: false,
     });
     await page.waitForTimeout(this.settleMs);
+    await resolvePageDialogs(page);
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
+    if (status === 'ok') {
+      await this.selectRequestedVariant(url, snapshot);
+      snapshot = await page.evaluate(extractPage);
+    }
     if (status === 'ok') {
       for (let index = 0; index < this.maxScrolls; index += 1) {
         const finished = await page.evaluate(() => {
@@ -573,11 +621,13 @@ export class BrowserCollector {
           );
         });
         await page.waitForTimeout(100);
+        await resolvePageDialogs(page);
         if (finished) {
           break;
         }
       }
       snapshot = await page.evaluate(extractPage);
+      await resolvePageDialogs(page);
       status = classifyPage(snapshot);
     }
     const html = await this.store.putBlob(Buffer.from(await page.content()));
@@ -599,16 +649,86 @@ export class BrowserCollector {
     };
   }
 
+  async selectRequestedVariant(url, snapshot) {
+    const parsed = new URL(url);
+    const requested =
+      parsed.searchParams.get('skuId') ||
+      parsed.pathname.match(/-s(\d+)\.html$/u)?.[1];
+    if (
+      !requested ||
+      String(snapshot.sku || '')
+        .split('_VNAMZ-')
+        .at(-1) === requested
+    ) {
+      return;
+    }
+    const target = snapshot.skuCatalog?.find((sku) => sku.sku === requested);
+    if (!target) {
+      throw new Error(
+        'Requested SKU is absent from the observed variant inventory'
+      );
+    }
+    const selector =
+      '[data-sku-option], .sku-variable-size, .sku-variable-img-wrap, .sku-variable-img-wrap-selected, .sku-variable-name, .sku-variable-name-selected';
+    for (const option of target.options) {
+      await resolvePageDialogs(this.runtime.page);
+      const choices = this.runtime.page.locator(selector);
+      const index = await choices.evaluateAll(
+        (elements, value) =>
+          elements.findIndex((element) => {
+            const bounds = element.getBoundingClientRect();
+            const labels = [
+              element.textContent?.trim(),
+              element.getAttribute('title'),
+              element.querySelector('img')?.alt,
+            ];
+            return (
+              bounds.width > 0 && bounds.height > 0 && labels.includes(value)
+            );
+          }),
+        option.value
+      );
+      if (index < 0) {
+        throw new Error('Requested SKU option has no visible selector');
+      }
+      await this.cache.scheduler.pace(url);
+      await this.runtime.pace?.(url, this.cache.scheduler.intervalMs);
+      await choices.nth(index).click();
+      await this.runtime.page.waitForTimeout(Math.max(500, this.settleMs));
+      await resolvePageDialogs(this.runtime.page);
+    }
+    const selected = await this.runtime.page.evaluate(extractPage);
+    if (
+      String(selected.sku || '')
+        .split('_VNAMZ-')
+        .at(-1) !== requested
+    ) {
+      throw new Error(
+        'Requested SKU did not become the selected SKU; no price was recorded'
+      );
+    }
+  }
+
   async close() {
     await this.tail;
     await Promise.all(this.imageTasks || []);
     try {
       await this.commander?.destroy();
     } finally {
+      if (this.runtime && this.imageRoute) {
+        await this.runtime.page
+          .unroute('**/*', this.imageRoute)
+          .catch(() => {});
+        this.runtime.page.off('response', this.imageResponse);
+      }
       if (this.attached) {
         await this.runtime?.page.close();
       }
-      await this.runtime?.browser.close();
+      if (this.persistent) {
+        await this.runtime?.release();
+      } else {
+        await this.runtime?.browser.close();
+      }
       this.runtime = undefined;
       this.commander = undefined;
     }

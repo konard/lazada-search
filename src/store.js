@@ -14,12 +14,30 @@ const validKind = (kind) => {
 };
 
 export class AssociativeStore {
-  constructor({ directory = '.lazada-search', archive } = {}) {
+  constructor({
+    directory = '.lazada-search',
+    archive,
+    fallback,
+    visibility = 'public',
+  } = {}) {
+    if (!['public', 'private'].includes(visibility)) {
+      throw new Error('Store visibility must be public or private');
+    }
+    if (fallback && visibility !== 'private') {
+      throw new Error('A fallback store requires private visibility');
+    }
     this.directory = resolve(directory);
+    if (fallback?.directory === this.directory) {
+      throw new Error(
+        'Fallback and account stores must have different directories'
+      );
+    }
+    this.fallback = fallback;
+    this.visibility = visibility;
     this.archive =
       typeof archive === 'string'
         ? new RepositoryArchive({ directory: archive })
-        : archive;
+        : archive || fallback?.archive;
   }
 
   recordPath(kind, id) {
@@ -76,6 +94,18 @@ export class AssociativeStore {
       throw new Error('Records require a nonempty string id');
     }
     const path = this.recordPath(kind, record.id);
+    if (this.visibility === 'private') {
+      const shared = await this.fallback?.get(kind, record.id);
+      if (
+        !record.visibility &&
+        shared &&
+        encode({ obj: shared }) === encode({ obj: record }) &&
+        (await readOptional(path)) === undefined
+      ) {
+        return shared;
+      }
+      record.visibility = 'private';
+    }
     const notation = encode({ obj: record });
     await this.locked(async () => {
       if ((await readOptional(path, 'utf8')) === notation) {
@@ -101,7 +131,7 @@ export class AssociativeStore {
   async get(kind, id) {
     const text = await readOptional(this.recordPath(kind, id), 'utf8');
     return text === undefined
-      ? this.archive?.get(kind, id)
+      ? (this.fallback || this.archive)?.get(kind, id)
       : decode({ notation: text });
   }
 
@@ -110,6 +140,9 @@ export class AssociativeStore {
       const path = this.recordPath(kind, id);
       let notation = await readOptional(path, 'utf8');
       if (notation === undefined) {
+        if (this.fallback) {
+          return this.fallback.graph(kind, id);
+        }
         const archived = await this.archive?.get(kind, id);
         if (!archived) {
           return undefined;
@@ -150,10 +183,9 @@ export class AssociativeStore {
       }
     }
     const records = new Map(
-      ((await this.archive?.list(kind)) || []).map((record) => [
-        record.id,
-        record,
-      ])
+      ((await (this.fallback || this.archive)?.list(kind)) || []).map(
+        (record) => [record.id, record]
+      )
     );
     for (const file of files.sort().filter((name) => name.endsWith('.lino'))) {
       const record = decode({
@@ -171,6 +203,9 @@ export class AssociativeStore {
   async putBlob(contents) {
     const bytes = Buffer.from(contents);
     const id = sha256(bytes);
+    if (await this.blob(id)) {
+      return { sha256: id, bytes: bytes.length };
+    }
     const path = join(this.directory, 'blobs', id.slice(0, 2), id);
     if (!(await readOptional(path))) {
       await atomicWrite(path, bytes);
@@ -188,30 +223,39 @@ export class AssociativeStore {
     if (bytes && sha256(bytes) !== id) {
       throw new Error('Corrupt evidence blob');
     }
-    return bytes ?? this.archive?.blob(id);
+    return bytes ?? (this.fallback || this.archive)?.blob(id);
   }
 
   async exportGraph() {
     const graph = new DoubletGraph();
+    for (const kind of await this.kinds()) {
+      for (const record of await this.list(kind)) {
+        graph.addRecord(kind, record);
+      }
+    }
+    return graph;
+  }
+
+  async kinds() {
     const local = await readdir(this.directory).catch((error) => {
       if (error.code === 'ENOENT') {
         return [];
       }
       throw error;
     });
-    const archived = this.archive
-      ? Object.keys((await this.archive.manifest()).kinds)
-      : [];
-    for (const kind of [...new Set([...local, ...archived])].filter(
-      (entry) =>
-        /^[a-z][a-z-]*$/u.test(entry) &&
-        entry !== 'blobs' &&
-        entry !== 'browser-profile'
-    )) {
-      for (const record of await this.list(kind)) {
-        graph.addRecord(kind, record);
-      }
-    }
-    return graph;
+    const archived = this.fallback
+      ? await this.fallback.kinds()
+      : this.archive
+        ? Object.keys((await this.archive.manifest()).kinds)
+        : [];
+    return [...new Set([...local, ...archived])]
+      .filter(
+        (entry) =>
+          /^[a-z][a-z-]*$/u.test(entry) &&
+          !['blobs', 'browser-profile', 'accounts', 'tessdata', 'bin'].includes(
+            entry
+          )
+      )
+      .sort();
   }
 }

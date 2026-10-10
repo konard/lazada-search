@@ -275,9 +275,14 @@ export declare class AssociativeStore {
   constructor(options?: {
     directory?: string;
     archive?: string | RepositoryArchive;
+    fallback?: AssociativeStore;
+    visibility?: 'public' | 'private';
   });
   directory: string;
   archive?: RepositoryArchive;
+  fallback?: AssociativeStore;
+  visibility: 'public' | 'private';
+  kinds(): Promise<string[]>;
   recordPath(kind: string, id: string): string;
   locked<T>(action: () => Promise<T>): Promise<T>;
   put<T extends { id: string }>(kind: string, record: T): Promise<T>;
@@ -300,6 +305,7 @@ export declare class DomainScheduler {
     sleep?: (ms: number) => Promise<unknown>;
   });
   run<T>(url: string, action: () => Promise<T>): Promise<T>;
+  pace(url: string): Promise<void>;
 }
 export interface Capture {
   id: string;
@@ -314,6 +320,7 @@ export interface Capture {
   cacheHit: boolean;
   stale: boolean;
   imagesRefreshed?: boolean;
+  visibility?: 'public' | 'private';
 }
 export interface PageSnapshot {
   url: string;
@@ -377,6 +384,7 @@ export declare class EvidenceCache {
       namespace?: string;
       ttlMs?: number;
       refresh?: boolean;
+      acceptCached?: (cached: T) => boolean;
       load?: (cached?: T) => Promise<T | { notModified: true }>;
     }
   ): Promise<T & { cacheHit: boolean; stale: boolean }>;
@@ -406,11 +414,15 @@ export declare class BrowserCollector {
       ttlMs?: number;
       refresh?: boolean;
       reprocess?: boolean;
+      acceptCached?: (cached: Capture) => boolean;
     }
   ): Promise<Capture>;
   capture(url: string): Promise<Partial<Capture>>;
   close(): Promise<void>;
 }
+/** Collector-owned visible windows survive collector exits and close after idle. */
+export declare const BROWSER_IDLE_MS: number;
+export declare function closeBrowserWindow(directory: string): Promise<void>;
 export interface OcrResult {
   id: string;
   imageHash: string;
@@ -681,3 +693,31 @@ export declare function isTrustedManufacturer(
   url: string,
   registry?: Manufacturer[]
 ): boolean;
+
+export interface PhoneLoginState {
+  status:
+    | 'authenticated'
+    | 'challenge'
+    | 'invalid-phone'
+    | 'otp-required'
+    | 'pending';
+  reason?: string;
+}
+export declare function vietnamPhoneNumber(value: string): string;
+export declare function phoneLoginState(
+  page: unknown
+): Promise<PhoneLoginState>;
+export declare function startPhoneLogin(
+  collector: BrowserCollector,
+  options: {
+    phone: string;
+    channel?: 'zalo' | 'sms';
+    url?: string;
+    timeoutMs?: number;
+  }
+): Promise<PhoneLoginState>;
+export declare function submitPhoneCode(
+  collector: BrowserCollector,
+  code: string,
+  options?: { timeoutMs?: number }
+): Promise<PhoneLoginState>;

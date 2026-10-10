@@ -6,12 +6,27 @@ import { DEFAULT_ARCHIVE } from './archive.js';
 
 export function configuredStore(options) {
   const archive = options.archiveDir || DEFAULT_ARCHIVE;
-  return new AssociativeStore({
+  const shared = new AssociativeStore({
     directory: options.dataDir,
     archive:
       options.archive !== false && existsSync(join(archive, 'manifest.json'))
         ? archive
         : undefined,
+  });
+  const account =
+    options.account || (options._?.[0] === 'login' ? 'default' : undefined);
+  if (!account) {
+    return shared;
+  }
+  if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/u.test(account)) {
+    throw new Error(
+      'Account name must start with a letter and contain only letters, numbers, underscores or hyphens'
+    );
+  }
+  return new AssociativeStore({
+    directory: join(shared.directory, 'accounts', account),
+    fallback: shared,
+    visibility: 'private',
   });
 }
 
@@ -83,6 +98,19 @@ export function parseArguments(argv) {
           default: getenv('LAZADA_ARCHIVE_DIR', 'data/cases/vietnam-nha-trang'),
         })
         .option('archive', { type: 'boolean', default: true })
+        .option('account', {
+          type: 'string',
+          default: getenv('LAZADA_ACCOUNT', ''),
+        })
+        .option('phone-env', { type: 'string', default: 'LAZADA_LOGIN_PHONE' })
+        .option('auth-channel', {
+          type: 'string',
+          choices: ['zalo', 'sms'],
+          default: 'zalo',
+        })
+        .option('interval-ms', { type: 'number', default: 60000 })
+        .option('persistent-browser', { type: 'boolean', default: true })
+        .option('browser-idle-ms', { type: 'number', default: 1800000 })
         .option('reason', { type: 'string' })
         .option('market', {
           type: 'string',

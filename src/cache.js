@@ -2,7 +2,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { canonicalUrl, positive, sha256 } from './util.js';
 
 export class DomainScheduler {
-  constructor({ intervalMs = 3000, sleep = delay } = {}) {
+  constructor({ intervalMs = 60000, sleep = delay } = {}) {
     positive(intervalMs, 'intervalMs', { zero: true });
     this.intervalMs = intervalMs;
     this.sleep = sleep;
@@ -14,12 +14,7 @@ export class DomainScheduler {
     const host = new URL(url).hostname;
     const previous = this.tails.get(host) || Promise.resolve();
     const execute = async () => {
-      const wait =
-        (this.last.get(host) ?? -Infinity) + this.intervalMs - Date.now();
-      if (wait > 0) {
-        await this.sleep(wait);
-      }
-      this.last.set(host, Date.now());
+      await this.pace(url);
       return action();
     };
     const operation = previous.then(execute, execute);
@@ -28,6 +23,16 @@ export class DomainScheduler {
       operation.catch(() => {})
     );
     return operation;
+  }
+
+  async pace(url) {
+    const host = new URL(url).hostname;
+    const wait =
+      (this.last.get(host) ?? -Infinity) + this.intervalMs - Date.now();
+    if (wait > 0) {
+      await this.sleep(wait);
+    }
+    this.last.set(host, Date.now());
   }
 }
 
@@ -49,7 +54,13 @@ export class EvidenceCache {
 
   async get(
     url,
-    { namespace = 'page', ttlMs = 21600000, refresh = false, load } = {}
+    {
+      namespace = 'page',
+      ttlMs = 21600000,
+      refresh = false,
+      acceptCached = () => true,
+      load,
+    } = {}
   ) {
     const canonical = canonicalUrl(url);
     positive(ttlMs, 'ttlMs', { zero: true });
@@ -57,7 +68,12 @@ export class EvidenceCache {
     if (this.pending.has(id)) {
       return this.pending.get(id);
     }
-    const operation = this.obtain(id, canonical, { ttlMs, refresh, load });
+    const operation = this.obtain(id, canonical, {
+      ttlMs,
+      refresh,
+      acceptCached,
+      load,
+    });
     this.pending.set(id, operation);
     try {
       return await operation;
@@ -66,16 +82,12 @@ export class EvidenceCache {
     }
   }
 
-  async obtain(id, url, { ttlMs, refresh, load }) {
+  async obtain(id, url, { ttlMs, refresh, acceptCached, load }) {
     if (this.offline && refresh) {
       throw new Error(`Cannot refresh a source offline: ${url}`);
     }
     const cached = await this.store.get('cache', id);
-    if (
-      cached &&
-      !cached.invalidatedAt &&
-      this.reusable(cached, { ttlMs, refresh })
-    ) {
+    if (this.accepts(cached, { ttlMs, refresh, acceptCached })) {
       this.stats.hits += 1;
       return {
         ...cached,
@@ -112,8 +124,8 @@ export class EvidenceCache {
     } else {
       this.stats.downloads += 1;
     }
-    await this.store.put('cache', record);
-    return { ...record, cacheHit: false, stale: false };
+    const saved = await this.store.put('cache', record);
+    return { ...saved, cacheHit: false, stale: false };
   }
 
   reusable(cached, { ttlMs, refresh }) {
@@ -121,6 +133,15 @@ export class EvidenceCache {
       this.offline ||
       (!refresh &&
         (cached.repositoryReusable || this.now() - cached.checkedAt <= ttlMs))
+    );
+  }
+
+  accepts(cached, { ttlMs, refresh, acceptCached }) {
+    return (
+      cached &&
+      !cached.invalidatedAt &&
+      acceptCached(cached) &&
+      this.reusable(cached, { ttlMs, refresh })
     );
   }
 

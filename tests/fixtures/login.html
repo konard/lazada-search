@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Fictional Lazada phone sign-in fixture</title>
+  </head>
+  <body>
+    <a hidden href="/logout">Logout</a>
+    <button id="open">ĐĂNG NHẬP</button>
+    <div id="dialog" hidden>
+      <span id="phoneTab">Phone Number</span>
+      <div id="phoneForm" hidden>
+        <input readonly value="+84" aria-label="Country code" />
+        <input placeholder="Please enter your phone number" id="phone" />
+        <button id="send">Gửi mã qua SMS</button>
+        <button id="sendZalo">Gửi mã OTP qua Zalo</button>
+      </div>
+      <div id="otpForm" hidden>
+        <label
+          >Enter your verification code
+          <input autocomplete="one-time-code" id="code"
+        /></label>
+        <button id="verify">Verify</button>
+      </div>
+      <p id="error"></p>
+    </div>
+    <script>
+      const element = (id) => document.getElementById(id);
+      const signedIn = () => {
+        document.body.innerHTML = '<a href="/logout">Logout</a>';
+      };
+      if (document.cookie.includes('fixture_session=authenticated')) {
+        signedIn();
+      } else {
+        element('open').onclick = () => {
+          element('dialog').hidden = false;
+        };
+        element('phoneTab').onclick = () => {
+          element('phoneForm').hidden = false;
+        };
+        const sendCode = async (channel) => {
+          if (!/^[35789]\d{8}$/.test(element('phone').value)) {
+            element('error').textContent = 'Please enter a valid phone number.';
+            return;
+          }
+          await fetch(`/${channel}`, { method: 'POST' });
+          element('phoneForm').hidden = true;
+          element('otpForm').hidden = false;
+        };
+        element('send').onclick = () => sendCode('sms');
+        element('sendZalo').onclick = () => sendCode('zalo');
+        element('verify').onclick = () => {
+          if (element('code').value === '123456') {
+            document.cookie =
+              'fixture_session=authenticated; Path=/; Secure; SameSite=Lax';
+            signedIn();
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
