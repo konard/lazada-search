@@ -5,6 +5,7 @@ import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
 import { RepositoryArchive } from './archive.js';
 import { storedBlobReference } from './blob-reference.js';
+import { createStoreLockDirectory } from './store-lock-directory.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
 
 const validKind = (kind) => {
@@ -107,7 +108,7 @@ export class AssociativeStore {
     const deadline = Date.now() + 30000;
     for (;;) {
       try {
-        await mkdir(lock);
+        await createStoreLockDirectory(lock);
         await atomicWrite(join(lock, 'owner'), String(process.pid));
         break;
       } catch (error) {

@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T13:40:00.248Z, from the published catalog observed at 2026-10-11T13:35:56.825Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T14:06:12.393Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -28,6 +28,8 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 
 | Issue                                                    | Requirement                                                                                                | State  |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
+| [#36](https://github.com/konard/lazada-search/issues/36) | Preserve original source bytes on Windows checkout and bound transient cache lock recreation               | OPEN   |
+| [#35](https://github.com/konard/lazada-search/issues/35) | Keep category E2E redirects local and drain every image producer before browser close                      | OPEN   |
 | [#34](https://github.com/konard/lazada-search/issues/34) | Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation | OPEN   |
 | [#33](https://github.com/konard/lazada-search/issues/33) | Run alternative-runtime CI against the reviewed locked dependency graph                                    | OPEN   |
 | [#32](https://github.com/konard/lazada-search/issues/32) | Configure npm trusted publishing before enabling a successful release                                      | OPEN   |

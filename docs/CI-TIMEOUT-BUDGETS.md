@@ -39,12 +39,13 @@ dependent release workflow reported `skipped`.
 
 ## Per-test timeouts do not bound a suite
 
-`bun test --timeout 30000` bounds a **single test** at 30 seconds.
-Node's `--test-timeout=300000` bounds each test file at five minutes, allowing
-the growing committed catalog to complete its durable offline import. The
-2,798-listing snapshot took 116 seconds in isolation and exceeded the former
-two-minute file limit under concurrent test load. `--test-concurrency=4`
-limits contention; the full catalog equality assertions remain enabled.
+`bun test --timeout 450000` bounds a **single test** at 450 seconds.
+Node's `--test-timeout=450000` bounds each test file at 450 seconds, allowing
+the growing committed catalog to complete its durable offline import. Actual
+Windows CI exhausted the previous 300-second file limit after 316.8 seconds;
+a local run under concurrent disk work was also cancelled after 312 seconds.
+These observed failures justify the bounded increase. `--test-concurrency=4`
+still limits contention, and the full catalog equality assertions remain enabled.
 Neither replaces the overall suite budget. Many passing tests or files can
 still exhaust the job's deadline.
 
@@ -59,7 +60,7 @@ job's backstop fires.
   ```yaml
   - name: Run tests (Node.js)
     shell: bash
-    run: bash scripts/run-with-budget-warning.sh 300 "Node.js test suite" npm test
+    run: bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test
   ```
 
 - **`uses:` steps** cannot be wrapped, so they declare a step-level
@@ -109,7 +110,7 @@ back to signalling the direct child.
 - each individual budget is at most **70%** (`MAX_BUDGET_SHARE_PERCENT`) of the
   job's `timeout-minutes`, and
 - the budgets in a job sum to at most 70% of that cap, leaving headroom for the
-  unbudgeted setup — checkout, `npm ci`, the Bun install — that runs on the same
+  unbudgeted setup — checkout, `npm ci`, runtime and OCR setup — that runs on the same
   job clock.
 
 This invariant is what finds the _next_ occurrence rather than the one that
@@ -119,14 +120,14 @@ neither of which was involved in the original failure.
 
 ## Current budgets
 
-| Job                     | Backstop | Step budgets                                     |
-| ----------------------- | -------- | ------------------------------------------------ |
-| `test`                  | 15 min   | Node.js 300s, Bun 200s, Deno 100s                |
-| `docker-build`          | 30 min   | image build 20 min                               |
-| `docker-publish-config` | 30 min   | npm availability wait 1100s                      |
-| `docker-publish-build`  | 30 min   | image build and push 20 min                      |
-| `release`               | 50 min   | install 240s, npm publish 1200s, smoke test 600s |
-| `instant-release`       | 50 min   | npm publish 1200s, smoke test 600s               |
+| Job                     | Backstop | Step budgets                                      |
+| ----------------------- | -------- | ------------------------------------------------- |
+| `test`                  | 15 min   | 600s for each selected Node.js, Bun or Deno suite |
+| `docker-build`          | 30 min   | image build 20 min                                |
+| `docker-publish-config` | 30 min   | npm availability wait 1100s                       |
+| `docker-publish-build`  | 30 min   | image build and push 20 min                       |
+| `release`               | 50 min   | install 240s, npm publish 1200s, smoke test 600s  |
+| `instant-release`       | 50 min   | npm publish 1200s, smoke test 600s                |
 
 ## Reference
 

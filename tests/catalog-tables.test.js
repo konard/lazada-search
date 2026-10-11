@@ -112,8 +112,10 @@ test('Markdown export retains a newly collected product without a pre-existing m
   });
   await app.importRecords({ products: [product], offers: [offer] });
   await app.close();
+  // The repository export CLI uses Node and an installed npm graph. A Deno
+  // child started inside this copied fixture would resolve fresh dependencies.
   const result = await execute(
-    process.execPath,
+    'node',
     [
       'scripts/export-catalog-tables.mjs',
       '--offline',

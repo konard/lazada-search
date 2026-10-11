@@ -24,10 +24,19 @@ const challenge = Buffer.from(
   '<html><head><title>Just a moment...</title></head><body><div id="challenge-running">Verify you are human</div></body></html>'
 );
 
-async function fixture(t, { challenged = false } = {}) {
+async function fixture(t, { challenged = false, holdFinal = false } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-image-redirect-e2e-'));
   const requests = [];
-  const server = createServer((request, response) => {
+  let finalReached, releaseFinal;
+  const finalStarted = new Promise((resolve) => {
+    finalReached = resolve;
+  });
+  const finalGate = holdFinal
+    ? new Promise((resolve) => {
+        releaseFinal = resolve;
+      })
+    : Promise.resolve();
+  const server = createServer(async (request, response) => {
     requests.push({
       path: request.url,
       headers: request.headers,
@@ -45,6 +54,8 @@ async function fixture(t, { challenged = false } = {}) {
       });
       response.end(challenged ? challenge : moved);
     } else if (request.url === '/final.png') {
+      finalReached();
+      await finalGate;
       response.writeHead(200, {
         'content-type': 'image/png',
         etag: 'original-local-label-v1',
@@ -79,6 +90,7 @@ async function fixture(t, { challenged = false } = {}) {
     },
   });
   t.after(async () => {
+    releaseFinal?.();
     await collector.close();
     if (server.listening) {
       server.closeAllConnections();
@@ -99,11 +111,39 @@ async function fixture(t, { challenged = false } = {}) {
     imageUrl: `${origin}/start.png`,
     finalUrl: `${origin}/final.png`,
     pageUrl: `http://localhost:${server.address().port}/product`,
+    finalStarted,
+    releaseFinal,
     advanceObservation: () => {
       observedAt += 5000;
     },
   };
 }
+
+test('closing the real collector drains an in-flight routed image before returning and admits no late response writers', async (t) => {
+  const { collector, store, pageUrl, imageUrl, finalStarted, releaseFinal } =
+    await fixture(t, { holdFinal: true });
+  await collector.start();
+  await collector.runtime.page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
+  await finalStarted;
+  assert.ok(
+    collector.imageTasks.size > 0,
+    'Routed acquisitions must belong to the close barrier'
+  );
+  const responseObserver = collector.imageResponse;
+  const closing = collector.close();
+  releaseFinal();
+  await closing;
+  assert.equal(collector.imageTasks.size, 0);
+  const saved = await store.get('cache', `image:${imageUrl}`);
+  assert.equal(saved.blob.sha256, sha256(png));
+  assert.deepEqual(await store.blob(saved.blob.sha256), png);
+  responseObserver({ request: () => ({ resourceType: () => 'image' }) });
+  assert.equal(
+    collector.imageTasks.size,
+    0,
+    'A closed collector cannot admit response writes'
+  );
+});
 
 test('real Browser Commander image routes manually fetch, pace and retain exact redirects; cached browser fulfillment preserves original source identity', async (t) => {
   const {

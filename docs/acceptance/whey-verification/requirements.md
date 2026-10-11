@@ -1,6 +1,6 @@
 # Whey verification requirements and resumable evidence worklist
 
-Generated 2026-10-11T13:36:16.671Z from the public catalog snapshot observed 2026-10-11T13:35:56.825Z. Source SHA256: `c212597b531285899bfdf749d77b611980920ab7d6430fb4d7eeb9577ba1c9d4`. This is an offline evidence audit; source prices are timestamped observations.
+Generated 2026-10-11T13:54:37.890Z from the public catalog snapshot observed 2026-10-11T13:54:15.320Z. Source SHA256: `3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948`. This is an offline evidence audit; source prices are timestamped observations.
 
 | Requirement                                      | Evidence and current state                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

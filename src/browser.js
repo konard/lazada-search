@@ -544,13 +544,18 @@ export class BrowserCollector {
         this.runtime.page = await this.runtime.page.context().newPage();
       }
       registerChallengeStore(this.runtime.page, this.store);
+      this.closing = false;
       this.imageTasks = new Set();
       this.imageRoute = async (route) => {
+        if (this.closing) {
+          await route.abort().catch(() => {});
+          return;
+        }
         if (route.request().resourceType() !== 'image') {
           await route.continue();
           return;
         }
-        await serveBrowserImage({
+        const acquisition = serveBrowserImage({
           route,
           cache: this.cache,
           refresh: this.refreshImages,
@@ -560,10 +565,13 @@ export class BrowserCollector {
             this.imageStop = error;
           }
         });
+        this.imageTasks.add(acquisition);
+        acquisition.then(() => this.imageTasks.delete(acquisition));
+        await acquisition;
       };
       await this.runtime.page.route('**/*', this.imageRoute);
       this.imageResponse = (response) => {
-        if (response.request().resourceType() !== 'image') {
+        if (this.closing || response.request().resourceType() !== 'image') {
           return;
         }
         const capture = (async () => {
@@ -931,6 +939,12 @@ export class BrowserCollector {
 
   async close() {
     await this.tail;
+    // Stop admitting image producers before draining their writes. Route
+    // acquisitions and response retention both belong to this collector.
+    this.closing = true;
+    if (this.runtime && this.imageResponse) {
+      this.runtime.page.off('response', this.imageResponse);
+    }
     await Promise.all(this.imageTasks || []);
     try {
       await this.commander?.destroy();

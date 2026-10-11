@@ -339,6 +339,43 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # Native OCR is an acceptance assertion, so a missing executable/model
+      # must fail setup instead of silently skipping tests/ocr-crops.test.js.
+      # https://tesseract-ocr.github.io/tessdoc/Installation.html
+      - name: Install native OCR (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+
+      - name: Install native OCR (macOS)
+        if: runner.os == 'macOS'
+        run: brew install tesseract
+
+      # This approved, pinned Chocolatey package embeds the official 5.5.3
+      # Windows release and verifies its installer checksum.
+      # https://community.chocolatey.org/packages/tesseract/5.5.3.20260724
+      - name: Install native OCR (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install tesseract --version=5.5.3.20260724 --yes --no-progress
+          if ($LASTEXITCODE -ne 0) { throw "Tesseract installation failed with exit $LASTEXITCODE" }
+          $ocrDirectory = Join-Path $env:ProgramFiles 'Tesseract-OCR'
+          if (-not (Test-Path (Join-Path $ocrDirectory 'tesseract.exe'))) { throw 'Installed Tesseract executable is missing' }
+          $ocrDirectory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Verify native OCR executable and English model
+        shell: bash
+        run: |
+          set -euo pipefail
+          tesseract --version
+          models="$(tesseract --list-langs)"
+          if ! grep -Fxq eng <<< "$models"; then
+            echo '::error::Native OCR acceptance requires the English Tesseract model.'
+            exit 1
+          fi
+
       - name: Run tests (Node.js)
         if: matrix.runtime == 'node'
         shell: bash
@@ -353,11 +390,11 @@ jobs:
       - name: Run tests (Bun)
         if: matrix.runtime == 'bun'
         shell: bash
-        # The committed source/catalog fixtures need the same five-minute cap
+        # The committed source/catalog fixtures need the same 450-second cap
         # as Node. This is a per-test bound and does not bound the suite; the
         # explicit suite budget stays below the job backstop. Match Node's
         # top-level unit manifest; the separate Lazada E2E job runs every E2E.
-        run: bash scripts/run-with-budget-warning.sh 600 "Bun test suite" bun test --timeout 300000 ./tests/*.test.js
+        run: bash scripts/run-with-budget-warning.sh 600 "Bun test suite" bun test --timeout 450000 ./tests/*.test.js
 
       - name: Setup Deno
         if: matrix.runtime == 'deno'

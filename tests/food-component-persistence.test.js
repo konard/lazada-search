@@ -4,6 +4,7 @@ import { execFile } from 'node:child_process';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { LazadaSearch } from '../src/application.js';
 import { AssociativeStore } from '../src/store.js';
@@ -285,7 +286,7 @@ test('structured operation, spawned CLI, HTTP and Telegram quotes share componen
       '--offline',
       '--no-archive',
     ],
-    { cwd: new URL('../', import.meta.url).pathname }
+    { cwd: fileURLToPath(new URL('../', import.meta.url)) }
   );
   assert.deepEqual(JSON.parse(cli.stdout).foodComponents, components);
   const server = await startServer({ application: app, port: 0 });

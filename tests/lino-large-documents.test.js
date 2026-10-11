@@ -186,8 +186,10 @@ test('a long single-quoted value decodes in a bounded heap without per-character
     assert.throws(() => decode('text "unterminated'), SyntaxError);
     console.log('bounded-heap round-trip passed');
   `;
+  // This regression requires Node's exact 128 MiB heap limit, including when
+  // the surrounding decoder assertions run under Bun or Deno.
   const result = await execute(
-    process.execPath,
+    'node',
     ['--max-old-space-size=128', '--input-type=module', '-e', script],
     { timeout: 15000, maxBuffer: 1024 * 1024 }
   );

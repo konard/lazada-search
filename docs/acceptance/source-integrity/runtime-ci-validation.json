@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T13:40:48.472003+00:00",
-  "issues": [33, 34],
+  "checkedAt": "2026-10-11T14:06:03.535308+00:00",
+  "issues": [33, 34, 35, 36],
   "upstreamIssue": "https://github.com/link-foundation/lino-env/issues/32",
-  "frozenCode": "runtime-ci-frozen-code.json",
-  "codeFiles": 569,
-  "fullSuites": "running;not-yet-accepted",
+  "frozenCode": "runtime-ci-final-frozen-code.json",
+  "codeFiles": 575,
+  "fullSuites": "pending-new-frozen-complete-runs",
   "focused": {
     "nodeWorkflow": {
       "tests": 91,
@@ -27,6 +27,21 @@
     "rootArchiveConfig": {
       "tests": 39,
       "pass": 39,
+      "skipped": 0
+    },
+    "windowsFixtureNode": {
+      "tests": 25,
+      "pass": 25,
+      "skipped": 0
+    },
+    "windowsFixtureBun": {
+      "tests": 13,
+      "pass": 13,
+      "skipped": 0
+    },
+    "windowsFixtureDeno": {
+      "tests": 13,
+      "pass": 13,
       "skipped": 0
     }
   },
@@ -114,6 +129,272 @@
       "sourceBytes": 50,
       "gzipSha256": "02b728585370de9189b23fbc5f817a705273664ed3f1f595b96852331ccde888",
       "gzipBytes": 67
+    },
+    {
+      "path": "runtime-ci-native-ocr-node.tap.gz",
+      "sourceSha256": "f0750bc505b8db624a140ee1433565bd5a12088c4dd3c73a3dc5763afd81c75e",
+      "sourceBytes": 24727,
+      "gzipSha256": "30179d4b64eb49b9d168c0b6220c2954b21b3013fbea57bef988e538d5d66537",
+      "gzipBytes": 4838
+    },
+    {
+      "path": "runtime-ci-bun-native-ocr-focused.log.gz",
+      "sourceSha256": "9de80d25bea895dbc3eedfd7168d55e18e0f35f1cc989552de104150826c5afc",
+      "sourceBytes": 1887,
+      "gzipSha256": "66f9d709819605ec1ae5ed9bad75256aae4c940f88bdc8e2dd25c1215288e0c9",
+      "gzipBytes": 981
+    },
+    {
+      "path": "runtime-ci-deno-native-ocr-focused.log.gz",
+      "sourceSha256": "5b73d982c8e2e38fc0165550ef975ed198147eaaaf2b6b834e959e035e725e9a",
+      "sourceBytes": 2480,
+      "gzipSha256": "1e1b30f429ba0080e327e9b7718f5824e295750b5d2925e89011fdb70e1279d6",
+      "gzipBytes": 1084
+    },
+    {
+      "path": "runtime-ci-deno-checkpoint-focused.log.gz",
+      "sourceSha256": "942f17db3a34cfc9b761fa5269d9aa40bef26acf93d00caf254cade33a100872",
+      "sourceBytes": 917,
+      "gzipSha256": "8ac17b3db852b7cd6780f75283f2f41d99585ce96586f2b48e3fe61eac806942",
+      "gzipBytes": 442
+    },
+    {
+      "path": "runtime-ci-native-ocr-eslint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-native-ocr-format.log.gz",
+      "sourceSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "sourceBytes": 66,
+      "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59",
+      "gzipBytes": 82
+    },
+    {
+      "path": "runtime-ci-native-ocr-actionlint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-native-ocr-workflow-policy.log.gz",
+      "sourceSha256": "5b12353fe67d10850a6b1385a76ef27258bdfd14ef6018077056808aa2b515b2",
+      "sourceBytes": 58,
+      "gzipSha256": "1155499d8b63284b3581fdbb3beecffd7d799bbc67d0ff529dfc14f4c6cf08f8",
+      "gzipBytes": 78
+    },
+    {
+      "path": "runtime-ci-child-node-codec.tap.gz",
+      "sourceSha256": "324a79db7724e1d46f97322b90b1e39d94a1bb7e009cd0a287f3125462b41264",
+      "sourceBytes": 2443,
+      "gzipSha256": "a5b41078f9868c0a5fcbd1d804e0aa0c5f86a07c8c3661a2c47a574b250eaf51",
+      "gzipBytes": 760
+    },
+    {
+      "path": "runtime-ci-child-node-catalog.tap.gz",
+      "sourceSha256": "703ac23ebd63600a97f1014d4b4bd2a5be55ef3e8290e3777fdc458064eaa761",
+      "sourceBytes": 376,
+      "gzipSha256": "c0fb69c7a74d868c419abddb39c03c48ecaaba69637ebdfda75fd5174aed827f",
+      "gzipBytes": 229
+    },
+    {
+      "path": "runtime-ci-deno-codec-node-heap.log.gz",
+      "sourceSha256": "a1af66bbcbb4e10b23d56db81e0b49f08744b96030619385b5aca650d0cd677f",
+      "sourceBytes": 1091,
+      "gzipSha256": "eeb01b93aa6ac84ba20c6afb2bc49efb045f6edb50daa9b7332d747bde738073",
+      "gzipBytes": 595
+    },
+    {
+      "path": "runtime-ci-bun-codec-node-heap.log.gz",
+      "sourceSha256": "0e3151025347648ab2515fc2be8754b943dcc0fd16bc0a37307dd3c6161a75d1",
+      "sourceBytes": 1138,
+      "gzipSha256": "466d8b2a99565940832e5a696a0a9ac9d6a851d7be1407738f79dcb57facc18b",
+      "gzipBytes": 631
+    },
+    {
+      "path": "runtime-ci-deno-catalog-export-node.log.gz",
+      "sourceSha256": "291e9d65fad341f598abf497f4b309799c7b563ebcb71c4dccd1c6e6ce185dc9",
+      "sourceBytes": 398,
+      "gzipSha256": "dd261abe6e20736cf375a5271bf1e6712b770f44ed91987da888a7d6045d90b8",
+      "gzipBytes": 285
+    },
+    {
+      "path": "runtime-ci-close-focused.tap.gz",
+      "sourceSha256": "f4c183721ca24415cc72aa7e3484c906e0a891a5e131156909b0dacb7f34dfca",
+      "sourceBytes": 1441,
+      "gzipSha256": "6dfdafa47b24adca7dbcbea752f733f3143bde81e610d1f7096610352450deca",
+      "gzipBytes": 508
+    },
+    {
+      "path": "runtime-ci-close-strict.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-byte-lock-focused.tap.gz",
+      "sourceSha256": "1f90975f69cab80381fea4cf7631a1522458d9f6cc7837f14adce5ad30ddd54b",
+      "sourceBytes": 9607,
+      "gzipSha256": "f1ca015245238adaf4dd0aca0f7ad8acfdd792efef86a13ad9ef32557e5a4145",
+      "gzipBytes": 2281
+    },
+    {
+      "path": "runtime-ci-byte-lock-format.log.gz",
+      "sourceSha256": "c261065a0e3ec70371d827860e8336911aeef09958e7c2a8df3c668cea9e9c1d",
+      "sourceBytes": 253,
+      "gzipSha256": "10567cf0ac13280c507d79530221c8098cde56ede4ffea686704036f3ee6bc93",
+      "gzipBytes": 157
+    },
+    {
+      "path": "runtime-ci-byte-lock-eslint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-windows-focused-accepted.tap.gz",
+      "sourceSha256": "58764075c3d0fa3b9ab9b580ecbc1d311ba8fae40f46e7f3070f969378674ec3",
+      "sourceBytes": 6253,
+      "gzipSha256": "aaefb1ee9a2d6e3ca2c28c52968f5574deb7574a5133a270b3382549943999c6",
+      "gzipBytes": 1617
+    },
+    {
+      "path": "runtime-ci-windows-bun-focused-accepted.log.gz",
+      "sourceSha256": "31813fa34b6b93343dfc1d4cafd1eec9569ad6f121e11d87c8462b7434b07138",
+      "sourceBytes": 1548,
+      "gzipSha256": "2898796983dc18847446016b10b295a00ffa8fe5e4fc51efc35c755cd68d2dff",
+      "gzipBytes": 818
+    },
+    {
+      "path": "runtime-ci-windows-deno-focused-accepted.log.gz",
+      "sourceSha256": "c2fdfb40e230848f181bb3a0e49c93f011a2c8e775bad4f9327d6be5c61e13c2",
+      "sourceBytes": 2127,
+      "gzipSha256": "4119507d4d3392e282fe8b46ba48e82a2bd9848f036ce89bacef281204aaf0d4",
+      "gzipBytes": 908
+    },
+    {
+      "path": "runtime-ci-caab-e2e-failure.log.gz",
+      "sourceSha256": "83b8e19fccdcd850c70d2fa7873615561b1d5a155cdc156aea8b7474ec908c59",
+      "sourceBytes": 88317,
+      "gzipSha256": "5dd358085cb6386f42edd4269ed942638b6f2f0586495a9ae5f33e48c970c890",
+      "gzipBytes": 19031
+    },
+    {
+      "path": "runtime-ci-node-windows-followup.log.gz",
+      "sourceSha256": "0c04c7530255afb78cf8c6df18a75a2730036cc0cc5dc8b29b83327afd5390c6",
+      "sourceBytes": 209338,
+      "gzipSha256": "71c9f47dd1598df9c5e1b0ee4dcac173c03cb980e9ff4823c6bccc20dce7359c",
+      "gzipBytes": 59102
+    },
+    {
+      "path": "runtime-ci-deno-windows-followup.log.gz",
+      "sourceSha256": "8383b2a6638c67d74d88a6654cf5524e65fba434d0d61bd4ed911030ac78a273",
+      "sourceBytes": 301930,
+      "gzipSha256": "13d010228c989f0e44ee72d68c63b4df79b283879458cadb53a386de8097df84",
+      "gzipBytes": 58325
+    },
+    {
+      "path": "runtime-ci-bun-windows-followup.log.gz",
+      "sourceSha256": "faad8494eaab67f7ff46d940bc0c06dbbd2c223f257d61e743d1812def750e4f",
+      "sourceBytes": 240541,
+      "gzipSha256": "353d5f71328c974eadad0b04d5c0f0a0b433a1bd18a1e099b14e2f5b2e5f5b6f",
+      "gzipBytes": 62642
+    },
+    {
+      "path": "runtime-ci-final-case-rebuild.log.gz",
+      "sourceSha256": "f80cccba3342129fbf72b130f2ac112a2a5e66cbfe4b1e8652c8e049932ae137",
+      "sourceBytes": 3071,
+      "gzipSha256": "680e8620d6c66a78387d0bbc8ead7c886a57775a712b2ccc63a1c498063c9de2",
+      "gzipBytes": 1122
+    },
+    {
+      "path": "runtime-ci-caab-completed-status.json.gz",
+      "sourceSha256": "31c2c21bca8e6639a08a17f64f1adaf4c53db0f7516bdb97bd98d330210266b7",
+      "sourceBytes": 33795,
+      "gzipSha256": "fdc13cbf303bdb231dc1e0f93322717427ab8e43bd62078e089775fa0f5ae775",
+      "gzipBytes": 2383
+    },
+    {
+      "path": "runtime-ci-caab-all-workflows.json.gz",
+      "sourceSha256": "01029f96ecf2df552f9308532254a1fe3fcdf039c0d760955e06115dc10a3809",
+      "sourceBytes": 1003,
+      "gzipSha256": "68463662a0540b1866a5997e8771776c6c66e1ba596c2ba795cedb8dab21008b",
+      "gzipBytes": 270
+    },
+    {
+      "path": "runtime-ci-final-check.log.gz",
+      "sourceSha256": "0ba1435511ef1b44681f043d6a83e68d6687bcc0aa668950d495244296c18639",
+      "sourceBytes": 119180,
+      "gzipSha256": "ba36bbd49a1a631e245f2e4e19e929e1aa7d808f89254fe733c4a0e86dad953d",
+      "gzipBytes": 15275
+    },
+    {
+      "path": "runtime-ci-final-line-limits.log.gz",
+      "sourceSha256": "72efc95b9d22ed19e7d08a675f7b3f2055e1cc6a21d5772285881748b1b86816",
+      "sourceBytes": 27260,
+      "gzipSha256": "9f50afe7fe4977fb64877f2961e96dfc55207b0fc5b7df5a90c9940503c059a9",
+      "gzipBytes": 6217
+    },
+    {
+      "path": "runtime-ci-final-syntax.log.gz",
+      "sourceSha256": "3e05bc0129a4ac641877a78564f4fcf2cfb488d0c008dc18a738208f39f7bd4d",
+      "sourceBytes": 6053,
+      "gzipSha256": "26ccf82217b5f8393a76492d3376089aef69e30d3305b87cd5c9ed5ee7223c07",
+      "gzipBytes": 1221
+    },
+    {
+      "path": "runtime-ci-final-workflow-policy.log.gz",
+      "sourceSha256": "5b12353fe67d10850a6b1385a76ef27258bdfd14ef6018077056808aa2b515b2",
+      "sourceBytes": 58,
+      "gzipSha256": "1155499d8b63284b3581fdbb3beecffd7d799bbc67d0ff529dfc14f4c6cf08f8",
+      "gzipBytes": 78
+    },
+    {
+      "path": "runtime-ci-final-actionlint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-final-typescript.log.gz",
+      "sourceSha256": "09c5b021e81463ac73d62357126c51148fe5e055d37496a15a08f113c8a33a67",
+      "sourceBytes": 4994,
+      "gzipSha256": "2b26369da0a364bcbf8395f3b13fc535dfd86fe8f32652f4d5b39a485083c974",
+      "gzipBytes": 1810
+    },
+    {
+      "path": "runtime-ci-final-typescript-api.log.gz",
+      "sourceSha256": "22d754e33e5e414d820e237c9e477c81ec8db495c45ab51f7665351a89a3c783",
+      "sourceBytes": 165,
+      "gzipSha256": "1b83fc09bdcf5e2d16ff2f604bccd707b46e51c51353374ed1bbba8b6c535256",
+      "gzipBytes": 144
+    },
+    {
+      "path": "runtime-ci-final-typescript-api-corrected.log.gz",
+      "sourceSha256": "9dbf3977abd80cc361a8810e82b47a6cb1baecc5396de1b2862368fb6539550a",
+      "sourceBytes": 1209,
+      "gzipSha256": "4d1142deb1c4c417def20a3e848c01abfef1ea4a65efad55ccaf10ce94cb6d49",
+      "gzipBytes": 402
+    },
+    {
+      "path": "runtime-ci-final-typescript-api-accepted.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-final-requirements-audit.log.gz",
+      "sourceSha256": "7a63ee9ef2ddb6bea5779d15a55a0ce8f11c4915d2a3055b09f9a3fa6d732839",
+      "sourceBytes": 356,
+      "gzipSha256": "d4f0eeb53d7816e2cb8497736cbb6627026f33e4e6db9899b5d3f093d2320141",
+      "gzipBytes": 246
     }
   ],
   "offlineCase": {
@@ -128,7 +409,7 @@
     "unresolved": 0,
     "downloads": 0
   },
-  "remoteWindowsAndRuntimeMatrix": "pending-new-pushed-run",
+  "remoteWindowsAndRuntimeMatrix": "previous-run-failed;new-draft-pending-push",
   "knownExternalBlockers": [
     "Actual manufacturer challenge requires manual clearance and explicit resume",
     "npm package-owner trusted publisher configuration",
@@ -138,5 +419,96 @@
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
-  "purchaseReady": false
+  "purchaseReady": false,
+  "intermediateFullResults": {
+    "unit": {
+      "tests": 1286,
+      "pass": 1285,
+      "fail": 0,
+      "cancelled": 1,
+      "skipped": 0,
+      "cause": "Full catalog fixture exceeded300s file budget under local contention"
+    },
+    "e2e": {
+      "tests": 48,
+      "pass": 46,
+      "fail": 1,
+      "cancelled": 1,
+      "skipped": 0,
+      "cause": "Category fixture HTTP redirect escape and teardown producer race; this run also crossed subsequent source edits and cannot be final acceptance"
+    }
+  },
+  "additionalIssue": 36,
+  "closeBarrierFocusedRealBrowser": {
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0
+  },
+  "actualPreviousRemoteRuntimeEvidence": {
+    "nodeUbuntu": {
+      "pass": 1285,
+      "fail": 0,
+      "skipped": 1
+    },
+    "nodeMac": {
+      "pass": 1285,
+      "fail": 0,
+      "skipped": 1
+    },
+    "bunUbuntu": {
+      "pass": 1285,
+      "fail": 0,
+      "skipped": 1
+    },
+    "bunMac": {
+      "pass": 1285,
+      "fail": 0,
+      "skipped": 1
+    },
+    "denoUnix": {
+      "pass": 1131,
+      "fail": 3,
+      "finding": "Three Node-only subprocess fixture interpreter errors; final draft fixes each"
+    },
+    "bunWindows": {
+      "tests": 1249,
+      "pass": 1241,
+      "fail": 7,
+      "skipped": 1,
+      "seconds": 588.47,
+      "finding": "catalog300s timeout, five original-byte mismatches and Windows CLIcwd"
+    },
+    "browserE2E": {
+      "tests": 47,
+      "pass": 46,
+      "fail": 1,
+      "skipped": 0,
+      "finding": "category fixture HTTP redirect escaped local transport and met live CAPTCHA"
+    }
+  },
+  "bytePreservationAndLockFocused": {
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "skipped": 0
+  },
+  "checks": {
+    "npmCheck": {
+      "passed": true,
+      "lint": "zero errors;9 unchanged-line warnings preserved",
+      "format": "passed",
+      "duplication": "passed"
+    },
+    "syntax": "passed",
+    "workflowPolicy": "passed",
+    "actionlint": "passed",
+    "lineLimits": "passed",
+    "typescriptApiFixture": {
+      "passed": true,
+      "command": "tsc --noEmit --strict --module NodeNext --moduleResolution NodeNext --target ES2022 --skipLibCheck tests/fixtures/public-api-types.ts",
+      "scope": "strict consumer fixture; declaration libraries skipped",
+      "setupAttempts": "original no-project and Node-type attempts failed; original logs retained"
+    }
+  }
 }

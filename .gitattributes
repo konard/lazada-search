@@ -1,2 +1,7 @@
 # Cached Links Notation strings preserve the original page text, including spaces.
 tests/fixtures/public-cache/**/*.lino whitespace=-blank-at-eol
+
+# Source receipts hash the downloaded bytes. Git must not convert their line endings.
+docs/acceptance/** -text
+tests/fixtures/** -text
+data/cases/** -text

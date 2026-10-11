@@ -12,12 +12,21 @@ import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { runCli } from '../bin/lazada-search.js';
 
+// Installed executables declare Node in their shebang. Deno's process.execPath
+// starts a fresh Deno process whose extensionless symlink loses the configured
+// manual dependency graph; exercise the declared interpreter on every runner.
+const cliInterpreter = 'node';
+
 test('package identity, installed executable and library export are usable', async () => {
   const manifest = JSON.parse(readFileSync('package.json', 'utf8'));
   const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
   assert.equal(manifest.name, 'lazada-search');
   assert.equal(lock.name, manifest.name);
   assert.deepEqual(manifest.bin, { 'lazada-search': './bin/lazada-search.js' });
+  assert.equal(
+    readFileSync(manifest.bin['lazada-search'], 'utf8').split('\n')[0],
+    '#!/usr/bin/env node'
+  );
   const lines = [];
   assert.equal(
     await runCli(['--help'], { stdout: (line) => lines.push(line) }),
@@ -28,7 +37,7 @@ test('package identity, installed executable and library export are usable', asy
   try {
     const bin = join(root, 'lazada-search');
     symlinkSync(resolve('bin/lazada-search.js'), bin);
-    const result = spawnSync(process.execPath, [bin, '--version'], {
+    const result = spawnSync(cliInterpreter, [bin, '--version'], {
       encoding: 'utf8',
     });
     assert.equal(result.status, 0);
@@ -55,7 +64,7 @@ test('local and explicit .lenv configuration keep CLI JSON stdout machine-readab
     );
     for (const config of [[], ['--configuration', 'custom.lenv']]) {
       const result = spawnSync(
-        process.execPath,
+        cliInterpreter,
         [
           resolve('bin/lazada-search.js'),
           'compare',

@@ -975,15 +975,29 @@
     "packageJson": {
       "dependencies": [
         "npm:@changesets/cli@^3.0.3",
+        "npm:browser-commander@~0.30.1",
         "npm:eslint-config-prettier@^10.1.8",
         "npm:eslint-plugin-prettier@^5.5.4",
         "npm:eslint@^9.38.0",
+        "npm:grammy@^1.46.0",
         "npm:husky@^9.1.7",
         "npm:jscpd@^5.4.0",
+        "npm:linkedom@~0.18.13",
+        "npm:links-notation@~0.25.1",
+        "npm:lino-arguments@0.3.0",
+        "npm:lino-objects-codec@0.9",
         "npm:lint-staged@^16.4.0",
+        "npm:playwright@^1.64.0",
         "npm:prettier@^3.6.2",
-        "npm:test-anywhere@~0.8.48"
-      ]
+        "npm:sharp@~0.35.5",
+        "npm:test-anywhere@~0.8.48",
+        "npm:yaml@^2.9.0"
+      ],
+      "overrides": {
+        "browser-commander": {
+          "command-stream": "2.0.2"
+        }
+      }
     }
   }
 }

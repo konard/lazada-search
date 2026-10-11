@@ -72,6 +72,7 @@ function assertSortedDiscovery(report, sort) {
 
 async function installFixture(t, collector) {
   const requests = [];
+  const externalRequests = [];
   const replies = [];
   const fixture = createServer(async (request, response) => {
     if (request.method === 'POST') {
@@ -98,10 +99,10 @@ async function installFixture(t, collector) {
     const url = new URL(request.url, 'http://fixture.local');
     requests.push(url);
     if (url.pathname === '/redirect-category/') {
-      response.writeHead(302, {
-        Location: 'https://www.lazada.vn/tag/kem-chocolate/',
-      });
-      response.end();
+      // HTTP redirect chains can bypass Playwright's initial route handler.
+      // A fresh client navigation is intercepted and stays in this fixture.
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end('<script>location.replace("/tag/kem-chocolate/")</script>');
       return;
     }
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -127,26 +128,33 @@ async function installFixture(t, collector) {
   t.after(() => new Promise((resolve) => fixture.close(resolve)));
   const fixtureRoot = `http://127.0.0.1:${fixture.address().port}`;
   await collector.start();
-  await collector.runtime.page.route(
-    'https://www.lazada.vn/**',
-    async (route) => {
-      const url = new URL(route.request().url());
-      // A manual redirect keeps even the redirect target inside the local fixture.
-      const local = await fetch(`${fixtureRoot}${url.pathname}${url.search}`, {
-        redirect: 'manual',
-      });
-      const location = local.headers.get('location');
-      await route.fulfill({
-        status: local.status,
-        headers: {
-          'Content-Type': local.headers.get('content-type') || 'text/html',
-          ...(location ? { Location: location } : {}),
-        },
-        body: await local.text(),
-      });
+  await collector.runtime.page.route('**/*', async (route) => {
+    const url = new URL(route.request().url());
+    if (url.origin !== 'https://www.lazada.vn') {
+      externalRequests.push(url.href);
+      await route.abort();
+      return;
     }
-  );
-  return { requests, replies, fixtureRoot };
+    // A manual redirect keeps even the redirect target inside the local fixture.
+    const local = await fetch(`${fixtureRoot}${url.pathname}${url.search}`, {
+      redirect: 'manual',
+    });
+    const location = local.headers.get('location');
+    assert.equal(
+      location,
+      null,
+      'Fixture HTTP redirects must never reach browser transport'
+    );
+    await route.fulfill({
+      status: local.status,
+      headers: {
+        'Content-Type': local.headers.get('content-type') || 'text/html',
+        ...(location ? { Location: location } : {}),
+      },
+      body: await local.text(),
+    });
+  });
+  return { requests, externalRequests, replies, fixtureRoot };
 }
 
 async function discoverCli(directory) {
@@ -189,11 +197,14 @@ test('real browser, offline CLI and Telegram retain price-sorted category pagina
     browserOptions: { launch: 'engine', persistent: false },
   });
   const app = new LazadaSearch({ store, cache, collector, ocr: false });
+  let replay = null;
   t.after(async () => {
+    await replay?.close();
     await app.close();
     await rm(directory, { recursive: true, force: true });
   });
-  const { requests, replies, fixtureRoot } = await installFixture(t, collector);
+  const { requests, externalRequests, replies, fixtureRoot } =
+    await installFixture(t, collector);
   const options = {
     categoryOnly: true,
     queries: ['kem chocolate'],
@@ -241,7 +252,7 @@ test('real browser, offline CLI and Telegram retain price-sorted category pagina
     onlineRequests,
     'CLI discovery must reuse the complete sorted page cache'
   );
-  const replay = new LazadaSearch({
+  replay = new LazadaSearch({
     store: new AssociativeStore({ directory }),
     offline: true,
     ocr: false,
@@ -249,7 +260,6 @@ test('real browser, offline CLI and Telegram retain price-sorted category pagina
   replay.collector.start = () => {
     throw Error('Telegram replay must not open a browser');
   };
-  t.after(() => replay.close());
   const bot = createTelegramBot({
     application: replay,
     token: '123:TEST',
@@ -311,5 +321,10 @@ test('real browser, offline CLI and Telegram retain price-sorted category pagina
       )
     ),
     `No request may add a price cutoff: ${requests.map((url) => url.href).join(', ')}`
+  );
+  assert.deepEqual(
+    externalRequests,
+    [],
+    'Every browser request must stay in the local fixture'
   );
 });

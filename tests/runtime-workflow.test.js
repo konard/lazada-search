@@ -29,7 +29,7 @@ test('Bun and Deno run the same complete top-level unit manifest as Node', () =>
   assert.match(packageJson.scripts.test, /tests\/\*\.test\.js$/);
   const bun = named('Run tests (Bun)');
   const deno = named('Run tests (Deno)');
-  assert.match(bun.run, /bun test --timeout 300000 \.\/tests\/\*\.test\.js$/);
+  assert.match(bun.run, /bun test --timeout 450000 \.\/tests\/\*\.test\.js$/);
   assert.match(deno.run, /deno test .* tests\/\*\.test\.js$/);
   assert.equal(bun.if, "matrix.runtime == 'bun'");
   assert.equal(deno.if, "matrix.runtime == 'deno'");
@@ -77,6 +77,10 @@ test('Deno runtime assertions grant explicit fixture capabilities and only loopb
 });
 
 test('large cached fixture deadlines stay bounded by the matrix job backstop', () => {
+  assert.equal(
+    packageJson.scripts.test,
+    'node --test --test-concurrency=4 --test-timeout=450000 tests/*.test.js'
+  );
   const allowed = job['timeout-minutes'] * 60 * 0.7;
   for (const runtime of ['Node.js', 'Bun', 'Deno']) {
     const step = named(`Run tests (${runtime})`);
@@ -85,5 +89,40 @@ test('large cached fixture deadlines stay bounded by the matrix job backstop', (
     );
     assert.equal(budget, 600);
     assert.ok(budget <= allowed);
+  }
+});
+
+test('every OS provisions native OCR before tests and Windows uses an exact approved version', () => {
+  const linux = named('Install native OCR (Ubuntu)');
+  const mac = named('Install native OCR (macOS)');
+  const windows = named('Install native OCR (Windows)');
+  assert.equal(linux.if, "runner.os == 'Linux'");
+  assert.match(
+    linux.run,
+    /apt-get install -y tesseract-ocr tesseract-ocr-eng/u
+  );
+  assert.equal(mac.if, "runner.os == 'macOS'");
+  assert.equal(mac.run, 'brew install tesseract');
+  assert.equal(windows.if, "runner.os == 'Windows'");
+  assert.equal(windows.shell, 'pwsh');
+  assert.match(
+    windows.run,
+    /choco install tesseract --version=5\.5\.3\.20260724 --yes --no-progress/u
+  );
+  assert.ok(windows.run.includes('$LASTEXITCODE -ne 0'));
+  assert.ok(windows.run.includes('tesseract.exe'));
+  assert.ok(windows.run.includes('$env:GITHUB_PATH'));
+  const gate = named('Verify native OCR executable and English model');
+  assert.equal(gate.if, undefined);
+  assert.ok(gate.run.includes('set -euo pipefail'));
+  assert.ok(gate.run.includes('tesseract --version'));
+  assert.ok(gate.run.includes('tesseract --list-langs'));
+  assert.ok(gate.run.includes('grep -Fxq eng'));
+  assert.ok(!/continue-on-error|\|\| true/u.test(gate.run));
+  for (const runtime of ['Node.js', 'Bun', 'Deno']) {
+    assert.ok(
+      job.steps.indexOf(gate) <
+        job.steps.indexOf(named(`Run tests (${runtime})`))
+    );
   }
 });
