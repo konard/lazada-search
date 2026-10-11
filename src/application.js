@@ -9,6 +9,7 @@ import {
   validateProduct,
 } from './products.js';
 import { selectedPackageImage } from './package-image.js';
+import { applySharedPackageArtworkConflict } from './package-artwork-consistency.js';
 import { crossCheck, extractNutrition } from './nutrition.js';
 import { compareOffers } from './compare.js';
 import { crawlMarketplace, latestCrawl } from './crawl.js';
@@ -29,6 +30,14 @@ import { applyComparisonTranslations } from './translation-presentation.js';
 import { saveBasketQuote, captureBasketQuote } from './basket-quote.js';
 import { compareBaskets } from './basket-comparison.js';
 import { comparisonInputs } from './comparison-inputs.js';
+import { mergeFoodOfferDiscovery } from './food-offer-discovery.js';
+import { preserveReviewedPaidMass } from './collection-review-replay.js';
+import { replayedSpecificationReviews } from './collection-source-replay.js';
+import {
+  planCheckoutScenarios,
+  runCheckoutScenarios,
+  checkoutScenarioStatus,
+} from './checkout-scenarios.js';
 import {
   ListingUnavailableError,
   recordListingUnavailable,
@@ -211,11 +220,27 @@ export class LazadaSearch {
         }
       }
     }
-    for (const product of validProducts) {
-      await this.saveProduct(product);
-    }
-    for (const offer of validOffers) {
-      await this.saveOffer(offer);
+    if (
+      typeof this.store.putLatestMany === 'function' &&
+      typeof this.store.putMany === 'function'
+    ) {
+      await this.store.putLatestMany('product', validProducts);
+      await this.store.putMany(
+        'offer-history',
+        validOffers.map((offer) => ({
+          ...offer,
+          id: `${offer.id}:${sha256(JSON.stringify(offer))}`,
+          offerId: offer.id,
+        }))
+      );
+      await this.store.putLatestMany('offer', validOffers);
+    } else {
+      for (const product of validProducts) {
+        await this.saveProduct(product);
+      }
+      for (const offer of validOffers) {
+        await this.saveOffer(offer);
+      }
     }
     for (const [kind, records] of metadata) {
       if (!records.length) {
@@ -315,6 +340,7 @@ export class LazadaSearch {
       capture.snapshot.url,
       Buffer.from(JSON.stringify(capture.snapshot))
     );
+    const previousEvidence = await this.store.get('evidence', id);
     await this.store.put('evidence', {
       id,
       url: capture.snapshot.url,
@@ -331,6 +357,7 @@ export class LazadaSearch {
       market: this.market,
       currency: MARKETS[this.market].currency,
       evidenceId: id,
+      originalHtmlSha256: capture.html?.sha256,
       observedAt: new Date(capture.fetchedAt).toISOString(),
     });
     const previous = await resolveProductReviews(
@@ -339,6 +366,17 @@ export class LazadaSearch {
     );
     // A refresh keeps reviewed facts but preserves fresh contradictory claims.
     if (previous) {
+      product.pendingSpecificationReview = replayedSpecificationReviews(
+        previous,
+        product,
+        capture.snapshot,
+        {
+          offer,
+          evidenceId: id,
+          previousHtmlSha256: previousEvidence?.html?.sha256,
+          originalHtmlSha256: capture.html?.sha256,
+        }
+      );
       product.claims = [...previous.claims, ...product.claims].filter(
         (claim, index, claims) =>
           claims.findIndex(
@@ -348,8 +386,6 @@ export class LazadaSearch {
       product.evidenceIds = [...new Set([...previous.evidenceIds, id])];
       product.crossChecks = previous.crossChecks || [];
       product.corrections = previous.corrections || [];
-      product.pendingSpecificationReview =
-        previous.pendingSpecificationReview || [];
       product.manufacturerVerification =
         previous.observedAt === product.observedAt
           ? previous.manufacturerVerification
@@ -361,6 +397,14 @@ export class LazadaSearch {
       for (const field of product.reviewedFields) {
         product[field] = previous[field];
       }
+      Object.assign(
+        product,
+        preserveReviewedPaidMass(previous, product, {
+          evidenceId: id,
+          previousHtmlSha256: previousEvidence?.html?.sha256,
+          originalHtmlSha256: capture.html?.sha256,
+        })
+      );
     }
     await applyListingCategoryReview(this.store, product);
     await this.collectOcr(product, capture);
@@ -371,7 +415,7 @@ export class LazadaSearch {
     const savedOffer =
       previousOffer?.observedAt === offer.observedAt &&
       (previousOffer?.evidenceId === offer.evidenceId || capture.cacheHit)
-        ? { ...previousOffer, ...offer }
+        ? mergeFoodOfferDiscovery(previousOffer, offer)
         : offer;
     await this.saveOffer(validateOffer(savedOffer));
     // Repair an older extractor's default JSON-LD SKU when the saved DOM
@@ -481,6 +525,16 @@ export class LazadaSearch {
           product,
           imageUrl
         );
+        applySharedPackageArtworkConflict(product, capture.snapshot, {
+          text: result.text,
+          evidenceId: id,
+          imageUrl,
+          imageSha256: blob.sha256,
+          matchedImageSha256: result.imageHash,
+          originalHtmlSha256: capture.html?.sha256,
+          observedAt: product.observedAt,
+          confidence: result.confidence,
+        });
         if (boundImage && result.imageHash === blob.sha256) {
           applySelectedPackageMass(product, {
             text: result.text,
@@ -503,6 +557,9 @@ export class LazadaSearch {
           await recognize(blob, imageUrl, { psm: 11 }, false);
         }
       } catch (error) {
+        if (error.code === 'COLLECTION_STOPPED') {
+          throw error;
+        }
         product.ocrCoverage.failed += 1;
         product.warnings.push(`OCR failed for ${imageUrl}: ${error.message}`);
       }
@@ -517,6 +574,9 @@ export class LazadaSearch {
         });
         await recognize(image.blob, imageUrl);
       } catch (error) {
+        if (error.code === 'COLLECTION_STOPPED') {
+          throw error;
+        }
         product.ocrCoverage.failed += 1;
         product.warnings.push(
           `Image unavailable: ${imageUrl}: ${error.message}`
@@ -813,6 +873,18 @@ export class LazadaSearch {
 
   compareBaskets(options = {}) {
     return compareBaskets(this, options);
+  }
+
+  planCheckoutScenarios(input) {
+    return planCheckoutScenarios(this, input);
+  }
+
+  runCheckoutScenarios(input) {
+    return runCheckoutScenarios(this, input);
+  }
+
+  checkoutScenarioStatus(input) {
+    return checkoutScenarioStatus(this, input);
   }
 
   async compare(options = {}) {

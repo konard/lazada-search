@@ -390,7 +390,15 @@ test('bundles use food package counts and selected sizes without treating sugar 
   const bundle = parseProduct(snapshot);
   assert.equal(bundle.product.netMassG, 500);
   assert.equal(bundle.product.packCount, 2);
-  const metrics = calculateOffer(bundle.product, bundle.offer, {
+  const ambiguous = calculateOffer(bundle.product, bundle.offer, {
+    requireManufacturer: false,
+  }).metrics;
+  assert.equal(ambiguous.totalMassG, null);
+  const selected = parseProduct({
+    ...snapshot,
+    selectedVariant: [{ text: '2 túi, each bag500g' }],
+  });
+  const metrics = calculateOffer(selected.product, selected.offer, {
     requireManufacturer: false,
   }).metrics;
   assert.equal(metrics.totalMassG, 1000);

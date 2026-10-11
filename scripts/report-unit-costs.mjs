@@ -37,6 +37,13 @@ export function powderCategory(product) {
   return product.category === 'whey' ? 'whey' : 'other-protein';
 }
 
+function declaredPackageCount(product) {
+  return product.packageCountUnresolved ||
+    product.pendingSpecificationReview?.includes('packCount')
+    ? null
+    : product.packCount || 1;
+}
+
 export function reportUnitCosts(
   row,
   { quantity = 1, deliveryArea = 'Nha Trang', productOverride } = {}
@@ -68,7 +75,7 @@ export function reportUnitCosts(
   });
   return {
     quantity,
-    packagesPerSellingUnit: product.packCount || 1,
+    packagesPerSellingUnit: declaredPackageCount(product),
     massG: metrics.totalMassG,
     volumeMl: metrics.totalVolumeMl,
     proteinG: metrics.totalProteinG,

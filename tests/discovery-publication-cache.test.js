@@ -11,6 +11,7 @@ import {
   extractPage,
   publishAccountDiscovery,
 } from '../src/index.js';
+import { discoveryPublicationStore } from '../src/discovery-publication-cache.js';
 
 const url = 'https://www.lazada.vn/catalog/?q=whey&page=1&sort=priceasc';
 const cacheId = `search:vn:Nha Trang:${url}`;
@@ -253,6 +254,8 @@ test('older observations retain their receipts while protecting newer cache and 
   await shared.put('cache', newCache);
   const newCrawl = await shared.get('crawl', 'campaign');
   delete newCrawl.observedAt;
+  delete newCrawl.finishedAt;
+  newCrawl.updatedAt = new Date(secondTime).toISOString();
   await shared.put('crawl', newCrawl);
   const currentListing = await shared.get('discovery', 'listing');
   await source.put('cache', older);
@@ -273,6 +276,57 @@ test('older observations retain their receipts while protecting newer cache and 
   assert.deepEqual(await shared.get('cache', cacheId), newCache);
   assert.deepEqual(await shared.get('crawl', 'campaign'), newCrawl);
   assert.deepEqual(await shared.get('discovery', 'listing'), currentListing);
+});
+
+test('chronological discovery batch writers protect legacy timestamps under one locked read view without rewriting existing records', async (t) => {
+  const { shared } = await setup(t);
+  const view = discoveryPublicationStore(shared);
+  const current = {
+    id: 'legacy-search',
+    fetchedAt: secondTime,
+    snapshot: { cards: [{ title: 'Newer chocolate powder', price: 200000 }] },
+  };
+  await shared.put('cache', current);
+  const lock = shared.locked.bind(shared);
+  let locked = false;
+  let locks = 0;
+  shared.locked = (action) => {
+    locks += 1;
+    return lock(async () => {
+      locked = true;
+      try {
+        return await action();
+      } finally {
+        locked = false;
+      }
+    });
+  };
+  const get = shared.get.bind(shared);
+  shared.get = (kind, id) => {
+    assert.equal(locked, true, 'chronology must read inside the writer lock');
+    return get(kind, id);
+  };
+  shared.project = () => {
+    throw new Error('Older or undated observations cannot write projections');
+  };
+  const results = await view.putLatestMany('cache', [
+    {
+      id: current.id,
+      fetchedAt: firstTime,
+      observedAt: new Date(firstTime).toISOString(),
+      snapshot: { cards: [{ title: 'Older chocolate powder', price: 1 }] },
+    },
+    { id: current.id, snapshot: { cards: [] } },
+  ]);
+  assert.equal(locks, 1);
+  assert.deepEqual(
+    results,
+    Array(2).fill({
+      ...current,
+      observedAt: new Date(secondTime).toISOString(),
+    })
+  );
+  assert.deepEqual(await get('cache', current.id), current);
 });
 
 test('identical public HTML at a different observation keeps separate dated receipts and removes private URL tokens', async (t) => {

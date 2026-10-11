@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T08:44:43.901936+00:00",
+  "checkedAt": "2026-10-11T12:41:50.976857+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -13,9 +13,13 @@
         "src/comparison-inputs.js",
         "src/food-components.js",
         "tests/basket-quotes.test.js",
-        "tests/food-components.test.js"
+        "tests/food-components.test.js",
+        "src/checkout-scenarios.js",
+        "tests/checkout-scenarios.test.js",
+        "tests/e2e/checkout-scenarios.test.js",
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
       ],
-      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking."
+      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking. Durable bounded quantity/voucher/payment plans validate original prepared-checkout observations and cached extraction/output proofs; actual layout acquisition and full-market eligibility remain pending."
     },
     {
       "id": "R017",
@@ -79,9 +83,16 @@
         "src/historical-capture-replay.js",
         "src/publication-cache.js",
         "tests/historical-capture-replay.test.js",
-        "tests/publication-cache.test.js"
+        "tests/publication-cache.test.js",
+        "src/collection-review-replay.js",
+        "tests/collection-review-replay.test.js",
+        "tests/food-offer-discovery.test.js",
+        "src/collection-source-replay.js",
+        "tests/collection-source-replay.test.js",
+        "tests/store-batch.test.js",
+        "tests/discovery-publication-cache.test.js"
       ],
-      "finding": "Historical source replay preserves original dates, newer prices, reviews and CAPTCHA stops; wrong source/SKU associations are rejected. Publication receipts reuse verified source/snapshot/code/output contexts without repeated extraction, and changes invalidate reuse."
+      "finding": "Historical source replay preserves original dates, newer prices, reviews and CAPTCHA stops; wrong source/SKU associations are rejected. Publication receipts reuse verified source/snapshot/code/output contexts without repeated extraction, and changes invalidate reuse. Identical-original paid package reviews are preserved using exact source digest, SKU, observation and attached evidence; changed originals and explicit holds remain unresolved. Bounded chronological batches retain all original price history. Legacy discovery timestamps survive both single and batch publication. Obsolete automatic mass holds clear only for unchanged exact originals with fresh explicit per-inner proof; claim invalidations remain held. A legacy Merino pending mass flag lacking automatic provenance is resolved only by its exact original-bound explicit review producer."
     },
     {
       "id": "R014",
@@ -144,9 +155,11 @@
         "src/page-readiness.js",
         "scripts/audit-current-offer-sources.mjs",
         "docs/acceptance/current-offer-source-audit.json",
-        "docs/acceptance/preferred-variant/live-check.json"
+        "docs/acceptance/preferred-variant/live-check.json",
+        "src/package-artwork-consistency.js",
+        "tests/package-artwork-consistency.test.js"
       ],
-      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory."
+      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory. Shared selected SKU artwork cannot authorize OCR mass correction; high-confidence conflicting net weights retain original claims with source-bound holds. Exact known-CDN aliases require original catalogue/gallery references."
     },
     {
       "id": "R010",
@@ -166,15 +179,19 @@
     {
       "id": "R012",
       "status": "partial",
-      "mechanicsStatus": "source-bound-basket-capture-and-ranking-implemented;automatic-cart-adapter-and-quantity-voucher-sweep-pending",
+      "mechanicsStatus": "source-bound-basket-capture-ranking-and-durable-quantity-voucher-payment-planner-implemented;actual-live-layout-adapter-acquisition-pending",
       "realDataAcceptance": "pending-live-exact-quantity-checkout-freight-and-full-basket-coverage",
       "evidence": [
         "src/basket-quote.js",
         "src/basket-comparison.js",
         "tests/e2e/basket-quotes.test.js",
-        "docs/basket-quotes.md"
+        "docs/basket-quotes.md",
+        "src/checkout-scenarios.js",
+        "tests/checkout-scenarios.test.js",
+        "tests/e2e/checkout-scenarios.test.js",
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
       ],
-      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed."
+      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed. Durable bounded scenario plans now enumerate quantity/voucher/payment combinations, preserve exact original mapping/code/output proofs and resume unchanged validated captures. Actual marketplace acquisition remains pending."
     },
     {
       "id": "R008",
@@ -216,7 +233,7 @@
       "id": "R046",
       "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
       "status": "partial",
-      "mechanicsStatus": "implemented-quarantine-identity-guards-and-image-backed-crop-OCR",
+      "mechanicsStatus": "implemented-quarantine-source-consistency-and-image-backed-crop-OCR",
       "realDataAcceptance": "pending-exact-market-package-formula-label-identity",
       "evidence": [
         "src/specification-holds.js",
@@ -229,9 +246,14 @@
         "src/ocr.js",
         "tests/ocr-crops.test.js",
         "docs/acceptance/decimal-ocr/replay.json",
-        "docs/acceptance/decimal-ocr/validation.json"
+        "docs/acceptance/decimal-ocr/validation.json",
+        "src/package-mass-consistency.js",
+        "src/food-offer-source-basis.js",
+        "src/compare.js",
+        "tests/package-mass-consistency.test.js",
+        "tests/food-offer-source-basis.test.js"
       ],
-      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
+      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity. Automatic net-mass/serving-protein consistency and selected multipack-basis guards withhold contradictory mass/count denominators. Unknown paid count blocks mass, volume and protein arithmetic without changing the captured price."
     },
     {
       "id": "R047",
@@ -425,7 +447,7 @@
         "docs/acceptance/preferred-variant/cached-selection-review.json",
         "tests/e2e/preferred-variant.test.js"
       ],
-      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Kh\u00f4ng B\u00ecnh SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
       "issue": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -471,7 +493,7 @@
         "src/scope-decisions.js",
         "tests/human-food-scope.test.js"
       ],
-      "finding": "Thanh N\u0103ng L\u01b0\u1ee3ng and Thanh Dinh D\u01b0\u1ee1ng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
     },
     {
       "id": "powder-ice-flavour",
@@ -506,6 +528,117 @@
         "docs/acceptance/bonus-food-followup/integration.json"
       ],
       "finding": "Final full unit run passes1091/1091; final full E2E passes43/43, zero failures/skips. Four archive/native E2E cases repeat after the zero-download data rebuild. Exact basket interfaces, stored-original and physical-unit gift safeguards, reviewed contiguous/public commercial and nested-basket English are implemented. A source-backed hold removes the disputed4000g/447.50VND/g denominator. Full inventory, exact factory and gift identities, production checkout adapter/quantity-voucher sweeps, frozen/bulk freight and complete real-provider English remain open."
+    },
+    {
+      "id": "package-source-integrity",
+      "status": "frozen-offline-published-full-unit-and-e2e-validated;live-data-acceptance-open",
+      "issues": [
+        "https://github.com/konard/lazada-search/issues/18",
+        "https://github.com/konard/lazada-search/issues/19",
+        "https://github.com/konard/lazada-search/issues/20",
+        "https://github.com/konard/lazada-search/issues/21",
+        "https://github.com/konard/lazada-search/issues/22",
+        "https://github.com/konard/lazada-search/issues/23",
+        "https://github.com/konard/lazada-search/issues/24",
+        "https://github.com/konard/lazada-search/issues/25",
+        "https://github.com/konard/lazada-search/issues/26",
+        "https://github.com/konard/lazada-search/issues/27",
+        "https://github.com/konard/lazada-search/issues/28"
+      ],
+      "evidence": [
+        "docs/acceptance/source-integrity/README.md",
+        "src/collection-review-replay.js",
+        "src/food-offer-discovery.js",
+        "src/food-offer-source-basis.js",
+        "src/package-mass-consistency.js",
+        "tests/collection-checkpoint-deferral.test.js",
+        "tests/food-offer-discovery.test.js",
+        "tests/collection-review-replay.test.js",
+        "src/collection-source-replay.js",
+        "src/manufacturer-source-cache.js",
+        "src/page-challenge.js",
+        "tests/manufacturer-source-challenge.test.js",
+        "tests/manufacturer-research-stop.test.js",
+        "docs/acceptance/source-integrity/selected-package-corrections.json",
+        "docs/acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json",
+        "docs/acceptance/source-integrity/next-implementation-audit.json",
+        "src/cache.js",
+        "src/source-challenge.js",
+        "src/browser-image-cache.js",
+        "tests/image-source-challenge.test.js",
+        "tests/browser-image-cache.test.js",
+        "tests/challenge-source-archive.test.js",
+        "docs/acceptance/source-integrity/remaining-work.json",
+        "docs/acceptance/source-integrity/codec-large-document.json",
+        "scripts/patch-lino-large-documents.mjs",
+        "tests/lino-large-documents.test.js",
+        "src/image-source-request.js",
+        "tests/image-redirect-pacing.test.js",
+        "tests/e2e/image-redirects.test.js",
+        "docs/acceptance/source-integrity/validation.json"
+      ],
+      "finding": "Automatic checkpoints defer unrelated staged work and retry. Exact selected promotions remain potential, dietary free wording is not a gift, decimal count tails cannot approve multipacks, and conflicting inner/total weights are held. Same-original reviews stay reusable; newer sources and explicit holds do not inherit exemptions. No new marketplace nutrition, gift quantity or freight facts are approved by these fixes. Actual ON Natural Chocolate label corrects864g without nutrition approval; Yingbang conflicting artwork withholds mass. Manufacturer security responses/imports persist failed originals and global stop before queued requests; research plans throw with partial receipts and explicit resume requires cleared challenged origin. Each manufacturer HTTP hop has a separate paced queue slot; same-host nesting and reciprocal cross-host cycles are fixed. Complete inventory, factory and freight acceptance stays open. Ordinary image failures are negatively cached, actual returned HTML security challenges stop before OCR, browser image routes never fulfill failure bytes, and failed public HTML is sanitized with original digest relations preserved. The actual144497741-byte notation exposes upstream codec whole-document character-array allocation and quoted-character rope failures (#68). The exact-version/source-gated packaged workaround passes full33649-record/7030-blob verification at the default Node heap under local#28; no history or decode checks are skipped. Image redirects now release each actual host slot before the next hop, inspect every original body before follow and verify saved chain originals offline. Browser requests use manually bounded redirect chains; images on active page/frame hosts defer without a negative cache. Cached route fulfillment preserves acquired provenance. Actual live CDN/auth contract acceptance remains pending under the stop."
     }
-  ]
+  ],
+  "sourceIntegrityCheckpoint": {
+    "status": "frozen-implementation-offline-published-full-unit-and-e2e-validated;live-data-acceptance-open",
+    "evidence": "docs/acceptance/source-integrity/README.md",
+    "issues": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+    "focusedValidation": {
+      "manufacturerRedirectAndStop": {
+        "tests": 58,
+        "pass": 58
+      },
+      "packageArtworkAndOcrStop": {
+        "tests": 35,
+        "pass": 35
+      },
+      "checkoutScenarioUnit": {
+        "tests": 16,
+        "pass": 16
+      },
+      "checkoutScenarioInterfaceE2E": {
+        "tests": 1,
+        "pass": 1
+      },
+      "archiveAndBrowserImages": {
+        "tests": 24,
+        "pass": 24
+      },
+      "imageSources": {
+        "tests": 103,
+        "pass": 103
+      },
+      "codecMemory": {
+        "tests": 8,
+        "pass": 8
+      },
+      "imageRedirects": {
+        "tests": 62,
+        "pass": 62
+      },
+      "imageRedirectRealBrowserE2E": {
+        "tests": 2,
+        "pass": 2
+      }
+    },
+    "allRequirementsDelivered": false,
+    "liveCollectionRunning": false,
+    "actualStop": "docs/acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json",
+    "fullValidation": "docs/acceptance/source-integrity/validation.json",
+    "fullUnit": {
+      "tests": 1261,
+      "pass": 1261,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "fullE2E": {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
+  }
 }

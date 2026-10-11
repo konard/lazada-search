@@ -52,6 +52,7 @@ test('original two-paid-bag source ambiguity cannot produce a false 4000g whey p
     netMassG: 2000,
     packCount: 2,
     manufacturerVerification: undefined,
+    pendingSpecificationReview: undefined,
   };
   const options = { allowStale: true, requireManufacturer: false };
   assert.equal(

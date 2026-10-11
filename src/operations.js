@@ -30,6 +30,9 @@ export const OPERATION_NAMES = [
   'save-basket-quote',
   'capture-basket-quote',
   'compare-baskets',
+  'plan-checkout-scenarios',
+  'run-checkout-scenarios',
+  'checkout-scenario-status',
 ];
 const object = (value, label) => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
@@ -156,6 +159,23 @@ export async function executeOperation(application, request) {
       string(input.translationId, 'Translation ID'),
       object(input.review, 'Translation review')
     );
+  }
+  const scenarioHandlers = {
+    'plan-checkout-scenarios': () =>
+      application.planCheckoutScenarios(
+        object(input.plan, 'Checkout scenario plan')
+      ),
+    'run-checkout-scenarios': () =>
+      application.runCheckoutScenarios(
+        object(input.batch, 'Prepared checkout scenario batch')
+      ),
+    'checkout-scenario-status': () =>
+      application.checkoutScenarioStatus({
+        planId: string(input.planId, 'Checkout plan ID'),
+      }),
+  };
+  if (Object.hasOwn(scenarioHandlers, operation)) {
+    return scenarioHandlers[operation]();
   }
   const basketHandlers = {
     'save-basket-quote': (quote) => application.saveBasketQuote(quote),

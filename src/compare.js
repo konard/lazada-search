@@ -40,6 +40,13 @@ function componentProteinDensity(product, foodComponents) {
     : null;
 }
 
+function paidPackageCount(product) {
+  return product.packageCountUnresolved ||
+    product.pendingSpecificationReview?.includes('packCount')
+    ? undefined
+    : product.packCount || 1;
+}
+
 export function calculateOffer(product, offer, options = {}) {
   const quantity = positive(options.quantity ?? 1, 'quantity', {
     integer: true,
@@ -90,6 +97,7 @@ export function calculateOffer(product, offer, options = {}) {
     );
   }
   for (const field of [
+    'packCount',
     'netMassG',
     'netVolumeMl',
     'proteinPer100g',
@@ -169,9 +177,7 @@ export function calculateOffer(product, offer, options = {}) {
   if (discount > unitPrice * quantity + (shippingKnown ? shipping : 0)) {
     problems.push('Discount exceeds the confirmed order cost');
   }
-  const packages = product.packageCountUnresolved
-    ? undefined
-    : product.packCount || 1;
+  const packages = paidPackageCount(product);
   let totalMassG = product.pendingSpecificationReview?.includes('netMassG')
     ? undefined
     : product.netMassG * packages * quantity;

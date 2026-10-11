@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "validatedAt": "2026-10-11T12:42:12.992839+00:00",
+  "allChangesDraftedBeforeAcceptedTests": true,
+  "frozenCodeDuringAcceptedSuites": true,
+  "frozenCodeReceipt": "frozen-code.json",
+  "dependencyPatchReceipt": "codec-large-document.json",
+  "installedDecoderSourceVerified": true,
+  "unitFullSuite": {
+    "command": "npm test",
+    "path": "docs/acceptance/source-integrity/unit-frozen.tap.gz",
+    "sourceBytes": 310504,
+    "sourceSha256": "4238b72722dbd6692a0e8b680e0265690eb6723f64ab7506b0761e4a8ac6862b",
+    "gzipBytes": 58408,
+    "gzipSha256": "c7ef5ff901ffc50989bdba018f05407d6c28581556dc8094b4c8f4cbe7e591d8",
+    "tap": {
+      "tests": 1261,
+      "pass": 1261,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 275907.176125
+    }
+  },
+  "e2eFullSuite": {
+    "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink npm run test:e2e",
+    "path": "docs/acceptance/source-integrity/e2e-frozen.tap.gz",
+    "sourceBytes": 13126,
+    "sourceSha256": "cd62452ba43b845ddfb95269f78ddd3985affc653bc830d2fbd9ea467fbb6cd9",
+    "gzipBytes": 3138,
+    "gzipSha256": "c788c41055828f7f22bcbf3bc3fd19624d4c0c13516832622a1c69f73260e113",
+    "tap": {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 397590.08925
+    }
+  },
+  "typescript": {
+    "command": "tsc --noEmit --strict --skipLibCheck --target es2022 --module NodeNext --moduleResolution NodeNext tests/fixtures/public-api-types.ts",
+    "exitCode": 0,
+    "receipt": "types-frozen.log.gz"
+  },
+  "repositoryChecks": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "receipt": "repository-check-frozen.log.gz"
+  },
+  "testLogReceipts": "test-evidence.json",
+  "sourcePriceAudit": {
+    "receipt": "../current-offer-source-audit.json",
+    "auditedAt": "2026-10-11T12:20:56.334Z",
+    "downloads": 0,
+    "currentConfirmedPrices": 411,
+    "matched": 411,
+    "unresolved": 0,
+    "historicalSuperseded": 5
+  },
+  "offlinePublication": {
+    "published": 352,
+    "rejected": 3,
+    "reused": 0,
+    "downloads": 0,
+    "receipt": "../account-publication.json"
+  },
+  "publicArchive": {
+    "manifest": "../../../data/cases/vietnam-nha-trang/manifest.json",
+    "recordCount": 34253,
+    "blobCount": 7030,
+    "verifyReceipt": "archive-verification.json",
+    "downloads": 0
+  },
+  "selectedPackageCorrections": "selected-package-corrections.json",
+  "merinoLegacyReview": "merino40-selling-unit-review.json",
+  "checkoutScenarios": "checkout-scenarios.json",
+  "actualSecurityStop": "natural-chocolate-manufacturer/collection-stop.json",
+  "intermediateFailures": [
+    "The first full run exposed lost per-inner source context and catalog import timeout; bounded chronology and source-context fixes preserve original amounts.",
+    "The second full run was started before publication finished and overlapped a heavy rebuild. It exposed the legacy batch timestamp proxy, stale automatic review flags, unsafe all-six handpicked gram assumptions and archive/receipt mismatch. Those failures remain preserved above; accepted runs use the completed frozen case.",
+    "The 144497741-byte notation document exposed upstream codec character-array allocation failure and then retained quoted-character ropes exhausted the default 4GB heap. The exact-source-gated bounded scanner/UTF8 install workaround passes the actual full archive without changing the heap limit or weakening decode verification.",
+    "The intermediate 43/43 E2E run passed before the final challenge/origin-resume changes and is not final acceptance.",
+    "Interrupted offline publishers saved reusable per-capture checkpoints; no marketplace data was downloaded for rebuilding."
+  ],
+  "currentAcceptance": {
+    "receipt": "../requirements-audit/current.json",
+    "activeScope": {
+      "missingListings": 1298,
+      "missingSkuPrices": 373,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6403,
+      "specifications": 345,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 371,
+      "excludedExactOptions": 598
+    },
+    "wheyCoverage": {
+      "capturedPowderSkus": 334,
+      "strictWheySkus": 102,
+      "strictSoySkus": 1,
+      "verifiedStrictWheySkus": 11,
+      "missingFactoryMatches": 94,
+      "discoveryTasks": 6068,
+      "pendingSkuTasks": 378,
+      "excludedSkuOptions": 601,
+      "originalSourcePointers": 2051,
+      "unresolvedEvidencePointers": 0
+    },
+    "iceCoverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    },
+    "openRequirements": 32,
+    "openGithubIssues": 13,
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false
+  },
+  "remainingEngineering": "remaining-work.json",
+  "remainingIssues": [3, 14],
+  "caveats": [
+    "Implementation and original-source tests do not establish exhaustive live marketplace inventory or cheapest full-market bulk buying acceptance.",
+    "The actual manufacturer challenge stops all uncached collection until manual resolution on the challenged origin and explicit resume. Safe cached/offline reports remain available.",
+    "Exact factory/gift identities, bulk/frozen Nha Trang freight, checkout scenario coverage, reviewed whole-catalog English and live Telegram deployment remain open.",
+    "Unknown density, grams, volume, protein, stock, gift eligibility and shipping are never guessed."
+  ]
+}

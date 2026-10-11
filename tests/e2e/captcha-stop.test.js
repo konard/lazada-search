@@ -246,3 +246,41 @@ test('a late browser challenge stops an image or manufacturer download before it
     true
   );
 });
+
+test('a clear marketplace page cannot resume a different manufacturer origin challenge', async (t) => {
+  const { collector, store, navigations } = await application(t);
+  const page = collector.runtime.page;
+  await page.unroute('https://**.lazada.vn/**');
+  await page.route('https://**.lazada.vn/**', (route) => {
+    navigations.push(route.request().url());
+    return route.fulfill({
+      contentType: 'text/html',
+      body: '<h1>Clear marketplace fixture</h1>',
+    });
+  });
+  await page.goto(firstUrl);
+  await store.put('collection-stop', {
+    id: COLLECTION_STOP_ID,
+    active: true,
+    reason: 'challenge',
+    origin: 'https://manufacturer.example',
+    signals: ['visible-cloudflare-interstitial'],
+  });
+  await assert.rejects(collector.resumeCollection(), {
+    code: 'COLLECTION_STOPPED',
+  });
+  assert.equal(
+    (await store.get('collection-stop', COLLECTION_STOP_ID)).active,
+    true
+  );
+  assert.deepEqual(navigations, [firstUrl]);
+  // Emulate the person visiting the challenged origin after clearing it.
+  await page.route('https://manufacturer.example/**', (route) =>
+    route.fulfill({
+      contentType: 'text/html',
+      body: '<h1>Cleared fixture</h1>',
+    })
+  );
+  await page.goto('https://manufacturer.example/product');
+  assert.equal((await collector.resumeCollection()).active, false);
+});

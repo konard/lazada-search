@@ -1,6 +1,12 @@
 import { parseHTML } from 'linkedom';
 import { EvidenceCache, DomainScheduler } from './cache.js';
 import { canonicalUrl, sha256 } from './util.js';
+import {
+  assertCollectionRunning,
+  CollectionStoppedError,
+  stopForChallenge,
+} from './page-challenge.js';
+import { sourceChallenge } from './source-challenge.js';
 
 const DAY = 86400000;
 const REDIRECTS = new Set([301, 302, 303, 307, 308]);
@@ -165,6 +171,11 @@ export class ManufacturerSourceCache {
     this.maxBytes = maxBytes;
     this.failureTtlMs = failureTtlMs;
     this.cache = cache || new EvidenceCache({ store, scheduler, offline, now });
+    // Logical source loads span several hosts. Share cache state and hooks,
+    // without holding a host queue across the entire redirect chain. Each HTTP
+    // response instead holds its actual host queue through evidence capture.
+    this.requestCache = Object.create(this.cache);
+    this.requestCache.scheduler = { run: (_url, action) => action() };
   }
 
   async publication(parentSourceId, url, brand) {
@@ -222,18 +233,30 @@ export class ManufacturerSourceCache {
   async capture(input) {
     const context = await this.context(input);
     const { request } = context;
-    const cached = await this.cache.get(request.url, {
+    const cached = await this.requestCache.get(request.url, {
       namespace: `manufacturer-request-${request.fingerprint}`,
       ttlMs: Number.MAX_SAFE_INTEGER,
       refresh: input.refresh === true,
       acceptCached: (record) =>
-        record.status !== 'failed' || this.now() < record.retryAfter,
+        this.cache.offline ||
+        record.challenge?.detected ||
+        record.status !== 'failed' ||
+        this.now() < record.retryAfter,
       load: () => this.download(context),
     });
     return await this.recordSource(context, cached);
   }
 
   async recordSource(context, cached) {
+    if (cached.blob) {
+      const bytes = await this.store.blob(cached.blob.sha256);
+      if (!bytes || sha256(bytes) !== cached.blob.sha256) {
+        throw new Error(
+          'Cached manufacturer source bytes are missing or corrupt'
+        );
+      }
+      cached = await this.challengeCache(context, cached, bytes);
+    }
     const source = {
       ...cached,
       id: manufacturerSourceId({
@@ -252,16 +275,54 @@ export class ManufacturerSourceCache {
       parentSourceSha256: context.parent?.blob.sha256 || null,
       identityVerified: false,
     };
-    if (cached.blob) {
-      const bytes = await this.store.blob(cached.blob.sha256);
-      if (!bytes || sha256(bytes) !== cached.blob.sha256) {
-        throw new Error(
-          'Cached manufacturer source bytes are missing or corrupt'
-        );
-      }
-    }
     const saved = await this.store.put('manufacturer-source', source);
+    if (source.challenge?.detected) {
+      const challenge = {
+        ...source.challenge,
+        sourceId: source.id,
+        sourceSha256: source.blob.sha256,
+      };
+      await stopForChallenge(this.store, challenge);
+      throw new CollectionStoppedError(challenge);
+    }
     return { ...saved, cacheHit: cached.cacheHit };
+  }
+
+  async challengeCache(context, cached, bytes) {
+    const challenge = sourceChallenge(
+      bytes,
+      cached.contentType,
+      cached.finalUrl || context.request.url
+    );
+    if (!challenge) {
+      return cached;
+    }
+    const failed = {
+      ...cached,
+      status: 'failed',
+      challenge,
+      error: 'Source contains a CAPTCHA or security challenge',
+      retryAfter: null,
+    };
+    const record = { ...failed };
+    delete record.cacheHit;
+    delete record.stale;
+    await this.store.put('cache', record);
+    return failed;
+  }
+
+  async preserveChallengedResponse(context, loaded) {
+    const record = {
+      ...loaded,
+      id: `manufacturer-request-${context.request.fingerprint}:${context.request.url}`,
+      url: context.request.url,
+      fetchedAt: this.now(),
+      checkedAt: this.now(),
+      ...(this.store.archive ? { repositoryReusable: true } : {}),
+    };
+    const cached = await this.store.put('cache', record);
+    this.cache.stats.downloads += 1;
+    return await this.recordSource(context, { ...cached, cacheHit: false });
   }
 
   allowedRedirect(context, url) {
@@ -279,12 +340,13 @@ export class ManufacturerSourceCache {
     }
   }
 
-  async requestFollowingRedirects(context) {
+  async requestFollowingRedirects(context, redirectChain) {
     let { url, method, body } = context.request;
     const { headers } = context.request;
     for (let redirects = 0; redirects <= 5; redirects++) {
-      const action = () =>
-        this.fetchSource(url, {
+      const result = await this.scheduler.run(url, async () => {
+        await assertCollectionRunning(this.store);
+        const response = await this.fetchSource(url, {
           method,
           headers,
           body: method === 'POST' ? body : undefined,
@@ -292,15 +354,31 @@ export class ManufacturerSourceCache {
           redirect: 'manual',
           signal: AbortSignal.timeout(30000),
         });
-      const response =
-        redirects === 0
-          ? await action()
-          : await this.scheduler.run(url, action);
-      if (!REDIRECTS.has(response.status)) {
-        return { response, finalUrl: url };
+        return {
+          location: response.headers.get('location'),
+          source: await this.responseSource(
+            context,
+            response,
+            url,
+            redirectChain
+          ),
+        };
+      });
+      const { source, location } = result;
+      if (!REDIRECTS.has(source.httpStatus)) {
+        return source;
       }
-      const location = response.headers.get('location');
-      await response.body?.cancel();
+      const receipt = {
+        url,
+        method,
+        httpStatus: source.httpStatus,
+        observedAt: source.observedAt,
+        contentType: source.contentType,
+        blob: source.blob,
+        sourceSha256: source.sourceSha256,
+        locationSha256: sha256(location || ''),
+      };
+      redirectChain.push(receipt);
       if (!location || redirects === 5) {
         throw new Error(
           'Manufacturer redirect chain was incomplete or too long'
@@ -308,9 +386,10 @@ export class ManufacturerSourceCache {
       }
       url = publicUrl(new URL(location, url).href);
       this.allowedRedirect(context, url);
+      receipt.nextUrl = url;
       if (
-        response.status === 303 ||
-        ([301, 302].includes(response.status) && method === 'POST')
+        source.httpStatus === 303 ||
+        ([301, 302].includes(source.httpStatus) && method === 'POST')
       ) {
         method = 'GET';
         body = '';
@@ -319,36 +398,51 @@ export class ManufacturerSourceCache {
     throw new Error('Manufacturer redirect limit exceeded');
   }
 
+  async responseSource(context, response, finalUrl, redirectChain) {
+    const contentType = response.headers.get('content-type') || '';
+    const bytes = await responseBytes(response, this.maxBytes);
+    const blob = await this.store.putBlob(bytes);
+    const challenge = sourceChallenge(bytes, contentType, finalUrl);
+    const captured =
+      response.ok &&
+      !challenge &&
+      (context.kind !== 'label' || /^image\//iu.test(contentType));
+    const loaded = {
+      status: captured ? 'captured' : 'failed',
+      httpStatus: response.status,
+      finalUrl,
+      contentType,
+      blob,
+      sourceSha256: blob.sha256,
+      observedAt: new Date(this.now()).toISOString(),
+      retryAfter: captured ? null : this.now() + this.failureTtlMs,
+      error: captured
+        ? null
+        : `Source HTTP ${response.status} or unsupported label content type`,
+      ...(redirectChain.length ? { redirects: [...redirectChain] } : {}),
+      ...(challenge ? { challenge } : {}),
+    };
+    if (challenge) {
+      return await this.preserveChallengedResponse(context, loaded);
+    }
+    return loaded;
+  }
+
   async download(context) {
+    const redirectChain = [];
     try {
-      const { response, finalUrl } =
-        await this.requestFollowingRedirects(context);
-      const contentType = response.headers.get('content-type') || '';
-      const bytes = await responseBytes(response, this.maxBytes);
-      const blob = await this.store.putBlob(bytes);
-      const captured =
-        response.ok &&
-        (context.kind !== 'label' || /^image\//iu.test(contentType));
-      return {
-        status: captured ? 'captured' : 'failed',
-        httpStatus: response.status,
-        finalUrl,
-        contentType,
-        blob,
-        sourceSha256: blob.sha256,
-        observedAt: new Date(this.now()).toISOString(),
-        retryAfter: captured ? null : this.now() + this.failureTtlMs,
-        error: captured
-          ? null
-          : `Source HTTP ${response.status} or unsupported label content type`,
-      };
+      return await this.requestFollowingRedirects(context, redirectChain);
     } catch (error) {
+      if (error.code === 'COLLECTION_STOPPED') {
+        throw error;
+      }
       return {
         status: 'failed',
         finalUrl: context.request.url,
         error: String(error.message).slice(0, 300),
         observedAt: new Date(this.now()).toISOString(),
         retryAfter: this.now() + this.failureTtlMs,
+        ...(redirectChain.length ? { redirects: redirectChain } : {}),
       };
     }
   }
@@ -364,6 +458,9 @@ export class ManufacturerSourceCache {
       url: request.url,
       finalUrl: input.finalUrl || request.url,
       status: input.status || 'captured',
+      ...(input.httpStatus !== undefined
+        ? { httpStatus: input.httpStatus }
+        : {}),
       contentType: input.contentType,
       blob,
       sourceSha256: blob.sha256,

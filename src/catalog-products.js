@@ -3,6 +3,7 @@ import { listingKey } from './util.js';
 import { REQUIRED_SPEC_FIELDS } from './verification.js';
 import { ingredientFlags, proteinTypeOf } from './nutrition.js';
 import { applySpecificationHolds } from './specification-holds.js';
+import { applyPackageMassConsistency } from './package-mass-consistency.js';
 
 function refreshIngredientFields(product) {
   const identity = product.manufacturerVerification;
@@ -107,12 +108,14 @@ export async function resolveProductReviews(store, product) {
     return product;
   }
   const shared = await store.fallback?.get('product', product.id);
-  return applySpecificationHolds(
-    store,
-    refreshIngredientFields(
-      await applyListingCategoryReview(
-        store,
-        mergeSharedManufacturerReview(product, shared)
+  return applyPackageMassConsistency(
+    await applySpecificationHolds(
+      store,
+      refreshIngredientFields(
+        await applyListingCategoryReview(
+          store,
+          mergeSharedManufacturerReview(product, shared)
+        )
       )
     )
   );
@@ -140,5 +143,5 @@ export async function catalogProducts(store) {
       )
     );
   }
-  return resolved;
+  return resolved.map(applyPackageMassConsistency);
 }

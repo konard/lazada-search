@@ -5,6 +5,7 @@ import { parseHTML } from 'linkedom';
 import { LazadaSearch, extractPage, parseProduct } from '../src/index.js';
 import { configuredStore } from '../src/config.js';
 import { sha256 } from '../src/util.js';
+import { auditHandpickedGramOrder } from './audit-report-order.mjs';
 
 const report = JSON.parse(
   await readFile('docs/tables/top-10-partial.json', 'utf8')
@@ -29,15 +30,7 @@ for (const [metric, rows] of Object.entries(iceUnits.rankings)) {
   }
 }
 assert.equal(handpicked.rows.length, 6);
-for (const [index, row] of handpicked.rows.entries()) {
-  assert.ok(row.costs?.beforePerFoodGram > 0, row.exactSku);
-  assert.ok(
-    index === 0 ||
-      handpicked.rows[index - 1].costs.beforePerFoodGram <=
-        row.costs.beforePerFoodGram,
-    row.exactSku
-  );
-}
+const handpickedOrder = auditHandpickedGramOrder(handpicked.rows);
 const reviews = await Promise.all(
   ['whey', 'ice'].map(async (type) =>
     JSON.parse(
@@ -145,6 +138,7 @@ const receipt = {
   },
   iceRankingsSortedAndEligible: true,
   handpickedGramPricesSorted: true,
+  handpickedGramCoverage: handpickedOrder,
   wheyAndSoySeparated: true,
   allPublishedWheyPowderAndIceSourcesMatched: checked.every(
     (row) => row.exactSourcePriceMatched

@@ -11,6 +11,7 @@
   "files": [
     "bin/",
     "src/",
+    "scripts/patch-lino-large-documents.mjs",
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
@@ -38,6 +39,7 @@
     "example:desktop:make": "npm --prefix examples/universal-app run desktop:make",
     "example:mobile:sync": "npm --prefix examples/universal-app run mobile:sync",
     "prepare": "node scripts/install-git-hooks.mjs",
+    "postinstall": "node scripts/patch-lino-large-documents.mjs",
     "changeset": "changeset",
     "changeset:version": "node scripts/changeset-version.mjs",
     "changeset:publish": "changeset publish",

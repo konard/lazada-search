@@ -13,6 +13,8 @@ import {
   sellingPackCount,
 } from './package-quantity.js';
 import { productFlavour } from './flavour-scope.js';
+import { applyPackageMassConsistency } from './package-mass-consistency.js';
+import { applyFoodOfferDiscovery } from './food-offer-discovery.js';
 import {
   canonicalUrl,
   clone,
@@ -372,6 +374,7 @@ export function parseProduct(
     market = 'vn',
     currency = 'VND',
     evidenceId,
+    originalHtmlSha256,
     source = 'dom',
     observedAt = new Date().toISOString(),
   } = {}
@@ -549,7 +552,13 @@ export function parseProduct(
       'The page selected a different SKU from the requested URL'
     );
   }
-  return { product, offer };
+  return applyFoodOfferDiscovery(snapshot, {
+    product: applyPackageMassConsistency(product),
+    offer,
+    evidenceId,
+    observedAt,
+    originalHtmlSha256,
+  });
 }
 
 const NUMERIC_PRODUCT_FIELDS = [

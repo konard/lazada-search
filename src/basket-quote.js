@@ -134,11 +134,20 @@ function sourceDiscounts(document, input) {
     ) {
       throw new Error('Applied discounts require source identity and scope');
     }
+    if (
+      discount.identitySelector &&
+      sourceText(document, discount.identitySelector) !== discount.id
+    ) {
+      throw new Error('Applied voucher identity does not match its source');
+    }
     return {
       id: discount.id,
       scope: discount.scope,
       amount: money(document, discount.selector),
       eligibility: 'applied-in-captured-basket',
+      ...(discount.identitySelector
+        ? { identityValidation: 'source-text' }
+        : {}),
     };
   });
   if (
@@ -153,6 +162,27 @@ function sourceDiscounts(document, input) {
     throw new Error('The same applied voucher cannot reduce a basket twice');
   }
   return appliedDiscounts;
+}
+
+function sourceConditions(document, input) {
+  if (!input.checkoutConditions) {
+    return {};
+  }
+  const observed = {};
+  for (const field of ['paymentMethod', 'voucherState']) {
+    const condition = input.checkoutConditions[field];
+    if (!condition?.text) {
+      throw new Error(
+        'Checkout conditions require explicit observed source text'
+      );
+    }
+    const actual = sourceText(document, condition.selector);
+    if (actual !== normalizeText(condition.text)) {
+      throw new Error('Checkout condition does not match its original source');
+    }
+    observed[field] = actual;
+  }
+  return { checkoutConditions: observed };
 }
 
 function sourceColdChain(document, input) {
@@ -267,6 +297,7 @@ export function extractBasketQuote(html, input) {
     sourceValidation: 'exact-checkout-fields',
     mappingReviewedBy: input.mappingReviewedBy,
     sourceMapping: input,
+    ...sourceConditions(document, input),
   };
 }
 
@@ -325,6 +356,12 @@ async function readCurrentFields(page, input, sourceUrl) {
       Object.values(line.selectors || {})
     ),
     ...(input.appliedDiscounts || []).map((item) => item.selector),
+    ...(input.appliedDiscounts || [])
+      .map((item) => item.identitySelector)
+      .filter(Boolean),
+    ...Object.values(input.checkoutConditions || {}).map(
+      (condition) => condition.selector
+    ),
   ]) {
     if (!(await page.locator(selector).isVisible())) {
       throw new Error(

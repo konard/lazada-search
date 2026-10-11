@@ -178,7 +178,10 @@ async function publish() {
 async function checkpoint() {
   if (options.commitCheckpoints) {
     await run('audit-case-requirements.mjs', []);
-    await run('publish-collection-checkpoint.mjs', ['--push']);
+    await run('publish-collection-checkpoint.mjs', [
+      '--push',
+      '--defer-staged',
+    ]);
   }
 }
 

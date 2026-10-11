@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "draftedAt": "2026-10-11T10:58:55.380140+00:00",
+  "status": "implemented-for-explicit-prepared-checkouts;full-unit-and-e2e-validated;actual-acquisition-pending",
+  "scope": "explicit-planned-prepared-checkouts-only",
+  "implementation": {
+    "library": [
+      "planCheckoutScenarios",
+      "runCheckoutScenarios",
+      "checkoutScenarioStatus"
+    ],
+    "cli": [
+      "plan-checkout-scenarios <JSON file>",
+      "run-checkout-scenarios <JSON file>",
+      "checkout-scenario-status <plan ID>"
+    ],
+    "httpAndTelegram": "Shared structured operation dispatcher",
+    "limits": {
+      "scenarios": 512,
+      "quantity": 10000,
+      "captureBatch": 100
+    },
+    "records": [
+      "checkout-plan",
+      "checkout-scenario",
+      "checkout-scenario-attempt"
+    ],
+    "sourceProofs": [
+      "exact SKU and quantities extracted from original DOM",
+      "original HTML hash/length, URL, date and evidence binding",
+      "source-observed voucher identities and payment/voucher state",
+      "immutable plan and mapped extraction-code fingerprint",
+      "saved quote output digest and chronological observation guards"
+    ],
+    "unchangedSourceReuse": true,
+    "sourceInvalidationReopensScenario": true,
+    "uncachedNetworkRequests": 0,
+    "cartMutations": 0,
+    "payments": 0
+  },
+  "localFixture": "tests/fixtures/checkout-scenarios.html",
+  "fixtureIsActualLazadaCheckout": false,
+  "acceptance": {
+    "checkoutLayoutLiveVerified": false,
+    "allMarketScenariosCollected": false,
+    "purchaseReady": false,
+    "remaining": [
+      "genuine current prepared Lazada checkout originals and reviewed live layout adapter",
+      "automatic read-only scenario acquisition or explicitly authorized reversible cart preparation",
+      "real quantity-specific applied voucher/payment eligibility and current stock",
+      "Nha Trang bulk and frozen shipping",
+      "exhaustive candidate inventory"
+    ]
+  },
+  "fullValidation": "validation.json",
+  "validatedAt": "2026-10-11T12:41:50.976857+00:00"
+}

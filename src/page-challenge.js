@@ -12,6 +12,7 @@ export function inspectPageChallenge(context) {
   const visible = (element) => {
     for (let parent = element; parent; parent = parent.parentElement) {
       if (
+        ['SCRIPT', 'STYLE', 'TEMPLATE'].includes(parent.tagName) ||
         parent.hidden ||
         parent.getAttribute('aria-hidden') === 'true' ||
         /display\s*:\s*none|visibility\s*:\s*hidden/iu.test(
@@ -72,7 +73,7 @@ export function inspectPageChallenge(context) {
     }
     const copy = body.cloneNode(true);
     for (const node of copy.querySelectorAll(
-      'script, style, [hidden], [aria-hidden="true"], [style]'
+      'script, style, template, [hidden], [aria-hidden="true"], [style]'
     )) {
       if (['SCRIPT', 'STYLE'].includes(node.tagName) || !visible(node)) {
         node.remove();
@@ -80,9 +81,23 @@ export function inspectPageChallenge(context) {
     }
     return copy.textContent;
   };
+  const text = visibleText();
+  // The interstitial can contain only a noscript fallback until its JavaScript
+  // runs. Neither the generic waiting title nor hidden Cloudflare scripts alone
+  // establish that a product page is currently challenged.
+  if (
+    /^\s*just a moment(?:\.{3}|…)?\s*$/iu.test(document.title || '') &&
+    [
+      ...document.querySelectorAll(
+        '#challenge-error-text, #challenge-stage, #cf-challenge-running, #challenge-running'
+      ),
+    ].some(visible)
+  ) {
+    signals.push('visible-cloudflare-interstitial');
+  }
   if (
     /please complete the security check|performing security verification|verif(?:y|ying) (?:that )?you are human|verifies you are not a bot|i am not a robot|slide to verify|verify to continue|unusual traffic|xác minh bảo mật|trượt để xác minh|kéo.{0,35}(?:xác minh|hoàn thành)|xác (?:minh|nhận).{0,35}không phải (?:là )?(?:robot|người máy)/iu.test(
-      visibleText()
+      text
     )
   ) {
     signals.push('challenge-instructions');

@@ -40,6 +40,9 @@ Commands:
   save-basket-quote <JSON file>  Validate exact cart quantities, freight and applied discounts
   capture-basket-quote <JSON file> Read the current prepared private checkout without changing it
   compare-baskets               Rank captured exact baskets; shipping and discounts count once
+  plan-checkout-scenarios <JSON file> Plan bounded quantity, voucher and payment cases
+  run-checkout-scenarios <JSON file> Resume validation of stored prepared-checkout sources
+  checkout-scenario-status <id> Read durable scenario coverage and pending cases
   review-translation <id> <JSON file> Review exact cached source and English text hashes
   export                        Export the associative network (--format lino|links)
   archive                       Commit-ready public sources, OCR, .lino and binary snapshot
@@ -89,6 +92,19 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'plan-checkout-scenarios':
+    case 'run-checkout-scenarios': {
+      const input = JSON.parse(
+        await readFile(required(args[0], 'Checkout scenario JSON file'), 'utf8')
+      );
+      return command === 'plan-checkout-scenarios'
+        ? application.planCheckoutScenarios(input)
+        : application.runCheckoutScenarios(input);
+    }
+    case 'checkout-scenario-status':
+      return application.checkoutScenarioStatus({
+        planId: required(args[0], 'Checkout plan ID'),
+      });
     case 'save-basket-quote':
     case 'capture-basket-quote': {
       const mapping = JSON.parse(

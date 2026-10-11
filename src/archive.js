@@ -24,7 +24,7 @@ const codecVersion = JSON.parse(
 const PRIVATE_KEY =
   /^(?:cookies?|authorization|password|access[_-]?token|refresh[_-]?token|session[_-]?(?:id|token)|csrf[_-]?token|user(?:id|name|info)|customer(?:id|info)|email|phone|address|seedCookies)$/iu;
 const PRIVATE_QUERY =
-  /^(?:.*(?:token|cookie|x5sec|x5step|signature|csrf).*|sign|uuid|uid|userId|session|spm|scm|laz_trackid|clickTrackInfo)$/iu;
+  /^(?:.*(?:token|cookie|x5sec|x5step|signature|csrf).*|__cf_chl_.*|sign|uuid|uid|userId|session|spm|scm|laz_trackid|clickTrackInfo)$/iu;
 
 export function redactPublicSecrets(text) {
   return text.replace(
@@ -430,6 +430,12 @@ function newArchiveManifest(caseMetadata) {
   };
 }
 
+function publicSourceFormat(value, format) {
+  return value.responseFormat === 'html' || value.challenge?.detected
+    ? 'html'
+    : format;
+}
+
 export async function exportRepositoryArchive({
   store,
   directory = DEFAULT_ARCHIVE,
@@ -520,7 +526,8 @@ export async function exportRepositoryArchive({
         value,
         field === 'html'
           ? 'html'
-          : field === 'source' || (field === 'blob' && format === 'public-text')
+          : field === 'source' ||
+              (field === 'blob' && ['public-text', 'html'].includes(format))
             ? format
             : undefined
       );
@@ -533,9 +540,10 @@ export async function exportRepositoryArchive({
       return output;
     }
     if (value && typeof value === 'object') {
+      const sourceFormat = publicSourceFormat(value, format);
       const output = {};
       for (const [key, child] of Object.entries(value)) {
-        output[key] = await walk(child, key, format);
+        output[key] = await walk(child, key, sourceFormat);
       }
       return output;
     }
@@ -572,7 +580,11 @@ export async function exportRepositoryArchive({
           'Private account records cannot be published in a public archive'
         );
       }
-      if (kind === 'cache' && input.blob?.bytes === 0) {
+      if (
+        kind === 'cache' &&
+        input.blob?.bytes === 0 &&
+        input.status !== 'failed'
+      ) {
         manifest.excluded.emptyTrackingResponses++;
         continue;
       }
@@ -619,12 +631,14 @@ export async function exportRepositoryArchive({
           undefined,
           kind === 'import-source'
             ? record.format
-            : kind === 'manufacturer-source' &&
-                /^(?:text\/|application\/(?:json|xml))/iu.test(
-                  record.contentType
-                )
-              ? 'public-text'
-              : undefined
+            : record.challenge?.detected || record.responseFormat === 'html'
+              ? 'html'
+              : kind === 'manufacturer-source' &&
+                  /^(?:text\/|application\/(?:json|xml))/iu.test(
+                    record.contentType
+                  )
+                ? 'public-text'
+                : undefined
         )
       );
     }

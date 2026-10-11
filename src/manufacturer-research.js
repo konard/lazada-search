@@ -499,6 +499,12 @@ export class ManufacturerResearch {
         }
       } catch (error) {
         report.failures.push({ url: request.url, error: error.message });
+        if (error.code === 'COLLECTION_STOPPED') {
+          report.status = 'stopped-security-challenge';
+          report.cache = { ...this.sources.cache.stats };
+          await this.store.put('manufacturer-research', report);
+          throw error;
+        }
       }
     }
     for (const review of plan.reviews || []) {

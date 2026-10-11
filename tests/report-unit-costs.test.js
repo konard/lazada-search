@@ -24,6 +24,24 @@ test('five sticks use food mass of the entire selected pack', () => {
   assert.equal(cost.afterPerFoodGram, null);
 });
 
+test('held paid package counts cannot appear as declared report quantities or denominators', () => {
+  const cost = reportUnitCosts({
+    ...row,
+    product: {
+      ...row.product,
+      netVolumeMl: 130,
+      proteinPer100g: 3,
+      pendingSpecificationReview: ['packCount'],
+    },
+  });
+  assert.equal(cost.packagesPerSellingUnit, null);
+  assert.equal(cost.massG, null);
+  assert.equal(cost.volumeMl, null);
+  assert.equal(cost.proteinG, null);
+  assert.equal(cost.beforePerFoodGram, null);
+  assert.equal(cost.totalBeforeDelivery, row.offer.price);
+});
+
 test('declared ice cream volume is independent of mass', () => {
   const cost = reportUnitCosts({
     ...row,

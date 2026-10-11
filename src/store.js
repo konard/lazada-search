@@ -150,24 +150,39 @@ export class AssociativeStore {
   }
 
   async putLatest(kind, input) {
-    const groups = prepareGroups(this, kind, [input]);
-    const observed = Date.parse(input.observedAt);
-    if (input.observedAt !== undefined && !Number.isFinite(observed)) {
-      throw new Error('Latest observation requires a valid observedAt');
-    }
-    return await this.locked(async () => {
-      const current = await this.get(kind, input.id);
-      const currentObserved = Date.parse(current?.observedAt);
-      if (
-        Number.isFinite(currentObserved) &&
-        (!Number.isFinite(observed) || currentObserved > observed)
-      ) {
-        return current;
+    return (await this.putLatestMany(kind, [input]))[0];
+  }
+
+  async putLatestMany(kind, inputs) {
+    const groups = prepareGroups(this, kind, inputs);
+    for (const group of groups) {
+      for (const entry of group) {
+        const input = inputs[entry.index];
+        entry.observed = Date.parse(input.observedAt);
+        if (
+          input.observedAt !== undefined &&
+          !Number.isFinite(entry.observed)
+        ) {
+          throw new Error('Latest observation requires a valid observedAt');
+        }
       }
-      return (
-        await writeGroups(groups, (entry) => this.writeRecord(kind, entry))
-      )[0];
-    });
+    }
+    if (!groups.length) {
+      return [];
+    }
+    return await this.locked(() =>
+      writeGroups(groups, async (entry) => {
+        const current = await this.get(kind, entry.record.id);
+        const currentObserved = Date.parse(current?.observedAt);
+        if (
+          Number.isFinite(currentObserved) &&
+          (!Number.isFinite(entry.observed) || currentObserved > entry.observed)
+        ) {
+          return current;
+        }
+        return this.writeRecord(kind, entry);
+      })
+    );
   }
 
   async putMany(kind, inputs) {

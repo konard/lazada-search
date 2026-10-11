@@ -7,6 +7,10 @@ import { scrollProductContent } from './page-scroll.js';
 import { storeViewport } from './page-capture.js';
 import { selectVariantOptions } from './browser-variant.js';
 import {
+  serveBrowserImage,
+  retainBrowserImage,
+} from './browser-image-cache.js';
+import {
   requestedSku,
   preferredVariant,
   cachedVariantMatches,
@@ -546,60 +550,30 @@ export class BrowserCollector {
           await route.continue();
           return;
         }
-        let url;
-        try {
-          url = canonicalUrl(route.request().url());
-        } catch {
-          await route.continue();
-          return;
-        }
-        const cached = await this.store.get('cache', `image:${url}`);
-        const bytes =
-          cached?.blob &&
-          !cached.invalidatedAt &&
-          (await this.store.blob(cached.blob.sha256));
-        if (bytes && !this.refreshImages) {
-          await route.fulfill({ body: bytes, contentType: cached.contentType });
-        } else {
-          await route.continue();
-        }
+        await serveBrowserImage({
+          route,
+          cache: this.cache,
+          refresh: this.refreshImages,
+          activePageUrl: this.activeImagePageUrl,
+        }).catch((error) => {
+          if (error.code === 'COLLECTION_STOPPED') {
+            this.imageStop = error;
+          }
+        });
       };
       await this.runtime.page.route('**/*', this.imageRoute);
       this.imageResponse = (response) => {
-        if (response.request().resourceType() !== 'image' || !response.ok()) {
+        if (response.request().resourceType() !== 'image') {
           return;
         }
         const capture = (async () => {
-          const headers = response.headers();
           const bytes = await boundedImageBody(response);
-          if (!bytes || bytes.length > 25 * 1024 ** 2) {
-            return;
+          await retainBrowserImage({ response, bytes, cache: this.cache });
+        })().catch((error) => {
+          if (error.code === 'COLLECTION_STOPPED') {
+            this.imageStop = error;
           }
-          const blob = await this.store.putBlob(bytes);
-          const url = canonicalUrl(response.url());
-          const image = {
-            blob,
-            contentType: headers['content-type'] || 'image/png',
-            etag: headers.etag || null,
-            lastModified: headers['last-modified'] || null,
-          };
-          const known = await this.store.get('cache', `image:${url}`);
-          if (known?.invalidatedAt || known?.blob?.sha256 !== blob.sha256) {
-            await this.store.put('cache', {
-              ...image,
-              id: `image:${url}`,
-              url,
-              fetchedAt: Date.now(),
-              checkedAt: Date.now(),
-            });
-          }
-          this.cache.browserImages.set(url, image);
-          if (this.cache.browserImages.size > 100) {
-            this.cache.browserImages.delete(
-              this.cache.browserImages.keys().next().value
-            );
-          }
-        })().catch(() => {});
+        });
         this.imageTasks.add(capture);
         capture.finally(() => this.imageTasks.delete(capture));
       };
@@ -731,6 +705,8 @@ export class BrowserCollector {
   async captureWithBudget(url, options) {
     let timer;
     let timedOut = false;
+    const previousImagePageUrl = this.activeImagePageUrl;
+    this.activeImagePageUrl = url;
     try {
       return await Promise.race([
         this.capture(url, options),
@@ -766,6 +742,7 @@ export class BrowserCollector {
       }
       throw error;
     } finally {
+      this.activeImagePageUrl = previousImagePageUrl;
       clearTimeout(timer);
     }
   }
@@ -835,6 +812,10 @@ export class BrowserCollector {
     ).blob;
     const finalUrl = canonicalUrl(snapshot.url);
     await Promise.all([...this.imageTasks]);
+    if (this.imageStop) {
+      throw this.imageStop;
+    }
+    await assertCollectionRunning(this.store);
     return {
       snapshot,
       status,
@@ -930,6 +911,13 @@ export class BrowserCollector {
       'collection-stop',
       COLLECTION_STOP_ID
     );
+    if (
+      previous?.active &&
+      previous.origin &&
+      new URL(this.runtime.page.url()).origin !== previous.origin
+    ) {
+      throw new CollectionStoppedError(previous);
+    }
     const state = {
       ...(previous || {}),
       id: COLLECTION_STOP_ID,
@@ -937,6 +925,7 @@ export class BrowserCollector {
       resumedAt: new Date().toISOString(),
     };
     await this.store.put('collection-stop', state);
+    this.imageStop = undefined;
     return state;
   }
 

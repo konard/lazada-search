@@ -48,6 +48,13 @@ function resolvedStatus(cached, exactSku, listingId) {
   }
   return 'Short URL unresolved; product identity and price pending';
 }
+function rowStatus(row) {
+  if (!row.costs || row.costs.beforePerFoodGram !== null) {
+    return row.status;
+  }
+  const fields = row.denominatorReview.pendingFields.join(', ');
+  return `${row.status}; gram denominator held for exact source review: ${fields || 'unresolved quantity'}`;
+}
 function cachedFacts(cached) {
   if (!cached) {
     return {
@@ -63,6 +70,7 @@ function cachedFacts(cached) {
       priceVnd: null,
       originalPriceVnd: null,
       observedAt: null,
+      denominatorReview: null,
       costs: null,
     };
   }
@@ -75,6 +83,10 @@ function cachedFacts(cached) {
     selectedVariant: product.selectedVariant,
   });
   const strictChocolateOrPlain = ['chocolate', 'unflavoured'].includes(flavour);
+  const costs = reportUnitCosts(cached, {
+    quantity: 1,
+    deliveryArea: 'Nha Trang',
+  });
   return {
     cachedTitle: product.title,
     selectedVariant: product.selectedVariant,
@@ -88,12 +100,19 @@ function cachedFacts(cached) {
       powderCategory(product) === 'whey' &&
       offer.variantConfirmed &&
       offer.price > 0 &&
+      costs.beforePerFoodGram > 0 &&
       offer.available !== false,
     manufacturerVerified: cached.manufacturerVerified,
     priceVnd: offer.price,
     originalPriceVnd: offer.originalPrice,
     observedAt: offer.observedAt,
-    costs: reportUnitCosts(cached, { quantity: 1, deliveryArea: 'Nha Trang' }),
+    denominatorReview: {
+      pendingFields: product.pendingSpecificationReview || [],
+      paidMassBasis: product.paidMassBasis || null,
+      packageMassConsistency: product.packageMassConsistency || null,
+      specificationHolds: product.specificationHolds || [],
+    },
+    costs,
   };
 }
 try {
@@ -203,6 +222,8 @@ try {
       resolvedListingRows: resolvedListingIds.length,
       resolvedExactSkuRows: resolvedExactSkus.length,
       capturedExactSkuRows: rows.filter((row) => row.costs).length,
+      supportedGramRows: rows.filter((row) => row.costs?.beforePerFoodGram > 0)
+        .length,
       duplicateResolvedListingRows:
         resolvedListingIds.length - new Set(resolvedListingIds).size,
       duplicateResolvedExactSkuRows:
@@ -245,7 +266,7 @@ try {
       row.eligibleWheyRanking ? 'Yes' : 'No / pending',
       row.manufacturerVerified ? 'Yes' : 'No / pending',
       row.observedAt || 'Pending',
-      row.status,
+      rowStatus(row),
     ])
   )}\n\n## Intersection with the published top tens\n\nListing-level membership means another selling option from that listing may appear in the table; it does not establish that the submitted exact SKU is ranked.\n\n${table(
     [

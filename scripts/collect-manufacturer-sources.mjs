@@ -73,6 +73,11 @@ try {
           manufacturerUrl: candidate.url,
           error: error.message.split('\n')[0],
         });
+        if (error.code === 'COLLECTION_STOPPED') {
+          report.stopped = true;
+          report.stopReason = 'security-challenge';
+          throw error;
+        }
       }
     }
     await writeFile(

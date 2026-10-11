@@ -1,5 +1,6 @@
 import {
   LazadaSearch,
+  ManufacturerSourceCache,
   accountFoodComponents,
   applyComparisonTranslations,
   applyBasketComparisonTranslations,
@@ -10,6 +11,7 @@ import {
   translationReviewAccepted,
   validateFoodComponentEvidence,
   type BasketSourceMapping,
+  type CheckoutScenarioPlanInput,
   type FoodComponent,
   type Offer,
   type Product,
@@ -20,6 +22,24 @@ declare const product: Product;
 declare const offer: Offer;
 declare const source: BasketSourceMapping;
 declare const originalHtml: Uint8Array;
+declare const manufacturerSources: ManufacturerSourceCache;
+await manufacturerSources.importOriginal(
+  {
+    brand: 'Factory fixture',
+    url: 'https://factory.example/product',
+    sourceSha256: 'a'.repeat(64),
+    contentType: 'text/html',
+    status: 'failed',
+    httpStatus: 403,
+    retryAfter: null,
+  },
+  originalHtml
+);
+const acceptedProducts: Product[] = await application.store.putLatestMany(
+  'product',
+  [product]
+);
+void acceptedProducts;
 const components: FoodComponent[] = [
   {
     id: 'paid',
@@ -44,6 +64,32 @@ extractBasketQuote(originalHtml, source);
 basketIdentity(source.lines);
 application.saveBasketQuote(source);
 application.captureBasketQuote(source);
+const scenarioPlan: CheckoutScenarioPlanInput = {
+  market: 'vn',
+  currency: 'VND',
+  deliveryArea: 'Nha Trang',
+  lines: [{ offerId: offer.id, sku: offer.sku!, quantities: [1, 3] }],
+  voucherSelections: [{ text: 'No vouchers applied', voucherIds: [] }],
+  paymentMethods: ['Cash on delivery'],
+};
+const planned = await application.planCheckoutScenarios(scenarioPlan);
+const scenarioResult = await application.runCheckoutScenarios({
+  planId: planned.plan.id,
+  captures: [{ scenarioId: planned.scenarios[0].id, mapping: source }],
+});
+const noDownloads: 0 = scenarioResult.downloads;
+const noPurchaseApproval: false = scenarioResult.coverage.purchaseReady;
+const pendingScenarioCount: number = (
+  await application.checkoutScenarioStatus({ planId: planned.plan.id })
+).counts.pending;
+const sharedArtworkRequiresReview: true | undefined =
+  product.packageArtworkConflicts?.[0]?.requiresReview;
+void [
+  noDownloads,
+  noPurchaseApproval,
+  pendingScenarioCount,
+  sharedArtworkRequiresReview,
+];
 compareBaskets(application, {
   minProteinG: 1000,
   sort: 'costPerGramAfterDelivery',

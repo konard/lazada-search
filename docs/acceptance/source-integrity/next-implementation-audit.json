@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T10:18:03.113335+00:00",
+  "method": "Read-only local source/requirements audit, plus the separately authorized isolated-source replay regression validation. No live acceptance or whole-repository validation performed here.",
+  "allRequirementsDelivered": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "completeMarketCoverage": false,
+  "completeEnglishAcceptance": false,
+  "liveTelegramAcceptance": false,
+  "largestNextImplementation": {
+    "id": "live-checkout-adapter-and-resumable-quantity-voucher-scenarios",
+    "status": "missing-production-mechanics",
+    "present": "The shared library/CLI/HTTP/Telegram operations validate exact stored checkout evidence and read the already prepared current private cart using caller-supplied mappings.",
+    "missing": "A live Lazada layout adapter that discovers exact selected line identities and source-bound price/quantity fields, plus a durable planner to enumerate and cache relevant SKU/quantity/voucher/payment-condition scenarios.",
+    "references": [
+      {
+        "path": "src/basket-quote.js",
+        "line": 100
+      },
+      {
+        "path": "src/basket-quote.js",
+        "line": 357
+      },
+      {
+        "path": "src/basket-comparison.js",
+        "line": 289
+      },
+      {
+        "path": "src/basket-comparison.js",
+        "line": 290
+      },
+      {
+        "path": "docs/basket-quotes.md",
+        "line": 60
+      }
+    ],
+    "nextDraftAcceptance": [
+      "Decode actual checkout SKU identity from original text/attributes/embedded data with source pointers; supplied expected SKU cannot attest an unobserved source identity.",
+      "Reconcile every exact line subtotal, applied merchandise/freight discount, destination, shipping and checkout total; preserve current staleness and cold-chain exclusions.",
+      "Persist scenario identity, observation, source hashes, unresolved failures and coverage; resume unseen scenarios and reuse unchanged originals at configured pacing.",
+      "Retain prepared-page read-only capture. No purchases or irreversible payment actions. Any future cart preparation must be explicit and reversible.",
+      "Keep captured-subset rankings labelled as such until relevant combinations and real eligibility are proved."
+    ]
+  },
+  "remainingImplementationAcceptance": [
+    {
+      "id": "whole-catalog-reviewed-English",
+      "mechanics": "Provider-versioned caches, resumable catalog jobs, numerical/unit/entity checks, source-preserving reviewed chunk overlays and shared comparison rendering are implemented.",
+      "acceptance": "Configure an actual provider without persisting credentials; translate and semantically review all required current catalog text. Fixture translations and automatic numeric checks do not prove fluent complete English.",
+      "references": [
+        {
+          "path": "src/translation-catalog.js",
+          "line": 543
+        },
+        {
+          "path": "src/translation-quality.js",
+          "line": 209
+        },
+        {
+          "path": "src/translation-quality.js",
+          "line": 213
+        },
+        {
+          "path": "docs/translation.md",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": "live-Telegram-deployment",
+      "mechanics": "Authorized private chats and shared structured operations have local Bot API fixture coverage.",
+      "acceptance": "Deploy the bot with operator-provided token/allowlist and prove real authorized library-equivalent commands, restart handling and challenge behavior. Local mocks do not establish deployment.",
+      "references": [
+        {
+          "path": "src/telegram.js",
+          "line": 104
+        },
+        {
+          "path": "src/telegram.js",
+          "line": 126
+        },
+        {
+          "path": "docs/REQUIREMENTS.md",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "id": "frozen-checkpoint-validation-publication",
+      "mechanics": "The targeted replay/guard regressions below passed; parent is coordinating challenge changes, full suites and public archival.",
+      "acceptance": "Require complete unit/native E2E/lint/format/duplication and original/public archive consistency receipts tied to the final unchanged runtime, then commit/publish all safe data and test fixtures.",
+      "references": [
+        {
+          "path": "README.md",
+          "line": 244
+        },
+        {
+          "path": "docs/REQUIREMENTS.md",
+          "line": 75
+        }
+      ]
+    }
+  ],
+  "remainingExternalEvidenceAcceptance": [
+    "Authoritative category/listing/exact-SKU inventory coverage and manual original-page audits.",
+    "Current exact manufacturer flavour/package/formula identity and all mass/volume/protein/ingredients; no density or historical formula transfer.",
+    "Actual Nha Trang quantity-specific freight, current stock/caps, frozen delivery and applied offer/voucher eligibility.",
+    "Exact bonus-food identity, amount, formula and unconditional eligibility; potential gifts remain excluded from denominators."
+  ],
+  "falseAcceptanceGuards": {
+    "testLiveAcceptedIsOnlySmoke": {
+      "references": [
+        {
+          "path": "scripts/live-acceptance.mjs",
+          "line": 64
+        },
+        {
+          "path": "README.md",
+          "line": 249
+        }
+      ],
+      "finding": "The test:live accepted flag checks for a priced capture in both categories, separately from purchaseComparisonReady. README names this a small smoke check; do not interpret it as full production or buying acceptance."
+    },
+    "basketCoverageIsSubsetOnly": {
+      "references": [
+        {
+          "path": "src/basket-comparison.js",
+          "line": 290
+        }
+      ],
+      "finding": "A cheapest captured basket does not establish cheapest whole-market bulk order."
+    },
+    "englishChecksAreNotSemanticApproval": {
+      "references": [
+        {
+          "path": "src/translation-quality.js",
+          "line": 209
+        }
+      ],
+      "finding": "Exact figures and entity preservation are necessary checks; accepted human reviews remain required."
+    },
+    "oldAuditIsDated": {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "checkedAt": "2026-10-11T09:01:53.429Z",
+      "finding": "Existing coverage counts are a dated input, not freshly audited inventory. This review does not replace or refresh the parent-owned global audit."
+    }
+  },
+  "authorizedSourceReplayFix": {
+    "references": [
+      {
+        "path": "src/collection-source-replay.js",
+        "line": 35
+      },
+      {
+        "path": "src/collection-source-replay.js",
+        "line": 115
+      },
+      {
+        "path": "src/application.js",
+        "line": 363
+      },
+      {
+        "path": "tests/collection-source-replay.test.js",
+        "line": 229
+      }
+    ],
+    "sameOriginalRequirements": [
+      "Exact product ID/SKU/URL/observation time",
+      "Same attached original evidence ID and 64-hex original HTML digest",
+      "Unchanged positive net mass and paid count",
+      "Old automatic mass-only hold; fresh selected per-inner basis safe without independent quantity holds"
+    ],
+    "claimLevelGuards": [
+      "invalidated",
+      "invalidatedAt",
+      "consistencyReviewRequired"
+    ],
+    "retained": "Explicit holds, manual pending quantity review, count conflict, source invalidation, changed original evidence, fresh ambiguity/contradiction and unrelated pending fields remain unresolved. No facts, price, nutrition or gifts are approved by this helper.",
+    "originalFixtureArithmetic": [
+      {
+        "sku": "367656830_VNAMZ-116917756014",
+        "sourceHtmlSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+        "massGPerInner": 40,
+        "paidPackageCount": 5,
+        "totalMassG": 200,
+        "originalObservedPriceVnd": 39000,
+        "currentManufacturerProteinApproved": false
+      },
+      {
+        "sku": "497264871_VNAMZ-15825435034",
+        "sourceHtmlSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+        "massGPerInner": 60,
+        "paidPackageCount": 5,
+        "totalMassG": 300,
+        "originalObservedPriceVnd": 89000,
+        "currentManufacturerProteinApproved": false
+      }
+    ]
+  },
+  "validation": {
+    "focusedCommand": "node --test tests/collection-source-replay.test.js tests/collection-review-replay.test.js tests/food-offer-discovery.test.js tests/food-offer-source-basis.test.js",
+    "tests": 40,
+    "pass": 40,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 2405.72125,
+    "strictEslint": "passed-zero-warnings",
+    "formatting": "passed-Prettier-final-check",
+    "fullRepositoryUnitNativeE2E": "pending-parent-final-frozen-source-receipt",
+    "mainPublicArchive": "not-validated-by-this-agent"
+  },
+  "boundaries": {
+    "mainStoreMutations": 0,
+    "browserOrMarketplaceRequests": 0,
+    "gitOperations": 0,
+    "privateDataPublished": false,
+    "temporaryIsolatedTestStoresOnly": true,
+    "manufacturerApprovals": 0
+  },
+  "readSourceReceipts": [
+    {
+      "path": "src/collection-source-replay.js",
+      "sha256": "076a63a7217ec91c91628af0350a12c4b473c198a35a40ff0556cf2724685c49",
+      "bytes": 4032
+    },
+    {
+      "path": "src/application.js",
+      "sha256": "54f62162533a900ffdf852886d827da9172f104146417562cfcbf8d6ed9a1e44",
+      "bytes": 27679
+    },
+    {
+      "path": "tests/collection-source-replay.test.js",
+      "sha256": "3126bfc3822cdc162df0fe04557c6f0cf9fc1d1abb56daec989899f5c3e0383b",
+      "bytes": 13765
+    },
+    {
+      "path": "src/basket-quote.js",
+      "sha256": "60da3b2c06ec6b9556b2acf9a74fa7a593b2f0d4178786f02912c2aa656947d1",
+      "bytes": 14217
+    },
+    {
+      "path": "src/basket-comparison.js",
+      "sha256": "5eb20335d653243b130d6d160988ffc017ad7f8dea59b0b2bfe06ffefd7c2b60",
+      "bytes": 9481
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "sha256": "be26feeaace8d31ab38a5063e7ccef541c7cf12eeba6e7ac25b1463927d5e330",
+      "bytes": 18826
+    },
+    {
+      "path": "src/translation-quality.js",
+      "sha256": "21b7f5fe1cd33c39806e217d4103ff4ed50c4f9dd04aae7e332a2222c3eea7fd",
+      "bytes": 7998
+    },
+    {
+      "path": "src/telegram.js",
+      "sha256": "256c2420fe6b0b57dceee4044cbc1e6b936f826849586d66cb3379c9179a085a",
+      "bytes": 8664
+    },
+    {
+      "path": "scripts/live-acceptance.mjs",
+      "sha256": "ea9bb782ca8b3a1748608a8ad8f22c11d9df93b624d237bc17c180a2a1e05d2a",
+      "bytes": 2366
+    },
+    {
+      "path": "README.md",
+      "sha256": "ec569437413989106045b95bc0a40b5e1b4331b32e934fb240c086bb3a752bb0",
+      "bytes": 33419
+    },
+    {
+      "path": "docs/basket-quotes.md",
+      "sha256": "7ed826961b30e3d14619f3fa27575a7f80cd86442ce96c121320ca5a38545a0e",
+      "bytes": 9246
+    },
+    {
+      "path": "docs/translation.md",
+      "sha256": "aa440cea35b4ca0b651a786e8f480988d6e0af14969a3cde8a5bcf1677c0938d",
+      "bytes": 13067
+    },
+    {
+      "path": "docs/REQUIREMENTS.md",
+      "sha256": "c49764e6423c2d3212a3801d1a473720fad38135cb208ecba637c854b68c2492",
+      "bytes": 29324
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "bea4382e81138b974a285cd130d61ca661754ad56bbb449e442826ab9c82e6aa",
+      "bytes": 17011
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "sha256": "5237fcc6524945bbcf9eb1cb25a0b8bc9cacd0298a35218f533c750e1176703f",
+      "bytes": 30264
+    }
+  ]
+}

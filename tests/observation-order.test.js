@@ -106,3 +106,41 @@ test('undated product imports remain supported without replacing dated package o
   assert.equal((await store.get('product', product.id)).netMassG, 2000);
   await app.close();
 });
+
+test('batched catalog imports retain chronological products and every original SKU price in history', async (t) => {
+  const store = await setup(t);
+  const app = new LazadaSearch({ store, offline: true, ocr: false });
+  t.after(() => app.close());
+  const product = {
+    id: 'batch-product',
+    sku: '1234_VNAMZ-5678',
+    title: 'Chocolate whey protein 1kg',
+    category: 'whey',
+    url: 'https://www.lazada.vn/products/pdp-i1234.html',
+    netMassG: 1000,
+    observedAt: '2026-10-11T00:00:00Z',
+  };
+  const offer = {
+    id: 'batch-offer',
+    productId: product.id,
+    sku: product.sku,
+    url: product.url,
+    currency: 'VND',
+    price: 200000,
+    observedAt: product.observedAt,
+  };
+  const older = { observedAt: '2026-10-10T00:00:00Z' };
+  await app.importRecords({
+    products: [product, { ...product, ...older, netMassG: 2000 }],
+    offers: [offer, { ...offer, ...older, price: 150000 }],
+  });
+  assert.equal((await store.get('product', product.id)).netMassG, 1000);
+  assert.equal((await store.get('offer', offer.id)).price, 200000);
+  assert.deepEqual(
+    (await store.list('offer-history')).map((record) => record.price).sort(),
+    [150000, 200000]
+  );
+  await app.importRecords({ offers: [{ ...offer, price: 190000 }] });
+  assert.equal((await store.get('offer', offer.id)).price, 190000);
+  assert.equal((await store.list('offer-history')).length, 3);
+});

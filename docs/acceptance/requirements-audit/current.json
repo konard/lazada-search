@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T09:01:53.429Z",
-  "catalogObservedAt": "2026-10-11T08:59:56.147Z",
+  "checkedAt": "2026-10-11T12:42:03.325Z",
+  "catalogObservedAt": "2026-10-11T12:20:06.492Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,35 +21,35 @@
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1323,
-    "missingSkuPrices": 341,
+    "missingListings": 1298,
+    "missingSkuPrices": 373,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 6403,
-    "specifications": 321,
+    "specifications": 345,
     "verifiedProducts": 14,
     "excludedCategoryListings": 371,
-    "excludedExactOptions": 534
+    "excludedExactOptions": 598
   },
   "broaderArchive": {
-    "missingListings": 1474,
-    "missingSkuPrices": 915,
+    "missingListings": 1449,
+    "missingSkuPrices": 1011,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 333,
+    "specifications": 357,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 310,
-    "strictWheySkus": 87,
+    "capturedPowderSkus": 334,
+    "strictWheySkus": 102,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 79,
-    "discoveryTasks": 6092,
-    "pendingSkuTasks": 346,
-    "excludedSkuOptions": 537,
-    "originalSourcePointers": 2012,
+    "missingFactoryMatches": 94,
+    "discoveryTasks": 6068,
+    "pendingSkuTasks": 378,
+    "excludedSkuOptions": 601,
+    "originalSourcePointers": 2051,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
@@ -136,9 +136,11 @@
         "src/page-readiness.js",
         "scripts/audit-current-offer-sources.mjs",
         "docs/acceptance/current-offer-source-audit.json",
-        "docs/acceptance/preferred-variant/live-check.json"
+        "docs/acceptance/preferred-variant/live-check.json",
+        "src/package-artwork-consistency.js",
+        "tests/package-artwork-consistency.test.js"
       ],
-      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory."
+      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory. Shared selected SKU artwork cannot authorize OCR mass correction; high-confidence conflicting net weights retain original claims with source-bound holds. Exact known-CDN aliases require original catalogue/gallery references."
     },
     {
       "id": "R010",
@@ -165,23 +167,31 @@
         "src/comparison-inputs.js",
         "src/food-components.js",
         "tests/basket-quotes.test.js",
-        "tests/food-components.test.js"
+        "tests/food-components.test.js",
+        "src/checkout-scenarios.js",
+        "tests/checkout-scenarios.test.js",
+        "tests/e2e/checkout-scenarios.test.js",
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
       ],
-      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking."
+      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking. Durable bounded quantity/voucher/payment plans validate original prepared-checkout observations and cached extraction/output proofs; actual layout acquisition and full-market eligibility remain pending."
     },
     {
       "id": "R012",
       "requirement": "Exact bulk freight and best basket price",
       "status": "partial",
-      "mechanicsStatus": "source-bound-basket-capture-and-ranking-implemented;automatic-cart-adapter-and-quantity-voucher-sweep-pending",
+      "mechanicsStatus": "source-bound-basket-capture-ranking-and-durable-quantity-voucher-payment-planner-implemented;actual-live-layout-adapter-acquisition-pending",
       "realDataAcceptance": "pending-live-exact-quantity-checkout-freight-and-full-basket-coverage",
       "evidence": [
         "src/basket-quote.js",
         "src/basket-comparison.js",
         "tests/e2e/basket-quotes.test.js",
-        "docs/basket-quotes.md"
+        "docs/basket-quotes.md",
+        "src/checkout-scenarios.js",
+        "tests/checkout-scenarios.test.js",
+        "tests/e2e/checkout-scenarios.test.js",
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
       ],
-      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed."
+      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed. Durable bounded scenario plans now enumerate quantity/voucher/payment combinations, preserve exact original mapping/code/output proofs and resume unchanged validated captures. Actual marketplace acquisition remains pending."
     },
     {
       "id": "R013",
@@ -479,7 +489,7 @@
       "id": "R046",
       "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
       "status": "partial",
-      "mechanicsStatus": "implemented-quarantine-identity-guards-and-image-backed-crop-OCR",
+      "mechanicsStatus": "implemented-quarantine-source-consistency-and-image-backed-crop-OCR",
       "realDataAcceptance": "pending-exact-market-package-formula-label-identity",
       "evidence": [
         "src/specification-holds.js",
@@ -492,9 +502,14 @@
         "src/ocr.js",
         "tests/ocr-crops.test.js",
         "docs/acceptance/decimal-ocr/replay.json",
-        "docs/acceptance/decimal-ocr/validation.json"
+        "docs/acceptance/decimal-ocr/validation.json",
+        "src/package-mass-consistency.js",
+        "src/food-offer-source-basis.js",
+        "src/compare.js",
+        "tests/package-mass-consistency.test.js",
+        "tests/food-offer-source-basis.test.js"
       ],
-      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
+      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity. Automatic net-mass/serving-protein consistency and selected multipack-basis guards withhold contradictory mass/count denominators. Unknown paid count blocks mass, volume and protein arithmetic without changing the captured price."
     },
     {
       "id": "R047",
@@ -519,6 +534,66 @@
     }
   ],
   "githubIssues": [
+    {
+      "number": 28,
+      "title": "Keep full associative archive decode working for the 144MB saved notation",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/28"
+    },
+    {
+      "number": 27,
+      "title": "Inspect and pace every image redirect hop before following it",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/27"
+    },
+    {
+      "number": 26,
+      "title": "Detect and cache original image-endpoint challenges before OCR retries",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/26"
+    },
+    {
+      "number": 25,
+      "title": "Propagate collection stops from image and OCR workflows immediately",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/25"
+    },
+    {
+      "number": 24,
+      "title": "Bound reciprocal cross-host manufacturer redirect scheduling without deferred requests",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/24"
+    },
+    {
+      "number": 23,
+      "title": "Persist a collection stop for original manufacturer Cloudflare challenge responses",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/23"
+    },
+    {
+      "number": 22,
+      "title": "Batch chronological catalog imports to avoid full-case replay timeout",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/22"
+    },
+    {
+      "number": 21,
+      "title": "Selected package label conflicts create wrong gram prices in two cheapest powder rows",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/21"
+    },
+    {
+      "number": 20,
+      "title": "Preserve reviewed paid package mass when replaying the identical original source",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/20"
+    },
+    {
+      "number": 19,
+      "title": "Hold seller net mass when same-product protein and serving count contradict the package denominator",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/19"
+    },
     {
       "number": 18,
       "title": "Defer automatic public checkpoints when unrelated changes are staged without stopping collection",
@@ -631,9 +706,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "c55e62ff7898351fcfde4a8e329e07d47724334e0379df93002661fa79db85f7",
-      "bytes": 34896729,
-      "observedAt": "2026-10-11T08:59:56.147Z"
+      "sha256": "dd8fa029cfb4b7e3b6dfbbaafcf9cfc0d31820f73ddeca73ec0d260df496cdef",
+      "bytes": 35726788,
+      "observedAt": "2026-10-11T12:20:06.492Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -643,9 +718,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "1a3af1fec470092c86ae229982697dadacbc0680c29e07eb33128f637c655b13",
-      "bytes": 26763,
-      "observedAt": "2026-10-11T08:44:43.901936+00:00"
+      "sha256": "9e6179d5894936889f144b15ba61616cedaac65cd956fe95278f197f1b80b198",
+      "bytes": 35091,
+      "observedAt": "2026-10-11T12:41:50.976857+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -655,21 +730,21 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "d25ce9b564839203e127cdb200320f328adbea26e9d053ba9bb4c3a759a8d0de",
-      "bytes": 26304,
+      "sha256": "6d4309252fda0d3e4b8a94161c1a476c13e2f5c60f239b8a93bcf80b8477dfe0",
+      "bytes": 39937,
       "observedAt": null
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "1030ddfa4cd1499f0122fda0dcfffb198e60768d1cb1025b00ce8ef41eccdf1b",
+      "sha256": "0d708c3ff95f297d9f4606ca773ebc6e433c7bc9446521ea4aa59e7f7a26df5c",
       "bytes": 193637,
-      "observedAt": "2026-10-11T09:00:12.736Z"
+      "observedAt": "2026-10-11T12:20:30.493Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "a710a5fbfd85a8b79eea72445955da7b85339050d19fc1e679708f637af25f87",
-      "bytes": 12060333,
-      "observedAt": "2026-10-11T09:00:18.228Z"
+      "sha256": "1f766b7447e0f133a9d9528c47868d1ac147986c8a05a2316797919f65507307",
+      "bytes": 12247232,
+      "observedAt": "2026-10-11T12:20:35.268Z"
     }
   ],
   "downloads": 0,

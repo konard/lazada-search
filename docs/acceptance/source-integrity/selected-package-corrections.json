@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "status": "applied",
+  "reviewedAt": "2026-10-11T09:52:26.757Z",
+  "reviewer": "codex-original-evidence-review",
+  "sourceReview": {
+    "originalPrivateReviewSha256": "07b44f56208cb71b35f126883660e0049175ffc306b7a177d02096b51833f417",
+    "method": "Manual inspection of preserved original seller images plus offline extraction of exact selected SKU/catalogue from digest-checked HTML",
+    "originalEvidenceReproducedInActions": true,
+    "privateDraftRequiredForReplay": false
+  },
+  "command": "node scripts/apply-selected-package-corrections.mjs --offline --no-ocr",
+  "actions": [
+    {
+      "kind": "selected-package-mass-review",
+      "sku": "13463872611_VNAMZ-117339168804",
+      "productId": "product:4753107f4f41ffbad23f1ffa7caf7a45ec53e7cb29148f84bea0d8f2b61f0e72",
+      "offerId": "offer:9784edcbaf9cf9929a4d7b0c6326a39503735409328b4713727e107145fd4922",
+      "expectedPriceVnd": 424779,
+      "observedAt": "2026-10-11T04:00:29.475Z",
+      "expectedRawMassG": 907.18474,
+      "selectedOptions": ["Natural Chocolate", "Standard"],
+      "source": {
+        "sku": "13463872611_VNAMZ-117339168804",
+        "evidenceId": "evidence:a1aa07ce9d68958cf630488541663e11db7511d0807afe295cd9383e4527aef3",
+        "sha256": "29beb646bd37f2156290ad2a1c40c93f47204746fda3a88315853edb4ebd1e6a",
+        "path": "data/cases/vietnam-nha-trang/blobs/29/29beb646bd37f2156290ad2a1c40c93f47204746fda3a88315853edb4ebd1e6a.gz",
+        "bytes": 321640,
+        "digestMatched": true,
+        "url": "https://www.lazada.vn/products/pdp-i13463872611.html"
+      },
+      "image": {
+        "purpose": "ON selected naturally flavored front",
+        "path": "data/cases/vietnam-nha-trang/blobs/a3/a3b66d6f849195dd4b515a5c4323ae94e95941ba6529257f041ff7bd1aa345b9.gz",
+        "sha256": "a3b66d6f849195dd4b515a5c4323ae94e95941ba6529257f041ff7bd1aa345b9",
+        "bytes": 26558,
+        "url": "https://img.lazcdn.com/g/p/8aec78854945ce5364c412a2b980b5fa.jpg_720x720q80.jpg_.webp",
+        "observedAt": "2026-10-11T04:00:00.423Z",
+        "authority": "seller-image",
+        "digestMatched": true,
+        "reviewMethod": "manual-view-unchanged-original",
+        "ocrRecords": []
+      },
+      "selectedAssetId": "8aec78854945ce5364c412a2b980b5fa",
+      "excerpts": [
+        "OPTIMUM NUTRITION",
+        "NATURALLY FLAVORED",
+        "GOLD STANDARD 100% WHEY",
+        "CHOCOLATE NATURALLY FLAVORED WITH OTHER NATURAL FLAVORS",
+        "NET WT 1.9 LB (864 G)",
+        "27 SERVINGS"
+      ],
+      "reviewedMassG": 864,
+      "labelExcerpt": "NET WT 1.9 LB (864 G)",
+      "requireUniqueSelectedAsset": true,
+      "reason": "The original selected Natural Chocolate catalogue uniquely identifies the naturally flavored Chocolate front. Its printed metric declaration is 864 g; the seller 2-pound headline conflicts with it. This approves only the selected package mass, without manufacturer identity or nutrition approval.",
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    },
+    {
+      "kind": "specification-hold",
+      "sku": "13375928580_VNAMZ-116939205737",
+      "productId": "product:40ca88beb9a6e89f22b1313b37791faff3176673b4cf705d38385dd3d0087422",
+      "offerId": "offer:2d362da8403c5f44cbdf9d0793f39b10ec892d9fcd4ab48ad533469b0a6998eb",
+      "expectedPriceVnd": 484324,
+      "observedAt": "2026-10-10T19:10:09.745Z",
+      "expectedRawMassG": 907.18474,
+      "selectedOptions": ["Cocoa 2 pound"],
+      "source": {
+        "sku": "13375928580_VNAMZ-116939205737",
+        "evidenceId": "evidence:18ac1b02acd130f9d2a1354fe75ecaa1db2b7d13b781df9f095d8f494142fe7f",
+        "sha256": "534c2aa4a3729d06dfd01ef5612155ff5c0b2c85082a78a54f0bca8497af3e51",
+        "path": "data/cases/vietnam-nha-trang/blobs/53/534c2aa4a3729d06dfd01ef5612155ff5c0b2c85082a78a54f0bca8497af3e51.gz",
+        "bytes": 360056,
+        "digestMatched": true,
+        "url": "https://www.lazada.vn/products/pdp-i13375928580.html"
+      },
+      "image": {
+        "purpose": "Yingbang shared front",
+        "path": "data/cases/vietnam-nha-trang/blobs/c3/c354d3407797a04dda23a895517f6c94df5c995caa8c6507293e4c5c60c4eeca.gz",
+        "sha256": "c354d3407797a04dda23a895517f6c94df5c995caa8c6507293e4c5c60c4eeca",
+        "bytes": 28508,
+        "url": "https://img.lazcdn.com/g/p/277ed2a07ac6bb8a6796a933edf9fc5d.jpg_webp_2200x2200q80.jpg_.webp",
+        "observedAt": "2026-10-10T19:09:54.390Z",
+        "authority": "seller-image",
+        "digestMatched": true,
+        "reviewMethod": "manual-view-unchanged-original",
+        "ocrRecords": []
+      },
+      "selectedAssetId": "277ed2a07ac6bb8a6796a933edf9fc5d",
+      "excerpts": [
+        "100% WHEY PROTEIN",
+        "30 SERVINGS",
+        "chocolate",
+        "PROTEIN POWDER DRINK MIX NET WT 1KG"
+      ],
+      "holdId": "13375928580_VNAMZ-116939205737:netMassG",
+      "field": "netMassG",
+      "active": true,
+      "panel": {
+        "purpose": "Yingbang double-rich-chocolate 74-serving panel",
+        "path": "data/cases/vietnam-nha-trang/blobs/1f/1fa6e038600ad6b09ec25aab3630ea8f07259500f38fded43705bf831c64cd6f.gz",
+        "sha256": "1fa6e038600ad6b09ec25aab3630ea8f07259500f38fded43705bf831c64cd6f",
+        "bytes": 51234,
+        "url": "https://img.lazcdn.com/g/p/8ed75a75787757968f97bc6826c5143f.jpg_webp_2200x2200q80.jpg_.webp",
+        "observedAt": "2026-10-10T19:09:54.378Z",
+        "authority": "seller-image",
+        "digestMatched": true,
+        "reviewMethod": "manual-view-unchanged-original",
+        "ocrRecords": []
+      },
+      "panelExcerpts": [
+        "DOUBLE RICH CHOCOLATE",
+        "ARTIFICIALLY FLAVORED",
+        "74 servings per container",
+        "Serving size 30.4g (About1Scoop)"
+      ],
+      "reason": "The exact selected option declares Cocoa 2 pound, but its front artwork declares NET WT 1KG / 30 SERVINGS and is shared with Vanilla and Strawberry. A separate original gallery panel declares Double Rich Chocolate / 74 servings. Exact selling-package mass and formula cannot be resolved from this contradictory shared artwork. Preserve raw claims and price; withhold netMassG as a denominator. No alternate mass is approved.",
+      "alternateValueApproved": null,
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    }
+  ],
+  "networkRequests": 0,
+  "priceChanges": 0,
+  "nutritionApprovals": 0,
+  "manufacturerApprovals": 0,
+  "applied": [
+    {
+      "sku": "13463872611_VNAMZ-117339168804",
+      "kind": "selected-package-mass-review",
+      "pricePreserved": 424779,
+      "originalObservedAt": "2026-10-11T04:00:29.475Z",
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    },
+    {
+      "sku": "13375928580_VNAMZ-116939205737",
+      "kind": "specification-hold",
+      "pricePreserved": 484324,
+      "originalObservedAt": "2026-10-10T19:10:09.745Z",
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    }
+  ],
+  "downloads": 0
+}

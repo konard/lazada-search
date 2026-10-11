@@ -19,6 +19,43 @@ function imageIdentity(value) {
   }
 }
 
+function publishedAsset(value) {
+  try {
+    const url = new URL(value);
+    if (
+      !['https:', 'http:'].includes(url.protocol) ||
+      (!/(?:^|\.)(?:lazcdn\.com|slatic\.net)$/u.test(url.hostname) &&
+        url.hostname !== 'laz-img-sg.alicdn.com')
+    ) {
+      return undefined;
+    }
+    const asset = url.pathname.match(
+      /^\/(?:g\/)?p\/([a-f\d]{32})\.(jpg|jpeg|png|webp)(?:_webp)?(?:_\d+x\d+q\d+\.(?:jpg|jpeg|png|webp)(?:_\.webp)?)?$/u
+    );
+    return asset && `${url.protocol}${asset[1]}.${asset[2]}${url.search}`;
+  } catch {
+    return undefined;
+  }
+}
+
+function samePublishedImage(left, right, snapshot) {
+  const image = imageIdentity(right);
+  if (image && image === imageIdentity(left)) {
+    return true;
+  }
+  // Exact hash-shaped asset aliases are observed together in saved Lazada
+  // catalog/gallery data. Arbitrary CDN hosts, basenames and queries still
+  // cannot establish an alias. Original OCR bytes retain a separate digest.
+  const asset = publishedAsset(right);
+  return Boolean(
+    asset &&
+    asset === publishedAsset(left) &&
+    [...(snapshot.productImages || []), ...(snapshot.images || [])].some(
+      (url) => imageIdentity(url) === image
+    )
+  );
+}
+
 function skuIdentity(value) {
   const parts = String(value || '')
     .trim()
@@ -59,7 +96,7 @@ function displayedSku(snapshot, productSku) {
   return { sku: displayed.sku, listing };
 }
 
-export function selectedPackageImage(snapshot, product, imageUrl) {
+export function selectedPackageArtwork(snapshot, product, imageUrl) {
   if (snapshot.skuCatalogObserved !== true || !product.sku) {
     return undefined;
   }
@@ -83,9 +120,34 @@ export function selectedPackageImage(snapshot, product, imageUrl) {
   ) {
     return undefined;
   }
-  const image = imageIdentity(imageUrl);
-  if (!selected?.image || !image || image !== imageIdentity(selected.image)) {
+  if (
+    !selected?.image ||
+    !samePublishedImage(selected.image, imageUrl, snapshot)
+  ) {
     return undefined;
   }
-  return { sku: product.sku, catalogSku: selected.sku, image: selected.image };
+  const sharedSkuIds = [
+    ...new Set(
+      snapshot.skuCatalog
+        .filter((entry) => samePublishedImage(entry.image, imageUrl, snapshot))
+        .map((entry) => skuIdentity(entry.sku)?.sku)
+        .filter(Boolean)
+    ),
+  ];
+  return {
+    sku: product.sku,
+    catalogSku: selected.sku,
+    image: selected.image,
+    sharedSkuIds,
+  };
+}
+
+export function selectedPackageImage(snapshot, product, imageUrl) {
+  const artwork = selectedPackageArtwork(snapshot, product, imageUrl);
+  // A seller's reused front cannot attest which flavour/size it depicts.
+  if (!artwork || artwork.sharedSkuIds.length !== 1) {
+    return undefined;
+  }
+  const { sku, catalogSku, image } = artwork;
+  return { sku, catalogSku, image };
 }

@@ -104,6 +104,23 @@ export interface Product {
   claims?: Claim[];
   reviewedFields?: string[];
   pendingSpecificationReview?: string[];
+  packageArtworkConflicts?: Array<{
+    field: 'netMassG';
+    source: 'shared-selected-package-artwork';
+    declaredMassG: number;
+    candidateMassG: number;
+    selectedSku: string;
+    sharedCatalogSkuIds: string[];
+    imageUrl: string;
+    imageSha256: string;
+    originalHtmlSha256: string;
+    observedAt: string;
+    evidenceId: string;
+    confidence: number;
+    excerpt: string;
+    requiresReview: true;
+    replacementMassApproved: false;
+  }>;
   manufacturerVerification?: {
     identityMatched: boolean;
     sourceAuthority: string;
@@ -473,7 +490,12 @@ export interface BasketSourceMapping {
     id: string;
     scope: 'merchandise' | 'shipping';
     selector: string;
+    identitySelector?: string;
   }>;
+  checkoutConditions?: {
+    paymentMethod: { selector: string; text: string };
+    voucherState: { selector: string; text: string };
+  };
 }
 export interface BasketLine {
   offerId: string;
@@ -499,6 +521,7 @@ export interface BasketQuote {
     scope: 'merchandise' | 'shipping';
     amount: number;
     eligibility: 'applied-in-captured-basket';
+    identityValidation?: 'source-text';
   }>;
   coldChainConfirmed: boolean;
   observedAt: string;
@@ -508,6 +531,7 @@ export interface BasketQuote {
   sourceValidation: 'exact-checkout-fields';
   mappingReviewedBy: string;
   sourceMapping: BasketSourceMapping;
+  checkoutConditions?: { paymentMethod: string; voucherState: string };
   visibility?: 'public' | 'private';
 }
 export interface BasketComparisonOptions extends Omit<
@@ -579,6 +603,77 @@ export declare function compareBaskets(
   application: LazadaSearch,
   options?: BasketComparisonOptions
 ): Promise<BasketComparisonReport>;
+
+export interface CheckoutScenarioPlanInput {
+  market: 'vn';
+  currency: 'VND';
+  deliveryArea: string;
+  lines: Array<{ offerId: string; sku: string; quantities: number[] }>;
+  voucherSelections: Array<{ text: string; voucherIds: string[] }>;
+  paymentMethods: string[];
+}
+export interface CheckoutScenarioPlan {
+  id: string;
+  definition: CheckoutScenarioPlanInput & { version: 'checkout-scenarios-v1' };
+  createdAt: string;
+  coverageScope: 'explicit-planned-prepared-checkouts-only';
+  allMarketScenariosCollected: false;
+}
+export interface CheckoutScenario {
+  id: string;
+  planId: string;
+  definition: {
+    lines: Array<Pick<BasketLine, 'offerId' | 'sku' | 'quantity'>>;
+    vouchers: { text: string; voucherIds: string[] };
+    paymentMethod: string;
+  };
+  status: 'pending' | 'validated' | 'failed';
+  reason?: string;
+  observedAt?: string;
+  sourceSha256?: string;
+  evidenceId?: string;
+  mappingSha256?: string;
+  extractionFingerprint?: string;
+  quoteId?: string;
+  quoteSha256?: string;
+  sourceMapping?: BasketSourceMapping;
+  validatedAt?: string;
+  reused?: boolean;
+}
+export interface CheckoutScenarioReport {
+  plan: CheckoutScenarioPlan;
+  scenarios: CheckoutScenario[];
+  counts: { pending: number; failed: number; validated: number };
+  coverage: {
+    planned: number;
+    allPlannedScenariosObserved: boolean;
+    allMarketScenariosCollected: false;
+    checkoutLayoutLiveVerified: false;
+    purchaseReady: false;
+  };
+}
+export interface CheckoutScenarioBatch {
+  planId: string;
+  captures: Array<{ scenarioId: string; mapping: BasketSourceMapping }>;
+}
+export interface CheckoutScenarioBatchReport extends CheckoutScenarioReport {
+  results: CheckoutScenario[];
+  downloads: 0;
+  cartMutations: 0;
+  payments: 0;
+}
+export declare function planCheckoutScenarios(
+  application: LazadaSearch,
+  input: CheckoutScenarioPlanInput
+): Promise<CheckoutScenarioReport>;
+export declare function runCheckoutScenarios(
+  application: LazadaSearch,
+  input: CheckoutScenarioBatch
+): Promise<CheckoutScenarioBatchReport>;
+export declare function checkoutScenarioStatus(
+  application: LazadaSearch,
+  input: { planId: string }
+): Promise<CheckoutScenarioReport>;
 export interface CrossCheck {
   sourceAuthority?: string;
   checkedAt?: string;
@@ -636,6 +731,11 @@ export declare class AssociativeStore {
     kind: string,
     record: T
   ): Promise<T>;
+  /** Bounded chronological writes; returns accepted observations in input order. */
+  putLatestMany<T extends { id: string; observedAt?: string }>(
+    kind: string,
+    records: T[]
+  ): Promise<T[]>;
   /** Bounded writes under one lock; duplicate IDs preserve input order. */
   putMany<T extends { id: string }>(kind: string, records: T[]): Promise<T[]>;
   get<T = Record<string, unknown>>(
@@ -784,6 +884,7 @@ export declare class EvidenceCache {
       refresh?: boolean;
       fetchImage?: typeof fetch;
       maxBytes?: number;
+      failureTtlMs?: number;
     }
   ): Promise<{ blob: BlobReference; cacheHit: boolean }>;
 }
@@ -1316,6 +1417,15 @@ export declare class LazadaSearch {
   compareBaskets(
     options?: BasketComparisonOptions
   ): Promise<BasketComparisonReport>;
+  planCheckoutScenarios(
+    input: CheckoutScenarioPlanInput
+  ): Promise<CheckoutScenarioReport>;
+  runCheckoutScenarios(
+    input: CheckoutScenarioBatch
+  ): Promise<CheckoutScenarioBatchReport>;
+  checkoutScenarioStatus(input: {
+    planId: string;
+  }): Promise<CheckoutScenarioReport>;
   delivery(
     url: string,
     options?: { province?: string; locality?: string; refresh?: boolean }
@@ -1382,6 +1492,7 @@ export declare function parseProduct(
     market?: string;
     currency?: string;
     evidenceId?: string;
+    originalHtmlSha256?: string;
     source?: string;
     observedAt?: string;
   }
@@ -1618,6 +1729,9 @@ export declare class ManufacturerSourceCache {
       observedAt?: string;
       captureTimeUnknown?: boolean;
       finalUrl?: string;
+      status?: 'captured' | 'failed';
+      httpStatus?: number;
+      retryAfter?: number | null;
       contentType?: string;
       originalArtifact?: string;
       originalSourceSha256?: string;

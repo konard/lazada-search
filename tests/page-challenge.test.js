@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseHTML } from 'linkedom';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { gunzipSync } from 'node:zlib';
 import {
   inspectPageChallenge,
   classifyPage,
@@ -34,6 +35,8 @@ test('hidden CAPTCHA templates and ordinary embedded media do not block', () => 
     '<div hidden><iframe src="https://sec.lazada.vn/captcha"></iframe>Slide to verify</div>',
     '<div style="display: none"><div data-captcha>Trượt để xác minh</div></div>',
     '<div hidden><div class="cf-turnstile">Verify you are human</div></div>',
+    '<template>Slide to verify</template><p>Chocolate whey</p>',
+    '<template><div class="cf-turnstile">Verify you are human</div></template><p>Chocolate whey</p>',
     '<script>const instruction="Slide to verify";</script><iframe src="https://video.example/embed"></iframe>',
     '<p>Ingredients: whey isolate and cocoa. Customer review: good protein.</p>',
   ]) {
@@ -73,6 +76,48 @@ test('blank challenge redirects are detected without product text', () => {
       .detected,
     true
   );
+});
+
+test('the saved Cloudflare403 interstitial is detected without executable scripts', async () => {
+  const original = gunzipSync(
+    await readFile(
+      new URL(
+        '../docs/acceptance/source-integrity/natural-chocolate-manufacturer/official-natural-whey.http403.public.html.gz',
+        import.meta.url
+      )
+    )
+  );
+  const { document } = parseHTML(original.toString());
+  assert.equal(document.title, 'Just a moment...');
+  assert.equal(document.querySelector('script'), null);
+  const result = inspectPageChallenge({
+    document,
+    url: 'https://www.optimumnutrition.com/en-us/products/gold-standard-whey-naturally-flavored-protein-powder',
+  });
+  assert.deepEqual(result.signals, ['visible-cloudflare-interstitial']);
+  assert.equal(result.detected, true);
+});
+
+test('Cloudflare waiting titles need visible interstitial corroboration', () => {
+  for (const html of [
+    '<title>Just a moment...</title><body>Chocolate whey product loading.</body>',
+    '<title>Just a moment...</title><body><div hidden><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><div style="display:none" id="challenge-stage"></div>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script><script>window._cf_chl_opt={};</script>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><script id="challenge-stage">window._cf_chl_opt={};</script>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><template id="challenge-error-text">Enable JavaScript and cookies to continue</template>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><template id="challenge-stage">Verify you are human</template>Chocolate whey</body>',
+    '<title>Just a moment...</title><body><style id="challenge-stage">.challenge{display:none}</style>Chocolate whey</body>',
+    '<title>Chocolate whey</title><body><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></body>',
+    '<title>Access denied</title><body>Forbidden: HTTP403. Access permission required.</body>',
+  ]) {
+    const { document } = parseHTML(`<html><head>${html}</html>`);
+    assert.equal(inspectPageChallenge({ document }).detected, false, html);
+  }
+  const { document } = parseHTML(
+    '<html><head><title>Just a moment…</title></head><body><div id="challenge-stage"></div></body></html>'
+  );
+  assert.equal(inspectPageChallenge({ document }).detected, true);
 });
 
 test('a CAPTCHA during a pacing interval prevents every new download while cached evidence remains readable', async (t) => {

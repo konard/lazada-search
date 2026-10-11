@@ -1,5 +1,7 @@
 # User-selected Lazada links: exact resolved listings and SKUs
 
+The [current sorted handpicked table](../../tables/handpicked.md) contains the subsequent exact-price captures and current ranking intersections. The following is the preserved initial link-resolution receipt.
+
 Checked 2026-10-10T16:37:43.289059+00:00. All six short links resolved from their original public short-link responses. Request starts were separated by at least 60 seconds, and no redirect to a product page was followed. Six selected SKUs belong to five listings; both Hydropure options remain distinct.
 
 | User label                | Original link                                 | Observed listing and SKU                                                                                                                                                                                                 | Public cached selected-SKU matches |

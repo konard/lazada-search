@@ -40,6 +40,11 @@ export {
 } from './basket-quote.js';
 export { compareBaskets } from './basket-comparison.js';
 export {
+  planCheckoutScenarios,
+  runCheckoutScenarios,
+  checkoutScenarioStatus,
+} from './checkout-scenarios.js';
+export {
   applyComparisonTranslations,
   applyBasketComparisonTranslations,
 } from './translation-presentation.js';

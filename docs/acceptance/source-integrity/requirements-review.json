@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T09:56:56.566Z",
+  "method": "bounded-read-only-local-source-doc-and-cached-issue-review",
+  "allRequirementsDelivered": false,
+  "productionReady": false,
+  "currentFullSuite": "pending-parent-final-receipt-not-independently-run-during-this-audit",
+  "baseline": {
+    "auditCheckedAt": "2026-10-11T09:01:53.429Z",
+    "catalogObservedAt": "2026-10-11T08:59:56.147Z",
+    "activeScope": {
+      "missingListings": 1323,
+      "missingSkuPrices": 341,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6403,
+      "specifications": 321,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 371,
+      "excludedExactOptions": 534
+    },
+    "wheyCoverage": {
+      "capturedPowderSkus": 310,
+      "strictWheySkus": 87,
+      "strictSoySkus": 1,
+      "verifiedStrictWheySkus": 11,
+      "missingFactoryMatches": 79,
+      "discoveryTasks": 6092,
+      "pendingSkuTasks": 346,
+      "excludedSkuOptions": 537,
+      "originalSourcePointers": 2012,
+      "unresolvedEvidencePointers": 0
+    },
+    "iceCoverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    },
+    "caveat": "Dated published audit counts, not a newly observed live inventory."
+  },
+  "cachedOpenIssues": [
+    {
+      "number": 22,
+      "title": "Batch chronological catalog imports to avoid full-case replay timeout",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:44:22Z",
+      "url": "https://github.com/konard/lazada-search/issues/22"
+    },
+    {
+      "number": 21,
+      "title": "Selected package label conflicts create wrong gram prices in two cheapest powder rows",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:44:18Z",
+      "url": "https://github.com/konard/lazada-search/issues/21"
+    },
+    {
+      "number": 20,
+      "title": "Preserve reviewed paid package mass when replaying the identical original source",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:25:24Z",
+      "url": "https://github.com/konard/lazada-search/issues/20"
+    },
+    {
+      "number": 19,
+      "title": "Hold seller net mass when same-product protein and serving count contradict the package denominator",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:10:28Z",
+      "url": "https://github.com/konard/lazada-search/issues/19"
+    },
+    {
+      "number": 18,
+      "title": "Defer automatic public checkpoints when unrelated changes are staged without stopping collection",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T08:59:14Z",
+      "url": "https://github.com/konard/lazada-search/issues/18"
+    },
+    {
+      "number": 14,
+      "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:01:47Z",
+      "url": "https://github.com/konard/lazada-search/issues/14"
+    },
+    {
+      "number": 3,
+      "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+      "state": "OPEN",
+      "updatedAt": "2026-10-11T09:01:07Z",
+      "url": "https://github.com/konard/lazada-search/issues/3"
+    }
+  ],
+  "implementedObserved": [
+    {
+      "behavior": "Versioned persisted exclusions retain evidence and revoke decisions absent from fresh audit",
+      "references": ["src/scope-decisions.js:32", "src/scope-decisions.js:55"]
+    },
+    {
+      "behavior": "Complete chocolate/no-shaker selected-SKU policy; Scitec-style regression and preserved deferred correction backlog",
+      "references": [
+        "src/variant-policy.js:16",
+        "tests/e2e/preferred-variant.test.js:15",
+        "docs/ROADMAP.md:58"
+      ]
+    },
+    {
+      "behavior": "Persistent challenge guard, dialog-first stable loading, case minimum60 seconds and30-minute idle lifecycle",
+      "references": [
+        "src/cache.js:105",
+        "src/page-readiness.js:97",
+        "src/page-challenge.js",
+        "scripts/collect-account-case.mjs:205",
+        "src/persistent-browser.js:9"
+      ]
+    },
+    {
+      "behavior": "Source-bound paid quantity holds, review reuse, potential gift separation and physically independent gram/ml arithmetic",
+      "references": [
+        "src/food-offer-source-basis.js",
+        "src/collection-review-replay.js",
+        "src/compare.js"
+      ]
+    },
+    {
+      "behavior": "Original checkout quote arithmetic and shared cached reviewed English interfaces are implemented for prepared captured subsets",
+      "references": [
+        "src/basket-quote.js:179",
+        "src/basket-quote.js:355",
+        "src/basket-comparison.js:283",
+        "docs/translation.md:111"
+      ]
+    }
+  ],
+  "highestPriorityOutstanding": [
+    {
+      "priority": 1,
+      "outcome": "Exhaustive target listing/SKU inventory and manual correctness acceptance",
+      "requirements": ["R006", "R008", "R009", "R018"],
+      "evidence": [
+        "docs/REQUIREMENTS.md:15",
+        "docs/ROADMAP.md:12",
+        "docs/acceptance/requirements-audit/current.json"
+      ],
+      "gap": "Terminal visible searches are bounded, the protein category redirects, many listing/SKU prices and semantic decisions remain missing, and73 default-option corrections are deferred. No authoritative full-market inventory or all-product manual check exists.",
+      "acceptance": "Collect remaining initial tasks, then exact option corrections and freshness refresh; reconcile authoritative inventory and selected siblings with independently checked category/pagination coverage."
+    },
+    {
+      "priority": 2,
+      "outcome": "Exact current package, chocolate/plain identity, grams/ml and complete factory nutrition",
+      "requirements": ["R003", "R014", "R015", "R016", "R038", "R043", "R046"],
+      "evidence": [
+        "docs/ROADMAP.md:13",
+        "docs/REQUIREMENTS.md:63",
+        "docs/acceptance/ice-source-followup/review.md",
+        "docs/acceptance/source-integrity/github-issues-observed.json.gz"
+      ],
+      "gap": "Manufacturer coverage is incomplete; ice has only2 of14 dual-unit/identity records in the dated audit. Family/revision facts and cropped decimal OCR remain conditional. Newly identified cheap powder label conflicts in issue21 need current exact source review and automatic conflict coverage.",
+      "acceptance": "Match exact selected flavour/package/formula/revision/GTIN or reviewed visual identity, then approve source-backed field facts without repack transfer or density inference."
+    },
+    {
+      "priority": 3,
+      "outcome": "Actual fresh Nha Trang bulk shipping, stock and frozen cold-chain delivery",
+      "requirements": ["R001", "R011", "R012", "R013"],
+      "evidence": [
+        "docs/ROADMAP.md:10",
+        "docs/basket-quotes.md:82",
+        "docs/acceptance/requirements-audit/current.json"
+      ],
+      "gap": "No live confirmed frozen Nha Trang checkout receipt; default/HCM freight cannot be substituted. Exact quantities, stock caps and delivery acceptance are not complete.",
+      "acceptance": "Capture actual source-matched destination/quantities/current stock and explicit frozen shipping evidence; recompute delivered gram/ml/protein rates for every relevant candidate."
+    },
+    {
+      "priority": 4,
+      "outcome": "Production checkout adapter, quantity/voucher sweep and real food-gift eligibility",
+      "requirements": ["R010", "R012", "R047"],
+      "evidence": [
+        "src/basket-quote.js:355",
+        "src/basket-comparison.js:289",
+        "docs/basket-quotes.md:90",
+        "docs/ROADMAP.md:52"
+      ],
+      "gap": "Capture requires a prepared basket and reviewed selectors; automatic live cart-layout integration and relevant quantity/voucher/payment-condition exploration are unfinished. Issue14 gift flavour/mass/formula/stock/order eligibility and disputed paid-pouch basis remain unresolved.",
+      "acceptance": "Integrate actual layouts and explore relevant fresh basket combinations; use only source-confirmed applied discounts and approved gift allocations exactly once."
+    },
+    {
+      "priority": 5,
+      "outcome": "Complete properly reviewed English and real production Telegram acceptance",
+      "requirements": ["R017", "R024", "R037"],
+      "evidence": [
+        "docs/translation.md:3",
+        "docs/translation.md:109",
+        "docs/acceptance/requirements-audit/current.json"
+      ],
+      "gap": "No actual translation provider or whole-catalog semantic review; unknown fields preserve Vietnamese. Telegram has local mock E2E but no live authorized bot deployment receipt.",
+      "acceptance": "Configure the provider without persisting credentials, translate/review every required source-bound field and run a controlled authorized real bot acceptance session; local fixtures remain software evidence only."
+    }
+  ],
+  "documentationCorrections": [
+    {
+      "path": "docs/REQUIREMENTS.md:75",
+      "finding": "Wording currently implies every ambiguous/contradictory mass blocks ml and all protein prices.",
+      "correction": "Held net mass blocks gram and mass-based protein denominators; independent source-backed ml and volume/package protein may remain usable. A held paid count blocks all quantity-based denominators."
+    },
+    {
+      "path": "docs/tables/ice-unit-rankings.md:3",
+      "finding": "No carton-count multiplier is used conflicts with explicitly observed24-bottle rows.",
+      "correction": "Say no assumed carton count or density is used; verified selected inner counts are multiplied."
+    },
+    {
+      "path": "docs/ROADMAP.md:22",
+      "finding": "The installed-audit contract paragraph says the new repository full suite is running, while several later paragraphs describe dated accepted suites.",
+      "correction": "Attach actual dated final source-integrity receipt after the running suite completes; do not collapse historical suite counts into a latest acceptance claim."
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "finding": "Its09:01 inventory and GitHub issue snapshot predates new issues19-22 and the current draft.",
+      "correction": "Rebuild dated current audit/issue inventory after publication; preserve older snapshots and keep all delivered/production flags false."
+    }
+  ],
+  "remainingNoClaim": [
+    "No all-products-collected guarantee",
+    "No full-market cheapest bulk buy",
+    "No complete factory/OCR identity acceptance",
+    "No confirmed frozen Nha Trang delivered winner",
+    "No complete real English or live Telegram deployment",
+    "No final current full-suite or Git push outcome independently asserted"
+  ],
+  "sourceSnapshots": [
+    {
+      "path": "docs/REQUIREMENTS.md",
+      "bytes": 29324,
+      "sha256": "c49764e6423c2d3212a3801d1a473720fad38135cb208ecba637c854b68c2492"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "bytes": 16022,
+      "sha256": "304aa6119e006d29a810d48d416547b001b631d706b60429306fc1fc0dd80b1f"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "bytes": 30264,
+      "sha256": "5237fcc6524945bbcf9eb1cb25a0b8bc9cacd0298a35218f533c750e1176703f"
+    },
+    {
+      "path": "docs/acceptance/source-integrity/github-issues-observed.json.gz",
+      "bytes": 31670,
+      "sha256": "d5cc92bc227a77a6f81e133017566d4bf0e4d9887d3f7e68bb1227ca2c65284b",
+      "compression": "gzip; recorded sha256 and bytes refer to original uncompressed GitHub download"
+    },
+    {
+      "path": "src/variant-policy.js",
+      "bytes": 2790,
+      "sha256": "be300c736dfc719967cf78a0a1afd32f8e02ab32b6a0e420723978a610263be5"
+    },
+    {
+      "path": "src/scope-decisions.js",
+      "bytes": 3649,
+      "sha256": "d2e80678a6630d6dee2bd5d5008e47aca17137eb1cd0c59f6732bf94741c7b63"
+    },
+    {
+      "path": "src/cache.js",
+      "bytes": 7074,
+      "sha256": "d444bdb4a97bd13bf5b6445eb6c887e43944543bad55cce50c9f26ddba331c9b"
+    },
+    {
+      "path": "src/page-readiness.js",
+      "bytes": 4097,
+      "sha256": "306acfc451c9422e0805af807d39a70574221ed4ce80508f03d3fecd834bfba9"
+    },
+    {
+      "path": "src/page-challenge.js",
+      "bytes": 4556,
+      "sha256": "14a8711112db865a9417594e9256ec672576db4cfb01c169103f5065ebc62a6a"
+    },
+    {
+      "path": "src/persistent-browser.js",
+      "bytes": 5541,
+      "sha256": "2d3c386d4fc552ec61294005561e2378024f4370f11c7f988b3aad3bd1523d9b"
+    },
+    {
+      "path": "src/food-offer-source-basis.js",
+      "bytes": 14682,
+      "sha256": "bac02659415805a014a4872f122f5d7f547f590c36b49ce30c50fc3a8379dc8e"
+    },
+    {
+      "path": "src/collection-review-replay.js",
+      "bytes": 5760,
+      "sha256": "6e62ae7624db160ed9978d1ee20de3ba6a41731507f0b475635720e716a6c14d"
+    },
+    {
+      "path": "src/basket-quote.js",
+      "bytes": 14217,
+      "sha256": "60da3b2c06ec6b9556b2acf9a74fa7a593b2f0d4178786f02912c2aa656947d1"
+    },
+    {
+      "path": "src/basket-comparison.js",
+      "bytes": 9481,
+      "sha256": "5eb20335d653243b130d6d160988ffc017ad7f8dea59b0b2bfe06ffefd7c2b60"
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "bytes": 18826,
+      "sha256": "be26feeaace8d31ab38a5063e7ccef541c7cf12eeba6e7ac25b1463927d5e330"
+    },
+    {
+      "path": "src/translation-presentation.js",
+      "bytes": 8187,
+      "sha256": "05cea12d164dbac6f4feea041d2dd318abb3b95e4a919673ae49a4b0b700207d"
+    },
+    {
+      "path": "src/store.js",
+      "bytes": 10761,
+      "sha256": "be27089344e6e1e97073710f914222e5d3b6230eb239c15908f698eca7d6316f"
+    },
+    {
+      "path": "docs/basket-quotes.md",
+      "bytes": 9246,
+      "sha256": "7ed826961b30e3d14619f3fa27575a7f80cd86442ce96c121320ca5a38545a0e"
+    },
+    {
+      "path": "docs/translation.md",
+      "bytes": 13067,
+      "sha256": "aa440cea35b4ca0b651a786e8f480988d6e0af14969a3cde8a5bcf1677c0938d"
+    },
+    {
+      "path": "docs/tables/ice-unit-rankings.md",
+      "bytes": 20211,
+      "sha256": "09a09e5d36338ff37f98e693532a4833559a0460545c43df81b9b896195b496f"
+    }
+  ],
+  "snapshotCaveat": "These are dated review input hashes; later corrected documents and issue states may differ. The current acceptance report is regenerated after publication."
+}

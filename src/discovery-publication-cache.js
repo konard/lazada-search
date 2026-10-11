@@ -32,6 +32,7 @@ export function discoveryObservedAt(record, fallback) {
   for (const value of [
     record?.observedAt,
     record?.fetchedAt,
+    record?.updatedAt,
     record?.finishedAt,
     record?.startedAt,
     fallback,
@@ -237,9 +238,13 @@ export function discoveryPublicationStore(store) {
           return record && observedAt ? { ...record, observedAt } : record;
         };
       }
-      if (property === 'putLatest') {
-        return (kind, record) =>
-          Reflect.apply(target.putLatest, view, [kind, record]);
+      if (
+        property === 'putLatest' ||
+        (property === 'putLatestMany' &&
+          typeof target.putLatestMany === 'function')
+      ) {
+        return (kind, input) =>
+          Reflect.apply(target[property], view, [kind, input]);
       }
       const value = target[property];
       return typeof value === 'function' ? value.bind(target) : value;

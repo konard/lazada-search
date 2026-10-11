@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "detectedAt": "2026-10-11T11:44:39.400822+00:00",
+  "dependency": "lino-objects-codec@0.9.0",
+  "latestPublishedVersion": "0.9.0",
+  "runtime": "Node22.23.0",
+  "failure": "RangeError: Invalid array length in readable.js tokenize Array.from(text)",
+  "upstreamIssue": "https://github.com/link-foundation/lino-objects-codec/issues/68",
+  "archiveKind": "discovery-publication-source",
+  "records": 1764,
+  "notationBytes": 144497741,
+  "notationSha256": "33288f6b43e93e619e92eb622383da322ba8bb6022503dc6e8faa6f9c5a088a4",
+  "gzipBytes": 24975140,
+  "installedOriginalReadableSha256": "48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604",
+  "workaroundStatus": "exact-version-and-source-gated-v2-full-case-verified",
+  "fullVerification": "passed-final-frozen-code-current-case-default-Node-heap",
+  "failedRebuildLog": "report-and-archive-before-codec-fix.log.gz",
+  "productRequestsDuringDiagnosis": 0,
+  "weakenedVerification": false,
+  "firstGuardedPatch": {
+    "version": "0.9.0",
+    "status": "source-hash-gated-large-document-patch",
+    "patchVersion": 1,
+    "pristineSha256": "48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604",
+    "patchedSha256": "f3fe94603fde5aad333aadcbd44749041bdbdf0d05d8cd75b2604b27e3abb313",
+    "sourceSha256": "48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604",
+    "applied": true,
+    "globalMonkeyPatch": false
+  },
+  "firstFullVerificationAfterPatch": {
+    "exitCode": 134,
+    "failure": "Reached default4GB Node heap limit after whole-document character array patch; quoted-value allocation remains under investigation",
+    "at": "2026-10-11T11:52:55.501133+00:00",
+    "notationChars": 136927157,
+    "newlines": 3614514,
+    "longestLineChars": 7933,
+    "failedStdoutBytes": 0,
+    "rawStderrCapturedToFile": false
+  },
+  "installReceipt": {
+    "version": "0.9.0",
+    "status": "source-hash-gated-large-document-patch",
+    "patchVersion": 2,
+    "pristineSha256": "48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604",
+    "patchedSha256": "37e3b9e0fbe7250ee7fe6103decc42f1eb21d2ab21686cbccbcf2648fa8c3122",
+    "sourceSha256": "f3fe94603fde5aad333aadcbd44749041bdbdf0d05d8cd75b2604b27e3abb313",
+    "applied": true,
+    "globalMonkeyPatch": false
+  },
+  "verifiedAt": "2026-10-11T11:56:35.429071+00:00",
+  "fullCaseVerification": {
+    "valid": true,
+    "records": 34253,
+    "blobs": 7030,
+    "downloads": 0
+  },
+  "defaultHeapLimitChanged": false,
+  "focusedTests": {
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "skipped": 0,
+    "log": "codec-memory-focused8.tap.gz",
+    "boundedChildHeapMiB": 128,
+    "longSingleQuotedFixtureMiB": 16
+  },
+  "firstSuccessfulFullCaseVerification": {
+    "valid": true,
+    "records": 33649,
+    "blobs": 7030,
+    "downloads": 0
+  },
+  "finalVerifiedAt": "2026-10-11T12:41:50.976857+00:00",
+  "finalVerificationReceipt": "archive-verification.json",
+  "packageInstallerShipped": true,
+  "packageReceipt": "package-dry-run.json.gz"
+}

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { auditHandpickedGramOrder } from '../scripts/audit-report-order.mjs';
 
 const report = JSON.parse(
   await readFile(
@@ -13,22 +14,29 @@ const top = JSON.parse(
   await readFile(new URL('../docs/tables/top-10-partial.json', import.meta.url))
 );
 
-test('all six handpicked selections have prices and explicit gram denominators', () => {
+test('all six handpicked selections preserve prices, with supported gram costs sorted before held quantities', () => {
   assert.equal(report.rows.length, 6);
   assert.equal(report.counts.capturedExactSkuRows, 6);
   assert.equal(report.counts.duplicateResolvedListingRows, 1);
   assert.equal(report.counts.duplicateResolvedExactSkuRows, 0);
   for (const row of report.rows) {
     assert.ok(row.priceVnd > 0);
-    assert.ok(row.costs.massG > 0, row.exactSku);
-    assert.ok(row.costs.beforePerFoodGram > 0, row.exactSku);
   }
+  const order = auditHandpickedGramOrder(report.rows);
+  assert.equal(order.rankedRows, 5);
+  assert.equal(order.unresolvedRows, 1);
+  assert.equal(report.counts.supportedGramRows, order.rankedRows);
 });
 
-test('seller repacks use exact selected selling quantities', () => {
+test('ambiguous paid bags remain held while a supported seller repack uses its selected mass', () => {
   const rule = bySku('13392889869_VNAMZ-117024762283');
-  assert.equal(rule.costs.massG, 2000);
-  assert.equal(rule.costs.beforePerFoodGram, 2277000 / 2000);
+  assert.equal(rule.priceVnd, 2277000);
+  assert.equal(rule.costs.massG, null);
+  assert.equal(rule.costs.beforePerFoodGram, null);
+  assert.equal(rule.costs.afterPerFoodGram, null);
+  assert.equal(rule.eligibleWheyRanking, false);
+  assert.ok(rule.denominatorReview.pendingFields.includes('netMassG'));
+  assert.equal(rule.denominatorReview.paidMassBasis.requiresReview, true);
   assert.equal(rule.manufacturerVerified, false);
   const on = bySku('3265021607_VNAMZ-15762183506');
   assert.equal(on.costs.massG, 900);
