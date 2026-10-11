@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T16:55:36.866913+00:00",
+  "checkedAt": "2026-10-11T17:06:15.561322+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -206,13 +206,14 @@
       "id": "R033",
       "status": "implemented",
       "mechanicsStatus": "implemented",
-      "realDataAcceptance": "Installed0.31.0 accepted local1309/1309 unit and48/48 native/browser E2E0skip. Current sourcee63df14 passes eight full runtime jobs and48/48 native/browser E2E, including complete Windows Node and Deno; Windows Bun completes within600s but two separate3000ms redirect probes fail.",
+      "realDataAcceptance": "Installed0.31.1 and shared root Links Notation0.25.2 accepted full localBun1312/1312 zero failures/skips and real-browser/interfaces2/2. npm audit0. Original official tarball and registry/source differences preserved. Fresh complete nine-platform/native CI pending; no product requests.",
       "evidence": [
         "package.json",
         "package-lock.json",
         "docs/acceptance/browser-commander-031/README.md",
         "docs/acceptance/browser-commander-031/review.json",
-        "docs/acceptance/ocr-model-identity/validation.json"
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/browser-commander-0311/review.json"
       ],
       "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data. The earlier1,291/48 dependency checkpoint remains dated evidence; current local results include model bytes and fresh shopping defaults."
     },
@@ -911,5 +912,15 @@
       "actualNativeOcr": true,
       "receipt": "../ocr-model-identity/redirect-queue-validation.json"
     }
+  },
+  "latestDependencyCheckpoint": {
+    "browserCommander": "0.31.1",
+    "linksNotationRoot": "0.25.2",
+    "review": "../browser-commander-0311/review.json",
+    "fullLocalBunPass": 1312,
+    "focusedRealBrowserAndInterfacesPass": 2,
+    "npmVulnerabilities": 0,
+    "actualNewPlatformAcceptancePending": true,
+    "productDownloads": 0
   }
 }

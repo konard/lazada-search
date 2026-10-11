@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T16:57:19.546Z",
+  "checkedAt": "2026-10-11T17:06:21.487Z",
   "catalogObservedAt": "2026-10-11T13:54:15.320Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
@@ -359,6 +359,22 @@
         "docs/acceptance/issue-reports.json"
       ],
       "finding": "Dedicated profile disables translate and SessionRestoreInfobar. Existing attached browser preferences are not overwritten; upstream report state not rechecked online."
+    },
+    {
+      "id": "R033",
+      "requirement": "Update Browser Commander when newer version available",
+      "status": "implemented",
+      "mechanicsStatus": "implemented",
+      "realDataAcceptance": "Installed0.31.1 and shared root Links Notation0.25.2 accepted full localBun1312/1312 zero failures/skips and real-browser/interfaces2/2. npm audit0. Original official tarball and registry/source differences preserved. Fresh complete nine-platform/native CI pending; no product requests.",
+      "evidence": [
+        "package.json",
+        "package-lock.json",
+        "docs/acceptance/browser-commander-031/README.md",
+        "docs/acceptance/browser-commander-031/review.json",
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/browser-commander-0311/review.json"
+      ],
+      "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data. The earlier1,291/48 dependency checkpoint remains dated evidence; current local results include model bytes and fresh shopping defaults."
     },
     {
       "id": "R035",
@@ -781,9 +797,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "b6e0247a7674340818cb993f795f4bdaf6f276f33b94bbf45d30733e3e6da5dd",
-      "bytes": 51338,
-      "observedAt": "2026-10-11T16:55:36.866913+00:00"
+      "sha256": "2e3751b8f6db341a0125ebab4cda6cff69de33c9447f6aa437e52311ef373a48",
+      "bytes": 51748,
+      "observedAt": "2026-10-11T17:06:15.561322+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",

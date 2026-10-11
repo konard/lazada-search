@@ -1,0 +1,211 @@
+{
+  "checkedAt": "2026-10-11T17:05:35.430878+00:00",
+  "officialRelease": "https://github.com/link-foundation/browser-commander/releases/tag/v0.31.1",
+  "publishedAt": "2026-10-11T15:45:11Z",
+  "priorVersion": "0.31.0",
+  "installedVersion": "0.31.1",
+  "registryIntegrity": "sha512-zcgdslwv1S+lD8K28zfoMTCmqE8mNKMVmPqERhZ8n1d4JlJ3inhJOnU9P2jhI5ilvFvHg/zoLq8blmS9augxqg==",
+  "archive": {
+    "path": "browser-commander-0.31.1.tgz",
+    "bytes": 764159,
+    "sha256": "a86da828442a60b5797b47796d70e90f94e90740f6f193694ee1b7a2e3433cd6",
+    "sha512": "zcgdslwv1S+lD8K28zfoMTCmqE8mNKMVmPqERhZ8n1d4JlJ3inhJOnU9P2jhI5ilvFvHg/zoLq8blmS9augxqg==",
+    "matchesRegistryIntegrity": true
+  },
+  "lockDelta": [
+    {
+      "path": "",
+      "beforeVersion": "0.11.31",
+      "afterVersion": "0.11.31"
+    },
+    {
+      "path": "node_modules/browser-commander",
+      "beforeVersion": "0.31.0",
+      "afterVersion": "0.31.1"
+    },
+    {
+      "path": "node_modules/browser-commander/node_modules/links-notation",
+      "beforeVersion": "0.23.0",
+      "afterVersion": null
+    },
+    {
+      "path": "node_modules/links-notation",
+      "beforeVersion": "0.25.1",
+      "afterVersion": "0.25.2"
+    }
+  ],
+  "notation": "Root0.25.1 ->0.25.2; Browser Commander nested0.23.0 removed, shares root0.25.2. Other lino-env/lino-arguments/codec parser versions deliberately stay on their reviewed locked ranges.",
+  "upstreamSourceReview": "Official0.31.0...0.31.1 changes trace scalar escaping for lone UTF16 units and declared Links Notation range. Launcher, persistent session, dialogs, scrolling, screenshots and collection cache policy modules retain identical hashes. The official notation GitHub compare hits its300-file response cap; complete official npm0.25.1/0.25.2 archive hashing establishes the exact JavaScript runtime delta separately.",
+  "installedFileChanges": [
+    {
+      "group": "files",
+      "path": "package-lock.json",
+      "before": "ada4b3a5bb17f77f15c63d239a488e34b15f8a6b0bb304dd3c32b7a5e60e0b79",
+      "after": "18b18379522af617b52f2056cb6927789f18624d000c244ccf407316de113d78"
+    },
+    {
+      "group": "files",
+      "path": "package.json",
+      "before": "ef8e36bed74220c7cc713e3c6be77e326953edf025016cd20ee243b9131f6efe",
+      "after": "22309e6ac49baacca39d3f87b8ce46ef331bd434b68eebbfa666954105f03586"
+    },
+    {
+      "group": "installedDependencyFiles",
+      "path": "node_modules/browser-commander/package.json",
+      "before": "b9fa81b0e7c6a41296bfb873b4dcc73c33a3d129d9c761d1535e0a30b98abbd9",
+      "after": "b566bd8be851f6ecc60bc7493d7eb675425c1f6cdaa08d549d8462f9990a192b"
+    },
+    {
+      "group": "installedDependencyFiles",
+      "path": "node_modules/browser-commander/src/traces/links.js",
+      "before": "d6aa3bb55ad05dbc0b00b3c2d75d558157b5119ccb804ab4ab4bdbb70306e219",
+      "after": "4df5ac7029b6ff59229a08ae8e7f1ac97063d84a9bde61bc70002e89f8b74e49"
+    }
+  ],
+  "fullLocalBun": {
+    "tests": 1312,
+    "pass": 1312,
+    "fail": 0,
+    "skip": 0,
+    "files": 158,
+    "seconds": 63.83,
+    "wrapperSeconds": 65,
+    "budgetSeconds": 600,
+    "actualNativeOcr": true
+  },
+  "focusedRealBrowserAndInterfaces": {
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "cancel": 0,
+    "skip": 0,
+    "durationMs": 15392.681917,
+    "files": [
+      "tests/e2e/preferred-variant.test.js",
+      "tests/e2e/flavour-scope.test.js"
+    ]
+  },
+  "publicConsumer": {
+    "sharedModuleAndLinkClass": true,
+    "exactScalarCases": 10,
+    "streamingChunks": [
+      1,
+      17,
+      "entire"
+    ],
+    "producer": "browser-commander-0311-consumer.mjs.gz",
+    "log": "browser-commander-0311-consumer.log.gz",
+    "note": "A first root probe incorrectly imported an internal helper; a second incorrectly required unrelated codec parsers to deduplicate. Both rejected original logs are retained as probe construction errors, not dependency bugs or accepted tests. Correct public traceLinks API and only Browser Commander/root identity are verified."
+  },
+  "npmAudit": {
+    "totalVulnerabilities": 0,
+    "original": "browser-commander-0311-audit.json.gz"
+  },
+  "frozenSnapshot": "../ocr-model-identity/browser-commander-0311-frozen-code.json",
+  "rawOriginals": [
+    {
+      "path": "browser-commander-0311-audit.json.gz",
+      "originalBytes": 365,
+      "originalSha256": "27e258c63fe9ec6cfaee76aa56ad82c4924c0e1dc96b121ec5291ece05316b62",
+      "gzipSha256": "34c53f297c4935ea44075e7d08ec91eb2174d6f6b150b2e8d5887bd6f8a810d5"
+    },
+    {
+      "path": "browser-commander-0311-consumer-nonpublic-helper-rejected.log.gz",
+      "originalBytes": 679,
+      "originalSha256": "48e4a39ff4be183d0a4e7d7d3819a9151b507c4df2ca0f9a45fa511e091fa712",
+      "gzipSha256": "1cc41935c86dae512974bc6f47d617ad751ebc0ec82f7aae824652c3d5f6dea6"
+    },
+    {
+      "path": "browser-commander-0311-consumer-overbroad-lock-assertion-rejected.log.gz",
+      "originalBytes": 1321,
+      "originalSha256": "e40eac51444032080a5041e42e57d5a08b30b712ee85b7a7802ff88fa5ca9756",
+      "gzipSha256": "c264d55d1d4f56295c69af66518d41be13b4d4c44c2b423986e6dc22ab1a2f06"
+    },
+    {
+      "path": "browser-commander-0311-consumer.log.gz",
+      "originalBytes": 175,
+      "originalSha256": "f5d12f4e5b8345d207c70c5482b59a71f8719b660183856d081f1eec810264bc",
+      "gzipSha256": "c700ee6bb7e07bdd29dd6dc183703f583ef1777061c919b05b91cb1d5c7c9cf4"
+    },
+    {
+      "path": "browser-commander-0311-consumer.mjs.gz",
+      "originalBytes": 2088,
+      "originalSha256": "8562eb18c3745f3a5d84206f921350a1d576a9d3a11a353f7f561cf8a82d3770",
+      "gzipSha256": "1b781010d92ebdc0d4aebc2f74697feb980bac267577bb2882943b4051d29d04"
+    },
+    {
+      "path": "browser-commander-0311-diff.json.gz",
+      "originalBytes": 49835,
+      "originalSha256": "2b22fe4580a9af5b63440e084adfbac167a1e484131c083f0f16cfcd0326d0fe",
+      "gzipSha256": "dc8f2920be12f9339ed178cec15c94388f68796607b8adce8361b2208ba0d8ac"
+    },
+    {
+      "path": "browser-commander-0311-full-bun.log.gz",
+      "originalBytes": 148192,
+      "originalSha256": "f84622fb798b74168b77aee723cbe8d8d260d08ab46de2e08c22281760664cb0",
+      "gzipSha256": "e6a75c8cbb0e115396487e0ee0e757702ff8193f889e67213287400c92519dd9"
+    },
+    {
+      "path": "browser-commander-0311-install.log.gz",
+      "originalBytes": 49,
+      "originalSha256": "30b08a2727cfd940f681e557ef41d75f84cb5ed3235980b781dcf0a0a409e0eb",
+      "gzipSha256": "fd7032b0c871f4eeb56d58481f885d295660b9e915f64b50b58c7c776bb88947"
+    },
+    {
+      "path": "browser-commander-0311-npm.json.gz",
+      "originalBytes": 242,
+      "originalSha256": "9e1fd887bfa83d228054d9ac73cb608f998189b822869e254e955f3f3f1147fa",
+      "gzipSha256": "4835388c68cdfd1f685d052a6ed5218fd3591ced3491c78d4f5cf3a69d5cce2a"
+    },
+    {
+      "path": "browser-commander-0311-pack.json.gz",
+      "originalBytes": 52125,
+      "originalSha256": "faa6f51d3badd926501e8bbfdf3ecd348b9a2fac2e1859bff165cce83b8a8a80",
+      "gzipSha256": "f9073379ccb813bf3ff4195c875e43690ff4fdce31abc17ace8ccbbea1529ff4"
+    },
+    {
+      "path": "browser-commander-0311-preferred-e2e.log.gz",
+      "originalBytes": 778,
+      "originalSha256": "a452dfdbaf08d0b68f5653a130a66623ded27285611c6d0572bd046003d3a889",
+      "gzipSha256": "ae13909cc1a0fd16a6a4e16e1f65742d30ce61984c0cdb0b38f8d6ce4c735f6c"
+    },
+    {
+      "path": "browser-commander-0311-prior-package-lock.json.gz",
+      "originalBytes": 148430,
+      "originalSha256": "ada4b3a5bb17f77f15c63d239a488e34b15f8a6b0bb304dd3c32b7a5e60e0b79",
+      "gzipSha256": "124e71d722fd0e5b86c67d53e0689f930df3cc27447538e8b5219bf3f98febc8"
+    },
+    {
+      "path": "browser-commander-0311-prior-package.json.gz",
+      "originalBytes": 3332,
+      "originalSha256": "ef8e36bed74220c7cc713e3c6be77e326953edf025016cd20ee243b9131f6efe",
+      "gzipSha256": "f135aad72383d63c449ce8f2f1c803bc2dfd3ece89e9507b58e3c3f8129c433a"
+    },
+    {
+      "path": "browser-commander-0311-release.json.gz",
+      "originalBytes": 2460,
+      "originalSha256": "9e39781ea41149d32547044e66fb449c7f571a6b2745bb59b2db24c73e1b2802",
+      "gzipSha256": "9bfede2ace29cf2c73b0b30143b46d4a840adff257dc4f7741dfc233f9bac8c4"
+    },
+    {
+      "path": "links-notation-0252-diff.json.gz",
+      "originalBytes": 641802,
+      "originalSha256": "e472d62507af65e4850e86ca3757ce6e309d40fe5f956d5452f586e2d867ce69",
+      "gzipSha256": "32d892bea2de0e5d3c9d8560d90e4e82cdeff833296a8fdf92812dfb4fa71a1e"
+    }
+  ],
+  "actualFinalNinePlatformAndFullNativeAcceptance": "Pending new published-source CI; older3821770 run uses0.31.0 and cannot accept this dependency update.",
+  "collectionStopActive": true,
+  "productDownloads": 0,
+  "allRequirementsDelivered": false,
+  "productionReady": false,
+  "notationArchiveReview": {
+    "path": "links-notation-complete-archive-review.json.gz",
+    "originalBytes": 1728,
+    "originalSha256": "4f76513fab7016302841694a5a1a69d74124dea718dbc30828cb2d70401bf748",
+    "changedJavascriptRuntimeFiles": [],
+    "changedJavascriptTestFiles": [
+      "package/tests/SharedTextParity.test.js"
+    ]
+  }
+}
