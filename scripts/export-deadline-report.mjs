@@ -210,11 +210,11 @@ try {
     })),
     iceCream: iceCandidates,
   };
-  const body = `# Partial 10.10 buying report
+  const body = `# Partial cached buying report: 10.10 observations
 
-Updated **${receipt.generatedAt}**. Vietnam / Nha Trang, **VND**. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
+Recalculated offline **${receipt.generatedAt}**. Vietnam / Nha Trang, **VND**. Prices and stock retain their original capture dates and require rechecking when collection resumes. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
 
-**Best fresh factory-specification-matched whey: [IT'S JUST unflavoured 2268 g](https://www.lazada.vn/products/pdp-i3300919067.html?skuId=16058119853)**: 2,952,300 VND + 80,200 VND one-package freight = **3,032,500 VND; 1,470.79 VND/g protein delivered**. Captured quantity cap: three.
+**Factory-specification-matched captured whey lead: [IT'S JUST unflavoured 2268 g](https://www.lazada.vn/products/pdp-i3300919067.html?skuId=16058119853)**: 2,952,300 VND + 80,200 VND one-package freight = **3,032,500 VND; 1,470.79 VND/g protein delivered**. Captured quantity cap: three.
 
 **Cheaper conditional lead: [Nutrabolics Hydropure Extreme Chocolate](https://www.lazada.vn/products/pdp-i3095127497.html?skuId=14849213302)**: 999,997 + 37,700 = **1,037,697 VND**. Official 2050 g / 28 g protein per 36 g serving gives **650.82 VND/g protein delivered**, conditional on the exact factory package/revision. Seller description says 2.04 kg and gallery depicts other flavours. [Manufacturer evidence and conflicts](../acceptance/urgent-whey-reviews/factory-lead-review.md). This remains a lead to verify, not an exact factory match.
 

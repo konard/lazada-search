@@ -1,5 +1,7 @@
 # Lazada Vietnam catalog and comparison tables
 
+[Updated partial whey rankings](top-10-partial.md) · [Ice-cream gram/ml/protein rankings](ice-unit-rankings.md) · [Handpicked options sorted by gram price](handpicked.md) · [Saved state and resume checklist](../RESUME.md)
+
 [Strict-flavour shopping table: unflavoured/chocolate powders and chocolate-core ice cream](shopping-shortlist.md) · [Reviewed sale discounts and bulk projections](../acceptance/urgent-discounts/README.md)
 
 **Collection and manufacturer verification are incomplete. This dataset is not ready to establish the cheapest available bulk purchase.** Captured at the dates in [catalog.json](catalog.json); destination Nha Trang, VND.
