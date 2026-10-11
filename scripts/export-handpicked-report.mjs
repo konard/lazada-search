@@ -284,11 +284,11 @@ try {
       value.uniqueExactSkuMatches,
     ])
   )}\n\n[Machine-readable receipt](handpicked.json) includes exact option text, alternative cached SKU identities for resolved listings, source timestamps and any separately published conditional factory calculation. Unresolved links remain unpriced. Ingredient-based whey and soy categories remain separate. No bulk shipping or food millilitres are inferred.\n`;
+  const style = await resolveConfig('docs/tables/handpicked.md');
   await writeFile(
     'docs/tables/handpicked.json',
-    `${JSON.stringify(receipt, null, 2)}\n`
+    await format(JSON.stringify(receipt), { ...style, parser: 'json' })
   );
-  const style = await resolveConfig('docs/tables/handpicked.md');
   await writeFile(
     'docs/tables/handpicked.md',
     await format(body, { ...style, parser: 'markdown' })

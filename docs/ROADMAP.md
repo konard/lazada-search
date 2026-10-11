@@ -2,7 +2,7 @@
 
 The complete [requirement tracker](REQUIREMENTS.md) records every requested capability and its current evidence/status. [Partial buying report](tables/top-10-partial.md) · [Full captured catalog](tables/README.md) · [Defect register](acceptance/issue-reports.json).
 
-The user deferred further collection on 2026-10-12 (Vietnam time). [Saved state and resume checklist](RESUME.md) links the regenerated partial rankings, exact source/arithmetic audit and remaining work. This offline checkpoint preserves all original observation dates and the active manufacturer CAPTCHA stop.
+The user resumed requirement delivery after the 2026-10-12 (Vietnam time) saved checkpoint. [Saved state and remaining work](RESUME.md) retains the original collection handoff. Current ice-unit work shows both grams/ml and unit prices together and shares source-bound quantity reviews across interfaces; [acceptance and remaining label gaps](acceptance/ice-unit-completeness/) preserve the evidence. The original observation dates and active manufacturer CAPTCHA stop remain in effect.
 
 Current CI at [source `ad1be26`](acceptance/ocr-model-identity/ci-ad1be26-review.json) accepts **all nine full runtime jobs** across Node, Bun and Deno on Ubuntu, macOS and Windows, plus **48/48 native/browser E2E tests**, with zero failures, cancellations or skips. Node and Bun each pass 1,321 tests on Ubuntu/macOS; Windows Node passes 1,280 and Windows Bun 1,284. Deno passes 1,166 tests and 16 steps on every platform. Offline publication passes **446 local-link checks** with zero errors; the receipt retains every runtime-specific count, complete catalog phase and original log. The separate release preflight remains blocked by package-owner npm publisher configuration under issue 32.
 

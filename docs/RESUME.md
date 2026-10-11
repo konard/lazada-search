@@ -1,6 +1,6 @@
 # Saved partial results and resume checklist
 
-The user requested this checkpoint on 2026-10-12 (Vietnam time) and deferred further collection. All partial reports were recalculated from the existing public cache with zero website downloads. Prices, stock and shipping retain their original observation dates; report regeneration does not refresh them.
+The user requested the saved checkpoint on 2026-10-12 (Vietnam time), then resumed requirement delivery. Ice-cream quantities and both gram/ml rates are now shown together, with source-bound package reviews shared across the library, CLI, HTTP and Telegram. [Current correction and evidence](acceptance/ice-unit-completeness/) retain the implementation and remaining label gaps. All reports are recalculated from the existing public cache with zero website downloads while the saved manufacturer challenge remains active. Prices, stock and shipping retain their original observation dates; report regeneration does not refresh them.
 
 ## Published comparisons
 
@@ -9,6 +9,7 @@ The user requested this checkpoint on 2026-10-12 (Vietnam time) and deferred fur
 - [Six handpicked links](tables/handpicked.md): ascending supported gram prices, unresolved denominators last, exact-SKU and listing-level top-ten membership reported separately.
 - [Source and arithmetic audit](acceptance/top10-check/unit-cost-audit.md): 54 report rows independently checked against original cached HTML and source digests.
 - [Publication receipt](acceptance/partial-report-checkpoint/review.json): original logs, report hashes and focused test results for this checkpoint.
+- [Dual-unit correction and independent review](acceptance/ice-unit-completeness/): source-bound package reviews, interface checks and regenerated report checks for the resumed work.
 
 Both whey rankings contain ten rows. Ice cream has fourteen captured selected prices, with five eligible gram rows, seven millilitre rows and two protein-reference rows. Only two ice selling units have both supported grams and millilitres; no exact Nha Trang frozen-delivery quote is captured. The handpicked list has six captured SKUs and five supported gram denominators. These remain partial results.
 
@@ -29,6 +30,7 @@ node scripts/export-deadline-report.mjs --configuration data/cases/vietnam-nha-t
 node scripts/export-ice-unit-report.mjs
 node scripts/export-handpicked-report.mjs --configuration data/cases/vietnam-nha-trang/preferences.lenv --offline --no-ocr
 node scripts/audit-deadline-unit-costs.mjs
+node scripts/audit-ice-unit-completeness.mjs
 node scripts/audit-case-requirements.mjs
 node bin/lazada-search.js archive-verify --offline --no-ocr
 ```

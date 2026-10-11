@@ -137,6 +137,8 @@ the affected unit costs `null`. No volume-to-mass conversion is assumed.
 when shipping is unknown they represent merchandise cost only. Use the explicit
 before/after fields for delivery comparisons.
 
+[Source-bound package quantity reviews](docs/package-quantities.md) apply already cached exact-label grams or millilitres consistently across the library, CLI, HTTP and Telegram. The ice-cream ranking tables show both known amounts and both unit prices side by side, whichever metric determines their order.
+
 `observedPrices` contains confirmed selected-SKU observations sorted by the chosen known metric, independently of manufacturer verification. `unsortable` retains rows missing that metric or variant confirmation. Neither list changes purchase eligibility in `ranked`. Use `--sort totalBeforeDelivery` to sort captured package prices without requiring nutrition or freight; use `--sort totalAfterDelivery` only where a matching freight quote exists. Invalidated price/quote sources are excluded until reloaded. Each observation retains its original timestamp.
 
 Public Vietnam shipping estimates can be collected without signing in:

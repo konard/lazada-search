@@ -11,6 +11,7 @@ import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
 import { COLLECTION_STOP_ID } from './page-challenge.js';
 import { replayHistoricalCaptures } from './historical-capture-replay.js';
+import { reviewPackageQuantities } from './package-quantity-review.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
@@ -33,6 +34,7 @@ Commands:
   inspect <kind> [id]            Read products, offers, evidence, OCR or history
   verify <product-id> <url>      Cross-check an operator-supplied official page
   review-manufacturer <id> <review.json>  Record an exact visual variant and label review
+  review-package-quantities <id> <review.json>  Reuse exact-source reviewed food grams/ml offline
   manufacturer-research <plan.json>  Research configured trusted sources without approving facts
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
   review-category <url> <review.json> Review a listing category across all its SKUs
@@ -232,6 +234,17 @@ export async function executeCommand(application, command, args, options = {}) {
           : undefined,
       });
     }
+    case 'review-package-quantities':
+      return reviewPackageQuantities(
+        application,
+        required(args[0], 'Product id'),
+        JSON.parse(
+          await readFile(
+            required(args[1], 'Package quantity review file'),
+            'utf8'
+          )
+        )
+      );
     case 'review-manufacturer':
       return application.reviewManufacturer(
         required(args[0], 'Product id'),

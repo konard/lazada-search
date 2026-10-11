@@ -1,6 +1,7 @@
 import { executeCommand } from './commands.js';
 import { reviewListingCategory } from './category-review.js';
 import { sha256 } from './util.js';
+import { reviewPackageQuantities } from './package-quantity-review.js';
 
 export const OPERATION_NAMES = [
   'discover',
@@ -19,6 +20,7 @@ export const OPERATION_NAMES = [
   'import',
   'import-capture',
   'review-manufacturer',
+  'review-package-quantities',
   'manufacturer-research',
   'review-category',
   'invalidate',
@@ -136,11 +138,21 @@ export async function executeOperation(application, request) {
   if (operation === 'import-capture') {
     return application.importCapture(object(input.capture, 'Browser capture'));
   }
-  if (operation === 'review-manufacturer') {
-    return application.reviewManufacturer(
-      string(input.productId, 'Product ID'),
-      object(input.review, 'Manufacturer review')
-    );
+  const packageReviewHandlers = {
+    'review-package-quantities': () =>
+      reviewPackageQuantities(
+        application,
+        string(input.productId, 'Product ID'),
+        object(input.review, 'Package quantity review')
+      ),
+    'review-manufacturer': () =>
+      application.reviewManufacturer(
+        string(input.productId, 'Product ID'),
+        object(input.review, 'Manufacturer review')
+      ),
+  };
+  if (Object.hasOwn(packageReviewHandlers, operation)) {
+    return packageReviewHandlers[operation]();
   }
   if (operation === 'manufacturer-research') {
     return application.manufacturerResearch(

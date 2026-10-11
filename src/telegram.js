@@ -75,12 +75,14 @@ export function tokenize(text) {
 export function formatComparison(report) {
   const money = (value) =>
     Number.isFinite(value) ? value.toFixed(2) : 'Unknown';
+  const unitPrices = (metrics) =>
+    `Food quantities: ${money(metrics.totalMassG)} g; ${money(metrics.totalVolumeMl)} ml; ${money(metrics.totalProteinG)} g protein\n${metrics.currency}, before / after delivery:\nFood g: ${money(metrics.costPerGramBeforeDelivery)} / ${money(metrics.costPerGramAfterDelivery)}\nml: ${money(metrics.costPerMlBeforeDelivery)} / ${money(metrics.costPerMlAfterDelivery)}\nProtein g: ${money(metrics.costPerProteinGramBeforeDelivery)} / ${money(metrics.costPerProteinGramAfterDelivery)}\n25 g protein: ${money(metrics.costPer25gProteinBeforeDelivery)} / ${money(metrics.costPer25gProteinAfterDelivery)}`;
   const verified = report.comparisons.filter((row) => row.manufacturerVerified);
   const priced = (report.observedPrices || [])
     .filter((row) => !row.manufacturerVerified)
     .map(
-      ({ product, offer, metrics }) =>
-        `Captured price: ${comparisonTitle(product)}\n${metrics.quantity} package(s), before / after delivery: ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)} ${offer.currency}\nSorted ${report.assumptions.sort}: ${money(metrics[report.assumptions.sort])}\nManufacturer verification pending${commercialText(offer)}\n${offer.url}`
+      ({ product, offer, metrics, problems }) =>
+        `Captured price: ${comparisonTitle(product)}\n${metrics.quantity} package(s), before / after delivery: ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)} ${offer.currency}\nSorted ${report.assumptions.sort}: ${money(metrics[report.assumptions.sort])}\n${unitPrices(metrics)}\nManufacturer verification pending\n${problems.join('; ')}${commercialText(offer)}\n${offer.url}`
     );
   const pending = report.comparisons
     .filter((row) => !row.manufacturerVerified)
@@ -91,12 +93,12 @@ export function formatComparison(report) {
         )
     )
     .map(
-      ({ product, offer }) =>
-        `Pending manufacturer verification: ${comparisonTitle(product)}\nObserved price: ${money(offer.price)} ${offer.currency}; specs: Unknown${commercialText(offer)}\n${offer.url}`
+      ({ product, offer, metrics, problems }) =>
+        `Pending manufacturer verification: ${comparisonTitle(product)}\nObserved price: ${money(offer.price)} ${offer.currency}\n${unitPrices(metrics)}\n${problems.join('; ')}${commercialText(offer)}\n${offer.url}`
     );
   const lines = verified.map(
     ({ product, offer, metrics, eligible, problems }, index) =>
-      `${index + 1}. ${comparisonTitle(product)}\n${product.proteinType}; ${metrics.proteinPer100g ?? 'Unknown'} g protein/100 g\n${metrics.currency}, before / after delivery:\nOrder (${metrics.quantity}): ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)}\nFood g: ${money(metrics.costPerGramBeforeDelivery)} / ${money(metrics.costPerGramAfterDelivery)}\nml: ${money(metrics.costPerMlBeforeDelivery)} / ${money(metrics.costPerMlAfterDelivery)}\nProtein g: ${money(metrics.costPerProteinGramBeforeDelivery)} / ${money(metrics.costPerProteinGramAfterDelivery)}\n25 g protein: ${money(metrics.costPer25gProteinBeforeDelivery)} / ${money(metrics.costPer25gProteinAfterDelivery)}\n${eligible ? 'Confirmed comparison' : problems.join('; ')}${commercialText(offer)}\n${offer.url}`
+      `${index + 1}. ${comparisonTitle(product)}\n${product.proteinType}; ${metrics.proteinPer100g ?? 'Unknown'} g protein/100 g\nOrder (${metrics.quantity}): ${money(metrics.totalBeforeDelivery)} / ${money(metrics.totalAfterDelivery)} ${metrics.currency}\n${unitPrices(metrics)}\n${eligible ? 'Confirmed comparison' : problems.join('; ')}${commercialText(offer)}\n${offer.url}`
   );
   return `Manufacturer-verified comparison, before / after delivery:\n${lines.join('\n\n') || 'No manufacturer-verified offers match these filters.'}\n\n${priced.join('\n\n')}\n\n${pending.join('\n\n')}\n\n${report.ranked.length} eligible offers; ${report.excluded.length} need information. ${[...new Set(report.excluded.flatMap((item) => item.problems))].join('; ')}`;
 }

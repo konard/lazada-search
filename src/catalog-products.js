@@ -4,6 +4,10 @@ import { REQUIRED_SPEC_FIELDS } from './verification.js';
 import { ingredientFlags, proteinTypeOf } from './nutrition.js';
 import { applySpecificationHolds } from './specification-holds.js';
 import { applyPackageMassConsistency } from './package-mass-consistency.js';
+import {
+  applyPackageQuantityReview,
+  loadPackageQuantityReviews,
+} from './package-quantity-review.js';
 
 function refreshIngredientFields(product) {
   const identity = product.manufacturerVerification;
@@ -108,14 +112,15 @@ export async function resolveProductReviews(store, product) {
     return product;
   }
   const shared = await store.fallback?.get('product', product.id);
+  const quantities = await applyPackageQuantityReview(
+    store,
+    mergeSharedManufacturerReview(product, shared)
+  );
   return applyPackageMassConsistency(
     await applySpecificationHolds(
       store,
       refreshIngredientFields(
-        await applyListingCategoryReview(
-          store,
-          mergeSharedManufacturerReview(product, shared)
-        )
+        await applyListingCategoryReview(store, quantities)
       )
     )
   );
@@ -123,6 +128,7 @@ export async function resolveProductReviews(store, product) {
 
 export async function catalogProducts(store) {
   const products = await store.list('product');
+  const quantityReviews = await loadPackageQuantityReviews(store);
   const shared = new Map(
     ((await store.fallback?.list('product')) || []).map((product) => [
       product.id,
@@ -137,7 +143,11 @@ export async function catalogProducts(store) {
         refreshIngredientFields(
           await applyListingCategoryReview(
             store,
-            mergeSharedManufacturerReview(product, shared.get(product.id))
+            await applyPackageQuantityReview(
+              store,
+              mergeSharedManufacturerReview(product, shared.get(product.id)),
+              quantityReviews
+            )
           )
         )
       )

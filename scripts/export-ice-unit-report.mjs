@@ -42,7 +42,9 @@ for (const metric of [
   rankings[metric] = rankIceRows(rows, metric);
 }
 const number = (value) =>
-  value.toLocaleString('en-US', { maximumFractionDigits: 2 });
+  Number.isFinite(value)
+    ? value.toLocaleString('en-US', { maximumFractionDigits: 2 })
+    : '—';
 const table = (headers, values) =>
   [headers, headers.map(() => '---'), ...values]
     .map(
@@ -75,8 +77,13 @@ const section = (title, before, after, amount, unit) => {
             'Rank',
             'Selected chocolate product',
             'Sale VND',
-            `Selling-unit ${unit}`,
-            `VND/${unit} before delivery`,
+            'Food g',
+            'Volume ml',
+            'VND/g before delivery',
+            'VND/ml before delivery',
+            ...(unit === 'protein g'
+              ? ['Protein g', 'VND/protein g before delivery']
+              : []),
             'Quantity evidence',
             'Price captured UTC',
             'Delivery to Nha Trang',
@@ -85,8 +92,13 @@ const section = (title, before, after, amount, unit) => {
             index + 1,
             product(row),
             number(row.totalBeforeDelivery),
-            number(row[amount]),
-            number(row[before]),
+            number(row.massG),
+            number(row.volumeMl),
+            number(row.beforePerFoodGram),
+            number(row.beforePerMl),
+            ...(unit === 'protein g'
+              ? [number(row[amount]), number(row[before])]
+              : []),
             row.specificationFacts[
               amount === 'massG'
                 ? 'netMassG'
@@ -112,13 +124,21 @@ const section = (title, before, after, amount, unit) => {
             'Delivered rank',
             'Selected chocolate product',
             'Delivered VND',
-            `VND/${unit} delivered`,
+            'Food g',
+            'Volume ml',
+            'VND/g delivered',
+            'VND/ml delivered',
+            ...(unit === 'protein g' ? ['VND/protein g delivered'] : []),
           ],
           delivered.map((row, index) => [
             index + 1,
             product(row),
             number(row.totalAfterDelivery),
-            number(row[after]),
+            number(row.massG),
+            number(row.volumeMl),
+            number(row.afterPerFoodGram),
+            number(row.afterPerMl),
+            ...(unit === 'protein g' ? [number(row[after])] : []),
           ])
         )
       : '**Delivered ranking:** no captured quote confirms frozen delivery to Nha Trang for this quantity. Shipping remains unpriced; it is never assumed free.'
@@ -180,6 +200,10 @@ const body = `# Chocolate ice cream: separate gram, millilitre and protein ranki
 Updated ${receipt.generatedAt}. **Vietnam / Nha Trang, VND, quantity one selling unit.** Prices retain their original observation dates. Each table is independently sorted by its named denominator. No gram-to-millilitre conversion, assumed density, assumed carton count or price cap is used. Source-confirmed inner package counts apply once to their declared per-package quantities. Exact manufacturer facts take priority over original package labels and seller panels, with original claims and source authority retained in the evidence. Seller-panel nutrition can produce a labelled reference price; it does not establish manufacturer verification.
 
 **Coverage:** ${rows.length} exact selected-SKU prices; ${receipt.coverage.bothMassAndVolume} with both grams and millilitres; ${receipt.coverage.currentProteinDenominator} with a current exact-product protein denominator. These are captured candidates, and manufacturer chocolate-core identity is reported separately. Missing facts stay in the evidence worklist, outside the ranking that requires them. Sold-out and confirmed rejected flavours cannot win.
+
+Every ranking shows **both food grams and millilitres, and both VND/g and VND/ml**, whenever the independent quantities are supported. A dash means missing or disputed evidence; it never means zero. Prices per gram and per millilitre use the same captured selling unit and order total.
+
+Source-review notes in the JSON retain their historical wording. Later exact package evidence can resolve an earlier missing-grams note; the current evidence worklist below describes the remaining gaps.
 
 ${section('Lowest price per gram of food', 'beforePerFoodGram', 'afterPerFoodGram', 'massG', 'g')}
 ${section('Lowest price per millilitre', 'beforePerMl', 'afterPerMl', 'volumeMl', 'ml')}

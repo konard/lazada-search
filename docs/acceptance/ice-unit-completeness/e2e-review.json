@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T20:54:34.779899Z",
+  "scope": "Dedicated actual-original quantity-only E2E; no external network or browser collection",
+  "testCommand": "node --test tests/e2e/ice-quantity-review.test.js",
+  "runtime": "Node22.23.0",
+  "finalExitCode": 0,
+  "tests": 16,
+  "pass": 16,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "strictLintExitCode": 0,
+  "websiteRequests": 0,
+  "downloads": 0,
+  "loopbackOnlyServers": true,
+  "genuineOriginals": {
+    "cartonDecodedHtmlSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+    "wrapperSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+    "selectedSku": "3040048563_VNAMZ-14623760583",
+    "originalObservationRetained": "2026-10-10T17:25:00.000Z"
+  },
+  "verifiedInterfaces": [
+    "library review and comparison",
+    "actual CLI review and comparison",
+    "local HTTP structured review and comparison",
+    "local Telegram structured review and comparison",
+    "store restart and second carton quantity"
+  ],
+  "verifiedResults": {
+    "innerMassG": 131,
+    "innerVolumeMl": 130,
+    "innerPackages": 24,
+    "sellingUnitMassG": 3144,
+    "sellingUnitVolumeMl": 3120,
+    "costPerGramBeforeDelivery": 206.10687022900763,
+    "costPerMlBeforeDelivery": 207.69230769230768,
+    "sourceAuthorityRetained": "manufacturer-label-secondary-host",
+    "manufacturerVerificationFalse": true,
+    "proteinUnpriced": true,
+    "freightNotAssumed": true,
+    "actualDeliveryUnavailable": true,
+    "rawProductAndOfferUnchanged": true,
+    "globalChallengeStopUnchanged": true
+  },
+  "controls": [
+    "unsupported nutrient rejected before write",
+    "wrong wrapper digest rejected before write",
+    "wrong listing digest rejected before write",
+    "unattached label rejected before write",
+    "nonpositive mass rejected before write",
+    "wrong mass unit rejected before write",
+    "corrupt wrapper bytes withhold reviewed mass",
+    "missing wrapper bytes withhold reviewed mass",
+    "source invalidation withholds reviewed mass",
+    "new product observation withholds reviewed mass",
+    "changed listing digest withholds reviewed mass",
+    "tampered review SKU withholds reviewed mass"
+  ],
+  "controlInvariant": "Independent original130ml remains usable when reviewed131g is withdrawn; unavailable delivery, original price/time and incomplete manufacturer nutrition remain truthful.",
+  "files": [
+    {
+      "path": "tests/e2e/ice-quantity-review.test.js",
+      "bytes": 15406,
+      "sha256": "8e9828444ce7cd071d2319fa735daa197e99a666948b6ce4c5a59fc0b0d0c21d"
+    },
+    {
+      "path": "src/package-quantity-review.js",
+      "bytes": 4500,
+      "sha256": "667b022fd81cbc6215b1eeccea7f358a5da31e0254d09d09752b276dae9e18ef"
+    },
+    {
+      "path": "src/package-quantity-review-evidence.js",
+      "bytes": 8454,
+      "sha256": "2a4f17d8ffd2f9b5e6e9d21b3c16fc44978ab2bcdd649378903f5d6b2f02dfcd"
+    },
+    {
+      "path": "src/catalog-products.js",
+      "bytes": 4937,
+      "sha256": "2264dc1a245964870dbd9b2272f69d5664a37c61ef1402d90ea52cc1b218a9b8"
+    },
+    {
+      "path": "src/index.js",
+      "bytes": 3621,
+      "sha256": "249639ea7231534b741eb53c0955246cceba25a8a83f25ec7a6732d05e750d25"
+    },
+    {
+      "path": "src/commands.js",
+      "bytes": 16913,
+      "sha256": "1973eeac305d24a1622c3b657703e499ca717de33fe48619ea7d1e918037184d"
+    },
+    {
+      "path": "src/operations.js",
+      "bytes": 6175,
+      "sha256": "00f2fafb763c496ebd2f624370304af6e56e79e608a1d6b6b7f7a6f8911a23db"
+    }
+  ],
+  "logs": [
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-initial.tap.gz",
+      "encoding": "gzip",
+      "decodedBytes": 16008,
+      "decodedSha256": "8ea64bb70a41c4d137deda5ec774d5fe6ab5cc06496a7d5ac188efcc494e7fe8",
+      "storedSha256": "4d72a159eaab40b7796e2eda44af8aa13d3c78d0817a8c4e769330d4409e2ad9",
+      "exitCode": 1,
+      "note": "Initial harness assumed a row without a gram denominator belongs in gram-sorted observedPrices; corrected helper uses retained comparisons and asserts missing-mass rows are absent from observedPrices."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-second.tap.gz",
+      "encoding": "gzip",
+      "decodedBytes": 2885,
+      "decodedSha256": "bd0d47d57a9f3c17780a0668361edc4cf38fbf5aab4598f4a59587047d4839fd",
+      "storedSha256": "1ea1eca682c69805e88d25e10209c1d3c71f373114afdb574804752652dfb646",
+      "exitCode": 0,
+      "note": "All16actual-source tests passed after comparison-harness correction."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-lint.log.gz",
+      "encoding": "gzip",
+      "decodedBytes": 185,
+      "decodedSha256": "195042ba824fa222e1496bc56a12887f7f56d25b46723d3f21b84df3753ba45f",
+      "storedSha256": "ffd89568ef65ce3c09283a9791dd6ea7f5d767349bc3c3623ce7eb077bccffce",
+      "exitCode": 1,
+      "note": "Initial lint identified unqualified structuredClone; corrected to globalThis.structuredClone without changing review behavior."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-final.tap.gz",
+      "encoding": "gzip",
+      "decodedBytes": 2875,
+      "decodedSha256": "9997ffb088e7cb03b235404fda06dc65ec97611d6265d744cb78d7f333d0eb21",
+      "storedSha256": "83b71c59f27525caeebd67a481dd8d43ef1cdccaf4abd9d72654f9f94021fad1",
+      "exitCode": 0,
+      "note": "Final source after lint correction:16tests pass,0fail/cancel/skip."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-final-lint.log.gz",
+      "encoding": "gzip",
+      "decodedBytes": 0,
+      "decodedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "exitCode": 0,
+      "note": "Final strictESLintcheck passes with0warnings."
+    }
+  ]
+}

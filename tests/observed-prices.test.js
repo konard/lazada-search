@@ -103,3 +103,71 @@ test('invalidated price and shipping sources cannot produce sorted confirmed tot
   assert.equal(report.observedPrices.length, 0);
   assert.equal(report.comparisons[0].metrics.shippingKnown, false);
 });
+
+const iceProduct = {
+  id: 'chocolate-carton',
+  title: 'Chocolate ice cream carton',
+  category: 'chocolate-ice-cream',
+  netMassG: 131,
+  netVolumeMl: 130,
+  packCount: 24,
+};
+const iceOffer = {
+  id: 'chocolate-carton-offer',
+  productId: iceProduct.id,
+  url: 'https://www.lazada.vn/products/fixture-i9201-s102.html',
+  currency: 'VND',
+  observedAt: '2026-10-09T09:00:00Z',
+  variantConfirmed: true,
+  price: 648000,
+};
+
+test('Telegram shows both known ice unit prices and order quantities before manufacturer approval', () => {
+  const report = compareOffers(
+    [iceProduct],
+    [
+      {
+        ...iceOffer,
+        shipping: 84000,
+        shippingQuantity: 2,
+        coldChainConfirmed: true,
+      },
+    ],
+    {
+      quantity: 2,
+      sort: 'costPerMlAfterDelivery',
+      now: Date.parse('2026-10-09T10:00:00Z'),
+    }
+  );
+  assert.equal(report.observedPrices[0].manufacturerVerified, false);
+  assert.equal(report.ranked.length, 0);
+  const text = formatComparison(report);
+  assert.match(text, /Food quantities: 6288\.00 g; 6240\.00 ml/u);
+  assert.match(text, /Food g: 206\.11 \/ 219\.47/u);
+  assert.match(text, /ml: 207\.69 \/ 221\.15/u);
+  assert.match(text, /Manufacturer verification pending/u);
+  assert.match(text, /0 eligible offers/u);
+  assert.doesNotMatch(text, /Confirmed comparison/u);
+});
+
+test('Telegram preserves missing freight and displays known volume even when gram sorting is impossible', () => {
+  for (const product of [iceProduct, { ...iceProduct, netMassG: undefined }]) {
+    const report = compareOffers([product], [iceOffer], {
+      sort: 'costPerGramBeforeDelivery',
+      now: Date.parse('2026-10-09T10:00:00Z'),
+    });
+    const text = formatComparison(report);
+    assert.match(text, /3120\.00 ml/u);
+    assert.match(text, /ml: 207\.69 \/ Unknown/u);
+    assert.match(text, /Unknown shipping/u);
+    assert.match(text, /0 eligible offers/u);
+    if (product.netMassG) {
+      assert.match(text, /Food g: 206\.11 \/ Unknown/u);
+    } else {
+      assert.equal(report.observedPrices.length, 0);
+      assert.match(text, /Pending manufacturer verification/u);
+      assert.match(text, /Food quantities: Unknown g/u);
+      assert.match(text, /Food g: Unknown \/ Unknown/u);
+    }
+  }
+});

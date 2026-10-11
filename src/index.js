@@ -75,6 +75,7 @@ export { captureDelivery } from './delivery.js';
 export { importBrowserCapture } from './capture-import.js';
 export { replayHistoricalCaptures } from './historical-capture-replay.js';
 export { reviewManufacturer } from './manufacturer-review.js';
+export { reviewPackageQuantities } from './package-quantity-review.js';
 export { auditCoverage, assertCompleteCoverage } from './coverage.js';
 export {
   specificationProblems,

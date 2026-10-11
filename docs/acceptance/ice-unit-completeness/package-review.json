@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-11T20:56:57.554707+00:00",
+  "scope": "Source-bound package quantity review, catalog integration and private/public exact-original replay",
+  "downloads": 0,
+  "websiteRequests": 0,
+  "tests": {
+    "baseRegressions": {
+      "passed": 24,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 8131.482
+    },
+    "finalSourceInvalidationFollowup": {
+      "passed": 6,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
+  },
+  "eslint": {
+    "passed": true,
+    "warnings": 0
+  },
+  "originalLogs": [
+    {
+      "path": "docs/acceptance/ice-unit-completeness/package-review-initial.tap.gz",
+      "sourceSha256": "0706c9c4bd37e70f3dcf4981160b0ec1d4329d0ed533f5b2124104777e038083",
+      "sourceBytes": 2788,
+      "gzipSha256": "9c04f45f4ed38cb4f3453958fc2ff2da6744dd051474c05101def46044027415",
+      "passed": 5,
+      "failed": 1,
+      "reason": "Unrelated test product lacked required URL; fixture corrected."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/package-review-accepted.tap.gz",
+      "sourceSha256": "a587efcb3382e96ef5a870a08b775972c0e38be2423cca6bfe601af99189e4e0",
+      "sourceBytes": 8676,
+      "gzipSha256": "5accf4a5128eff0a5246fb9b0038c56b18106deac807b6affdd55a684984432f",
+      "passed": 30,
+      "failed": 1,
+      "reason": "Offline HTTP fixture could not bind127.0.0.1 within sandbox; authorized loopback retry."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/package-review-final.tap.gz",
+      "sourceSha256": "4c3f5655e3f21407632c2caa2bf66d68dc0f90392e6825858ef7c0b1fd441cec",
+      "sourceBytes": 12773,
+      "gzipSha256": "053963e042a8f98b43250500608e8e42d9d6dbe0d54bb40fdd7a4528decfd672",
+      "passed": 26,
+      "failed": 5,
+      "reason": "First-review idempotency accessed absent prior digest; explicit prior-record guard corrected."
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/package-review-final2.tap.gz",
+      "sourceSha256": "790a32d9af7534f00e0818873ef19784816f56c3cece727a1fdb764af1fc4d11",
+      "sourceBytes": 6355,
+      "gzipSha256": "062aae3f061da76d68d40a7bf2e5d42018f8379f9772e585c8d32923dd9503c2",
+      "passed": 24,
+      "failed": 0,
+      "reason": null
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/package-review-source-invalidations.tap.gz",
+      "sourceSha256": "fb4f0e83cdf5f8b9463d5c94db54592669a68ad99826ab4ae3a0b0e20d3236df",
+      "sourceBytes": 1845,
+      "gzipSha256": "805709a2f696dca5cfbcfa0df37edc4d265cd7457497f8081aeaaf99923922bb",
+      "passed": 6,
+      "failed": 0,
+      "reason": null
+    }
+  ],
+  "testedSources": [
+    {
+      "path": "src/package-quantity-review.js",
+      "sha256": "8dc46c7d04d1616b22f4551a9546db0d430bf291c3fec95b97d92c2f0fb594ad",
+      "bytes": 4515
+    },
+    {
+      "path": "src/package-quantity-review-evidence.js",
+      "sha256": "3044cec6b089d8be5cb65bfaaf3b82b50d0ad28988f0d038d9ef108bd1b5929b",
+      "bytes": 8521
+    },
+    {
+      "path": "src/catalog-products.js",
+      "sha256": "2264dc1a245964870dbd9b2272f69d5664a37c61ef1402d90ea52cc1b218a9b8",
+      "bytes": 4937
+    },
+    {
+      "path": "tests/package-quantity-review.test.js",
+      "sha256": "b0b0ef9a6abfdc68970a1d1bb27ef818b0c8d893ae9a9270c91c311dd42c71ca",
+      "bytes": 11877
+    }
+  ],
+  "nutritionApproved": false,
+  "factoryIdentityApproved": false,
+  "limitations": [
+    "Only positive original-bound package grams and millilitres are reviewed.",
+    "No current marketplace price, stock, cold-chain freight, nutrition or global coverage approval.",
+    "Separate full-suite and all-platform acceptance required."
+  ]
+}

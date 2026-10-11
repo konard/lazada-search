@@ -1,0 +1,388 @@
+{
+  "checkedAt": "2026-10-11T21:19:45.815216+00:00",
+  "baseCommit": "e7ea4158c06b700257820a0ca10aba1504836ab7",
+  "scope": "Current ice-cream dual-unit presentation and source-bound shared quantity review; offline public-case archive and local interface/native tests",
+  "runtime": "Node.js22.23.0 on macOS15.7.7",
+  "unitTests": {
+    "tests": 1333,
+    "pass": 1333,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "duration_ms": 326616.784625
+  },
+  "fullE2EConfirmation": {
+    "tests": 64,
+    "pass": 64,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "duration_ms": 400181.318417
+  },
+  "initialFullE2E": {
+    "tests": 64,
+    "pass": 63,
+    "fail": 1,
+    "skipped": 0,
+    "cancelled": 0,
+    "duration_ms": 499441.764
+  },
+  "isolatedBrowserRecoveryRetry": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "duration_ms": 4277.356041
+  },
+  "focusedBun": {
+    "passed": 41,
+    "failed": 0,
+    "files": 6
+  },
+  "focusedDeno": {
+    "passed": 41,
+    "failed": 0,
+    "files": 6,
+    "cachedOnly": true,
+    "allowedNetwork": "127.0.0.1,localhost"
+  },
+  "quality": {
+    "npmRunCheckPassed": true,
+    "strictChangedEslintPassed": true,
+    "changedFormatCheckPassed": true,
+    "typescriptPublicApiPassed": true,
+    "typescriptCommand": "tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck --types node --typeRoots examples/universal-app/node_modules/@types tests/fixtures/public-api-types.ts",
+    "localMarkdownTargetsChecked": 255,
+    "localMarkdownTargetFailures": 0
+  },
+  "archive": {
+    "valid": true,
+    "records": 34257,
+    "blobs": 7031,
+    "downloads": 0
+  },
+  "reportArithmetic": {
+    "selectedRows": 14,
+    "independentMetricCalculations": 84,
+    "displayedRankingRows": 14,
+    "supportedDualUnitSellingUnits": 2,
+    "densityConversions": 0
+  },
+  "websiteRequests": 0,
+  "downloads": 0,
+  "collectionStop": {
+    "id": "browser-collection",
+    "active": true,
+    "reason": "challenge",
+    "detectedAt": "2026-10-11T10:23:22.482Z",
+    "origin": "https://www.optimumnutrition.com",
+    "signals": ["visible-cloudflare-interstitial"]
+  },
+  "upstreamBrowserObservation": "https://github.com/link-foundation/browser-commander/issues/171",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "testedSourceFiles": [
+    {
+      "path": "scripts/audit-ice-unit-completeness.mjs",
+      "sha256": "41528148cfa116a699880460cdcbe1099741a54a035c5d8b0c6c13d243ee85f2"
+    },
+    {
+      "path": "scripts/export-catalog-tables.mjs",
+      "sha256": "861adb8628d6aca933150bd9862ec42cb3a2531d1f0c5b193e6a0c16cea8d6b5"
+    },
+    {
+      "path": "scripts/export-handpicked-report.mjs",
+      "sha256": "5476aed49c2b39cf68e3d0d0ca95ddb53f7b42ae99c41403ed29320a6c6d5926"
+    },
+    {
+      "path": "scripts/export-ice-unit-report.mjs",
+      "sha256": "bc7b21198ef45d7694e9df7bf75fb38780c040fd8e05c891c98360ee28941d55"
+    },
+    {
+      "path": "scripts/export-shopping-shortlist.mjs",
+      "sha256": "b0771dd7f0b91423d3b93a4c0886ab84cc88ba0c986ec24447fa87c6790727c5"
+    },
+    {
+      "path": "scripts/ice-unit-rankings.mjs",
+      "sha256": "3b7b8c091623672003341b2a0a77541bff122183e8d9c163f8705ed2b293ca48"
+    },
+    {
+      "path": "scripts/report-unit-costs.mjs",
+      "sha256": "91031f3d2a0cef2ae5df92cbea52184ad72d372c0e5a4f8678646e50f3db83a2"
+    },
+    {
+      "path": "scripts/review-cached-ice-quantities.mjs",
+      "sha256": "372788be2d5120b34859ccefd1543f7ff9ebed3811102dd65cb89230e6aa369a"
+    },
+    {
+      "path": "src/catalog-products.js",
+      "sha256": "2264dc1a245964870dbd9b2272f69d5664a37c61ef1402d90ea52cc1b218a9b8"
+    },
+    {
+      "path": "src/commands.js",
+      "sha256": "1973eeac305d24a1622c3b657703e499ca717de33fe48619ea7d1e918037184d"
+    },
+    {
+      "path": "src/index.d.ts",
+      "sha256": "38a1f7036f7959ac21f8ef51fdce8d13f9cac0d98aa486bc125ce06dd482f957"
+    },
+    {
+      "path": "src/index.js",
+      "sha256": "249639ea7231534b741eb53c0955246cceba25a8a83f25ec7a6732d05e750d25"
+    },
+    {
+      "path": "src/operations.js",
+      "sha256": "00f2fafb763c496ebd2f624370304af6e56e79e608a1d6b6b7f7a6f8911a23db"
+    },
+    {
+      "path": "src/package-quantity-review-evidence.js",
+      "sha256": "3044cec6b089d8be5cb65bfaaf3b82b50d0ad28988f0d038d9ef108bd1b5929b"
+    },
+    {
+      "path": "src/package-quantity-review.js",
+      "sha256": "8dc46c7d04d1616b22f4551a9546db0d430bf291c3fec95b97d92c2f0fb594ad"
+    },
+    {
+      "path": "src/telegram.js",
+      "sha256": "566182570e8b4209b314155c1fc5c7ad8a7f316fbc6988fcc7c3293cdf9c69e0"
+    },
+    {
+      "path": "tests/e2e/ice-quantity-review.test.js",
+      "sha256": "8e9828444ce7cd071d2319fa735daa197e99a666948b6ce4c5a59fc0b0d0c21d"
+    },
+    {
+      "path": "tests/e2e/ice-selling-units.test.js",
+      "sha256": "196f7a707f45d06bd98de5d9162bc410783fe2df5704eac243c522e43bf06ce4"
+    },
+    {
+      "path": "tests/fixtures/public-api-types.ts",
+      "sha256": "b8a6dd6ee99f2cba483ac2db457a4d640358bb6c885e8d2ef6fd3e41bde1b18b"
+    },
+    {
+      "path": "tests/ice-unit-completeness.test.js",
+      "sha256": "ecaec1a64b05fc8893202e170f38dc879ada89f089ee204bfc35f39ad3e61abf"
+    },
+    {
+      "path": "tests/ice-unit-rankings.test.js",
+      "sha256": "091e2d8afdc3621ce93b50c02e5bd4317d7612f4cbd4850feab7f10a456ce2ec"
+    },
+    {
+      "path": "tests/observed-prices.test.js",
+      "sha256": "5bb9bd106c0a3a676ce1bfdeccbc3003ce55c4463398a2d5e431c79ed501efa2"
+    },
+    {
+      "path": "tests/package-quantity-review.test.js",
+      "sha256": "b0b0ef9a6abfdc68970a1d1bb27ef818b0c8d893ae9a9270c91c311dd42c71ca"
+    }
+  ],
+  "publishedArtifacts": [
+    {
+      "path": "data/cases/vietnam-nha-trang/manifest.json",
+      "sha256": "a05b24be55b2ca4bdd3b0963c5b46a5344ba8747d624da00e09c364e30d3f9ed"
+    },
+    {
+      "path": "docs/tables/catalog.json",
+      "sha256": "1e1ba0d46d4c7cd511eab8facfd78dd532fab40bff974ad05119c965babaa81a"
+    },
+    {
+      "path": "docs/tables/ice-unit-rankings.json",
+      "sha256": "1a433f0074f2d0a732d5acad84ed4033bcf0fd526f3cee27fcfa8c2bd4fbcb73"
+    },
+    {
+      "path": "docs/tables/ice-unit-rankings.md",
+      "sha256": "a2593eab63d92d019fef9e729115abf692deb1afe061cc25ff5f26b79f5e6045"
+    },
+    {
+      "path": "docs/tables/top-10-partial.json",
+      "sha256": "c692810dd0f484166d591f102bccfed44bddcea988e4b4dbf51dc78c796da5eb"
+    },
+    {
+      "path": "docs/tables/top-10-partial.md",
+      "sha256": "fdafec27bbf37abd3ab13a7d864a5f21844a8387bfee843e96f81cd6169460b1"
+    },
+    {
+      "path": "docs/tables/handpicked.json",
+      "sha256": "abc626d2a8df5cd6dbb2fa9a9ed5dcf793c73a128bf70f29076781b261697871"
+    },
+    {
+      "path": "docs/tables/handpicked.md",
+      "sha256": "b9821613c8c147b42c5fed6fdaf56bb69b2ddcb643044aa6c48992bd5b59e3f7"
+    },
+    {
+      "path": "docs/tables/chocolate-ice-cream.md",
+      "sha256": "4fb416ed855782994266b0de2b071d4b7ff58bbfd931455496bda6ff02d3d04d"
+    },
+    {
+      "path": "docs/tables/shopping-shortlist.md",
+      "sha256": "2c539604a0280f4b4dd5bac5ec944e0dca7809f8cd73e967a69e02574f554b23"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "sha256": "53be83ea47c4a42b77a6b9b05bf59b395fb04347ad87d2ae391edad3ae7fff9a"
+    },
+    {
+      "path": "docs/acceptance/top10-check/unit-cost-audit.json",
+      "sha256": "8a60bafa83413602dc0a58e8946eebd0496e9501fad0c6b7836c5026b2a6e976"
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/shared-quantity-review.json",
+      "sha256": "81dda21e0d88be11c9bf05e39d6024c079ef343c79371368ec5d4d8638a9263e"
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/report-audit.json",
+      "sha256": "b72ce9ab3dba5521e3836c904ebb5bd3bd4eea4f0739b1b71dfee81ce8aef4b0"
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/fresh-archive-review.json",
+      "sha256": "0d663491b8d4db4a371f8704cecce03213a73e433dc907b33d9021f32cc3d59b"
+    }
+  ],
+  "originalLogs": [
+    {
+      "path": "docs/acceptance/ice-unit-completeness/catalog-export.log.gz",
+      "contentSha256": "f009a810f810fe3bdc7f451a4219789eca1a65aface15ed156d8bf84821d2d7d",
+      "gzipSha256": "4d4fa0dbc696bdba8bb38fbfa7a9695e82d05695f51a5d377ddede6b1a260dcd",
+      "contentBytes": 102
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/shopping-export.log.gz",
+      "contentSha256": "87435949c66ae6d3d6331bd069d9b3b532b6f4db52aa95292b3059c7b9274089",
+      "gzipSha256": "273bdabf5b89d1703085eaa8f04a1547b37171fbc7e14582804259186213fc45",
+      "contentBytes": 65
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/partial-export.log.gz",
+      "contentSha256": "8b47aa59259686727cac75434a65f978a31bf0e4af9bfbdcb5570c858e443200",
+      "gzipSha256": "2b21686ec0cb139ef6c38a999e9c506d6b9c3a4761b9da95c88cbeb6da5ddb9a",
+      "contentBytes": 77
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/ice-export.log.gz",
+      "contentSha256": "32b50fe84bc8d5f0251cc0b7343a1ef24882e60fc559aeb369500a71a9003d97",
+      "gzipSha256": "7dd32c581ad2706d055ca12893999728e64ca79acdacf3779c2e0fe69656a5c7",
+      "contentBytes": 127
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/handpicked-export.log.gz",
+      "contentSha256": "d5c2aa4bd199941cc3039e47840878bfab9ee4d07d3e39911af0300563061f01",
+      "gzipSha256": "f7fb1d128c19616cfe1c53e32926252028115652b818969637fbfc93aa593251",
+      "contentBytes": 593
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/handpicked-export-formatted.log.gz",
+      "contentSha256": "d5c2aa4bd199941cc3039e47840878bfab9ee4d07d3e39911af0300563061f01",
+      "gzipSha256": "f7fb1d128c19616cfe1c53e32926252028115652b818969637fbfc93aa593251",
+      "contentBytes": 593
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/report-unit-cost-audit.log.gz",
+      "contentSha256": "00738d07a01f3ff6d52e288a79c3b78ed80d4c87937fc256699777df59cdcd54",
+      "gzipSha256": "e667c03ab4941dfe57af440f647226a00dc9eb349fccb722992554c79fd3d69f",
+      "contentBytes": 33
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/report-unit-cost-audit-final.log.gz",
+      "contentSha256": "00738d07a01f3ff6d52e288a79c3b78ed80d4c87937fc256699777df59cdcd54",
+      "gzipSha256": "e667c03ab4941dfe57af440f647226a00dc9eb349fccb722992554c79fd3d69f",
+      "contentBytes": 33
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/ice-display-audit.log.gz",
+      "contentSha256": "32c4f3a40e8a04cc083a722c8f527d84d009e77be94aeb845c822c0f3eadceac",
+      "gzipSha256": "fbaea9d354b928f7989029481a591108adfef06c56e563ec6e5c865d7577a7e6",
+      "contentBytes": 454
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/archive-export.log.gz",
+      "contentSha256": "7a8ac34f397226b7ba7a553f3933b10e7b9d43001b353f55ad1be049d335733e",
+      "gzipSha256": "513e45773b6454c5157cd448c30d4a0b35c6ec9bd523f7c68251312440ec0b2e",
+      "contentBytes": 188
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/archive-verify.log.gz",
+      "contentSha256": "2b0d88ac59ea3e8ffe07c487bb694c8543038afca004201dbefb2b580b667eca",
+      "gzipSha256": "0ef9bfed4a5736a798643027c71c6709413f75156f2fcff78a811085261c8b48",
+      "contentBytes": 75
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/requirements-audit.log.gz",
+      "contentSha256": "d79f7e58fad6ea7ca6dae5225be0eca379475c31befa893509ac98845b924a71",
+      "gzipSha256": "22d6b47b4b71a5973af7c2ebeac97d60829d53606cc91ad1a71ec90205afa6b6",
+      "contentBytes": 356
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/unit-tests.tap.gz",
+      "contentSha256": "839c8bf9095a345620c019f5789b770943181ec3ccb15d9dcb7561716288b649",
+      "gzipSha256": "b5c545708e8380d3fac376f69a00f298927be894872245189a13fef6a65efaae",
+      "contentBytes": 329638
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-tests.tap.gz",
+      "contentSha256": "ca12bac5eb91502aeb38202a3e81405b05da752fe9072cdb048fe7d3da4d1804",
+      "gzipSha256": "c3b72d86d0a9bdda3bcea5f5e32c406b5cf670dbbd4eee6975ea856904844afd",
+      "contentBytes": 18154
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/persistent-recovery-retry.tap.gz",
+      "contentSha256": "8dc0d06f64a8d6599873ebca190812c6def42989a1b6800b2a4d8988177a95b7",
+      "gzipSha256": "10ae1b4153bc3927893db971b2d01c9f071aae6f267f464bc6049f8e83f5750d",
+      "contentBytes": 336
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/quality-check.log.gz",
+      "contentSha256": "0a8d99591e2ba5373dfd12c45c160e54173024ee1c127b7bd35b8faed0bfaed0",
+      "gzipSha256": "91da1be7d2078c4893f6cecf7109f52c711e6c32c6fab6fb6c99c42c0b6aa1a7",
+      "contentBytes": 458
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/quality-check-accepted.log.gz",
+      "contentSha256": "a75e74908f043a864497c1d1367b9764b4aa66edc840682da066a5d5fd8cb1d1",
+      "gzipSha256": "9bab58ad98d8375e41965e9ba61c9c34d8a76f9909f91ab886d75a679fd1f87d",
+      "contentBytes": 125626
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/typescript-check.log.gz",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "contentBytes": 0
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/bun-focused-tests.log.gz",
+      "contentSha256": "9ddbc579956bcecd946d2fbc8ef4277f69bcfec4e7e6447e15726b450f85a3eb",
+      "gzipSha256": "26f370efe6575d8bafe14da616ac70da93d1b31dc6a4803cf235709b67856bed",
+      "contentBytes": 4251
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/deno-focused-tests.log.gz",
+      "contentSha256": "77d8a404cfef4b686d105e7bbab8d0663300508abb05a363ba5cf8480ce310c6",
+      "gzipSha256": "70495fd5fa9415720747d891f8202a612fb77158ff9d07d18469787d02a029b0",
+      "contentBytes": 4189
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/collection-stop-final.json.gz",
+      "contentSha256": "592346c7d22765348beff13e69226addc865340f4929a8a9f5a24b7eb25bb34f",
+      "gzipSha256": "ba6c4f635511edfde82c7105ac99a01dd33f21f32a598ecee408fd6ccb0863e2",
+      "contentBytes": 226
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/e2e-tests-confirmation.tap.gz",
+      "contentSha256": "a59c52523c9bb59f05d7bf616d536f2f0a3bf4d2f4d2ec625dfecf43f32ffb69",
+      "gzipSha256": "d13ef99c47d8a0cea271bfffaac8ca0bdd2bea2dea543845a6748883ee62979a",
+      "contentBytes": 16072
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/strict-changed-lint.log.gz",
+      "contentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "contentBytes": 0
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/changed-format-check.log.gz",
+      "contentSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59",
+      "contentBytes": 66
+    }
+  ]
+}

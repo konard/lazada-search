@@ -181,6 +181,9 @@ test('carton arithmetic and strict core filtering survive library, real CLI, HTT
   assert.match(text, /Sorted costPerMlAfterDelivery: 208\.65/u);
   assert.match(text, /Sorted costPerMlAfterDelivery: 221\.15/u);
   assert.match(text, /Sorted costPerMlAfterDelivery: 553\.85/u);
+  assert.match(text, /Food quantities: 6288\.00 g; 6240\.00 ml/u);
+  assert.match(text, /Food g: 206\.11 \/ 219\.47/u);
+  assert.match(text, /ml: 207\.69 \/ 221\.15/u);
   assert.match(text, /Manufacturer verification pending/u);
   assert.match(text, /no confirmed count of inner food packages/u);
   assert.doesNotMatch(text, /white ice-cream core|Chocolate-coated ice cream/u);

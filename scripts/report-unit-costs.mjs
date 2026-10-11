@@ -69,6 +69,7 @@ export function reportUnitCosts(
     : { ...row.offer, shipping: undefined };
   const { metrics } = calculateOffer(product, offer, {
     quantity,
+    pendingSpecificationReview: product.pendingSpecificationReview || [],
     deliveryArea,
     requireManufacturer: false,
     allowStale: true,

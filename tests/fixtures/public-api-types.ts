@@ -9,6 +9,7 @@ import {
   checkTranslationQuality,
   compareBaskets,
   extractBasketQuote,
+  reviewPackageQuantities,
   translationReviewAccepted,
   validateFoodComponentEvidence,
   type BasketSourceMapping,
@@ -35,6 +36,30 @@ const trainedModelDigest: string | undefined =
 const modelManifestVersion: 'tesseract-traineddata-v1' | undefined =
   modelBoundOcr.modelProvenance?.version;
 void [trainedModelDigest, modelManifestVersion];
+const quantityReview = await reviewPackageQuantities(application, product.id, {
+  reviewedBy: 'Exact label reviewer',
+  reason: 'Printed amount on the original matched package',
+  listingEvidenceId: 'original-selected-listing',
+  listingSha256: 'a'.repeat(64),
+  facts: {
+    netMassG: {
+      value: 131,
+      unit: 'g',
+      basis: 'one-inner-food-package',
+      sourceEvidenceId: 'original-package-label',
+      sourceSha256: 'b'.repeat(64),
+      sourceAuthority: 'manufacturer-label-secondary-host',
+      excerpt: '130mL; 净含量131克',
+      identityMatched: true,
+    },
+  },
+});
+const originalMass: number | null = quantityReview.originalQuantities.netMassG;
+const originalVolume: number | null =
+  quantityReview.originalQuantities.netVolumeMl;
+const quantityReviewDigest: string = quantityReview.reviewSha256;
+const nutritionNotApproved: false = quantityReview.nutritionApproved;
+void [originalMass, originalVolume, quantityReviewDigest, nutritionNotApproved];
 await manufacturerSources.importOriginal(
   {
     brand: 'Factory fixture',

@@ -1,6 +1,6 @@
 # Lazada Vietnam catalog and comparison tables
 
-[Updated partial whey rankings](top-10-partial.md) · [Ice-cream gram/ml/protein rankings](ice-unit-rankings.md) · [Handpicked options sorted by gram price](handpicked.md) · [Saved state and resume checklist](../RESUME.md)
+[Whey top tens](top-10-partial.md) · [Ice-cream grams/ml together, sorted by each unit price](ice-unit-rankings.md) · [Handpicked gram prices](handpicked.md) · [Saved requirements and resume checklist](../RESUME.md)
 
 [Strict-flavour shopping table: unflavoured/chocolate powders and chocolate-core ice cream](shopping-shortlist.md) · [Reviewed sale discounts and bulk projections](../acceptance/urgent-discounts/README.md)
 

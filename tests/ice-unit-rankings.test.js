@@ -187,3 +187,68 @@ test('an invalidated marketplace mass stays unranked without a matched replaceme
   assert.equal(row.massG, null);
   assert.equal(row.beforePerFoodGram, null);
 });
+
+test('a held or conflicting carton count cannot become a one-package unit price', () => {
+  for (const [row, sources] of [
+    [
+      { ...base, packagesPerSellingUnit: null },
+      [
+        review({
+          netMassG: fact(131),
+          netVolumeMl: fact(130),
+          proteinPerPackageG: fact(1),
+        }),
+      ],
+    ],
+    [
+      { ...base, pendingSpecificationReview: ['packCount'] },
+      [
+        review({
+          packagesPerSellingUnit: fact(24),
+          netMassG: fact(131),
+          netVolumeMl: fact(130),
+        }),
+      ],
+    ],
+    [
+      base,
+      [
+        review({ packagesPerSellingUnit: fact(24) }),
+        review({ packagesPerSellingUnit: fact(12) }),
+      ],
+    ],
+  ]) {
+    const result = enrichIceRow(row, sources);
+    assert.equal(result.packagesPerSellingUnit, null);
+    for (const field of [
+      'massG',
+      'volumeMl',
+      'proteinG',
+      'beforePerFoodGram',
+      'beforePerMl',
+      'beforePerProteinGram',
+    ]) {
+      assert.equal(result[field], null, field);
+    }
+  }
+});
+
+test('an explicit unavailable destination cannot retain earlier delivered unit prices', () => {
+  const row = enrichIceRow({ ...base, totalAfterDelivery: 50000 }, [
+    review(
+      { netVolumeMl: fact(60), proteinPerPackageG: fact(1) },
+      { deliveryUnavailable: true }
+    ),
+  ]);
+  assert.equal(row.beforePerFoodGram, 195);
+  assert.equal(row.beforePerMl, 130);
+  assert.equal(row.totalAfterDelivery, null);
+  for (const metric of [
+    'afterPerFoodGram',
+    'afterPerMl',
+    'afterPerProteinGram',
+  ]) {
+    assert.equal(row[metric], null);
+    assert.deepEqual(rankIceRows([row], metric), []);
+  }
+});

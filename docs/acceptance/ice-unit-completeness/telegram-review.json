@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-11T20:47:42.268782+00:00",
+  "baseCommit": "e7ea4158c06b700257820a0ca10aba1504836ab7",
+  "scope": "Telegram known mass/volume calculation presentation for unverified observations and unavailable selected metrics",
+  "websiteRequests": 0,
+  "downloads": 0,
+  "tests": {
+    "files": [
+      "tests/observed-prices.test.js",
+      "tests/public-cache.test.js",
+      "tests/e2e/ice-selling-units.test.js",
+      "tests/e2e/telegram.test.js"
+    ],
+    "passed": 11,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 5585.240833,
+    "initialSandboxAttempt": {
+      "passed": 8,
+      "failed": 3,
+      "cause": "Loopback listen EPERM 127.0.0.1; rerun with authorized local socket access."
+    }
+  },
+  "eslint": {
+    "passed": true,
+    "warnings": 0,
+    "files": [
+      "src/telegram.js",
+      "tests/observed-prices.test.js",
+      "tests/e2e/ice-selling-units.test.js"
+    ]
+  },
+  "originalLogs": [
+    {
+      "path": "docs/acceptance/ice-unit-completeness/telegram-parity-sandbox.tap.gz",
+      "sourceSha256": "42161ab3edeac2a61121030d1417c660322afee105c0fad2795e7125421ddde8",
+      "sourceBytes": 4320,
+      "gzipSha256": "bfc0360543667fe08e3bcaf13e315e1d54f36cfed8f3c5f5a5935b5e684ff140"
+    },
+    {
+      "path": "docs/acceptance/ice-unit-completeness/telegram-parity-accepted.tap.gz",
+      "sourceSha256": "94bcf6442d4cc90f559409ac4508ad14ffee4cf71b3bd1261001ed9a4bbe75e0",
+      "sourceBytes": 3042,
+      "gzipSha256": "a297e12932e6b5b919a2751bb6e0aa3b63a38ad94a0fe2a187379ed9411fcb4e"
+    }
+  ],
+  "testedSources": [
+    {
+      "path": "src/telegram.js",
+      "sha256": "566182570e8b4209b314155c1fc5c7ad8a7f316fbc6988fcc7c3293cdf9c69e0",
+      "bytes": 8985
+    },
+    {
+      "path": "tests/observed-prices.test.js",
+      "sha256": "5bb9bd106c0a3a676ce1bfdeccbc3003ce55c4463398a2d5e431c79ed501efa2",
+      "bytes": 5482
+    },
+    {
+      "path": "tests/e2e/ice-selling-units.test.js",
+      "sha256": "196f7a707f45d06bd98de5d9162bc410783fe2df5704eac243c522e43bf06ce4",
+      "bytes": 12921
+    }
+  ],
+  "limitations": [
+    "Local mock Telegram acceptance; this does not establish live bot deployment.",
+    "General source-bound ice review propagation is investigated separately by root.",
+    "Persisted original manufacturer CAPTCHA stop remains active.",
+    "Coverage and manufacturer/freight/translation gaps remain open."
+  ]
+}

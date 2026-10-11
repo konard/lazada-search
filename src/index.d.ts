@@ -1457,6 +1457,41 @@ export declare function reviewManufacturer(
   productId: string,
   review: ManufacturerReview
 ): Promise<Product>;
+export interface PackageQuantityFact {
+  value: number;
+  unit: 'g' | 'ml';
+  basis: 'one-inner-food-package';
+  sourceEvidenceId: string;
+  sourceSha256: string;
+  sourceAuthority: string;
+  excerpt: string;
+  identityMatched: true;
+}
+export interface PackageQuantityReview {
+  reviewedBy: string;
+  reason: string;
+  listingEvidenceId: string;
+  listingSha256: string;
+  facts: Partial<Record<'netMassG' | 'netVolumeMl', PackageQuantityFact>>;
+}
+export interface StoredPackageQuantityReview extends PackageQuantityReview {
+  id: string;
+  productId: string;
+  sku: string;
+  url: string;
+  observedAt: string;
+  selectedOptions: string[];
+  reviewedAt: string;
+  reviewSha256: string;
+  originalQuantities: { netMassG: number | null; netVolumeMl: number | null };
+  nutritionApproved: false;
+  factoryIdentityApproved: false;
+}
+export declare function reviewPackageQuantities(
+  application: LazadaSearch,
+  productId: string,
+  review: PackageQuantityReview
+): Promise<StoredPackageQuantityReview>;
 export declare class RepositoryArchive {
   constructor(options?: { directory?: string });
   directory: string;

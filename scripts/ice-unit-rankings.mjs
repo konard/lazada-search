@@ -83,6 +83,7 @@ function measuredAmount(
   fallback
 ) {
   if (
+    !positive(packages) ||
     conflicts.includes(field) ||
     (invalidated.includes(field) && !facts[field])
   ) {
@@ -108,13 +109,36 @@ function withheldFields(reviews) {
   ];
 }
 
+function sellingPackages(row, facts, conflicts, invalidated) {
+  const declaredCount =
+    facts.packagesPerSellingUnit?.value ?? row.packagesPerSellingUnit ?? 1;
+  const countHeld =
+    row.packagesPerSellingUnit === null ||
+    row.pendingSpecificationReview?.includes('packCount') ||
+    conflicts.includes('packagesPerSellingUnit') ||
+    invalidated.includes('packagesPerSellingUnit');
+  const packageCount =
+    !countHeld && Number.isInteger(declaredCount) && declaredCount > 0
+      ? declaredCount
+      : null;
+  const quantity = row.quantity ?? 1;
+  const packages =
+    packageCount && Number.isInteger(quantity) && quantity > 0
+      ? packageCount * quantity
+      : null;
+  return { packageCount, packages };
+}
+
 export function enrichIceRow(row, reviews = []) {
   const applicable = reviews.filter((review) => review.skus?.includes(row.sku));
   const { facts, conflicts, superseded } = selectFacts(applicable);
   const invalidated = withheldFields(applicable);
-  const packageCount =
-    facts.packagesPerSellingUnit?.value || row.packagesPerSellingUnit || 1;
-  const packages = packageCount * (row.quantity || 1);
+  const { packageCount, packages } = sellingPackages(
+    row,
+    facts,
+    conflicts,
+    invalidated
+  );
   const massG = measuredAmount(
     'netMassG',
     facts,
@@ -137,15 +161,23 @@ export function enrichIceRow(row, reviews = []) {
     ),
     massG,
     volumeMl,
-    packages
+    packages ?? Number.NaN
   );
+  const deliveryUnavailable = applicable.some(
+    (review) => review.deliveryUnavailable === true
+  );
+  const totalAfterDelivery = deliveryUnavailable
+    ? null
+    : row.totalAfterDelivery;
   return {
     ...row,
     packagesPerSellingUnit: packageCount,
     invalidatedSpecificationFields: [...new Set(invalidated)],
-    deliveryUnavailable: applicable.some(
-      (review) => review.deliveryUnavailable === true
-    ),
+    deliveryUnavailable,
+    totalAfterDelivery,
+    deliveryQuoteMatched: deliveryUnavailable
+      ? false
+      : row.deliveryQuoteMatched,
     deliveryNote:
       applicable.find((review) => review.deliveryNote)?.deliveryNote || null,
     originalSellerName: row.originalSellerName || row.name,
@@ -156,11 +188,11 @@ export function enrichIceRow(row, reviews = []) {
     proteinG,
     proteinBasis,
     beforePerFoodGram: rate(row.totalBeforeDelivery, massG),
-    afterPerFoodGram: rate(row.totalAfterDelivery, massG),
+    afterPerFoodGram: rate(totalAfterDelivery, massG),
     beforePerMl: rate(row.totalBeforeDelivery, volumeMl),
-    afterPerMl: rate(row.totalAfterDelivery, volumeMl),
+    afterPerMl: rate(totalAfterDelivery, volumeMl),
     beforePerProteinGram: rate(row.totalBeforeDelivery, proteinG),
-    afterPerProteinGram: rate(row.totalAfterDelivery, proteinG),
+    afterPerProteinGram: rate(totalAfterDelivery, proteinG),
     strictChocolateEligible: eligibility(applicable),
     specificationFacts: facts,
     supersededSpecificationFacts: superseded,

@@ -4,11 +4,7 @@
   "case": {
     "market": "vn",
     "currency": "VND",
-    "deliveryArea": "Nha Trang",
-    "categories": ["whey", "protein-powder", "chocolate-ice-cream"],
-    "purpose": "Compare captured selected SKU prices, manufacturer specifications and freight using reusable public evidence",
-    "captureMode": "public pages and redacted authenticated product captures",
-    "coverage": "incomplete; see docs/tables/README.md"
+    "deliveryArea": "Nha Trang"
   },
   "kinds": {
     "availability-publication": {
@@ -337,28 +333,28 @@
       }
     },
     "evidence": {
-      "records": 2748,
-      "sourceSha256": "f2f834e67c8c0fa82d9d42ae1c133e6a74729c9884d5db75d6afc6fbc669bd78",
+      "records": 2750,
+      "sourceSha256": "45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530",
       "json": {
-        "path": "records/evidence.f2f834e67c8c0fa82d9d42ae1c133e6a74729c9884d5db75d6afc6fbc669bd78.json.gz",
-        "sha256": "c7e23023a311fa924a1f0a28717e080dc401068b8afd92fa1573bb338b05d085",
-        "contentSha256": "f2f834e67c8c0fa82d9d42ae1c133e6a74729c9884d5db75d6afc6fbc669bd78",
-        "bytes": 2263816,
-        "compressedBytes": 386836
+        "path": "records/evidence.45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530.json.gz",
+        "sha256": "453377daf44cebd3d2893caa8c7a06a43e6192b11b0619ef4429c6d5ffac9828",
+        "contentSha256": "45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530",
+        "bytes": 2265288,
+        "compressedBytes": 387182
       },
       "lino": {
-        "path": "links/evidence.9ef118f5a20e058668b13d528fe6ce5f03074006dcbd799fd8d7caf80842f623.lino.gz",
-        "sha256": "d2b51ac0097347ec7fade562a77f4e6cb4341ef0780e22f7cfa52322f28dff8c",
-        "contentSha256": "9ef118f5a20e058668b13d528fe6ce5f03074006dcbd799fd8d7caf80842f623",
-        "bytes": 2450983,
-        "compressedBytes": 393700
+        "path": "links/evidence.2b60174dd514c6f7db4862cd198b163dd08fd78a19a03bff37daed7ed83ed590.lino.gz",
+        "sha256": "7006fc638541d3b3b575dcc0e8ceb598107fee82ebf47c3daad8f1e18a553e98",
+        "contentSha256": "2b60174dd514c6f7db4862cd198b163dd08fd78a19a03bff37daed7ed83ed590",
+        "bytes": 2452543,
+        "compressedBytes": 394048
       },
       "binary": {
-        "path": "links/evidence.1c7a2cf4a180558549862bb9401b9886878ff6590cb1a3a3b84ef369d073a98b.links.gz",
-        "sha256": "5fd76fef9a011c9f151a2df56367e727c9cbe7c1af618e2249cf3b84fee5a660",
-        "contentSha256": "1c7a2cf4a180558549862bb9401b9886878ff6590cb1a3a3b84ef369d073a98b",
-        "bytes": 5217475,
-        "compressedBytes": 637136
+        "path": "links/evidence.76ce51b7bc6d697b56746784574ba8bcd5b504c402d1e71a66941920bf9e240e.links.gz",
+        "sha256": "f4ba8e9de2d4372263e9b71629cb950893f321a67cbaa951fcc9c5b9d42d5c78",
+        "contentSha256": "76ce51b7bc6d697b56746784574ba8bcd5b504c402d1e71a66941920bf9e240e",
+        "bytes": 5221197,
+        "compressedBytes": 637728
       }
     },
     "extraction-audit": {
@@ -686,29 +682,54 @@
         "compressedBytes": 336647
       }
     },
-    "product": {
-      "records": 415,
-      "sourceSha256": "749bc1d0a9448877c971f3d44a614327cc24de7253075e32ee8785f8103ce835",
+    "package-quantity-review": {
+      "records": 2,
+      "sourceSha256": "761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed",
       "json": {
-        "path": "records/product.749bc1d0a9448877c971f3d44a614327cc24de7253075e32ee8785f8103ce835.json.gz",
-        "sha256": "dac810eb47f2bfec98e8165fdb93dba3501be43659c318f4c37c69802a6d263d",
-        "contentSha256": "749bc1d0a9448877c971f3d44a614327cc24de7253075e32ee8785f8103ce835",
-        "bytes": 6460899,
-        "compressedBytes": 548356
+        "path": "records/package-quantity-review.761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed.json.gz",
+        "sha256": "4ad890d189b2648d3d3a20c1d512b4c7c2fc1f82c6fb51b3a237624a61229145",
+        "contentSha256": "761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed",
+        "bytes": 3096,
+        "compressedBytes": 1103
       },
       "lino": {
-        "path": "links/product.37eec639ff5b73a373b475de1fcc1cfe7359ce02a2a2cc141e6ac7db136a235e.lino.gz",
-        "sha256": "afc663da82a56fca6d4ae80aed7b9272b4841fde495b068d3850921c7ba7b0c5",
-        "contentSha256": "37eec639ff5b73a373b475de1fcc1cfe7359ce02a2a2cc141e6ac7db136a235e",
-        "bytes": 7764760,
-        "compressedBytes": 580064
+        "path": "links/package-quantity-review.834b1efaa44cc9b665bf4f186688ff44f4a350c74009aea38003e6e47f7c9d43.lino.gz",
+        "sha256": "f8597dc67e2ad2fb8aa8f0ac9a52a6639aa6fd3a402ea3bf074c7ab3c2ffbeeb",
+        "contentSha256": "834b1efaa44cc9b665bf4f186688ff44f4a350c74009aea38003e6e47f7c9d43",
+        "bytes": 3333,
+        "compressedBytes": 1106
       },
       "binary": {
-        "path": "links/product.8ecbc257f60f7394ca12cf82186ec69748af7a97e21551f063ba8f5348b95544.links.gz",
-        "sha256": "cb998499f04b9954fb43c60e061f2ad45a4c3d45f8c6549723a98c7b69f6e121",
-        "contentSha256": "8ecbc257f60f7394ca12cf82186ec69748af7a97e21551f063ba8f5348b95544",
-        "bytes": 13942348,
-        "compressedBytes": 3166486
+        "path": "links/package-quantity-review.dd982bc9438c79bdbca980c86f1be6fffd9c4989bec09ca4b5a394c213d535d8.links.gz",
+        "sha256": "42628feebb9ddf6a91bd54d4be966b8adbc52e6e26f73062b90fc1020d913f86",
+        "contentSha256": "dd982bc9438c79bdbca980c86f1be6fffd9c4989bec09ca4b5a394c213d535d8",
+        "bytes": 6806,
+        "compressedBytes": 1690
+      }
+    },
+    "product": {
+      "records": 415,
+      "sourceSha256": "1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec",
+      "json": {
+        "path": "records/product.1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec.json.gz",
+        "sha256": "b21379763975577788edffdd1be10accff5ecdd1189e7c57aa4066009d64e81b",
+        "contentSha256": "1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec",
+        "bytes": 6461227,
+        "compressedBytes": 548476
+      },
+      "lino": {
+        "path": "links/product.008a6f41e98bd998ad887d14d55c1e003412d1f8f135a0a869502ad27db60953.lino.gz",
+        "sha256": "09a78997acc3f24fd25fdf75f5ba13ad8ce9873cbcf43f1f10c717839050025f",
+        "contentSha256": "008a6f41e98bd998ad887d14d55c1e003412d1f8f135a0a869502ad27db60953",
+        "bytes": 7765100,
+        "compressedBytes": 580186
+      },
+      "binary": {
+        "path": "links/product.7400f9b574cc771aa77b5a3a197acf3f718721ff051ca31f9dc686dc9b626b30.links.gz",
+        "sha256": "b15903f5e11efc6c67b263254c82dc545b8bb80f112b47056e03ed133525ef8d",
+        "contentSha256": "7400f9b574cc771aa77b5a3a197acf3f718721ff051ca31f9dc686dc9b626b30",
+        "bytes": 13943246,
+        "compressedBytes": 3166680
       }
     },
     "promotion-code-source": {
@@ -48244,6 +48265,13 @@
       "contentSha256": "015ab4584052392371388f6bed7556b19a1e7b993523f36a4ac6de9401d5ab4d",
       "bytes": 26436,
       "compressedBytes": 24990
+    },
+    "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819": {
+      "path": "blobs/36/36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819.gz",
+      "sha256": "b0e8d90fad54b3deb7869695a187c5c5914063fc3ff0180da91e85a32b0df61d",
+      "contentSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+      "bytes": 183551,
+      "compressedBytes": 183091
     },
     "22de56966c9a802b4ab71774998dafd6059ef0497cc207bb3f029a553c1c7cb0": {
       "path": "blobs/22/22de56966c9a802b4ab71774998dafd6059ef0497cc207bb3f029a553c1c7cb0.gz",
