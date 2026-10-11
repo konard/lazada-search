@@ -1,9 +1,14 @@
 import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
+import { isDeepStrictEqual, promisify } from 'node:util';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { sha256 } from './util.js';
+import {
+  assertTesseractModelsLoaded,
+  resolveOcrModels,
+  snapshotOcrModels,
+} from './ocr-models.js';
 
 const run = promisify(execFile);
 const IMAGE_LIMITS = {
@@ -141,6 +146,23 @@ function returnedOcr(result, cacheHit, prepared) {
     cacheHit,
     ...(prepared ? { transformCacheHit: prepared.cacheHit } : {}),
   };
+}
+
+function validCachedOcr(cached, provenance, imageHash, raw) {
+  if (
+    !isDeepStrictEqual(cached.modelProvenance, provenance) ||
+    cached.imageHash !== imageHash ||
+    !raw ||
+    sha256(raw) !== cached.rawTsv.sha256
+  ) {
+    return false;
+  }
+  const parsed = parseTsv(raw.toString('utf8'));
+  return isDeepStrictEqual(parsed, {
+    text: cached.text,
+    confidence: cached.confidence,
+    words: cached.words,
+  });
 }
 
 function validateOcrOptions(psm, transform, sourceOcrId) {
@@ -343,6 +365,13 @@ export class TesseractOcr {
         : undefined;
     const physicalImage = prepared?.blob || blob;
     const version = await this.version();
+    const models = await resolveOcrModels({
+      command: this.command,
+      execute: this.execute,
+      languages: this.languages,
+      psm,
+      tessdataDir: this.tessdataDir,
+    });
     const id = sha256(
       JSON.stringify([
         ...physicalIdentity(blob, prepared),
@@ -350,10 +379,19 @@ export class TesseractOcr {
         this.languages,
         psm,
         this.tessdataDir || 'system',
+        models.provenance,
       ])
     );
     const cached = await this.store.get('ocr', id);
     if (cached) {
+      const raw = cached.rawTsv?.sha256
+        ? await this.store.blob(cached.rawTsv.sha256)
+        : undefined;
+      if (
+        !validCachedOcr(cached, models.provenance, physicalImage.sha256, raw)
+      ) {
+        throw new Error('Missing or corrupted model-bound OCR cache evidence');
+      }
       return returnedOcr(cached, true, prepared);
     }
     const bytes = await this.store.blob(physicalImage.sha256);
@@ -364,12 +402,17 @@ export class TesseractOcr {
     try {
       const image = join(directory, 'image');
       await writeFile(image, bytes);
-      const { stdout } = await this.execute(
+      const modelDirectory = await snapshotOcrModels(
+        models,
+        join(directory, 'tessdata')
+      );
+      const { stdout, stderr } = await this.execute(
         this.command,
         [
           image,
           'stdout',
-          ...(this.tessdataDir ? ['--tessdata-dir', this.tessdataDir] : []),
+          '--tessdata-dir',
+          modelDirectory,
           '-l',
           this.languages,
           '--psm',
@@ -379,11 +422,13 @@ export class TesseractOcr {
         ],
         { timeout: 60000, maxBuffer: 20 * 1024 ** 2 }
       );
+      assertTesseractModelsLoaded(stderr);
       const result = {
         id,
         imageHash: physicalImage.sha256,
         ...transformFields(prepared, blob, this.tessdataDir),
         engine: version,
+        modelProvenance: models.provenance,
         languages: this.languages,
         psm,
         ...parseTsv(stdout),

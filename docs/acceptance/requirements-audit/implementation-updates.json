@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T12:41:50.976857+00:00",
+  "checkedAt": "2026-10-11T15:16:50.234850+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -122,9 +122,13 @@
         "src/variant-policy.js",
         "src/browser-variant.js",
         "tests/e2e/preferred-variant.test.js",
-        "docs/acceptance/preferred-variant/live-check.json"
+        "docs/acceptance/preferred-variant/live-check.json",
+        "src/config.js",
+        "tests/flavour-scope.test.js",
+        "tests/e2e/archive.test.js",
+        "tests/e2e/telegram.test.js"
       ],
-      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price."
+      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined revised full-interface suite is in progress."
     },
     {
       "id": "R001",
@@ -196,6 +200,52 @@
     {
       "id": "R008",
       "finding": "Current discovered listing/SKU gaps are recalculated in activeScope and broaderArchive in current.json; dated review counts are historical snapshots. Source completeness does not establish authoritative market inventory."
+    },
+    {
+      "id": "R033",
+      "status": "implemented",
+      "mechanicsStatus": "implemented",
+      "realDataAcceptance": "Installed0.31.0 complete local unit1291/nativeBrowserE2E48 acceptance; fresh actual platform matrix recorded separately.",
+      "evidence": [
+        "package.json",
+        "package-lock.json",
+        "docs/acceptance/browser-commander-031/README.md",
+        "docs/acceptance/browser-commander-031/review.json"
+      ],
+      "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data."
+    },
+    {
+      "id": "R002",
+      "requirement": "Plain/unflavoured or chocolate protein powder only",
+      "requirementSource": "docs/REQUIREMENTS.md:8",
+      "declaredStatus": "Implemented",
+      "status": "implemented",
+      "mechanicsStatus": "strict-scope-default-for-fresh-CLI-and-Telegram-with-explicit-generic-override",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/flavour-scope.js:57",
+        "tests/flavour-scope.test.js:24",
+        "tests/e2e/flavour-scope.test.js",
+        "src/config.js",
+        "tests/flavour-scope.test.js",
+        "tests/e2e/archive.test.js",
+        "tests/e2e/telegram.test.js"
+      ],
+      "finding": "Chocolate/unflavoured powder scope applies before preferences exist. Exact generic listing SKU selection chooses observed Socola/Kh\u00f4ng B\u00ecnh combinations; explicit all-scope options remain available for generic library/CLI use. Fixture and actual marketplace case acceptance remain separately dated."
+    },
+    {
+      "id": "R038",
+      "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
+      "requirementSource": "docs/REQUIREMENTS.md supplementary paragraphs",
+      "status": "partial",
+      "mechanicsStatus": "partial",
+      "realDataAcceptance": "2-of14 captured selling units have both supported grams and millilitres;3 have a supported protein denominator; current usable rankings5gram/7ml/2protein, zero exact frozen delivered quotes",
+      "evidence": [
+        "scripts/ice-unit-rankings.mjs",
+        "docs/tables/ice-unit-rankings.json",
+        "docs/tables/ice-unit-rankings.json"
+      ],
+      "finding": "Current counts are recomputed from ice-unit-rankings.json. Missing exact selling-unit mass, volume, formula and cold-chain Nha Trang quotes remain worklist tasks; no density or nutrition is invented."
     }
   ],
   "additionalRequirements": [
@@ -275,6 +325,38 @@
         "tests/bonus-paid-mass-hold.test.js"
       ],
       "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require stored original bytes/identity/quantity evidence, physical-unit-bound excerpts and factory review; binary labels require replayable original/crop/OCR or actual source-bound visual review. Exact SKU/order quantities count once; one allocation cannot recur on multiple basket lines. The advertised two-bag real offer also has a disputed per-pouch mass; the shared original-backed hold removes its4000g/447.50VND/g calculation without replacing it with a guess."
+    },
+    {
+      "id": "R048",
+      "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
+      "status": "partial",
+      "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
+      "realDataAcceptance": "Full combined final native/cache/platform acceptance in progress; actual prior matrix native decimal cases passed but Windows Deno suite timed out. No unmatched manufacturer nutrition approved.",
+      "evidence": [
+        "https://github.com/konard/lazada-search/issues/37",
+        "https://github.com/konard/lazada-search/issues/38",
+        "docs/acceptance/ocr-decimal-portability/README.md",
+        "src/ocr-models.js",
+        "src/ocr.js",
+        "tests/ocr-models.test.js",
+        "tests/ocr-crops.test.js",
+        "docs/acceptance/ocr-model-identity/initial-validation.json",
+        "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json"
+      ],
+      "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes. Warm reads verify full model manifests and reparse original cached TSV; historical unbound records remain preserved. The new native fixture also asserts warm restart reuse; final combined validation is in progress."
+    },
+    {
+      "id": "R049",
+      "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
+      "status": "partial",
+      "mechanicsStatus": "offline-link-validation-drafted-without-online-retry-or-archive-probes",
+      "realDataAcceptance": "pending-full-workflow-and-actual-CI-offline-link-validation",
+      "evidence": [
+        ".github/workflows/links.yml",
+        "tests/links-workflow.test.js",
+        "https://github.com/konard/lazada-search/issues/40"
+      ],
+      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow now checks local repository links offline and excludes captured original pages from authored-document input; original archive digests remain independently validated. External URL liveness is not claimed."
     }
   ],
   "checkpoint": {
@@ -447,7 +529,7 @@
         "docs/acceptance/preferred-variant/cached-selection-review.json",
         "tests/e2e/preferred-variant.test.js"
       ],
-      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Kh\u00f4ng B\u00ecnh SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
       "issue": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -493,7 +575,7 @@
         "src/scope-decisions.js",
         "tests/human-food-scope.test.js"
       ],
-      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+      "finding": "Thanh N\u0103ng L\u01b0\u1ee3ng and Thanh Dinh D\u01b0\u1ee1ng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
     },
     {
       "id": "powder-ice-flavour",

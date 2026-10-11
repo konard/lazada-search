@@ -1,0 +1,175 @@
+{
+  "checkedAt": "2026-10-11T15:10:05.417287+00:00",
+  "commit": "16c3aa2bb3d208b35014f4bc84c9e1b0ebac0820",
+  "matrixRun": "https://github.com/konard/lazada-search/actions/runs/38148279239",
+  "e2eRun": "https://github.com/konard/lazada-search/actions/runs/38148279335",
+  "allNineMatrixJobsPassed": false,
+  "matrixJobsPassed": 8,
+  "matrixJobsFailed": 1,
+  "remainingFailure": "Windows Deno reached600-second full-suite budget with full committed catalog replay still active; no total acceptance summary exists. All other matrix jobs and actual native E2E passed.",
+  "nativeDecimalRecipe": "Actual native crop assertions passed under every OS/runtime, including before the Deno Windows suite timeout; this does not count the timed-out suite as passed.",
+  "releasePreflight": "Failed separately on package-owner npm publisher configuration; mandatory gate retained under issue32.",
+  "results": [
+    {
+      "runtime": "bun",
+      "platform": "macos",
+      "conclusion": "success",
+      "jobId": 114496747058,
+      "counts": {
+        "pass": 1291,
+        "fail": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-bun-macos.log.gz",
+      "sourceBytes": 332236,
+      "sourceSha256": "e8cebd4a89fddfb2b87d9dfd1f3da3d1fd6aa9c0c9a378a10b8f95d19f027e09",
+      "gzipSha256": "4bcc697ff21a4c1bb75bff3c29cceb6db8b8028b06ffe2a527f1385a076290f5"
+    },
+    {
+      "runtime": "bun",
+      "platform": "ubuntu",
+      "conclusion": "success",
+      "jobId": 114496747301,
+      "counts": {
+        "pass": 1291,
+        "fail": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-bun-ubuntu.log.gz",
+      "sourceBytes": 340594,
+      "sourceSha256": "3b04deff3a9a66e9e1d8cb658b75733bec01b788096c169cc6619c56c0a9d081",
+      "gzipSha256": "38c0bb99fdf59941ee29bcaa1d8b0954208b0cdbcce72ddbfe7d1f571e557e1c"
+    },
+    {
+      "runtime": "bun",
+      "platform": "windows",
+      "conclusion": "success",
+      "jobId": 114496747130,
+      "counts": {
+        "pass": 1254,
+        "fail": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-bun-windows.log.gz",
+      "sourceBytes": 331494,
+      "sourceSha256": "24e663d8f806ce86d552461e9452de17d8d713b5de516ea763437f7f4434a071",
+      "gzipSha256": "e6133228cbf2ad77326fbce72d98d4b88fb1d4d58d9ba43592a41f46f3ad628d"
+    },
+    {
+      "runtime": "deno",
+      "platform": "macos",
+      "conclusion": "success",
+      "jobId": 114496747232,
+      "counts": {
+        "passed": 1139,
+        "steps": 8,
+        "failed": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-deno-macos.log.gz",
+      "sourceBytes": 363966,
+      "sourceSha256": "3fa1979b8287bec8f8f88b225abc1c02e5f8a7ae573d098fe70c474704c2982f",
+      "gzipSha256": "687439d6117624f2bc4c7b3de44e9966f1f29a39f32c18e32b398d4237f99ce0"
+    },
+    {
+      "runtime": "deno",
+      "platform": "ubuntu",
+      "conclusion": "success",
+      "jobId": 114496747106,
+      "counts": {
+        "passed": 1139,
+        "steps": 8,
+        "failed": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-deno-ubuntu.log.gz",
+      "sourceBytes": 370679,
+      "sourceSha256": "a338fd763947985eb6e5c81ec9a2ed35997d50219a898c6c95043afe0cb0f177",
+      "gzipSha256": "0f03daf16efe1a7c4b883ab97e4f84479deaf21b378fdfa30e4dd7cdf118e96b"
+    },
+    {
+      "runtime": "deno",
+      "platform": "windows",
+      "conclusion": "failure",
+      "jobId": 114496747038,
+      "counts": {},
+      "timedOut": true,
+      "log": "ci-16c3aa2-deno-windows.log.gz",
+      "sourceBytes": 365606,
+      "sourceSha256": "beb295cd1731eb69a8808e90209c15fb540ed4612033e9978a86834543c4d862",
+      "gzipSha256": "3f688166973bd2d67b2d9b9c983fbf5470ceab15a1b89835c12d3ebb1a84400c"
+    },
+    {
+      "runtime": "e2e",
+      "platform": "",
+      "conclusion": "success",
+      "jobId": 114496135693,
+      "counts": {
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-e2e.log.gz",
+      "sourceBytes": 172054,
+      "sourceSha256": "9e9fb91d1e4768bc1455904f2f9f15c3833a63baaf11a39098fe6db205ba0b86",
+      "gzipSha256": "101a66e4180dd1395442df8f94f25e8b0c335b67e80975694e95438e5aeefe47"
+    },
+    {
+      "runtime": "node",
+      "platform": "macos",
+      "conclusion": "success",
+      "jobId": 114496747245,
+      "counts": {
+        "tests": 1291,
+        "pass": 1291,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-node-macos.log.gz",
+      "sourceBytes": 299142,
+      "sourceSha256": "5d24028a3cab008e9255468b3acc8142869d45c9e4ba0f5186ebf2c1f35747a6",
+      "gzipSha256": "529ee85b3854c9b7a367eb0c63cd6290e4ed1a5c1f186477c7f7438732d5329e"
+    },
+    {
+      "runtime": "node",
+      "platform": "ubuntu",
+      "conclusion": "success",
+      "jobId": 114496747119,
+      "counts": {
+        "tests": 1291,
+        "pass": 1291,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-node-ubuntu.log.gz",
+      "sourceBytes": 308405,
+      "sourceSha256": "c3f554be5471843ffd7b32de6ecb61d814c9f452e23769cb7a1d8759c862f8c1",
+      "gzipSha256": "cdeae20443b84d6cfcc8ac1015e32b57f3300f74eb1edcc9c5afff833dc6d75a"
+    },
+    {
+      "runtime": "node",
+      "platform": "windows",
+      "conclusion": "success",
+      "jobId": 114496747239,
+      "counts": {
+        "tests": 1250,
+        "pass": 1250,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "timedOut": false,
+      "log": "ci-16c3aa2-node-windows.log.gz",
+      "sourceBytes": 296528,
+      "sourceSha256": "2d84b133b03531c3cbbbe8c5e65691982c330c38c4e89e3895127de5b7f8e26a",
+      "gzipSha256": "a2475db1eec6139d3e92f06c8d87bf95492fb6810d542aa8959d4c96cf21d1c3"
+    }
+  ]
+}

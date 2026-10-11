@@ -1,6 +1,7 @@
 import {
   LazadaSearch,
   ManufacturerSourceCache,
+  TesseractOcr,
   accountFoodComponents,
   applyComparisonTranslations,
   applyBasketComparisonTranslations,
@@ -23,6 +24,17 @@ declare const offer: Offer;
 declare const source: BasketSourceMapping;
 declare const originalHtml: Uint8Array;
 declare const manufacturerSources: ManufacturerSourceCache;
+declare const nativeOcr: TesseractOcr;
+const modelBoundOcr = await nativeOcr.recognize({
+  type: 'stored-blob',
+  sha256: 'b'.repeat(64),
+  bytes: 100,
+});
+const trainedModelDigest: string | undefined =
+  modelBoundOcr.modelProvenance?.models[0]?.sha256;
+const modelManifestVersion: 'tesseract-traineddata-v1' | undefined =
+  modelBoundOcr.modelProvenance?.version;
+void [trainedModelDigest, modelManifestVersion];
 await manufacturerSources.importOriginal(
   {
     brand: 'Factory fixture',

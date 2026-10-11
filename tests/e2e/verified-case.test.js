@@ -156,6 +156,8 @@ test('verified public case keeps factory corrections and prices across library, 
       'whey',
       '--sort',
       'costPerProteinGramBeforeDelivery',
+      '--flavour-scope',
+      'all',
     ],
     { maxBuffer: 32 * 1024 ** 2 }
   );
@@ -211,7 +213,7 @@ test('verified public case keeps factory corrections and prices across library, 
     client: { apiRoot: `http://127.0.0.1:${api.address().port}`, fetch },
   });
   const text =
-    '/compare --category whey --allow-stale --sort costPerProteinGramBeforeDelivery';
+    '/compare --category whey --allow-stale --sort costPerProteinGramBeforeDelivery --flavour-scope all';
   await bot.handleUpdate({
     update_id: 1,
     message: {

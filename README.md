@@ -91,23 +91,23 @@ to original and English text hashes and keeps calculations on original facts.
 
 CLI options override environment defaults and `.lenv` configuration through [lino-arguments](https://github.com/link-foundation/lino-arguments). Existing environment variables take precedence over the default `.lenv` file; `--configuration FILE` selects an explicit configuration.
 
-| Setting                     | Default                        | Purpose                                    |
-| --------------------------- | ------------------------------ | ------------------------------------------ |
-| `LAZADA_DATA_DIR`           | `.lazada-search`               | Private local state                        |
-| `LAZADA_ARCHIVE_DIR`        | `data/cases/vietnam-nha-trang` | Committed public case fallback             |
-| `LAZADA_MARKET`             | `vn`                           | Also supports `th`, `sg`, `my`, `ph`, `id` |
-| `LAZADA_DELIVERY_AREA`      | `Nha Trang`                    | Delivery context for page cache            |
-| `LAZADA_CATEGORY_ONLY`      | `false`                        | Skip keywords and scan actual categories   |
-| `LAZADA_SEARCH_SORT`        | `default`                      | `default`, `priceasc` or `pricedesc`       |
-| `LAZADA_FLAVOUR_SCOPE`      | `all`                          | Case preferences use plain/chocolate       |
-| `LAZADA_SESSION_FROM`       | empty                          | Optional existing browser session          |
-| `LAZADA_BROWSER_EXECUTABLE` | auto                           | Browser Commander executable selection     |
-| `LAZADA_CDP_URL`            | empty                          | Optional running browser endpoint          |
-| `LAZADA_OCR_LANGUAGES`      | `eng`                          | Tesseract languages, e.g. `eng+vie`        |
-| `LAZADA_OCR_DATA_DIR`       | system                         | Optional local trained-model directory     |
-| `LAZADA_CLINK_COMMAND`      | `clink`                        | Optional native store executable           |
-| `TELEGRAM_BOT_TOKEN`        | empty                          | BotFather token                            |
-| `TELEGRAM_ALLOWED_USER_IDS` | empty                          | Comma-separated private-chat user IDs      |
+| Setting                     | Default                        | Purpose                                     |
+| --------------------------- | ------------------------------ | ------------------------------------------- |
+| `LAZADA_DATA_DIR`           | `.lazada-search`               | Private local state                         |
+| `LAZADA_ARCHIVE_DIR`        | `data/cases/vietnam-nha-trang` | Committed public case fallback              |
+| `LAZADA_MARKET`             | `vn`                           | Also supports `th`, `sg`, `my`, `ph`, `id`  |
+| `LAZADA_DELIVERY_AREA`      | `Nha Trang`                    | Delivery context for page cache             |
+| `LAZADA_CATEGORY_ONLY`      | `false`                        | Skip keywords and scan actual categories    |
+| `LAZADA_SEARCH_SORT`        | `default`                      | `default`, `priceasc` or `pricedesc`        |
+| `LAZADA_FLAVOUR_SCOPE`      | `chocolate-or-unflavoured`     | Fresh CLI preferences use your target scope |
+| `LAZADA_SESSION_FROM`       | empty                          | Optional existing browser session           |
+| `LAZADA_BROWSER_EXECUTABLE` | auto                           | Browser Commander executable selection      |
+| `LAZADA_CDP_URL`            | empty                          | Optional running browser endpoint           |
+| `LAZADA_OCR_LANGUAGES`      | `eng`                          | Tesseract languages, e.g. `eng+vie`         |
+| `LAZADA_OCR_DATA_DIR`       | system                         | Optional local trained-model directory      |
+| `LAZADA_CLINK_COMMAND`      | `clink`                        | Optional native store executable            |
+| `TELEGRAM_BOT_TOKEN`        | empty                          | BotFather token                             |
+| `TELEGRAM_ALLOWED_USER_IDS` | empty                          | Comma-separated private-chat user IDs       |
 
 Run `node bin/lazada-search.js --help` for all options. Page navigations and explicit image downloads start at least 60 seconds apart per domain. `--offline` prohibits website downloads; cached stale prices still require `--allow-stale` for purchase eligibility. `--no-ocr` explicitly disables OCR. Committed case sources are reused until explicit refresh or invalidation. With `--no-archive`, search/listing snapshots expire after six hours and manufacturer pages after 30 days. Images and OCR are keyed separately; OCR includes the engine version, languages and segmentation mode. Images observed by the browser are reused for OCR, and cached images are served back to later browser pages. New selectors and changed HTML hashes reprocess saved HTML without downloading the page again; `collect --reprocess --offline` explicitly repeats extraction. `--refresh` rechecks the page and image evidence online. `invalidate URL --reason TEXT` persists a correction/reload requirement, which an offline request cannot satisfy. Re-export with `archive`, and verify all sources and conversions with `archive-verify`.
 
@@ -206,7 +206,7 @@ try {
 }
 ```
 
-The public package includes TypeScript declarations, collector/cache/OCR adapters, nutrition parsing, comparison functions, the associative store, native store adapter, session import and Telegram/HTTP factories. Importing the package never opens a browser or sends messages.
+The public package includes TypeScript declarations, collector/cache/OCR adapters, nutrition parsing, comparison functions, the associative store, native store adapter, session import and Telegram/HTTP factories. Importing the package never opens a browser or sends messages. Native OCR fingerprints every selected trained model before cache reuse and recognizes against those exact snapshot bytes. Same-path model replacements produce new OCR records; historical outputs remain preserved. Missing or failed model loads never reuse stale recognition.
 
 ## Associative storage
 

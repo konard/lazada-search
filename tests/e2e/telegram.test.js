@@ -93,7 +93,9 @@ test('Telegram delivers every comparison row, refuses incomplete audits and isol
       ],
     },
   });
-  await bot.handleUpdate(update('/compare --category whey'));
+  await bot.handleUpdate(
+    update('/compare --category whey --flavour-scope all')
+  );
   assert.ok(
     messages.length > 1,
     'large comparison must be split into deliverable messages'
@@ -108,6 +110,16 @@ test('Telegram delivers every comparison row, refuses incomplete audits and isol
     )
   );
   assert.ok(full.includes('18 eligible offers'));
+  const broadMessageCount = messages.length;
+  await bot.handleUpdate(update('/compare --category whey'));
+  const defaultMessages = messages
+    .slice(broadMessageCount)
+    .map((message) => message.text)
+    .join('');
+  assert.match(defaultMessages, /0 eligible offers/);
+  for (const product of products) {
+    assert.equal(defaultMessages.includes(`${product.title}\n`), false);
+  }
   await bot.handleUpdate(update('/audit --strict'));
   assert.match(messages.at(-1).text, /Command failed: Incomplete catalog/);
   const count = messages.length;
@@ -117,7 +129,9 @@ test('Telegram delivers every comparison row, refuses incomplete audits and isol
   const pending = { ...products[0] };
   delete pending.manufacturerVerification;
   await app.store.put('product', pending);
-  await bot.handleUpdate(update('/compare --category whey'));
+  await bot.handleUpdate(
+    update('/compare --category whey --flavour-scope all')
+  );
   assert.match(
     messages
       .slice(count)

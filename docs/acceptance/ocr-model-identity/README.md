@@ -1,0 +1,17 @@
+# OCR model identity, shopping defaults and bounded catalog reads
+
+This checkpoint binds native OCR cache entries to actual trained-model bytes, applies the requested chocolate/unflavoured policy before CLI/Telegram preferences exist, and removes uncontrolled documentation URL probes. It changes no marketplace prices or accepted manufacturer facts.
+
+Selected language files and PSM12 orientation files are content-hashed with bounded streaming reads. A recognition miss uses private copies verified against those exact hashes. Warm entries must match the complete manifest and their original TSV; parsed text, confidence and words are checked again. Same-path, equal-size, restored-mtime model replacement creates a new entry. Historical outputs remain available.
+
+The source-image native fixture performs two actual Tesseract crop recognitions, then reopens the store and verifies two cached crop/TSV/model replays without another recognition. These source readings remain review-only until the selected marketplace package/formula is matched. Tiny physical model files with a mock executor cover replacement and failure races separately; they are not passed off as native recognition.
+
+Fresh CLI and Telegram options use `chocolate-or-unflavoured`; the policy excludes paid shaker bundles. Deliberate broad replay uses `--flavour-scope all`. General library constructors retain their documented reusable scope. Archive and Telegram tests independently check broad preservation and the default buying subset.
+
+Canonical record reads use at most eight operations, drain failures, and merge in sorted filename order. Local corrections retain precedence and every call rereads current canonical bytes. All write/fsync behavior and full catalog fixture counts remain unchanged. Full-catalog phase diagnostics distinguish import, audit, compare and cleanup. The unchanged Windows Deno time budget must still be accepted in actual CI.
+
+Documentation link validation uses offline mode and has no online retry/archive fallback. Captured original pages are excluded from authored-document input; their original bytes remain covered by archive verification. This does not attest external URL liveness.
+
+[Initial frozen validation](initial-validation.json) preserves the full 1,306/1,306 unit pass and the rejected 44/48 E2E run before broad fixture options were corrected. [Final source/dependency snapshot](final-frozen-code.json) has 588 source and 178 installed/native files. [Focused log hashes](focused-logs.json) retain the original Node store 28/28 and Bun/Deno 63/63 passes, strict lint, public TypeScript consumer and quality checks. [Current validation](validation.json) records the full 1,309/1,309 unit pass, 47 passed E2E cases with one omitted native activation, and the separate real native binary-store pass against unchanged files. A single complete native-enabled E2E rerun and the fresh remote matrix remain in progress; neither is claimed as passed before completion.
+
+[Actual earlier eight-of-nine matrix and 48/48 native CI](../ocr-decimal-portability/ci-16c3aa2-review.json) preserves the Windows Deno timeout. [Remaining requirements](../requirements-audit/current.md) remain open for full inventory, exact factory labels, current bulk/frozen freight, real English translations and live Telegram operation. The original manufacturer CAPTCHA stop remains active; this checkpoint performs no product downloads.

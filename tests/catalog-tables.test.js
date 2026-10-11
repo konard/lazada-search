@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { AssociativeStore, LazadaSearch } from '../src/index.js';
+import { performance } from 'node:perf_hooks';
 
 const execute = promisify(execFile);
 
@@ -146,10 +147,51 @@ test('Markdown export retains a newly collected product without a pre-existing m
 });
 
 test('committed catalog imports offline with the same offers and explicit coverage gaps', async (t) => {
+  const startedAt = performance.now();
+  const phase = async (name, operation) => {
+    const started = performance.now();
+    console.log(
+      'Committed catalog phase:',
+      JSON.stringify({ phase: name, state: 'started' })
+    );
+    try {
+      return await operation();
+    } finally {
+      console.log(
+        'Committed catalog phase:',
+        JSON.stringify({
+          phase: name,
+          state: 'finished',
+          durationMs: Math.round(performance.now() - started),
+          elapsedMs: Math.round(performance.now() - startedAt),
+        })
+      );
+    }
+  };
   const directory = await mkdtemp(join(tmpdir(), 'lazada-catalog-import-'));
-  t.after(() => rm(directory, { recursive: true, force: true }));
-  const catalog = JSON.parse(
-    await readFile(new URL('../docs/tables/catalog.json', import.meta.url))
+  t.after(() =>
+    phase('cleanup', () => rm(directory, { recursive: true, force: true }))
+  );
+  const catalog = await phase('load', async () =>
+    JSON.parse(
+      await readFile(new URL('../docs/tables/catalog.json', import.meta.url))
+    )
+  );
+  console.log(
+    'Committed catalog fixture:',
+    JSON.stringify({
+      fixtureRecords: Object.fromEntries(
+        [
+          'products',
+          'offers',
+          'discoveries',
+          'skuInventories',
+          'crawls',
+          'availability',
+          'invalidations',
+        ].map((kind) => [kind, (catalog[kind] || []).length])
+      ),
+    })
   );
   assert.ok(catalog.discoveries.length > 0);
   const app = new LazadaSearch({
@@ -160,18 +202,20 @@ test('committed catalog imports offline with the same offers and explicit covera
   app.collector.start = () => {
     throw new Error('Committed catalog import must never start a browser');
   };
-  const imported = await app.importRecords(catalog);
+  const imported = await phase('import', () => app.importRecords(catalog));
   assert.equal(imported.offers, catalog.offers.length);
-  const audit = await app.audit();
+  const audit = await phase('audit', () => app.audit());
   assert.deepEqual(audit.missingListings, catalog.audit.missingListings);
   assert.deepEqual(audit.missingSkuPrices, catalog.audit.missingSkuPrices);
   assert.equal(audit.verifiedProducts, catalog.audit.verifiedProducts);
-  const report = await app.compare({ allowStale: true });
+  const report = await phase('compare', () =>
+    app.compare({ allowStale: true })
+  );
   assert.equal(report.comparisons.length, catalog.offers.length);
   assert.equal(
     report.comparisons.filter((row) => row.manufacturerVerified).length,
     catalog.comparisons.filter((row) => row.manufacturerVerified).length
   );
   assert.equal(app.cache.stats.downloads, 0);
-  await app.close();
+  await phase('close', () => app.close());
 });

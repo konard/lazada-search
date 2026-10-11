@@ -60,7 +60,9 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          # Check all Markdown and HTML files
+          # Validate repository links without requesting historical marketplace,
+          # manufacturer or image URLs. Live evidence requests must use the
+          # collector's cache, pacing and persistent security-stop guards.
           # Exclude case-studies directory - these are research documents from
           # external repos with references to files and issues that don't exist
           # in this repository (similar exclusion pattern as eslint.config.js)
@@ -71,6 +73,7 @@ jobs:
           args: >-
             --verbose
             --no-progress
+            --offline
             --cache
             --max-cache-age 1d
             --max-retries 3
@@ -78,6 +81,8 @@ jobs:
             --exclude-path docs/case-studies
             --exclude-path examples/universal-app/index.html
             --exclude-path tests/fixtures
+            --exclude-path docs/acceptance
+            --exclude-path data/cases
             './**/*.md'
             './**/*.html'
           # Don't fail the workflow immediately - we want to check web archive first
@@ -86,52 +91,22 @@ jobs:
           output: lychee/out.md
           # Write a job summary
           jobSummary: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Re-check transient link failures
-        # Retry transport errors, 429, and 5xx within a shared budget.
-        # GitHub blob/tree pages also use the authenticated contents API.
-        if: steps.lychee.outputs.exit_code != 0
-        id: recheck
-        run: node scripts/recheck-broken-links.mjs
-        env:
-          LYCHEE_OUTPUT: lychee/out.md
-          RECOVERED_OUTPUT: lychee/recovered.txt
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check broken links against Web Archive
-        # `!= 'true'`, never `== 'false'`: a skipped re-check leaves the
-        # output empty, and only the != form fails safe.
-        if: >-
-          steps.lychee.outputs.exit_code != 0 &&
-          steps.recheck.outputs.all_recovered != 'true'
-        id: webarchive
-        run: node scripts/check-web-archive.mjs
-        env:
-          LYCHEE_OUTPUT: lychee/out.md
-          RECOVERED_URLS: lychee/recovered.txt
 
       - name: Fail if broken links were found
         if: >-
           !cancelled() &&
-          steps.lychee.outputs.exit_code != 0 &&
-          steps.recheck.outputs.all_recovered != 'true'
+          steps.lychee.outputs.exit_code != 0
         run: |
-          echo "::error::Broken live links were detected."
+          echo "::error::Broken repository links were detected."
           echo ""
           echo "What happened:"
           echo "  lychee found one or more broken links in the *.md and *.html files of this repository."
-          echo "  An archive is a suggested replacement; it does not make the live link valid."
+          echo "  External links are intentionally not fetched by this offline check."
           echo ""
           echo "How to fix:"
           echo "  1. Review the 'Check links with lychee' step above for a full list of broken links."
-          echo "  2. For links marked with a '::notice::' annotation above, a Web Archive replacement exists."
-          echo "     Replace those broken links with the suggested archive.org URL."
-          echo "  3. For links with no archive version, either:"
-          echo "     a. Find an updated URL that points to the same or equivalent content."
-          echo "     b. Remove the link if the content is no longer relevant."
-          echo "     c. Add the URL to .lycheeignore if it is a known false positive."
+          echo "  2. Fix missing files and incorrect relative paths in authored documentation."
+          echo "  3. Original captured pages are validated separately by archive hashes."
           echo ""
           echo "Report location: lychee/out.md (available as a workflow artifact if configured)."
           exit 1

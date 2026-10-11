@@ -42,6 +42,7 @@ test('Deno manual dependencies stay offline without disabling package freshness 
   assert.equal(config.nodeModulesDir, 'manual');
   assert.equal(config.minimumDependencyAge, undefined);
   const step = named('Run tests (Deno)');
+  assert.ok(step.run.includes('--frozen'));
   assert.ok(step.run.includes('--cached-only'));
   assert.ok(
     !/--(?:min-dep-age|minimum-dependency-age)|NPM_CONFIG_MIN_RELEASE_AGE/.test(

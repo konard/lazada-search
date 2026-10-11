@@ -10,8 +10,11 @@ const flavourScopeOption = {
   choices: ['all', 'chocolate-or-unflavoured'],
 };
 const flavourScopeConfig = (getenv) => {
-  const scope = getenv('LAZADA_FLAVOUR_SCOPE', '');
-  return { ...flavourScopeOption, ...(scope ? { default: scope } : {}) };
+  const scope = getenv('LAZADA_FLAVOUR_SCOPE', 'chocolate-or-unflavoured');
+  return {
+    ...flavourScopeOption,
+    default: scope || 'chocolate-or-unflavoured',
+  };
 };
 const categoryOnlyConfig = (getenv) => ({
   type: 'boolean',

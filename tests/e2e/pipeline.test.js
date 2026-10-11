@@ -218,6 +218,8 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
       '10',
       '--category',
       'whey',
+      '--flavour-scope',
+      'all',
     ],
     { cwd: new URL('../../', import.meta.url).pathname }
   );
@@ -248,7 +250,9 @@ test('collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calcula
     },
   });
   try {
-    await bot.handleUpdate(update('/compare --category whey --quantity 10'));
+    await bot.handleUpdate(
+      update('/compare --category whey --quantity 10 --flavour-scope all')
+    );
   } catch (error) {
     throw new Error(
       `Telegram fixture: ${error.error?.error?.message || error.error?.message || error.message}`,

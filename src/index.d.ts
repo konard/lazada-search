@@ -986,6 +986,19 @@ export interface OcrResult {
     box: number[];
   }>;
   engine: string;
+  /** Absent on historical OCR that predates physical trained-model binding. */
+  modelProvenance?: {
+    version: 'tesseract-traineddata-v1';
+    requestedLanguages: string;
+    directorySelection: 'native' | 'explicit';
+    fingerprint: string;
+    models: Array<{
+      language: string;
+      role: 'language' | 'orientation';
+      sha256: string;
+      bytes: number;
+    }>;
+  };
   languages: string;
   psm: number;
   observedAt: string;

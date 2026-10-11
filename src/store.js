@@ -40,7 +40,7 @@ function prepareGroups(store, kind, inputs) {
   return [...groups.values()];
 }
 
-async function writeGroups(groups, write) {
+async function processGroups(groups, process) {
   const results = [];
   let cursor = 0,
     failed = false,
@@ -53,7 +53,7 @@ async function writeGroups(groups, write) {
           if (failed) {
             return;
           }
-          results[entry.index] = await write(entry);
+          results[entry.index] = await process(entry);
         }
       } catch (error) {
         if (!failed) {
@@ -63,7 +63,8 @@ async function writeGroups(groups, write) {
       }
     }
   };
-  // A failure must drain every in-flight write before releasing the writer lock.
+  // A failure drains every in-flight operation before returning or releasing a
+  // writer lock. Ordered results preserve deterministic duplicate precedence.
   await Promise.all(Array.from({ length: Math.min(8, groups.length) }, worker));
   if (failed) {
     throw failure;
@@ -172,7 +173,7 @@ export class AssociativeStore {
       return [];
     }
     return await this.locked(() =>
-      writeGroups(groups, async (entry) => {
+      processGroups(groups, async (entry) => {
         const current = await this.get(kind, entry.record.id);
         const currentObserved = Date.parse(current?.observedAt);
         if (
@@ -192,7 +193,7 @@ export class AssociativeStore {
       return [];
     }
     return await this.locked(() =>
-      writeGroups(groups, (entry) => this.writeRecord(kind, entry))
+      processGroups(groups, (entry) => this.writeRecord(kind, entry))
     );
   }
 
@@ -286,10 +287,14 @@ export class AssociativeStore {
         (record) => [record.id, record]
       )
     );
-    for (const file of files.sort().filter((name) => name.endsWith('.lino'))) {
-      const record = decode({
-        notation: await readOptional(join(this.directory, kind, file), 'utf8'),
-      });
+    const groups = files
+      .sort()
+      .filter((name) => name.endsWith('.lino'))
+      .map((file, index) => [{ file, index }]);
+    const local = await processGroups(groups, ({ file }) =>
+      this.readRecordFile(kind, file)
+    );
+    for (const record of local) {
       records.set(record.id, record);
     }
     return [...records.values()]
@@ -297,6 +302,12 @@ export class AssociativeStore {
       .filter(
         (record) => path === undefined || valueAt(record, path) === value
       );
+  }
+
+  async readRecordFile(kind, file) {
+    return decode({
+      notation: await readOptional(join(this.directory, kind, file), 'utf8'),
+    });
   }
 
   async putBlob(contents) {

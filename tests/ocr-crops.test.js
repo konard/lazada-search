@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
@@ -46,10 +46,22 @@ async function setup(t) {
   const directory = await mkdtemp(join(tmpdir(), 'lazada-ocr-crops-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
   const store = new AssociativeStore({ directory });
+  const modelDirectory = join(directory, 'models');
+  await mkdir(modelDirectory);
+  await writeFile(
+    join(modelDirectory, 'eng.traineddata'),
+    'fixture model bytes'
+  );
+  const fixtureOcr = (calls = []) =>
+    new TesseractOcr({
+      store,
+      execute: cachedExecutor(calls),
+      tessdataDir: modelDirectory,
+    });
   const blob = await store.putBlob(label);
   await store.putBlob(originalTsv);
   await store.put('ocr', baseline);
-  return { store, blob };
+  return { store, blob, fixtureOcr };
 }
 
 function cachedExecutor(calls) {
@@ -74,9 +86,9 @@ test('real committed manufacturer label and raw TSV reproduce missing decimal ma
 });
 
 test('bounded transforms cache lossless derived bytes and preserve original OCR provenance', async (t) => {
-  const { store, blob } = await setup(t);
+  const { store, blob, fixtureOcr } = await setup(t);
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   const options = { psm: 7, transform: transform(), sourceOcrId: baseline.id };
   const result = await ocr.recognize(blob, options);
   assert.equal(result.cacheHit, false);
@@ -117,9 +129,9 @@ test('bounded transforms cache lossless derived bytes and preserve original OCR 
 });
 
 test('normalized option ordering replays one crop while changed crop and output create distinct evidence', async (t) => {
-  const { store, blob } = await setup(t);
+  const { blob, fixtureOcr } = await setup(t);
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   const first = await ocr.recognize(blob, { psm: 7, transform: transform() });
   const reordered = await ocr.recognize(blob, {
     psm: 7,
@@ -149,9 +161,9 @@ test('normalized option ordering replays one crop while changed crop and output 
 });
 
 test('a missing cached derived image cannot reuse its OCR as an intact crop', async (t) => {
-  const { store, blob } = await setup(t);
+  const { store, blob, fixtureOcr } = await setup(t);
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   const options = { psm: 7, transform: transform() };
   const result = await ocr.recognize(blob, options);
   const readBlob = store.blob.bind(store);
@@ -165,9 +177,9 @@ test('a missing cached derived image cannot reuse its OCR as an intact crop', as
 });
 
 test('invalid transform dimensions and unknown options fail before invoking OCR', async (t) => {
-  const { store, blob } = await setup(t);
+  const { blob, fixtureOcr } = await setup(t);
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   for (const invalid of [
     null,
     false,
@@ -192,9 +204,9 @@ test('invalid transform dimensions and unknown options fail before invoking OCR'
 });
 
 test('original input byte and pixel limits apply even to a tiny requested crop', async (t) => {
-  const { store } = await setup(t);
+  const { store, fixtureOcr } = await setup(t);
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   const oversizedBytes = await store.putBlob(
     Buffer.concat([label, Buffer.alloc(25 * 1024 ** 2)])
   );
@@ -220,8 +232,8 @@ test('original input byte and pixel limits apply even to a tiny requested crop',
 });
 
 test('crop source binds the original OCR image and validates its actual raw TSV bytes', async (t) => {
-  const { store, blob } = await setup(t);
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor([]) });
+  const { store, blob, fixtureOcr } = await setup(t);
+  const ocr = fixtureOcr();
   await assert.rejects(
     ocr.recognize(blob, {
       psm: 7,
@@ -262,8 +274,8 @@ test('crop source binds the original OCR image and validates its actual raw TSV 
   );
 });
 
-test('unmodified OCR retains the exact existing tsv-v2 cache identity', async (t) => {
-  const { store, blob } = await setup(t);
+test('historical unbound OCR remains available but does not attest current trained models', async (t) => {
+  const { store, blob, fixtureOcr } = await setup(t);
   const engine = 'fixture-tesseract';
   const id = sha256(
     JSON.stringify(['tsv-v2', blob.sha256, engine, 'eng', 6, 'system'])
@@ -275,18 +287,19 @@ test('unmodified OCR retains the exact existing tsv-v2 cache identity', async (t
     engine,
   });
   const calls = [];
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor(calls) });
+  const ocr = fixtureOcr(calls);
   const result = await ocr.recognize(blob);
-  assert.equal(result.id, id);
-  assert.equal(result.cacheHit, true);
-  assert.equal(result.text, 'cached original');
+  assert.notEqual(result.id, id);
+  assert.equal(result.cacheHit, false);
+  assert.equal((await store.get('ocr', id)).text, 'cached original');
+  assert.equal(result.modelProvenance.models[0].language, 'eng');
   assert.equal(result.imageTransform, undefined);
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
 });
 
 test('unsafe animated image declarations and mismatched original digest are rejected', async (t) => {
-  const { store, blob } = await setup(t);
-  const ocr = new TesseractOcr({ store, execute: cachedExecutor([]) });
+  const { store, blob, fixtureOcr } = await setup(t);
+  const ocr = fixtureOcr();
   // acTL declares PNG animation. No frame selection may happen implicitly.
   const chunk = Buffer.alloc(20);
   chunk.writeUInt32BE(8, 0);
@@ -321,22 +334,31 @@ test('actual local line OCR recovers source-image protein decimals without numer
     throw error;
   }
   const { store, blob } = await setup(t);
-  const ocr = new TesseractOcr({ store });
-  const per100g = await ocr.recognize(blob, {
+  let recognitionCalls = 0;
+  const execute = (command, args, options) => {
+    if (!args[0].startsWith('--')) {
+      recognitionCalls += 1;
+    }
+    return run(command, args, options);
+  };
+  const ocr = new TesseractOcr({ store, execute });
+  const gramOptions = {
     psm: 7,
     transform: transform({
       resize: { width: 164, height: 136, kernel: 'nearest' },
     }),
     sourceOcrId: baseline.id,
-  });
-  const per100ml = await ocr.recognize(blob, {
+  };
+  const volumeOptions = {
     psm: 7,
     sourceOcrId: baseline.id,
     transform: transform({
       crop: { left: 1074, top: 512, width: 83, height: 73 },
       resize: { width: 166, height: 146, kernel: 'nearest' },
     }),
-  });
+  };
+  const per100g = await ocr.recognize(blob, gramOptions);
+  const per100ml = await ocr.recognize(blob, volumeOptions);
   assert.equal(per100g.text.trim(), '4.5');
   assert.equal(per100ml.text.trim(), '4.0');
   assert.equal(per100g.requiresReview, true);
@@ -345,4 +367,24 @@ test('actual local line OCR recovers source-image protein decimals without numer
   assert.equal(per100ml.proteinPer100ml, undefined);
   assert.equal(per100g.manufacturerVerification, undefined);
   assert.equal(per100ml.manufacturerVerification, undefined);
+  assert.equal(recognitionCalls, 2);
+  const restarted = new TesseractOcr({
+    store: new AssociativeStore({ directory: store.directory }),
+    execute,
+  });
+  for (const [original, options] of [
+    [per100g, gramOptions],
+    [per100ml, volumeOptions],
+  ]) {
+    const replay = await restarted.recognize(blob, options);
+    assert.equal(replay.cacheHit, true);
+    assert.equal(replay.transformCacheHit, true);
+    assert.equal(replay.id, original.id);
+    assert.equal(replay.text, original.text);
+    assert.deepEqual(replay.modelProvenance, original.modelProvenance);
+    assert.deepEqual(replay.rawTsv, original.rawTsv);
+    assert.equal(replay.requiresReview, true);
+    assert.equal(replay.manufacturerVerification, undefined);
+  }
+  assert.equal(recognitionCalls, 2, 'native OCR must not run again on restart');
 });

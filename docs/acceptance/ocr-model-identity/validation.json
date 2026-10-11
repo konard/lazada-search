@@ -1,0 +1,149 @@
+{
+  "recordedAt": "2026-10-11T15:26:17.774712+00:00",
+  "status": "full-unit-and-complete-case-coverage-passed-single-run-native-and-remote-matrix-pending",
+  "baseCommit": "16c3aa2bb3d208b35014f4bc84c9e1b0ebac0820",
+  "frozenCode": "final-frozen-code.json",
+  "frozenSourceFiles": 588,
+  "installedDependencyFiles": 178,
+  "unchangedFiles": true,
+  "mismatches": [],
+  "unit": {
+    "tests": 1309,
+    "pass": 1309,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 303296.27475
+  },
+  "e2eWithNativeFlagOmitted": {
+    "tests": 48,
+    "pass": 47,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1,
+    "durationMs": 432659.820583,
+    "acceptedAsFullNativeSuite": false,
+    "reason": "Root launcher omitted LAZADA_TEST_CLINK; original log preserved."
+  },
+  "nativeBinaryStoreFocused": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 1907.797541,
+    "command": "LAZADA_TEST_CLINK=<verifiedinstalledclink> node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/native-store.test.js",
+    "sameFrozenSource": true
+  },
+  "singleFullNativeE2e": "running with LAZADA_TEST_CLINK set; no final result claimed",
+  "portableFocused": {
+    "Bun": {
+      "tests": 63,
+      "pass": 63,
+      "fail": 0,
+      "skipped": 0
+    },
+    "Deno": {
+      "tests": 63,
+      "pass": 63,
+      "fail": 0,
+      "skipped": 0
+    },
+    "nativeCropFirstRecognitions": 2,
+    "nativeRestartCropCacheHits": 2,
+    "noAdditionalRecognition": true,
+    "originalReceipt": "final-portable-receipt.json.gz"
+  },
+  "checks": {
+    "npmRunCheck": "passed",
+    "strictChangedSourceLint": "passed-zero-warnings",
+    "publicTypesConsumer": "passed-strict-with-skipLibCheck"
+  },
+  "committedCatalogPhases": [
+    {
+      "phase": "load",
+      "state": "started"
+    },
+    {
+      "phase": "load",
+      "state": "finished",
+      "durationMs": 132,
+      "elapsedMs": 133
+    },
+    {
+      "phase": "import",
+      "state": "started"
+    },
+    {
+      "phase": "import",
+      "state": "finished",
+      "durationMs": 274475,
+      "elapsedMs": 274607
+    },
+    {
+      "phase": "audit",
+      "state": "started"
+    },
+    {
+      "phase": "audit",
+      "state": "finished",
+      "durationMs": 5392,
+      "elapsedMs": 280001
+    },
+    {
+      "phase": "compare",
+      "state": "started"
+    },
+    {
+      "phase": "compare",
+      "state": "finished",
+      "durationMs": 228,
+      "elapsedMs": 280232
+    },
+    {
+      "phase": "close",
+      "state": "started"
+    },
+    {
+      "phase": "close",
+      "state": "finished",
+      "durationMs": 0,
+      "elapsedMs": 280232
+    },
+    {
+      "phase": "cleanup",
+      "state": "started"
+    },
+    {
+      "phase": "cleanup",
+      "state": "finished",
+      "durationMs": 2352,
+      "elapsedMs": 282585
+    }
+  ],
+  "windowsDenoTimeoutResolution": "unproven until actual phase-enabled full CI; no budget or durability changes",
+  "productDownloads": 0,
+  "allRequirementsDelivered": false,
+  "productionReady": false,
+  "collectionStopActive": true,
+  "logs": [
+    {
+      "path": "final-unit.tap.gz",
+      "originalSha256": "e93ed59ecf669059fdb2c00c10647cfcef78fb22ebdcee32729adc3b9df2c7e9",
+      "originalBytes": 323317,
+      "gzipSha256": "18a7926d00978ef026f93152e815fe9e1ab7feffcedf70e44e1b02855c7bbd35"
+    },
+    {
+      "path": "final-e2e.tap.gz",
+      "originalSha256": "f5af1dd86e6faa3e2144c33c61ceac7080a8b321133751bc704432e15af5feac",
+      "originalBytes": 13752,
+      "gzipSha256": "39662cdde6fbcc2767d8e081385b6672d63f5957696e3236d4d01f1a6e659537"
+    },
+    {
+      "path": "final-native-store.tap.gz",
+      "originalSha256": "371adcfab1f1ce2caf09f549d1799cd750568dda4554ec12fc5b89bd0cc277a5",
+      "originalBytes": 380,
+      "gzipSha256": "b8ee9dca325fb62afce0302710afe4f9d2afc2961187faca296e7d5e1dab13eb"
+    }
+  ]
+}

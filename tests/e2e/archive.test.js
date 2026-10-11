@@ -70,11 +70,36 @@ test('real public evidence survives repository export and fresh library, CLI and
     '--allow-stale',
     '--sort',
     'totalBeforeDelivery',
+    '--flavour-scope',
+    'all',
   ]);
   const cliReport = JSON.parse(cli.stdout);
   assert.deepEqual(
     cliReport.observedPrices.map((row) => row.offer.id),
     report.observedPrices.map((row) => row.offer.id)
+  );
+  const scopedReport = await app.compare({
+    sort: 'totalBeforeDelivery',
+    allowStale: true,
+    flavourScope: 'chocolate-or-unflavoured',
+  });
+  const defaultCli = await execute(process.execPath, [
+    'bin/lazada-search.js',
+    'compare',
+    '--data-dir',
+    join(directory, 'fresh-cli'),
+    '--archive-dir',
+    target,
+    '--offline',
+    '--no-ocr',
+    '--allow-stale',
+    '--sort',
+    'totalBeforeDelivery',
+  ]);
+  assert.equal(scopedReport.observedPrices.length, 2);
+  assert.deepEqual(
+    JSON.parse(defaultCli.stdout).observedPrices.map((row) => row.offer.id),
+    scopedReport.observedPrices.map((row) => row.offer.id)
   );
   const server = await startServer({ application: app, port: 0 });
   t.after(() => new Promise((resolve) => server.close(resolve)));

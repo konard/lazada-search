@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T14:39:10.618Z",
+  "checkedAt": "2026-10-11T15:26:22.750Z",
   "catalogObservedAt": "2026-10-11T13:54:15.320Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
@@ -77,14 +77,18 @@
       "id": "R002",
       "requirement": "Plain/unflavoured or chocolate protein powder only",
       "status": "implemented",
-      "mechanicsStatus": "implemented",
+      "mechanicsStatus": "strict-scope-default-for-fresh-CLI-and-Telegram-with-explicit-generic-override",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/flavour-scope.js:57",
         "tests/flavour-scope.test.js:24",
-        "tests/e2e/flavour-scope.test.js"
+        "tests/e2e/flavour-scope.test.js",
+        "src/config.js",
+        "tests/flavour-scope.test.js",
+        "tests/e2e/archive.test.js",
+        "tests/e2e/telegram.test.js"
       ],
-      "finding": "Strict selected chocolate/plain filtering exists; this does not complete unknown-SKU classification."
+      "finding": "Chocolate/unflavoured powder scope applies before preferences exist. Exact generic listing SKU selection chooses observed Socola/Không Bình combinations; explicit all-scope options remain available for generic library/CLI use. Fixture and actual marketplace case acceptance remain separately dated."
     },
     {
       "id": "R003",
@@ -412,12 +416,13 @@
       "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
       "status": "partial",
       "mechanicsStatus": "partial",
-      "realDataAcceptance": "partial",
+      "realDataAcceptance": "2-of14 captured selling units have both supported grams and millilitres;3 have a supported protein denominator; current usable rankings5gram/7ml/2protein, zero exact frozen delivered quotes",
       "evidence": [
         "scripts/ice-unit-rankings.mjs",
+        "docs/tables/ice-unit-rankings.json",
         "docs/tables/ice-unit-rankings.json"
       ],
-      "finding": "Only3of14selectedprices have bothmassvolume;3protein denominators,2matchedmanufacturerchocolate identities. Current separate report has no confirmed delivered winner."
+      "finding": "Current counts are recomputed from ice-unit-rankings.json. Missing exact selling-unit mass, volume, formula and cold-chain Nha Trang quotes remain worklist tasks; no density or nutrition is invented."
     },
     {
       "id": "R039",
@@ -531,9 +536,53 @@
         "tests/bonus-paid-mass-hold.test.js"
       ],
       "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require stored original bytes/identity/quantity evidence, physical-unit-bound excerpts and factory review; binary labels require replayable original/crop/OCR or actual source-bound visual review. Exact SKU/order quantities count once; one allocation cannot recur on multiple basket lines. The advertised two-bag real offer also has a disputed per-pouch mass; the shared original-backed hold removes its4000g/447.50VND/g calculation without replacing it with a guess."
+    },
+    {
+      "id": "R048",
+      "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
+      "status": "partial",
+      "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
+      "realDataAcceptance": "Full combined final native/cache/platform acceptance in progress; actual prior matrix native decimal cases passed but Windows Deno suite timed out. No unmatched manufacturer nutrition approved.",
+      "evidence": [
+        "https://github.com/konard/lazada-search/issues/37",
+        "https://github.com/konard/lazada-search/issues/38",
+        "docs/acceptance/ocr-decimal-portability/README.md",
+        "src/ocr-models.js",
+        "src/ocr.js",
+        "tests/ocr-models.test.js",
+        "tests/ocr-crops.test.js",
+        "docs/acceptance/ocr-model-identity/initial-validation.json",
+        "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json"
+      ],
+      "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes. Warm reads verify full model manifests and reparse original cached TSV; historical unbound records remain preserved. The new native fixture also asserts warm restart reuse; final combined validation is in progress."
+    },
+    {
+      "id": "R049",
+      "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
+      "status": "partial",
+      "mechanicsStatus": "offline-link-validation-drafted-without-online-retry-or-archive-probes",
+      "realDataAcceptance": "pending-full-workflow-and-actual-CI-offline-link-validation",
+      "evidence": [
+        ".github/workflows/links.yml",
+        "tests/links-workflow.test.js",
+        "https://github.com/konard/lazada-search/issues/40"
+      ],
+      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow now checks local repository links offline and excludes captured original pages from authored-document input; original archive digests remain independently validated. External URL liveness is not claimed."
     }
   ],
   "githubIssues": [
+    {
+      "number": 40,
+      "title": "Documentation CI link probes bypass collection CAPTCHA stop and request pacing",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/40"
+    },
+    {
+      "number": 39,
+      "title": "Default fresh CLI case preferences to target flavours and no paid shaker",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/39"
+    },
     {
       "number": 38,
       "title": "Fingerprint trained-model bytes in OCR cache identity",
@@ -555,7 +604,7 @@
     {
       "number": 35,
       "title": "Keep category E2E redirects local and drain every image producer before browser close",
-      "state": "OPEN",
+      "state": "CLOSED",
       "url": "https://github.com/konard/lazada-search/issues/35"
     },
     {
@@ -778,9 +827,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "9e6179d5894936889f144b15ba61616cedaac65cd956fe95278f197f1b80b198",
-      "bytes": 35091,
-      "observedAt": "2026-10-11T12:41:50.976857+00:00"
+      "sha256": "84ac14ba59d2d41f3492ffe31c56152a1507a16af6a609c10d05ea39e2c82469",
+      "bytes": 40343,
+      "observedAt": "2026-10-11T15:16:50.234850+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -790,8 +839,8 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "4f873bfa5db5aba33f76380b1df6cb8e1384289459395ea82fe689cd5266252e",
-      "bytes": 53739,
+      "sha256": "eb6d8bc5b13ea673fea0ef313fa99c7cf6bd9a46dcc8c331e6a1b5176eb3557a",
+      "bytes": 9911,
       "observedAt": null
     },
     {

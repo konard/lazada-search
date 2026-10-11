@@ -1,268 +1,282 @@
 [
   {
-    "body": "Recorded during the source-pixel decimal compatibility audit. The current OCR cache identity includes engine version, languages, segmentation mode, trained-model directory and source/crop/renderer hashes, but replacing trained-model bytes under an unchanged version/language/path can reuse previous OCR output.\n\nThis is a future cache identity defect, not the cause of the actual decimal failure: the Ubuntu and macOS English models in that experiment have identical SHA256. No public catalog fact has been shown wrong from such a replacement. Manual explicit OCR invalidation is the current workaround.\n\nRequired implementation: fingerprint actual selected model bytes, retain model/engine provenance in original OCR records and derived cache keys, reuse unchanged models, invalidate only affected OCR when model digests change, and preserve pre-existing outputs in history. Do not silently authorize nutrition or bypass unavailable-model/runtime errors. Add meaningful same-path model-replacement and unchanged-model cache tests across library/CLI fixtures; acceptance must include actual native engine and bounded file-I/O behavior.\n\nOriginal experiment/model hashes are committed under docs/acceptance/ocr-decimal-portability/. Keep this issue open until implementation and acceptance are complete.\n",
+    "number": 40,
+    "state": "OPEN",
+    "title": "Documentation CI link probes bypass collection CAPTCHA stop and request pacing",
+    "updatedAt": "2026-10-11T15:13:22Z",
+    "url": "https://github.com/konard/lazada-search/issues/40"
+  },
+  {
+    "number": 39,
+    "state": "OPEN",
+    "title": "Default fresh CLI case preferences to target flavours and no paid shaker",
+    "updatedAt": "2026-10-11T14:51:05Z",
+    "url": "https://github.com/konard/lazada-search/issues/39"
+  },
+  {
     "number": 38,
     "state": "OPEN",
     "title": "Fingerprint trained-model bytes in OCR cache identity",
+    "updatedAt": "2026-10-11T14:37:57Z",
     "url": "https://github.com/konard/lazada-search/issues/38"
   },
   {
-    "body": "The actual full Ubuntu CI at bce62fd6e90c94b862dfc3539e2b8f276758913d fails only the native decimal-label assertion: Tesseract 5.3.4 reads `45` from a 2x Lanczos3 crop where the original pixels show `4.5`. The same crop on macOS Tesseract 5.5.2 reads `4.5`. All engines use the same English trained-model digest.\n\nAn isolated official Ubuntu24.04 experiment retained twenty pixel recipes, forty original TSV outputs, the original image, engine/renderer versions and every digest. Existing 2x nearest-neighbour resizing returns literal `4.5` and `4.0` on both engines. No number rewriting, whitelist, changed source rectangles or relaxed assertions is permitted. The final native fixture should request that existing kernel while preserving historical failed controls and keeping unmatched nutrition review-only.\n\nAcceptance: focused Node/Bun/Deno native tests, the full actual Ubuntu matrix and Windows revised-recipe result, unchanged public source bytes and exact assertions. Full raw evidence will be committed under docs/acceptance/ocr-decimal-portability/. This is engine/pixel compatibility, not a newly proven regression in the latest Tesseract.\n\nThe actual full local Browser Commander0.31.0 unit and native/browser E2E suites already pass1291/1291 and48/48 respectively. Subsequent fixture/Git-attribute changes require separate focused and real matrix acceptance.\n",
     "number": 37,
     "state": "OPEN",
     "title": "Preserve decimal pixels across native OCR engines and require actual matrix acceptance",
+    "updatedAt": "2026-10-11T14:37:53Z",
     "url": "https://github.com/konard/lazada-search/issues/37"
   },
   {
-    "body": "Windows checkout changes original OCR/cache text bytes and shared writer recreation can fail transiently\n\nObserved in the actual caab840f3709f63455ccb86bd2579967df93f122 runtime matrix: https://github.com/konard/lazada-search/actions/runs/38144215828 . Node, Bun and Deno Windows each fail five original OCR TSV/provenance assertions. The original SHA256 0ce3ceffc726fd6299cfad3a7ced6d9166fe5f7e93600f5f03dce533a6e416c3 becomes d7173a3c4958eb0b11ceb87330cf4b6a75e766345da5874c33c9b0d3fc0c07ab after checkout line-ending conversion.\n\nDeno Windows additionally reports EPERM from mkdir of the shared manufacturer collector .write-lock. A Windows deletion-pending directory is a possible cause, not an established upstream diagnosis.\n\nDrafted fixes preserve acceptance originals, fixtures and archived cases through Git -text attributes. A regression performs actual Git checkout with core.autocrlf=true, proves an ordinary control converts to CRLF, and checks unchanged original TSV/Links Notation/source bytes and SHA256. Writer-directory creation retries Windows EPERM only four times with three25ms waits; persistent permission denial and non-Windows/other errors still fail, and EEXIST continues through unchanged live-owner checks. No source checksums are regenerated to disguise conversion.\n\nAcceptance: 36/36 focused Node tests pass, including actual Git checkout, bounded permissions, shared manufacturer challenge cache and batch writes. The new full runtime/Windows matrix remains pending. Preserve original failed logs in repository acceptance evidence and close only after actual new Windows acceptance.\n",
     "number": 36,
     "state": "OPEN",
     "title": "Preserve original source bytes on Windows checkout and bound transient cache lock recreation",
+    "updatedAt": "2026-10-11T14:05:02Z",
     "url": "https://github.com/konard/lazada-search/issues/36"
   },
   {
-    "body": "The caab840 local full E2E run failed category-discovery teardown with ENOTEMPTY after all category/CLI/Telegram assertions passed. Residual original fixture cache records showed real Lazada CDN/tracker traffic. The test forwarded a Lazada-origin HTTP302; later redirect requests can bypass Playwright initial route interception. This fixture must never contact the marketplace.\n\nFix fixture redirects through an intercepted fresh client navigation, reject any unexpected browser origin and HTTP Location header, and close every application before removing its store. Keep redirect/sort/full-size/no-cutoff assertions and real Telegram/CLI replay.\n\nThe audit also found a genuine collector shutdown producer race: routed image acquisitions were not part of imageTasks, and responses could append after close snapshotted the set. Track both route acquisitions and response retention; mark closing and detach the response producer before draining writes. Add a real local-browser blocked-image test proving the close barrier saves exact original bytes and admits no late response writers. Do not hide this with rm retries or skipped tests.\n\nPreserve the intermediate full failure. The unit run also cancelled the real full-catalog import at its300s file budget under local contention (1285pass,0fail,1cancelled). New complete unit/browser acceptance is required on the final frozen source and finished case; actual GitHub Node/Bun runs provide independent runner evidence.\n",
     "number": 35,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Keep category E2E redirects local and drain every image producer before browser close",
+    "updatedAt": "2026-10-11T14:44:31Z",
     "url": "https://github.com/konard/lazada-search/issues/35"
   },
   {
-    "body": "The actual Bun/Windows 2025 CI at cf99cd05efe793bde2c6ca15f3c2840532456a0b reports freshly exported source blobs as corrupt. `readdir({recursive:true})` returns nested Windows paths with backslashes, while the archive manifest records slash paths. Cleanup compares the native path directly with the manifest keep set and deletes valid nested blobs.\n\nFix: normalize native directory-entry separators only for the manifest comparison; preserve checksum verification and original bytes. Regression acceptance must export, verify and repeat with both live nested blobs and a superseded gzip fixture on Windows, plus archive provenance/challenge replay.\n\nAlso fix CRLF buying preference values from lino-env 0.2.8 (reported upstream), portable cyclic-record error matching and Git staging-race fixtures. These bugs must not be hidden with skips or weakened assertions.\n\nActual failure: https://github.com/konard/lazada-search/actions/runs/38142531710 . Node Windows also exhausted its 300-second suite budget; the separate runtime setup tracking is https://github.com/konard/lazada-search/issues/33 .\n",
     "number": 34,
     "state": "OPEN",
     "title": "Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation",
+    "updatedAt": "2026-10-11T13:33:50Z",
     "url": "https://github.com/konard/lazada-search/issues/34"
   },
   {
-    "body": "The real Checks and release matrix at cf99cd05efe793bde2c6ca15f3c2840532456a0b fails all three Deno jobs before running tests. The npm resolver rejects reviewed browser-commander0.30.1 because Deno2.9.7 enforces a default24-hour dependency age; the current Deno graph/lock predates the application dependencies and the job has no lock-bound npm installation.\n\nActual run: https://github.com/konard/lazada-search/actions/runs/38142531710 ; Linux job114479750802, error timestamp2026-10-11T13:20:30Z. Node Ubuntu full unit passes, example artifacts/previews pass, and Ubuntu sandbox namespace/smoke passes. Those successes do not imply alternative runtime acceptance.\n\nUse an integrity-verified reviewed dependency graph and explicit supported module layout. Retain security defaults rather than globally disabling the dependency-age protection. Check actual fixture permissions, appropriate root unit test selection and portable platform fixtures with real runtime evidence; keep all unresolved matrix failures visible. Do not disguise a missing dependency as passing tests. Current investigation is separate from the actual manufacturer CAPTCHA and npm publisher configuration.\n",
     "number": 33,
     "state": "OPEN",
     "title": "Run alternative-runtime CI against the reviewed locked dependency graph",
+    "updatedAt": "2026-10-11T13:24:58Z",
     "url": "https://github.com/konard/lazada-search/issues/33"
   },
   {
-    "body": "Actual npm OIDC package exchange rejects404 during release preflight at commitc714990: https://github.com/konard/lazada-search/actions/runs/38140398064 . No npm bootstrap token is configured. Local unit/E2E acceptance and GitHub report publication do not prove npm registry publishing.\n\nKeep the mandatory credential preflight and release guards. Authorized package-owner configuration must establish a trusted GitHub publisher for konard/lazada-search and release.yml, or provide an appropriate configured bootstrap token. Credential values must stay out of repository artifacts. Verify actual exchange/release only after configuration; no bypass, fabricated successful probe or automatic new registry credentials. This is an external configuration blocker, separate from the manufacturer challenge and product data gaps.\n",
     "number": 32,
     "state": "OPEN",
     "title": "Configure npm trusted publishing before enabling a successful release",
+    "updatedAt": "2026-10-11T13:01:13Z",
     "url": "https://github.com/konard/lazada-search/issues/32"
   },
   {
-    "body": "The saved category-review.md and discovered-listings.md have more than the enforced1500 lines and cause the actual Check File Line Limits job to fail. Run https://github.com/konard/lazada-search/actions/runs/38140398064 , commitc714990.\n\nGenerate bounded linked Markdown pages without dropping any source row, keep machine-readable catalog.json complete, repeat headers correctly at split boundaries, retain source-line intervals and navigation, and remove only stale generated page names. Verify original row equality/counts, page line budgets after formatting and existing real catalog exports. Do not widen the architecture limit or omit complete discovery evidence.\n",
     "number": 31,
     "state": "CLOSED",
     "title": "Keep complete generated catalog Markdown within the architecture line limit",
+    "updatedAt": "2026-10-11T13:21:30Z",
     "url": "https://github.com/konard/lazada-search/issues/31"
   },
   {
-    "body": "Example CI fails at commit c714990: Pages configure GET returns404 because no Actions Pages site exists, and preview capture waits for the removed calculator-title selector. Actual run: https://github.com/konard/lazada-search/actions/runs/38140398065 .\n\nMake ordinary web build/artifact independent of optional deployment; read-only probe must skip exactly an unconfigured/non-Actions site and propagate authentication/service failures. Do not enable Pages or change repository settings. Existing configured Actions deployment remains supported. Preview must validate the current real title/import/Packages controls and initial quantity/error state before taking screenshots. Preserve actual failures, add executable workflow behavior coverage and a real local-browser preview proof.\n",
     "number": 30,
     "state": "CLOSED",
     "title": "Build previews without requiring an unconfigured Pages deployment",
+    "updatedAt": "2026-10-11T13:21:20Z",
     "url": "https://github.com/konard/lazada-search/issues/30"
   },
   {
-    "body": "The sandboxed deterministic E2E workflow fails on Ubuntu24.04 before page loading after installing Browser Commander0.30.1. Local macOS E2E passes47/47 on the same application code.\n\nActual failing run: https://github.com/konard/lazada-search/actions/runs/38140398080 at commitc7149901c1877c12cc6a08c4e65ed0a42dd58224. BrowserLaunchError reports No usable sandbox and Ubuntu AppArmor restricted unprivileged namespaces. The test runner correctly fails; do not add skips or disable Chromium sandboxing.\n\nUse the root-owned setuid helper supplied by the runner's installed Google Chrome via CHROME_DEVEL_SANDBOX, check its ownership/mode, and export it only inside the isolated CI job. This follows Chromium's documented environment support option without disabling the host namespace protection globally: https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md.\n\nAcceptance: original failing log retained, existing workflow-policy checks pass, the complete actual Ubuntu E2E job passes with sandboxing enabled and zero skipped tests. This is CI environment configuration, not evidence that live marketplace collection may resume through its active security stop.\n",
     "number": 29,
     "state": "CLOSED",
     "title": "Run sandboxed Chromium E2E on the Ubuntu 24.04 CI image",
+    "updatedAt": "2026-10-11T13:26:45Z",
     "url": "https://github.com/konard/lazada-search/issues/29"
   },
   {
-    "body": "The final33649-record public associative archive cannot complete verification with lino-objects-codec0.9.0: a valid144497741-byte discovery-publication-source notation triggers RangeError Invalid array length in readable.js tokenize Array.from(text). Original/source JSON hashes are saved; full verification is blocked before all binary comparisons. Upstream reported: https://github.com/link-foundation/lino-objects-codec/issues/68 .\n\nAdd a reproducible exact-original-source/version-gated consumer workaround applied at install, preserve Unicode/quote/escaped-marker round trips, ship the installer with the npm package, reject unknown0.9.0 source bytes, and leave future dependency versions unmodified. Re-run the full original/public JSON/Lino/binary/blob verification without skipping decoding or discarding source history. Freeze all draft changes before full unit/native browser CLI HTTP Telegram suites and publish their logs.\n\nNo marketplace requests were resumed; current actual manufacturer security stop remains active.\n",
     "number": 28,
     "state": "CLOSED",
     "title": "Keep full associative archive decode working for the 144MB saved notation",
+    "updatedAt": "2026-10-11T12:45:37Z",
     "url": "https://github.com/konard/lazada-search/issues/28"
   },
   {
-    "body": "Image source fetching currently uses fetch automatic redirects. The direct scheduled request is paced and its final response original is preserved/inspected before OCR; intermediate redirect response bodies and host changes are not independently inspected or paced. ManufacturerSourceCache already follows bounded manual redirects with original response receipts and independent host queue slots.\n\nImplement the equivalent bounded manual image redirect path: preserve each original hop/status/location/method/body, validate destinations, pace each target host, release a host queue before following cross-host redirects, and stop persistently on a corroborated intermediate security response before making the next request. Preserve maxBytes, original/final URL proofs, negative caches, global stop rechecks, ETag/304 and explicit refresh/invalidation. Add reciprocal-host-cycle, intermediate challenge, queued-request stop and unchanged offline replay regressions.\n\nThis is a source-code audit finding; no live CDN challenge or excessive redirect traffic is asserted. Current actual manufacturer challenge already pauses uncached collection. Recorded alongside the direct-image challenge fix in #26.\n",
     "number": 27,
     "state": "CLOSED",
     "title": "Inspect and pace every image redirect hop before following it",
+    "updatedAt": "2026-10-11T12:45:35Z",
     "url": "https://github.com/konard/lazada-search/issues/27"
   },
   {
-    "body": "## Problem\n\n`EvidenceCache.image` currently rejects HTTP failures and non-image content before reading or inspecting the original response body. A corroborated HTML security interstitial from an image endpoint becomes a generic `Image HTTP 403`/non-image error; no typed stop or failed-original receipt is retained. Ordinary image failures also have no negative-cache record, so repeated product OCR attempts can repeat the same download.\n\nThis is a source-code reproduction gap, not a claim that a live Lazada CDN challenge was observed. The preserved actual manufacturer interstitial supplies the response-body regression fixture.\n\n## Required behavior\n\nPreserve bounded original response bytes and HTTP/content metadata, detect corroborated HTML challenges (including wrong content types), persist the global stop while holding the actual host request slot, and propagate `COLLECTION_STOPPED`. Safe cached images stay reusable; cached challenge originals need reinspection/stop handling. Ordinary failed image responses need bounded negative-cache, explicit refresh/invalidation and retry semantics. Preserve304/ETag behavior, size limits, original hashes, accurate download counts and public/private source handling.\n\nDraft and isolated tests are in progress. No uncached marketplace or manufacturer requests are authorized by this defect report; actual collection remains stopped on the saved manufacturer challenge. Full frozen tests and publication are required before closure.\n",
     "number": 26,
     "state": "CLOSED",
     "title": "Detect and cache original image-endpoint challenges before OCR retries",
+    "updatedAt": "2026-10-11T12:45:32Z",
     "url": "https://github.com/konard/lazada-search/issues/26"
   },
   {
-    "body": "## Problem\n\n`LazadaSearch.collectOcr` catches image download and recognition errors as partial OCR failures. A typed `COLLECTION_STOPPED` error is currently swallowed in both branches, allowing later images/screenshots and a partially saved product workflow to continue after a security stop.\n\n## Reproduction\n\nUse a guarded image cache or recognizer which throws `CollectionStoppedError` on the first of two product images. The workflow must reject with the same typed error, leave later images/screenshots untouched and avoid saving a product/offer. Ordinary missing-image/decode errors should continue preserving partial OCR evidence.\n\n## Draft fix and acceptance\n\nThe current draft propagates the typed stop in both branches. `tests/ocr-stop-propagation.test.js` covers image and recognition stops plus ordinary failure behavior. Full frozen repository validation and publication remain pending before closure. No challenge bypass or network requests are needed to reproduce.\n",
     "number": 25,
     "state": "CLOSED",
     "title": "Propagate collection stops from image and OCR workflows immediately",
+    "updatedAt": "2026-10-11T12:45:28Z",
     "url": "https://github.com/konard/lazada-search/issues/25"
   },
   {
-    "body": "During the original manufacturer-challenge fix, same-host redirects were found to schedule another action inside their currently held domain queue. That single-host deadlock is drafted and covered by tests in issue23.\n\nA separate remaining concurrency case is reciprocal cross-host redirects: two simultaneously active captures hold host A and host B, then A redirects to B while B redirects to A. Nested `DomainScheduler.run` calls wait for one another; per-fetch AbortSignal timeouts do not bound the time waiting for a scheduler slot. Both official hosts can be valid registered domains, so domain validation does not prevent this case.\n\nRequired follow-up: redesign redirect scheduling so no capture holds one host queue while waiting indefinitely for another, or provide cancellable bounded scheduling that cannot issue deferred ghost requests after failure. Preserve per-host minimum intervals, all-request global challenge checks, original-source provenance, public-domain redirect restrictions, bounded redirects and request timeouts. Add an isolated two-host reciprocal redirect regression and prove no unpaced or post-stop requests. Do not claim production redirect concurrency acceptance from the fixed single-host test.\n\nNo affected live manufacturer requests were retried; the actual security interstitial remains a collection stop. Current source-integrity documentation records this remaining implementation work.\n",
     "number": 24,
     "state": "CLOSED",
     "title": "Bound reciprocal cross-host manufacturer redirect scheduling without deferred requests",
+    "updatedAt": "2026-10-11T12:45:25Z",
     "url": "https://github.com/konard/lazada-search/issues/24"
   },
   {
-    "body": "The dedicated official ON Naturally Flavored whey page returned a real HTTP 403 Cloudflare interstitial on 2026-10-11. The safely cached original has title `Just a moment...` and visible challenge markup, but the shared detector recognized neither. `ManufacturerSourceCache` retained a generic failed response without setting the persistent collection stop; after its failure TTL an uncached retry could occur.\n\nRequired behavior: detect a corroborated visible interstitial (avoid title-only, hidden template and script-text false positives), preserve response bytes and failed source/cache provenance, persist the same global CAPTCHA/security stop before another scheduled request can run, and raise `COLLECTION_STOPPED`. Original imports and older cached challenge bodies need the same protection. Ordinary HTTP403 errors remain negative evidence without invented CAPTCHA status. Cached safe/offline work remains available; resuming requests requires explicit operator resume after resolving the challenge.\n\nDraft and tests are being implemented in `src/page-challenge.js` and `src/manufacturer-source-cache.js`. Public proof is under `docs/acceptance/source-integrity/natural-chocolate-manufacturer/`; its sanitized challenge body has SHA256 `ab14413463ecb558111983f153daf482fb786edf964ed02efe10c5bfc990b490`. No challenge bypass or further request to the manufacturer host was attempted.\n",
     "number": 23,
     "state": "CLOSED",
     "title": "Persist a collection stop for original manufacturer Cloudflare challenge responses",
+    "updatedAt": "2026-10-11T12:45:22Z",
     "url": "https://github.com/konard/lazada-search/issues/23"
   },
   {
-    "body": "The full committed-catalog import test timed out at 300 seconds on the current 33 MB public case while the collector was reprocessing cached sources. Products and offers are imported chronologically one record at a time; each offer also writes its history separately. Existing metadata batches already bound independent projections to eight paths under one writer lock.\n\nDraft: add `putLatestMany` with the same chronological semantics as `putLatest`, validate all IDs and supplied observation timestamps before mutation, preserve same-ID ordering, and use bounded batching for imported products, offer history and offers. Canonical text still commits before binary projection. Cached public replay must require zero downloads and older observations must never replace newer prices or reviews.\n\nValidate store failure/durability/chronology regressions and rerun the exact full-catalog import; do not merely raise the timeout or weaken coverage assertions.\n",
     "number": 22,
     "state": "CLOSED",
     "title": "Batch chronological catalog imports to avoid full-case replay timeout",
+    "updatedAt": "2026-10-11T12:45:19Z",
     "url": "https://github.com/konard/lazada-search/issues/22"
   },
   {
-    "body": "Two current low gram-price powder rows conflict with their saved original seller images. No new network requests were needed to reproduce them.\n\n- SKU `13463872611_VNAMZ-117339168804`: the exact Natural Chocolate catalogue asset uniquely binds image SHA-256 `a3b66d6f849195dd4b515a5c4323ae94e95941ba6529257f041ff7bd1aa345b9`. It prints `NET WT 1.9 LB (864 G)` and 27 servings. The title's generic 2 lb estimate produced 907.18474 g and an incorrect 468.24 VND/g denominator. Source-backed label mass would be 864 g and 491.64 VND/g; this is not manufacturer-formula verification.\n- SKU `13375928580_VNAMZ-116939205737`: shared artwork prints 1 kg and 30 servings, while another promotional panel has 74 servings. The selected Cocoa 2 pound source cannot approve that shared picture or its generic formula. Hold the mass denominator until exact package identity is resolved.\n\nExpected: original label/selection conflicts must be recorded and prevent false gram-price winners; any correction must preserve exact SKU, price, original timestamps and claims. Future OCR/label processing must detect these conflicts automatically. The root independently checked the original pixels after a read-only agent audit.\n",
     "number": 21,
     "state": "CLOSED",
     "title": "Selected package label conflicts create wrong gram prices in two cheapest powder rows",
+    "updatedAt": "2026-10-11T12:45:15Z",
     "url": "https://github.com/konard/lazada-search/issues/21"
   },
   {
-    "body": "Replaying the same saved product source can recreate a package-mass hold that an exact source-bound review already resolved.\n\nReproduction: parse the committed `2 túi tặng 1 túi` source, review the paid package mass and count, then collect the identical original SHA-256, SKU, source timestamp and snapshot again. The parser creates a fresh ambiguity hold before the previous review is restored. `collect()` unions that fresh hold with previous pending fields and restores the reviewed values, leaving the now-approved denominator unavailable.\n\nExpected: preserve current reviewed facts for the identical original without another download or duplicate review. A changed original, newer observation, different SKU, invalidated review or an explicit active specification hold must remain unresolved. Fresh unreviewed contradictions must still survive persistence and restart.\n\nDraft fix: source-bound replay helper, original HTML comparison before replacing the evidence record, and integration/regression tests. This issue is not complete until the coordinated unit and E2E checks pass and the changes are published.\n",
     "number": 20,
     "state": "CLOSED",
     "title": "Preserve reviewed paid package mass when replaying the identical original source",
+    "updatedAt": "2026-10-11T12:45:11Z",
     "url": "https://github.com/konard/lazada-search/issues/20"
   },
   {
-    "body": "Original capturedSKU13407145459_VNAMZ-117089429970 (2026-10-11T08:28:08.371Z) lists `Net Content25g`, while its same-source title advertises25g protein per serving and62servings. Original publicHTMLSHA256:29286ba46a941c2d000134e27049261f7215dca7448689155f96c9e44af2679d. The parser accurately extracts the seller field; the missing behavior is a source consistency hold before that declaration can become a food-gram denominator. Its vanilla flavour is already excluded from the requested buying scope, but the general defect affects other records.\n\nExpected: retain original25g/price/claims, flag the contradiction, and withhold gram/protein prices until exact package evidence resolves it. Do not infer a replacement mass from servings or borrow a manufacturer's different pack/formula. Preserve genuinely explicit sample/repack sizes and original-bound exact package reviews. Multipack metadata and bare identityMatched/review flags must not bypass the check.\n\nCurrent draft adds the guard at parsing and shared catalog/selected-basket comparison resolution, with a committed originalHTMLfixture, Vietnamese/English cases, raw-record preservation and source-bound review exceptions. This issue will close only after focused and interface acceptance checks pass and the fix is published.\n",
     "number": 19,
     "state": "CLOSED",
     "title": "Hold seller net mass when same-product protein and serving count contradict the package denominator",
+    "updatedAt": "2026-10-11T12:45:08Z",
     "url": "https://github.com/konard/lazada-search/issues/19"
   },
   {
-    "body": "During slow live collection, a25-product batch was exported, its30,465-record/6,921-blob public archive verified, and387/387 current prices matched original sources. The subsequent automatic checkpoint encountered another authorized staged code commit.\n\n`publishCollectionCheckpoint` correctly refused to include unrelated staged files, but `collect-account-case.mjs` treated this temporary publication conflict as a fatal collection error and exited. No CAPTCHA or site error caused this stop. Collection was manually restarted using the same persistent profile and cached discovery.\n\nExpected: preserve the existing index, defer only this checkpoint with a structured reason, continue slow collection, and retry publication at the next safe checkpoint. Actual commit/push failures and CAPTCHA stops must remain visible and must not be swallowed.\n\nBaseline:6c63b8d. Reproduction: stage an unrelated code file in a temporary repository, then request an automatic public-case checkpoint. Regression coverage should verify no accidental commit, no modification of the existing staged code, safe collector continuation, and later publication after the index becomes available.\n",
     "number": 18,
     "state": "CLOSED",
     "title": "Defer automatic public checkpoints when unrelated changes are staged without stopping collection",
+    "updatedAt": "2026-10-11T12:45:05Z",
     "url": "https://github.com/konard/lazada-search/issues/18"
   },
   {
-    "body": "An exact ProSupps selected source (SKU1553990700_VNAMZ-6552645102, original SHA25634f5fe968b4f857907fec4c0916a4bb2ca38cd6dfe99d1bb4d0ffa16b87f71a3) is titled Whey Isolate2lbs and selects Chocolate Ice Cream. The selected flavour was overriding the explicit powder category, so cached replay added this whey to frozen chocolate ice cream tables.\n\nRequired behavior: a selected ice-cream flavour cannot turn an explicitly identified whey/protein powder into frozen food or supply a millilitre denominator. Genuine frozen product titles remain ice cream. Preserve exact selected price, original observation date, printed907g and unrelated reviews/nutrition.\n\nThe minimal parser correction is drafted in src/products.js and verified against the committed compressed original in tests/selected-package-mass.test.js.43 affected regressions pass. Zero-download original replay restored whey with unchanged1150000VND,907g and2026-10-09T10:07:45.985Z. Public reports are being rebuilt before committing the fix.\n",
     "number": 17,
     "state": "CLOSED",
     "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
+    "updatedAt": "2026-10-11T07:17:19Z",
     "url": "https://github.com/konard/lazada-search/issues/17"
   },
   {
-    "body": "Generic Lazada product collection applied strict flavour rules to reports and SKU queues, but it did not select a compatible SKU before capture unless the URL explicitly named one. The observed Scitec listing pdp-i13427532777 offered Socola and Không Bình, yet recorded Zprotein Brownie5lbs with Bình Lắc at 3,070,000 VND. A corrected live selection confirmed Socola/Không Bình SKU 117192556069 at 3,540,000 VND on 2026-10-11.\n\nRequired behavior:\n- Select a complete chocolate/no-shaker SKU combination on generic listings; retain exact requested sibling identity.\n- Resolve dialogs first, pace each selection, animate into view, wait for SKU and price to settle, and reject a failed selection without recording a price.\n- Reuse correctly selected captures; mark incompatible defaults for correction while preserving historical originals.\n- Keep full observed variant inventory and nonmatching options for exclusion/review.\n- Use the actual shipping destination in delivery quotes; a Hồ Chí Minh quote must never become Nha Trang delivered metrics.\n- Preserve strict flavour and configured OCR during deferred recollection.\n\nLocal browser regressions and a slow live Scitec check are available under docs/acceptance/preferred-variant. This is a consumer selection/context defect in lazada-search; there is no evidence that Browser Commander selected the wrong SKU itself.\n",
     "number": 16,
     "state": "CLOSED",
     "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
+    "updatedAt": "2026-10-11T07:17:15Z",
     "url": "https://github.com/konard/lazada-search/issues/16"
   },
   {
-    "body": "An exact selected Hydropure original (SHA25655616c2c7fce2641eb592a39517f29d3371ed5dd48585c1c1a0f7100331ec852; SKU3095127497_VNAMZ-14849213302, ExtremeChocolate,999997VND) explicitly declares Đóng gói: Hộp2.04kg. The parser treated this container packaging declaration as a headline and preferred the rounded4.5lb title, producing2041.165665g and489.91VND/g instead of seller-declared2040g and490.19VND/g.\n\nRequired behavior: recognize explicit package/container metric declarations as selling mass, preserve the original imperial claim, retain selected-size priority, reject serving/accessory/gift/shipping context, and leave conflicting distinct package masses under review. Factory2050g/formula identity remains unverified and is not approved by this seller correction.\n\nThe minimal general correction and source-hash/negative-context regressions are drafted in src/nutrition.js and tests/selected-package-mass.test.js;44 affected tests pass. Root is replaying cached observations and updating the public rankings with zero page downloads before pushing the correction.\n",
     "number": 15,
     "state": "CLOSED",
     "title": "Explicit container metric package mass loses to rounded pound headline",
+    "updatedAt": "2026-10-11T05:59:32Z",
     "url": "https://github.com/konard/lazada-search/issues/15"
   },
   {
-    "body": "Selected bulk offer SKU3255422832_VNAMZ-117013951240 says “2 túi tặng1 túi” (two bags, one gift bag). The current gram comparison uses only the two paid bags. The additional food gift is recorded but its exact net mass, same formula, unconditional availability and quantity rules are not yet source-confirmed.\n\nRequired acceptance: preserve paid and gift food separately, distinguish them from shaker/accessory gifts, bind each food gift to exact flavour/mass/formula and eligibility, and include its confirmed amount once in an eligible bulk basket denominator. Until those facts are confirmed, report the extra bag as conditional and do not silently count it or call the paid-bag denominator the complete offer. Public originals and all other selling options must remain reusable.\n\nThe source-bound current identity audit preserves this specific evidence gap under docs/acceptance/whey-current-identity/review.json. This issue remains open, linked to full basket/factory coverage in#3.\n",
     "number": 14,
     "state": "OPEN",
     "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+    "updatedAt": "2026-10-11T09:01:47Z",
     "url": "https://github.com/konard/lazada-search/issues/14"
   },
   {
-    "body": "Selected manufacturer names were ignored in a multi-product parent listing. SKU2019564464_VNAMZ-15735467762 selects IT'S JUST WHEY ISOLA / NATURAL, while the parent brand/title says Optimum Nutrition. The old candidate resolver returned only ON and could trust its domain for the selected different product.\n\nFix: retain the selected manufacturer lead, prioritize it, and flag all contradictory parent/selected candidates. Neither brand domain can establish an exact selected identity while the contradiction remains. A source-backed brand correction can resolve the conflict. Plain flavour labels without manufacturer names preserve the existing behavior.\n\nThe general resolver fix and targeted regression are implemented in src/manufacturers.js and tests/manufacturer-owned-brands.test.js. Fourteen owned-brand/worklist tests pass; complete exact package and nutrition proof remains in#3.\n",
     "number": 13,
     "state": "CLOSED",
     "title": "Selected SKU manufacturer conflicts are hidden by the parent listing brand",
+    "updatedAt": "2026-10-11T05:42:28Z",
     "url": "https://github.com/konard/lazada-search/issues/13"
   },
   {
-    "body": "Public manufacturer originals may contain access tokens unrelated to product evidence. Two Cremo HTML originals caused GitHub push protection to reject the publication; both contained an embedded public Mapbox token flagged as secret-style.\n\nAcceptance: public originals and associative archive blobs redact both public and secret Mapbox token forms; preserve original SHA256, derivative SHA256, actual observation date and redaction receipt; imports bind the derivative bytes and retain original provenance. Keep product text, package facts and ownership links. Raw originals remain local. Never bypass push protection or hide the raw token in compressed archives.\n\nImplemented in archive/source import, with three meaningful public-source regressions. All46 source/cache/archive focused tests pass. Complete manufacturer identity and delivery acceptance remains separate in#3.\n",
     "number": 12,
     "state": "CLOSED",
     "title": "Redact embedded manufacturer access tokens before committing original evidence",
+    "updatedAt": "2026-10-11T05:42:27Z",
     "url": "https://github.com/konard/lazada-search/issues/12"
   },
   {
-    "body": "Nutrition OCR loses decimal points in preserved exact original label images. For Häagen-Dazs source SHA256 `67907ce23aa9ff33a8431ad6ebe68289d842ab83f14586abf9d5ac7a5ab3c9e8`, original 4.0g and4.5g are transcribed as40g and45g in both tested PSM6 andPSM11. A high average confidence is insufficient to approve these numbers.\n\nReproducer and engine results: `docs/acceptance/manufacturer-research/second-ocr-pass.json`, `research-review.json`, and the preserved original label in the shared public archive. No new numeric facts from these passes were approved.\n\nAcceptance: deterministic crop/preprocessing or reviewed transcription preserves original-image/transform/TSV provenance, cache keys include transformation and OCR settings, and an actual-label regression detects decimal loss. Every nutrient still requires exact flavour/market/package/formula identity and correct serving basis. Never infer a decimal solely from expected nutrition. A corrective source review must precede ranking. The root is continuing this investigation.\n",
     "number": 11,
     "state": "CLOSED",
     "title": "Nutrition label OCR drops decimal points despite high confidence",
+    "updatedAt": "2026-10-11T05:42:24Z",
     "url": "https://github.com/konard/lazada-search/issues/11"
   },
   {
-    "body": "Current selected-SKU prices and package facts depended on replay order: saving a newer 200000VND observation, then replaying an older 150000VND original, left the stale lower price as current.\n\nRequired behavior: preserve all original observations and dates; select current product/offer state by observation time under the writer lock. Undated legacy imports remain supported but cannot overwrite a dated observation. Same-observation parser corrections remain allowed.\n\nImplemented through `AssociativeStore.putLatest`, application `saveOffer`/`saveProduct`, and public capture publication. `tests/observation-order.test.js` covers price history, concurrent saves, older package evidence, same-date corrections and legacy imports.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
     "number": 10,
     "state": "CLOSED",
     "title": "Older cached observations overwrite newer SKU prices and package facts",
+    "updatedAt": "2026-10-11T05:42:20Z",
     "url": "https://github.com/konard/lazada-search/issues/10"
   },
   {
-    "body": "Ice unit rankings reused seller/family 3000g claims for iBerri listing1561216831 and white Cremo listing3047760589 after source reviews explicitly withheld those masses. This produced an unsupported cheapest gram-price result.\n\nRequired behavior: preserve each raw source claim, carry the disputed field as a typed specification hold, and omit its denominator from catalog and every ranking fallback. Independently verified volume remains usable. Only a later exact-package manufacturer review can release the hold; density or another package must never supply missing mass.\n\nImplemented in `src/specification-holds.js`, `src/catalog-products.js`, catalog export and `scripts/ice-unit-rankings.mjs`. Regressions: `tests/specification-holds.test.js` and `tests/ice-withheld-specifications.test.js`.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
     "number": 9,
     "state": "CLOSED",
     "title": "Ice rankings reuse withheld package weights and create unsupported gram prices",
+    "updatedAt": "2026-10-11T05:42:17Z",
     "url": "https://github.com/konard/lazada-search/issues/9"
   },
   {
-    "body": "Search results for human whey powder admitted animal feed (listing13427185482) and a non-frozen Rally protein bar (listing3104297210), wasting detail requests and confusing product rankings.\n\nRequired behavior: reject explicit animal feed, pet food and non-frozen protein bars during list filtering; retain every observed result and a versioned negative decision with title, reason and source pointers. Reuse an unchanged exclusion across public/private cache; invalidate it if later evidence or scope changes contradict it. Grass-fed human whey and frozen chocolate protein ice bars must remain eligible.\n\nImplemented in `src/target-category.js`, `src/scope-decisions.js` and the account discovery/backlog/publication flow. Meaningful regressions are `tests/human-food-scope.test.js` and `tests/scope-decisions.test.js`.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
     "number": 8,
     "state": "CLOSED",
     "title": "Human food filtering admits animal feed and non-frozen protein bars; cache exclusions",
+    "updatedAt": "2026-10-11T05:42:13Z",
     "url": "https://github.com/konard/lazada-search/issues/8"
   },
   {
-    "body": "The collection queue stopped on listing13439335807 with `Page loading did not settle within30000ms: product title or price is still missing`.\n\nThe current original page has the explicit title `Xin lỗi! Sản phẩm này không còn tồn tại` (Sorry! This product no longer exists), no product title and no price. The classifier did not recognize this Vietnamese title; its generic readiness timeout stopped all remaining listings. No CAPTCHA stop was recorded.\n\nFixed in commit 547fdb2de5091640bd1b33e998d0257f392a7bbd: explicit Vietnamese/English removed notices classify as unavailable before product readiness. A priced product quoting a removed related product remains valid. CAPTCHA, login and app-only guards retain precedence; genuine loading/dialog failures remain blockers. Extractor version16 supports offline reclassification of existing HTML.\n\nValidation:90 focused tests, four final classification cases, seven distinct local E2E cases across recorded runs. The browser regression captures the removed page, loads the next product successfully and then replays the unavailable-page cache without another request. The real page was recaptured and cached as unavailable with no fabricated price.\n\n[Original sanitized HTML and observation](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/docs/acceptance/removed-product/README.md), [test receipts](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/docs/acceptance/removed-product/validation.json), [classification regressions](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/tests/removed-product.test.js), [browser regression](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/tests/e2e/page-loading.test.js). Full marketplace/factory/bulk/frozen coverage remains tracked in #3.\n",
     "number": 7,
     "state": "CLOSED",
     "title": "Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout",
+    "updatedAt": "2026-10-11T03:47:20Z",
     "url": "https://github.com/konard/lazada-search/issues/7"
   },
   {
-    "body": "Bulk chocolate ice-cream cartons can be parsed as `unknown` and use an inner-package amount as the selling-unit amount.\n\nReproduction: selected SKU `3040048563_VNAMZ-14623760583`, title `Thùng 24 chai kem choco Hàn Quốc Binggrae Pongta Chocolate 130ml ABetterLife`, selected price648,000VND. Original description explicitly says24 bottles/carton. Current automatic import produces category `unknown`,130ml and no packCount. Correct selling unit is24×130=3,120ml; the matched original factory wrapper prints131g per bottle, giving3,144g. Both unit-price results should equal a27,000VND single bottle.\n\nAn evidence-backed category/count correction is included in the committed expanded case, but a general library parser fix remains required. Frozen-destination availability is independent of stock: this exact page explicitly refuses Nha Trang delivery despite available stock.\n\nAcceptance: CLI/library/Telegram handle carton titles and counts; original cached source replays offline; single and carton prices match independently; no duplicated carton multiplier; stock and destination refusal remain separate; no transfer of factory carton counts to a one-bottle offer.\n\nEvidence: `docs/acceptance/ice-dual-units/expanded-root-pongta-carton.html.gz`, `root-expanded-review.json`, and `docs/tables/ice-source-expansion.md`.\n",
     "number": 6,
     "state": "CLOSED",
     "title": "Recognize ice-cream carton category and exact selling-unit package count",
+    "updatedAt": "2026-10-10T19:00:45Z",
     "url": "https://github.com/konard/lazada-search/issues/6"
   },
   {
-    "body": "When an archived review contains provenance metadata shaped as {sha256, bytes}, exportRepositoryArchive walks it as a stored blob reference, even if sha256 is the original pre-redaction capture digest and bytes is descriptive metadata. Export then fails with Missing source evidence although the sanitized original is present. Reproduced while archiving docs/acceptance/ice-dual-units/merino-review.json: historical capture digest a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414 differs from sanitized artifact digest8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89.\n\nCurrent producer workaround in scripts/archive-ice-research.mjs renames provenance metadata to contentSha256/byteLength while keeping original review JSON as a blob. Required general fix: distinguish typed stored-blob references from source-digest metadata, preserve source rewrite relationships, and add an archive round-trip regression. The workaround archive validates59records/58blobs with zero downloads.\n",
     "number": 5,
     "state": "CLOSED",
     "title": "Distinguish capture provenance metadata from stored blob references during archive export",
+    "updatedAt": "2026-10-10T20:18:51Z",
     "url": "https://github.com/konard/lazada-search/issues/5"
   },
   {
-    "body": "The urgent original-source audit found that imperial headline parsing can override more precise metric selling-unit declarations. This affects per-gram comparisons.\n\nReproducible captured cases:\n- Optimum Nutrition seller repack item3265021607 / SKU15762183506: title says2lbs and900gam; NetContent says2lbs(900g); description explicitly states a single900g zip bag repacked from a10lb parent bag. Raw parser reports907.18474g; selected unit is900g. Original private product source SHA f235ca5d2116d8aca18f0e5510a685e1e511c52c061aefe61a0af494bf359995; publicly redacted source SHA7020b63493f5878b2509f19fde2ca420521434f77776fd8bfeff0f6b17bb8ea3.\n- ProSupps Chocolate Ice Cream powder item1553990700 / SKU6552645102: selected seller front prints907g; title2lb conversion produces907.18474g.\n- Levels80-serving Vanilla item13451810835 / SKU117268785502: original selected bag prints2.56kg. Net mass was missing until the cached image was visually reviewed. It is sold out and outside the requested flavour scope, so excluded from buying ranks.\n\nThe committed case uses source-attributed field reviews and reproducible offline correction scripts; table calculations and source checks pass. General extraction still needs metric-priority and OCR package-matching regressions, handling seller repacks separately from factory and parent-package weights. Corrected fields must preserve original claims and trigger selective re-review when a genuine new selling unit is observed. See docs/acceptance/top10-check/ and scripts/review-handpicked-selling-mass.mjs. No fabricated manufacturer formula or density is approved.\n",
     "number": 4,
     "state": "CLOSED",
     "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
+    "updatedAt": "2026-10-10T20:18:48Z",
     "url": "https://github.com/konard/lazada-search/issues/4"
   },
   {
-    "body": "The configured Vietnam protein category /protein/ currently redirects to the Lazada homepage. The collector correctly stopped with \"Category scope mismatch at /\" rather than treating the empty result as a completed category. Two ice-cream category scopes reached their displayed terminal page10, each showing386card observations, but that is not proof of all-market coverage.\n\nResolve the current exact category URL from Lazada navigation and verify every page, page identity and terminal control before the product-detail phase. Collect every relevant plain/unflavoured or chocolate powder SKU and strict chocolate-core ice-cream SKU, preserving all package quantities and selling options. Apply no minimum/maximum package-price filter. Search-card prices remain preliminary until the exact selected SKU, stock and manufacturer package have been matched.\n\nCurrent independent gaps remain:221historical SKU prices, exact manufacturer/batch identity for newly discovered products, quantity-specific Nha Trang freight, frozen-delivery eligibility and discount applicability. These must remain explicit coverage gaps, not be assigned zero prices or assumed shipping. VBest's package and lab report disagree on protein(71.65% versus68.9%) and ingredient ratios, so the cheaper ratio must not silently win.\n\nEvidence and published comparison tables live under docs/acceptance and docs/tables. Collection and corrections continue; this issue tracks missing coverage and does not claim a globally cheapest offer.",
     "number": 3,
     "state": "OPEN",
     "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+    "updatedAt": "2026-10-11T09:01:07Z",
     "url": "https://github.com/konard/lazada-search/issues/3"
   },
   {
-    "body": "When a client cannot reach the loopback control endpoint, available() currently treats every connection error as an absent browser and launches another worker. If that second worker fails to launch, its shutdown() unconditionally removes browser-window.json belonging to the first live worker. The existing Chrome window remains open but loses its reusable authenticated control descriptor.\n\nReproduced with restricted loopback access: the second worker first failed with listen EPERM, then an unrestricted retry failed with Browser exited before its DevTools endpoint was ready(exit0). The original supervisor and Chrome process remained alive while the descriptor was gone.\n\nFix in progress: refuse replacement when the descriptor identifies a live but unreachable owner, only remove state owned by the terminating worker, and persist recovery metadata so a replacement supervisor can adopt the same owned Chrome window after an orphaned supervisor exits. Browser requests must retain their pacing history and the30-minute unused-window close rule. The live window was recovered without closing Chrome. No credentials, endpoints, tokens or account screenshots are published.",
     "number": 2,
     "state": "CLOSED",
     "title": "Failed persistent browser reconnect deletes another live worker descriptor",
+    "updatedAt": "2026-10-10T16:08:21Z",
     "url": "https://github.com/konard/lazada-search/issues/2"
   },
   {
-    "body": "The account workflow can stop immediately after a successful archive export and verification. A long-lived private store's shared RepositoryArchive fallback retains the old manifest and cached record indexes. Re-export replaces hashed shards and removes old filenames; the next audit tries to read a removed crawl shard and reports \"Corrupt repository archive file\" even though the new archive verifies successfully.\n\nReproduced on Node22.23.0: archive export and verification both passed with20635records/3749blobs, then the same workflow's audit attempted the removed records/crawl.78d68c51a348335d87bb224285ca835b278aff35f658d9a4ea76fe7278f1d3ef.json.gz.\n\nFix in progress: detect changed manifest generations, invalidate old record/index caches, and retry a read only when the generation actually changed. Real corruption must continue to fail. Regression must reuse the same private fallback across export and cover replacement during an active read. No account data is included in this report.",
     "number": 1,
     "state": "CLOSED",
     "title": "Account workflow retains stale archive shards after re-export",
+    "updatedAt": "2026-10-10T16:08:19Z",
     "url": "https://github.com/konard/lazada-search/issues/1"
   }
 ]

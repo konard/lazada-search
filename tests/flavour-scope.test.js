@@ -8,6 +8,7 @@ import {
 } from '../src/index.js';
 import { parseArguments, comparisonOptions } from '../src/config.js';
 import { apiComparisonOptions } from '../src/server.js';
+import { preferredVariant } from '../src/variant-policy.js';
 
 const scope = 'chocolate-or-unflavoured';
 const powder = (title, options = {}) => ({
@@ -19,6 +20,66 @@ const ice = (title, options = {}) => ({
   category: 'chocolate-ice-cream',
   title,
   ...options,
+});
+
+test('fresh CLI preferences select chocolate without a shaker and exclude cheaper wrong-flavour rows', () => {
+  const original = process.env.LAZADA_FLAVOUR_SCOPE;
+  delete process.env.LAZADA_FLAVOUR_SCOPE;
+  try {
+    const options = parseArguments(['compare']);
+    assert.equal(options.flavourScope, scope);
+    const snapshot = {
+      title: 'Scitec Whey Protein vị Vani',
+      skuCatalog: [
+        { sku: 'wrong', options: [{ value: 'Vani' }, { value: 'Bình Lắc' }] },
+        { sku: 'extra', options: [{ value: 'Socola' }, { value: 'Bình Lắc' }] },
+        {
+          sku: 'wanted',
+          options: [{ value: 'Socola' }, { value: 'Không Bình' }],
+        },
+      ],
+    };
+    assert.equal(
+      preferredVariant(snapshot, options.flavourScope).sku,
+      'wanted'
+    );
+    const products = [
+      powder('Vanilla whey', { id: 'wrong' }),
+      powder('Chocolate whey', {
+        id: 'extra',
+        selectedVariant: [{ text: 'Chocolate + Shaker' }],
+      }),
+      powder('Chocolate whey', { id: 'wanted' }),
+    ];
+    const offers = products.map((product, index) => ({
+      id: product.id,
+      productId: product.id,
+      currency: 'VND',
+      price: index + 1,
+      observedAt: new Date().toISOString(),
+    }));
+    const report = compareOffers(products, offers, comparisonOptions(options));
+    assert.deepEqual(
+      report.comparisons.map((row) => row.product.id),
+      ['wanted']
+    );
+    assert.equal(
+      parseArguments(['collect', '--flavour-scope', 'all']).flavourScope,
+      'all'
+    );
+    process.env.LAZADA_FLAVOUR_SCOPE = 'all';
+    assert.equal(parseArguments(['collect']).flavourScope, 'all');
+    assert.equal(
+      parseArguments(['collect', '--flavour-scope', scope]).flavourScope,
+      scope
+    );
+  } finally {
+    if (original === undefined) {
+      delete process.env.LAZADA_FLAVOUR_SCOPE;
+    } else {
+      process.env.LAZADA_FLAVOUR_SCOPE = original;
+    }
+  }
 });
 
 test('strict shopping scope includes plain/chocolate and rejects mixed or unspecified flavours', () => {

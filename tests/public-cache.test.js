@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { cp, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { AssociativeStore, LazadaSearch, TesseractOcr } from '../src/index.js';
+import { AssociativeStore, LazadaSearch } from '../src/index.js';
 import { formatComparison } from '../src/telegram.js';
 
 test('committed public captures replay prices, OCR and Nha Trang delivery without a browser or download', async (t) => {
@@ -93,22 +93,11 @@ test('committed public captures replay prices, OCR and Nha Trang delivery withou
       (record) => record.imageHash === blob.sha256
     );
     assert.ok(saved.words.some((word) => word.box.length === 4));
-    let engineCalls = 0;
-    const ocr = new TesseractOcr({
-      store,
-      languages: saved.languages,
-      psm: saved.psm,
-      tessdataDir: '.lazada-search/tessdata',
-      execute: async (_command, args) => {
-        assert.deepEqual(args, ['--version']);
-        engineCalls++;
-        return { stdout: `${saved.engine}\n` };
-      },
-    });
-    const replay = await ocr.recognize(blob);
-    assert.equal(replay.cacheHit, true);
+    // Historical originals replay by their immutable IDs. They do not attest
+    // whichever trained models happen to be installed for a new native run.
+    const replay = await store.get('ocr', saved.id);
     assert.equal(replay.text, saved.text);
-    assert.equal(engineCalls, 1);
+    assert.deepEqual(replay.rawTsv, saved.rawTsv);
   }
   assert.equal(browserStarts, 0);
   assert.equal(app.cache.stats.downloads, 0);

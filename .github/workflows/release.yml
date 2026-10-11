@@ -413,7 +413,7 @@ jobs:
         # These JavaScript runtime assertions need temporary files, local HTTP,
         # subprocess Git/CLI fixtures and native image addons. Compilation/API
         # checks remain separate; do not type-check dependencies' ambient types.
-        run: bash scripts/run-with-budget-warning.sh 600 "Deno test suite" deno test --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi --allow-net=127.0.0.1,localhost tests/*.test.js
+        run: bash scripts/run-with-budget-warning.sh 600 "Deno test suite" deno test --frozen --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi --allow-net=127.0.0.1,localhost tests/*.test.js
 
   # === DOCKER IMAGE BUILD CHECK (pull requests) ===
   # Builds the Dockerfile without pushing so a broken image fails the pull
