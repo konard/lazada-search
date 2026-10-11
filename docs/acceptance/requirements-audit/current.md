@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T18:34:50.850Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T18:43:28.905Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -31,13 +31,13 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 | Issue                                                    | Requirement                                                                                                | State  |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
 | [#40](https://github.com/konard/lazada-search/issues/40) | Documentation CI link probes bypass collection CAPTCHA stop and request pacing                             | CLOSED |
-| [#39](https://github.com/konard/lazada-search/issues/39) | Default fresh CLI case preferences to target flavours and no paid shaker                                   | OPEN   |
-| [#38](https://github.com/konard/lazada-search/issues/38) | Fingerprint trained-model bytes in OCR cache identity                                                      | OPEN   |
-| [#37](https://github.com/konard/lazada-search/issues/37) | Preserve decimal pixels across native OCR engines and require actual matrix acceptance                     | OPEN   |
-| [#36](https://github.com/konard/lazada-search/issues/36) | Preserve original source bytes on Windows checkout and bound transient cache lock recreation               | OPEN   |
+| [#39](https://github.com/konard/lazada-search/issues/39) | Default fresh CLI case preferences to target flavours and no paid shaker                                   | CLOSED |
+| [#38](https://github.com/konard/lazada-search/issues/38) | Fingerprint trained-model bytes in OCR cache identity                                                      | CLOSED |
+| [#37](https://github.com/konard/lazada-search/issues/37) | Preserve decimal pixels across native OCR engines and require actual matrix acceptance                     | CLOSED |
+| [#36](https://github.com/konard/lazada-search/issues/36) | Preserve original source bytes on Windows checkout and bound transient cache lock recreation               | CLOSED |
 | [#35](https://github.com/konard/lazada-search/issues/35) | Keep category E2E redirects local and drain every image producer before browser close                      | CLOSED |
-| [#34](https://github.com/konard/lazada-search/issues/34) | Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation | OPEN   |
-| [#33](https://github.com/konard/lazada-search/issues/33) | Run alternative-runtime CI against the reviewed locked dependency graph                                    | OPEN   |
+| [#34](https://github.com/konard/lazada-search/issues/34) | Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation | CLOSED |
+| [#33](https://github.com/konard/lazada-search/issues/33) | Run alternative-runtime CI against the reviewed locked dependency graph                                    | CLOSED |
 | [#32](https://github.com/konard/lazada-search/issues/32) | Configure npm trusted publishing before enabling a successful release                                      | OPEN   |
 | [#31](https://github.com/konard/lazada-search/issues/31) | Keep complete generated catalog Markdown within the architecture line limit                                | CLOSED |
 | [#30](https://github.com/konard/lazada-search/issues/30) | Build previews without requiring an unconfigured Pages deployment                                          | CLOSED |
