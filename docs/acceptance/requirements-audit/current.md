@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T03:47:50.622Z, from the published catalog observed at 2026-10-10T21:35:50.108Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T03:57:08.490Z, from the published catalog observed at 2026-10-11T03:53:56.741Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1423 uncollected listings**, **268 unpriced SKU options**, and **6570 unresolved category observations**. 213 clearly identified hardware or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
