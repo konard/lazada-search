@@ -1,0 +1,201 @@
+{
+  "checkedAt": "2026-10-11T16:27:44.640305+00:00",
+  "baseSourceCommit": "3af08859f4e31154a51eadb20736dc5d3e249225",
+  "officialRuntimeReference": "https://bun.com/docs/test/parallel",
+  "installedRuntime": "Bun1.4.3",
+  "command": "bash scripts/run-with-budget-warning.sh 600 \"Local Bun full isolated-file suite\" bun test --parallel=2 --no-orphans --timeout 450000 ./tests/*.test.js",
+  "fullLocalSuite": {
+    "tests": 1310,
+    "pass": 1310,
+    "fail": 0,
+    "files": 158,
+    "runtimeSeconds": 57.73,
+    "wrapperSeconds": 58,
+    "exitCode": 0
+  },
+  "unchangedSuiteBudgetSeconds": 600,
+  "unchangedPerTestTimeoutMs": 450000,
+  "fixedFileWorkers": 2,
+  "fixtureAndLibrarySourceUnchanged": true,
+  "sourceDelta": [
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "ad4d2c01d590e79093a3bbb18a655f109609ef0e935793037605f3fa4a026e8d"
+    },
+    {
+      "path": "tests/ci-timeouts.test.js",
+      "sha256": "da652928c37dd2f16a8ef46751bbc894176382f699574cee3fdf9e31d9b88253"
+    },
+    {
+      "path": "tests/runtime-workflow.test.js",
+      "sha256": "ff3bc8b30d494a4174b7fe03ec5c51480942325586ffdc65a4d2d2258fea28a2"
+    },
+    {
+      "path": ".changeset/bounded-bun-file-runner.md",
+      "sha256": "a09606900c3cac2c53efe8fc4c6a38d26dcd6ae9d133dd549cfc0bf1fa6693c3"
+    }
+  ],
+  "restrictedRun": {
+    "accepted": false,
+    "tests": 1310,
+    "pass": 1288,
+    "fail": 22,
+    "exitCode": 1,
+    "finding": "Restricted sandbox prevents localhost fixture servers and process inspection. Actual authorized identical full suite passes; rejected raw log retained."
+  },
+  "actualWorkerProof": "bun-parallel-review/receipt.json.gz",
+  "focusedNodePolicy": {
+    "tests": 23,
+    "pass": 23,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "originals": [
+    {
+      "path": "bun-parallel-full.log.gz",
+      "originalBytes": 158935,
+      "originalSha256": "5bb28f77648cf974a5efd19d4a2d21100e4b193ca881f44f42c8be8abb9319c6",
+      "gzipSha256": "d8e476f82a2bf95d85f49aa92b35e41cfc340620301ee28f6c4105c648f3efa5"
+    },
+    {
+      "path": "bun-parallel-full-authorized.log.gz",
+      "originalBytes": 147860,
+      "originalSha256": "fbe60d53b2df498df805614d31b72a1906f45e773ab1bbbb1400adc3f35b727b",
+      "gzipSha256": "c3227bf97b1f78e7c5228fd650c740759a300408ead7a9c2ff3dc26d0aa8eba3"
+    },
+    {
+      "path": "bun-parallel-policy.tap.gz",
+      "originalBytes": 5642,
+      "originalSha256": "bb96ac0f6e6bc6cfc39d1f43c6a0de24fe6b77708c40a5e6dc4ca2406d9cf117",
+      "gzipSha256": "8a3e8285fb9b8029b610a150481ca875be6b8293f5df53db1c1cf38b1383126a"
+    },
+    {
+      "path": "bun-parallel-review/receipt.json.gz",
+      "originalBytes": 6608,
+      "originalSha256": "bf6facd0b742a2d7fc994231acdf99cde6abbcc36dd645332fa9c3d3bf94d61d",
+      "gzipSha256": "66f733075792a261f968d18022363dc423c3dfd425e0e0aa6095a5bd8c438724"
+    },
+    {
+      "path": "bun-parallel-review/format-check.log.gz",
+      "originalBytes": 66,
+      "originalSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59"
+    },
+    {
+      "path": "bun-parallel-review/bun-test-help.txt.gz",
+      "originalBytes": 4029,
+      "originalSha256": "0678f9d7dd40dbb5b01aadadd06a96ba695cd5fd08e40ab3d447068389b02197",
+      "gzipSha256": "e35d1bdd5a0df0528baef13546756a28a284fc8edf384d3c019a49ed1a945db6"
+    },
+    {
+      "path": "bun-parallel-review/exits.txt.gz",
+      "originalBytes": 30,
+      "originalSha256": "99d75128acda67aa7bc12af2b0608d88a440f18eca3d5a0f382f086251306212",
+      "gzipSha256": "c6e1c66c4eaf3a15e5ad0deb38d2627640711ab355fd926caf3c291aa6195ee0"
+    },
+    {
+      "path": "bun-parallel-review/bun-workflow.log.gz",
+      "originalBytes": 1984,
+      "originalSha256": "cbfcfdf520d47599078b464ebdeb5eace69350233fc9d1054d13e4ae978b5609",
+      "gzipSha256": "b5e482c576dec3019e6a01f24332f347d2dac8939a2cf666fae803efa5614530"
+    },
+    {
+      "path": "bun-parallel-review/passing.log.gz",
+      "originalBytes": 555,
+      "originalSha256": "953d0674cef3d0f4c2405d352169541db348196a1c5ec81b7dcf8d105cafa4d0",
+      "gzipSha256": "4eafa56ad8ec53647e5f30ee610d859563a1a673e3acd5f0f8b6c16c00d50202"
+    },
+    {
+      "path": "bun-parallel-review/node-workflow.tap.gz",
+      "originalBytes": 4598,
+      "originalSha256": "6fb1f2f68e7ea4395c92da563e877a33c56c2081c964f85ac9d58514b2656ead",
+      "gzipSha256": "1258ab78e44772029f52f759cb4e60c1092fec2d4108e151d561faf8882db998"
+    },
+    {
+      "path": "bun-parallel-review/workflow-exits.txt.gz",
+      "originalBytes": 23,
+      "originalSha256": "2dfbc601f7085114dbb115da40b600a50ab10741ff4c660c6637572382e4d3b8",
+      "gzipSha256": "0c2f73e27d47533f1549c1772f1b2b5b912fe853dcc56c97cbc25c35a38eb24e"
+    },
+    {
+      "path": "bun-parallel-review/failing.log.gz",
+      "originalBytes": 1147,
+      "originalSha256": "5a084d6ea93f5377a2a5e978ce896ef9e75fe51554b8712b0680006ab7b30892",
+      "gzipSha256": "ee18ff5ca2f5638f20bb20879bbbb62345377b51d3b1267233bcbab5d91a7ccf"
+    },
+    {
+      "path": "bun-parallel-review/strict-lint.log.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "path": "bun-parallel-review/passing-events/0.json.gz",
+      "originalBytes": 153,
+      "originalSha256": "1fa094a3414d37ba40dfd6c763f205b93e59b40be9acf55ef053d1f2053dbe62",
+      "gzipSha256": "a57d9a4fc53d0f0a081133f4e213650a1016487bb05b5c7e04ec056ef286638c"
+    },
+    {
+      "path": "bun-parallel-review/passing-events/1.json.gz",
+      "originalBytes": 153,
+      "originalSha256": "6288299c45afc2de5ad4020d55527e90800af0b873df89462a6078ec71d23994",
+      "gzipSha256": "abe54e18c642e960b321481e8041f154d0ca1a11308603af8d20ffa6530241da"
+    },
+    {
+      "path": "bun-parallel-review/passing-events/2.json.gz",
+      "originalBytes": 153,
+      "originalSha256": "97685d2fd29b9f1e25cbc62deb03f3e7b695b16739e5c965cbe48318d30fe6b6",
+      "gzipSha256": "3522a3cfefa3df4b7f388bffdf55b35f9d921a51e22b30a1e25f93f75eaaebd5"
+    },
+    {
+      "path": "bun-parallel-review/fixture/2.test.js.gz",
+      "originalBytes": 782,
+      "originalSha256": "47fbb012eff7ee2eaf0b50f25122ec6884b3375e11d831fb28ba94e80103eda1",
+      "gzipSha256": "625d25de47ac37032ffc106a181273fc5e83b8cb60de0a7d4df0313c69948441"
+    },
+    {
+      "path": "bun-parallel-review/fixture/0.test.js.gz",
+      "originalBytes": 782,
+      "originalSha256": "26598cb19f06911b07d6ec227835d95248b46b09990650ff8ab82e8c774e8469",
+      "gzipSha256": "ca73c74f7e508ea9839457ca965b5cb6dfe57c838a43675ecb472cc75e8c2940"
+    },
+    {
+      "path": "bun-parallel-review/fixture/shared.js.gz",
+      "originalBytes": 231,
+      "originalSha256": "9b850fce6315affce6d34e74aa4b26225bf53bbd79c58323ca65060cbb0da43e",
+      "gzipSha256": "c54c3dc411a3fe6dd73e666012df56554742390c38e64ed5e6e01e7f7bb2a6d4"
+    },
+    {
+      "path": "bun-parallel-review/fixture/1.test.js.gz",
+      "originalBytes": 782,
+      "originalSha256": "883efb52df4814aeb0baf862fa45fdcfb418c54dd4b1fe4b1a6741b588f74e05",
+      "gzipSha256": "4009aea35d8a2c1ca5c3e0a1d203498095b7479f0d125c27aec24867d1b8d203"
+    },
+    {
+      "path": "bun-parallel-review/failing-events/0.json.gz",
+      "originalBytes": 153,
+      "originalSha256": "c210809df7679782a7821a0d23af9f200c77fb83cf2c4f9d0016ee4072c25ebb",
+      "gzipSha256": "cfcc07f86f846c7f0bb6c69bf17ec6ed749910af209aed66bef0217bd7650ae2"
+    },
+    {
+      "path": "bun-parallel-review/failing-events/1.json.gz",
+      "originalBytes": 152,
+      "originalSha256": "82faab9edfebd15603212bc643b71d1daf5d7219995de0ead5b4d46dfdca09fc",
+      "gzipSha256": "ba0d1b51ce10f86432329a399e5000ae22cf2940e4274a2ad9a219cc2e6ff8bb"
+    },
+    {
+      "path": "bun-parallel-review/failing-events/2.json.gz",
+      "originalBytes": 153,
+      "originalSha256": "b014fc095fb15de53c0471999a7996a5dd91dd43946e2d0d394dccddfcc1de18",
+      "gzipSha256": "6c707f48fcbdc9f57e7f11c825f65c722078c2a18dd29be5e3296908ec25743e"
+    }
+  ],
+  "fullCurrentWindowsAcceptance": false,
+  "latestRemoteReceipt": "ci-3af0885-review.json",
+  "productDownloads": 0,
+  "manufacturerDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false,
+  "productionReady": false
+}

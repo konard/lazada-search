@@ -327,7 +327,7 @@ describe('CI timeout policy', () => {
       'node --test --test-concurrency=4 --test-timeout=450000 tests/*.test.js'
     );
     expect(releaseWorkflow).toContain(
-      'bun test --timeout 450000 ./tests/*.test.js'
+      'bun test --parallel=2 --no-orphans --timeout 450000 ./tests/*.test.js'
     );
   });
 

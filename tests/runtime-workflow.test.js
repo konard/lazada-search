@@ -29,13 +29,28 @@ test('Bun and Deno run the same complete top-level unit manifest as Node', () =>
   assert.match(packageJson.scripts.test, /tests\/\*\.test\.js$/);
   const bun = named('Run tests (Bun)');
   const deno = named('Run tests (Deno)');
-  assert.match(bun.run, /bun test --timeout 450000 \.\/tests\/\*\.test\.js$/);
+  assert.match(
+    bun.run,
+    /bun test --parallel=2 --no-orphans --timeout 450000 \.\/tests\/\*\.test\.js$/
+  );
   assert.match(deno.run, /deno test .* tests\/\*\.test\.js$/);
   assert.equal(bun.if, "matrix.runtime == 'bun'");
   assert.equal(deno.if, "matrix.runtime == 'deno'");
   assert.deepEqual(config.test.include, ['tests/*.test.js']);
   assert.ok(config.test.exclude.includes('tests/e2e/'));
   assert.ok(!/--filter|--ignore|--permit-no-files/.test(bun.run + deno.run));
+});
+
+test('Bun uses two isolated file workers without narrowing or retrying the complete suite', () => {
+  const { run } = named('Run tests (Bun)');
+  assert.match(run, /(?:^|\s)--parallel=2(?:\s|$)/u);
+  assert.ok(
+    !/--(?:no-isolate|concurrent|shard|bail|only|test-name-pattern|path-ignore-patterns|retry|rerun-each)(?:[=\s]|$)/u.test(
+      run
+    )
+  );
+  assert.match(run, /run-with-budget-warning\.sh 600 "Bun test suite"/u);
+  assert.match(run, /--timeout 450000 \.\/tests\/\*\.test\.js$/u);
 });
 
 test('Deno manual dependencies stay offline without disabling package freshness checks', () => {

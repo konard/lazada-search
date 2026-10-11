@@ -126,9 +126,10 @@
         "src/config.js",
         "tests/flavour-scope.test.js",
         "tests/e2e/archive.test.js",
-        "tests/e2e/telegram.test.js"
+        "tests/e2e/telegram.test.js",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json"
       ],
-      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined full local interface suite and actual GitHub48/48 native/browser E2E passed with zero skips; current source99 Windows Node catalog cancellation remains a separate runtime issue."
+      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined full local interface suite and actual GitHub48/48 native/browser E2E passed with zero skips; source3af Windows Node now passes fully; its Windows Bun suite timeout remains a separate runtime issue."
     },
     {
       "id": "R001",
@@ -252,14 +253,16 @@
     {
       "id": "R036",
       "requirement": "Commit/push code, tests and precached public evidence",
-      "status": "partial",
-      "mechanicsStatus": "published-source99-code-tests-reports-public-case;final-receipt-tracker-delta-pending",
-      "realDataAcceptance": "Source99ffc7c is pushed to main and observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Final full-validation receipts and current tracker changes await separate root publication; private authentication/profile/checkout material is excluded.",
+      "status": "implemented",
+      "mechanicsStatus": "published-source3af-code-tests-reports-public-case-and-local-full-acceptance",
+      "realDataAcceptance": "Source3af0885 is pushed to main and independently observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Full local source99 receipts and earlier platform originals are already public; new follow-up receipts and tracker updates accompany the next publication. Private authentication/profile/checkout material is excluded.",
       "evidence": [
         "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "data/cases/vietnam-nha-trang/manifest.json"
+        "data/cases/vietnam-nha-trang/manifest.json",
+        "https://github.com/konard/lazada-search/commit/3af08859f4e31154a51eadb20736dc5d3e249225",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json"
       ],
       "finding": "The earlier commit-push-not-independently-checked finding remains a dated baseline. Current source identity is bound by saved GitHub run evidence, not inferred from local changes; this does not claim the newest documentation delta is already pushed."
     }
@@ -347,7 +350,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Accepted full local1309/1309 unit and48/48 native/browser E2E0skip; local Bun/Deno63/63 focused each. Actual source99 eight runtime jobs pass, including full Windows Deno1157+8steps0failed in567s of600s and Windows Bun1272pass0fail. Windows Node has1267pass0assertionfail1catalog-timeout cancellation0skip; its full suite remains unaccepted. Actual GitHub native/browser48/48 passes. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "Accepted source99 full local1309unit/48native-browser0skip. Source3af actual eight runtime jobs and48native/browser pass; full Windows Node1268pass0fail0cancel0skip and full Windows Deno1157+8steps0failed pass. Windows Bun completes all catalog assertions but reaches600s before finishing the entire suite. Two-worker follow-up full localBun1310pass0fail accepted, actual current Windows still pending. No unmatched manufacturer nutrition approved.",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -359,24 +362,27 @@
         "docs/acceptance/ocr-model-identity/initial-validation.json",
         "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
       ],
       "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
     },
     {
       "id": "R049",
       "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
-      "status": "partial",
+      "status": "implemented",
       "mechanicsStatus": "offline-link-policy-guards-implemented-and-full-local-suite-tested-without-online-retry-or-archive-probes",
-      "realDataAcceptance": "Local full unit policy checks and npmRunCheck pass. The subsequent served-web-root link exception passes4 focused tests, but actual corrected repository links workflow remains pending. No external URL liveness claimed.",
+      "realDataAcceptance": "Actual corrected offline workflow38153747585 completedSUCCESS on3af0885,34837links parsed,435local successful,34402excluded,0errors; terminal status gate passed. Captured source originals retain archive digest validation. No external URL liveness claimed.",
       "evidence": [
         ".github/workflows/links.yml",
         "tests/links-workflow.test.js",
         "https://github.com/konard/lazada-search/issues/40",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "docs/acceptance/ocr-model-identity/offline-link-contract.json"
+        "docs/acceptance/ocr-model-identity/offline-link-contract.json",
+        "docs/acceptance/ocr-model-identity/post-full-link-policy.json"
       ],
-      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow is restricted to offline authored-repository input without online retries; captured original pages remain excluded from authored-document input and covered by independent archive digest checks. Actual configured repository-workflow execution remains pending. The served web root src/web/index.html needs its separate offline input context; that later workflow-only correction is not part of source99 full-suite fingerprints."
+      "finding": "Offline-only authored repository validation is accepted by actual GitHub execution. Online retries and archive fallback are absent; original capture input remains protected separately by hashes. Served app source HTML is excluded because root-relative assets are validated by the actual browser suite."
     }
   ],
   "checkpoint": {
@@ -550,7 +556,7 @@
         "docs/acceptance/preferred-variant/cached-selection-review.json",
         "tests/e2e/preferred-variant.test.js"
       ],
-      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Kh\u00f4ng B\u00ecnh SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
       "issue": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -596,7 +602,7 @@
         "src/scope-decisions.js",
         "tests/human-food-scope.test.js"
       ],
-      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+      "finding": "Thanh N\u0103ng L\u01b0\u1ee3ng and Thanh Dinh D\u01b0\u1ee1ng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
     },
     {
       "id": "powder-ice-flavour",
@@ -693,7 +699,7 @@
         "docs/acceptance/ocr-model-identity/final-portable-receipt.json.gz",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
       ],
-      "finding": "Full1,309/1,309 unit and single native-enabled48/48 E2E pass with zero failures/cancellations/skips. Local Bun and Deno each pass63 focused tests, including genuine native restart cache reuse; those subsets do not establish complete alternative-runtime/platform acceptance. All766 frozen files remain unchanged. Full34,253-record/7,030-blob archive verifies offline with zero downloads. Fresh chocolate/unflavoured/no-paid-shaker defaults are exercised separately from broad replay. Earlier1,306/1,306 unit plus rejected44/48 E2E and native-flag-omitted47-pass/1-skip runs remain preserved and are not accepted as the current native full suite. Actual source99 CI passes six Ubuntu/macOS runtime jobs and48/48 native/browser cases; three Windows jobs remain pending. Node reports1309passes with0skips, Bun1309passes0failures, Deno1157passedtests plus8steps0failed. These distinct runtime summaries are retained rather than equated. The priorWindowsDeno600-second timeout remains unresolved until fresh actual evidence. No factory facts, market coverage, gift quantities, freight, real translations or live bot acceptance are inferred."
+      "finding": "Full1,309/1,309 unit and single native-enabled48/48 E2E pass with zero failures/cancellations/skips. Local Bun and Deno each pass63 focused tests, including genuine native restart cache reuse; those subsets do not establish complete alternative-runtime/platform acceptance. All766 frozen files remain unchanged. Full34,253-record/7,030-blob archive verifies offline with zero downloads. Fresh chocolate/unflavoured/no-paid-shaker defaults are exercised separately from broad replay. Earlier1,306/1,306 unit plus rejected44/48 E2E and native-flag-omitted47-pass/1-skip runs remain preserved and are not accepted as the current native full suite. Actual source99 CI passes eight runtime jobs and48/48 native/browser cases; Windows Node alone cancels the catalog import at450000ms. Node reports1309passes with0skips, Bun1309passes0failures, Deno1157passedtests plus8steps0failed. These distinct runtime summaries are retained rather than equated. The priorWindowsDeno600-second timeout is resolved by actual source99 full1157+8step acceptance in567seconds; this does not accept the cancelled Node suite. No factory facts, market coverage, gift quantities, freight, real translations or live bot acceptance are inferred."
     }
   ],
   "sourceIntegrityCheckpoint": {
@@ -844,6 +850,25 @@
       },
       "finalReceiptAndTrackerDelta": "pending-root-publication",
       "privateAuthenticationAndProfileMaterial": "excluded-from-public-artifacts"
+    }
+  },
+  "latestRuntimeCheckpoint": {
+    "sourceCommit": "3af08859f4e31154a51eadb20736dc5d3e249225",
+    "receipt": "../ocr-model-identity/ci-3af0885-review.json",
+    "runtimeJobsPassed": 8,
+    "allNineAccepted": false,
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "nativeBrowserE2ePassed": 48,
+    "remainingFailure": "Windows Bun600s suite timeout after passing entire committed catalog",
+    "twoWorkerFollowupAcceptancePending": true,
+    "allRequirementsDelivered": false,
+    "twoWorkerFullLocalBunSuite": {
+      "tests": 1310,
+      "pass": 1310,
+      "fail": 0,
+      "files": 158,
+      "seconds": 57.73
     }
   }
 }

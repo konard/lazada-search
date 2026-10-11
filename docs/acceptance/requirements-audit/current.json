@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T15:59:48.785Z",
+  "checkedAt": "2026-10-11T16:27:49.592Z",
   "catalogObservedAt": "2026-10-11T13:54:15.320Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
@@ -389,14 +389,16 @@
     {
       "id": "R036",
       "requirement": "Commit/push code, tests and precached public evidence",
-      "status": "partial",
-      "mechanicsStatus": "published-source99-code-tests-reports-public-case;final-receipt-tracker-delta-pending",
-      "realDataAcceptance": "Source99ffc7c is pushed to main and observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Final full-validation receipts and current tracker changes await separate root publication; private authentication/profile/checkout material is excluded.",
+      "status": "implemented",
+      "mechanicsStatus": "published-source3af-code-tests-reports-public-case-and-local-full-acceptance",
+      "realDataAcceptance": "Source3af0885 is pushed to main and independently observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Full local source99 receipts and earlier platform originals are already public; new follow-up receipts and tracker updates accompany the next publication. Private authentication/profile/checkout material is excluded.",
       "evidence": [
         "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "data/cases/vietnam-nha-trang/manifest.json"
+        "data/cases/vietnam-nha-trang/manifest.json",
+        "https://github.com/konard/lazada-search/commit/3af08859f4e31154a51eadb20736dc5d3e249225",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json"
       ],
       "finding": "The earlier commit-push-not-independently-checked finding remains a dated baseline. Current source identity is bound by saved GitHub run evidence, not inferred from local changes; this does not claim the newest documentation delta is already pushed."
     },
@@ -544,7 +546,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Accepted full local1309/1309 unit and48/48 native/browser E2E0skip; local Bun/Deno63/63 focused each. Actual source99 eight runtime jobs pass, including full Windows Deno1157+8steps0failed in567s of600s and Windows Bun1272pass0fail. Windows Node has1267pass0assertionfail1catalog-timeout cancellation0skip; its full suite remains unaccepted. Actual GitHub native/browser48/48 passes. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "Accepted source99 full local1309unit/48native-browser0skip. Source3af actual eight runtime jobs and48native/browser pass; full Windows Node1268pass0fail0cancel0skip and full Windows Deno1157+8steps0failed pass. Windows Bun completes all catalog assertions but reaches600s before finishing the entire suite. Two-worker follow-up full localBun1310pass0fail accepted, actual current Windows still pending. No unmatched manufacturer nutrition approved.",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -556,31 +558,18 @@
         "docs/acceptance/ocr-model-identity/initial-validation.json",
         "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
       ],
       "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
-    },
-    {
-      "id": "R049",
-      "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
-      "status": "partial",
-      "mechanicsStatus": "offline-link-policy-guards-implemented-and-full-local-suite-tested-without-online-retry-or-archive-probes",
-      "realDataAcceptance": "Local full unit policy checks and npmRunCheck pass. The subsequent served-web-root link exception passes4 focused tests, but actual corrected repository links workflow remains pending. No external URL liveness claimed.",
-      "evidence": [
-        ".github/workflows/links.yml",
-        "tests/links-workflow.test.js",
-        "https://github.com/konard/lazada-search/issues/40",
-        "docs/acceptance/ocr-model-identity/validation.json",
-        "docs/acceptance/ocr-model-identity/offline-link-contract.json"
-      ],
-      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow is restricted to offline authored-repository input without online retries; captured original pages remain excluded from authored-document input and covered by independent archive digest checks. Actual configured repository-workflow execution remains pending. The served web root src/web/index.html needs its separate offline input context; that later workflow-only correction is not part of source99 full-suite fingerprints."
     }
   ],
   "githubIssues": [
     {
       "number": 40,
       "title": "Documentation CI link probes bypass collection CAPTCHA stop and request pacing",
-      "state": "OPEN",
+      "state": "CLOSED",
       "url": "https://github.com/konard/lazada-search/issues/40"
     },
     {
@@ -833,8 +822,8 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "db7e7e904d7253fc0ecfede50f48878a4ac0f804706c44e3a3754f20d4580618",
-      "bytes": 48098,
+      "sha256": "3c11017262ea98089f0cb7c4b1d301eeeed750350b9e49142db7ed10a315448a",
+      "bytes": 49252,
       "observedAt": "2026-10-11T15:53:17.658303+00:00"
     },
     {
@@ -845,8 +834,8 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "eb6d8bc5b13ea673fea0ef313fa99c7cf6bd9a46dcc8c331e6a1b5176eb3557a",
-      "bytes": 9911,
+      "sha256": "ac18784b3eb8a248d9ca920a9f263feda4ec70f0a38a32d167a8840b39527441",
+      "bytes": 9913,
       "observedAt": null
     },
     {

@@ -30,7 +30,7 @@
   "unchangedTestFileBudgetMs": 450000,
   "unchangedSuiteBudgetSeconds": 600,
   "observedFailure": "Source99 Windows Node1267pass0assertionfail1catalog-cancellation0skip; actual full Windows Deno567s success,8of9 runtime jobs pass.",
-  "mitigationNotAcceptedOnWindowsYet": true,
+  "mitigationNotAcceptedOnWindowsYet": false,
   "officialRuntimeReference": "https://nodejs.org/api/cli.html#uv_threadpool_sizesize",
   "interpretation": "Node documents a default filesystem threadpool of4 and a launch-time size increase as a potential mitigation. Pool8 matches existing bounded store concurrency. Local timings do not establish cause or Windows acceptance.",
   "localCounts": {
@@ -183,5 +183,45 @@
   ],
   "productDownloads": 0,
   "allRequirementsDelivered": false,
-  "productionReady": false
+  "productionReady": false,
+  "actualOtherRuntimeCancellationContexts": {
+    "scope": "Actual local Bun1.4.3 and Deno2.9.7 node:test context sanity checks; each1passed0failed with a present non-aborted signal. These are not full suites.",
+    "BunSignalPresent": true,
+    "DenoSignalPresent": true,
+    "guardUnchanged": true,
+    "logs": [
+      {
+        "path": "bun-context.log.gz",
+        "originalSha256": "94269855fd02f1c6b356c5b056a7d8ac26fd90516aa67fb5e32d5d07625eec48",
+        "originalBytes": 238,
+        "gzipSha256": "dc44bb5d08178af72b23b918c19869e8a62708bec67f5c05eee3348e5a21dbc8"
+      },
+      {
+        "path": "deno-context.log.gz",
+        "originalSha256": "8cff450851a992d34b2cadb6ca03420b642ed141b2175a0639c65dbc3dc9e830",
+        "originalBytes": 291,
+        "gzipSha256": "7837336ef9365fbd9d9a140d619135e94985c382534e34c124344ce2713a7623"
+      },
+      {
+        "path": "lazada-node-test-context.test.mjs.gz",
+        "originalSha256": "ec8126149cdd8cc527872a36aa342e95ce279d216ed5b9190d61a5af9e7be01a",
+        "originalBytes": 189,
+        "gzipSha256": "b98057e4e72534f52975d89bbb4a730695be4be228f97fa4270d0eb8fd348dd6"
+      }
+    ]
+  },
+  "actualWindowsNodeAcceptance": {
+    "sourceCommit": "3af08859f4e31154a51eadb20736dc5d3e249225",
+    "receipt": "ci-3af0885-review.json",
+    "fullSuiteCounts": {
+      "tests": 1268,
+      "pass": 1268,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 368269.7971
+    },
+    "allNineMatrixAccepted": false,
+    "remainingRuntime": "Windows Bun suite budget"
+  }
 }

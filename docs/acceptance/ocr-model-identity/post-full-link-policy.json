@@ -34,6 +34,26 @@
       "gzipSha256": "7581b6044fcd6c9f1f4328b953a00d40dfc5f8209202ff2c94573c6348ab7b72"
     }
   ],
-  "actualCorrectedOfflineCi": "pending push and completed actual workflow",
+  "actualCorrectedOfflineCi": {
+    "sourceCommit": "3af08859f4e31154a51eadb20736dc5d3e249225",
+    "workflow": "https://github.com/konard/lazada-search/actions/runs/38153747585",
+    "conclusion": "success",
+    "terminalGatePassed": true,
+    "productDownloads": 0,
+    "logs": [
+      {
+        "path": "ci-3af0885-offline-links.log.gz",
+        "originalBytes": 5132294,
+        "originalSha256": "2f7ad0968fab93798bdf39a8fd06bad2fc1de36cabf8b60156486a2d78d1e1b8",
+        "gzipSha256": "798589630c541316b37bf70ca6479ce0c731ad5fedf556331b8937cb0d360844"
+      },
+      {
+        "path": "ci-3af0885-links-jobs.json.gz",
+        "originalBytes": 2809,
+        "originalSha256": "9750a09c3489ba9d66dc5a1c611701717eaef81255bf85b088cacfcd3e3d445c",
+        "gzipSha256": "372e549141fca1ede095f92f9027b3783adff4d406bbf23b366dfa9dff493c9e"
+      }
+    ]
+  },
   "productDownloads": 0
 }

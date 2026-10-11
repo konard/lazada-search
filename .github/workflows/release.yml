@@ -396,9 +396,11 @@ jobs:
         shell: bash
         # The committed source/catalog fixtures need the same 450-second cap
         # as Node. This is a per-test bound and does not bound the suite; the
-        # explicit suite budget stays below the job backstop. Match Node's
-        # top-level unit manifest; the separate Lazada E2E job runs every E2E.
-        run: bash scripts/run-with-budget-warning.sh 600 "Bun test suite" bun test --timeout 450000 ./tests/*.test.js
+        # explicit suite budget stays below the job backstop. Two isolated
+        # file workers preserve Node's entire top-level unit manifest while
+        # avoiding a serial catalog import blocking all remaining test files.
+        # The separate Lazada E2E job runs every E2E.
+        run: bash scripts/run-with-budget-warning.sh 600 "Bun test suite" bun test --parallel=2 --no-orphans --timeout 450000 ./tests/*.test.js
 
       - name: Setup Deno
         if: matrix.runtime == 'deno'
