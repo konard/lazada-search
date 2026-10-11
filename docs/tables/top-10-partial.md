@@ -1,6 +1,6 @@
 # Partial 10.10 buying report
 
-Updated **2026-10-11T07:23:42.297Z**. Vietnam / Nha Trang, **VND**. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
+Updated **2026-10-11T08:07:16.920Z**. Vietnam / Nha Trang, **VND**. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
 
 **Best fresh factory-specification-matched whey: [IT'S JUST unflavoured 2268 g](https://www.lazada.vn/products/pdp-i3300919067.html?skuId=16058119853)**: 2,952,300 VND + 80,200 VND one-package freight = **3,032,500 VND; 1,470.79 VND/g protein delivered**. Captured quantity cap: three.
 
@@ -19,9 +19,9 @@ These are positive selected-SKU prices and captured availability. The ranking is
 | 5    | Athleopro , Whey Lực Sĩ chocolate protein powder | [2627699521_VNAMZ-14898632045](https://www.lazada.vn/products/pdp-i2627699521.html?skuId=14898632045)     | 1,020,000 | 1,250,000    | 2,000  | 510          | —               | Factory identity/formula pending | 2026-10-11T03:58:23.736Z |
 | 6    | Manufacturer pending chocolate protein powder    | [13375928580_VNAMZ-116939205737](https://www.lazada.vn/products/pdp-i13375928580.html?skuId=116939205737) | 484,324   | 758,846      | 907.18 | 533.88       | —               | Factory identity/formula pending | 2026-10-10T19:10:09.745Z |
 | 7    | Unverified Gold-labelled Double Rich Chocolate   | [13430219487_VNAMZ-117214356196](https://www.lazada.vn/products/pdp-i13430219487.html?skuId=117214356196) | 566,555   | 779,667      | 907    | 624.65       | 666.21          | Factory identity/formula pending | 2026-10-09T09:46:12.125Z |
-| 8    | SFD NUTRITION chocolate protein powder           | [13474287412_VNAMZ-117400400940](https://www.lazada.vn/products/pdp-i13474287412.html?skuId=117400400940) | 1,450,000 | —            | 2,250  | 644.44       | —               | Factory identity/formula pending | 2026-10-10T21:28:05.843Z |
-| 9    | Athleopro , Whey Lực Sĩ chocolate protein powder | [3112740502_VNAMZ-15710226384](https://www.lazada.vn/products/pdp-i3112740502.html?skuId=15710226384)     | 690,000   | 850,000      | 1,000  | 690          | —               | Factory identity/formula pending | 2026-10-10T19:28:17.220Z |
-| 10   | ON-labelled chocolate seller repack              | [3154800181_VNAMZ-116802296150](https://www.lazada.vn/products/pdp-i3154800181.html?skuId=116802296150)   | 2,574,000 | 3,150,000    | 3,000  | 858          | —               | Factory identity/formula pending | 2026-10-10T04:51:15.162Z |
+| 8    | SFD NUTRITION chocolate protein powder           | [13474249654_VNAMZ-117400466190](https://www.lazada.vn/products/pdp-i13474249654.html?skuId=117400466190) | 1,450,000 | —            | 2,250  | 644.44       | —               | Factory identity/formula pending | 2026-10-11T07:59:11.353Z |
+| 9    | SFD NUTRITION chocolate protein powder           | [13474287412_VNAMZ-117400400940](https://www.lazada.vn/products/pdp-i13474287412.html?skuId=117400400940) | 1,450,000 | —            | 2,250  | 644.44       | —               | Factory identity/formula pending | 2026-10-10T21:28:05.843Z |
+| 10   | Athleopro , Whey Lực Sĩ chocolate protein powder | [3112740502_VNAMZ-15710226384](https://www.lazada.vn/products/pdp-i3112740502.html?skuId=15710226384)     | 690,000   | 850,000      | 1,000  | 690          | —               | Factory identity/formula pending | 2026-10-10T19:28:17.220Z |
 
 ## Top 10 whey: lowest specification-verified price per gram of protein
 

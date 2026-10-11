@@ -3,7 +3,7 @@
     "body": "An exact ProSupps selected source (SKU1553990700_VNAMZ-6552645102, original SHA25634f5fe968b4f857907fec4c0916a4bb2ca38cd6dfe99d1bb4d0ffa16b87f71a3) is titled Whey Isolate2lbs and selects Chocolate Ice Cream. The selected flavour was overriding the explicit powder category, so cached replay added this whey to frozen chocolate ice cream tables.\n\nRequired behavior: a selected ice-cream flavour cannot turn an explicitly identified whey/protein powder into frozen food or supply a millilitre denominator. Genuine frozen product titles remain ice cream. Preserve exact selected price, original observation date, printed907g and unrelated reviews/nutrition.\n\nThe minimal parser correction is drafted in src/products.js and verified against the committed compressed original in tests/selected-package-mass.test.js.43 affected regressions pass. Zero-download original replay restored whey with unchanged1150000VND,907g and2026-10-09T10:07:45.985Z. Public reports are being rebuilt before committing the fix.\n",
     "labels": [],
     "number": 17,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
     "url": "https://github.com/konard/lazada-search/issues/17"
   },
@@ -11,7 +11,7 @@
     "body": "Generic Lazada product collection applied strict flavour rules to reports and SKU queues, but it did not select a compatible SKU before capture unless the URL explicitly named one. The observed Scitec listing pdp-i13427532777 offered Socola and Không Bình, yet recorded Zprotein Brownie5lbs with Bình Lắc at 3,070,000 VND. A corrected live selection confirmed Socola/Không Bình SKU 117192556069 at 3,540,000 VND on 2026-10-11.\n\nRequired behavior:\n- Select a complete chocolate/no-shaker SKU combination on generic listings; retain exact requested sibling identity.\n- Resolve dialogs first, pace each selection, animate into view, wait for SKU and price to settle, and reject a failed selection without recording a price.\n- Reuse correctly selected captures; mark incompatible defaults for correction while preserving historical originals.\n- Keep full observed variant inventory and nonmatching options for exclusion/review.\n- Use the actual shipping destination in delivery quotes; a Hồ Chí Minh quote must never become Nha Trang delivered metrics.\n- Preserve strict flavour and configured OCR during deferred recollection.\n\nLocal browser regressions and a slow live Scitec check are available under docs/acceptance/preferred-variant. This is a consumer selection/context defect in lazada-search; there is no evidence that Browser Commander selected the wrong SKU itself.\n",
     "labels": [],
     "number": 16,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
     "url": "https://github.com/konard/lazada-search/issues/16"
   },

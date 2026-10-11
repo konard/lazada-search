@@ -5,57 +5,59 @@
     {
       "id": "R011",
       "status": "partial",
-      "mechanicsStatus": "implemented",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "single-offer-and-captured-exact-basket-unit-metrics-implemented",
+      "realDataAcceptance": "pending-all-exact-product-denominators-and-Nha-Trang-bulk-quotes",
       "evidence": [
         "src/compare.js",
-        "tests/acceptance-corrections.test.js",
-        "tests/e2e/ice-selling-units.test.js",
-        "docs/tables/ice-unit-rankings.json",
-        "src/delivery-context.js",
-        "src/manufacturer-research.js",
-        "tests/delivery-context.test.js",
-        "tests/manufacturer-package-basis.test.js"
+        "src/basket-comparison.js",
+        "src/comparison-inputs.js",
+        "src/food-components.js",
+        "tests/basket-quotes.test.js",
+        "tests/food-components.test.js"
       ],
-      "finding": "After-delivery arithmetic requires source-confirmed actual destination and exact quantity. HCM shipping is withheld from Nha Trang comparisons. Per-100g protein cannot be reclassified as whole-package protein. Complete exact freight and label denominators remain pending."
+      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking."
     },
     {
       "id": "R017",
       "status": "partial",
-      "mechanicsStatus": "implemented-cached-resumable-translation",
-      "realDataAcceptance": "missing-configured-provider-and-whole-catalog-quality-acceptance",
+      "mechanicsStatus": "cached-number-unit-basis-identifier-guards-source-bound-reviews-and-English-overlays-implemented",
+      "realDataAcceptance": "pending-configured-provider-whole-catalog-semantic-reviews-and-reviewed-chunk-reassembly",
       "evidence": [
+        "src/translation-quality.js",
+        "src/translation-presentation.js",
         "src/translation.js",
-        "src/translation-catalog.js",
-        "tests/translation-catalog.test.js",
-        "tests/e2e/translation-catalog.test.js",
+        "tests/translation-quality.test.js",
+        "tests/e2e/translation.test.js",
         "docs/translation.md"
       ],
-      "finding": "Unicode originals, exact source hashes, provider identity/version, pending states and resumable bounded batches are implemented across library/CLI/HTTP/Telegram. Local provider fixtures pass; real complete English acceptance is pending."
+      "finding": "English presentation uses reviewed cached text only by default and preserves source fields and metrics. Quality and semantic-review acceptance are separate; oversized whole fields stay original pending reviewed reassembly."
     },
     {
       "id": "R023",
       "status": "implemented",
-      "mechanicsStatus": "implemented-structured-data-operations",
+      "mechanicsStatus": "structured-basket-translation-review-and-food-component-interface-parity-implemented",
       "realDataAcceptance": "local-fixture-parity-passed-live-acceptance-pending",
       "evidence": [
+        "src/index.js",
+        "src/index.d.ts",
         "src/operations.js",
-        "src/http-operations.js",
         "src/commands.js",
-        "tests/e2e/translation-catalog.test.js"
+        "tests/e2e/basket-quotes.test.js",
+        "tests/food-component-persistence.test.js",
+        "tests/fixtures/public-api-types.ts"
       ],
       "finding": "Local HTTP POST and Telegram structured operations now dispatch collection, review, quotes, imports, research and translation through the shared application. Filesystem CLI commands and interactive login are deliberately outside this dispatcher; existing direct login APIs remain available."
     },
     {
       "id": "R024",
       "status": "implemented",
-      "mechanicsStatus": "implemented-shared-structured-operations",
+      "mechanicsStatus": "authorized-private-chat-basket-and-translation-operations-with-local-Telegram-E2E",
       "realDataAcceptance": "local-mock-e2e-passed-live-deployment-pending",
       "evidence": [
         "src/telegram.js",
-        "src/operations.js",
-        "tests/e2e/telegram.test.js",
-        "tests/e2e/translation-catalog.test.js"
+        "tests/e2e/translation.test.js",
+        "tests/e2e/basket-quotes.test.js",
+        "tests/food-component-persistence.test.js"
       ],
       "finding": "Authorized Telegram commands and /operation expose structured data workflows; local Telegram HTTP mock tests cover imports, quotes, research validation, resume and translation. No live bot deployment receipt."
     },
@@ -148,18 +150,27 @@
       "requirementSource": "docs/REQUIREMENTS.md:16",
       "declaredStatus": "Partial",
       "status": "partial",
-      "mechanicsStatus": "partial",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "source-bound-applied-checkout-discounts-and-voucher-scope-guards-implemented",
+      "realDataAcceptance": "pending-current-marketplace-voucher-eligibility-and-all-basket-combinations",
       "evidence": [
-        "src/promotions.js:147",
-        "src/promotions.js:369",
-        "tests/promotions.test.js",
-        "tests/lazada.test.js:434",
-        "src/promotions.js",
-        "scripts/collect-promotions.mjs",
-        "tests/promotion-identity.test.js"
+        "src/basket-quote.js",
+        "tests/basket-quotes.test.js",
+        "docs/basket-quotes.md"
       ],
-      "finding": "Voucher identity includes IDs, codes, sellers, terms, validity windows and observed status changes; distinct equal-value vouchers cannot collapse. All real discounts and eligibility remain incomplete."
+      "finding": "Exact checkout totals reconcile original selected quantities, merchandise and freight vouchers; scope caps and unique voucher source fields prevent false savings. Advertised or unobserved vouchers remain conditional."
+    },
+    {
+      "id": "R012",
+      "status": "partial",
+      "mechanicsStatus": "source-bound-basket-capture-and-ranking-implemented;automatic-cart-adapter-and-quantity-voucher-sweep-pending",
+      "realDataAcceptance": "pending-live-exact-quantity-checkout-freight-and-full-basket-coverage",
+      "evidence": [
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "tests/e2e/basket-quotes.test.js",
+        "docs/basket-quotes.md"
+      ],
+      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed."
     }
   ],
   "additionalRequirements": [
@@ -213,10 +224,25 @@
         "docs/acceptance/decimal-ocr/validation.json"
       ],
       "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
+    },
+    {
+      "id": "R047",
+      "requirement": "Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders",
+      "status": "partial",
+      "mechanicsStatus": "source-reviewed-component-accounting-and-interface-persistence-implemented",
+      "realDataAcceptance": "pending-exact-bonus-identity-formula-stock-and-order-eligibility-for-real-offers",
+      "evidence": [
+        "src/food-components.js",
+        "src/products.js",
+        "tests/food-components.test.js",
+        "tests/food-component-persistence.test.js",
+        "docs/food-components.md"
+      ],
+      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require original reviewed facts and exact SKU/order quantity, count once, and cannot reuse one allocation on multiple lines."
     }
   ],
   "checkpoint": {
-    "recordedAt": "2026-10-11T07:11:00.598959+00:00",
+    "recordedAt": "2026-10-11T07:47:31.228Z",
     "previousImplementationCheckedAt": "2026-10-11T04:43:40.556Z",
     "latestFullSuite": "1006 distinct unit cases and 37 distinct E2E cases validated across full runs and successful affected-file retries. Initial timeout and fixture/source-receipt verification failures are preserved; final cache/replay26 and publication7 pass.",
     "preservedBaseline": {
@@ -452,6 +478,17 @@
         "tests/discovery-publication-cache.test.js"
       ],
       "finding": "Unchanged validated search pages reuse source/snapshot/observation/code/output-bound proofs without DOM extraction or output writes. Invalidated or changed sources, pagination, proofs and output rebuild/reject; older sources cannot overwrite newer list/crawl caches."
+    },
+    {
+      "id": "basket-food-translation",
+      "status": "draft-complete-full-suite-validation-running",
+      "evidence": [
+        "docs/acceptance/basket-food-translation/requirements-review.json",
+        "docs/basket-quotes.md",
+        "docs/food-components.md",
+        "docs/translation.md"
+      ],
+      "finding": "Read-only exact basket interfaces, reviewed food-component accounting/persistence and source-bound English presentation are drafted and focused tested. Complete marketplace, exact factory, frozen freight and configured whole-catalog English remain open."
     }
   ]
 }

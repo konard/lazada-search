@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T07:25:22.418Z",
-  "catalogObservedAt": "2026-10-11T07:23:28.272Z",
+  "checkedAt": "2026-10-11T08:09:28.620Z",
+  "catalogObservedAt": "2026-10-11T08:06:57.153Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,35 +21,35 @@
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1373,
-    "missingSkuPrices": 305,
+    "missingListings": 1348,
+    "missingSkuPrices": 326,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 6403,
-    "specifications": 272,
+    "specifications": 296,
     "verifiedProducts": 14,
     "excludedCategoryListings": 371,
-    "excludedExactOptions": 495
+    "excludedExactOptions": 515
   },
   "broaderArchive": {
-    "missingListings": 1524,
-    "missingSkuPrices": 840,
+    "missingListings": 1499,
+    "missingSkuPrices": 881,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 284,
+    "specifications": 308,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 261,
-    "strictWheySkus": 65,
+    "capturedPowderSkus": 285,
+    "strictWheySkus": 76,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 56,
-    "discoveryTasks": 6141,
-    "pendingSkuTasks": 310,
-    "excludedSkuOptions": 498,
-    "originalSourcePointers": 1935,
+    "missingFactoryMatches": 67,
+    "discoveryTasks": 6117,
+    "pendingSkuTasks": 331,
+    "excludedSkuOptions": 518,
+    "originalSourcePointers": 1973,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
@@ -144,50 +144,44 @@
       "id": "R010",
       "requirement": "Extract every discount and its eligibility",
       "status": "partial",
-      "mechanicsStatus": "partial",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "source-bound-applied-checkout-discounts-and-voucher-scope-guards-implemented",
+      "realDataAcceptance": "pending-current-marketplace-voucher-eligibility-and-all-basket-combinations",
       "evidence": [
-        "src/promotions.js:147",
-        "src/promotions.js:369",
-        "tests/promotions.test.js",
-        "tests/lazada.test.js:434",
-        "src/promotions.js",
-        "scripts/collect-promotions.mjs",
-        "tests/promotion-identity.test.js"
+        "src/basket-quote.js",
+        "tests/basket-quotes.test.js",
+        "docs/basket-quotes.md"
       ],
-      "finding": "Voucher identity includes IDs, codes, sellers, terms, validity windows and observed status changes; distinct equal-value vouchers cannot collapse. All real discounts and eligibility remain incomplete."
+      "finding": "Exact checkout totals reconcile original selected quantities, merchandise and freight vouchers; scope caps and unique voucher source fields prevent false savings. Advertised or unobserved vouchers remain conditional."
     },
     {
       "id": "R011",
       "requirement": "Before/after shipping cost per g, ml and protein g",
       "status": "partial",
-      "mechanicsStatus": "implemented",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "single-offer-and-captured-exact-basket-unit-metrics-implemented",
+      "realDataAcceptance": "pending-all-exact-product-denominators-and-Nha-Trang-bulk-quotes",
       "evidence": [
         "src/compare.js",
-        "tests/acceptance-corrections.test.js",
-        "tests/e2e/ice-selling-units.test.js",
-        "docs/tables/ice-unit-rankings.json",
-        "src/delivery-context.js",
-        "src/manufacturer-research.js",
-        "tests/delivery-context.test.js",
-        "tests/manufacturer-package-basis.test.js"
+        "src/basket-comparison.js",
+        "src/comparison-inputs.js",
+        "src/food-components.js",
+        "tests/basket-quotes.test.js",
+        "tests/food-components.test.js"
       ],
-      "finding": "After-delivery arithmetic requires source-confirmed actual destination and exact quantity. HCM shipping is withheld from Nha Trang comparisons. Per-100g protein cannot be reclassified as whole-package protein. Complete exact freight and label denominators remain pending."
+      "finding": "Basket freight/discounts count once, paid multipacks count once, reviewed bonus allocations count once, and accessories contribute zero. Grams/ml/protein remain separate; unknown or held denominators cannot produce a ranking."
     },
     {
       "id": "R012",
       "requirement": "Exact bulk freight and best basket price",
       "status": "partial",
-      "mechanicsStatus": "partial",
-      "realDataAcceptance": "missing-live-acceptance",
+      "mechanicsStatus": "source-bound-basket-capture-and-ranking-implemented;automatic-cart-adapter-and-quantity-voucher-sweep-pending",
+      "realDataAcceptance": "pending-live-exact-quantity-checkout-freight-and-full-basket-coverage",
       "evidence": [
-        "src/compare.js:100",
-        "src/delivery.js:14",
-        "tests/browser-import-review.test.js:164",
-        "docs/acceptance/collection-readiness.md"
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "tests/e2e/basket-quotes.test.js",
+        "docs/basket-quotes.md"
       ],
-      "finding": "One-package quotes are not multiplied for bulk. No exact bulk basket quote has been accepted."
+      "finding": "Library/CLI/HTTP/Telegram save, capture and compare exact prepared baskets. Read-only capture preserves the current page, resolves dialogs, waits for stable original fields, rejects URL changes and stops on CAPTCHA. No live layout adapter or complete cart/voucher sweep is claimed."
     },
     {
       "id": "R013",
@@ -250,16 +244,17 @@
       "id": "R017",
       "requirement": "Parse all Vietnamese marketplace text and provide proper English",
       "status": "partial",
-      "mechanicsStatus": "implemented-cached-resumable-translation",
-      "realDataAcceptance": "missing-configured-provider-and-whole-catalog-quality-acceptance",
+      "mechanicsStatus": "cached-number-unit-basis-identifier-guards-source-bound-reviews-and-English-overlays-implemented",
+      "realDataAcceptance": "pending-configured-provider-whole-catalog-semantic-reviews-and-reviewed-chunk-reassembly",
       "evidence": [
+        "src/translation-quality.js",
+        "src/translation-presentation.js",
         "src/translation.js",
-        "src/translation-catalog.js",
-        "tests/translation-catalog.test.js",
-        "tests/e2e/translation-catalog.test.js",
+        "tests/translation-quality.test.js",
+        "tests/e2e/translation.test.js",
         "docs/translation.md"
       ],
-      "finding": "Unicode originals, exact source hashes, provider identity/version, pending states and resumable bounded batches are implemented across library/CLI/HTTP/Telegram. Local provider fixtures pass; real complete English acceptance is pending."
+      "finding": "English presentation uses reviewed cached text only by default and preserves source fields and metrics. Quality and semantic-review acceptance are separate; oversized whole fields stay original pending reviewed reassembly."
     },
     {
       "id": "R018",
@@ -292,13 +287,16 @@
       "id": "R023",
       "requirement": "Library, CLI and HTTP interfaces",
       "status": "implemented",
-      "mechanicsStatus": "implemented-structured-data-operations",
+      "mechanicsStatus": "structured-basket-translation-review-and-food-component-interface-parity-implemented",
       "realDataAcceptance": "local-fixture-parity-passed-live-acceptance-pending",
       "evidence": [
+        "src/index.js",
+        "src/index.d.ts",
         "src/operations.js",
-        "src/http-operations.js",
         "src/commands.js",
-        "tests/e2e/translation-catalog.test.js"
+        "tests/e2e/basket-quotes.test.js",
+        "tests/food-component-persistence.test.js",
+        "tests/fixtures/public-api-types.ts"
       ],
       "finding": "Local HTTP POST and Telegram structured operations now dispatch collection, review, quotes, imports, research and translation through the shared application. Filesystem CLI commands and interactive login are deliberately outside this dispatcher; existing direct login APIs remain available."
     },
@@ -306,13 +304,13 @@
       "id": "R024",
       "requirement": "Telegram interface with E2E tests",
       "status": "implemented",
-      "mechanicsStatus": "implemented-shared-structured-operations",
+      "mechanicsStatus": "authorized-private-chat-basket-and-translation-operations-with-local-Telegram-E2E",
       "realDataAcceptance": "local-mock-e2e-passed-live-deployment-pending",
       "evidence": [
         "src/telegram.js",
-        "src/operations.js",
-        "tests/e2e/telegram.test.js",
-        "tests/e2e/translation-catalog.test.js"
+        "tests/e2e/translation.test.js",
+        "tests/e2e/basket-quotes.test.js",
+        "tests/food-component-persistence.test.js"
       ],
       "finding": "Authorized Telegram commands and /operation expose structured data workflows; local Telegram HTTP mock tests cover imports, quotes, research validation, resume and translation. No live bot deployment receipt."
     },
@@ -493,19 +491,34 @@
         "docs/acceptance/decimal-ocr/validation.json"
       ],
       "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
+    },
+    {
+      "id": "R047",
+      "requirement": "Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders",
+      "status": "partial",
+      "mechanicsStatus": "source-reviewed-component-accounting-and-interface-persistence-implemented",
+      "realDataAcceptance": "pending-exact-bonus-identity-formula-stock-and-order-eligibility-for-real-offers",
+      "evidence": [
+        "src/food-components.js",
+        "src/products.js",
+        "tests/food-components.test.js",
+        "tests/food-component-persistence.test.js",
+        "docs/food-components.md"
+      ],
+      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require original reviewed facts and exact SKU/order quantity, count once, and cannot reuse one allocation on multiple lines."
     }
   ],
   "githubIssues": [
     {
       "number": 17,
       "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
-      "state": "OPEN",
+      "state": "CLOSED",
       "url": "https://github.com/konard/lazada-search/issues/17"
     },
     {
       "number": 16,
       "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
-      "state": "OPEN",
+      "state": "CLOSED",
       "url": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -602,9 +615,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "c1a91696ddc0d7ec6ba24c4be6446761f833d438b1d95433f475cd2a992ff5f1",
-      "bytes": 34678536,
-      "observedAt": "2026-10-11T07:23:28.272Z"
+      "sha256": "98de619cfe5de142c558d06b9090f063049acb58c4b9ef19b94b406cdca38ce7",
+      "bytes": 34228967,
+      "observedAt": "2026-10-11T08:06:57.153Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -614,8 +627,8 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "0ca4c4161292c9b24d50040327cc31c72619bb6a29a6b609dfc3b9e74b782e4d",
-      "bytes": 22526,
+      "sha256": "09f39b4507411276cfcb42c35a4b93e1e629554fb48c03d3453d9679bae24649",
+      "bytes": 24986,
       "observedAt": "2026-10-11T06:43:51.017530+00:00"
     },
     {
@@ -626,21 +639,21 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "8e47d5ae5b7d49effba411275f32c96f62b87fffacd270c316839d2ff9491a3c",
-      "bytes": 24447,
+      "sha256": "e84b15b4f212979e2fc3acdded852a19620ee5f6265c0ea5cee8019abc174055",
+      "bytes": 24451,
       "observedAt": null
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "8eedf022a5e5d16d0d1bc055826daddccd68c7c1f3a52188ab83b3fa43ddaeb1",
+      "sha256": "5d1c9259a3c26eb3b062b1a4204809acb02b3c7e84b73011c3376b650f8cf9ab",
       "bytes": 193637,
-      "observedAt": "2026-10-11T07:23:43.196Z"
+      "observedAt": "2026-10-11T08:07:17.849Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "2a043094aa6792fb296481d4e55c402a46bbbdfb622ec7987215dc4bda929478",
-      "bytes": 11770838,
-      "observedAt": "2026-10-11T07:23:48.132Z"
+      "sha256": "81c79dc5812ff3c75c12c8501c5f855a75df2ac7c5706ff5c8fa77a836e1b512",
+      "bytes": 11915524,
+      "observedAt": "2026-10-11T08:07:23.244Z"
     }
   ],
   "downloads": 0,

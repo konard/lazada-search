@@ -1,0 +1,847 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T07:50:58.496Z",
+  "scope": "Read-only requirements review of the basket, food-component and translation checkpoint; no marketplace/network/browser/store/Git actions or issue changes.",
+  "parentSuppliedPreviousCheckpoint": "eddd917",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "coverageSnapshot": {
+    "auditCheckedAt": "2026-10-11T07:47:37.654Z",
+    "catalogObservedAt": "2026-10-11T07:23:28.272Z",
+    "activeScope": {
+      "missingListings": 1373,
+      "missingSkuPrices": 305,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6403,
+      "specifications": 272,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 371,
+      "excludedExactOptions": 495
+    },
+    "broaderArchive": {
+      "missingListings": 1524,
+      "missingSkuPrices": 840,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 7107,
+      "specifications": 284,
+      "verifiedProducts": 16
+    },
+    "wheyCoverage": {
+      "capturedPowderSkus": 261,
+      "strictWheySkus": 65,
+      "strictSoySkus": 1,
+      "verifiedStrictWheySkus": 11,
+      "missingFactoryMatches": 56,
+      "discoveryTasks": 6141,
+      "pendingSkuTasks": 310,
+      "excludedSkuOptions": 498,
+      "originalSourcePointers": 1935,
+      "unresolvedEvidencePointers": 0
+    },
+    "iceCoverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    },
+    "gates": {
+      "authoritativeCategoryInventory": false,
+      "visibleListsTerminal": true,
+      "allDiscoveredTargetListingsCaptured": false,
+      "allRelevantSkuPricesCaptured": false,
+      "allSkuInventoriesObserved": true,
+      "allCategoryReviewsResolved": false,
+      "allExactManufacturerSpecificationsVerified": false,
+      "iceMassVolumeAndProteinComplete": false,
+      "allCapturedTargetDeliveryQuotesExact": false,
+      "bulkDestinationQuotesCaptured": false,
+      "frozenNhaTrangDeliveryConfirmed": false,
+      "allRequirementsAccepted": false,
+      "allGithubIssuesClosed": false
+    }
+  },
+  "discoverySnapshot": {
+    "checkedAt": "2026-10-11T07:25:18.611Z",
+    "market": "vn",
+    "deliveryArea": "Nha Trang",
+    "flavourScope": "chocolate-or-unflavoured",
+    "minimumIntervalMs": 60000,
+    "visibleListsTerminal": true,
+    "scopes": [
+      {
+        "query": "whey protein",
+        "type": "keyword",
+        "terminalConfirmed": true,
+        "reportedTotal": 2413,
+        "lastPage": 61,
+        "stopReason": "terminal-page"
+      },
+      {
+        "query": "whey isolate",
+        "type": "keyword",
+        "terminalConfirmed": true,
+        "reportedTotal": 3176,
+        "lastPage": 80,
+        "stopReason": "terminal-page"
+      },
+      {
+        "query": "protein powder",
+        "type": "keyword",
+        "terminalConfirmed": true,
+        "reportedTotal": 3080,
+        "lastPage": 77,
+        "stopReason": "terminal-page"
+      },
+      {
+        "query": "category:https://www.lazada.vn/bach-hoa-online-kem-cac-loai/?sort=priceasc",
+        "type": "category",
+        "terminalConfirmed": true,
+        "reportedTotal": null,
+        "lastPage": 10,
+        "stopReason": "terminal-page"
+      },
+      {
+        "query": "category:https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc",
+        "type": "category",
+        "terminalConfirmed": true,
+        "reportedTotal": null,
+        "lastPage": 10,
+        "stopReason": "terminal-page"
+      }
+    ],
+    "authoritativeInventory": false,
+    "finding": "Terminal pagination proves the observed bounded keyword/category results only. It cannot prove the complete marketplace inventory or every relevant SKU sibling."
+  },
+  "implemented": [
+    {
+      "id": "basket-source-extraction",
+      "requirementIds": ["R001", "R010", "R011", "R012", "R023", "R024"],
+      "mechanicsStatus": "implemented-reviewed-mapping-and-prepared-basket-read-only-capture",
+      "realAcceptance": "local-fixtures-only-live-checkout-adapter-and-source-mappings-pending",
+      "sourceFiles": [
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "src/comparison-inputs.js",
+        "src/application.js",
+        "src/commands.js",
+        "src/operations.js",
+        "src/telegram.js"
+      ],
+      "details": [
+        "Exact selected offer/SKU/quantity and original HTML digest/URL/time checks.",
+        "Unique visible text fields, explicit VND amounts and exact subtotal/checkout reconciliation.",
+        "Applied merchandise and shipping discounts are independently capped and duplicate voucher IDs/DOM fields reject.",
+        "Credential-free HTTPS Vietnam cart/checkout sources; actual destination governs delivery context.",
+        "Persistent private-page capture resolves dialogs/loading, waits for stable amounts, rechecks current URL and timestamps the observed final HTML.",
+        "Global CAPTCHA/collection-stop guards; no navigation, cart mutations, voucher application or purchase.",
+        "Shared manufacturer/category reviews, specification holds, availability and source invalidations apply before basket arithmetic.",
+        "Explicit positive frozen-delivery statement required for ice cream; negative/no/without/contraction claims cannot establish cold chain.",
+        "Strict boolean allowStale override; default age bound24h.",
+        "Before/after food-gram, millilitre and protein-gram metrics with no assumed density.",
+        "Every report declares captured-exact-baskets-only and allBasketCombinationsCollected=false."
+      ]
+    },
+    {
+      "id": "food-component-accounting",
+      "requirementIds": ["R010", "R011", "R012"],
+      "issue": "https://github.com/konard/lazada-search/issues/14",
+      "mechanicsStatus": "implemented-counting-and-persistence;stored-original-binding-integration-pending",
+      "realAcceptance": "exact-real-bonus-identity-quantity-and-eligibility-pending",
+      "sourceFiles": [
+        "src/food-components.js",
+        "src/products.js",
+        "src/compare.js",
+        "src/application.js"
+      ],
+      "details": [
+        "Paid food, bonus food and non-food accessories are represented separately.",
+        "Existing paid selling-unit counts multiply normally; paid metadata does not add another multipack.",
+        "Exact bonus flavour/market/package/formula/GTIN or variant-code, nutrient basis, observed SKU/order quantity, stock and limits gate inclusion.",
+        "Metadata source digests, excerpts and reviewed values are checked; unresolved/contradictory components remain potential.",
+        "Duplicate IDs/allocations cannot count bonus food twice; invalid paid metadata quarantines denominators.",
+        "Incomplete/contradictory bonus protein cannot invent a complete combined protein denominator; mixed sugar/energy ratios remain unavailable.",
+        "Offer validation/import/quote/history/associative replay preserve typed component records."
+      ],
+      "caveat": "At this inspection, reviewedSource validates provenance metadata but does not itself resolve stored original bytes, invalidation, URL/digest/excerpt agreement or factory-domain authority. Root assigned the application-level original-binding safeguard for integration; it is not yet accepted here."
+    },
+    {
+      "id": "translation-quality-and-review",
+      "requirementIds": ["R017", "R023", "R024"],
+      "mechanicsStatus": "implemented-source-bound-quality-checks-and-human-review",
+      "realAcceptance": "configured-real-provider-and-complete-current-source-semantic-review-pending",
+      "sourceFiles": [
+        "src/translation.js",
+        "src/translation-quality.js",
+        "src/translation-catalog.js"
+      ],
+      "details": [
+        "Exact Unicode/source hashes, language pair and provider identity/version remain cache keys.",
+        "Numbers/decimal conventions/quantity units/nutrition bases/SKU-GTIN-URL codes/protected entities and supported negative conditions are checked on generation and replay.",
+        "Unsuitable old/new text remains pending with an unapproved candidate, without usable English; no source facts are replaced.",
+        "Human approval binds original/translated hashes and checker code fingerprint; failed quantity/entity checks cannot be approved.",
+        "Refresh/source/output/checker changes invalidate prior review; rejected text does not become reviewed presentation.",
+        "Resumable cache-only catalog jobs distinguish translated, pending, reviewPending, reviewedComplete and missing-source states.",
+        "Configured HTTP provider uses pacing/global stop; credentials, private addresses/phone/email and private page bodies are excluded from provider planning."
+      ]
+    },
+    {
+      "id": "cached-english-product-presentation",
+      "requirementIds": ["R017", "R023", "R024"],
+      "mechanicsStatus": "implemented-product-fields-and-bestByCategory;reviewed-chunk-and-offer-overlay-draft-assigned",
+      "realAcceptance": "complete-current-catalog-English-presentation-pending",
+      "sourceFiles": [
+        "src/translation-presentation.js",
+        "src/application.js",
+        "src/telegram.js",
+        "src/web/app.js"
+      ],
+      "details": [
+        "Reviewed cached title/description/ingredients/selected-variant text can overlay product presentation while retaining original facts and metrics.",
+        "Ranked, comparison, excluded, observed-price, unsortable and bestByCategory rows use cached-only copied presentation; null category winners remain null.",
+        "Telegram and web presentation retain the original Vietnamese text.",
+        "Unconfigured providers and oversized fields leave originals readable without new calls."
+      ],
+      "caveat": "Catalog chunk-only results are not yet reassembled into whole-field presentation at this inspection; commercial offer/shipping/voucher/seller text is not yet overlaid. Follow-up draft is assigned and pending focused validation. Sensitive destination/address/phone/email remain excluded from provider planning."
+    }
+  ],
+  "validation": {
+    "previousPublishedBaseline": {
+      "receipt": "docs/acceptance/preferred-variant/validation.json",
+      "validatedAt": "2026-10-11T07:11:00.598959+00:00",
+      "distinctUnitCasesValidated": 1006,
+      "distinctE2eCasesValidated": 37,
+      "remainingKnownTestFailures": 0,
+      "countingMethod": "Union of successful baseline suite cases and successful affected-file retries; retained intermediate failures, not one clean full invocation.",
+      "liveMarketplaceOrTelegramAcceptance": false
+    },
+    "currentFirstDraftFullUnit": {
+      "path": ".lazada-search/drafts/basket-food-translation-unit-full.tap",
+      "tests": 1052,
+      "pass": 1052,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 219939.393083,
+      "summaryComplete": true,
+      "parentReportedPass": 1052,
+      "parentReportedFail": 0,
+      "parentReportedDurationSeconds": 219.94,
+      "status": "passed-before-new-original-binding-and-reviewed-chunk-integration",
+      "evidenceSource": "Local original TAP plus parent validation report; log publication remains root-owned."
+    },
+    "currentFullE2e": {
+      "status": "running-pending-parent-final-receipt",
+      "path": ".lazada-search/drafts/basket-food-translation-e2e-full.tap",
+      "accepted": false
+    },
+    "previouslyValidatedBasketFocused": {
+      "path": ".lazada-search/drafts/basket-quotes-validation-final2.tap",
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 12336.840084,
+      "summaryComplete": true,
+      "scope": "Eight source/comparison unit cases and two local HTTP/Telegram/headless-browser E2E cases before final URL/date guard follow-up."
+    },
+    "retainedCaptureGuardIntermediate": {
+      "path": ".lazada-search/drafts/basket-quotes-source-stability.tap",
+      "tests": 10,
+      "pass": 9,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 12669.819541,
+      "summaryComplete": true,
+      "finding": "Preserved intermediate fixture navigation-counter assertion failed after simulated user URL changes; root corrected the test counter. Corrected guard/full-E2E acceptance remains pending here."
+    },
+    "translationBestByCategoryFocused": {
+      "command": "node --test --test-timeout=300000 tests/translation-quality.test.js",
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 1147.73125,
+      "evidenceSource": "scope_e2e executed focused check and reported result; no standalone TAP receipt published yet.",
+      "eslintWarnings": 0,
+      "prettierPassed": true
+    },
+    "newlyAssignedFollowups": {
+      "storedBonusOriginalBinding": "draft/integration/focused-tests-pending",
+      "reviewedChunkAndOfferPresentation": "draft/focused-tests-pending"
+    }
+  },
+  "githubInventory": {
+    "source": "docs/acceptance/requirements-audit/github-issues.json",
+    "networkChecks": 0,
+    "snapshotFileModifiedAt": "2026-10-11T07:45:51.237Z",
+    "issues": [
+      {
+        "number": 17,
+        "state": "CLOSED",
+        "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
+        "url": "https://github.com/konard/lazada-search/issues/17"
+      },
+      {
+        "number": 16,
+        "state": "CLOSED",
+        "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
+        "url": "https://github.com/konard/lazada-search/issues/16"
+      },
+      {
+        "number": 15,
+        "state": "CLOSED",
+        "title": "Explicit container metric package mass loses to rounded pound headline",
+        "url": "https://github.com/konard/lazada-search/issues/15"
+      },
+      {
+        "number": 14,
+        "state": "OPEN",
+        "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+        "url": "https://github.com/konard/lazada-search/issues/14"
+      },
+      {
+        "number": 13,
+        "state": "CLOSED",
+        "title": "Selected SKU manufacturer conflicts are hidden by the parent listing brand",
+        "url": "https://github.com/konard/lazada-search/issues/13"
+      },
+      {
+        "number": 12,
+        "state": "CLOSED",
+        "title": "Redact embedded manufacturer access tokens before committing original evidence",
+        "url": "https://github.com/konard/lazada-search/issues/12"
+      },
+      {
+        "number": 11,
+        "state": "CLOSED",
+        "title": "Nutrition label OCR drops decimal points despite high confidence",
+        "url": "https://github.com/konard/lazada-search/issues/11"
+      },
+      {
+        "number": 10,
+        "state": "CLOSED",
+        "title": "Older cached observations overwrite newer SKU prices and package facts",
+        "url": "https://github.com/konard/lazada-search/issues/10"
+      },
+      {
+        "number": 9,
+        "state": "CLOSED",
+        "title": "Ice rankings reuse withheld package weights and create unsupported gram prices",
+        "url": "https://github.com/konard/lazada-search/issues/9"
+      },
+      {
+        "number": 8,
+        "state": "CLOSED",
+        "title": "Human food filtering admits animal feed and non-frozen protein bars; cache exclusions",
+        "url": "https://github.com/konard/lazada-search/issues/8"
+      },
+      {
+        "number": 7,
+        "state": "CLOSED",
+        "title": "Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout",
+        "url": "https://github.com/konard/lazada-search/issues/7"
+      },
+      {
+        "number": 6,
+        "state": "CLOSED",
+        "title": "Recognize ice-cream carton category and exact selling-unit package count",
+        "url": "https://github.com/konard/lazada-search/issues/6"
+      },
+      {
+        "number": 5,
+        "state": "CLOSED",
+        "title": "Distinguish capture provenance metadata from stored blob references during archive export",
+        "url": "https://github.com/konard/lazada-search/issues/5"
+      },
+      {
+        "number": 4,
+        "state": "CLOSED",
+        "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
+        "url": "https://github.com/konard/lazada-search/issues/4"
+      },
+      {
+        "number": 3,
+        "state": "OPEN",
+        "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+        "url": "https://github.com/konard/lazada-search/issues/3"
+      },
+      {
+        "number": 2,
+        "state": "CLOSED",
+        "title": "Failed persistent browser reconnect deletes another live worker descriptor",
+        "url": "https://github.com/konard/lazada-search/issues/2"
+      },
+      {
+        "number": 1,
+        "state": "CLOSED",
+        "title": "Account workflow retains stale archive shards after re-export",
+        "url": "https://github.com/konard/lazada-search/issues/1"
+      }
+    ],
+    "openIssueNumbers": [14, 3],
+    "currentAuditIssueStates": [
+      {
+        "number": 17,
+        "state": "CLOSED"
+      },
+      {
+        "number": 16,
+        "state": "CLOSED"
+      },
+      {
+        "number": 15,
+        "state": "CLOSED"
+      },
+      {
+        "number": 14,
+        "state": "OPEN"
+      },
+      {
+        "number": 13,
+        "state": "CLOSED"
+      },
+      {
+        "number": 12,
+        "state": "CLOSED"
+      },
+      {
+        "number": 11,
+        "state": "CLOSED"
+      },
+      {
+        "number": 10,
+        "state": "CLOSED"
+      },
+      {
+        "number": 9,
+        "state": "CLOSED"
+      },
+      {
+        "number": 8,
+        "state": "CLOSED"
+      },
+      {
+        "number": 7,
+        "state": "CLOSED"
+      },
+      {
+        "number": 6,
+        "state": "CLOSED"
+      },
+      {
+        "number": 5,
+        "state": "CLOSED"
+      },
+      {
+        "number": 4,
+        "state": "CLOSED"
+      },
+      {
+        "number": 3,
+        "state": "OPEN"
+      },
+      {
+        "number": 2,
+        "state": "CLOSED"
+      },
+      {
+        "number": 1,
+        "state": "CLOSED"
+      }
+    ],
+    "note": "Cached inventory only; no online state verification and no issue closure from this audit. Historical implementation gaps and remaining real-source acceptance are distinct from GitHub issue state."
+  },
+  "remaining": [
+    {
+      "id": "authoritative-inventory",
+      "priority": "P0",
+      "kind": "mechanics-and-live-evidence",
+      "sourceFiles": [
+        "src/coverage.js",
+        "src/crawl.js",
+        "docs/acceptance/collection-progress.json"
+      ],
+      "acceptance": "Establish an authoritative product/category inventory or explicitly documented attainable bounded inventory, including fallback/redirect limitations, duplicate discovery observations, all relevant selected-flavour siblings and manual completeness verification. Terminal observed pages alone are insufficient."
+    },
+    {
+      "id": "all-target-listings-and-skus",
+      "priority": "P0",
+      "kind": "collection-evidence",
+      "acceptance": "Collect the1373 active missing target listings and305 relevant selected SKU prices in the dated audit, preserving unknown candidates and all sibling inventories; refresh affected older captures after initial uncollected work. Recompute counts rather than treating this snapshot as a future tally."
+    },
+    {
+      "id": "production-checkout-adapter",
+      "priority": "P0",
+      "kind": "mechanics-and-live-evidence",
+      "sourceFiles": ["src/basket-quote.js", "docs/basket-quotes.md"],
+      "acceptance": "Build and validate the live Lazada cart/checkout layout adapter and exact visible source mappings. Current capture reads an already prepared private basket and does not create carts or select quantities/destinations/vouchers."
+    },
+    {
+      "id": "basket-quantity-voucher-sweep",
+      "priority": "P0",
+      "kind": "mechanics-and-live-evidence",
+      "sourceFiles": ["src/basket-comparison.js", "src/promotions.js"],
+      "acceptance": "Enumerate relevant buyable SKU/quantity/package combinations and eligible voucher/payment/time/stacking conditions, obtain fresh quotes per exact basket, and compare all relevant choices. Captured-subset sorting is not a complete optimizer or market-cheapest guarantee."
+    },
+    {
+      "id": "bulk-frozen-nha-trang",
+      "priority": "P0",
+      "kind": "live-evidence",
+      "acceptance": "Source-confirm actual Nha Trang destination, quantity-specific bulk freight, stock and frozen delivery for every purchase candidate. No currently accepted live cold-chain quote closes this gate; HCM or ambient estimates cannot substitute."
+    },
+    {
+      "id": "exact-factory-specifications",
+      "priority": "P0",
+      "kind": "research-evidence",
+      "acceptance": "Resolve56 exact manufacturer gaps among65 strict whey SKUs and remaining ice identity/dual-unit/protein/nutrient/ingredient gaps in this snapshot. Exact flavour/package/GTIN/formula/market identity, current labels and source-attributed corrections are required; manufacturer family pages, repacks, crop OCR and density guesses do not establish exact identity."
+    },
+    {
+      "id": "bonus-original-binding",
+      "priority": "P0",
+      "kind": "mechanics-followup-assigned",
+      "sourceFiles": ["src/food-components.js", "src/comparison-inputs.js"],
+      "acceptance": "Application comparisons must resolve each reviewed bonus fact/identity/eligibility original, check accessible non-invalidated bytes/URL/digest/excerpt and exact factory authority before counting it. Missing or altered proof must preserve potential status without denominator inflation. Pure trusted-input arithmetic alone does not prove stored-source validity."
+    },
+    {
+      "id": "real-food-gift-identity",
+      "priority": "P0",
+      "kind": "research-and-live-evidence",
+      "issue": 14,
+      "sku": "3255422832_VNAMZ-117013951240",
+      "acceptance": "Verify the advertised third chocolate bag has the exact declared mass, manufacturer/formula/package identity, stock and unconditional exact-order eligibility. Generic source-aware component mechanics do not approve this real gift."
+    },
+    {
+      "id": "complete-english",
+      "priority": "P1",
+      "kind": "mechanics-and-provider-evidence",
+      "sourceFiles": [
+        "src/translation-catalog.js",
+        "src/translation-presentation.js",
+        "docs/translation.md"
+      ],
+      "acceptance": "Configure an actual provider/version without persisting credentials, translate all current source text, review exact results, reassemble complete source-bound chunk fields and consume reviewed commercial offer/condition/shipping/seller presentation. Human semantic/ingredient terminology review remains necessary. Keep sensitive private destinations/addresses/phone/email blocked."
+    },
+    {
+      "id": "live-telegram-operations",
+      "priority": "P1",
+      "kind": "deployment-and-live-evidence",
+      "sourceFiles": [
+        "src/telegram.js",
+        "tests/e2e/telegram.test.js",
+        "tests/e2e/basket-quotes.test.js"
+      ],
+      "acceptance": "Deploy an explicitly configured bot and establish authorized private-chat end-to-end acceptance against actual cached/current case data and guarded account quoting. Local mock Telegram HTTP fixtures are validated but do not establish live deployment."
+    },
+    {
+      "id": "final-validation-and-publication",
+      "priority": "P1",
+      "kind": "validation-and-release",
+      "acceptance": "Finish full E2E and new safeguard/reassembly targeted tests, preserve failures and successful retries, publish dated source/hash/test receipts, rebuild current reports and verify archival replay; root records commit/push outcome. This audit performs no Git verification."
+    },
+    {
+      "id": "manual-and-production-acceptance",
+      "priority": "P1",
+      "kind": "live-and-manual-evidence",
+      "acceptance": "Manually verify extraction and list completeness, refresh prices/stock/promotion expiry before ordering, prove current account/challenge recovery when required, and accept all source/delivery/manufacturer/translation requirements before claiming production-ready or exhaustive best buy. Login still depends on external OTP/challenge inputs."
+    }
+  ],
+  "downloads": 0,
+  "browserActions": 0,
+  "storeWrites": 0,
+  "gitActions": 0,
+  "issueMutations": 0,
+  "snapshots": [
+    {
+      "path": "docs/REQUIREMENTS.md",
+      "sha256": "016d86cb8f1ca51b3717bce81ca1eb5f691eae804b7e5f43273d9d327593a953",
+      "bytes": 28179,
+      "fileModifiedAt": "2026-10-11T07:42:48.059Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "d24b7b6483fdf04f567d020c75d7449ff609a968c79fff85048cef7a3fe23155",
+      "bytes": 14890,
+      "fileModifiedAt": "2026-10-11T07:42:48.079Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/current.json",
+      "sha256": "07e956e94bf48763d194db6713b7d8f673cf33eb1c92891048795873d1d5edb9",
+      "bytes": 28886,
+      "fileModifiedAt": "2026-10-11T07:47:37.720Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/implementation-updates.json",
+      "sha256": "09f39b4507411276cfcb42c35a4b93e1e629554fb48c03d3453d9679bae24649",
+      "bytes": 24986,
+      "fileModifiedAt": "2026-10-11T07:47:32.780Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/github-issues.json",
+      "sha256": "e84b15b4f212979e2fc3acdded852a19620ee5f6265c0ea5cee8019abc174055",
+      "bytes": 24451,
+      "fileModifiedAt": "2026-10-11T07:45:51.237Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/preferred-variant/validation.json",
+      "sha256": "9ca02ff8cc1982ca00bcedf0e4645e34e1cd2a45793e39d9d9493bc2d6f3563a",
+      "bytes": 7498,
+      "fileModifiedAt": "2026-10-11T07:11:00.599Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/collection-progress.json",
+      "sha256": "8348c7cdc94a20493bbb56331fb371f6623ea94409f028a75acd7b377b14010a",
+      "bytes": 5644107,
+      "fileModifiedAt": "2026-10-11T07:25:18.650Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/acceptance/whey-current-identity/review.json",
+      "sha256": "b1106288659aedee944d3b7e6a8fb8186b712325cd9d5fb4099cb90603b7d5d2",
+      "bytes": 152947,
+      "fileModifiedAt": "2026-10-11T05:37:27.871Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/basket-quote.js",
+      "sha256": "ddf6f01d4efabb9f6199aab787431bd92f22e07325538f42f54e1fff14a8e77e",
+      "bytes": 13654,
+      "fileModifiedAt": "2026-10-11T07:44:31.824Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/basket-comparison.js",
+      "sha256": "4da9029a4ef5794f050f42c2d6282e81e1b3cd903f9e857df13dd923b76e203d",
+      "bytes": 9304,
+      "fileModifiedAt": "2026-10-11T07:41:07.451Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/comparison-inputs.js",
+      "sha256": "9b69bdce68a017386a803f673075f55d922890c726738392daae7dece1f9646e",
+      "bytes": 1854,
+      "fileModifiedAt": "2026-10-11T07:36:44.192Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/food-components.js",
+      "sha256": "4af579d4f3937894856315fb1878815887f300da35973d5dea9b4e18d0ef3261",
+      "bytes": 14957,
+      "fileModifiedAt": "2026-10-11T07:40:18.164Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/products.js",
+      "sha256": "62543c9e38752669099b23727e63f8d45f7aa56819339603a2175220a3bec407",
+      "bytes": 29228,
+      "fileModifiedAt": "2026-10-11T07:43:34.249Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/compare.js",
+      "sha256": "842d4bc12eb404ce87ac61255bf6837da3712d2874e2011f8dbf85d67c33f5c1",
+      "bytes": 15774,
+      "fileModifiedAt": "2026-10-11T07:26:32.090Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/translation.js",
+      "sha256": "ae71bcb193f8f0f095c5fef69d2860b06d2b1c53ccf288637cb51f54ce3cc810",
+      "bytes": 16647,
+      "fileModifiedAt": "2026-10-11T07:29:13.992Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "sha256": "d15d8c2c249a61054da82adf13acd8b24d85a0237550e050bbfdf5fbc8682dad",
+      "bytes": 18626,
+      "fileModifiedAt": "2026-10-11T07:28:00.555Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/translation-quality.js",
+      "sha256": "21b7f5fe1cd33c39806e217d4103ff4ed50c4f9dd04aae7e332a2222c3eea7fd",
+      "bytes": 7998,
+      "fileModifiedAt": "2026-10-11T07:28:00.641Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/translation-presentation.js",
+      "sha256": "9bb3d4eadab648e7825461f0c1b681d92535e14c482d5fe0a3131d32dedb5fa3",
+      "bytes": 3777,
+      "fileModifiedAt": "2026-10-11T07:40:52.038Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/operations.js",
+      "sha256": "445e66aac582e577c806191c98f03b01efaf7df7162e85c5b9c6d9b9a38119f9",
+      "bytes": 5046,
+      "fileModifiedAt": "2026-10-11T07:26:23.181Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/commands.js",
+      "sha256": "2ced66a366d48fa5c60d4382b006b7782d4640093c80949fef61cc7100d3ff56",
+      "bytes": 15681,
+      "fileModifiedAt": "2026-10-11T07:41:07.484Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/telegram.js",
+      "sha256": "510444b975c8f8de3e02b05d9376862ce2d243dd78fb70cd041a60ab45dce7f3",
+      "bytes": 7696,
+      "fileModifiedAt": "2026-10-11T07:28:00.691Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/web/app.js",
+      "sha256": "877a024e77f52b349b5d7ff3b01df9cd0a0040b527b8fcc9da847c7a568b4eb7",
+      "bytes": 6878,
+      "fileModifiedAt": "2026-10-11T07:28:00.747Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/index.js",
+      "sha256": "6e09d306c30971026b8ee09cd8ad8f7d74671779e7e8330f6566aabab4233e3b",
+      "bytes": 3313,
+      "fileModifiedAt": "2026-10-11T07:36:00.753Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "src/index.d.ts",
+      "sha256": "56445c53d95add1e2e91f586e79a3448e2dfd088f7fa3d0dd7be9957b77ed7b9",
+      "bytes": 44437,
+      "fileModifiedAt": "2026-10-11T07:45:43.094Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/basket-quotes.test.js",
+      "sha256": "6c7bbd5e5be8111a1ffdfdfae4da2843332c9953b06ce99704fa0a31798e2f05",
+      "bytes": 10177,
+      "fileModifiedAt": "2026-10-11T07:41:08.215Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/e2e/basket-quotes.test.js",
+      "sha256": "bc0e64d9ebce638b70017607a0788c150013be2e0bb2ab046b8e9315d295b285",
+      "bytes": 8567,
+      "fileModifiedAt": "2026-10-11T07:45:43.051Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/food-components.test.js",
+      "sha256": "c4683458576a8bbebf506a17e017d4961c4fbd2c95a33b3563e1daec22f924df",
+      "bytes": 15201,
+      "fileModifiedAt": "2026-10-11T07:40:18.252Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/food-component-persistence.test.js",
+      "sha256": "11643ebb131152a575c50bd6748419925d3df13a02ef419059d02d76dc7bb1e1",
+      "bytes": 11256,
+      "fileModifiedAt": "2026-10-11T07:43:34.268Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/translation-quality.test.js",
+      "sha256": "9dcb47ef8c9af085cdb867b0f27797b00d546d9c9a252b96fa01906df4e468e0",
+      "bytes": 12466,
+      "fileModifiedAt": "2026-10-11T07:41:25.218Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "tests/e2e/translation.test.js",
+      "sha256": "c7b862c872b92d6152fb36941c9d14a52c6b35bb5f7e47e58320d4a631a19c79",
+      "bytes": 16725,
+      "fileModifiedAt": "2026-10-11T07:31:47.049Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/basket-quotes.md",
+      "sha256": "2d32a4c9658b05da41833a482e201ab65ec4ee63cecce326936994bb72f95211",
+      "bytes": 8961,
+      "fileModifiedAt": "2026-10-11T07:42:48.038Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": "docs/translation.md",
+      "sha256": "6b8dfdccacc6f3dfd0ca86c65b5e891a0ee47bdfbf61cd495874ba8213e3eb88",
+      "bytes": 10541,
+      "fileModifiedAt": "2026-10-11T07:27:51.627Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "repository-file"
+    },
+    {
+      "path": ".lazada-search/drafts/basket-quotes-validation-final2.tap",
+      "sha256": "bc98267efebe41f0560b10177df68f1881d86afa5bf952c8d4f6410ce7e530eb",
+      "bytes": 2779,
+      "fileModifiedAt": "2026-10-11T07:40:01.469Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "local-test-log-not-yet-published"
+    },
+    {
+      "path": ".lazada-search/drafts/basket-quotes-source-stability.tap",
+      "sha256": "3bf6605be4db40d4e023c1acfc3226395ba1786389137a854c03e64f39d7df28",
+      "bytes": 3362,
+      "fileModifiedAt": "2026-10-11T07:44:50.095Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "local-test-log-not-yet-published"
+    },
+    {
+      "path": ".lazada-search/drafts/basket-food-translation-unit-full.tap",
+      "sha256": "e06647b0d070d4aae89e970fba3ea8161521a48e8323f965a5299c86f2a54a02",
+      "bytes": 254416,
+      "fileModifiedAt": "2026-10-11T07:48:48.257Z",
+      "inspectedAt": "2026-10-11T07:50:58.496Z",
+      "publication": "local-test-log-not-yet-published"
+    }
+  ],
+  "caveats": [
+    "This is a dated audit of inspected files; later root integrations and refreshed counts require a separate receipt.",
+    "No all-market winner or all-requirements-delivered claim is made.",
+    "All private checkout originals and credentials remain outside public repository evidence.",
+    "No source fact, price, density, translation or freight was invented to close a gap."
+  ]
+}

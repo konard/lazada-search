@@ -1,6 +1,6 @@
 # Chocolate ice cream: separate gram, millilitre and protein rankings
 
-Updated 2026-10-11T07:23:43.196Z. **Vietnam / Nha Trang, VND, quantity one selling unit.** Prices retain their original observation dates. Each table is independently sorted by its named denominator. No gram-to-millilitre conversion, assumed density, carton-count multiplier or price cap is used. Exact manufacturer facts take priority over original package labels and seller panels, with original claims and source authority retained in the evidence. Seller-panel nutrition can produce a labelled reference price; it does not establish manufacturer verification.
+Updated 2026-10-11T08:07:17.849Z. **Vietnam / Nha Trang, VND, quantity one selling unit.** Prices retain their original observation dates. Each table is independently sorted by its named denominator. No gram-to-millilitre conversion, assumed density, carton-count multiplier or price cap is used. Exact manufacturer facts take priority over original package labels and seller panels, with original claims and source authority retained in the evidence. Seller-panel nutrition can produce a labelled reference price; it does not establish manufacturer verification.
 
 **Coverage:** 14 exact selected-SKU prices; 2 with both grams and millilitres; 3 with a current exact-product protein denominator. These are captured candidates, and manufacturer chocolate-core identity is reported separately. Missing facts stay in the evidence worklist, outside the ranking that requires them. Sold-out and confirmed rejected flavours cannot win.
 
