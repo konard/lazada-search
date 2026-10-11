@@ -15,7 +15,7 @@ import {
   CollectionStoppedError,
 } from './page-challenge.js';
 
-export const EXTRACTOR_VERSION = 15;
+export const EXTRACTOR_VERSION = 16;
 
 async function boundedImageBody(response, timeoutMs = 30000) {
   let timer;
@@ -448,10 +448,11 @@ export function classifyPage(page) {
   ) {
     return 'app-only';
   }
+  const unavailable =
+    /page not found|we can['’]t find that page|product (?:no longer (?:available|exists)|does not exist)|sản phẩm(?: này)? không(?: còn)? tồn tại/iu;
   if (
-    /page not found|we can['’]t find that page|product no longer available|sản phẩm không tồn tại/iu.test(
-      page.rawText
-    )
+    unavailable.test(title) ||
+    (!page.priceText && unavailable.test(page.rawText || ''))
   ) {
     return 'unavailable';
   }
