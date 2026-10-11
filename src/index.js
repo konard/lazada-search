@@ -32,6 +32,24 @@ export {
   volumeMillilitres,
 } from './nutrition.js';
 export { calculateOffer, compareOffers } from './compare.js';
+export {
+  basketIdentity,
+  extractBasketQuote,
+  saveBasketQuote,
+  captureBasketQuote,
+} from './basket-quote.js';
+export { compareBaskets } from './basket-comparison.js';
+export {
+  applyComparisonTranslations,
+  applyBasketComparisonTranslations,
+} from './translation-presentation.js';
+export { accountFoodComponents } from './food-components.js';
+export { validateFoodComponentEvidence } from './food-component-evidence.js';
+export {
+  checkTranslationQuality,
+  translationReviewAccepted,
+  TRANSLATION_QUALITY_FINGERPRINT,
+} from './translation-quality.js';
 export { productFlavour, matchesFlavourScope } from './flavour-scope.js';
 export { createTelegramBot } from './telegram.js';
 export { startServer } from './server.js';

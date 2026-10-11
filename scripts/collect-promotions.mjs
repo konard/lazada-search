@@ -205,6 +205,7 @@ async function promotionPage(collector) {
     runtime.page.on('response', collector.imageResponse);
     collector.commander = makeBrowserCommander({
       page: runtime.page,
+      debug: collector.browserOptions.debug ?? false,
       enableNetworkTracking: false,
     });
   }

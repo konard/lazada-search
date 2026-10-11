@@ -1,3 +1,4 @@
+import { isDeepStrictEqual } from 'node:util';
 import {
   categoryOf,
   extractNutrition,
@@ -622,8 +623,315 @@ export function validateProduct(input) {
   return product;
 }
 
+function componentObject(value, label) {
+  if (
+    !value ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    ![Object.prototype, null].includes(Object.getPrototypeOf(value))
+  ) {
+    throw new TypeError(`${label} must be a plain object`);
+  }
+}
+
+function componentJson(value, label, seen = new Set(), depth = 0) {
+  if (depth > 32 || (typeof value === 'number' && !Number.isFinite(value))) {
+    throw new TypeError(`${label} must contain finite JSON values`);
+  }
+  if (value === null || value === undefined) {
+    return;
+  }
+  if (typeof value !== 'object') {
+    if (!['string', 'number', 'boolean'].includes(typeof value)) {
+      throw new TypeError(`${label} must contain JSON values`);
+    }
+    return;
+  }
+  if (seen.has(value)) {
+    throw new TypeError(`${label} must not contain circular references`);
+  }
+  if (!Array.isArray(value)) {
+    componentObject(value, label);
+  }
+  seen.add(value);
+  for (const [field, child] of Object.entries(value)) {
+    componentJson(child, `${label}.${field}`, seen, depth + 1);
+  }
+  seen.delete(value);
+}
+
+function componentIdentifier(value, label) {
+  if (
+    typeof value !== 'string' ||
+    !value.trim() ||
+    value !== value.trim() ||
+    [...value].some(
+      (character) =>
+        character.charCodeAt(0) < 32 || character.charCodeAt(0) === 127
+    )
+  ) {
+    throw new TypeError(`${label} must be a nonempty stable string identifier`);
+  }
+}
+
+function componentTypedFields(record, fields, type, label) {
+  for (const field of fields) {
+    if (record[field] !== undefined && typeof record[field] !== type) {
+      throw new TypeError(`${label}.${field} must be a ${type}`);
+    }
+  }
+}
+
+function componentEvidence(record, label) {
+  componentTypedFields(
+    record,
+    [
+      'sourceUrl',
+      'sourceSha256',
+      'evidenceId',
+      'excerpt',
+      'reviewedBy',
+      'reviewedAt',
+    ],
+    'string',
+    label
+  );
+  componentTypedFields(
+    record,
+    ['identityMatched', 'invalidated'],
+    'boolean',
+    label
+  );
+}
+
+function componentFacts(facts, label, eligibility = false) {
+  componentObject(facts, label);
+  const units = {
+    netMassG: 'g',
+    netVolumeMl: 'ml',
+    proteinPer100g: 'g/100g',
+    proteinPer100ml: 'g/100ml',
+    proteinPerPackageG: 'g/package',
+  };
+  for (const [field, fact] of Object.entries(facts)) {
+    const path = `${label}.${field}`;
+    componentObject(fact, path);
+    componentEvidence(fact, path);
+    componentTypedFields(
+      fact,
+      ['unit', 'basis', 'valueExcerpt', 'basisExcerpt', 'sourceUnit'],
+      'string',
+      path
+    );
+    for (const valueField of ['value', 'sourceValue']) {
+      if (fact[valueField] !== undefined) {
+        positive(fact[valueField], `${path}.${valueField}`, { zero: true });
+      }
+    }
+    const unit = eligibility ? 'count' : units[field];
+    if (unit && fact.unit !== undefined && fact.unit !== unit) {
+      throw new TypeError(`${path}.unit must be ${unit}`);
+    }
+    if (
+      eligibility &&
+      fact.value !== undefined &&
+      !Number.isSafeInteger(fact.value)
+    ) {
+      throw new TypeError(`${path}.value must be a safe integer count`);
+    }
+  }
+}
+
+function componentProduct(product, label) {
+  componentObject(product, label);
+  componentTypedFields(
+    product,
+    ['id', 'title', 'url', 'brand', 'category', 'market'],
+    'string',
+    label
+  );
+  for (const field of ['ingredients', 'evidenceIds']) {
+    if (
+      product[field] !== undefined &&
+      (!Array.isArray(product[field]) ||
+        [...product[field]].some((value) => typeof value !== 'string'))
+    ) {
+      throw new TypeError(`${label}.${field} must be a string array`);
+    }
+  }
+  if (
+    product.claims !== undefined &&
+    (!Array.isArray(product.claims) ||
+      [...product.claims].some(
+        (claim) => !claim || typeof claim !== 'object' || Array.isArray(claim)
+      ))
+  ) {
+    throw new TypeError(`${label}.claims must be an object array`);
+  }
+  if (product.manufacturerVerification !== undefined) {
+    componentObject(
+      product.manufacturerVerification,
+      `${label}.manufacturerVerification`
+    );
+    componentEvidence(
+      product.manufacturerVerification,
+      `${label}.manufacturerVerification`
+    );
+  }
+  for (const field of NUMERIC_PRODUCT_FIELDS) {
+    if (product[field] !== undefined) {
+      positive(product[field], `${label}.${field}`, {
+        zero: ![
+          'netMassG',
+          'netVolumeMl',
+          'packCount',
+          'servingMassG',
+        ].includes(field),
+        integer: field === 'packCount',
+      });
+    }
+  }
+}
+
+function componentIdentity(identity, label) {
+  componentObject(identity, label);
+  componentTypedFields(
+    identity,
+    [
+      'brand',
+      'name',
+      'flavour',
+      'market',
+      'packageType',
+      'formulaRevision',
+      'gtin',
+      'variantCode',
+    ],
+    'string',
+    label
+  );
+  componentTypedFields(identity, ['currentFormula'], 'boolean', label);
+  for (const field of ['netMassG', 'netVolumeMl', 'innerPackCount']) {
+    if (identity[field] !== undefined) {
+      positive(identity[field], `${label}.${field}`, {
+        integer: field === 'innerPackCount',
+      });
+    }
+  }
+}
+
+function componentEligibility(eligibility, label) {
+  componentObject(eligibility, label);
+  for (const field of ['allocationId', 'offerId']) {
+    if (eligibility[field] !== undefined) {
+      componentIdentifier(eligibility[field], `${label}.${field}`);
+    }
+  }
+  if (eligibility.sku !== undefined) {
+    if (typeof eligibility.sku === 'number') {
+      positive(eligibility.sku, `${label}.sku`, { integer: true });
+    } else {
+      componentIdentifier(eligibility.sku, `${label}.sku`);
+    }
+  }
+  componentTypedFields(
+    eligibility,
+    ['confirmed', 'available', 'conditionsComplete', 'conditionsSatisfied'],
+    'boolean',
+    label
+  );
+  componentTypedFields(eligibility, ['observedAt'], 'string', label);
+  for (const field of [
+    'orderQuantity',
+    'units',
+    'minOrderQuantity',
+    'maxOrderQuantity',
+    'stockUnits',
+    'maxUnitsPerOrder',
+  ]) {
+    if (eligibility[field] !== undefined) {
+      positive(eligibility[field], `${label}.${field}`, {
+        integer: true,
+        zero: field === 'stockUnits',
+      });
+    }
+  }
+  if (eligibility.claims !== undefined) {
+    componentFacts(eligibility.claims, `${label}.claims`, true);
+  }
+}
+
+function componentRecord(component, label) {
+  componentObject(component, label);
+  componentJson(component, label);
+  componentIdentifier(component.id, `${label}.id`);
+  if (!['paid-food', 'bonus-food', 'non-food'].includes(component.kind)) {
+    throw new TypeError(
+      `${label}.kind must be paid-food, bonus-food or non-food`
+    );
+  }
+  if (component.kind === 'paid-food') {
+    componentIdentifier(component.productId, `${label}.productId`);
+    positive(component.unitsPerSellingUnit, `${label}.unitsPerSellingUnit`, {
+      integer: true,
+    });
+  }
+  const nested = {
+    product: componentProduct,
+    identity: componentIdentity,
+    sourceIdentity: componentIdentity,
+    eligibility: componentEligibility,
+    facts: componentFacts,
+  };
+  for (const [field, validate] of Object.entries(nested)) {
+    if (component[field] !== undefined) {
+      validate(component[field], `${label}.${field}`);
+    }
+  }
+  if (component.review !== undefined) {
+    componentObject(component.review, `${label}.review`);
+    componentEvidence(component.review, `${label}.review`);
+  }
+  if (component.evidenceIds !== undefined) {
+    if (!Array.isArray(component.evidenceIds)) {
+      throw new TypeError(`${label}.evidenceIds must be an array`);
+    }
+    for (const id of component.evidenceIds) {
+      componentIdentifier(id, `${label}.evidenceIds`);
+    }
+  }
+}
+
+function validatedFoodComponents(components) {
+  if (!Array.isArray(components) || components.length > 100) {
+    throw new TypeError(
+      'foodComponents must contain at most100 component records'
+    );
+  }
+  const records = new Map();
+  for (const [index, component] of components.entries()) {
+    componentRecord(component, `foodComponents[${index}]`);
+    const record = clone(component);
+    if (
+      records.has(record.id) &&
+      !isDeepStrictEqual(records.get(record.id), record)
+    ) {
+      throw new TypeError(`Conflicting food component ID: ${record.id}`);
+    }
+    records.set(record.id, record);
+  }
+  return [...records.values()];
+}
+
 export function validateOffer(input) {
+  const foodComponents =
+    input.foodComponents === undefined
+      ? undefined
+      : validatedFoodComponents(input.foodComponents);
   const offer = clone(input);
+  if (foodComponents !== undefined) {
+    offer.foodComponents = foodComponents;
+  }
   if (
     !offer.id ||
     !offer.productId ||

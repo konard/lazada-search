@@ -9,8 +9,9 @@ export async function connectPersistentBrowser(
     loadChromium = async () => (await import('playwright')).chromium,
   } = {}
 ) {
+  const connectionOptions = { debug: false, ...options };
   try {
-    return await connect(options);
+    return await connect(connectionOptions);
   } catch (error) {
     if (
       !/Browser\.setDownloadBehavior/u.test(error.message) ||
@@ -35,6 +36,6 @@ export async function connectPersistentBrowser(
       // Attached Playwright close disconnects; the owned Chrome stays alive.
       await browser.close();
     }
-    return await connect(options);
+    return await connect(connectionOptions);
   }
 }

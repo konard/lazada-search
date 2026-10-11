@@ -14,7 +14,7 @@ test('empty headed Chrome context is warmed without defaults, then reused by Bro
   };
   const result = await connectPersistentBrowser(options, {
     connect: async (actual) => {
-      assert.deepEqual(actual, options);
+      assert.deepEqual(actual, { debug: false, ...options });
       if (++connections === 1) {
         throw new Error(
           'Protocol error (Browser.setDownloadBehavior): Browser context management is not supported.'
@@ -46,6 +46,20 @@ test('empty headed Chrome context is warmed without defaults, then reused by Bro
   assert.equal(connections, 2);
   assert.equal(newPages, 1);
   assert.equal(disconnects, 1);
+});
+
+test('private case connections disable automatic session recordings unless explicitly requested', async () => {
+  for (const [options, debug] of [
+    [{}, false],
+    [{ debug: true }, true],
+  ]) {
+    await connectPersistentBrowser(options, {
+      connect: async (actual) => {
+        assert.equal(actual.debug, debug);
+        return { page: 'persistent-private-case' };
+      },
+    });
+  }
 });
 
 test('normal existing windows are reused without an extra connection or page', async () => {

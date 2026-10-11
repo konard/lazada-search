@@ -13,6 +13,16 @@ const element = (tag, text) => {
   return node;
 };
 
+const displayedText = (original, presentation) =>
+  presentation?.status === 'reviewed' && presentation.originalText === original
+    ? presentation.text
+    : original;
+
+function sourceText(original, presentation) {
+  const english = displayedText(original, presentation);
+  return english === original ? original : `${english} (Original: ${original})`;
+}
+
 function productDetails(product) {
   const details = document.createElement('details');
   details.append(element('summary', 'View label & sources'));
@@ -23,8 +33,23 @@ function productDetails(product) {
     )
   );
   details.append(
-    element('p', product.ingredients?.join(', ') || 'Ingredients unknown')
+    element(
+      'p',
+      product.ingredients
+        ?.map((text, index) =>
+          sourceText(text, product.presentation?.ingredients?.[index])
+        )
+        .join(', ') || 'Ingredients unknown'
+    )
   );
+  if (product.description) {
+    details.append(
+      element(
+        'p',
+        sourceText(product.description, product.presentation?.description)
+      )
+    );
+  }
   for (const warning of product.warnings || []) {
     details.append(element('p', warning));
   }
@@ -37,7 +62,10 @@ function productDetails(product) {
 }
 
 function listingLink(product, offer) {
-  const anchor = element('a', product.title);
+  const anchor = element(
+    'a',
+    displayedText(product.title, product.presentation?.title)
+  );
   anchor.href = offer.url;
   anchor.target = '_blank';
   anchor.rel = 'noopener noreferrer';
@@ -67,14 +95,21 @@ async function calculate(event) {
         const cell = document.createElement('td');
         cell.append(
           listingLink(product, offer),
+          ...(displayedText(product.title, product.presentation?.title) ===
+          product.title
+            ? []
+            : [element('small', `Original: ${product.title}`)]),
           element(
             'small',
             `Price captured: ${new Date(offer.observedAt).toLocaleString()}`
           ),
-          element('small', `${offer.seller} · ${product.proteinType}`),
           element(
             'small',
-            `${number(product.netMassG)} g · ${number(product.netVolumeMl)} ml · ${[...new Set((product.selectedVariant || []).map((variant) => variant.text))].join(' / ')}`
+            `${sourceText(offer.seller, offer.presentation?.seller)} · ${product.proteinType}`
+          ),
+          element(
+            'small',
+            `${number(product.netMassG)} g · ${number(product.netVolumeMl)} ml · ${[...new Set((product.selectedVariant || []).map((variant, index) => sourceText(variant.text, product.presentation?.selectedVariant?.[index]?.presentation)))].join(' / ')}`
           ),
           element(
             'small',

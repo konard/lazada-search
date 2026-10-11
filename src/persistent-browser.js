@@ -84,7 +84,9 @@ async function launchWorker(directory, options) {
   try {
     const config = join(directory, 'browser-window-options.json');
     await rm(join(directory, 'browser-window-error.txt'), { force: true });
-    await writeFile(config, JSON.stringify(options), { mode: 0o600 });
+    await writeFile(config, JSON.stringify({ debug: false, ...options }), {
+      mode: 0o600,
+    });
     const worker = spawn(
       process.execPath,
       [

@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
+import { format } from 'prettier';
 import { fileURLToPath } from 'node:url';
 import { LazadaSearch, DomainScheduler, TesseractOcr } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
@@ -107,8 +108,8 @@ async function audit() {
     };
     await writeFile(
       'docs/acceptance/collection-progress.json',
-      `${JSON.stringify(
-        {
+      await format(
+        JSON.stringify({
           checkedAt: new Date().toISOString(),
           market: options.market,
           deliveryArea: options.deliveryArea,
@@ -128,10 +129,9 @@ async function audit() {
             (await store.get('collection-stop', 'browser-collection'))
               ?.active === true,
           purchaseReady: false,
-        },
-        null,
-        2
-      )}\n`
+        }),
+        { parser: 'json' }
+      )
     );
     return result;
   } finally {

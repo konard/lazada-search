@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "role": "manual inspection aid only; no numeric mass approved",
+  "original": {
+    "path": "docs/acceptance/bonus-food-followup/shared-2kg-artwork-original.webp",
+    "sha256": "fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4",
+    "bytes": 84674,
+    "url": "https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_2200x2200q80.jpg_.webp",
+    "width": 1080,
+    "height": 1080,
+    "format": "webp"
+  },
+  "derived": {
+    "path": "docs/acceptance/bonus-food-followup/printed-mass-inspection-crop.png",
+    "sha256": "7e415e39036eba7620babd1aee27f5cae6f242809636d1f2ee5b8d9d6857c75e",
+    "bytes": 371417,
+    "width": 1000,
+    "height": 360,
+    "format": "png"
+  },
+  "operations": {
+    "crop": {
+      "left": 200,
+      "top": 940,
+      "width": 250,
+      "height": 90
+    },
+    "resize": {
+      "width": 1000,
+      "kernel": "lanczos3"
+    },
+    "outputFormat": "png"
+  },
+  "renderer": {
+    "sharp": "0.35.5",
+    "vips": "8.18.7"
+  },
+  "reviewedAt": "2026-10-11T08:30:40.581Z",
+  "ocrRun": false,
+  "automaticFactApproval": false
+}

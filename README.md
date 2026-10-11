@@ -80,6 +80,15 @@ The capture JSON contains `url`, the original `observedAt`, and relative `html` 
 
 ## Configuration
 
+Exact checkout baskets have a separate source-bound workflow:
+[basket quotes](docs/basket-quotes.md) preserve selected SKU quantities, the actual
+destination, freight and applied vouchers, and rank only captured baskets. The
+current capture reads an already prepared private cart without changing it. It
+does not certify every possible quantity, coupon combination or frozen route.
+[Food components](docs/food-components.md) count verified food gifts once per
+order; shakers add no food weight. [Translation](docs/translation.md) binds reviews
+to original and English text hashes and keeps calculations on original facts.
+
 CLI options override environment defaults and `.lenv` configuration through [lino-arguments](https://github.com/link-foundation/lino-arguments). Existing environment variables take precedence over the default `.lenv` file; `--configuration FILE` selects an explicit configuration.
 
 | Setting                     | Default                        | Purpose                                    |
@@ -265,6 +274,8 @@ Vietnam defaults include three powder keyword searches and two observed ice-crea
 Generate the repository tables with `node scripts/export-catalog-tables.mjs --offline`. Reprocess cached listings and OCR with `node scripts/audit-cached-catalog.mjs --offline`. `node scripts/collect-manufacturer-sources.mjs` follows the official-domain registry, retains unmatched source evidence and reuses cached pages, images and OCR. The [coverage table](docs/tables/README.md) lists every outstanding gap. Telegram supports `/audit --strict` and splits full comparisons across messages without a ten-row limit.
 
 The committed [catalog snapshot](docs/tables/catalog.json) includes products, offers, discoveries, public SKU inventories and crawl reports. Import it into a fresh cache with `node bin/lazada-search.js import docs/tables/catalog.json --offline`. It reproduces the same explicit coverage gaps and provisional calculations without website requests. Original private browser state is not part of the published snapshot.
+
+The [basket, food-gift and English checkpoint](docs/acceptance/basket-food-translation/README.md) records the latest implementation, full test results, source digests and selective weight correction. Exact live inventory, factory specifications and Nha Trang bulk/frozen freight remain acceptance work in [the requirement tracker](docs/acceptance/requirements-audit/current.md).
 
 ## Continue the account case across collection phases
 

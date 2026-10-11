@@ -240,6 +240,9 @@ export function parseArguments(argv) {
           choices: ['isolate', 'concentrate', 'blend', 'hydrolyzed', 'unknown'],
         })
         .option('min-protein', { type: 'number' })
+        .option('min-mass-g', { type: 'number' })
+        .option('min-volume-ml', { type: 'number' })
+        .option('min-protein-g', { type: 'number' })
         .option('max-sugar', { type: 'number' })
         .option('exclude-ingredient', { type: 'array', string: true })
         .option('shipping', { type: 'number' })

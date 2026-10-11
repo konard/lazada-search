@@ -240,7 +240,15 @@ test('product translations cannot overwrite price, nutrition, ingredients, origi
   });
   t.after(() => app.close());
   const result = await app.translateProduct(product.id);
-  assert.equal(result.complete, true);
+  assert.equal(result.complete, false);
+  assert.equal(result.reviewedComplete, false);
+  assert.ok(
+    result.translations.every(
+      (row) =>
+        row.reason === 'translation-quality-failed' &&
+        row.translatedText === undefined
+    )
+  );
   assert.ok(
     result.translations.every(
       (row) => row.presentationOnly && !row.authoritative

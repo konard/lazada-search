@@ -1,3 +1,5 @@
+This is the preserved independent inspection from 2026-10-11T07:50:58Z. Its source hashes and implementation observations describe that draft. Later source-evidence, English basket and browser-default corrections and final test results are recorded in [the final checkpoint](README.md). Current coverage is recalculated in [the requirements audit](../requirements-audit/current.md).
+
 # Basket, food-component and translation requirements review
 
 Inspected at **2026-10-11 07:50:58 UTC**, without network, browser, associative-store or Git actions. The [machine-readable review](requirements-review.json) preserves35 inspected file digests, source dates, implementation bounds and unfinished acceptance work. This is a dated checkpoint review: **allRequirementsDelivered=false**, **allTargetProductsCollected=false**, **purchaseReady=false** and **productionReady=false**.

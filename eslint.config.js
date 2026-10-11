@@ -163,6 +163,7 @@ export default [
   {
     ignores: [
       '.lazada-search/**',
+      'browser-commander-traces/**',
       'node_modules/**',
       '**/node_modules/**',
       'coverage/**',

@@ -26,6 +26,10 @@ export const OPERATION_NAMES = [
   'translate-product',
   'translate-catalog',
   'translation-status',
+  'review-translation',
+  'save-basket-quote',
+  'capture-basket-quote',
+  'compare-baskets',
 ];
 const object = (value, label) => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
@@ -145,6 +149,21 @@ export async function executeOperation(application, request) {
       application,
       string(input.url, 'Listing URL'),
       object(input.review, 'Category review')
+    );
+  }
+  if (operation === 'review-translation') {
+    return application.translator.review(
+      string(input.translationId, 'Translation ID'),
+      object(input.review, 'Translation review')
+    );
+  }
+  const basketHandlers = {
+    'save-basket-quote': (quote) => application.saveBasketQuote(quote),
+    'capture-basket-quote': (quote) => application.captureBasketQuote(quote),
+  };
+  if (Object.hasOwn(basketHandlers, operation)) {
+    return basketHandlers[operation](
+      object(input.quote, 'Basket source mapping')
     );
   }
   return executeCommand(

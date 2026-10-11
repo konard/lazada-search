@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "validatedAt": "2026-10-11T08:44:43.901936+00:00",
+  "allChangesDraftedBeforeCoordinatedTests": true,
+  "finalCodeFrozenDuringAcceptedSuites": true,
+  "unitFullSuite": {
+    "command": "npm test",
+    "log": "docs/acceptance/basket-food-translation/basket-food-english-unit-published-data.tap.gz",
+    "tests": 1091,
+    "passed": 1091,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 226519.195333,
+    "scope": "Final code and added original-backed weight-hold regression against the rebuilt public case."
+  },
+  "e2eFullSuite": {
+    "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink npm run test:e2e",
+    "log": "docs/acceptance/basket-food-translation/basket-food-english-e2e-accepted.tap.gz",
+    "tests": 43,
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 412759.380292,
+    "scope": "Final runtime source code, including reviewed nested-basket English across library/CLI/HTTP/Telegram. Predates the case-only weight hold; four archive/native E2E cases were repeated after rebuilding public data."
+  },
+  "postDataE2e": {
+    "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/archive.test.js tests/e2e/native-store.test.js tests/e2e/verified-case.test.js",
+    "log": "docs/acceptance/basket-food-translation/quarantined-archive-native-accepted.tap.gz",
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "newDistinctE2eCases": 0
+  },
+  "focusedOriginalWeightHold": {
+    "log": "docs/acceptance/basket-food-translation/bonus-paid-mass-hold-final.tap.gz",
+    "tests": 17,
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0,
+    "caveat": "The final archive-bound version of the added regression is included in the1091-case accepted full unit run."
+  },
+  "typescript": {
+    "command": "tsc --noEmit --strict --skipLibCheck --target es2022 --module NodeNext --moduleResolution NodeNext tests/fixtures/public-api-types.ts",
+    "exitCode": 0,
+    "log": "docs/acceptance/basket-food-translation/basket-food-english-types-accepted.log.gz"
+  },
+  "repositoryChecks": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "log": "docs/acceptance/basket-food-translation/basket-food-english-check-accepted.log.gz",
+    "newLintWarnings": 0,
+    "existingUnchangedWarnings": 9,
+    "formatPassed": true,
+    "duplicationPercent": 6.46,
+    "thresholdPercent": 10,
+    "caveat": "Final documentation formatting and strict staged-file hooks are repeated at publication."
+  },
+  "sourcePriceAudit": {
+    "receipt": "docs/acceptance/current-offer-source-audit.json",
+    "confirmedPrices": 362,
+    "matchedOriginalSources": 362,
+    "unresolved": 0,
+    "downloads": 0
+  },
+  "unitTableAudit": {
+    "receipt": "docs/acceptance/top10-check/unit-cost-audit.json",
+    "checkedRows": 54,
+    "downloads": 0
+  },
+  "publicArchive": {
+    "directory": "data/cases/vietnam-nha-trang",
+    "records": 29551,
+    "blobs": 6792,
+    "valid": true,
+    "reused": 6903,
+    "rebuilt": 3,
+    "downloads": 0,
+    "verifyCommand": "node bin/lazada-search.js archive-verify --offline --no-ocr"
+  },
+  "selectiveCorrection": "docs/acceptance/bonus-food-followup/integration.json",
+  "sourceAndReviewReceipts": "final-review.json",
+  "testLogReceipts": "test-evidence.json",
+  "browserCommander": {
+    "installed": "0.30.1",
+    "latestChecked": "0.30.1",
+    "installedAuditVulnerabilities": 0,
+    "automaticCollectorSessionRecording": false
+  },
+  "intermediateFailuresResolved": [
+    {
+      "kind": "basket draft fixtures",
+      "details": "Incomplete product URLs, cart-origin validation fixtures, missing local Telegram client endpoint and negated cold-chain acceptance were corrected. A test-token request reached Telegram and failed401 before the mock endpoint was wired; no message was delivered. Corrected final suites use the local mock."
+    },
+    {
+      "kind": "capture fixture counter",
+      "details": "Simulated history URL changes advanced the browser navigation counter. The guard correctly rejected URL drift; the fixture now compares the count after those deliberate changes."
+    },
+    {
+      "kind": "strict lint/format",
+      "details": "Basket helper complexity/async wrappers/browser globals were refactored and qualified; final interface fixture helpers satisfy strict limits. Generated collection JSON uses Prettier. Earlier failures remain in saved logs."
+    },
+    {
+      "kind": "native test environment",
+      "details": "The first42-case E2E run skipped native clink; the final43-case full run and post-data native recheck passed with the explicit local binary."
+    },
+    {
+      "kind": "post-data command path",
+      "details": "archive-native.test.js does not exist. The preserved wrong-path command ran no tests; the corrected archive/native/verified-case paths passed4/4."
+    }
+  ],
+  "currentAcceptance": {
+    "catalogObservedAt": "2026-10-11T08:35:01.597Z",
+    "activeScope": {
+      "missingListings": 1348,
+      "missingSkuPrices": 326,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6403,
+      "specifications": 296,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 371,
+      "excludedExactOptions": 515
+    },
+    "wheyCoverage": {
+      "capturedPowderSkus": 285,
+      "strictWheySkus": 76,
+      "strictSoySkus": 1,
+      "verifiedStrictWheySkus": 11,
+      "missingFactoryMatches": 67,
+      "discoveryTasks": 6117,
+      "pendingSkuTasks": 331,
+      "excludedSkuOptions": 518,
+      "originalSourcePointers": 1973,
+      "unresolvedEvidencePointers": 0
+    },
+    "iceCoverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    },
+    "openRequirements": 32,
+    "openGithubIssues": 2,
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false
+  },
+  "ongoingCollection": {
+    "minimumIntervalMs": 60000,
+    "lastDetailBatch": "25 products completed; pending public publication after this dated snapshot",
+    "persistentWindowReused": true,
+    "captchaStopPersists": true,
+    "oldCorrectionRefreshAfterInitialBacklog": true
+  },
+  "caveats": [
+    "These are local implementation and saved-evidence tests, not exhaustive live inventory or purchase acceptance.",
+    "Exact factory/gift identities, production checkout adapter and quantity/voucher sweeps, real bulk/frozen NhaTrang freight, complete reviewed English and live Telegram deployment remain open.",
+    "Unknown grams/ml/protein, density, stock, gift eligibility or freight are never invented.",
+    "All original public evidence and derived snapshots are preserved; private credentials/profile/checkout originals remain local."
+  ]
+}

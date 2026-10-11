@@ -503,6 +503,7 @@ export class BrowserCollector {
       const launchOptions = {
         engine: 'playwright',
         headless: true,
+        debug: false,
         userDataDir: join(this.store.directory, 'browser-profile'),
         ...(this.store.visibility === 'private'
           ? { persistSessionCookies: true }
@@ -530,6 +531,7 @@ export class BrowserCollector {
             engine: 'playwright',
             cdpEndpoint: this.browserOptions.cdpEndpoint,
             timeout: 30000,
+            debug: this.browserOptions.debug ?? false,
           })
         : this.persistent
           ? await acquireBrowserWindow(this.store.directory, launchOptions)
@@ -604,6 +606,7 @@ export class BrowserCollector {
       this.runtime.page.on('response', this.imageResponse);
       this.commander = makeBrowserCommander({
         page: this.runtime.page,
+        debug: this.browserOptions.debug ?? false,
         enableNetworkTracking: false,
       });
     }

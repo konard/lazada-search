@@ -25,8 +25,11 @@ import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 import { CachedTranslator, translateProductText } from './translation.js';
 import { ManufacturerResearch } from './manufacturer-research.js';
 import { translateCatalog, translationStatus } from './translation-catalog.js';
+import { applyComparisonTranslations } from './translation-presentation.js';
+import { saveBasketQuote, captureBasketQuote } from './basket-quote.js';
+import { compareBaskets } from './basket-comparison.js';
+import { comparisonInputs } from './comparison-inputs.js';
 import {
-  applyListingAvailability,
   ListingUnavailableError,
   recordListingUnavailable,
 } from './availability.js';
@@ -787,6 +790,7 @@ export class LazadaSearch {
       'quoteEvidenceId',
       'deliveryAvailable',
       'quoteObservedAt',
+      'foodComponents',
     ];
     if (Object.keys(input).some((key) => !allowed.includes(key))) {
       throw new Error('Unsupported quote field');
@@ -799,47 +803,29 @@ export class LazadaSearch {
     return this.saveOffer(updated);
   }
 
+  saveBasketQuote(input) {
+    return saveBasketQuote(this, input);
+  }
+
+  captureBasketQuote(input) {
+    return captureBasketQuote(this, input);
+  }
+
+  compareBaskets(options = {}) {
+    return compareBaskets(this, options);
+  }
+
   async compare(options = {}) {
-    const products = await catalogProducts(this.store);
-    const offers = applyListingAvailability(
-      (await this.store.list('offer')).filter((offer) => !offer.supersededBy),
-      await this.store.list('listing-availability'),
-      await this.store.list('invalidation')
-    );
-    const invalidated = [];
-    for (const entry of await this.store.list('invalidation')) {
-      for (const id of entry.cacheIds) {
-        const source = await this.store.get('cache', id);
-        if (source?.invalidatedAt) {
-          invalidated.push(source);
-        }
-      }
-    }
-    for (const offer of offers) {
-      offer.priceInvalidated = invalidated.some(
-        (source) =>
-          source.url === offer.url && /^(?:lazada|page):/u.test(source.id)
-      );
-      offer.shippingInvalidated = invalidated.some(
-        (source) =>
-          source.url === offer.url && source.id.startsWith('delivery:')
-      );
-    }
-    for (const product of products) {
-      product.specificationsInvalidated = invalidated.some(
-        (source) =>
-          source.url === product.url ||
-          product.crossChecks?.some(
-            (check) => check.manufacturerUrl === source.url
-          )
-      );
-    }
-    return compareOffers(products, offers, {
+    const { products, offers } = await comparisonInputs(this.store, {
+      manufacturerRegistry: this.manufacturerRegistry,
+    });
+    const report = compareOffers(products, offers, {
       currency: MARKETS[this.market].currency,
       deliveryArea: this.deliveryArea,
       flavourScope: this.flavourScope,
       ...options,
     });
+    return applyComparisonTranslations(report, this.translator);
   }
 
   async close() {

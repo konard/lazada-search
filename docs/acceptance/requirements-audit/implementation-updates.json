@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T06:43:51.017530+00:00",
+  "checkedAt": "2026-10-11T08:44:43.901936+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -20,17 +20,21 @@
     {
       "id": "R017",
       "status": "partial",
-      "mechanicsStatus": "cached-number-unit-basis-identifier-guards-source-bound-reviews-and-English-overlays-implemented",
-      "realDataAcceptance": "pending-configured-provider-whole-catalog-semantic-reviews-and-reviewed-chunk-reassembly",
+      "mechanicsStatus": "cached-source-bound-reviews-chunk-reassembly-and-commercial-English-overlays-implemented",
+      "realDataAcceptance": "pending-configured-provider-and-whole-catalog-semantic-reviews",
       "evidence": [
         "src/translation-quality.js",
         "src/translation-presentation.js",
         "src/translation.js",
         "tests/translation-quality.test.js",
         "tests/e2e/translation.test.js",
-        "docs/translation.md"
+        "docs/translation.md",
+        "src/translation-presentation-chunks.js",
+        "tests/translation-presentation-chunks.test.js",
+        "tests/translation-presentation-baskets.test.js",
+        "tests/e2e/basket-quotes.test.js"
       ],
-      "finding": "English presentation uses reviewed cached text only by default and preserves source fields and metrics. Quality and semantic-review acceptance are separate; oversized whole fields stay original pending reviewed reassembly."
+      "finding": "Cached whole-field or completely reviewed contiguous chunk English presentation preserves original Vietnamese, exact figures, identifiers, conditions and metrics. Nested basket lines and best-by-category results share the same cached overlay. Commercial text requires planned public field paths; private destinations and credentials remain excluded. Provider configuration and whole-catalog semantic acceptance remain pending."
     },
     {
       "id": "R023",
@@ -236,15 +240,21 @@
         "src/products.js",
         "tests/food-components.test.js",
         "tests/food-component-persistence.test.js",
-        "docs/food-components.md"
+        "docs/food-components.md",
+        "src/food-component-evidence.js",
+        "tests/food-component-evidence.test.js",
+        "src/comparison-inputs.js",
+        "docs/acceptance/bonus-food-followup/review.json",
+        "docs/acceptance/bonus-food-followup/integration.json",
+        "tests/bonus-paid-mass-hold.test.js"
       ],
-      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require original reviewed facts and exact SKU/order quantity, count once, and cannot reuse one allocation on multiple lines."
+      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require stored original bytes/identity/quantity evidence, physical-unit-bound excerpts and factory review; binary labels require replayable original/crop/OCR or actual source-bound visual review. Exact SKU/order quantities count once; one allocation cannot recur on multiple basket lines. The advertised two-bag real offer also has a disputed per-pouch mass; the shared original-backed hold removes its4000g/447.50VND/g calculation without replacing it with a guess."
     }
   ],
   "checkpoint": {
-    "recordedAt": "2026-10-11T07:47:31.228Z",
+    "recordedAt": "2026-10-11T08:44:43.901936+00:00",
     "previousImplementationCheckedAt": "2026-10-11T04:43:40.556Z",
-    "latestFullSuite": "1006 distinct unit cases and 37 distinct E2E cases validated across full runs and successful affected-file retries. Initial timeout and fixture/source-receipt verification failures are preserved; final cache/replay26 and publication7 pass.",
+    "latestFullSuite": "1091/1091 unit and43/43 E2E in complete accepted runs, with no failures/cancellations/skips; four archive/native E2E cases repeated after public data rebuild.",
     "preservedBaseline": {
       "receipt": "docs/acceptance/continuation-fixes/validation.json",
       "unitPassed": 929,
@@ -254,38 +264,38 @@
       "nativeAndOperationsPassed": 6
     },
     "acceptanceSnapshot": {
-      "checkedAt": "2026-10-11T07:10:08.933Z",
-      "catalogObservedAt": "2026-10-11T07:00:24.878Z",
+      "checkedAt": "2026-10-11T08:37:00.660Z",
+      "catalogObservedAt": "2026-10-11T08:35:01.597Z",
       "activeScope": {
-        "missingListings": 1373,
-        "missingSkuPrices": 305,
+        "missingListings": 1348,
+        "missingSkuPrices": 326,
         "missingPrices": 0,
         "unknownSkuInventories": 0,
         "categoryReview": 6403,
-        "specifications": 272,
+        "specifications": 296,
         "verifiedProducts": 14,
         "excludedCategoryListings": 371,
-        "excludedExactOptions": 495
+        "excludedExactOptions": 515
       },
       "broaderArchive": {
-        "missingListings": 1524,
-        "missingSkuPrices": 840,
+        "missingListings": 1499,
+        "missingSkuPrices": 881,
         "missingPrices": 0,
         "unknownSkuInventories": 0,
         "categoryReview": 7107,
-        "specifications": 284,
+        "specifications": 308,
         "verifiedProducts": 16
       },
       "wheyCoverage": {
-        "capturedPowderSkus": 261,
-        "strictWheySkus": 65,
+        "capturedPowderSkus": 285,
+        "strictWheySkus": 76,
         "strictSoySkus": 1,
         "verifiedStrictWheySkus": 11,
-        "missingFactoryMatches": 56,
-        "discoveryTasks": 6141,
-        "pendingSkuTasks": 310,
-        "excludedSkuOptions": 498,
-        "originalSourcePointers": 1935,
+        "missingFactoryMatches": 67,
+        "discoveryTasks": 6117,
+        "pendingSkuTasks": 331,
+        "excludedSkuOptions": 518,
+        "originalSourcePointers": 1973,
         "unresolvedEvidencePointers": 0
       },
       "iceCoverage": {
@@ -298,7 +308,7 @@
       "allTargetProductsCollected": false,
       "productionReady": false
     },
-    "latestReceipt": "docs/acceptance/preferred-variant/validation.json"
+    "latestReceipt": "docs/acceptance/basket-food-translation/validation.json"
   },
   "checkpointUpdates": [
     {
@@ -411,7 +421,7 @@
         "docs/acceptance/preferred-variant/cached-selection-review.json",
         "tests/e2e/preferred-variant.test.js"
       ],
-      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Kh\u00f4ng B\u00ecnh SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
       "issue": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -457,7 +467,7 @@
         "src/scope-decisions.js",
         "tests/human-food-scope.test.js"
       ],
-      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+      "finding": "Thanh N\u0103ng L\u01b0\u1ee3ng and Thanh Dinh D\u01b0\u1ee1ng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
     },
     {
       "id": "powder-ice-flavour",
@@ -481,14 +491,17 @@
     },
     {
       "id": "basket-food-translation",
-      "status": "draft-complete-full-suite-validation-running",
+      "status": "implemented-full-unit-and-e2e-validated;live-data-acceptance-open",
       "evidence": [
         "docs/acceptance/basket-food-translation/requirements-review.json",
         "docs/basket-quotes.md",
         "docs/food-components.md",
-        "docs/translation.md"
+        "docs/translation.md",
+        "docs/acceptance/basket-food-translation/final-review.json",
+        "docs/acceptance/basket-food-translation/validation.json",
+        "docs/acceptance/bonus-food-followup/integration.json"
       ],
-      "finding": "Read-only exact basket interfaces, reviewed food-component accounting/persistence and source-bound English presentation are drafted and focused tested. Complete marketplace, exact factory, frozen freight and configured whole-catalog English remain open."
+      "finding": "Final full unit run passes1091/1091; final full E2E passes43/43, zero failures/skips. Four archive/native E2E cases repeat after the zero-download data rebuild. Exact basket interfaces, stored-original and physical-unit gift safeguards, reviewed contiguous/public commercial and nested-basket English are implemented. A source-backed hold removes the disputed4000g/447.50VND/g denominator. Full inventory, exact factory and gift identities, production checkout adapter/quantity-voucher sweeps, frozen/bulk freight and complete real-provider English remain open."
     }
   ]
 }

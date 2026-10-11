@@ -1,0 +1,496 @@
+{
+  "reviewedAt": "2026-10-11T08:30:40.581Z",
+  "reviewer": "codex-original-evidence-review",
+  "task": "issue14 original bonus-food identity and eligibility followup",
+  "sku": "3255422832_VNAMZ-117013951240",
+  "productId": "product:41bc5062d3557842a1cbb90111c8e5ceb9f12c3b47300ffc427c8baa9aaef021",
+  "offerId": "offer:ec612cb86672261992970dcb12061ab18ae192428dd2a7334ac95e86d1345d97",
+  "decision": "retain potential food gift; quarantine per-pouch net mass; no alternate mass or factory approval",
+  "activity": {
+    "networkRequests": 0,
+    "browserActions": 0,
+    "sharedStoreMutations": 0,
+    "coreEdits": 0,
+    "gitActions": 0
+  },
+  "baseline": {
+    "archiveManifestPath": "data/cases/vietnam-nha-trang/manifest.json",
+    "archiveManifestSha256": "49b40469a80d50533d63df207427b6dfedc9bfbdd644828f96a246e747026684",
+    "originalObservedAt": "2026-10-10T21:09:54.492Z",
+    "sourceUnchangedFromPriorAudit": true
+  },
+  "sources": [
+    {
+      "path": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "bytes": 377919,
+      "url": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "evidenceIds": [
+        "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+        "evidence:fa5013de0dd624964ea72b688203cc224df4dc3eb263e8221c5a7bfa61562172"
+      ],
+      "observedAt": "2026-10-10T21:09:54.492Z",
+      "authority": "seller-page-public-derivative",
+      "exactSelectedSku": true
+    },
+    {
+      "path": "docs/acceptance/bonus-food-followup/shared-2kg-artwork-original.webp",
+      "url": "https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_2200x2200q80.jpg_.webp",
+      "sha256": "fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4",
+      "bytes": 84674,
+      "authority": "seller-shared-artwork",
+      "originalUnchanged": true,
+      "selectedSkuIdentityMatched": false,
+      "context": "catalogue sibling 2kg tặng bình asset; also shared gallery; not the selected combo artwork"
+    },
+    {
+      "path": "docs/acceptance/bonus-hydropure-evidence/98b73f41e9255f533fcd711f805aa8d9f819b446931e3bd14446a317c34921ca.webp",
+      "url": "https://img.lazcdn.com/g/p/1b012201e9ec7d993bb53dec1291b7b5.jpg_720x720q80.jpg_.webp",
+      "sha256": "98b73f41e9255f533fcd711f805aa8d9f819b446931e3bd14446a317c34921ca",
+      "authority": "seller-promotional-artwork",
+      "context": "catalogue points chocolate and vanilla combo sibling SKUs to the same image; shows three pouches without readable complete mass/flavour"
+    },
+    {
+      "path": "docs/acceptance/bonus-food-followup/printed-mass-inspection-crop.png",
+      "sha256": "7e415e39036eba7620babd1aee27f5cae6f242809636d1f2ee5b8d9d6857c75e",
+      "bytes": 371417,
+      "authority": "derived-inspection-only",
+      "transformPath": "docs/acceptance/bonus-food-followup/inspection-transform.json",
+      "automaticFactApproval": false
+    }
+  ],
+  "originalClaims": [
+    {
+      "field": "selectedOption",
+      "value": "2 túi tặng 1 túi",
+      "excerpt": "Phân loại:2 túi tặng 1 túi",
+      "basis": "selected catalogue option",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": true,
+      "requiresReview": true
+    },
+    {
+      "field": "selectedFlavour",
+      "value": "chocolate",
+      "excerpt": "Hương vị:Sôcôla",
+      "basis": "selected paid SKU flavour option, not gift identity",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": true,
+      "requiresReview": true
+    },
+    {
+      "field": "parentDeclaredNetMassG",
+      "value": 2000,
+      "excerpt": "Net Content 2kg",
+      "basis": "parent/shared specification; per-pouch versus bundle unresolved",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    },
+    {
+      "field": "descriptionDeclaredPackageMassG",
+      "value": 2000,
+      "excerpt": "Trọng lượng: 2kg (hoặc tùy chọn 1kg)",
+      "basis": "shared seller description, no exact food-bonus binding",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    },
+    {
+      "field": "descriptionUnflavoured",
+      "value": true,
+      "excerpt": "Đây là whey protein nguyên chất 100% (unflavored)",
+      "basis": "shared description conflicts with selected chocolate option",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    },
+    {
+      "field": "nonFoodAccessoryAdvertised",
+      "value": "bottle",
+      "excerpt": "Bình cao cấp sang trọng, thủy tinh bảo vệ môi trường",
+      "basis": "non-food gift; never contributes grams/ml/protein",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    },
+    {
+      "field": "sellerProteinServingClaimG",
+      "value": 43,
+      "excerpt": "43g protein nguyên chất",
+      "basis": "seller serving claim, no current exact manufacturer or bonus formula",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    },
+    {
+      "field": "sellerSuggestedServingMassG",
+      "value": 58,
+      "excerpt": "2 muỗng đầy (58g)",
+      "basis": "seller usage instructions; no approved nutrition conversion",
+      "sourcePath": "docs/acceptance/bonus-hydropure-evidence/3255422832-cached-public.html",
+      "sourceUrl": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "sourceSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+      "evidenceId": "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+      "sourceAuthority": "seller-page-public-derivative",
+      "identityMatched": false,
+      "requiresReview": true
+    }
+  ],
+  "rawSelectedSkuEvidence": {
+    "originalHtmlSha256": "19ca775d018f221f06c5722ceedb21e3f8d20c6881ccd8290910ea367857aebf",
+    "scriptMethod": "parsed existing preserved __moduleData__; no new JSON download",
+    "selectedSku": {
+      "cartItemId": "3255422832",
+      "cartSkuId": "117013951240",
+      "innerSkuId": "3255422832_VNAMZ-117013951240",
+      "itemId": "3255422832",
+      "pageId": "3255422832",
+      "pagePath": "/products/whey-protein-concentrate-pure-pluse-tui-2kg-tang-binh-cao-cap-giao-an-thuc-don-doc-quyen-i3255422832-s117013951240.html",
+      "propPath": "120132602:-4;100006193:21198",
+      "requestParams": "itemId=3255422832&sellerId=200645280109&skuId=117013951240",
+      "sellerId": "200645280109",
+      "skuId": "117013951240"
+    },
+    "selectedSkuInfo": {
+      "categoryId": "14516",
+      "image": "//vn-test-11.slatic.net/p/1b012201e9ec7d993bb53dec1291b7b5.jpg",
+      "inWishlist": false,
+      "itemId": "3255422832",
+      "operation": {
+        "disable": false,
+        "operationWeight": 6,
+        "text": "Thêm vào giỏ",
+        "type": "default"
+      },
+      "preSaleTag": false,
+      "quantity": {
+        "limit": {
+          "max": 5,
+          "min": 1
+        },
+        "type": "default"
+      },
+      "quantityList": [
+        {
+          "limit": {
+            "max": 5,
+            "min": 1
+          },
+          "type": "default"
+        }
+      ],
+      "sellerId": "200645280109",
+      "skuId": "117013951240"
+    },
+    "vanillaSibling": {
+      "cartItemId": "3255422832",
+      "cartSkuId": "117013951241",
+      "innerSkuId": "3255422832_VNAMZ-117013951241",
+      "itemId": "3255422832",
+      "pageId": "3255422832",
+      "pagePath": "/products/whey-protein-concentrate-pure-pluse-tui-2kg-tang-binh-cao-cap-giao-an-thuc-don-doc-quyen-i3255422832-s117013951241.html",
+      "propPath": "120132602:-4;100006193:26722",
+      "requestParams": "itemId=3255422832&sellerId=200645280109&skuId=117013951241",
+      "sellerId": "200645280109",
+      "skuId": "117013951241"
+    },
+    "quantityDomInputs": [
+      {
+        "value": "1",
+        "min": "1",
+        "max": "30"
+      },
+      {
+        "value": "1",
+        "min": "1",
+        "max": "30"
+      }
+    ]
+  },
+  "visualObservations": [
+    {
+      "sourceSha256": "fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4",
+      "excerpt": "2KG PURE TẶNG BÌNH",
+      "observation": "Two pouches and a non-food bottle are pictured beneath the 2KG heading.",
+      "meaning": "Parent2kg may describe a bundle rather than each inner pouch; artwork conflicts with automatic per-pouch2000g multiplication.",
+      "identityMatched": false
+    },
+    {
+      "sourceSha256": "fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4",
+      "cropSha256": "7e415e39036eba7620babd1aee27f5cae6f242809636d1f2ee5b8d9d6857c75e",
+      "excerpt": null,
+      "observation": "Partially occluded small mass text resembles Netwt1000g but cannot be treated as a complete legible exact net-mass label.",
+      "approvedNumericValue": null,
+      "identityMatched": false
+    },
+    {
+      "sourceSha256": "8b0f9641d6a9754710d619db335f1f9256d5c9321f76e7c568f43aca8de2f94c",
+      "excerpt": "Hilmar 8010 Instantized Whey Protein Concentrate; 20kg/bao",
+      "observation": "The shared declaration identifies bulk raw ingredient, not the finished chocolate PURE PLUS gift pouch.",
+      "identityMatched": false,
+      "packageNutritionApproved": false
+    }
+  ],
+  "heldFields": {
+    "paidPerPouchNetMassG": {
+      "status": "held",
+      "oldClaim": 2000,
+      "alternateValueApproved": null,
+      "reason": "Selected two-paid-pouch option does not settle whether parent2kg is per pouch or total bundle; shared artwork gives contrary package-basis evidence."
+    },
+    "paidPackCount": {
+      "status": "advertised-only",
+      "value": 2,
+      "reason": "Two paid bags supported as an option count; this count does not make the parent2kg a per-pouch mass."
+    },
+    "bonusNetMassG": {
+      "status": "held",
+      "value": null
+    },
+    "bonusNetVolumeMl": {
+      "status": "not-applicable-or-unknown",
+      "value": null
+    },
+    "bonusFlavour": {
+      "status": "held",
+      "value": null
+    },
+    "bonusFormulaRevision": {
+      "status": "held",
+      "value": null
+    },
+    "bonusGtinOrVariantCode": {
+      "status": "held",
+      "value": null
+    },
+    "bonusManufacturerIdentity": {
+      "status": "held",
+      "value": null
+    },
+    "bonusProteinG": {
+      "status": "held",
+      "value": null
+    },
+    "confirmedBonusUnits": {
+      "status": "held",
+      "value": null,
+      "advertisedUnits": 1
+    },
+    "stockUnits": {
+      "status": "held",
+      "value": null
+    },
+    "minOrderQuantity": {
+      "status": "held",
+      "value": null,
+      "reason": "SKU order quantity min1 is not the number of paid pouches nor confirmed gift threshold."
+    },
+    "maxOrderQuantity": {
+      "status": "held",
+      "value": null,
+      "catalogueMax": 5,
+      "domMax": 30
+    },
+    "maxUnitsPerOrder": {
+      "status": "held",
+      "value": null
+    },
+    "conditionsComplete": {
+      "status": "held",
+      "value": null
+    },
+    "conditionsSatisfied": {
+      "status": "held",
+      "value": null
+    },
+    "giftAppliedToExactOrder": {
+      "status": "held",
+      "value": null
+    },
+    "currentCampaignWindow": {
+      "status": "held",
+      "value": null
+    }
+  },
+  "denominatorConsequences": {
+    "withhold": [
+      "paid totalMassG4000",
+      "before/after-delivery pricePerGram",
+      "protein totals derived from disputed paid mass",
+      "bonus grams/ml/protein",
+      "combined complete-offer denominator"
+    ],
+    "preserve": [
+      "observed price1790000VND",
+      "selected chocolate option",
+      "advertised two paid bags plus one potential gift bag",
+      "unchanged source history"
+    ],
+    "noPaidOrGiftAlternateMassApproved": true
+  },
+  "manufacturerResearch": {
+    "newRequests": 0,
+    "candidateDomain": "athlepro.vn",
+    "priorFailureReceipt": "docs/acceptance/new-manufacturer-domains/review.json",
+    "priorFailure": "ENOTFOUND; no verified owner source; not retried",
+    "bulkIngredientLimits": "Hilmar8010/raw20kg or NZMP supplier specs cannot establish current seller chocolate recipe, repack weight or bonus eligibility"
+  },
+  "inspectedCachedImages": [
+    {
+      "url": "https://img.lazcdn.com/g/ff/kf/S9255ab3f97194a79b6ea415a698fffdfn.png_720x720q80.png_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/ff/kf/S9255ab3f97194a79b6ea415a698fffdfn.png_720x720q80.png_.webp",
+      "sha256": "c56520705da79e2b1a431a0fe787c8cc57aaa6322f34a6f874bc740ccbf621ef",
+      "bytes": 52912,
+      "capturedAt": "2026-10-10T21:09:38.779Z",
+      "archivePath": "blobs/c5/c56520705da79e2b1a431a0fe787c8cc57aaa6322f34a6f874bc740ccbf621ef.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/024deb4b58cf2dfc445a8e8cbd674482.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/024deb4b58cf2dfc445a8e8cbd674482.jpg_720x720q80.jpg_.webp",
+      "sha256": "18268d9831636b3edbbfd054f2299bd598589b2af52da8228673f14440793574",
+      "bytes": 60778,
+      "capturedAt": "2026-10-10T21:09:38.874Z",
+      "archivePath": "blobs/18/18268d9831636b3edbbfd054f2299bd598589b2af52da8228673f14440793574.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_2200x2200q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_2200x2200q80.jpg_.webp",
+      "sha256": "fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4",
+      "bytes": 84674,
+      "capturedAt": "2026-10-10T20:28:49.882Z",
+      "archivePath": "blobs/fb/fbd30f1ca572b3ad26bf33687f19055128ce210255042d8ad14173bff46cfdc4.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/17641c918fbcb5ba7d0349346fef4e78.jpg_720x720q80.jpg_.webp",
+      "sha256": "458b3fa4740c2478a7618aead50e93a1a99963d85970299726ad020d6406acd3",
+      "bytes": 47108,
+      "capturedAt": "2026-10-10T19:14:12.460Z",
+      "archivePath": "blobs/45/458b3fa4740c2478a7618aead50e93a1a99963d85970299726ad020d6406acd3.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/1b012201e9ec7d993bb53dec1291b7b5.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/1b012201e9ec7d993bb53dec1291b7b5.jpg_720x720q80.jpg_.webp",
+      "sha256": "98b73f41e9255f533fcd711f805aa8d9f819b446931e3bd14446a317c34921ca",
+      "bytes": 47768,
+      "capturedAt": "2026-10-10T21:09:38.842Z",
+      "archivePath": "blobs/98/98b73f41e9255f533fcd711f805aa8d9f819b446931e3bd14446a317c34921ca.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/3dd0c2fa770f9444fa331e9c1cfeb70c.jpg_2200x2200q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/3dd0c2fa770f9444fa331e9c1cfeb70c.jpg_2200x2200q80.jpg_.webp",
+      "sha256": "46c80ef1b12b3fc7699051cdffdc428b7e060486c6fa8c00136c08fa5a9dc35e",
+      "bytes": 205310,
+      "capturedAt": "2026-10-10T21:09:39.335Z",
+      "archivePath": "blobs/46/46c80ef1b12b3fc7699051cdffdc428b7e060486c6fa8c00136c08fa5a9dc35e.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/509cd3c7b1df31e025a591a89f07c093.jpg_2200x2200q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/509cd3c7b1df31e025a591a89f07c093.jpg_2200x2200q80.jpg_.webp",
+      "sha256": "3c1516fb61b7995c9c7c015f6a7f7966be6e79cab646098b31a413471a43e1de",
+      "bytes": 110598,
+      "capturedAt": "2026-10-10T19:13:54.709Z",
+      "archivePath": "blobs/3c/3c1516fb61b7995c9c7c015f6a7f7966be6e79cab646098b31a413471a43e1de.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/509cd3c7b1df31e025a591a89f07c093.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/509cd3c7b1df31e025a591a89f07c093.jpg_720x720q80.jpg_.webp",
+      "sha256": "c661f0f607b84d02b18d517fe772168fab7964aed67ab8a1aa569ce5ef0d0e93",
+      "bytes": 52942,
+      "capturedAt": "2026-10-10T19:13:54.173Z",
+      "archivePath": "blobs/c6/c661f0f607b84d02b18d517fe772168fab7964aed67ab8a1aa569ce5ef0d0e93.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/b61c61bcb13309be9130bb659ab00be5.jpg_2200x2200q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/b61c61bcb13309be9130bb659ab00be5.jpg_2200x2200q80.jpg_.webp",
+      "sha256": "9e0b52396af19609b05b5322e418c1f581bfef9412907cf14c7be061d0a1d585",
+      "bytes": 108634,
+      "capturedAt": "2026-10-10T19:27:54.748Z",
+      "archivePath": "blobs/9e/9e0b52396af19609b05b5322e418c1f581bfef9412907cf14c7be061d0a1d585.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/d1406611e8eb2128cd0e7fcfcc607d90.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/d1406611e8eb2128cd0e7fcfcc607d90.jpg_720x720q80.jpg_.webp",
+      "sha256": "0b52d290bfad65b86ee68a5de36913cd8b2473aac478351e5a3cba2dc7f7c073",
+      "bytes": 70300,
+      "capturedAt": "2026-10-10T19:13:54.171Z",
+      "archivePath": "blobs/0b/0b52d290bfad65b86ee68a5de36913cd8b2473aac478351e5a3cba2dc7f7c073.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/d33168a9d9d8ccf3601d1a67851fe8ea.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/d33168a9d9d8ccf3601d1a67851fe8ea.jpg_720x720q80.jpg_.webp",
+      "sha256": "8b0f9641d6a9754710d619db335f1f9256d5c9321f76e7c568f43aca8de2f94c",
+      "bytes": 48128,
+      "capturedAt": "2026-10-10T20:25:49.218Z",
+      "archivePath": "blobs/8b/8b0f9641d6a9754710d619db335f1f9256d5c9321f76e7c568f43aca8de2f94c.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/de87161130afef19cc73245a5716767c.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/de87161130afef19cc73245a5716767c.jpg_720x720q80.jpg_.webp",
+      "sha256": "e0dfe3550baba33cff42f0c9ea2f370816be3a35c8b3d7acdb400fe22fd5b1d7",
+      "bytes": 66242,
+      "capturedAt": "2026-10-10T21:09:38.786Z",
+      "archivePath": "blobs/e0/e0dfe3550baba33cff42f0c9ea2f370816be3a35c8b3d7acdb400fe22fd5b1d7.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/e511ad13c019d884a80ddf5a8eb078b1.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/e511ad13c019d884a80ddf5a8eb078b1.jpg_720x720q80.jpg_.webp",
+      "sha256": "b2bea957db226527b6371fe47f205ffb56524c2bfd2ca4a9b0f0a979216aa57a",
+      "bytes": 57990,
+      "capturedAt": "2026-10-10T21:09:38.824Z",
+      "archivePath": "blobs/b2/b2bea957db226527b6371fe47f205ffb56524c2bfd2ca4a9b0f0a979216aa57a.gz"
+    },
+    {
+      "url": "https://img.lazcdn.com/g/p/fdb6373edc94f67a33c9822afeee7984.jpg_720x720q80.jpg_.webp",
+      "cacheId": "image:https://img.lazcdn.com/g/p/fdb6373edc94f67a33c9822afeee7984.jpg_720x720q80.jpg_.webp",
+      "sha256": "50dda0a3895be7ba5a8202001616fbef2fdf18de132353f5e59ae277d7d2536e",
+      "bytes": 115530,
+      "capturedAt": "2026-10-10T19:13:54.309Z",
+      "archivePath": "blobs/50/50dda0a3895be7ba5a8202001616fbef2fdf18de132353f5e59ae277d7d2536e.gz"
+    }
+  ],
+  "minimalNextSources": [
+    {
+      "purpose": "paid and gift exact units",
+      "required": "For selected SKU117013951240, original full front/back metric net mass and exact flavour for each paid pouch and gift pouch, with GTIN/formula/lot or other exact variant identity."
+    },
+    {
+      "purpose": "applied order eligibility",
+      "required": "A quantity-matched selected-SKU original showing gift allocation units, exact stock/limits, all thresholds and campaign conditions/window applied to the same order; no purchase required."
+    },
+    {
+      "purpose": "manufacturer formula",
+      "required": "Legal brand/packer identity and official current finished-product chocolate specifications. Bulk ingredient or sibling SKU formula does not satisfy this requirement."
+    }
+  ],
+  "specificationHoldPath": "docs/acceptance/bonus-food-followup/specification-hold.json"
+}

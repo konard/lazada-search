@@ -1,0 +1,43 @@
+{
+  "market": "vn",
+  "currency": "VND",
+  "deliveryArea": "Nha Trang",
+  "destination": "Khánh Hòa, Phường Nha Trang",
+  "sourceUrl": "https://cart.lazada.vn/cart",
+  "sourceSha256": "6835b9fdf0d6ebaa726a5481692ff47ef13c16ed591c61daa8f9c25efb3613cf",
+  "observedAt": "2020-01-01T00:00:00.000Z",
+  "evidenceId": "fixture-checkout-source",
+  "mappingReviewedBy": "fixture-reviewer",
+  "selectors": {
+    "destination": "#destination",
+    "shipping": "#shipping",
+    "total": "#total",
+    "coldChain": "#cold-chain"
+  },
+  "coldChainText": "Frozen delivery supported",
+  "lines": [
+    {
+      "offerId": "offer-a",
+      "sku": "100_VNAMZ-11",
+      "quantity": 3,
+      "selectors": {
+        "sku": "#line-a .sku",
+        "quantity": "#line-a .quantity",
+        "unitPrice": "#line-a .unit-price",
+        "subtotal": "#line-a .subtotal"
+      }
+    }
+  ],
+  "appliedDiscounts": [
+    {
+      "id": "merchandise-20k",
+      "scope": "merchandise",
+      "selector": "#merchandise-voucher"
+    },
+    {
+      "id": "shipping-5k",
+      "scope": "shipping",
+      "selector": "#shipping-voucher"
+    }
+  ]
+}

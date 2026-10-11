@@ -65,6 +65,9 @@ export interface Product {
   id: string;
   url: string;
   title: string;
+  description?: string;
+  /** Reviewed English display; original fields remain calculation sources. */
+  presentation?: ProductPresentation;
   category: Category;
   market?: string;
   brand?: string;
@@ -150,6 +153,9 @@ export interface Offer {
     observedAt?: string;
     eligibilityConfirmed: boolean;
   }>;
+  market?: string;
+  foodComponents?: FoodComponent[];
+  presentation?: OfferPresentation;
   priceInvalidated?: boolean;
   shippingInvalidated?: boolean;
   shipping?: number;
@@ -190,6 +196,8 @@ export interface ComparisonOptions {
   maxSugar?: number;
   excludeIngredients?: string[];
   maxPriceAgeMs?: number;
+  maxPromotionAgeMs?: number;
+  market?: string;
   allowStale?: boolean;
   requireShipping?: boolean;
   requireManufacturer?: boolean;
@@ -225,7 +233,8 @@ export interface Metrics {
   totalMassG: number | null;
   totalVolumeMl: number | null;
   totalProteinG: number | null;
-  proteinBasis: 'package' | '100g' | '100ml' | null;
+  foodComponents: FoodComponentAccounting;
+  proteinBasis: 'package' | '100g' | '100ml' | 'components' | null;
   proteinConflict: boolean;
   costPerGramBeforeDelivery: number | null;
   costPerGramAfterDelivery: number | null;
@@ -272,6 +281,304 @@ export interface ComparisonReport {
   assumptions: Record<string, Json>;
   calculatedAt: string;
 }
+
+export interface ReviewedFoodSource {
+  sourceUrl: string;
+  sourceSha256: string;
+  evidenceId: string;
+  excerpt: string;
+  contextExcerpt?: string;
+  ocrId?: string;
+  reviewedBy: string;
+  reviewedAt: string;
+  invalidated?: boolean;
+}
+export interface FoodFact extends ReviewedFoodSource {
+  value: number;
+  unit: 'g' | 'ml' | 'g/100g' | 'g/100ml' | 'g/package' | 'count';
+  basis:
+    | 'one-inner-food-package'
+    | 'per-100g'
+    | 'per-100ml'
+    | 'paid-selling-unit'
+    | 'inner-food-package';
+  valueExcerpt: string;
+  unitExcerpt?: string;
+  basisExcerpt?: string;
+  sourceValue?: number;
+  sourceUnit?: 'g' | 'kg' | 'ml' | 'L' | 'count';
+}
+export interface FoodIdentity {
+  brand: string;
+  name: string;
+  flavour: string;
+  market: string;
+  packageType: string;
+  formulaRevision: string;
+  gtin?: string;
+  variantCode?: string;
+  netMassG?: number;
+  netVolumeMl?: number;
+  innerPackCount: 1;
+  currentFormula: true;
+}
+export interface BonusEligibility {
+  allocationId: string;
+  offerId: string;
+  sku: string | number;
+  orderQuantity: number;
+  units: number;
+  minOrderQuantity: number;
+  maxOrderQuantity: number;
+  stockUnits: number;
+  maxUnitsPerOrder: number;
+  confirmed: boolean;
+  available: boolean;
+  conditionsComplete: boolean;
+  conditionsSatisfied: boolean;
+  observedAt: string;
+  claims: Partial<
+    Record<
+      | 'orderQuantity'
+      | 'units'
+      | 'minOrderQuantity'
+      | 'maxOrderQuantity'
+      | 'stockUnits'
+      | 'maxUnitsPerOrder',
+      FoodFact
+    >
+  >;
+}
+export type FoodComponent =
+  | {
+      id: string;
+      kind: 'paid-food';
+      productId: string;
+      unitsPerSellingUnit: number;
+    }
+  | { id: string; kind: 'non-food'; name?: string }
+  | {
+      id: string;
+      kind: 'bonus-food';
+      product?: Product;
+      identity?: FoodIdentity;
+      sourceIdentity?: FoodIdentity;
+      review?: ReviewedFoodSource & { identityMatched: boolean };
+      facts?: Partial<
+        Record<
+          | 'netMassG'
+          | 'netVolumeMl'
+          | 'proteinPer100g'
+          | 'proteinPer100ml'
+          | 'proteinPerPackageG',
+          FoodFact
+        >
+      >;
+      evidenceIds?: string[];
+      eligibility?: BonusEligibility;
+      invalidated?: boolean;
+      evidenceValidation?: FoodComponentEvidenceValidation;
+    };
+export interface FoodComponentEvidenceValidation {
+  status: 'unconfirmed' | 'originals-validated';
+  checkedAt: string;
+  reasons: string[];
+  sources: Array<{
+    path?: string;
+    field?: string;
+    evidenceId: string;
+    sourceSha256: string;
+    sourceUrl?: string;
+    observedAt?: string;
+  }>;
+}
+export declare function validateFoodComponentEvidence(
+  store: AssociativeStore,
+  offers: Offer[],
+  options?: { manufacturerRegistry?: Manufacturer[] }
+): Promise<Offer[]>;
+export interface FoodTotals {
+  totalMassG: number | null;
+  totalVolumeMl: number | null;
+  totalProteinG: number | null;
+}
+export interface ConfirmedFoodBonus extends FoodTotals {
+  id: string;
+  kind: 'bonus-food';
+  status: 'confirmed';
+  allocationId: string;
+  units: number;
+  manufacturerVerified: boolean;
+  proteinConflict: boolean;
+  evidenceIds: string[];
+}
+export interface FoodComponentAccounting extends FoodTotals {
+  paidFood: Partial<FoodTotals> & {
+    productId: string;
+    units: number | null;
+    metadataIds: string[];
+  };
+  confirmedBonuses: ConfirmedFoodBonus[];
+  potentialBonuses: Array<{
+    id: string | null;
+    kind?: string;
+    status: 'potential';
+    reasons: string[];
+  }>;
+  nonFoodAccessories: Array<{
+    id: string;
+    name: string | null;
+    counted: false;
+  }>;
+  completeOffer: boolean;
+  problems: string[];
+  proteinConflict: boolean;
+}
+export declare function accountFoodComponents(
+  product: Product,
+  offer: Offer,
+  options?: ComparisonOptions,
+  paid?: Partial<FoodTotals>
+): FoodComponentAccounting;
+
+export interface BasketSourceMapping {
+  market: 'vn';
+  currency: 'VND';
+  deliveryArea: string;
+  destination: string;
+  sourceUrl: string;
+  sourceSha256: string;
+  observedAt: string;
+  evidenceId: string;
+  mappingReviewedBy: string;
+  selectors: {
+    destination: string;
+    shipping: string;
+    total: string;
+    coldChain?: string;
+  };
+  coldChainText?: string;
+  lines: Array<{
+    offerId: string;
+    sku: string;
+    quantity: number;
+    selectors: {
+      sku: string;
+      quantity: string;
+      unitPrice: string;
+      subtotal: string;
+    };
+  }>;
+  appliedDiscounts?: Array<{
+    id: string;
+    scope: 'merchandise' | 'shipping';
+    selector: string;
+  }>;
+}
+export interface BasketLine {
+  offerId: string;
+  sku: string;
+  quantity: number;
+  unitPrice: number;
+  subtotal: number;
+}
+export interface BasketQuote {
+  id: string;
+  basketIdentity: string;
+  market: 'vn';
+  currency: 'VND';
+  deliveryArea: string;
+  shippingDestination: string;
+  shipping: number;
+  merchandiseSubtotal: number;
+  discount: number;
+  total: number;
+  lines: BasketLine[];
+  appliedDiscounts: Array<{
+    id: string;
+    scope: 'merchandise' | 'shipping';
+    amount: number;
+    eligibility: 'applied-in-captured-basket';
+  }>;
+  coldChainConfirmed: boolean;
+  observedAt: string;
+  evidenceId: string;
+  sourceUrl: string;
+  sourceSha256: string;
+  sourceValidation: 'exact-checkout-fields';
+  mappingReviewedBy: string;
+  sourceMapping: BasketSourceMapping;
+  visibility?: 'public' | 'private';
+}
+export interface BasketComparisonOptions extends Omit<
+  ComparisonOptions,
+  'quantity' | 'shipping' | 'discount' | 'sort'
+> {
+  minMassG?: number;
+  minVolumeMl?: number;
+  minProteinG?: number;
+  sort?:
+    | 'costPerProteinG'
+    | 'costPerGramBeforeDelivery'
+    | 'costPerGramAfterDelivery'
+    | 'costPerMlBeforeDelivery'
+    | 'costPerMlAfterDelivery'
+    | 'costPerProteinGramBeforeDelivery'
+    | 'costPerProteinGramAfterDelivery'
+    | 'totalBeforeDelivery'
+    | 'totalAfterDelivery';
+}
+export interface BasketMetrics extends FoodTotals {
+  totalBeforeDelivery: number;
+  totalAfterDelivery: number;
+  shipping: number;
+  appliedDiscount: number;
+  costPerGramBeforeDelivery: number | null;
+  costPerGramAfterDelivery: number | null;
+  costPerMlBeforeDelivery: number | null;
+  costPerMlAfterDelivery: number | null;
+  costPerProteinGramBeforeDelivery: number | null;
+  costPerProteinGramAfterDelivery: number | null;
+}
+export interface BasketComparisonRow {
+  quote: BasketQuote;
+  lines?: ComparisonRow[];
+  eligible: boolean;
+  problems: string[];
+  metrics: BasketMetrics | null;
+}
+export interface BasketComparisonReport {
+  observations: BasketComparisonRow[];
+  ranked: BasketComparisonRow[];
+  excluded: BasketComparisonRow[];
+  assumptions: {
+    sort: string;
+    quoteCoverage: 'captured-exact-baskets-only';
+    allBasketCombinationsCollected: false;
+  };
+}
+export declare function basketIdentity(
+  lines: Array<Pick<BasketLine, 'offerId' | 'sku' | 'quantity'>>
+): string;
+export declare function extractBasketQuote(
+  html: Uint8Array | string,
+  input: BasketSourceMapping
+): BasketQuote;
+export declare function saveBasketQuote(
+  application: LazadaSearch,
+  input: BasketSourceMapping
+): Promise<BasketQuote>;
+export declare function captureBasketQuote(
+  application: LazadaSearch,
+  input: Omit<
+    BasketSourceMapping,
+    'sourceUrl' | 'sourceSha256' | 'observedAt' | 'evidenceId'
+  >
+): Promise<BasketQuote>;
+export declare function compareBaskets(
+  application: LazadaSearch,
+  options?: BasketComparisonOptions
+): Promise<BasketComparisonReport>;
 export interface CrossCheck {
   sourceAuthority?: string;
   checkedAt?: string;
@@ -640,7 +947,123 @@ export interface TranslationOptions {
   refresh?: boolean;
   sourceEvidenceId?: string;
   sourceEvidenceHash?: string;
+  protectedEntities?: string[];
 }
+export interface TranslationQuality {
+  fingerprint: string;
+  sourceSha256: string;
+  translatedSha256: string;
+  passed: boolean;
+  issues: string[];
+  protectedEntities: string[];
+  semanticAccuracyApproved: false;
+}
+export interface TranslationReview {
+  status: 'pending' | 'approved' | 'rejected';
+  reviewer?: string;
+  reviewedAt?: string;
+  sourceSha256?: string;
+  translatedSha256?: string;
+  qualityFingerprint?: string;
+}
+export interface ReviewedTranslationChunkProof {
+  sourceKind: string;
+  sourceRecordId: string;
+  path: string[];
+  originalSourceSha256: string;
+  chunkPartitionSha256: string;
+  chunks: Array<{
+    sourceId: string;
+    chunkIndex: number;
+    offset: number;
+    sourceSha256: string;
+    translationId: string;
+    translatedSha256: string;
+    qualityFingerprint: string;
+    reviewer: string;
+    reviewedAt: string;
+  }>;
+  assemblyQuality: TranslationQuality;
+  reviewBasis: 'reviewed-chunks';
+}
+export interface OfferPresentation {
+  presentationOnly: true;
+  authoritative: false;
+  evidenceIds: string[];
+  commercialText: Array<{
+    path: string[];
+    presentation: PresentationField;
+  }>;
+  seller?: PresentationField;
+  sellerName?: PresentationField;
+  sellerText?: PresentationField;
+  shippingText?: PresentationField;
+  promotionText?: PresentationField;
+  conditions?: PresentationField;
+  condition?: PresentationField;
+  priceText?: PresentationField;
+  originalPriceText?: PresentationField;
+}
+export interface PresentationField {
+  originalText: string;
+  sourceSha256: string;
+  text: string;
+  language: string;
+  status:
+    | 'reviewed'
+    | 'preview-unreviewed'
+    | 'review-pending'
+    | 'translation-pending'
+    | 'translation-needs-chunk-review';
+  presentationOnly: true;
+  authoritative: false;
+  translationId?: string;
+  translatedSha256?: string;
+  providerId?: string;
+  providerVersion?: string;
+  qualityFingerprint?: string;
+  chunkProof?: ReviewedTranslationChunkProof;
+}
+export interface ProductPresentation {
+  presentationOnly: true;
+  authoritative: false;
+  evidenceIds: string[];
+  title?: PresentationField;
+  description?: PresentationField;
+  ingredients: Array<PresentationField | undefined>;
+  selectedVariant: Array<{
+    text?: string;
+    selected?: boolean;
+    sku?: string;
+    presentation?: PresentationField;
+  }>;
+}
+export declare const TRANSLATION_QUALITY_FINGERPRINT: string;
+export declare function checkTranslationQuality(
+  originalText: string,
+  translatedText: string,
+  options?: Pick<
+    TranslationOptions,
+    'sourceLanguage' | 'targetLanguage' | 'protectedEntities'
+  >
+): TranslationQuality;
+export declare function translationReviewAccepted(
+  record: TranslationRecord
+): boolean;
+export declare function applyComparisonTranslations(
+  report: ComparisonReport,
+  translator: CachedTranslator,
+  options?: Pick<TranslationOptions, 'sourceLanguage' | 'targetLanguage'> & {
+    requireReviewed?: boolean;
+  }
+): Promise<ComparisonReport>;
+export declare function applyBasketComparisonTranslations(
+  report: BasketComparisonReport,
+  translator: CachedTranslator,
+  options?: Pick<TranslationOptions, 'sourceLanguage' | 'targetLanguage'> & {
+    requireReviewed?: boolean;
+  }
+): Promise<BasketComparisonReport>;
 export interface TranslationRecord {
   id: string;
   originalText: string;
@@ -659,6 +1082,15 @@ export interface TranslationRecord {
   cacheHit: boolean;
   sourceEvidenceId?: string;
   sourceEvidenceHash?: string;
+  candidateText?: string;
+  candidateSha256?: string;
+  qualityChecks?: TranslationQuality;
+  review?: TranslationReview;
+  acceptance?:
+    | 'unsuitable-presentation'
+    | 'quality-checked-review-pending'
+    | 'reviewed-presentation'
+    | 'rejected-presentation';
 }
 export interface TranslationInput {
   originalText: string;
@@ -699,12 +1131,22 @@ export declare class CachedTranslator {
     text: string,
     options?: TranslationOptions
   ): Promise<TranslationRecord | undefined>;
+  review(
+    id: string,
+    input: {
+      sourceSha256: string;
+      translatedSha256: string;
+      reviewer: string;
+      decision: 'approved' | 'rejected';
+    }
+  ): Promise<TranslationRecord>;
 }
 export interface ProductTranslationReport {
   productId: string;
   presentationOnly: true;
   authoritative: false;
   complete: boolean;
+  reviewedComplete: boolean;
   translations: Array<TranslationRecord & { field: string; index: number }>;
 }
 export interface CatalogTranslationOptions extends TranslationOptions {
@@ -720,6 +1162,7 @@ export interface CatalogTranslationJob {
   fingerprint: string;
   status: 'pending' | 'partial' | 'stopped' | 'complete';
   complete: boolean;
+  reviewedComplete: boolean;
   presentationOnly: true;
   authoritative: false;
   cacheOnly: boolean;
@@ -728,6 +1171,8 @@ export interface CatalogTranslationJob {
     total: number;
     uniqueTexts: number;
     translated: number;
+    reviewed: number;
+    reviewPending: number;
     pending: number;
     remaining: number;
   };
@@ -861,6 +1306,16 @@ export declare class LazadaSearch {
     evidenceId: string
   ): Promise<Product>;
   quote(offerId: string, input: Partial<Offer>): Promise<Offer>;
+  saveBasketQuote(input: BasketSourceMapping): Promise<BasketQuote>;
+  captureBasketQuote(
+    input: Omit<
+      BasketSourceMapping,
+      'sourceUrl' | 'sourceSha256' | 'observedAt' | 'evidenceId'
+    >
+  ): Promise<BasketQuote>;
+  compareBaskets(
+    options?: BasketComparisonOptions
+  ): Promise<BasketComparisonReport>;
   delivery(
     url: string,
     options?: { province?: string; locality?: string; refresh?: boolean }

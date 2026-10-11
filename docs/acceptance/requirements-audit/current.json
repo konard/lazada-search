@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T08:09:28.620Z",
-  "catalogObservedAt": "2026-10-11T08:06:57.153Z",
+  "checkedAt": "2026-10-11T08:49:18.181Z",
+  "catalogObservedAt": "2026-10-11T08:46:25.800Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,35 +21,35 @@
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1348,
-    "missingSkuPrices": 326,
+    "missingListings": 1323,
+    "missingSkuPrices": 341,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 6403,
-    "specifications": 296,
+    "specifications": 321,
     "verifiedProducts": 14,
     "excludedCategoryListings": 371,
-    "excludedExactOptions": 515
+    "excludedExactOptions": 534
   },
   "broaderArchive": {
-    "missingListings": 1499,
-    "missingSkuPrices": 881,
+    "missingListings": 1474,
+    "missingSkuPrices": 915,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 308,
+    "specifications": 333,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 285,
-    "strictWheySkus": 76,
+    "capturedPowderSkus": 310,
+    "strictWheySkus": 87,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 67,
-    "discoveryTasks": 6117,
-    "pendingSkuTasks": 331,
-    "excludedSkuOptions": 518,
-    "originalSourcePointers": 1973,
+    "missingFactoryMatches": 79,
+    "discoveryTasks": 6092,
+    "pendingSkuTasks": 346,
+    "excludedSkuOptions": 537,
+    "originalSourcePointers": 2012,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
@@ -244,17 +244,21 @@
       "id": "R017",
       "requirement": "Parse all Vietnamese marketplace text and provide proper English",
       "status": "partial",
-      "mechanicsStatus": "cached-number-unit-basis-identifier-guards-source-bound-reviews-and-English-overlays-implemented",
-      "realDataAcceptance": "pending-configured-provider-whole-catalog-semantic-reviews-and-reviewed-chunk-reassembly",
+      "mechanicsStatus": "cached-source-bound-reviews-chunk-reassembly-and-commercial-English-overlays-implemented",
+      "realDataAcceptance": "pending-configured-provider-and-whole-catalog-semantic-reviews",
       "evidence": [
         "src/translation-quality.js",
         "src/translation-presentation.js",
         "src/translation.js",
         "tests/translation-quality.test.js",
         "tests/e2e/translation.test.js",
-        "docs/translation.md"
+        "docs/translation.md",
+        "src/translation-presentation-chunks.js",
+        "tests/translation-presentation-chunks.test.js",
+        "tests/translation-presentation-baskets.test.js",
+        "tests/e2e/basket-quotes.test.js"
       ],
-      "finding": "English presentation uses reviewed cached text only by default and preserves source fields and metrics. Quality and semantic-review acceptance are separate; oversized whole fields stay original pending reviewed reassembly."
+      "finding": "Cached whole-field or completely reviewed contiguous chunk English presentation preserves original Vietnamese, exact figures, identifiers, conditions and metrics. Nested basket lines and best-by-category results share the same cached overlay. Commercial text requires planned public field paths; private destinations and credentials remain excluded. Provider configuration and whole-catalog semantic acceptance remain pending."
     },
     {
       "id": "R018",
@@ -503,9 +507,15 @@
         "src/products.js",
         "tests/food-components.test.js",
         "tests/food-component-persistence.test.js",
-        "docs/food-components.md"
+        "docs/food-components.md",
+        "src/food-component-evidence.js",
+        "tests/food-component-evidence.test.js",
+        "src/comparison-inputs.js",
+        "docs/acceptance/bonus-food-followup/review.json",
+        "docs/acceptance/bonus-food-followup/integration.json",
+        "tests/bonus-paid-mass-hold.test.js"
       ],
-      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require original reviewed facts and exact SKU/order quantity, count once, and cannot reuse one allocation on multiple lines."
+      "finding": "Issue14 real gift remains unverified. Incomplete gifts stay potential. Confirmed gifts require stored original bytes/identity/quantity evidence, physical-unit-bound excerpts and factory review; binary labels require replayable original/crop/OCR or actual source-bound visual review. Exact SKU/order quantities count once; one allocation cannot recur on multiple basket lines. The advertised two-bag real offer also has a disputed per-pouch mass; the shared original-backed hold removes its4000g/447.50VND/g calculation without replacing it with a guess."
     }
   ],
   "githubIssues": [
@@ -615,9 +625,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "98de619cfe5de142c558d06b9090f063049acb58c4b9ef19b94b406cdca38ce7",
-      "bytes": 34228967,
-      "observedAt": "2026-10-11T08:06:57.153Z"
+      "sha256": "01a2d35068968ff86d750340c047ece138d05258fe796f1bc66203045b0d3989",
+      "bytes": 34896709,
+      "observedAt": "2026-10-11T08:46:25.800Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -627,9 +637,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "09f39b4507411276cfcb42c35a4b93e1e629554fb48c03d3453d9679bae24649",
-      "bytes": 24986,
-      "observedAt": "2026-10-11T06:43:51.017530+00:00"
+      "sha256": "748c8eacc0cb394ae07fcb37ba146ad0ec1bd9a20f3130739870c1cb6259f626",
+      "bytes": 26490,
+      "observedAt": "2026-10-11T08:44:43.901936+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -645,15 +655,15 @@
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "5d1c9259a3c26eb3b062b1a4204809acb02b3c7e84b73011c3376b650f8cf9ab",
+      "sha256": "be33db0ec2815b168733f7366709193bc5a1df4e59c58844ec322c363a0bb1bf",
       "bytes": 193637,
-      "observedAt": "2026-10-11T08:07:17.849Z"
+      "observedAt": "2026-10-11T08:46:40.997Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "81c79dc5812ff3c75c12c8501c5f855a75df2ac7c5706ff5c8fa77a836e1b512",
-      "bytes": 11915524,
-      "observedAt": "2026-10-11T08:07:23.244Z"
+      "sha256": "1c9267c224ec4504a47eaa60d7619b0a3a65311951ec780473ca9e7a9e4b06e9",
+      "bytes": 12060333,
+      "observedAt": "2026-10-11T08:46:45.935Z"
     }
   ],
   "downloads": 0,

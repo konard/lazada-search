@@ -228,6 +228,7 @@ async function captureTile({ browser, locale, theme, contextLocale, url }) {
 
   const commander = makeBrowserCommander({
     page,
+    debug: false,
     enableNavigationManager: false,
     enableNetworkTracking: false,
     verbose: VERBOSE,

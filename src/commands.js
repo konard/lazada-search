@@ -37,6 +37,10 @@ Commands:
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
   review-category <url> <review.json> Review a listing category across all its SKUs
   quote <offer-id> <JSON>        Record shipping, bulk tiers and delivery checks
+  save-basket-quote <JSON file>  Validate exact cart quantities, freight and applied discounts
+  capture-basket-quote <JSON file> Read the current prepared private checkout without changing it
+  compare-baskets               Rank captured exact baskets; shipping and discounts count once
+  review-translation <id> <JSON file> Review exact cached source and English text hashes
   export                        Export the associative network (--format lino|links)
   archive                       Commit-ready public sources, OCR, .lino and binary snapshot
   archive-verify                Check every archived source and both conversions offline
@@ -76,6 +80,7 @@ Options:
   --category whey|protein-powder|chocolate-ice-cream --protein-type isolate|concentrate|blend
   --flavour-scope chocolate-or-unflavoured  Plain/chocolate powders and strictly chocolate ice cream
   --quantity 10 --currency VND --shipping 30000 --discount 50000
+  --min-mass-g 5000 --min-volume-ml 5000 --min-protein-g 4000  Filter captured exact baskets
   --min-protein 70 --max-sugar 5 --exclude-ingredient sucralose
   --allow-stale --no-require-shipping --sort costPerProteinG|costPerKg|totalCost|proteinPer100g
   --sort costPerGramBeforeDelivery|costPerGramAfterDelivery|costPerMlBeforeDelivery|costPerMlAfterDelivery
@@ -84,6 +89,30 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'save-basket-quote':
+    case 'capture-basket-quote': {
+      const mapping = JSON.parse(
+        await readFile(required(args[0], 'Basket mapping JSON file'), 'utf8')
+      );
+      return command === 'save-basket-quote'
+        ? application.saveBasketQuote(mapping)
+        : application.captureBasketQuote(mapping);
+    }
+    case 'compare-baskets':
+      return application.compareBaskets({
+        ...options,
+        ...comparisonOptions(options),
+      });
+    case 'review-translation':
+      return application.translator.review(
+        required(args[0], 'Translation ID'),
+        JSON.parse(
+          await readFile(
+            required(args[1], 'Translation review JSON file'),
+            'utf8'
+          )
+        )
+      );
     case 'replay-captures':
       return replayHistoricalCaptures(application);
     case 'translate-catalog':

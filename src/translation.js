@@ -1,6 +1,11 @@
 import { DomainScheduler } from './cache.js';
 import { sha256 } from './util.js';
 import { assertCollectionRunning, stopForChallenge } from './page-challenge.js';
+import {
+  checkTranslationQuality,
+  translationEntities,
+  translationReviewAccepted,
+} from './translation-quality.js';
 
 const language = (value) => {
   if (
@@ -223,6 +228,7 @@ export class CachedTranslator {
       refresh = false,
       sourceEvidenceId,
       sourceEvidenceHash,
+      protectedEntities = [],
     } = {}
   ) {
     const association = sourceAssociation(sourceEvidenceId, sourceEvidenceHash);
@@ -232,11 +238,14 @@ export class CachedTranslator {
       sourceLanguage,
       targetLanguage
     );
-    const key = `${base.id}:${refresh}`;
+    const entities = translationEntities(originalText, protectedEntities);
+    const key = `${base.id}:${refresh}:${sha256(JSON.stringify(entities))}`;
     if (!this.pending.has(key)) {
       this.pending.set(
         key,
-        this.obtain(base, refresh).finally(() => this.pending.delete(key))
+        this.obtain(base, refresh, entities).finally(() =>
+          this.pending.delete(key)
+        )
       );
     }
     const result = await this.pending.get(key);
@@ -252,7 +261,11 @@ export class CachedTranslator {
 
   async cached(
     originalText,
-    { sourceLanguage = 'vi', targetLanguage = 'en' } = {}
+    {
+      sourceLanguage = 'vi',
+      targetLanguage = 'en',
+      protectedEntities = [],
+    } = {}
   ) {
     const base = translationBase(
       this,
@@ -261,37 +274,30 @@ export class CachedTranslator {
       targetLanguage
     );
     const record = await this.store.get('translation', base.id);
-    return this.valid(record, base) ? { ...record, cacheHit: true } : undefined;
+    return this.validated(
+      record,
+      base,
+      translationEntities(originalText, protectedEntities)
+    );
   }
 
-  async obtain(base, refresh) {
+  async obtain(base, refresh, protectedEntities) {
     const cached = await this.store.get('translation', base.id);
-    if (!refresh && this.valid(cached, base)) {
-      return { ...cached, cacheHit: true };
+    const validated = this.validated(cached, base, protectedEntities);
+    if (!refresh && validated) {
+      return validated;
     }
     let reason = this.offline
       ? refresh
         ? 'offline-refresh-pending'
         : 'offline-cache-miss'
       : 'provider-not-configured';
+    if (!refresh && cached?.status === 'translated' && !validated) {
+      reason = 'cached-translation-unsuitable';
+    }
     if (!this.offline && this.provider) {
       try {
-        const translatedText = await this.request(base);
-        await assertCollectionRunning(this.store);
-        if (
-          typeof translatedText !== 'string' ||
-          !translatedText.trim() ||
-          Buffer.byteLength(translatedText, 'utf8') > 2097152
-        ) {
-          throw new Error('Invalid translated text');
-        }
-        const saved = await this.store.put('translation', {
-          ...base,
-          status: 'translated',
-          translatedText,
-          translatedSha256: sha256(Buffer.from(translatedText, 'utf8')),
-          translatedAt: new Date().toISOString(),
-        });
+        const saved = await this.generate(base, protectedEntities);
         return { ...saved, cacheHit: false };
       } catch (error) {
         // Provider errors may contain credentials or response bodies. Never persist them.
@@ -302,24 +308,187 @@ export class CachedTranslator {
       }
     }
     return {
-      ...(await this.store.put('translation', {
-        ...base,
-        status: 'pending',
-        reason,
-      })),
+      ...(await this.savePending(base, reason, cached, protectedEntities)),
       cacheHit: false,
     };
+  }
+
+  async generate(base, protectedEntities) {
+    const translatedText = await this.request(base);
+    await assertCollectionRunning(this.store);
+    if (
+      typeof translatedText !== 'string' ||
+      !translatedText.trim() ||
+      Buffer.byteLength(translatedText, 'utf8') > 2097152
+    ) {
+      throw new Error('Invalid translated text');
+    }
+    const qualityChecks = checkTranslationQuality(
+      base.originalText,
+      translatedText,
+      { ...base, protectedEntities }
+    );
+    return this.saveCandidate(base, translatedText, qualityChecks);
+  }
+
+  savePending(base, reason, cached, protectedEntities) {
+    const candidate =
+      reason === 'cached-translation-unsuitable' &&
+      typeof cached.translatedText === 'string' &&
+      Buffer.byteLength(cached.translatedText, 'utf8') <= 2097152
+        ? cached.translatedText
+        : undefined;
+    return this.store.put('translation', {
+      ...base,
+      status: 'pending',
+      reason,
+      ...(candidate !== undefined
+        ? {
+            candidateText: candidate,
+            candidateSha256: sha256(Buffer.from(candidate, 'utf8')),
+            qualityChecks: checkTranslationQuality(
+              base.originalText,
+              candidate,
+              { ...base, protectedEntities }
+            ),
+            review: { status: 'pending' },
+            acceptance: 'unsuitable-presentation',
+          }
+        : {}),
+    });
   }
 
   valid(cached, base) {
     return (
       cached?.status === 'translated' &&
+      cached.review?.status !== 'rejected' &&
       Object.entries(base).every(([key, value]) => cached[key] === value) &&
       typeof cached.translatedText === 'string' &&
       cached.translatedText.trim() &&
+      Buffer.byteLength(cached.translatedText, 'utf8') <= 2097152 &&
       cached.translatedSha256 ===
         sha256(Buffer.from(cached.translatedText, 'utf8'))
     );
+  }
+
+  validated(cached, base, protectedEntities = []) {
+    if (!this.valid(cached, base)) {
+      return undefined;
+    }
+    if (
+      cached.qualityChecks?.protectedEntities !== undefined &&
+      (!Array.isArray(cached.qualityChecks.protectedEntities) ||
+        cached.qualityChecks.protectedEntities.some(
+          (entity) =>
+            typeof entity !== 'string' || !entity.trim() || entity.length > 512
+        ))
+    ) {
+      return undefined;
+    }
+    const qualityChecks = checkTranslationQuality(
+      base.originalText,
+      cached.translatedText,
+      {
+        ...base,
+        protectedEntities: [
+          ...new Set([
+            ...(cached.qualityChecks?.protectedEntities || []),
+            ...protectedEntities,
+          ]),
+        ],
+      }
+    );
+    if (!qualityChecks.passed) {
+      return undefined;
+    }
+    const result = { ...cached, qualityChecks, cacheHit: true };
+    result.review = translationReviewAccepted(result)
+      ? cached.review
+      : { status: 'pending' };
+    result.acceptance =
+      result.review.status === 'approved'
+        ? 'reviewed-presentation'
+        : 'quality-checked-review-pending';
+    return result;
+  }
+
+  saveCandidate(base, text, qualityChecks) {
+    const accepted = qualityChecks.passed;
+    return this.store.put('translation', {
+      ...base,
+      status: accepted ? 'translated' : 'pending',
+      ...(accepted
+        ? {
+            translatedText: text,
+            translatedSha256: qualityChecks.translatedSha256,
+            translatedAt: new Date().toISOString(),
+          }
+        : {
+            reason: 'translation-quality-failed',
+            candidateText: text,
+            candidateSha256: qualityChecks.translatedSha256,
+          }),
+      qualityChecks,
+      review: { status: 'pending' },
+      acceptance: accepted
+        ? 'quality-checked-review-pending'
+        : 'unsuitable-presentation',
+    });
+  }
+
+  /** An operator review cannot override a failed quantity/entity check. */
+  async review(
+    id,
+    { sourceSha256, translatedSha256, reviewer, decision } = {}
+  ) {
+    if (
+      !['approved', 'rejected'].includes(decision) ||
+      typeof reviewer !== 'string' ||
+      !reviewer.trim() ||
+      reviewer.length > 128
+    ) {
+      throw new Error(
+        'Translation review requires an explicit decision and reviewer'
+      );
+    }
+    const record = await this.store.get('translation', id);
+    if (
+      !record ||
+      record.providerId !== this.providerId ||
+      record.providerVersion !== this.providerVersion ||
+      record.sourceSha256 !== sourceSha256 ||
+      record.translatedSha256 !== translatedSha256
+    ) {
+      throw new Error(
+        'Translation review must match the exact source, text and provider'
+      );
+    }
+    const base = translationBase(
+      this,
+      record.originalText,
+      record.sourceLanguage,
+      record.targetLanguage
+    );
+    const checked = this.validated(record, base);
+    if (!checked) {
+      throw new Error('Translation quality checks must pass before review');
+    }
+    return this.store.put('translation', {
+      ...record,
+      qualityChecks: checked.qualityChecks,
+      review: {
+        status: decision,
+        reviewer,
+        reviewedAt: new Date().toISOString(),
+        sourceSha256,
+        translatedSha256,
+        qualityFingerprint: checked.qualityChecks.fingerprint,
+      },
+      acceptance:
+        decision === 'approved'
+          ? 'reviewed-presentation'
+          : 'rejected-presentation',
+    });
   }
 
   async request(base) {
@@ -358,7 +527,13 @@ export async function translateProductText(
   });
   const translations = [];
   for (const { field, index, text } of texts) {
-    const translated = await application.translate(text, options);
+    const translated = await application.translate(text, {
+      ...options,
+      protectedEntities: [
+        ...(options.protectedEntities || []),
+        ...(product.brand ? [product.brand] : []),
+      ],
+    });
     await application.store.put('translation-source', {
       id: `translation-product-source:${sha256(JSON.stringify([productId, field, index, translated.id]))}`,
       productId,
@@ -376,6 +551,8 @@ export async function translateProductText(
     complete:
       translations.length > 0 &&
       translations.every((item) => item.status === 'translated'),
+    reviewedComplete:
+      translations.length > 0 && translations.every(translationReviewAccepted),
     translations,
   };
 }

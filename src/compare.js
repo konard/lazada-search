@@ -4,6 +4,7 @@ import { matchesFlavourScope } from './flavour-scope.js';
 import { uniqueComparisons } from './comparison-observations.js';
 import { proteinAmount } from './protein-amount.js';
 import { deliveryContextMatches } from './delivery-context.js';
+import { accountFoodComponents } from './food-components.js';
 
 function evidenceProblem(product, field) {
   if (product.pendingSpecificationReview?.includes(field)) {
@@ -27,6 +28,16 @@ function evidenceProblem(product, field) {
     return `${field} needs evidence review`;
   }
   return undefined;
+}
+
+function componentProteinDensity(product, foodComponents) {
+  if (!foodComponents.confirmedBonuses.length) {
+    return product.proteinPer100g ?? null;
+  }
+  return foodComponents.totalMassG > 0 &&
+    Number.isFinite(foodComponents.totalProteinG)
+    ? (100 * foodComponents.totalProteinG) / foodComponents.totalMassG
+    : null;
 }
 
 export function calculateOffer(product, offer, options = {}) {
@@ -161,10 +172,10 @@ export function calculateOffer(product, offer, options = {}) {
   const packages = product.packageCountUnresolved
     ? undefined
     : product.packCount || 1;
-  const totalMassG = product.pendingSpecificationReview?.includes('netMassG')
+  let totalMassG = product.pendingSpecificationReview?.includes('netMassG')
     ? undefined
     : product.netMassG * packages * quantity;
-  const totalVolumeMl = product.pendingSpecificationReview?.includes(
+  let totalVolumeMl = product.pendingSpecificationReview?.includes(
     'netVolumeMl'
   )
     ? undefined
@@ -175,7 +186,7 @@ export function calculateOffer(product, offer, options = {}) {
       evidenceProblem(product, field) ? undefined : product[field],
     ])
   );
-  const {
+  let {
     proteinG: totalProteinG,
     proteinBasis,
     proteinConflict,
@@ -185,6 +196,20 @@ export function calculateOffer(product, offer, options = {}) {
     evidenceProblem(product, 'netVolumeMl') ? undefined : totalVolumeMl,
     packages * quantity
   );
+  const foodComponents = accountFoodComponents(
+    product,
+    offer,
+    { ...options, quantity, now },
+    { totalMassG, totalVolumeMl, totalProteinG }
+  );
+  ({ totalMassG, totalVolumeMl, totalProteinG } = foodComponents);
+  proteinConflict = [proteinConflict, foodComponents.proteinConflict].includes(
+    true
+  );
+  if (foodComponents.confirmedBonuses.length) {
+    proteinBasis = totalProteinG === null ? null : 'components';
+  }
+  problems.push(...foodComponents.problems);
   if (proteinConflict) {
     problems.push(
       'Conflicting protein amounts across declared nutrition bases'
@@ -201,6 +226,11 @@ export function calculateOffer(product, offer, options = {}) {
       ? (scale * total) / amount
       : null;
   const nutritionRatio = (denominator, scale) => {
+    if (foodComponents.confirmedBonuses.length) {
+      // Mixed-component sugar/energy ratios need independently sourced
+      // amounts for every food. Retaining the paid-only ratio is misleading.
+      return null;
+    }
     for (const basis of ['100g', '100ml']) {
       const numerator = product[`proteinPer${basis}`];
       const value = product[`${denominator}Per${basis}`];
@@ -241,6 +271,7 @@ export function calculateOffer(product, offer, options = {}) {
     totalMassG: Number.isFinite(totalMassG) ? totalMassG : null,
     totalVolumeMl: Number.isFinite(totalVolumeMl) ? totalVolumeMl : null,
     totalProteinG: Number.isFinite(totalProteinG) ? totalProteinG : null,
+    foodComponents,
     proteinBasis,
     proteinConflict,
     costPerGramBeforeDelivery: unitCost(totalBeforeDelivery, totalMassG),
@@ -271,7 +302,7 @@ export function calculateOffer(product, offer, options = {}) {
     costPer25gProtein:
       totalProteinG > 0 ? (25 * totalCost) / totalProteinG : null,
     costPerKg: totalMassG > 0 ? (1000 * totalCost) / totalMassG : null,
-    proteinPer100g: product.proteinPer100g ?? null,
+    proteinPer100g: componentProteinDensity(product, foodComponents),
     proteinPer100kcal: nutritionRatio('kcal', 100),
     sugarPer25gProtein: nutritionRatio('sugar', 25),
     priceAgeMs,
@@ -283,7 +314,11 @@ export function calculateOffer(product, offer, options = {}) {
     product,
     offer,
     metrics,
-    manufacturerVerified: specificationProblems(product).length === 0,
+    manufacturerVerified:
+      specificationProblems(product).length === 0 &&
+      foodComponents.confirmedBonuses.every(
+        (bonus) => bonus.manufacturerVerified
+      ),
     eligible: problems.length === 0,
     problems,
   };

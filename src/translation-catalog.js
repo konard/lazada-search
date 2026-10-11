@@ -2,8 +2,13 @@ import { randomUUID } from 'node:crypto';
 import { sha256, positive } from './util.js';
 import { COLLECTION_STOP_ID } from './page-challenge.js';
 import { parseHTML } from 'linkedom';
+import {
+  TRANSLATION_QUALITY_FINGERPRINT,
+  translationEntities,
+  translationReviewAccepted,
+} from './translation-quality.js';
 
-const schemaVersion = 1;
+const schemaVersion = 2;
 const kinds = [
   'product',
   'offer',
@@ -26,6 +31,7 @@ const textFields = new Set([
   'flavour',
   'flavor',
   'sellerName',
+  'seller',
   'sellerText',
   'priceText',
   'originalPriceText',
@@ -143,24 +149,32 @@ function recordItems(kind, record, scope) {
       return [];
     }
     const originalSourceSha256 = digest(text);
-    return chunks(text, scope.maxChunkBytes).map(
-      ({ text: originalText, offset }, index) => ({
-        id: `translation-catalog-source:${digest(JSON.stringify([kind, record.id, path, originalSourceSha256, index]))}`,
-        sourceKind: kind,
-        sourceRecordId: record.id,
-        path,
-        chunkIndex: index,
-        offset,
-        originalText,
-        sourceSha256: digest(originalText),
-        originalSourceSha256,
-        ...(sourceEvidenceHash ? { sourceEvidenceHash } : {}),
-        evidenceIds:
-          kind === 'evidence' ? [record.id] : [...(record.evidenceIds || [])],
-        presentationOnly: true,
-        authoritative: false,
-      })
+    const pieces = chunks(text, scope.maxChunkBytes);
+    const chunkPartitionSha256 = digest(
+      JSON.stringify(pieces.map((piece) => [piece.offset, digest(piece.text)]))
     );
+    return pieces.map(({ text: originalText, offset }, index) => ({
+      id: `translation-catalog-source:${digest(JSON.stringify([kind, record.id, path, originalSourceSha256, chunkPartitionSha256, index]))}`,
+      sourceKind: kind,
+      sourceRecordId: record.id,
+      path,
+      chunkIndex: index,
+      chunkCount: pieces.length,
+      chunkPartitionSha256,
+      offset,
+      originalText,
+      sourceSha256: digest(originalText),
+      originalSourceSha256,
+      ...(sourceEvidenceHash ? { sourceEvidenceHash } : {}),
+      evidenceIds:
+        kind === 'evidence' ? [record.id] : [...(record.evidenceIds || [])],
+      presentationOnly: true,
+      authoritative: false,
+      protectedEntities: translationEntities(
+        originalText,
+        record.brand ? [record.brand] : []
+      ),
+    }));
   });
 }
 
@@ -300,7 +314,13 @@ export async function planCatalogTranslation(application, options = {}) {
   }
   items.sort((left, right) => left.id.localeCompare(right.id));
   const fingerprint = digest(
-    JSON.stringify([schemaVersion, scope, items.map((item) => item.id), gaps])
+    JSON.stringify([
+      schemaVersion,
+      TRANSLATION_QUALITY_FINGERPRINT,
+      scope,
+      items.map((item) => [item.id, item.protectedEntities]),
+      gaps,
+    ])
   );
   return {
     schemaVersion,
@@ -356,6 +376,9 @@ function summary(job, states, plan, run) {
   ).length;
   const pending = states.filter((item) => item.status === 'pending').length;
   const remaining = states.length - translated - pending;
+  const reviewed = states.filter(
+    (item) => item.status === 'translated' && item.reviewAccepted
+  ).length;
   const complete =
     states.length > 0 && translated === states.length && !plan.gaps.length;
   const reasons = {};
@@ -373,12 +396,15 @@ function summary(job, states, plan, run) {
           ? 'partial'
           : 'pending',
     complete,
+    reviewedComplete: complete && reviewed === states.length,
     counts: {
       total: states.length,
       uniqueTexts: plan.uniqueTexts,
       translated,
       pending,
       remaining,
+      reviewed,
+      reviewPending: translated - reviewed,
     },
     lastRun: {
       processed: run.processed,
@@ -400,7 +426,10 @@ async function existingState(application, job, item, compatible) {
   const previous = compatible
     ? await application.store.get('translation-catalog-item', id)
     : undefined;
-  const cached = await application.translator.cached(item.originalText, job);
+  const cached = await application.translator.cached(item.originalText, {
+    ...job,
+    protectedEntities: item.protectedEntities,
+  });
   const fresh =
     cached &&
     (!job.refreshStartedAt ||
@@ -410,6 +439,7 @@ async function existingState(application, job, item, compatible) {
     id,
     jobId: job.id,
     sourceId: item.id,
+    reviewAccepted: false,
     status: fresh
       ? 'translated'
       : previous?.status === 'pending'
@@ -417,7 +447,11 @@ async function existingState(application, job, item, compatible) {
         : 'unprocessed',
     ...(fresh ? { reason: undefined } : {}),
     ...(fresh
-      ? { translationId: cached.id, translatedSha256: cached.translatedSha256 }
+      ? {
+          translationId: cached.id,
+          translatedSha256: cached.translatedSha256,
+          reviewAccepted: translationReviewAccepted(cached),
+        }
       : {}),
   };
 }
@@ -465,10 +499,14 @@ async function processItem(application, job, item, state, run) {
       : 'cache-only-miss';
     return;
   }
-  const fresh = await application.translator.cached(item.originalText, job);
+  const fresh = await application.translator.cached(item.originalText, {
+    ...job,
+    protectedEntities: item.protectedEntities,
+  });
   const result = await application.translate(item.originalText, {
     sourceLanguage: job.sourceLanguage,
     targetLanguage: job.targetLanguage,
+    protectedEntities: item.protectedEntities,
     refresh: Boolean(
       job.refreshStartedAt &&
       (!fresh ||
@@ -482,10 +520,12 @@ async function processItem(application, job, item, state, run) {
   state.translationId = result.id;
   if (result.status === 'translated') {
     state.translatedSha256 = result.translatedSha256;
+    state.reviewAccepted = translationReviewAccepted(result);
     run.cacheHits += Number(result.cacheHit);
     run.providerResults += Number(!result.cacheHit);
   } else {
     delete state.translatedSha256;
+    delete state.reviewAccepted;
     state.reason = result.reason;
     run.stopped = result.reason === 'collection-stopped';
   }
