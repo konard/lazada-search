@@ -22,6 +22,13 @@ import { applyListingCategoryReview } from './category-review.js';
 import { catalogProducts, resolveProductReviews } from './catalog-products.js';
 import { canonicalUrl, listingKey, positive, sha256 } from './util.js';
 import { CachedTranslator, translateProductText } from './translation.js';
+import { ManufacturerResearch } from './manufacturer-research.js';
+import { translateCatalog, translationStatus } from './translation-catalog.js';
+import {
+  applyListingAvailability,
+  ListingUnavailableError,
+  recordListingUnavailable,
+} from './availability.js';
 
 export const MARKETS = {
   vn: {
@@ -113,8 +120,35 @@ export class LazadaSearch {
     return this.translator.translate(text, options);
   }
 
+  manufacturerResearch(plan) {
+    if (plan?.registry !== undefined) {
+      throw new Error(
+        'Research plans cannot replace the configured trusted manufacturer registry'
+      );
+    }
+    return new ManufacturerResearch({
+      store: this.store,
+      registry: this.manufacturerRegistry.map((entry) => ({
+        brand: entry.name,
+        domains: entry.domains,
+        assetDomains: entry.assetDomains || [],
+      })),
+      scheduler: this.cache.scheduler,
+      offline: this.cache.offline,
+      ocr: this.ocr,
+    }).run(plan);
+  }
+
   translateProduct(productId, options) {
     return translateProductText(this, productId, options);
+  }
+
+  translateCatalog(options) {
+    return translateCatalog(this, options);
+  }
+
+  translationStatus(options) {
+    return translationStatus(this, options);
   }
 
   assertMarket(url) {
@@ -132,6 +166,8 @@ export class LazadaSearch {
     discoveries = [],
     skuInventories = [],
     crawls = [],
+    availability = [],
+    invalidations = [],
   }) {
     const validProducts = products.map(validateProduct);
     const validOffers = offers.map(validateOffer);
@@ -148,6 +184,8 @@ export class LazadaSearch {
       ['discovery', discoveries],
       ['sku-inventory', skuInventories],
       ['crawl', crawls],
+      ['listing-availability', availability],
+      ['invalidation', invalidations],
     ];
     for (const [kind, records] of metadata) {
       if (
@@ -165,12 +203,15 @@ export class LazadaSearch {
       }
     }
     for (const product of validProducts) {
-      await this.store.put('product', product);
+      await this.saveProduct(product);
     }
     for (const offer of validOffers) {
       await this.saveOffer(offer);
     }
     for (const [kind, records] of metadata) {
+      if (!records.length) {
+        continue;
+      }
       if (typeof this.store.putMany === 'function') {
         await this.store.putMany(kind, records);
       } else {
@@ -188,7 +229,15 @@ export class LazadaSearch {
       id: `${offer.id}:${sha256(JSON.stringify(offer))}`,
       offerId: offer.id,
     });
-    return this.store.put('offer', offer);
+    return this.store.putLatest
+      ? this.store.putLatest('offer', offer)
+      : this.store.put('offer', offer);
+  }
+
+  saveProduct(product) {
+    return this.store.putLatest
+      ? this.store.putLatest('product', product)
+      : this.store.put('product', product);
   }
 
   async collect(url, { refresh = false, reprocess = false } = {}) {
@@ -201,7 +250,12 @@ export class LazadaSearch {
         ? {
             acceptCached: (cached) => {
               if (cached.status !== 'ok') {
-                return cached.visibility === 'private';
+                return (
+                  cached.visibility === 'private' ||
+                  (cached.status === 'unavailable' &&
+                    cached.repositoryReusable === true &&
+                    cached.availabilityVerified === true)
+                );
               }
               try {
                 const { offer } = parseProduct(cached.snapshot, {
@@ -220,6 +274,10 @@ export class LazadaSearch {
           }
         : {}),
     });
+    if (capture.status === 'unavailable') {
+      const evidence = await recordListingUnavailable(this.store, capture, url);
+      throw new ListingUnavailableError(url, evidence);
+    }
     if (capture.status !== 'ok') {
       throw new Error(`Collection stopped: ${capture.status} at ${url}`);
     }
@@ -286,7 +344,7 @@ export class LazadaSearch {
     await applyListingCategoryReview(this.store, product);
     await this.collectOcr(product, capture);
     const validated = validateProduct(product);
-    await this.store.put('product', validated);
+    await this.saveProduct(validated);
     // A destination-specific shipping quote expires with the price snapshot.
     const previousOffer = await this.store.get('offer', offer.id);
     const savedOffer =
@@ -479,6 +537,8 @@ export class LazadaSearch {
       offers: await this.store.list('offer'),
       discoveries: await this.store.list('discovery'),
       skuInventories: await this.store.list('sku-inventory'),
+      availability: await this.store.list('listing-availability'),
+      invalidations: await this.store.list('invalidation'),
     });
   }
 
@@ -720,8 +780,10 @@ export class LazadaSearch {
 
   async compare(options = {}) {
     const products = await catalogProducts(this.store);
-    const offers = (await this.store.list('offer')).filter(
-      (offer) => !offer.supersededBy
+    const offers = applyListingAvailability(
+      (await this.store.list('offer')).filter((offer) => !offer.supersededBy),
+      await this.store.list('listing-availability'),
+      await this.store.list('invalidation')
     );
     const invalidated = [];
     for (const entry of await this.store.list('invalidation')) {

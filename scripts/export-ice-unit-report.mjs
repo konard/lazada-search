@@ -210,9 +210,9 @@ ${table(
   ])
 )}
 
-Historical Happy Gelato2021 laboratory findings remain in the [sample-specific review](../acceptance/urgent-icecream/targeted-spec-review.json). They do not establish current tub weight, density or formula. The Thai tub's3000g is a seller title/attribute claim; its description gives3–3.3kg depending on flavour, so its gram result remains conditional until the exact chocolate label is matched.
+Historical Happy Gelato2021 laboratory findings remain in the [sample-specific review](../acceptance/urgent-icecream/targeted-spec-review.json). They do not establish current tub weight, density or formula. The Thai tub's3000g seller claim conflicts with its flavour-dependent description range and remains withheld from gram rankings until the exact chocolate label is matched. Its independently declared volume remains a conditional millilitre comparison.
 
-[Manufacturer research and original source captures](../acceptance/ice-dual-units/) · [Exact marketplace price/source audit](../acceptance/top10-check/ice-source-review.md) · [All ranking data](ice-unit-rankings.json) · [Whey top tens](top-10-partial.md) · [Handpicked powder sorted by gram price](handpicked.md) · [Automation handoff](../ICE-CREAM-AUTOMATION.md).
+[Registered manufacturer replay and remaining label gaps](../acceptance/manufacturer-research/) · [Original source reviews](../acceptance/ice-dual-units/) · [Exact marketplace price/source audit](../acceptance/top10-check/ice-source-review.md) · [All ranking data](ice-unit-rankings.json) · [Whey top tens](top-10-partial.md) · [Handpicked powder sorted by gram price](handpicked.md) · [Automation handoff](../ICE-CREAM-AUTOMATION.md).
 
 Reproduce from committed cache with no website requests:
 

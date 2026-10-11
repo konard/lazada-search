@@ -1,6 +1,6 @@
 import { Bot } from 'grammy';
 import { parseArguments } from './config.js';
-import { executeCommand } from './commands.js';
+import { executeOperation } from './operations.js';
 
 export function tokenize(text) {
   const tokens = [];
@@ -95,7 +95,7 @@ export function createTelegramBot({
   });
   bot.command(['start', 'help'], (ctx) =>
     ctx.reply(
-      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /collection_status, /resume_collection. Translations are presentation only; original product facts remain authoritative. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
+      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /translate_catalog, /translation_status JOB_ID, /operation JSON, /collection_status, /resume_collection. Catalog translation defaults to cache-only; --translation-download explicitly enables configured provider calls. /operation accepts structured imports, reviews and manufacturer-research plans without filesystem access. Translations are presentation only; original product facts remain authoritative. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
     )
   );
   bot.command(
@@ -114,6 +114,8 @@ export function createTelegramBot({
       'quote',
       'translate',
       'translate_product',
+      'translate_catalog',
+      'translation_status',
     ],
     async (ctx) => {
       const command = ctx.message.text
@@ -125,16 +127,15 @@ export function createTelegramBot({
             command,
             ...tokenize(ctx.match || ''),
           ]);
-          const result = await executeCommand(
-            application,
-            command,
-            options._.slice(1),
-            options
-          );
+          const result = await executeOperation(application, {
+            operation: command,
+            args: options._.slice(1),
+            options,
+          });
           const text =
             command === 'compare'
               ? formatComparison(result)
-              : JSON.stringify(result, null, 2);
+              : JSON.stringify(result ?? null, null, 2);
           // Plain text prevents product content from injecting Telegram markup.
           for (let offset = 0; offset < text.length; offset += 3500) {
             await ctx.reply(text.slice(offset, offset + 3500));
@@ -148,5 +149,24 @@ export function createTelegramBot({
       await operation;
     }
   );
+  bot.command('operation', async (ctx) => {
+    const run = async () => {
+      try {
+        const result = await executeOperation(
+          application,
+          JSON.parse(ctx.match || '{}')
+        );
+        const text = JSON.stringify(result ?? null, null, 2);
+        for (let offset = 0; offset < text.length; offset += 3500) {
+          await ctx.reply(text.slice(offset, offset + 3500));
+        }
+      } catch (error) {
+        await ctx.reply(`Command failed: ${error.message}`);
+      }
+    };
+    const operation = tail.then(run, run);
+    tail = operation.catch(() => {});
+    await operation;
+  });
   return bot;
 }

@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-11T05:25:59.574Z",
+  "collectionMechanism": "web search indexed discovery; not original product-page bytes",
+  "performedBeforeIsolatedDownloads": true,
+  "queries": [
+    "SFD Nutrition Instant WPC Protein Plus White chocolate 2250 g official",
+    "Athleopro Whey Lực Sĩ Pro Gainer socola 2kg official website",
+    "\"Athleopro\" official website whey",
+    "\"athlepro.vn\" website",
+    "\"Whey Lực Sĩ\" \"1648/2021\"",
+    "site:sfdsa.pl \"sklep.sfd.pl\"",
+    "site:sfdsa.pl \"SFD NUTRITION\" \"sklep\"",
+    "site:sfdsa.pl \"SFD Nutrition\" marki",
+    "\"athlepro.vn\" -site:shopee.vn -site:facebook.com -site:instagram.com"
+  ],
+  "discoveryResults": [
+    {
+      "url": "https://sklep.sfd.pl/SFD_NUTRITION_Wpc_Protein_Plus-opis33868.html",
+      "authority": "linked official SFD shop; indexed discovery only",
+      "indexedIdentity": {
+        "productName": "SFD NUTRITION Wpc Protein Plus",
+        "packageSizeOptionsG": [700, 900, 2250, 3000],
+        "distinctFlavourOptions": [
+          "biała czekolada",
+          "biała czekolada - malina"
+        ]
+      },
+      "variantNutritionMatched": false,
+      "requiresOriginalProductCapture": true
+    },
+    {
+      "url": "https://sfdsa.pl/",
+      "authority": "original corporate page captured separately",
+      "role": "brand ownership and official shop link"
+    },
+    {
+      "url": "https://sfdsa.pl/nasze-marki/sfd-nutrition",
+      "authority": "indexed corporate brand page; not downloaded",
+      "role": "optional future corroboration"
+    },
+    {
+      "url": "https://shopee.vn/athlepro.vn",
+      "authority": "marketplace seller username lead only; no request sent",
+      "role": "unproven domain/brand spelling lead"
+    }
+  ],
+  "discardedResults": [
+    {
+      "description": "Unrelated AthleoPro fitness application",
+      "reason": "Different company/product; no whey manufacturer relationship"
+    }
+  ],
+  "indexedNutritionNotAdopted": {
+    "reason": "Generic indexed table was not bound to selected white-chocolate flavour/package revision; conflicts between marketing and table are not resolved",
+    "adoptedFields": []
+  }
+}

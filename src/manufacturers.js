@@ -4,6 +4,46 @@ import { fold } from './util.js';
 // authenticity or its exact flavour, net quantity and nutrition identity.
 export const MANUFACTURERS = [
   {
+    name: 'SFD Nutrition',
+    aliases: ['sfd nutrition', 'sfd_nutrition'],
+    domains: ['sfdsa.pl', 'sklep.sfd.pl'],
+    url: 'https://sklep.sfd.pl/',
+    ownershipSource: 'https://sfdsa.pl/',
+  },
+  {
+    name: 'Binggrae',
+    aliases: ['binggrae', 'powercap', 'power cap', 'pongta'],
+    domains: ['bing.co.kr'],
+    url: 'https://www.bing.co.kr/en/product/detail?PDT=57',
+  },
+  {
+    name: 'Lotte',
+    aliases: ['lotte', 'fanfare', 'worldcone', 'world cone'],
+    domains: ['lottewellfood.com'],
+    assetDomains: ['webimage.ldcc.co.kr'],
+    url: 'https://www.lottewellfood.com/brand/product?searchType1=LC700',
+  },
+  {
+    name: 'Cremo',
+    aliases: ['cremo'],
+    domains: ['chomthana.com', 'icecremo.com'],
+    url: 'https://www.chomthana.com/products/icecreams/',
+    ownershipSource: 'https://www.chomthana.com/products/',
+  },
+  {
+    name: 'Iberri',
+    aliases: ['iberri', 'i-berri', 'i berri'],
+    domains: ['chomthana.com'],
+    url: 'https://www.chomthana.com/products/icecreams/',
+    ownershipSource: 'https://www.chomthana.com/products/',
+  },
+  {
+    name: 'Häagen-Dazs',
+    aliases: ['haagen dazs', 'haagen-dazs', 'häagen-dazs'],
+    domains: ['haagendazs.com.sg'],
+    url: 'https://www.haagendazs.com.sg/products/belgian-chocolate-pint',
+  },
+  {
     name: 'Aice',
     aliases: ['aice'],
     domains: ['aicevietnam.vn'],
@@ -36,7 +76,7 @@ export const MANUFACTURERS = [
   {
     name: 'Merino',
     aliases: ['merino'],
-    domains: ['ngoinhadinhduong.com'],
+    domains: ['ngoinhadinhduong.com', 'nutifood.com.vn'],
     url: 'https://ngoinhadinhduong.com/collections/kem-merino',
   },
   {
@@ -145,11 +185,26 @@ function aliasInTitle(title, alias) {
 export function manufacturerCandidates(product, registry = MANUFACTURERS) {
   const brand = fold(product.brand || '');
   const title = fold(product.title || '');
+  const selected = (product.selectedVariant || [])
+    .map((option) => option.text)
+    .join(' ');
+  const selectedBrands = new Set(
+    registry.filter((entry) =>
+      entry.aliases.some((alias) => aliasInTitle(selected, alias))
+    )
+  );
   return registry
     .filter((entry) =>
       entry.aliases.some(
-        (alias) => brand === fold(alias) || aliasInTitle(title, alias)
+        (alias) =>
+          brand === fold(alias) ||
+          aliasInTitle(title, alias) ||
+          aliasInTitle(selected, alias)
       )
+    )
+    .sort(
+      (left, right) =>
+        Number(selectedBrands.has(right)) - Number(selectedBrands.has(left))
     )
     .map((entry) => ({
       name: entry.name,
@@ -158,9 +213,11 @@ export function manufacturerCandidates(product, registry = MANUFACTURERS) {
       reason:
         'Exact manufacturer product, flavour, package and specification evidence must be matched',
       brandConflict: Boolean(
-        brand &&
-        !entry.aliases.some((alias) => brand === fold(alias)) &&
-        brand !== fold(entry.name)
+        selectedBrands.size > 1 ||
+        (selectedBrands.size && !selectedBrands.has(entry)) ||
+        (brand &&
+          !entry.aliases.some((alias) => brand === fold(alias)) &&
+          brand !== fold(entry.name))
       ),
     }));
 }

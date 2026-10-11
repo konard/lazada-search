@@ -5,6 +5,89 @@ import {
   manufacturerCandidates,
 } from '../src/manufacturers.js';
 
+test('SFD corporate ownership trusts only the exact linked shop hosts without approving package identity', () => {
+  const product = {
+    brand: 'SFD NUTRITION',
+    title: 'WPC Plus White Choco 2250g',
+  };
+  const [candidate] = manufacturerCandidates(product);
+  assert.equal(candidate.name, 'SFD Nutrition');
+  assert.equal(candidate.identityStatus, 'candidate-only');
+  assert.equal(isTrustedManufacturer(product, 'https://sfdsa.pl/'), true);
+  assert.equal(isTrustedManufacturer(product, 'https://sklep.sfd.pl/'), true);
+  assert.equal(
+    isTrustedManufacturer(product, 'https://unreviewed.sfd.pl/'),
+    false
+  );
+  assert.equal(
+    isTrustedManufacturer(product, 'https://sklep.sfd.pl.example.com/'),
+    false
+  );
+  assert.equal(
+    isTrustedManufacturer({ brand: 'Athleopro' }, 'https://sklep.sfd.pl/'),
+    false
+  );
+});
+
+test('selected manufacturer conflicts block parent-brand trust while retaining the selected factory lead', () => {
+  const product = {
+    brand: 'Optimum Nutrition',
+    title: 'Optimum Nutrition Gold Standard whey',
+    selectedVariant: [{ text: "IT'S JUST WHEY ISOLA" }, { text: 'NATURAL' }],
+  };
+  const candidates = manufacturerCandidates(product);
+  assert.equal(candidates[0].name, "It's Just");
+  assert.ok(candidates.every((candidate) => candidate.brandConflict));
+  assert.equal(
+    isTrustedManufacturer(
+      product,
+      'https://www.optimumnutrition.com/products/gold-standard'
+    ),
+    false
+  );
+  assert.equal(
+    isTrustedManufacturer(
+      product,
+      'https://138foods.com/products/its-just-whey-protein-isolate'
+    ),
+    false
+  );
+  assert.equal(
+    isTrustedManufacturer(
+      { ...product, brand: "It's Just" },
+      'https://138foods.com/products/its-just-whey-protein-isolate'
+    ),
+    true
+  );
+});
+
+test('reciprocal factory sources authorize Cremo brand pages without approving Iberri or exact package facts', () => {
+  const url = 'https://www.icecremo.com/products';
+  assert.equal(
+    isTrustedManufacturer({ brand: 'Cremo', title: 'Cremo chocolate 6L' }, url),
+    true
+  );
+  assert.equal(
+    isTrustedManufacturer(
+      { brand: 'Iberri', title: 'Iberri chocolate 6L' },
+      url
+    ),
+    false
+  );
+  const [candidate] = manufacturerCandidates({
+    brand: 'Cremo',
+    title: 'Cremo chocolate 6L',
+  });
+  assert.equal(candidate.identityStatus, 'candidate-only');
+  assert.equal(
+    isTrustedManufacturer(
+      { brand: 'Cremo' },
+      'https://icecremo.com.example.com/products'
+    ),
+    false
+  );
+});
+
 const cgn = {
   brand: 'California Gold Nutrition',
   title: 'California Gold Nutrition whey protein isolate 907 g',

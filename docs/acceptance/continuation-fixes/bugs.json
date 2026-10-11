@@ -1,0 +1,168 @@
+{
+  "recordedAt": "2026-10-11T05:31:24.989Z",
+  "bugs": [
+    {
+      "id": "scope-human-food",
+      "status": "fixed",
+      "title": "Reject animal feed and protein bars before detail collection; persist negative decisions",
+      "evidence": [
+        "tests/human-food-scope.test.js",
+        "tests/scope-decisions.test.js",
+        "src/target-category.js",
+        "src/scope-decisions.js"
+      ],
+      "reproduction": "The Rally protein bar listing3104297210 and whey animal-feed listing13427185482 were admitted by keyword-only food filtering.",
+      "issue": "https://github.com/konard/lazada-search/issues/8"
+    },
+    {
+      "id": "withheld-ice-quantities",
+      "status": "fixed",
+      "title": "Withheld ice-cream grams were reused by ranking fallback",
+      "evidence": [
+        "tests/ice-withheld-specifications.test.js",
+        "tests/specification-holds.test.js",
+        "src/specification-holds.js",
+        "scripts/ice-unit-rankings.mjs"
+      ],
+      "reproduction": "iBerri1561216831 and white Cremo3047760589 retained a disputed3000g claim despite explicit source reviews withholding it; the supposed cheapest gram price was unsupported.",
+      "issue": "https://github.com/konard/lazada-search/issues/9"
+    },
+    {
+      "id": "chronological-cache",
+      "status": "fixed",
+      "title": "Older cached pages could overwrite newer selected SKU prices and packages",
+      "evidence": [
+        "tests/observation-order.test.js",
+        "src/store.js",
+        "src/application.js"
+      ],
+      "reproduction": "Saving a newer200000VND observation, then replaying an older150000VND page, previously left150000 as current. All history and actual observation dates must survive.",
+      "issue": "https://github.com/konard/lazada-search/issues/10"
+    },
+    {
+      "id": "removed-json-replay",
+      "status": "fixed",
+      "title": "Structured catalog imports dropped removed-listing availability evidence",
+      "evidence": [
+        "tests/availability.test.js",
+        "tests/catalog-tables.test.js",
+        "src/application.js"
+      ],
+      "reproduction": "A committed catalog imported offline put three original-HTML-confirmed removed listings back in its uncollected backlog. Import now preserves availability/invalidation records and skips empty metadata batches.",
+      "issue": "https://github.com/konard/lazada-search/issues/7"
+    },
+    {
+      "id": "package-identity",
+      "status": "fixed",
+      "title": "Conflicting package identities and metric repack OCR required stronger guards",
+      "evidence": [
+        "tests/package-image-identity.test.js",
+        "tests/package-mass-quarantine.test.js",
+        "src/package-image.js",
+        "src/products.js"
+      ],
+      "reproduction": "An ON900g seller repack could be replaced by matched907g factory-container OCR when its metric declaration came from title/specification/description; contradictory catalog entries could also bind a package image.",
+      "issue": "https://github.com/konard/lazada-search/issues/4"
+    },
+    {
+      "id": "decimal-ocr",
+      "status": "fixed-source-crop-mechanics; exact-marketplace-identity-pending",
+      "title": "Nutrition OCR loses decimal points in exact original label images",
+      "evidence": [
+        "docs/acceptance/manufacturer-research/second-ocr-pass.json",
+        "docs/acceptance/manufacturer-research/research-review.json",
+        "docs/acceptance/decimal-ocr/replay.json",
+        "docs/acceptance/decimal-ocr/validation.json",
+        "tests/ocr-crops.test.js",
+        "src/ocr.js"
+      ],
+      "reproduction": "Original Häagen-Dazs Singapore 4.0 g and 4.5 g label readings became 40 g and 45 g under full-panel PSM 6/PSM 11. Exact image-backed crops now recover 4.0 and 4.5 without numeric inference; both remain review-only until exact selected market/package/formula identity is proven.",
+      "issue": "https://github.com/konard/lazada-search/issues/11",
+      "focusedValidation": {
+        "tests": 30,
+        "pass": 30,
+        "fail": 0,
+        "realTesseractDecimalRecoveryPassed": true,
+        "sourceIdentityMatched": false,
+        "numericFactsAppliedToProducts": false
+      }
+    },
+    {
+      "id": "transitive-audit",
+      "status": "fixed-installed-scoped-override; full-suite-passed",
+      "title": "Scoped Command Stream 2.0.2 resolution removes Browser Commander 0.29.0 vulnerable runtime chain",
+      "evidence": [
+        "dependency-audit.json",
+        "package.json",
+        "package-lock.json",
+        "docs/acceptance/dependency-resolution/report.json",
+        "docs/acceptance/dependency-resolution/README.md"
+      ],
+      "reproduction": "Before the override, the installed project audit reported 5 highs through command-stream 1.6.2 → shelljs 0.10.0 → fast-glob 3.3.3 → micromatch 4.0.8 → braces 3.0.3. The installed browser-commander-scoped command-stream 2.0.2 override reports 0 vulnerabilities. Seven isolated subprocess contract fixtures pass; the full repository browser/interface/native E2E suite passed35/35 without skips.",
+      "upstreamIssue": "https://github.com/link-foundation/command-stream/issues/221",
+      "auditBefore": {
+        "high": 5,
+        "total": 5
+      },
+      "auditAfter": {
+        "high": 0,
+        "total": 0
+      }
+    },
+    {
+      "id": "public-manufacturer-access-token",
+      "status": "fixed",
+      "title": "Manufacturer HTML originals could publish embedded access tokens and block GitHub push protection",
+      "evidence": [
+        "tests/public-source-secrets.test.js",
+        "src/archive.js",
+        "src/manufacturer-source-cache.js",
+        "docs/acceptance/continuation-fixes/source-original-verification.json"
+      ],
+      "reproduction": "Two original Cremo public HTML responses contained unrelated embedded Mapbox tokens and triggered GitHub push protection. Public derivatives now redact the tokens and retain distinct original-source/derivative digests across import and associative export, with observation/redaction provenance. Raw originals remain local; push protection is not bypassed.",
+      "issue": "https://github.com/konard/lazada-search/issues/12",
+      "sourceDerivatives": [
+        {
+          "path": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-linked-factory-domain.html",
+          "originalSourceSha256": "88c81206e51eede6bce1ded8e53df59524f736c51aa7ef2c1b6e6a67c4d65037",
+          "artifactSha256": "da7c252a65970e14d5db3eba50cbdcb8f36662b2e29fa5878ae6ee347b4d5711",
+          "redactionApplied": true
+        },
+        {
+          "path": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-official-products.html",
+          "originalSourceSha256": "eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606",
+          "artifactSha256": "6a1a01dea740e76230efeefb56898c96df0aec6436dd685f6587790302d9d8da",
+          "redactionApplied": true
+        }
+      ]
+    },
+    {
+      "id": "selected-manufacturer-conflict",
+      "status": "fixed-locally; factory-identity-pending",
+      "title": "Selected manufacturer conflicts could authorize the unrelated parent brand domain",
+      "issue": "https://github.com/konard/lazada-search/issues/13",
+      "evidence": [
+        "src/manufacturers.js",
+        "tests/manufacturer-owned-brands.test.js"
+      ],
+      "reproduction": "SKU 2019564464_VNAMZ-15735467762 selects IT'S JUST WHEY ISOLA/NATURAL under an Optimum Nutrition parent. Candidate resolution now retains and prioritizes the selected manufacturer; contradictory parent/selected candidates all block domain trust until a sourced brand correction resolves the conflict."
+    },
+    {
+      "id": "conditional-food-gift",
+      "status": "pending-exact-bonus-identity-and-eligibility",
+      "title": "Two paid bags plus an advertised food gift lack a verified full-offer denominator",
+      "issue": "https://github.com/konard/lazada-search/issues/14",
+      "evidence": [
+        "docs/acceptance/whey-current-identity/review.json",
+        "docs/tables/catalog.json"
+      ],
+      "reproduction": "SKU 3255422832_VNAMZ-117013951240 selects “2 túi tặng 1 túi”. The current 4,000 g denominator covers the two paid 2 kg bags only; the gift bag has no exact confirmed mass/flavour/formula or unconditional availability/quantity rules. Preserve paid/bonus/accessory evidence separately and include a confirmed eligible bonus once; this remains unfinished data acceptance."
+    }
+  ],
+  "validationCheckpoint": {
+    "latestFullSuite": "945unit/945passed;35E2E/35passed;zero failures or skips;53affected cases rechecked after lint refactor",
+    "preservedBaseline": "docs/acceptance/continuation-fixes/validation.json",
+    "githubIssueStates": "not changed by this documentation checkpoint",
+    "latestReceipt": "docs/acceptance/continuation-fixes/integrated-validation.json"
+  }
+}

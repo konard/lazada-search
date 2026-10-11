@@ -1,0 +1,2318 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T05:19:40.407Z",
+  "scope": "Exact chocolate/plain whey selected-SKU manufacturer identity; prioritize lowest observed food-gram cost without treating incomplete seller denominators as purchase ranks",
+  "inputs": [
+    {
+      "path": "docs/acceptance/whey-verification/worklist.json",
+      "sha256": "1f91395bd4042a75bbea84e43e570a5eea28f4097146eeba340fb72a71190111",
+      "bytes": 11095351
+    },
+    {
+      "path": "docs/tables/catalog.json",
+      "sha256": "f68d204338d36dc5ca240ef70bbca5fb6e089f51daf82a4ac571c9062d694f1b",
+      "bytes": 29043673
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/review.json",
+      "sha256": "f9d44e76282d186723a4d5bebc689e80308650c4469f840d57e8af2315dfda42",
+      "bytes": 221302
+    },
+    {
+      "path": "docs/acceptance/urgent-whey-reviews/factory-lead-review.json",
+      "sha256": "599402e79e4a4bf380dbbcb3cd1564c272822dbd1a2790c7b40211aa88b86664",
+      "bytes": 63116
+    }
+  ],
+  "catalogCheckedAt": "2026-10-11T04:39:52.056Z",
+  "worklistGeneratedAt": "2026-10-11T04:41:19.719Z",
+  "counts": {
+    "strictWheySkus": 64,
+    "alreadyVerifiedStrictWheySkus": 11,
+    "pendingStrictWheySkus": 53,
+    "sourceOriginalsDigestVerified": 32,
+    "existingFactoryCandidates": 11,
+    "newExactFacts": 0,
+    "newManufacturerApprovals": 0,
+    "networkRequests": 0,
+    "sharedStoreWrites": 0
+  },
+  "sourceChecks": [
+    {
+      "path": "docs/acceptance/whey-source-expansion/biox-cached-isolate-product.html.gz",
+      "sourceUrl": "https://bioxnutrition.com/product/power-whey-isolate/",
+      "originalObservedAt": "2026-10-09T13:28:12.074Z",
+      "checkedAt": "2026-10-11T05:19:40.344Z",
+      "originalSha256": "c80d2ed8f1b33e136f43767bfdb517e18e1ef7a15cc0aa4f10047abde1925991",
+      "expectedSha256": "c80d2ed8f1b33e136f43767bfdb517e18e1ef7a15cc0aa4f10047abde1925991",
+      "digestMatched": true,
+      "originalBytes": 1006236,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/biox-natural-isolate.html.gz",
+      "sourceUrl": "https://bioxnutrition.com/product/natural-whey-isolate/",
+      "originalObservedAt": "2026-10-10T18:31:26.152014+00:00",
+      "checkedAt": "2026-10-11T05:19:40.347Z",
+      "originalSha256": "369537d39b17e1707aac8d5ef62a40cfe7ec4324b8dfb3ac081bb66054b731ad",
+      "expectedSha256": "369537d39b17e1707aac8d5ef62a40cfe7ec4324b8dfb3ac081bb66054b731ad",
+      "digestMatched": true,
+      "originalBytes": 918107,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/cached-critical-whey.html.gz",
+      "sourceUrl": "https://appliednutrition.uk/products/critical-whey",
+      "originalObservedAt": "2026-10-10T15:13:03.846Z",
+      "checkedAt": "2026-10-11T05:19:40.353Z",
+      "originalSha256": "8a40ed154e14f2f5e7c9acbb2cef585c804395b8f898adb5f9d9b22d93430075",
+      "expectedSha256": "8a40ed154e14f2f5e7c9acbb2cef585c804395b8f898adb5f9d9b22d93430075",
+      "digestMatched": true,
+      "originalBytes": 2461970,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/cached-mutant-whey.html.gz",
+      "sourceUrl": "https://mutantnation.com/products/whey-protein-mix?currency=USD&variant=41772084854881",
+      "originalObservedAt": "2026-10-10T15:13:02.948Z",
+      "checkedAt": "2026-10-11T05:19:40.354Z",
+      "originalSha256": "f78767d9058a5469ba0cff2564ec0215206ac387ea546a533af59b2e166cee70",
+      "expectedSha256": "f78767d9058a5469ba0cff2564ec0215206ac387ea546a533af59b2e166cee70",
+      "digestMatched": true,
+      "originalBytes": 345118,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/cached-nutrabolics-hydropure-current-product.html.gz",
+      "sourceUrl": "https://nutrabolics.com/products/hydropure-ultra-pure-hydrolyzed-whey-protein",
+      "originalObservedAt": "2026-10-10T15:44:42.889Z",
+      "checkedAt": "2026-10-11T05:19:40.355Z",
+      "originalSha256": "ccd0ff4bd7581828a6c8413f1a7eed7d13bfafdfd150349ab67344fac94924bf",
+      "expectedSha256": "ccd0ff4bd7581828a6c8413f1a7eed7d13bfafdfd150349ab67344fac94924bf",
+      "digestMatched": true,
+      "originalBytes": 151279,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/cached-warrior-whey.html.gz",
+      "sourceUrl": "https://teamwarrior.com/products/warrior-whey-protein-2kg",
+      "originalObservedAt": "2026-10-10T15:13:03.705Z",
+      "checkedAt": "2026-10-11T05:19:40.357Z",
+      "originalSha256": "d031a426696a014e530e8cdcb1e075b0e13e9f6e7fa1481a382e86d7f97ca60a",
+      "expectedSha256": "d031a426696a014e530e8cdcb1e075b0e13e9f6e7fa1481a382e86d7f97ca60a",
+      "digestMatched": true,
+      "originalBytes": 548032,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/clean-simple-eats-chocolate-30serv-front.png",
+      "sourceUrl": "https://cleansimpleeats.com/cdn/shop/files/1630CHO1-BAG-1_FT.png?v=1775486403&width=1920",
+      "originalObservedAt": "2026-10-10T18:33:40.656616+00:00",
+      "checkedAt": "2026-10-11T05:19:40.359Z",
+      "originalSha256": "3f4f1d060bd4f37d14f7511624448c9576289ae788d16a0756fa99599d8e4628",
+      "expectedSha256": "3f4f1d060bd4f37d14f7511624448c9576289ae788d16a0756fa99599d8e4628",
+      "digestMatched": true,
+      "originalBytes": 675119,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/clean-simple-eats-chocolate-30serv-label.jpg",
+      "sourceUrl": "https://cleansimpleeats.com/cdn/shop/files/1630CHO1_Cleaner_SFP_b0734a2a-cab5-40c2-a8c5-d432ca681c03.jpg?v=1775486403&width=1920",
+      "originalObservedAt": "2026-10-10T18:32:39.655866+00:00",
+      "checkedAt": "2026-10-11T05:19:40.360Z",
+      "originalSha256": "e66baa25b88be227ea5975fa8d0a1570b895accca1caa1a05dcd1ef53a3dc04b",
+      "expectedSha256": "e66baa25b88be227ea5975fa8d0a1570b895accca1caa1a05dcd1ef53a3dc04b",
+      "digestMatched": true,
+      "originalBytes": 280914,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/clean-simple-eats-chocolate-30serv.html.gz",
+      "sourceUrl": "https://cleansimpleeats.com/products/chocolate-protein-powder",
+      "originalObservedAt": "2026-10-10T18:31:05.714496+00:00",
+      "checkedAt": "2026-10-11T05:19:40.369Z",
+      "originalSha256": "4c6f64349e2033c053c42254036cd15f42b84a06c7b40cfeb803abbb174c7e62",
+      "expectedSha256": "4c6f64349e2033c053c42254036cd15f42b84a06c7b40cfeb803abbb174c7e62",
+      "digestMatched": true,
+      "originalBytes": 4102715,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/its-just-5lb-official-back.jpg",
+      "sourceUrl": "https://138foods.com/cdn/shop/files/WheyIsolate5lbback.jpg?v=1697246262&width=3840",
+      "originalObservedAt": "2026-10-09T11:00:40.679Z",
+      "checkedAt": "2026-10-11T05:19:40.370Z",
+      "originalSha256": "4fcaa035874c333b47cb935f1804133f167c75979843a95a0c8c802c1eddadf3",
+      "expectedSha256": "4fcaa035874c333b47cb935f1804133f167c75979843a95a0c8c802c1eddadf3",
+      "digestMatched": true,
+      "originalBytes": 619517,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/its-just-5lb-official-front.jpg",
+      "sourceUrl": "https://138foods.com/cdn/shop/files/WheyIsolate5lb.jpg?v=1697246262&width=3840",
+      "originalObservedAt": "2026-10-10T18:37:47.957594+00:00",
+      "checkedAt": "2026-10-11T05:19:40.371Z",
+      "originalSha256": "81807fbd13cc09f9383af1e34ad71036b2c680b88337cfdb5976ffcd7ea9fbde",
+      "expectedSha256": "81807fbd13cc09f9383af1e34ad71036b2c680b88337cfdb5976ffcd7ea9fbde",
+      "digestMatched": true,
+      "originalBytes": 511984,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/its-just-cached-product.html.gz",
+      "sourceUrl": "https://138foods.com/products/its-just-whey-protein-isolate",
+      "originalObservedAt": "2026-10-09T11:00:40.679Z",
+      "checkedAt": "2026-10-11T05:19:40.373Z",
+      "originalSha256": "6f3c7b8b379b012b67c5724d950fe1b281ad8d770de51c9bdb1dd9022e0eb857",
+      "expectedSha256": "6f3c7b8b379b012b67c5724d950fe1b281ad8d770de51c9bdb1dd9022e0eb857",
+      "digestMatched": true,
+      "originalBytes": 619885,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/levels-current-whey.html.gz",
+      "sourceUrl": "https://levelsprotein.com/products/grass-fed-whey-protein",
+      "originalObservedAt": "2026-10-10T18:27:03.786002+00:00",
+      "checkedAt": "2026-10-11T05:19:40.376Z",
+      "originalSha256": "eacd804fca8218001cdb8563667933cb12dbbec06c2585add72084d66a7ce446",
+      "expectedSha256": "eacd804fca8218001cdb8563667933cb12dbbec06c2585add72084d66a7ce446",
+      "digestMatched": true,
+      "originalBytes": 1470605,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/levels-double-chocolate-5lb-front.png",
+      "sourceUrl": "https://levelsprotein.com/cdn/shop/files/LEVELS_Whey_5lb_DoubleChoc_front.png?v=1772036727&width=1920",
+      "originalObservedAt": "2026-10-10T18:30:50.980850+00:00",
+      "checkedAt": "2026-10-11T05:19:40.378Z",
+      "originalSha256": "f5a28768b5c48f2afa97a83866a9261e74fbae972cada31ff6160887665fa08b",
+      "expectedSha256": "f5a28768b5c48f2afa97a83866a9261e74fbae972cada31ff6160887665fa08b",
+      "digestMatched": true,
+      "originalBytes": 707366,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/levels-double-chocolate-5lb-panel.jpg",
+      "sourceUrl": "https://levelsprotein.com/cdn/shop/files/NFP_5lb_Double_Chocolate_e248d2dd-c1c5-4422-801e-a46b854f8404.jpg?v=1752172623&width=1600",
+      "originalObservedAt": "2026-10-10T18:28:04.792287+00:00",
+      "checkedAt": "2026-10-11T05:19:40.378Z",
+      "originalSha256": "f88b073a5e479a38bd266dc3557728e38f11e7c39f9e73ff05d59308d3fc8e38",
+      "expectedSha256": "f88b073a5e479a38bd266dc3557728e38f11e7c39f9e73ff05d59308d3fc8e38",
+      "digestMatched": true,
+      "originalBytes": 98397,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/levels-unflavored-5lb-front.png",
+      "sourceUrl": "https://levelsprotein.com/cdn/shop/files/LEVELS_Whey_5lb_Unflavored_front_c94e0b76-d30e-4336-af74-383c0bb6755f.png?v=1774621888&width=1920",
+      "originalObservedAt": "2026-10-10T18:32:17.984524+00:00",
+      "checkedAt": "2026-10-11T05:19:40.379Z",
+      "originalSha256": "30ece3200ef64c91ffd7ae2d0982770bf5b2788525913959fe0bc6a087cc5f58",
+      "expectedSha256": "30ece3200ef64c91ffd7ae2d0982770bf5b2788525913959fe0bc6a087cc5f58",
+      "digestMatched": true,
+      "originalBytes": 702754,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/levels-unflavored-5lb-panel.jpg",
+      "sourceUrl": "https://levelsprotein.com/cdn/shop/files/NFP_5lb_Unflavored_e7dd4653-68f3-4e07-a128-25e5c5eadb91.jpg?v=1752175186&width=1600",
+      "originalObservedAt": "2026-10-10T18:29:36.119384+00:00",
+      "checkedAt": "2026-10-11T05:19:40.381Z",
+      "originalSha256": "e9a7a8402b79258c46b819efbfd004e1514b4e804eed72e52328e31a7507dd53",
+      "expectedSha256": "e9a7a8402b79258c46b819efbfd004e1514b4e804eed72e52328e31a7507dd53",
+      "digestMatched": true,
+      "originalBytes": 97846,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/musaking-500g-chocolate-factory-panel.jpg",
+      "sourceUrl": "https://cdn.hstatic.net/products/200000878471/isolate_6b28659dc9f442f9be4ebaf3f87a2b62_master.jpg",
+      "checkedAt": "2026-10-11T05:19:40.384Z",
+      "originalSha256": "9a9b5cc26e1ed8b0ce47e06576fdd5106e1bdbac80e5eb3993456230b86c6e51",
+      "expectedSha256": "9a9b5cc26e1ed8b0ce47e06576fdd5106e1bdbac80e5eb3993456230b86c6e51",
+      "digestMatched": true,
+      "originalBytes": 279972,
+      "registeredPrimaryHost": false
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/musaking-cached-2205g-product.html.gz",
+      "sourceUrl": "https://musaking.com/products/isolate-whey",
+      "originalObservedAt": "2026-10-09T13:25:27.925Z",
+      "checkedAt": "2026-10-11T05:19:40.385Z",
+      "originalSha256": "822e1f1aaebc29ad07d08cd887b0e8c9c9dfe6b3cdf9cb7c2acfdd783c4bd0e7",
+      "expectedSha256": "822e1f1aaebc29ad07d08cd887b0e8c9c9dfe6b3cdf9cb7c2acfdd783c4bd0e7",
+      "digestMatched": true,
+      "originalBytes": 147809,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/musaking-cached-500g-product.html.gz",
+      "sourceUrl": "https://musaking.com/products/whey-isolate",
+      "originalObservedAt": "2026-10-09T11:00:51.111Z",
+      "checkedAt": "2026-10-11T05:19:40.386Z",
+      "originalSha256": "ab7b481c8485e90ad846a63a60789e4f8c80938fd36969514ea14bb2394526fc",
+      "expectedSha256": "ab7b481c8485e90ad846a63a60789e4f8c80938fd36969514ea14bb2394526fc",
+      "digestMatched": true,
+      "originalBytes": 148563,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/muscle-nation-daily-shake-choc-flake.html.gz",
+      "sourceUrl": "https://musclenation.org/collections/whey-protein/products/daily-shake-milk-chocolate-flake-10-serves",
+      "originalObservedAt": "2026-10-10T18:34:48.141020+00:00",
+      "checkedAt": "2026-10-11T05:19:40.388Z",
+      "originalSha256": "2f3e210cb7b0e08ea4da3e046fad371fdf5d4a4cd250685291f943590d7a5328",
+      "expectedSha256": "2f3e210cb7b0e08ea4da3e046fad371fdf5d4a4cd250685291f943590d7a5328",
+      "digestMatched": true,
+      "originalBytes": 712715,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/muscle-nation-daily-shake-introduction.html.gz",
+      "sourceUrl": "https://musclenation.org/blogs/blog/we-are-releasing-15-new-products-in-coles",
+      "originalObservedAt": "2026-10-10T18:33:46.358862+00:00",
+      "checkedAt": "2026-10-11T05:19:40.390Z",
+      "originalSha256": "fc2ab5c45eae461482ee61ee2f612fc9197c46ac5f5d9f5e5dfe0d638950e0e5",
+      "expectedSha256": "fc2ab5c45eae461482ee61ee2f612fc9197c46ac5f5d9f5e5dfe0d638950e0e5",
+      "digestMatched": true,
+      "originalBytes": 744742,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/nutrabolics-current-official-front.png",
+      "sourceUrl": "https://nutrabolics.com/cdn/shop/files/HYDROPURE_3_x_SIZES_2.0.png?v=1790159568&width=1200",
+      "originalObservedAt": "2026-10-10T15:46:50.845Z",
+      "checkedAt": "2026-10-11T05:19:40.392Z",
+      "originalSha256": "56d83fc6b95ca07e68af15a884f7d24941c1f716facd4229b85365afd0e5a734",
+      "expectedSha256": "56d83fc6b95ca07e68af15a884f7d24941c1f716facd4229b85365afd0e5a734",
+      "digestMatched": true,
+      "originalBytes": 802566,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/nutrabolics-extreme-chocolate-official-panel.png",
+      "sourceUrl": "https://nutrabolics.com/cdn/shop/files/Hydropure_4.5lb_Chocolate_Extreme_Nutritional_inf-1.png?v=1790277591&width=1200",
+      "originalObservedAt": "2026-10-10T15:45:49.762Z",
+      "checkedAt": "2026-10-11T05:19:40.393Z",
+      "originalSha256": "19929ae96e7cf2dc4f51b17b238f11226b27abc6023b41d0d0a8a7f7ae987d03",
+      "expectedSha256": "19929ae96e7cf2dc4f51b17b238f11226b27abc6023b41d0d0a8a7f7ae987d03",
+      "digestMatched": true,
+      "originalBytes": 442267,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/optimum-cached-current-whey.html.gz",
+      "sourceUrl": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-whey-protein-powder",
+      "originalObservedAt": "2026-10-09T17:58:10.610Z",
+      "checkedAt": "2026-10-11T05:19:40.396Z",
+      "originalSha256": "625243ae8cb1f0762395b07d3372de889532da1ddd3219d930f913c17427b762",
+      "expectedSha256": "625243ae8cb1f0762395b07d3372de889532da1ddd3219d930f913c17427b762",
+      "digestMatched": true,
+      "originalBytes": 1879163,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/prosupps-cached-current-isolate.html.gz",
+      "sourceUrl": "https://prosupps.com/products/whey-isolate",
+      "originalObservedAt": "2026-10-09T13:10:27.382Z",
+      "checkedAt": "2026-10-11T05:19:40.398Z",
+      "originalSha256": "1bda9942635e168f566cf49d1f370983220d6e30ce7ca2e28ccc25f8b5b27dcd",
+      "expectedSha256": "1bda9942635e168f566cf49d1f370983220d6e30ce7ca2e28ccc25f8b5b27dcd",
+      "digestMatched": true,
+      "originalBytes": 741310,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/rule1-cached-isolate-product.html.gz",
+      "sourceUrl": "https://www.ruleoneproteins.com/products/r1-protein",
+      "originalObservedAt": "2026-10-09T13:29:16.113Z",
+      "checkedAt": "2026-10-11T05:19:40.400Z",
+      "originalSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
+      "expectedSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
+      "digestMatched": true,
+      "originalBytes": 1523592,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/rule1-naturally-flavored.html.gz",
+      "sourceUrl": "https://www.ruleoneproteins.com/products/naturally-flavored-r1-protein-whey-isolate",
+      "originalObservedAt": "2026-10-10T18:27:07.930599+00:00",
+      "checkedAt": "2026-10-11T05:19:40.401Z",
+      "originalSha256": "1eb4072c9142c8cb98c27f5fc2e17459cff9a17ea9680028cf7460f0f68a866a",
+      "expectedSha256": "1eb4072c9142c8cb98c27f5fc2e17459cff9a17ea9680028cf7460f0f68a866a",
+      "digestMatched": true,
+      "originalBytes": 656360,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/rule1-unflavored-nutrition.png",
+      "sourceUrl": "https://www.ruleoneproteins.com/cdn/shop/files/NaturalProtein-NutritionPanels-Unflavored.png?v=18442705596009199170",
+      "originalObservedAt": "2026-10-10T18:29:32.816307+00:00",
+      "checkedAt": "2026-10-11T05:19:40.403Z",
+      "originalSha256": "34fb32c6a8ceeea87a4077a3bdac40d95829552d5f8b81766e9504a3f47698d9",
+      "expectedSha256": "34fb32c6a8ceeea87a4077a3bdac40d95829552d5f8b81766e9504a3f47698d9",
+      "digestMatched": true,
+      "originalBytes": 179874,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/rule1-unflavored-old-2lb-label.png",
+      "sourceUrl": "https://www.ruleoneproteins.com/cdn/shop/files/LBB_r1pwi-nf_2lb_unflavored0001.png?v=1752674540&width=1920",
+      "originalObservedAt": "2026-10-10T18:28:08.940076+00:00",
+      "checkedAt": "2026-10-11T05:19:40.405Z",
+      "originalSha256": "f0b42669c3dc04f57b51c5b40a1e959c2bf22fea7479b5a76cee9cf2cd7e7656",
+      "expectedSha256": "f0b42669c3dc04f57b51c5b40a1e959c2bf22fea7479b5a76cee9cf2cd7e7656",
+      "digestMatched": true,
+      "originalBytes": 1186917,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/scitec-current-isolate.html.gz",
+      "sourceUrl": "https://scitecnutrition.com/whey-protein-isolate/scitec-nutrition-100-whey-isolate-0-7-kg-p2278",
+      "originalObservedAt": "2026-10-10T18:32:18.207086+00:00",
+      "checkedAt": "2026-10-11T05:19:40.406Z",
+      "originalSha256": "4ca46ab877deccf24edb09047b9ce496344b308bf6bdac204ac87e2fcc84fe2d",
+      "expectedSha256": "4ca46ab877deccf24edb09047b9ce496344b308bf6bdac204ac87e2fcc84fe2d",
+      "digestMatched": true,
+      "originalBytes": 29592,
+      "registeredPrimaryHost": true
+    },
+    {
+      "path": "docs/acceptance/whey-source-expansion/scitec-isolate-1816g.html.gz",
+      "sourceUrl": "https://scitecnutrition.com/whey-protein-isolate/scitec-nutrition-100-whey-isolate-1-816-kg-p17331",
+      "originalObservedAt": "2026-10-10T18:33:46.239661+00:00",
+      "checkedAt": "2026-10-11T05:19:40.407Z",
+      "originalSha256": "e3625ccd23cf29f5eed072aa8ffe3faed273843eecef3f277daedaf93eb07cec",
+      "expectedSha256": "e3625ccd23cf29f5eed072aa8ffe3faed273843eecef3f277daedaf93eb07cec",
+      "digestMatched": true,
+      "originalBytes": 29679,
+      "registeredPrimaryHost": true
+    }
+  ],
+  "reviews": [],
+  "pendingCases": [
+    {
+      "sku": "3241302198_VNAMZ-117011483478",
+      "productId": "product:e62a71c5f59338660735e163a2a6f5e72c734de265454bc886baf07a04f40de1",
+      "url": "https://www.lazada.vn/products/pdp-i3241302198.html",
+      "title": "Whey Protein concentrate PRO GAINER túi 2kg, tặng bình cao cấp, giáo án & thực đơn độc quyền",
+      "selectedOptions": ["2kg socola"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 404.55,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T20:27:06.416Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:484544632b285073c500fb4360e259cdd700dd332c4d37e207a8552159260fb6",
+        "evidence:bd7df7b8d8db4a2a92e58e2143d649e6aa24a972a1ea42bbe6f7884ddd0445b2"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3255422832_VNAMZ-117013951240",
+      "productId": "product:41bc5062d3557842a1cbb90111c8e5ceb9f12c3b47300ffc427c8baa9aaef021",
+      "url": "https://www.lazada.vn/products/pdp-i3255422832.html",
+      "title": "Whey Protein concentrate PURE PLUSE túi 2kg, tặng bình cao cấp, giáo án & thực đơn độc quyền",
+      "selectedOptions": ["2 túi tặng 1 túi", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 447.5,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": 2,
+      "priceObservedAt": "2026-10-10T21:09:54.492Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:3dfb72f823b28bd579e707642ae722e1afc0853c3cc0081f47d4d2ec471f6045",
+        "evidence:fa5013de0dd624964ea72b688203cc224df4dc3eb263e8221c5a7bfa61562172"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Confirm the 2 bags plus 1 gift bag promotion is included and all three bags are the same 2 kg chocolate food SKU; old normalized packCount is2.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13463872611_VNAMZ-117339168804",
+      "productId": "product:4753107f4f41ffbad23f1ffa7caf7a45ec53e7cb29148f84bea0d8f2b61f0e72",
+      "url": "https://www.lazada.vn/products/pdp-i13463872611.html",
+      "title": "100% bột protein whey Gold Standard của Optimum Nutrition, trọng lượng 2 pound, giúp tăng cường sức khỏe và thể lực.",
+      "selectedOptions": ["Natural Chocolate", "Standard"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 468.23869634315054,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 907.18474,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-11T04:00:29.475Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:a1aa07ce9d68958cf630488541663e11db7511d0807afe295cd9383e4527aef3",
+        "evidence:ef2c2f2bddd896d2d6057d74654262f85751da52361d71f17ce827bb1617554c"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Identify whether Natural Chocolate is the separate naturally-flavored factory line; the cached standard ON page has no Natural Chocolate selector.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2205403447_VNAMZ-10520371626",
+      "productId": "product:9842f08e71aeb3df0aa48ba95659d2cc972d5b7d835aace8e4233c3acc8b5d1a",
+      "url": "https://www.lazada.vn/products/pdp-i2205403447.html",
+      "title": "\"WARRIOR WHEY PROTEIN - Bổ sung Protein giúp phát triển cơ bắp, hương vị ngon miệng (2 KG)\"",
+      "selectedOptions": ["DoubleRich Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Warrior"],
+      "observedCostPerFoodGramVnd": 485,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T15:34:24.393Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:43aa56b46818efaeaa06082e4919d7a24f059cc29ad79dcb0647825e9fa5741d"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Seller source nutrition is Strawberry Creme. Cached factory Double Chocolate source lacks a complete exact label; do not transfer strawberry or white-chocolate formulas."
+      ],
+      "minimalProofNeeded": [
+        "Exact selected chocolate back label: the cached seller nutrition is explicitly Strawberry Creme and the current factory marketing is internally inconsistent.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2205403447_VNAMZ-11741233918",
+      "productId": "product:2bc13bddf2a37030bf5c44aab3d4cd158f46ff637b4b78709c923c6cf60c9784",
+      "url": "https://www.lazada.vn/products/warrior-whey-protein-bo-sung-protein-giup-phat-trien-co-bap-huong-vi-ngon-mieng-2-kg-i2205403447-s11741233918.html",
+      "title": "\"WARRIOR WHEY PROTEIN - Bổ sung Protein giúp phát triển cơ bắp, hương vị ngon miệng (2 KG)\"",
+      "selectedOptions": ["White Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Warrior"],
+      "observedCostPerFoodGramVnd": 485,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:14:11.681Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:0b5928d15b20a6dc8d41a5aa95530f1bb2ec66a8907b40ba9414056b3eae8fb7",
+        "evidence:ee3012cf0a03dcfdf299a31a537a0eb284b14d0091afa47050674a7ee3d7a9f8",
+        "evidence:01f16fad6901606ba931d8be187a7ef576edc0635443d51f15522574ed10d135"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Exact selected chocolate back label: the cached seller nutrition is explicitly Strawberry Creme and the current factory marketing is internally inconsistent.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3095127497_VNAMZ-14849213302",
+      "productId": "product:d8ba883483b1ff8c6dbb2d835f8dc0d7803edd9bf0ad8ae88741757ab666a430",
+      "url": "https://www.lazada.vn/products/pdp-i3095127497.html",
+      "title": "Bột Whey Protein thuỷ phân Nutrabolics Hydropure 4.5 Lbs | Sản xuất tại Canada",
+      "selectedOptions": ["Extreme Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Nutrabolics"],
+      "observedCostPerFoodGramVnd": 489.91466844020226,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2041.165665,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T15:35:24.245Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:abf76c1ffbe557895319380e365a08e14144df711413a46658d254029819b129"
+      ],
+      "cachedFactoryCandidates": ["nutrabolics-extreme-chocolate-2050g"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected Extreme Chocolate seller front/back and current revision are missing; gallery depicts other flavours."
+      ],
+      "minimalProofNeeded": [
+        "Selected Extreme Chocolate 2.05 kg front/back with GTIN/revision matching the already cached 36 g serving/28 g protein manufacturer panel; existing gallery depicts other flavours.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2627699521_VNAMZ-14898632045",
+      "productId": "product:c3ece8e7ce2c1a3648d522a48b490184258a077a43d4c2289f078f1f6a7bb254",
+      "url": "https://www.lazada.vn/products/pdp-i2627699521.html",
+      "title": "Whey Protein Sữa Tăng Cơ Tăng Cân - Pro Gainer - 100% whey protein , túi 1KG . Tặng thực đơn + giáo án tập luyện",
+      "selectedOptions": ["Chocolate", "2 kg tặng bình"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 510,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-11T03:58:23.736Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:6ca8ab10bdfa3dc848d55e1398fc56974a6865462861a93da7ac64499044078f",
+        "evidence:a1ce59f55fb5304191edd4112840b34641fe93f8bd945d00658856a959ab61a4"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13375928580_VNAMZ-116939205737",
+      "productId": "product:40ca88beb9a6e89f22b1313b37791faff3176673b4cf705d38385dd3d0087422",
+      "url": "https://www.lazada.vn/products/pdp-i13375928580.html",
+      "title": "Bột whey protein isolate bán chạy 2 Bột Protein Đa Vị Yingbang",
+      "selectedOptions": ["Cocoa 2 pound"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 533.8758233521432,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 907.18474,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:10:09.745Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:18ac1b02acd130f9d2a1354fe75ecaa1db2b7d13b781df9f095d8f494142fe7f",
+        "evidence:80d117df25e62c5062c52d4872c0c5dbe39236de54efae434b68a8eb5399786f"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13430219487_VNAMZ-117214356196",
+      "productId": "product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69",
+      "url": "https://www.lazada.vn/products/pdp-i13430219487.html",
+      "title": "Bột Protein Whey 100% Nutrition Gold Standard, 2 lbs Chăm sóc sức khỏe và thể dục",
+      "selectedOptions": ["Sô-cô-la Đôi Thơm Ngon", "Tiêu chuẩn"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 624.6471885336273,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 907,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-09T09:46:12.125Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:6d97d202db24a4bd34574292a6a2c1de1005b5c2c7b39bb84782b6a4763fbe6d",
+        "ocr-evidence:8bbb70fa4369f7e9838ed0a909930ba690ab1b6ca65f1118691a3fba9fc09cfc",
+        "evidence:0cb6ac69c4207a2b80be0a32529912a1c5a9c53d18d5f2aa76610a47957a9338",
+        "ocr-evidence:ce471827a5cbbf3694f890363cc1782b057a68160fdda3005829132cb40b6039",
+        "ocr-evidence:56f1812bf5f2ac7d6dbf577b3ee548631cb858d89c4bfcd8a7fe29424ee08447",
+        "ocr-evidence:430517d7981d09600ae76204a64cdbb3d36c6cd82e548e9d11c6571f42ea9a49",
+        "ocr-evidence:06c0a532f15eebae4492d3837e6b214edaadbad7c33f141bf201c2a87e22b63a",
+        "ocr-evidence:bdfe26e6eed2f5a856afb8195163fecfa77d339a832eecee11b98fd3a484c777",
+        "ocr-evidence:8d6b7f99c741ab649b478a70a32fd64abe95a3ca71680428360cfee31c0e2f75",
+        "ocr-evidence:dc13d489e0ea97840b00eee757cd3c32ee0c5e1e734761df72dcc58115ae53ba",
+        "ocr-evidence:30bbdee7cb340e38236f10c5f3309489b1d4d807ebb33dd6db43526ad9c2afce",
+        "ocr-evidence:d15b3f54c945ca3e76fb285e321a1927b0ea6d7f9b73406dbc1558c9fc8164b0",
+        "ocr-evidence:0afa40b4f70d02c5bd3a86f8c93a9b560d7d08e7c236d4c50811da60881b5e91",
+        "ocr-evidence:93fbd43495006921285cc63048b293b2321694a0c90b760fd80506880ced09ea",
+        "evidence:898f05d81d490bba665d87ef573a2663b780c1ec461a73ae2333ff3865ed0b65",
+        "evidence:8444c93a21f6571a33d0b4c091fba780a3f3e538d5297e560019394203e8d3e2",
+        "ocr-evidence:bec3ff1a08e6a64118d2ed141d2da4256d7f8fd6e5dc5534eb39c6607b3ab6f0",
+        "ocr-evidence:33345969ee09adce741fa8051d7e2097e319d19c4515569c462de3ea21f80a54",
+        "ocr-evidence:a4fe37f3defb73b6d8eb03b0891eb17180ef032c80fb6f0e6e3dbdd8c1b00e51",
+        "ocr-evidence:5303fdeb86e613c35ce75ee8b15ec49679a02f92feb4949329344753a77a815c",
+        "ocr-evidence:601e45ba6a3a48a8f7b4dd3a97ce5134cf0a4b3c516d34aa659f436b84c4c52d",
+        "ocr-evidence:2e776a62f72402ca0bd14d8a92c481d48c704b8ae1a54c4fa8bee937e9a55366",
+        "ocr-evidence:39c5775fab63f817d815c6a908496fc28dcccc67108bee4a13b07ab96e6c35f1",
+        "ocr-evidence:e321fe7501f43291b4e00cb3e64e42b13a7581690134c65c259d2e63dbb59dac",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:5303fdeb86e613c35ce75ee8b15ec49679a02f92feb4949329344753a77a815c",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:d6bcb473c915778b1eec78017bfe0adb043ec32c0d9ec173a9baa5bcae4ad4ff",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:601e45ba6a3a48a8f7b4dd3a97ce5134cf0a4b3c516d34aa659f436b84c4c52d",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:d77dfd2e14731cd064fdc157d2bed8a6b940574820de27fa81a519ad9dbbf82f",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:2e776a62f72402ca0bd14d8a92c481d48c704b8ae1a54c4fa8bee937e9a55366",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:52acab6ef05e774bfd2fb66c73400e4bb9effd13ee60027e7d054939231a09f9",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:39c5775fab63f817d815c6a908496fc28dcccc67108bee4a13b07ab96e6c35f1",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:31dbadcdf1f417c94ced8f7aa45e8bd16c30108a390962495f95c1907d6772d2",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:e321fe7501f43291b4e00cb3e64e42b13a7581690134c65c259d2e63dbb59dac",
+        "ocr-evidence:product:05430ca7830220ba447f8b03bb162ef074f6eef42cd0dab732977f1cba611d69:a6a12e1a2fc11b310ba16d15eacdb9d9975f2d2b0331a70d86a7cced3d7f395c",
+        "evidence:966359f811b8a43cf96518646cea43b284b0c70d41a2885fb98092c4054bfbc6",
+        "evidence:aee1352445b947304b63827fdf562be8f8df4022796e42487ae1860bd431ddf4",
+        "evidence:f8a7ec6e046f2863a2ff0b7795596e4da92131c9752ec45cb24bf839abd8d075",
+        "evidence:71a1c8075aa3d6cf8a6be48ed64a88f99cabbad24af20585add7bb63e4fa6423",
+        "evidence:5b641a9f2be0039187f72bf5d7064f0f64679d8e607d89ea0834fb90ddf59725",
+        "evidence:6d02cf96cd9f7830e72de7136b65550c43963240ba252c6676d2eb8a367e28c6"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13474287412_VNAMZ-117400400940",
+      "productId": "product:4fca2a2a06cb53602d650e636daf51ca7232e52b7ca4fbc5606bb7b3172be45a",
+      "url": "https://www.lazada.vn/products/pdp-i13474287412.html",
+      "title": "SFD Protein Instant WPC Plus 900kg – Bột Whey Protein Cho Người Tập Thể Thao",
+      "selectedOptions": ["White Choco"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 644.4444444444445,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2250,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T21:28:05.843Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:e20ead6fbc4eed677b6ba6ddd522fec8124f21dff540d0d988027af51632152e",
+        "evidence:e17ab3342901b5f3b8c0ee4a41671acd5d904f4739da271cae8968fc71e50522"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3112740502_VNAMZ-15710226384",
+      "productId": "product:1b891bb4b55ff70c90fcfd85342afbc0d0f33193e4494e34c77cf7a5d087245c",
+      "url": "https://www.lazada.vn/products/pdp-i3112740502.html",
+      "title": "Flash sale Whey protein siêu tăngcơ, giảmmỡ, Whey Lực Sĩ 4 dòng, túi 1kg",
+      "selectedOptions": ["PURE plus MaxProtein", "Socola"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 690,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 1000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:28:17.220Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:453d3c2a3276c29a217c8ab0f0cef5e02694bf4e2d612c4c4ee0ae210d718c49",
+        "evidence:d446da67ed80f7a7c1eced6d1f034a9f78d373235b729f7b903827813ae66e6e"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3154800181_VNAMZ-116802296150",
+      "productId": "product:11b0663ac8d45a96acb41f087f3eb55cc80d5160603601071a6236c4b856bd4c",
+      "url": "https://www.lazada.vn/products/chinh-hang-on-gold-standard-100-whey-protein-shapeyourbody-i3154800181-s116802296150.html",
+      "title": "[Chính Hãng] ON Gold Standard 100% Whey Protein - ShapeyourBody",
+      "selectedOptions": ["Gói Share 3kg", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 858,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 3000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:51:15.162Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:ff89b90445aa966120187d08d10581692535ff926e4be2a7eb8ca47cf07c7d92",
+        "evidence:5b641a9f2be0039187f72bf5d7064f0f64679d8e607d89ea0834fb90ddf59725",
+        "evidence:e7668db4379ff31ec762244cfcbe39994591196ea5114ac695942ab24d63efc4",
+        "evidence:8f889be938958d2d9bb8dff41b8e30a029c6f6f053e0856f28d89c411b81ac98"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3264177806_VNAMZ-15757073905",
+      "productId": "product:2098231cf8ecdc46197bb4ededc9b934579e9b2455ad2ad381a5d2e1ab084a70",
+      "url": "https://www.lazada.vn/products/pdp-i3264177806.html",
+      "title": "Sản phẩm tăng cơ giữ dáng - Whey Protein VBest Nutrition Túi 450 g",
+      "selectedOptions": ["CHOCOLATE"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 954.9555555555555,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 450,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T10:08:43.500Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:487a3549a2de5308dbd849bd5e59fad2a6253517762628c283dcffd80f80c674",
+        "evidence:12d6d648d8bc4f6ae413521b51f030015ab502e9da44f8c1c18851a75f138cfb"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "No primary manufacturer identified for exact VBest450g. Similarly named Vitobest and other brands cannot be substituted."
+      ],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3217864249_VNAMZ-15414507357",
+      "productId": "product:c308d6d491665e811c51e40964f8fbbbd29c828288cccad5711fe29f8d51af12",
+      "url": "https://www.lazada.vn/products/pdp-i3217864249.html",
+      "title": "[Free Shaker] 5LBS ON Gold Standard 100% Whey Protein - ShapeyourBody Gói Share 2Kg5",
+      "selectedOptions": ["Gói Share 2Kg5", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 970.0339536134613,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T21:18:56.923Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:f33f182b8c031361bc5d890c1cdd6b06283ce4d125b7d70333a0de2085052b91",
+        "evidence:f2acfb535754fc9d9aa837fca73677b8b0c8fb015b29bd9da4e5c14fc9d2b1d1"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13351791422_VNAMZ-116763246889",
+      "productId": "product:96bebcc727f4a4211b7d3231c4fec35010c482ef89d9985c813024092bd2a9d4",
+      "url": "https://www.lazada.vn/products/pdp-i13351791422.html",
+      "title": "Whey Thủy Phân 25g Protein – WHEY HYDRO MIX 500g – Whey Protein Tăng Cơ Gym",
+      "selectedOptions": ["Chocolate", "Kg lấy quà giảm 30k"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 1036.8,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 500,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T20:48:01.148Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:4fd32bca92001d264d03c30002cd64ac05ea51b7f7de479b9af8f37bd7f6c268",
+        "evidence:00c627a13babac9bee07fa02c2dde1a74b9f6b2d38e53e17145d43df2dc53d87"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3217877171_VNAMZ-15414438927",
+      "productId": "product:363bdc59af44784e06de2d540cee1b03c4ee57b270821a43182af19a4dd40f91",
+      "url": "https://www.lazada.vn/products/pdp-i3217877171.html",
+      "title": "[Free Shaker] 5LBS Rule 1 Protein Whey Protein Hydro Cao Cấp - Whey Fitness - Gói Share 2Kg5",
+      "selectedOptions": ["Chocolate Fudge"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Rule One Proteins"],
+      "observedCostPerFoodGramVnd": 1069.2419715966562,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:15:12.202Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:fb8f8d24767a33e2ff09bc177ce19b31fc5d6c100beaeee841587f7ebc6ede09",
+        "evidence:ce0a5aaae6da9e2e6e6d1da7082f9aedbe5c335b117ddf18fe0a9320b3ce5a8e"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13355746454_VNAMZ-116812901868",
+      "productId": "product:537da7a08f1dbbd942b2da35992cbab36de4807a9483a6170d58e08eb560a832",
+      "url": "https://www.lazada.vn/products/pdp-i13355746454.html",
+      "title": "Whey Protein Gym – WHEY HYDRO MIX 500g – Whey Thủy Phân Phục Hồi Cơ Nhanh",
+      "selectedOptions": ["Chocolate", "Băng quấn cổ tay"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 1072.8,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 500,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T20:28:02.890Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:8b8e6b393677736f41dea888fab0f9a85977b8642a2ae49c477814153121ebeb",
+        "evidence:51e51176fa6ea2410b52dbdceecaeae67959f37951069507362b47bba0faa127"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13392889869_VNAMZ-117024762283",
+      "productId": "product:67661e9afa2d527fe73c460a21c12ed21162a304d5ab0388fced1501345711ba",
+      "url": "https://www.lazada.vn/products/pdp-i13392889869.html?skuId=117024762283",
+      "title": "[Naturally Flavored] Bột Sữa Protein Rule 1 Protein Naturally Flavored Loại Không Mùi Vị - Shop Đô Con",
+      "selectedOptions": ["Combo 2 Túi 1Kg"],
+      "flavour": "unflavoured",
+      "manufacturerCandidates": ["Rule One Proteins"],
+      "observedCostPerFoodGramVnd": 1138.5,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 1000,
+      "capturedFoodPackCount": 2,
+      "priceObservedAt": "2026-10-10T16:37:25.459Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:bb9aefb00af41289dea5d70f239b6327aa9607787f88b2ba1593373c8178a584",
+        "evidence:ad9cad42b1c085d4900cd102582abef947005ce6cd70c51c3983fd3cb9b522ac",
+        "evidence:4d3164c9f62e09387c2e9902c1f251535a4fb5a7e2fe57a5df2cf57fb2773535"
+      ],
+      "cachedFactoryCandidates": ["rule1-naturally-flavored-unflavored"],
+      "priorBlockingEvidenceGaps": [
+        "2×1kg seller repack; exact factory parent and batch not shown."
+      ],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3154800181_VNAMZ-16289192125",
+      "productId": "product:62ba144ad1c891dcd1e642c60c426ddb35402b0090f20053346bae53ac2e5e90",
+      "url": "https://www.lazada.vn/products/pdp-i3154800181.html",
+      "title": "[Chính Hãng] ON Gold Standard 100% Whey Protein - ShapeyourBody",
+      "selectedOptions": ["Gói Share 2Kg", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1150,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:46:15.589Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:175560eedef66613402f783c9611322d67a2d40701130b61d8eb4de6794743f3",
+        "evidence:5b641a9f2be0039187f72bf5d7064f0f64679d8e607d89ea0834fb90ddf59725",
+        "evidence:a2fd6c6b7dda6675fb48ea2b02451ff70f0d889f3db0be70d6226c9f1e4f7bfd",
+        "evidence:a9e79c768e17f6a82bac8d7d27e61fbe6ce6312dd8471ccac20cb8e61edff4aa",
+        "evidence:e3a5ad3e5bca42a61e76af9d0e0a155f6bc036690bee08113c10ad93d3c9711a"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3154800181_VNAMZ-15034562404",
+      "productId": "product:0bdf3a60c5973590e9b4189fb1bcba2ab9b9d1beb410b07f0cef4bdff74dbd72",
+      "url": "https://www.lazada.vn/products/chinh-hang-on-gold-standard-100-whey-protein-shapeyourbody-i3154800181-s15034562404.html",
+      "title": "[Chính Hãng] ON Gold Standard 100% Whey Protein - ShapeyourBody",
+      "selectedOptions": ["Gói Share 1Kg", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1164,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 1000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:31:15.272Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:0be06ca740ed72a4fcf87e759886724ac293de3a29c215f6382c0b3699954852",
+        "evidence:5b641a9f2be0039187f72bf5d7064f0f64679d8e607d89ea0834fb90ddf59725",
+        "evidence:870a0821089ab327e4280f5aa183c26db46f32770e81591cc2d4541c1ccd43df",
+        "evidence:7f9ee81f8623524db78f49099bbe90c489a7ea6526f999429460e7720c234ccf"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Original factory parent-package GTIN/batch plus traceability and net-content proof for the seller repack; factory-tub quantities do not apply automatically.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3265021607_VNAMZ-15762183506",
+      "productId": "product:1cccbb5c05cc6c121c8f69e73247dbef955097342765d6209497849fa9862c40",
+      "url": "https://www.lazada.vn/products/tang-binh-lac-shaker-thuc-pham-bo-sung-optimum-nutrition-gold-standrad-100-whey-2lbs-goi-900gam-i3265021607-s15762183506.html",
+      "title": "[Tặng Bình Lắc Shaker] Thực Phẩm Bố Sung Optimum Nutrition Gold Standrad 100% Whey 2lbs (Gói 900gam)",
+      "selectedOptions": ["DoubleRich Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1208,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 900,
+      "capturedFoodPackCount": 1,
+      "priceObservedAt": "2026-10-10T16:39:21.182Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:11027811e8f95d59ed813e68c4e6861e4fede42115084c32ab3c12a4dd8d472a",
+        "evidence:99b33edaa6f48c6b9fe7ea1bfd9341054c4c02708814d834718b916bba421c71",
+        "evidence:79396b7d03d585402e2dbd84db33c2410ef5573d59994fd577ecc50763bbcb11"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1869611936_VNAMZ-8473662161",
+      "productId": "product:172a1c5ec557e60024af31a4af2a3ccad92d69a77b20cf295e00284e4746a5b1",
+      "url": "https://www.lazada.vn/products/sua-bot-critical-whey-2kg-bo-sung-protein-hydrolyzed-isolate-hap-thu-cuc-nhanh-tang-co-chiet-xuat-tu-nguon-bo-sua-an-co-tu-nhien-i1869611936-s8473662161.html",
+      "title": "Sữa bột Critical Whey 2kg bổ sung Protein Hydrolyzed Isolate hấp thu cực nhanh, tăng Cơ, chiết xuất từ nguồn bò sữa ăn cỏ tự nhiên",
+      "selectedOptions": ["Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Applied Nutrition"],
+      "observedCostPerFoodGramVnd": 1249.75,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T15:39:44.128Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:e9b1db534b68f92ea8b4fe55e245a083a27311c996d0f50e20749ada32463c5f",
+        "evidence:62a4f893c470ecbaf2c8f437b06872711055b7c69acc61d4f8d8b6f879aa148a"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Old seller20.3g/30g scoop/110kcal formula differs from current factory24g/33g/122kcal; trial repack also lacks exact parent label."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1553990700_VNAMZ-6552645102",
+      "productId": "product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422",
+      "url": "https://www.lazada.vn/products/pdp-i1553990700.html",
+      "title": "Whey Isolate 2lbs, tăng cơ hiệu quả, kiểm soát calo",
+      "selectedOptions": ["Chocolate ice cream"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["ProSupps"],
+      "observedCostPerFoodGramVnd": 1267.9162072767365,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 907,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-09T10:07:45.985Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:0e9d26dca2d68478af8382801a6b8ef8d9955d31e0f8671a537c3e4b3f5a16af",
+        "ocr-evidence:00648bbe8d43575a37ac38bab79d0baaf21dbd57c4574cc2df62157342326706",
+        "ocr-evidence:e44ed5762702a018379d7f29471e1b425b21877a2e3e651bb018cc7fed3bae01",
+        "ocr-evidence:d404423ac08f07851a78e363fc683b94817eb49892b4e5b9a7c19401c4b9b8ad",
+        "ocr-evidence:29fd2ad706e5e7a6dd418ec5c53e81e72d23f3ab5b779b959232ea348343baec",
+        "ocr-evidence:30b83144a8c056cbf0b592225c2febdbbaf980c512c93a1bc26632ed92f61a34",
+        "ocr-evidence:7e67d46d66d91aa24b1f7f739d3e71f26758576b97067e8948077101dd2119f8",
+        "evidence:b7b73026f43a78802108cd29e5c8dedd354aa73db2ba8f8d52a3f4928dbf2ed3",
+        "ocr-evidence:8faa499aec4991935a47293f3e6ffd321888f7d244f870271279bd6377c9b3cd",
+        "ocr-evidence:33acf348cd6c237fcc3ea679e0fd7eac7b529cd00c80b8463142abd4353645e6",
+        "ocr-evidence:d3b9974fa2ef4b2b559fcf7742e96ad3cdb0ada8e8e1a487785f6b4ed7be179f",
+        "ocr-evidence:796899a7aa51656a67dab19c96a25e36281df2e3687ba99bdf9e1c99afdec492",
+        "ocr-evidence:d6db1ff850804871768e4d811572de6f1add17de50ee00923239aff113af9cd0",
+        "ocr-evidence:b142c1ebd991d7ec1dfb47d1deef25a3e332935c0bdedef26474b756bd20e0ba",
+        "ocr-evidence:179e3f8a9a78ce82c115e33f406cd8d4e0d2a27feeed276798d1babbeab7869d",
+        "ocr-evidence:2a843c80ac45085f143a5ccaf59a82355167d96e811fc2c9299a844ca6872d61",
+        "ocr-evidence:c635549570d1b2d1c848ecd4143f5c2ed2acb1be3bee442a00d5079912311fd2",
+        "ocr-evidence:a184ec46e89b6c21ebfee6b5ed02005875c9bf9fc643ed38eb266d891bcccd27",
+        "ocr-evidence:0e0638ca49f86f65a459660934b8961c707bcc88656f24ce558d07223eede419",
+        "ocr-evidence:afa699ddb182890a01c6380dd57a2c8e1af767ec84634f65bf9b221290574675",
+        "ocr-evidence:27d1ec28b3b3c7cdcbb85d3a32eaddaccae871e68af8c4a0f7a59404068acf6d",
+        "ocr-evidence:bd109bb04e79d554b13d7b430d5cc861087ace0496faabc53c76a4fdcd618921",
+        "ocr-evidence:4b3eb3a10b8edadc478287ab9eefdaec28c83e3ce26ffc7cccbbd1b38fac9466",
+        "ocr-evidence:806da788e8b79f3a89c8d027bed02fe29aac43ae935484269ef170389496b651",
+        "ocr-evidence:8f5851c5a9f011c523d58c3ad6611145c9632b990851afeb2265479fccb23391",
+        "ocr-evidence:db38fc2a94d6dcb7ce3b3586a84896c8d91d1107522c38c453de7d9fe8054a32",
+        "ocr-evidence:069ce7c2453aca12bad5b889291f0f62bfe3b2ff047f61279244a9c2333a22aa",
+        "ocr-evidence:18af7e538b8f7387ed949fab9981b4f29f51902ac40c4135edfe1399457f94c5",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:a184ec46e89b6c21ebfee6b5ed02005875c9bf9fc643ed38eb266d891bcccd27",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:4c46b12bd607d6ce922e62f02727a2efcc574cafa14b8d9f16922ff0036a6a8a",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:0e0638ca49f86f65a459660934b8961c707bcc88656f24ce558d07223eede419",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:7c4b77511bff1859504679a4f34627e9bc799734ab35ec40e0fd1e6077242c2d",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:afa699ddb182890a01c6380dd57a2c8e1af767ec84634f65bf9b221290574675",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:b41af58518b0a87a6efaa4c1dc986fb9abf17b2fc2e58d15390596cddf53da4d",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:27d1ec28b3b3c7cdcbb85d3a32eaddaccae871e68af8c4a0f7a59404068acf6d",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:83f725d1446ae537293246800d322ea4afcaf104c15efc90479bfac4f397ff1f",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:bd109bb04e79d554b13d7b430d5cc861087ace0496faabc53c76a4fdcd618921",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:49e32579b575cdf5d4a1de92ff04d65209d01434a11f40d39a1829427101f105",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:4b3eb3a10b8edadc478287ab9eefdaec28c83e3ce26ffc7cccbbd1b38fac9466",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:e42c640ba84d0ed766b0495a0fa399f87701286ff17e7e881ed3dec45934c96b",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:806da788e8b79f3a89c8d027bed02fe29aac43ae935484269ef170389496b651",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:21d85557eb523b23edb2c75ae64aa170bcf387e28c5d77d2e71eed48ec18fb48",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:8f5851c5a9f011c523d58c3ad6611145c9632b990851afeb2265479fccb23391",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:c9f6946baa549b2faedb5ecdec8743a6e85e9ac5fc79ae5505763aae359213dc",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:db38fc2a94d6dcb7ce3b3586a84896c8d91d1107522c38c453de7d9fe8054a32",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:2aa18ccad2a78936412e2930d67074a3dd21ffaf91dcf289ce8a870eb150b95e",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:069ce7c2453aca12bad5b889291f0f62bfe3b2ff047f61279244a9c2333a22aa",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:3c8310e35d218367652426cbdb36ae091ae7ac79b6581262f72b397c20cfc1ca",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:18af7e538b8f7387ed949fab9981b4f29f51902ac40c4135edfe1399457f94c5",
+        "ocr-evidence:product:dfa060897269f04ec2846eade8608f56a09fcf2317217e0a78c5f8c1de824422:2cbd9683e4e3251128a5fc668fddbb0ab1fcfeebd41e97a70aaeee1e522d25a8",
+        "evidence:1591d8082fe6ca9b86dc0a8cd06ee29df96b7cde254084e13e88eaab6e0e6655",
+        "evidence:cdb96c8e3bdd7ae0959b730265c20876bbc65b94325853bccf8808fa451dc1c3",
+        "evidence:f2a5bb73b9c9fa04dc174565f7fb6a04cca3d1348dbbb65910d8d0a81506d79c",
+        "evidence:d35aeb782626798c4faeebda05d1ccd6f647267a39944b8f43a9563a6aa6892f",
+        "evidence:f638dadd0769e87788c24c0cddde4fc77ccfed1d28ba22a6ded3f17b4b373caf"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact premium2lb Chocolate Ice Cream revision differs from current published family;907g food mass alone does not establish formula."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1869611936_VNAMZ-117177853167",
+      "productId": "product:2a7cf99e5b51766b6f132222e0af5141a09fcbd7fecd551f3a8798e2091f461f",
+      "url": "https://www.lazada.vn/products/sua-bot-critical-whey-2kg-bo-sung-protein-hydrolyzed-isolate-hap-thu-cuc-nhanh-tang-co-chiet-xuat-tu-nguon-bo-sua-an-co-tu-nhien-i1869611936-s117177853167.html",
+      "title": "Sữa bột Critical Whey 2kg bổ sung Protein Hydrolyzed Isolate hấp thu cực nhanh, tăng Cơ, chiết xuất từ nguồn bò sữa ăn cỏ tự nhiên",
+      "selectedOptions": ["Chocolate +Gloves"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Applied Nutrition"],
+      "observedCostPerFoodGramVnd": 1269.75,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:16:04.729Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:af7a8298da4d72f39f734e45ef26b8cc36a475d20f1a3d8fdad2c6df198c1246",
+        "evidence:7c21559a329e3f1e0abf7e630cff9a22f88655951e4edb925eeaaadfedac7947"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "966992366_VNAMZ-117242456655",
+      "productId": "product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568",
+      "url": "https://www.lazada.vn/products/pdp-i966992366.html",
+      "title": "[HCM]WHEY PROTEIN - OPTIMUM NUTRITION - GOLD STANDARD 100% WHEY - 5LBS - Sữa tăng cơ chính hãng từ Mỹ",
+      "selectedOptions": ["5.5lbs (80 servings)", "Extreme Milk Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1342.8155969442541,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2494.7580350000003,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-09T11:33:27.237Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:b06d5610b899d9272c2d4c6545498aa39bff97641076ead1a1cf92434362a11f",
+        "evidence:d605a8a634cc829ebe90003172fdf406380568531898c81da102eeb7aee209f3",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:4c44a3b2c58bfb1218f4b590eb47410b5048d173356df37aaa30fa86b101edaa",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:43fe3f1646f82365031031f158147f4d6aaa357510e7964de7bff23ffc7a07f6",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:32727dabb9052d60ee62018cfaf9e837c8597e5c5e0859544833b51b52ff7afb",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:66b407321bc47abefc8cf2de7db83fd946e46d8b5a89490eb382b731cbeb8316",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:491761e0aa55dc9e75e8dcc768cfe0cf7045fe9e827271c644a4292b09f6d4cf",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:9c9bf30f009991f394c4c66e45ab3e9fa1e853443319ebd1a0d6ae87e31b84cb",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:42c132fbcd7fb5a2f87aec1c673ae8362b2e8b95ad0989f66fb30a16d5223825",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:996933795b646c0e9039f31a51576f0529965cbf064e892e32b99b07938367c4",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:33174748f0ed7342d6c31ea5ca683556f1e955281895185eae1e0df7f21281cf",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:af4dd0c480557d4def0b5a1479174cf6dee2857f46737069e1817f0e8fa8f155",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:96504d42b873dcc44d3b92a7d185629ecdafb703a955b1f400acd77074271b18",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:6735ab3c31e483096d9f3c7d4a280b0db835157c83c5a43418d853816fa0cd60",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:1746ea50488e99c31fc51b62f08d88260afd03e109c3b71b5baa183478ae2b6d",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:7719938991b1ab33c9c891e3378fb47bbb72845f1707318e5ca0e9e377795a79",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:15f0a17d523329fab709c37c989491030754f1e1619cb4060b3e308640901cc5",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:93c2f91694f756b78d17218a9dfd4d42b20c65af865e6dd64cfa8fc57ba6c261",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:63842c84870beecc9c2d3d707050d9b9bf81b69cc6d4e2e61173840645b55aad",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:5138043585a69eb4a732e95c0235cb9dbfad9c806c99f82be0165402f946259c",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:1ad7ee6b89a9ada48c48436e1f5c555ba494debd6710f51981478529f91608a7",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:0eb34401b7aee373f7e5e9317c1707cf909b9971f1aa72dc67ceba919d8ea02c",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:695e01e61c501eefe1448e3ea879664cff0cae9d3e72fcac3684735f3148f1b0",
+        "ocr-evidence:product:4270fe24d3e9d552d31ca601a31d7ee56c47b702fbcada9939fc0e1f4566f568:9fb0426b78b850d3432bcd86b13302e8ebc41b4332eb6845f2224ccf2250e9b9",
+        "evidence:f8a7ec6e046f2863a2ff0b7795596e4da92131c9752ec45cb24bf839abd8d075",
+        "evidence:88afcec399865e7fb630d1a8593c88c1dc6f06a81da1631554180238538ad709",
+        "evidence:5b641a9f2be0039187f72bf5d7064f0f64679d8e607d89ea0834fb90ddf59725",
+        "evidence:04d07c897816f8d6c06f6700e63aced1349dfba338591adb213379c9d9da9f62",
+        "evidence:88ec8f12a5101c2d68d707d48232b7a9ccb6bfa079fb5e68a48d8cbeb7c90b2e"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13345746436_VNAMZ-116660973354",
+      "productId": "product:31d74110eba685bcd4d668977da5b7f48d7a5bab48462b20c0d3a1b0dc4517fa",
+      "url": "https://www.lazada.vn/products/pdp-i13345746436.html",
+      "title": "Hủ Whey Protein Isolate Blend MUSAKING 2205g – 25g Protein, 1g Đường, Whey Tăng Cơ Giảm Mỡ Hấp Thu Nhanh Cho Gymer",
+      "selectedOptions": ["Chocolate", "Găng tay"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["MusaKing"],
+      "observedCostPerFoodGramVnd": 1355.1020408163265,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2205,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T20:36:18.650Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:fbafe5300968c1cd7218da9062e277f1d872e78704f67959188c108b5891f463",
+        "evidence:f3eef49e576fa99ab2161f126766078d64bd86f75fb4be909317b15afcbfe6d6"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3326813842_VNAMZ-16275291300",
+      "productId": "product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7",
+      "url": "https://www.lazada.vn/products/pdp-i3326813842.html",
+      "title": "Bột Sữa Whey Isolate Protein Blend Musaking hủ 2,2kg - Tăng Cơ Giảm Mỡ; Chocolate, Vanilla + Tặng bình lắc Shaker 600ml",
+      "selectedOptions": ["Sôcôla", "Bao Tay"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["MusaKing"],
+      "observedCostPerFoodGramVnd": 1356.0090702947846,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2205,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-09T10:06:31.193Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:5c60e61e7ed158804bdf87703ba958ff18e34163bc69511c3118399655167e43",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:c1835cd9a370b347664896c36f8aed0610a1f7a12bf5422d691c5082a23e5e85",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:c4094895a2ce6481a853ba5ca4d40c42cf082c3614eeaca9a8644f1b9efcb265",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:06c6e9261b03f0b9d74376232979c414749dada259517caf5a898e3cac269f7a",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:0214bbbc31e1e66812717039d89af846dc120755c10badd49371280b92883103",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:b5f162d588287dcc5d127e3d298983625f83625c3bacb86e4f661f0b30331cf4",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:9446dc56e332e746d85af55f30e2528af80248ae8036f49e166209e93afb878b",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:81f391310dedaa1105234fdf1ebab22b65da15d56f1059c2d0111ae53b1ee5a1",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:230eb7812772fb4a7dc3c5da7291fdac1105f69b18f016876b00b79a0fe3df9e",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:a880469df6e022571ec3db1e70e58f73a8a91b8c6d311e9745e4c4ec47091c90",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:aefac2fcbabdf44609597c7ca68fba7265ee04330668fb0f29d098c335f4fac4",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:4b476bb1747f0a60aa6987c10b9bdc27433ce44b354e42574642060fa25418af",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:d328ed7e66e668b1cacbb0940dcf298f612c8d0f79141ffbe10a45412d034ae6",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:49ca2b374767977e393e830e42108743f88125c6ae93edfc1d43a2564f1f457a",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:efe12d6514199fbb592a5c711832bd6dc01eef6ee6ef09c9733875fefe67d21a",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:a16d01cea7bd1c3add122d54c7b1ea8dd28bf0f705c3696c57f9e0bc225bcee3",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:1c269ac416ac47dc4c59558e99f1f961dcb7a3634a26c086044d4f5da5c6d0f6",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:b3948d7ab7835edae5a0f2be1f77cccafa1efa69c9fef271e4d8b8d5e0211d05",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:0a91de6c0bc02ab16b004e9baa9d3587df25f16e6c44096defc72108183a79af",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:aa51da7f21c71a2c6b7cd1be9506f8568e3283cf03e80cb07f8bcdd717d9b4e7",
+        "ocr-evidence:product:849c54dcdd1d00da61604422ef0afa80b7014e356360918ee25a884e69973ea7:8a3be9afdf1dc54da41417e14b56a5f6af91775f9fb9853adea75273a9e1beb1",
+        "evidence:aec27ac8baf17d0069ab3be7d172afa6c95393afcf37feaffaaf9c5d704a3f4a",
+        "evidence:ddf7afb305131a5669ee0cb62e4c6a1ed2edca6aa87e3bb6aa81cb4a5a3e949e",
+        "evidence:0c1be3aa27999f7b84ebab8bac5fd4bdcb6a635ef2213c58b7f5952e5aa8a683",
+        "evidence:c8e43eba80cfd04320299f58f0e810bcfa4e270947a347bc5eb34f3269b46d13"
+      ],
+      "cachedFactoryCandidates": ["musaking-isolate-blend-2205g"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected seller package and numeric selling food count must be visually matched to factory; no new review applied."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2019564464_VNAMZ-15735467762",
+      "productId": "product:e116a15da8b8f65fe4c5ab4a6d872ff7bc3de50fff48ca39d3e13d8c80137bf7",
+      "url": "https://www.lazada.vn/products/pdp-i2019564464.html",
+      "title": "Sữa Bột Tăng Cơ Cao Cấp ON GOLD STANDARD 100% WHEY 5lbs",
+      "selectedOptions": ["IT'S JUST WHEY ISOLA", "NATURAL"],
+      "flavour": "unflavoured",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1362.4567803025434,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:25:16.824Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:4746a0f5c7b89021da4e4d261da548da8bd1592c3ce263baa6c58d7d2da213f2",
+        "evidence:06112bfadf06e6fe44b048113f5f8ff37080e504fadd8e089cb227a8c2e12a52"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Resolve selected brand IT'S JUST against normalized parent brand Optimum Nutrition before choosing a manufacturer; same-title ON quantities/formula cannot be transferred.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13345064562_VNAMZ-116655386745",
+      "productId": "product:a6ec8609ccf6307e08a1724be81de9f35147fce78f2eee424fe70401f89ff9b5",
+      "url": "https://www.lazada.vn/products/pdp-i13345064562.html",
+      "title": "Combo 2 Túi Whey Protein Isolate Blend Musaking 25G Protein – Whey Tăng Cơ Giảm Mỡ Ít Đường 1G, Phục Hồi Cơ Nhanh Sau Tập Gym 500G",
+      "selectedOptions": ["Chocolate", "Găng tay"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["MusaKing"],
+      "observedCostPerFoodGramVnd": 1388,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 500,
+      "capturedFoodPackCount": 2,
+      "priceObservedAt": "2026-10-10T09:31:52.157Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:fcde4e3382f2c915004be9d675ae71e9b565205ad45bd43d4d740e8b7b878b45",
+        "evidence:7933300632d4f56c955ecd7a356047357574186493a804d3dab16a3aa9ae05f8",
+        "evidence:28b317c30a50432fea56deba7009979f0f3eced1a6f9b0b24f9af99a0a050744"
+      ],
+      "cachedFactoryCandidates": ["musaking-chocolate-500g"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected seller package and numeric selling food count must be visually matched to factory; no new review applied."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3201389743_VNAMZ-15280058388",
+      "productId": "product:6445a63bbff4ff7f2ab42851f06719811c06e6ba11d3680f66020aeae1ac846c",
+      "url": "https://www.lazada.vn/products/pdp-i3201389743.html",
+      "title": "ZProtein 100% Hydrolyzed Whey Protein Isolate 5 Lbs (71 lần) WHEY PROTEIN THỦY PHÂN SIÊU TINH KHIẾT",
+      "selectedOptions": ["5 LBS", "Sôcôla"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 1410.9584779832164,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-11T04:04:31.608Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:724e65d328e8eaddf550f58a5561d16b628c08b19a397e62317e71949fc3e1e0",
+        "evidence:5ee6d4ebe363f415dfd0c5ee1280c3ce39f449b4271eff330504e87836cf295f"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1820626958_VNAMZ-8207846998",
+      "productId": "product:a2d94fde7f0aecab1a0a790d876cff7dbd7cc80cc323e9416cff1e13e3feb640",
+      "url": "https://www.lazada.vn/products/mutant-whey-protein-5lbs-23kg-sua-bo-sung-protein-tang-co-sua-chua-phuc-hoi-co-sau-tap-luyen-i1820626958-s8207846998.html",
+      "title": "Mutant Whey Protein 5Lbs (2,3kg) - Sữa bổ sung Protein, tăng Cơ, sửa chữa phục hồi Cơ sau tập luyện",
+      "selectedOptions": ["Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Mutant"],
+      "observedCostPerFoodGramVnd": 1434.5652173913043,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2300,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T15:37:45.829Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:40a0b7c48769fc36953c769ceb6b7108363cf9be4f9fb1b6b29d17feb71fceea",
+        "evidence:5c306b6d930d8e02cba060c5f38b61834852c50de97f13b7c4fe9cf2f08e7d59"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Seller36g scoop/22g protein/140kcal differs from factory38g scoop/22g/150kcal; no revision transfer."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1820626958_VNAMZ-8208002002",
+      "productId": "product:4b2dfcf526570603ffa62e20178dcbc47f1f3d6f8f72319c9484f72b01c8c4b9",
+      "url": "https://www.lazada.vn/products/mutant-whey-protein-5lbs-23kg-sua-bo-sung-protein-tang-co-sua-chua-phuc-hoi-co-sau-tap-luyen-i1820626958-s8208002002.html",
+      "title": "Mutant Whey Protein 5Lbs (2,3kg) - Sữa bổ sung Protein, tăng Cơ, sửa chữa phục hồi Cơ sau tập luyện",
+      "selectedOptions": ["Chocolate + Gloves"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Mutant"],
+      "observedCostPerFoodGramVnd": 1451.9565217391305,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2300,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:19:06.459Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:6dbb4c7ea12d59a1dbe1b4326f3d10be5e64805be396e1c6f24832977b2d4bc5",
+        "evidence:1caa2d3aaba782f5a173d42ba948fd95082e0aa52c9198428bf430a58536a56f"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13441930561_VNAMZ-117241895474",
+      "productId": "product:4a1eac6a7b1eef09fa4149030fd929a4b82dd0e3f89161558ad64e61903f6ef9",
+      "url": "https://www.lazada.vn/products/pdp-i13441930561.html",
+      "title": "Optimum Nutrition Whey Gold Standard 2.27 Kg (74 Servings)",
+      "selectedOptions": ["Chocolate 2.27kg"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1453.7444933920706,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2270,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:17:08.542Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:50ed2bc99c98346ce89eb4ca636dde8050442d60976f55d8300e214ecb9d574a",
+        "evidence:522727246a43ea27f0e375367e0ef43a0c14adf05a91fb3ae265ef96b17dcb7a"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3294467555_VNAMZ-16000834655",
+      "productId": "product:83e5b6af16e5cf22e0e34a5c97f7310e45139bf8216dc3327f2c1e7b8c0ae9ee",
+      "url": "https://www.lazada.vn/products/pdp-i3294467555.html",
+      "title": "ON 100% Whey Gold Standard 5lbs – Sản Phẩm Bán Chạy Toàn Cầu",
+      "selectedOptions": ["Double Choco"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 1521.1896090756552,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:26:11.101Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:d50ca18a59965d87d4e94f5a467599873f11a888eefe26567427dde22ef6ab4a",
+        "evidence:3c4a3f7a8865ffbac37a9e1cb5a67c5374170430841995303cf7cc7127ed5231"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3286561475_VNAMZ-117374785316",
+      "productId": "product:4048d9b1c722eaf1bd925a92debfcc3711e93ab225e07e2446a41b8c78b1df49",
+      "url": "https://www.lazada.vn/products/whey-protein-power-whey-isolate-biox-18kg-tang-co-nac-hap-thu-nhanh-i3286561475-s117374785316.html",
+      "title": "Whey Protein Power Whey Isolate BioX 1.8kg – Tăng Cơ Nạc, Hấp Thụ Nhanh",
+      "selectedOptions": ["Socola Natural", "Không"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["BioX"],
+      "observedCostPerFoodGramVnd": 1541.8502202643172,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2270,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T05:07:15.131Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:4ab4f9ae8be3d00c902e887f8cd4823e5d0d2ad0224a3d35a7bf2481815ad4cb",
+        "evidence:b93b29699b3dadcefc523a3949bf250109238113a11a73b723b11baafa100a68",
+        "evidence:80c38ff4894f6e09aef407335d8a471fe3e964d8ec788928ed6276270c9f6a87",
+        "evidence:98380af94051741688b58b4e2c696bd7050e6f659c7a61351a9301d800fad2d5"
+      ],
+      "cachedFactoryCandidates": ["biox-natural-chocolate"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected seller label/revision and package needed; natural and regular formulas differ."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3286561475_VNAMZ-117374785317",
+      "productId": "product:57d6082284b7f869d1dd95dd7a7a9e2541e0e5c1cc0baa8513b538c4583d6acc",
+      "url": "https://www.lazada.vn/products/whey-protein-power-whey-isolate-biox-18kg-tang-co-nac-hap-thu-nhanh-i3286561475-s117374785317.html",
+      "title": "Whey Protein Power Whey Isolate BioX 1.8kg – Tăng Cơ Nạc, Hấp Thụ Nhanh",
+      "selectedOptions": ["Sôcôla", "Không"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["BioX"],
+      "observedCostPerFoodGramVnd": 1541.8502202643172,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2270,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T05:08:15.129Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:4edeeb0b4fa90396e4a3a8a0addd3bea953134d5a1fc4a304e78b8448a481be3",
+        "evidence:b93b29699b3dadcefc523a3949bf250109238113a11a73b723b11baafa100a68",
+        "evidence:62f04e187702ff429b7e2b6ef3f0c864b5949a42c05d9ff570a93ba2e0739c06",
+        "evidence:c4fb4f08af2046986d4b244af0c9e931f30b8098a9a268bad84675dabdb1ff4a"
+      ],
+      "cachedFactoryCandidates": ["biox-regular-chocolate"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected seller label/revision and package needed; natural and regular formulas differ."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3303813575_VNAMZ-16107399100",
+      "productId": "product:d771fa7d9ce04dee8cc56dc7aa22397aa45d8c781951f241170f96f26c0e793b",
+      "url": "https://www.lazada.vn/products/pdp-i3303813575.html",
+      "title": "100% Whey Protein Hydrolyzed Power Crunch hấp thu siêu nhanh : 2.1lbs 970g",
+      "selectedOptions": ["Double Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 1546.3917525773195,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 970,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:06:11.736Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:f20660ef7118d193359847fe50fd19b4612489b3e9db071fe9e3500e6b474992",
+        "evidence:488f5177c932ad6ba24fecc9dc5f6ed0bb40a2fdadaa31cced3d23633b8a48fa"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2802394021_VNAMZ-13671542321",
+      "productId": "product:0cde38875924e96da468c088c1f6e6a623821a1ad4d34bd8746cd96cc4b10551",
+      "url": "https://www.lazada.vn/products/pdp-i2802394021.html",
+      "title": "57 Whey Protein Concentrate 1KG - Chocolate/Matcha/Milk coffee Flavor, High-Protein",
+      "selectedOptions": ["Chocolate/Socola"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 1650,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 1000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:32:28.250Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:5e23af55842882fb74e2d40bed01751e966347d09777bc6d4afcb6093ad36a64",
+        "evidence:2cb3140ef0d0a15e702f3cfc12715b81a71605e532291ead372372df084d1309"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1883182990_VNAMZ-8539963632",
+      "productId": "product:d49330a01fe1c58f745312cd88c34c0e9f083f28bec5b7fb4139322c3b6a07b0",
+      "url": "https://www.lazada.vn/products/pdp-i1883182990.html",
+      "title": "Whey | Sữa Tăng Cơ Cho Người Tập Gym - Scitec 100% Whey Protein Professional 2350G - Chính Hãng",
+      "selectedOptions": ["Chocolate Hazenut"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Scitec Nutrition"],
+      "observedCostPerFoodGramVnd": 1659.5744680851064,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2350,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T18:29:56.987Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:f51f394054a009c9b2c2adc1e49808fe421c229a9dfe69d2a756363676922d55",
+        "evidence:d162f3abc6911ae183f37ff44d8341b88a51549d1e6914bf20d3ed532e32fb07"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "524088580_VNAMZ-1126718015",
+      "productId": "product:23b5b6153d25bd74bc988584dfed638edd5f588690c437fba3f115c9961f47a4",
+      "url": "https://www.lazada.vn/products/rule-1-protein-5lbs-bo-sung-protein-100-whey-isolate-and-hydrolyzed-hap-thu-cuc-nhanh-tang-co-cuc-manh-i524088580-s1126718015.html",
+      "title": "Rule 1 Protein 5Lbs – Bổ sung Protein 100% Whey Isolate and Hydrolyzed, hấp thu cực nhanh, tăng Cơ cực mạnh",
+      "selectedOptions": ["Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Rule One Proteins"],
+      "observedCostPerFoodGramVnd": 1763.4776352168356,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T05:47:08.790Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:49665cd4990b473fa29ad67d3ddd4a814e6d1060e84f016d125f86b5c8382a22",
+        "evidence:a00b2e9b761366dd9ed09a805ddefc29890250e63b85c7dd13ea27be2c01ef3e",
+        "evidence:b83a9158175107a9a110e15c63e3845525175ebc8770e7a547327332982a65ba",
+        "evidence:587641dff53b6ceadd260547c5eec8c2b295d5b795146816aa97742725a92eae"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Selected generic Chocolate does not distinguish factory Chocolate Fudge/Milk Chocolate or package revision; exact original panel required."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1883174857_VNAMZ-15661972180",
+      "productId": "product:fc4560d48a99b07b60c906041b8d96e0c78855fa3216a118e1b9179bbb327e68",
+      "url": "https://www.lazada.vn/products/pdp-i1883174857.html",
+      "title": "Whey | Sữa Tăng Cơ Cho Người Tập Gym Tinh Khiết - Scitec 100% Whey Isolate - Chính Hãng",
+      "selectedOptions": ["72 serving (new)", "Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Scitec Nutrition"],
+      "observedCostPerFoodGramVnd": 1950,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2000,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T09:53:51.953Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:2983dbb4c90cd712eb45c45862e637a13c25a63d6582504ac864cca217910ec4",
+        "evidence:0b9875cdd7a2b44c11a11892366e525dce006c6a3adfa8c45319316aa02db664",
+        "evidence:3c68035f7f9998dad0706257c79c97a4e29bd7e098604e18f3498453cb21723b"
+      ],
+      "cachedFactoryCandidates": ["scitec-isolate-1816g"],
+      "priorBlockingEvidenceGaps": [
+        "Seller exact brand/revision/grams and flavour-bound factory nutrition remain unverified."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2626629905_VNAMZ-12821214719",
+      "productId": "product:cc8d6083efc1422ad92506c4e0144051b4b7d3d9e983ba100412ee0d7275e385",
+      "url": "https://www.lazada.vn/products/pdp-i2626629905.html",
+      "title": "Sữa Tăng Cơ - Giảm Mỡ - Whey Protein Thực phẩm dành cho chế độ ăn đặc biệt Fitness Catalyst Whey protein concentrate Vanilla Ice cream",
+      "selectedOptions": ["chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 2180,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 500,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-11T04:10:15.501Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:dffed0bc675ec4b304c903d8bf87d55a8915a8e2dc0d81ce4a10fca7a7bbdd90",
+        "evidence:3ed5927ff39505c1f58464de6d4ebdede718e81e65c2e983288f758b2be218d1"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13431650770_VNAMZ-117198679887",
+      "productId": "product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f",
+      "url": "https://www.lazada.vn/products/pdp-i13431650770.html",
+      "title": "Scitec Nutrition 100% Whey Isolate 1816g vị Vani - Whey Isolate Tinh Khiết Cho Người Tập Gym",
+      "selectedOptions": ["Socola", "Kh bình"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Scitec Nutrition", "OstroVit"],
+      "observedCostPerFoodGramVnd": 2202.643171806167,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 1816,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-09T11:21:38.437Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:5dbdb7b4242ad0b077640f9be8f49e0663f45d4408ad184867a30b80f3530610",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:b7f2a23295f4500122ead45e44a2e3bc4f02c3884ac82df8e84338e2361307c5",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:440a3f7ba64f8de4908f7b06c70a7d4a86aa1b4c541262f7030a5643ebc4897a",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:31304450d060858a2576819d798502b93b0849daf8dd12bb37ecda931a8c27f9",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:a9bd8d1b92ec40010f5f094447182f89ee11f043760c1c1c5031bdb6da6fa67d",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:e18eb4c549445715dbb811d4778bc1102c6531f252ccfa8e72b58042040fbfcc",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:07b95056fd12b05464c3b45e3c713d0d2ea20479ab67d1c3259113b9e5c92334",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:e6c3efd8a70d53d593e9e9afac9089ff08904d0e1626f1c0ed5ae4e294e1f66a",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:c035571e3f70afd49a530995c8d828c059c36e46f5bdb3e1c9819985dcb64901",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:062d325684e16ac77ec4cdd4df2adb9951bb9bc63c6c7162bb26092aff47d859",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:c31d6febc79eb0fe917e73d03faed77ebe55b41165ee459bcae83ef5498ac557",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:38890fc9dbdbb4c8f00bd8426618354853b529725a58ba15a1a5b0e4c74756b9",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:5e94d0185dab969fa3f586bd355d324b15b62de4a83e35a5199ba5cec9fc0e0e",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:e8cd131096f51a924b1ae89a83043c982bfeb74c7fda782c0c1fc09c77d3ff3d",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:1bf633ec4b65586b13235d4cf3b2dc605f3bc8bf2ad9eda52ee3daf35090f02e",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:b0a80c3aa2f344584158bb1212766d1235c0c46559987194a8a1797caad4121a",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:2e5d8addef69e6bc69c191a634ecd33d8f08e827b44bff41817cf26c3d7e6f50",
+        "evidence:49e37771443fcc63410c5d6bf0b0e80649c1d2670fa359108ca05b52f436e248",
+        "evidence:11f40782923d612b94a62abe7d864d7301b8ca30436a6c307dd59272d2b422dd",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:6b477bf8b99a671510dd8ef306577040439feb54ffdf6579a48069ce083feaf7",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:0010856ddefcfa7b6fdf0b6973dc0eddc237296e9d28635ca14b3e24edede339",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:98fdbdf5d79108a59bc635f4ed841d2f3398ecfb06fdce587604316dca399020",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:f5a91977f37b5aa1ec02ccf876216865d7da86338d1692d53c2825af709b445b",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:c8dd005a095444ef4b48ad00ff2ae6dd0d9e42ca9b223deec705301a08115263",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:c9aab10edc4b875b0f8a3dcdb718927f2f3f680066bd2c27f04d9b5488660af5",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:9fcbb01346915e0710283278c0675f22bc7a300a6b9c28f583cd86d3fd50344d",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:165dcecc5f1ceb89cbb96787efe04aa2d9ce8fd60411767d29154c3e447e5c03",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:1751fa50a29cd178cb7f00ea1ec1698cacb068f8ce043629bb789a3feadaba04",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:1b3fe7e50dc3beb82fbc64411f2f767dd66abdbda182be431257f9023cfe3395",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:68b3a4298afd1e17a93616623cf43535551d90757b6a5a03ff34b0acde8af3d2",
+        "ocr-evidence:product:693bc2e3abb653ba3c8890014a9a82870cb4f484c8bcb4be6f528f190c8eee7f:f1545a3465570eb6b5ad86367e48a936d317fd05cca9efb817e4d6fa6898e57f",
+        "evidence:927ce6027b801121f2341bface02f2f057e54bef9b1a5228bd1bba8d97d707bc",
+        "evidence:f5b6a4f6b296a8837f3e27e87504ea338a483644c29cb864b57491e251294a89",
+        "evidence:7ca5a347eb5c8d19e505bbbd170aa4af67e90dc3214ef81571023a86437c1256"
+      ],
+      "cachedFactoryCandidates": ["scitec-isolate-1816g"],
+      "priorBlockingEvidenceGaps": [
+        "Seller exact brand/revision/grams and flavour-bound factory nutrition remain unverified."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2511319879_VNAMZ-12311997175",
+      "productId": "product:927b4b46898e783793157a048a8b7f8ae595c017465f35e0920edbc5575d8d05",
+      "url": "https://www.lazada.vn/products/hang-uc-bot-whey-kem-sua-protein-musclenation-protein-water-casein-protein-daily-shake-glutenfree-powder-i2511319879-s12311997175.html",
+      "title": "(HÀNG ÚC) Bột WHEY, kem, sữa protein Musclenation Protein Water/ Casein protein/ Daily Shake GLUTENFREE powder",
+      "selectedOptions": ["SOCOLA SỮA 300GR"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Muscle Nation"],
+      "observedCostPerFoodGramVnd": 2662.96,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 300,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:06:15.185Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:f8e3ee85a8c0b173526d7e998e76b278ea44446b9c6e05a28ec9dcf283f8856d",
+        "evidence:7d48e130e7b909d257c95a7ffe4807afda8c46c75e7902b98a910de051ea231f",
+        "evidence:aabaadfc759f18c58a400d10bc09629a5e88ec0d69e7cbffa1704dac2df28d7c"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected Milk Chocolate300g product family remains unresolved; manufacturer Daily Shake includes whey and milk proteins, so do not assume pure whey or transfer a casein formula.",
+        "Official linked Milk Chocolate Flake product currently returns404; original failure is cached without repeating the request."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "1795141543_VNAMZ-8068266550",
+      "productId": "product:d6b323b68cd05216df746a292a8ba82fdbb2105d288b5c3a9a0b94fc8e0e4b03",
+      "url": "https://www.lazada.vn/products/pdp-i1795141543.html",
+      "title": "GOLD STANDARD 100% WHEY - BỘT PROTEIN XÂY DỰNG CƠ BẮP (2 LBS)",
+      "selectedOptions": ["Doublerich chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": 3688.3336463530018,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 907.18474,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-11T04:03:13.988Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:71b26b22f668ba58a581fbad3f20e9e82d24a02dc03e39d82de64d47e55b3044",
+        "evidence:98ee8ac1902c754f0d7e7860ef5ba3f201c112ef7a7d786ce6c0494b4c67f661"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13460683066_VNAMZ-117317301822",
+      "productId": "product:a32cf08fcb099fc72968d73d202d7d4e5e73f9184867c4129da4e9ba3b6706c8",
+      "url": "https://www.lazada.vn/products/pdp-i13460683066.html",
+      "title": "Hydro Whey Protein Chính Hãng Vị Socola – Whey Protein Thủy Phân Hỗ Trợ Tăng Cơ, Phục Hồi Cơ Bắp Cho Người Tập Gym",
+      "selectedOptions": ["Socola", "Không bình"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 4666.666666666667,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 450,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T21:06:51.321Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:2059d08243c3d64f37652549a116b987f01b22abcc52b94dfd480f23f303b6f4",
+        "evidence:df04934c944026fdf3ea4017809f92593496d1a3c62f5594bb26ae1c1923f8a5"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2666974114_VNAMZ-117014401523",
+      "productId": "product:aa267b8e7da1646d5414862ddebd7b8ddb6f5b3c729e2cc1028d483d45748be2",
+      "url": "https://www.lazada.vn/products/pdp-i2666974114.html",
+      "title": "WHEY PROTEIN DYMATIZE ISO 100 1.5LBS -- BỔ SUNG PROTEIN CHẤT LƯỢNG CAO CẤP NHẤT",
+      "selectedOptions": ["Cocoa Pebbles"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": [],
+      "observedCostPerFoodGramVnd": 4920.717691966468,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 680.388555,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:12:07.981Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:f7f950d6172df6f30ca9938648e13574af4d844099e25d79922359a9196c5d94",
+        "evidence:07b41604a0ff45587e1034f704e38d6072a1b08a84a4ecfc2c68aa91cd92a197"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Establish the legal manufacturer and owned primary domain from exact original packaging; no currently registered manufacturer candidate is available.",
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "13411963172_VNAMZ-117116743208",
+      "productId": "product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb",
+      "url": "https://www.lazada.vn/products/pdp-i13411963172.html",
+      "title": "Bột Critical Whey (4 lần) 24g protein/lần - Applied Nutrition - bổ sung Protein",
+      "selectedOptions": ["Chocolate Milkshake"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Applied Nutrition"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": null,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T03:17:07.951Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:afd40d9d3fc6c094e4b40393bff5666cc77a12c0ba67e3f7d1270c3451d42a5b",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:d50b71e0bee7cac4fcff0c7ce63d2f206b8a3ee8b35d7f54a0b90f5e4ba7cab1",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:214a5161c5c373c011a5bbf362a22ca9905caff6369518eac7301fce50e42722",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:42c0732079cce1b123cb59a0c145a5ac70b2dfd0de74d4addb0721cbcacb3f11",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:f02d03b86e8d07499f442b527c9190a837d5dc2c5c9d9595853a349626a91e82",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:86c90cee26e28bc28b195c2f0010fc5aeba14d7945e2cfc2e5d68da80677e0e0",
+        "ocr-evidence:product:081926934eee576002e5cb10b474a0815b55e36405bb5488c36848ae921cbafb:e5453e94ec1a04ffbf628d6fe6a7322a2fffbbad95437963162f2b49920240c9",
+        "evidence:1a8156ab6d601923ed7561640e8742bd46717c0d0d59d18a5524562b40fcf904",
+        "evidence:6e6b78ddf1a34bd0085ba2e78ae35b2e18c5bba27d9dcfcd3424708e75582997",
+        "evidence:ab6b425d480551758f573c39a318c2a2faeaae9e9f3cc9251fbd19a7b03d0eb0",
+        "evidence:a05f7765362cc07192f40be2c17fa7e93a0f1ffa25d63f8c15b5ee0ff3db42eb",
+        "evidence:1762c1548c71152c35da03320f3550ac8e4cba89e3cf4d60fade32dfa5915780"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Old seller20.3g/30g scoop/110kcal formula differs from current factory24g/33g/122kcal; trial repack also lacks exact parent label."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2775115848_VNAMZ-13548939573",
+      "productId": "product:8f37b843069219a57af8377a78fef6c78c1b499e768a1431035b95616ee6116d",
+      "url": "https://www.lazada.vn/products/whey-protein-co-huong-vi-ngon-hat-100-grass-fed-isolate-clean-simple-eats-30-lan-dung-i2775115848-s13548939573.html",
+      "title": "Whey Protein có hương vị ngon ƞhất 100% Grass-Fed Isolate: Clean Simple Eats 30 lần dùng",
+      "selectedOptions": ["Choco Brownie Batter"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Clean Simple Eats"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": null,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:17:08.571Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:08070ed89616de7a3d428394001f5814a2badb8fed965c32a584dd273bc678a4",
+        "evidence:f74b69363e81878cd032cd034a22bef583f9c7873c22e18802f7df9392b129af",
+        "evidence:6e90110599eff0794854e818105dc9a2136f35a875ee062219f9f87f0b128550"
+      ],
+      "cachedFactoryCandidates": ["cse-brownie-batter-current-810g"],
+      "priorBlockingEvidenceGaps": [
+        "Current reformulated factory bag must match seller; sat-fat omission and sugar bound remain explicit."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2775115848_VNAMZ-13548939582",
+      "productId": "product:0579190fe979f91bf6064d697c7e9cc7b2eaa154df390d9dca0ede598cc6fd1a",
+      "url": "https://www.lazada.vn/products/whey-protein-co-huong-vi-ngon-hat-100-grass-fed-isolate-clean-simple-eats-30-lan-dung-i2775115848-s13548939582.html",
+      "title": "Whey Protein có hương vị ngon ƞhất 100% Grass-Fed Isolate: Clean Simple Eats 30 lần dùng",
+      "selectedOptions": ["KID'S Chocolate Brow"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Clean Simple Eats"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": null,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T04:19:08.508Z",
+      "availableAtCapture": false,
+      "originalSellerEvidenceIds": [
+        "evidence:66c54f5a068ada3722a199878a16ba761e5149a30f76bb28db780fe47b93cd97",
+        "evidence:812199114842ed81a06eb46bca89ab21a54aca9033ec2cb2cabb54fefd045fe6",
+        "evidence:4576e9883bc7e0050fe90a3a19973147b2ba351681f58e398c7d104e7fc9ee28"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "KID'S product identity differs from adult Chocolate Brownie Batter; dedicated primary label needed."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "2783331609_VNAMZ-13583499557",
+      "productId": "product:e81a2feea192a5fb08a9d7d0918a8518dff2c1e410c0ab6bb16eddd3a4578051",
+      "url": "https://www.lazada.vn/products/pdp-i2783331609.html",
+      "title": "Whey Protein Isolate 100% không chất tạo ngọt California Gold Nutrition : gói 1 lần dùng",
+      "selectedOptions": ["Dark Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["California Gold Nutrition"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": null,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": "2026-10-10T19:21:11.860Z",
+      "availableAtCapture": true,
+      "originalSellerEvidenceIds": [
+        "evidence:132328655d37da52697245e7d05c0cd26a7781819c48cf1b6d5af066e6c007c6",
+        "evidence:c7177c5992e4b94571195c8476363beeddaf4e87c3673bc5a5e0443643a13a9a"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "3326813842_VNAMZ-16275291302",
+      "productId": "product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e",
+      "url": "https://www.lazada.vn/products/pdp-i3326813842.html",
+      "title": "Bột Sữa Whey Isolate Protein Blend Musaking hủ 2,2kg - Tăng Cơ Giảm Mỡ; Chocolate, Vanilla + Tặng bình lắc Shaker 600ml",
+      "selectedOptions": ["Sôcôla", "Bao Tay"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["MusaKing"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2205,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": null,
+      "availableAtCapture": null,
+      "originalSellerEvidenceIds": [
+        "evidence:b1ec082b8f74a71f5123454085def233126b6cbdabacef3eff6cea0b3ff23043",
+        "ocr-evidence:f45a94cde9a00aa6636f70dc456c57625e3ee9f10d43643e87586b90e83f30f7",
+        "ocr-evidence:bda7ccdbb624fa0ba7b51b0342897453e57c6605e7fa05b884317c3dc5f4d66f",
+        "ocr-evidence:a930f5b24a5aff3dcd576bef064dba03c28e99110481d6bcd75943c04a5528df",
+        "ocr-evidence:6c87fde5afdb46e6671a1c06f58d785f1675db0260b649100b9f45fa1f8944a8",
+        "ocr-evidence:a4163fc764effd47f6c7ea077d8a195db6be4601c44f34784b3714f3cb1bab76",
+        "ocr-evidence:76a1566a9d889bf0e4f9c431f83732654b890253901ca77e0a9ceb5130f8148b",
+        "evidence:ff388c658379a44f49d78329a809b02a0a7a86d266581979e470641cd9413b70",
+        "ocr-evidence:2a5a2fddbb6f9921e1269a7a5f2b0b53677cb92ad9ef82236d2dce0db5386f2e",
+        "ocr-evidence:3ec8ef9a12c96d0ed661eb2ff599f6546348fe0e324db1a550a60cbe0353a9c6",
+        "ocr-evidence:613ff45545d2cf9201398a7fadda748b2adb53cb84371ab8d4f63ffac2a5d300",
+        "ocr-evidence:96ed50a8132c81e5a18a205e7f0735bc52f55ee25a6590f3255f6fd71a38996c",
+        "ocr-evidence:e862762c2fb17901f524219c584a23eca42404b9f4caa07060177fd92629c0bb",
+        "ocr-evidence:7ed003b261a9fbde62b233167558c9578392cc0e268de7d93c216a781033a322",
+        "ocr-evidence:83596ebde1dc798550a7c55bf2fd3d4468c22b70bcf92f5d6d9c47b16d279f39",
+        "ocr-evidence:0104568193d4aaef2f62bbc4ab5c067aa9967fec129a65fedaa7e0142dea2bc3",
+        "ocr-evidence:c1835cd9a370b347664896c36f8aed0610a1f7a12bf5422d691c5082a23e5e85",
+        "ocr-evidence:06c6e9261b03f0b9d74376232979c414749dada259517caf5a898e3cac269f7a",
+        "ocr-evidence:b5f162d588287dcc5d127e3d298983625f83625c3bacb86e4f661f0b30331cf4",
+        "ocr-evidence:81f391310dedaa1105234fdf1ebab22b65da15d56f1059c2d0111ae53b1ee5a1",
+        "ocr-evidence:a880469df6e022571ec3db1e70e58f73a8a91b8c6d311e9745e4c4ec47091c90",
+        "ocr-evidence:4b476bb1747f0a60aa6987c10b9bdc27433ce44b354e42574642060fa25418af",
+        "ocr-evidence:49ca2b374767977e393e830e42108743f88125c6ae93edfc1d43a2564f1f457a",
+        "ocr-evidence:a16d01cea7bd1c3add122d54c7b1ea8dd28bf0f705c3696c57f9e0bc225bcee3",
+        "ocr-evidence:b3948d7ab7835edae5a0f2be1f77cccafa1efa69c9fef271e4d8b8d5e0211d05",
+        "ocr-evidence:aa51da7f21c71a2c6b7cd1be9506f8568e3283cf03e80cb07f8bcdd717d9b4e7",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:c1835cd9a370b347664896c36f8aed0610a1f7a12bf5422d691c5082a23e5e85",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:c4094895a2ce6481a853ba5ca4d40c42cf082c3614eeaca9a8644f1b9efcb265",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:06c6e9261b03f0b9d74376232979c414749dada259517caf5a898e3cac269f7a",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:0214bbbc31e1e66812717039d89af846dc120755c10badd49371280b92883103",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:b5f162d588287dcc5d127e3d298983625f83625c3bacb86e4f661f0b30331cf4",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:9446dc56e332e746d85af55f30e2528af80248ae8036f49e166209e93afb878b",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:81f391310dedaa1105234fdf1ebab22b65da15d56f1059c2d0111ae53b1ee5a1",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:230eb7812772fb4a7dc3c5da7291fdac1105f69b18f016876b00b79a0fe3df9e",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:a880469df6e022571ec3db1e70e58f73a8a91b8c6d311e9745e4c4ec47091c90",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:aefac2fcbabdf44609597c7ca68fba7265ee04330668fb0f29d098c335f4fac4",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:4b476bb1747f0a60aa6987c10b9bdc27433ce44b354e42574642060fa25418af",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:d328ed7e66e668b1cacbb0940dcf298f612c8d0f79141ffbe10a45412d034ae6",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:49ca2b374767977e393e830e42108743f88125c6ae93edfc1d43a2564f1f457a",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:efe12d6514199fbb592a5c711832bd6dc01eef6ee6ef09c9733875fefe67d21a",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:a16d01cea7bd1c3add122d54c7b1ea8dd28bf0f705c3696c57f9e0bc225bcee3",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:1c269ac416ac47dc4c59558e99f1f961dcb7a3634a26c086044d4f5da5c6d0f6",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:b3948d7ab7835edae5a0f2be1f77cccafa1efa69c9fef271e4d8b8d5e0211d05",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:0a91de6c0bc02ab16b004e9baa9d3587df25f16e6c44096defc72108183a79af",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:aa51da7f21c71a2c6b7cd1be9506f8568e3283cf03e80cb07f8bcdd717d9b4e7",
+        "ocr-evidence:product:c385dd5f59f06e23e3a2c60af89ee41828007d30527e1113bcc889186c012a3e:8a3be9afdf1dc54da41417e14b56a5f6af91775f9fb9853adea75273a9e1beb1"
+      ],
+      "cachedFactoryCandidates": ["musaking-isolate-blend-2205g"],
+      "priorBlockingEvidenceGaps": [
+        "Exact selected seller package and numeric selling food count must be visually matched to factory; no new review applied."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    },
+    {
+      "sku": "966992366_VNAMZ-117236236043",
+      "productId": "product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a",
+      "url": "https://www.lazada.vn/products/pdp-i966992366.html",
+      "title": "[HCM]WHEY PROTEIN - OPTIMUM NUTRITION - GOLD STANDARD 100% WHEY - 5LBS - Sữa tăng cơ chính hãng từ Mỹ",
+      "selectedOptions": ["Extreme Milk Chocolate"],
+      "flavour": "chocolate",
+      "manufacturerCandidates": ["Optimum Nutrition"],
+      "observedCostPerFoodGramVnd": null,
+      "costAuthority": "Timestamped seller-derived preliminary metric; not a verified buying rank",
+      "capturedNetMassG": 2267.96185,
+      "capturedFoodPackCount": null,
+      "priceObservedAt": null,
+      "availableAtCapture": null,
+      "originalSellerEvidenceIds": [
+        "evidence:25e06e04cf38e5a52d86cf9a8e8a2fad4d592774ed3346cf0d46a0e88ee2b3b4",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:4c44a3b2c58bfb1218f4b590eb47410b5048d173356df37aaa30fa86b101edaa",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:43fe3f1646f82365031031f158147f4d6aaa357510e7964de7bff23ffc7a07f6",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:69de289845a7f08583307f50a130e6b044cff404a6535ca583e44418728c8995",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:e1e9f032de646a60f6558b268d10620e17bdf21ab567b7a6a5ab9f96b69bca9a",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:1fe5a52925b6709d118591c0f5daa35c26a9a35373674339b6e43a22debe7c01",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:8c3de52e170ef28350d5d0984f7df9b388275f6342962c92599e7daf8214b62a",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:d918d7f0dc21065d795201d5fdae416e09771d03d58e7eda115b3e7d0a8a1611",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:d58238f843b2ce8c6de94823d93b6d88cb5e0053660a14053239fe4c791487ba",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:08f115686e1685d09db1a15e2e301413de6314b00c9335bdfeef95a0edfc9e3e",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:a531ebda3e817c1a594c358b5434e96cd18191c3980009ea7d090d1c12cb025b",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:96504d42b873dcc44d3b92a7d185629ecdafb703a955b1f400acd77074271b18",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:6735ab3c31e483096d9f3c7d4a280b0db835157c83c5a43418d853816fa0cd60",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:96e07c31f28308679d53f458749959d01c223a077d12c039d4ff48bccc2999e0",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:8761f64b2dec6c463c9922f4074b36d3633a7e78625ec717f2c85bc888d8b74d",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:63842c84870beecc9c2d3d707050d9b9bf81b69cc6d4e2e61173840645b55aad",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:5138043585a69eb4a732e95c0235cb9dbfad9c806c99f82be0165402f946259c",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:1ad7ee6b89a9ada48c48436e1f5c555ba494debd6710f51981478529f91608a7",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:0eb34401b7aee373f7e5e9317c1707cf909b9971f1aa72dc67ceba919d8ea02c",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:695e01e61c501eefe1448e3ea879664cff0cae9d3e72fcac3684735f3148f1b0",
+        "ocr-evidence:product:d1789954078a3473a75be475bdfee63f8dad55aaf6e455a49e3e3e69f4bc6e3a:9fb0426b78b850d3432bcd86b13302e8ebc41b4332eb6845f2224ccf2250e9b9"
+      ],
+      "cachedFactoryCandidates": [],
+      "priorBlockingEvidenceGaps": [
+        "Exact Optimum product/flavour/batch and original factory package remain unmatched; seller repacks are not factory tub masses."
+      ],
+      "minimalProofNeeded": [
+        "Readable original front and back for this exact selected SKU, including declared net grams and its formula/market revision.",
+        "Exact manufacturer GTIN or manufacturer variant code binding the same flavour/package/formula, and an authoritative full ingredient/nutrition panel.",
+        "Food package count and any eligible gift-food quantity for this selling unit; nonfood gifts never increase food mass."
+      ],
+      "status": "pending-exact-identity",
+      "manufacturerReviewApplied": false,
+      "newFacts": 0
+    }
+  ],
+  "actionableConflicts": [
+    {
+      "sku": "2019564464_VNAMZ-15735467762",
+      "type": "selected-brand-conflicts-with-parent",
+      "selectedBrand": "IT'S JUST",
+      "normalizedParentBrand": "Optimum Nutrition",
+      "adoptedCorrection": false
+    },
+    {
+      "sku": "3255422832_VNAMZ-117013951240",
+      "type": "gift-food-count-requires-verification",
+      "selectedText": "2 túi tặng 1 túi",
+      "oldPackCount": 2,
+      "possibleCount": 3,
+      "adoptedCorrection": false
+    },
+    {
+      "sku": "3095127497_VNAMZ-14849213302",
+      "type": "declared-factory-grams-versus-pound-conversion",
+      "sellerNormalizedMassG": 2041.165665,
+      "cachedFactoryDeclaredMassG": 2050,
+      "exactSelectedSellerIdentityMatched": false,
+      "adoptedCorrection": false
+    }
+  ],
+  "reasonNoRepeatedDownloads": "All relevant current Warrior/Hydropure/Rule1/BioX/IT'S JUST/MusaKing factory originals and panels are already cached. Their unresolved selected seller packaging, variant and formula proofs cannot be supplied by refetching the same generic manufacturer pages.",
+  "acceptance": {
+    "completeMarketplaceCoverage": false,
+    "completeSelectedSkuManufacturerCoverage": false,
+    "purchaseReady": false,
+    "priceGuarantee": false,
+    "densityGuesses": 0,
+    "formulaTransfers": 0,
+    "repacksTransferred": 0
+  },
+  "nextSteps": [
+    "Collect only the minimal exact selected seller package/GTIN/revision proofs listed per SKU.",
+    "Reuse existing byte-verified manufacturer originals once exact identity is independently matched; do not duplicate approved IT'S JUST/MusaKing cases.",
+    "Research a new registered manufacturer route only after a concrete selected SKU identifies the missing exact factory variant."
+  ]
+}

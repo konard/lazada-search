@@ -84,6 +84,9 @@ function filterTargetCategoryTasks(audit, discoveries, flavourScope) {
               .filter(Boolean)
           ),
         ],
+        sourceRecordIds: [
+          ...new Set(records.map((record) => record.id).filter(Boolean)),
+        ],
         reasons: [...new Set(reasons)],
       });
     }

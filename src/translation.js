@@ -72,6 +72,32 @@ function sourceAssociation(sourceEvidenceId, sourceEvidenceHash) {
     ...(sourceEvidenceHash !== undefined ? { sourceEvidenceHash } : {}),
   };
 }
+function translationBase(
+  translator,
+  originalText,
+  sourceLanguage,
+  targetLanguage
+) {
+  if (
+    typeof originalText !== 'string' ||
+    !originalText.trim() ||
+    Buffer.byteLength(originalText, 'utf8') > 1048576
+  ) {
+    throw new Error('Translation needs nonempty source text of at most 1 MiB');
+  }
+  const base = {
+    originalText,
+    sourceSha256: sha256(Buffer.from(originalText, 'utf8')),
+    sourceLanguage: language(sourceLanguage),
+    targetLanguage: language(targetLanguage),
+    providerId: translator.providerId,
+    providerVersion: translator.providerVersion,
+    presentationOnly: true,
+    authoritative: false,
+  };
+  base.id = `translation:${sha256(JSON.stringify([base.sourceSha256, base.sourceLanguage, base.targetLanguage, base.providerId, base.providerVersion]))}`;
+  return base;
+}
 
 /** Opt-in JSON adapter. Secrets and the endpoint are kept outside cached records. */
 export function createHttpTranslationProvider({
@@ -199,27 +225,13 @@ export class CachedTranslator {
       sourceEvidenceHash,
     } = {}
   ) {
-    if (
-      typeof originalText !== 'string' ||
-      !originalText.trim() ||
-      Buffer.byteLength(originalText, 'utf8') > 1048576
-    ) {
-      throw new Error(
-        'Translation needs nonempty source text of at most 1 MiB'
-      );
-    }
     const association = sourceAssociation(sourceEvidenceId, sourceEvidenceHash);
-    const base = {
+    const base = translationBase(
+      this,
       originalText,
-      sourceSha256: sha256(Buffer.from(originalText, 'utf8')),
-      sourceLanguage: language(sourceLanguage),
-      targetLanguage: language(targetLanguage),
-      providerId: this.providerId,
-      providerVersion: this.providerVersion,
-      presentationOnly: true,
-      authoritative: false,
-    };
-    base.id = `translation:${sha256(JSON.stringify([base.sourceSha256, base.sourceLanguage, base.targetLanguage, base.providerId, base.providerVersion]))}`;
+      sourceLanguage,
+      targetLanguage
+    );
     const key = `${base.id}:${refresh}`;
     if (!this.pending.has(key)) {
       this.pending.set(
@@ -236,6 +248,20 @@ export class CachedTranslator {
       });
     }
     return { ...result, ...association };
+  }
+
+  async cached(
+    originalText,
+    { sourceLanguage = 'vi', targetLanguage = 'en' } = {}
+  ) {
+    const base = translationBase(
+      this,
+      originalText,
+      sourceLanguage,
+      targetLanguage
+    );
+    const record = await this.store.get('translation', base.id);
+    return this.valid(record, base) ? { ...record, cacheHit: true } : undefined;
   }
 
   async obtain(base, refresh) {

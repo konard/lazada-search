@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T03:57:08.490Z",
-  "catalogObservedAt": "2026-10-11T03:53:56.741Z",
+  "checkedAt": "2026-10-11T05:37:58.632Z",
+  "catalogObservedAt": "2026-10-11T04:39:52.056Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,40 +21,40 @@
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1423,
-    "missingSkuPrices": 268,
+    "missingListings": 1382,
+    "missingSkuPrices": 282,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
-    "categoryReview": 6570,
-    "specifications": 253,
+    "categoryReview": 6424,
+    "specifications": 266,
     "verifiedProducts": 14,
-    "excludedCategoryListings": 213,
-    "excludedExactOptions": 453
+    "excludedCategoryListings": 352,
+    "excludedExactOptions": 469
   },
   "broaderArchive": {
-    "missingListings": 1550,
-    "missingSkuPrices": 746,
+    "missingListings": 1531,
+    "missingSkuPrices": 788,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 265,
+    "specifications": 278,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 242,
-    "strictWheySkus": 59,
+    "capturedPowderSkus": 255,
+    "strictWheySkus": 64,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 50,
-    "discoveryTasks": 6160,
-    "pendingSkuTasks": 273,
-    "excludedSkuOptions": 456,
-    "originalSourcePointers": 1738,
+    "missingFactoryMatches": 55,
+    "discoveryTasks": 6147,
+    "pendingSkuTasks": 287,
+    "excludedSkuOptions": 472,
+    "originalSourcePointers": 1830,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
     "exactSelectedPrices": 14,
-    "bothMassAndVolume": 3,
+    "bothMassAndVolume": 2,
     "currentProteinDenominator": 3,
     "manufacturerChocolateIdentity": 2
   },
@@ -63,334 +63,472 @@
       "id": "R001",
       "requirement": "Vietnam, VND, delivery to Nha Trang",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/application.js:19",
         "src/delivery.js:14",
         "tests/browser-import-review.test.js:164"
-      ]
+      ],
+      "finding": "Nha Trang destination arithmetic exists; exact bulk address and basket freight remain unconfirmed."
     },
     {
       "id": "R002",
       "requirement": "Plain/unflavoured or chocolate protein powder only",
       "status": "implemented",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/flavour-scope.js:57",
         "tests/flavour-scope.test.js:24",
         "tests/e2e/flavour-scope.test.js"
-      ]
+      ],
+      "finding": "Strict selected chocolate/plain filtering exists; this does not complete unknown-SKU classification."
     },
     {
       "id": "R003",
       "requirement": "Strict chocolate ice-cream core, no other flavours",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/flavour-scope.js:10",
         "tests/flavour-scope.test.js:194",
         "docs/tables/ice-unit-rankings.json"
-      ]
+      ],
+      "finding": "Core/coating and mixed-flavour exclusions exist; only two of14 selected ice observations have manufacturer chocolate identity."
     },
     {
       "id": "R006",
       "requirement": "Relevant category filters and price sorting",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/crawl.js:24",
         "src/application.js:19",
         "docs/acceptance/issue-reports.json"
-      ]
+      ],
+      "finding": "Actual ice categories and price sorting work; protein category redirect requires search fallback, so authoritative powder-category coverage is absent."
     },
     {
       "id": "R008",
       "requirement": "Every product and every selling option captured",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/coverage.js:28",
         "docs/acceptance/collection-progress.json",
         "docs/tables/catalog.json"
-      ]
+      ],
+      "finding": "1616 active missing listings and143 strict missingSKU prices;1629/406 in broader public audit."
     },
     {
       "id": "R009",
       "requirement": "Verify exact selected SKU price and availability",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/browser.js:704",
         "src/capture-import.js",
         "tests/browser-import-review.test.js:144",
         "tests/lazada.test.js:524"
-      ]
+      ],
+      "finding": "Exact selected SKU mismatches are rejected; pending prices are not transferred from default or sibling SKUs."
     },
     {
       "id": "R010",
       "requirement": "Extract every discount and its eligibility",
       "status": "partial",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/promotions.js:147",
         "src/promotions.js:369",
         "tests/promotions.test.js",
         "tests/lazada.test.js:434"
-      ]
+      ],
+      "finding": "Discount conditions and original/sale prices are retained. Basket eligibility, time/payment/new-user restrictions and stackable combinations are not fully validated."
     },
     {
       "id": "R011",
       "requirement": "Before/after shipping cost per g, ml and protein g",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
-        "src/compare.js:27",
-        "scripts/ice-unit-rankings.mjs",
-        "tests/report-unit-costs.test.js",
+        "src/compare.js",
+        "tests/acceptance-corrections.test.js",
+        "tests/e2e/ice-selling-units.test.js",
         "docs/tables/ice-unit-rankings.json"
-      ]
+      ],
+      "finding": "Shared comparison now uses independently declared per-package, per-100g or per-100ml protein. Actual label and exact quantity/destination shipping coverage remains incomplete."
     },
     {
       "id": "R012",
       "requirement": "Exact bulk freight and best basket price",
       "status": "partial",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "missing-live-acceptance",
       "evidence": [
         "src/compare.js:100",
         "src/delivery.js:14",
         "tests/browser-import-review.test.js:164",
         "docs/acceptance/collection-readiness.md"
-      ]
+      ],
+      "finding": "One-package quotes are not multiplied for bulk. No exact bulk basket quote has been accepted."
     },
     {
       "id": "R013",
       "requirement": "Frozen ice-cream delivery to Nha Trang",
       "status": "missing",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "missing",
       "evidence": [
         "src/compare.js:95",
         "docs/acceptance/collection-readiness.md",
         "docs/tables/ice-unit-rankings.json"
-      ]
+      ],
+      "finding": "Cold-chain eligibility guard exists; zero confirmed frozen Nha Trang quotes means real delivery acceptance is missing."
     },
     {
       "id": "R014",
       "requirement": "Manufacturer page/specification for every product",
       "status": "partial",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "implemented-registered-primary-source-and-exact-identity-gates",
+      "realDataAcceptance": "partial-exact-current-factory-matches",
       "evidence": [
-        "src/manufacturer-review.js:215",
-        "src/verification.js:13",
-        "docs/acceptance/whey-verification/worklist.json",
-        "docs/acceptance/whey-source-expansion/review.json"
-      ]
+        "src/manufacturer-source-cache.js",
+        "src/manufacturer-research.js",
+        "tests/manufacturer-research.test.js",
+        "docs/acceptance/manufacturer-research/replay.json",
+        "src/manufacturers.js",
+        "tests/manufacturer-owned-brands.test.js",
+        "docs/acceptance/new-manufacturer-domains/sfd-domain-proof.json"
+      ],
+      "finding": "Registered original sources and officially published assets are captured or replayed with hashes, dates, GET/POST body-sensitive cache keys, cached failures and exact source-bound review gates. Twelve originals replay offline; no unsupported new facts are approved. SFD S.A. corporate ownership now authorizes only exact linked SFD hosts as candidate sources. Selected manufacturer/parent-brand conflicts block domain trust until corrected. The cached SFD product challenge yields no approved nutrition; the twelve-source replay remains dated baseline evidence."
     },
     {
       "id": "R015",
       "requirement": "Manufacturer corrections override Lazada errors",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/verification.js:46",
         "tests/browser-import-review.test.js:261",
         "tests/e2e/verified-case.test.js:93"
-      ]
+      ],
+      "finding": "Manufacturer precedence preserves conflicting seller claims/corrections, but exact matching has not covered every seller record."
     },
     {
       "id": "R016",
       "requirement": "OCR of original images and labels",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/ocr.js:48",
         "src/application.js:305",
         "tests/public-cache.test.js",
         "tests/e2e/pipeline.test.js"
-      ]
+      ],
+      "finding": "Version/language/image/PSM keyed Tesseract OCR and original TSV caching exist; incomplete product/image coverage and ambiguous labels remain."
     },
     {
       "id": "R017",
       "requirement": "Parse all Vietnamese marketplace text and provide proper English",
       "status": "partial",
-      "realDataAcceptance": "missing-complete-translation",
+      "mechanicsStatus": "implemented-cached-resumable-translation",
+      "realDataAcceptance": "missing-configured-provider-and-whole-catalog-quality-acceptance",
       "evidence": [
-        "src/text.js",
-        "src/nutrition.js:190",
-        "src/page-dialogs.js",
-        "src/ocr.js:48",
-        "docs/REQUIREMENTS.md:23"
-      ]
+        "src/translation.js",
+        "src/translation-catalog.js",
+        "tests/translation-catalog.test.js",
+        "tests/e2e/translation-catalog.test.js",
+        "docs/translation.md"
+      ],
+      "finding": "Unicode originals, exact source hashes, provider identity/version, pending states and resumable bounded batches are implemented across library/CLI/HTTP/Telegram. Local provider fixtures pass; real complete English acceptance is pending."
     },
     {
       "id": "R018",
       "requirement": "Manual extraction and completeness verification",
       "status": "partial",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "partial",
       "evidence": [
         "docs/acceptance/top10-check/unit-cost-audit.md",
         "docs/acceptance/whey-source-expansion/review.json",
         "docs/acceptance/validation.json"
-      ]
+      ],
+      "finding": "Selected visual/source audits exist; publication manualVisualReview=false and all-product manual completeness verification is unfinished."
     },
     {
       "id": "R022",
       "requirement": "Entire public case reproducible from repository",
       "status": "partial",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/archive.js:406",
         "tests/public-cache.test.js",
         "tests/e2e/archive.test.js",
         "data/cases/vietnam-nha-trang/manifest.json"
-      ]
+      ],
+      "finding": "Collected public/redacted sources and conversions can replay offline; uncollected products and private credentials are absent by design."
     },
     {
       "id": "R023",
       "requirement": "Library, CLI and HTTP interfaces",
       "status": "implemented",
-      "realDataAcceptance": "partial-operation-parity",
+      "mechanicsStatus": "implemented-structured-data-operations",
+      "realDataAcceptance": "local-fixture-parity-passed-live-acceptance-pending",
       "evidence": [
-        "src/index.js",
-        "src/commands.js:72",
-        "src/server.js:42",
-        "tests/e2e/verified-case.test.js:93"
-      ]
+        "src/operations.js",
+        "src/http-operations.js",
+        "src/commands.js",
+        "tests/e2e/translation-catalog.test.js"
+      ],
+      "finding": "Local HTTP POST and Telegram structured operations now dispatch collection, review, quotes, imports, research and translation through the shared application. Filesystem CLI commands and interactive login are deliberately outside this dispatcher; existing direct login APIs remain available."
+    },
+    {
+      "id": "R024",
+      "requirement": "Telegram interface with E2E tests",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-shared-structured-operations",
+      "realDataAcceptance": "local-mock-e2e-passed-live-deployment-pending",
+      "evidence": [
+        "src/telegram.js",
+        "src/operations.js",
+        "tests/e2e/telegram.test.js",
+        "tests/e2e/translation-catalog.test.js"
+      ],
+      "finding": "Authorized Telegram commands and /operation expose structured data workflows; local Telegram HTTP mock tests cover imports, quotes, research validation, resume and translation. No live bot deployment receipt."
     },
     {
       "id": "R025",
       "requirement": "Fully automated existing account / separate profile login",
       "status": "partial",
+      "mechanicsStatus": "implemented-otp-flow",
       "realDataAcceptance": "credential-dependent-unconfirmed-current-session",
       "evidence": [
         "src/login.js:100",
         "src/persistent-browser.js",
         "tests/e2e/account-login.test.js",
         "docs/acceptance/collection-readiness.md"
-      ]
+      ],
+      "finding": "Separate private profile, Zalo default/SMS selection and code input exist; user OTP/challenge is external and latest live batch authentication was unconfirmed."
     },
     {
       "id": "R029",
       "requirement": "No restore/translation/promotional browser chrome obstruction",
       "status": "partial",
+      "mechanicsStatus": "implemented-workaround",
       "realDataAcceptance": "upstream-state-not-live-rechecked",
       "evidence": [
         "src/browser.js:490",
         "tests/e2e/persistent-window.test.js",
         "docs/acceptance/issue-reports.json"
-      ]
+      ],
+      "finding": "Dedicated profile disables translate and SessionRestoreInfobar. Existing attached browser preferences are not overwritten; upstream report state not rechecked online."
     },
     {
       "id": "R034",
       "requirement": "At most2 agents for continued work, root also works",
       "status": "implemented",
+      "mechanicsStatus": "recorded-process-compliance",
       "realDataAcceptance": "historical-not-independently-replayed",
       "evidence": [
         "docs/REQUIREMENTS.md:40",
         "docs/acceptance/collection-readiness.md"
-      ]
+      ],
+      "finding": "Current audit spawned no agents; previous two research-agent frozen handoffs are documented."
     },
     {
       "id": "R035",
       "requirement": "Publish top10 partial prices immediately",
       "status": "implemented",
+      "mechanicsStatus": "implemented-partial-publication",
       "realDataAcceptance": "partial-buying-data",
       "evidence": [
         "docs/tables/top-10-partial.json",
         "docs/tables/handpicked.json",
         "docs/tables/ice-unit-rankings.json",
         "tests/deadline-report.test.js"
-      ]
+      ],
+      "finding": "Published10whey gram,10verified whey protein rows and14ice prices are partial observations; soy is separate, freight/factory gaps remain."
     },
     {
       "id": "R036",
       "requirement": "Commit/push code, tests and precached public evidence",
       "status": "partial",
+      "mechanicsStatus": "artifacts-present",
       "realDataAcceptance": "commit-push-not-independently-checked",
       "evidence": [
         "docs/acceptance/validation.json",
         "data/cases/vietnam-nha-trang/manifest.json",
         "tests/fixtures/public-cache/manifest.json"
-      ]
+      ],
+      "finding": "Source/tests/cache files are present. Parent forbids Git operations, so this audit cannot independently establish all latest files committed/pushed."
     },
     {
       "id": "R037",
       "requirement": "Production ready and exhaustive market winner",
       "status": "missing",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "missing",
       "evidence": [
         "src/coverage.js:165",
         "docs/acceptance/validation.json",
         "docs/acceptance/collection-progress.json"
-      ]
+      ],
+      "finding": "productionReady=false/purchaseReady=false/complete=false; whole-market winner, all-product factory verification, exact bulk/frozen delivery and full translation remain unresolved."
     },
     {
       "id": "R038",
       "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
       "status": "partial",
+      "mechanicsStatus": "partial",
       "realDataAcceptance": "partial",
       "evidence": [
         "scripts/ice-unit-rankings.mjs",
         "docs/tables/ice-unit-rankings.json"
-      ]
+      ],
+      "finding": "Only3of14selectedprices have bothmassvolume;3protein denominators,2matchedmanufacturerchocolate identities. Current separate report has no confirmed delivered winner."
     },
     {
       "id": "R039",
       "requirement": "Separate whey and soy categories in buying tables",
       "status": "implemented",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "scripts/report-unit-costs.mjs",
         "tests/report-unit-costs.test.js:41",
         "docs/tables/top-10-partial.json"
-      ]
+      ],
+      "finding": "Report ingredient-basedclassification separates soy; soy lecithin in whey is notsoyprotein. General library has protein-powder category rather than dedicatedsoycategory enum."
     },
     {
       "id": "R040",
       "requirement": "All submitted short-link options and exact top10 membership tracked",
       "status": "implemented",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "docs/tables/handpicked.json",
         "docs/acceptance/top10-check/handpicked-manufacturer-review.json"
-      ]
+      ],
+      "finding": "All6links map to6selectedSKU across5listings; unavailableVanilla andChocolatePeanutButter are outsidestrictbuyingscope."
     },
     {
       "id": "R041",
       "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
       "status": "implemented",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/page-challenge.js:117",
         "src/cache.js:112",
         "tests/page-challenge.test.js:78",
         "tests/e2e/captcha-stop.test.js"
-      ]
+      ],
+      "finding": "Page/image/manufacturer/login/delivery guard mechanics are present. Offline cached comparisons remainavailable."
     },
     {
       "id": "R042",
       "requirement": "Uncollected backlog precedes old recollection, with resumable failures",
       "status": "implemented",
+      "mechanicsStatus": "implemented",
       "realDataAcceptance": "partial",
       "evidence": [
         "scripts/account-backlog-order.mjs",
         "scripts/account-collection-attempts.mjs",
         "tests/account-backlog-order.test.js",
         "tests/account-collection-attempts.test.js"
-      ]
+      ],
+      "finding": "Attempt checkpoints andselective invalidation mechanics preventpermanent starvation; backlogdataacceptance remainsopen."
     },
     {
       "id": "R043",
       "requirement": "Protein type, ingredients and disclosed nutritional components for healthy-buy comparison",
       "status": "partial",
+      "mechanicsStatus": "implemented factual type/ingredient flags and nutrient metrics",
       "realDataAcceptance": "partial",
       "evidence": [
         "src/nutrition.js:142",
         "src/compare.js:212",
         "src/verification.js:3"
-      ]
+      ],
+      "finding": "Isolate/concentrate/hydrolyzed/blend types, ingredients, sugar/fat/calorie metrics and selected ingredient flags exist. They are source facts rather than a validated universal health score, and complete labels for every product remain absent."
+    },
+    {
+      "id": "R046",
+      "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
+      "status": "partial",
+      "mechanicsStatus": "implemented-quarantine-identity-guards-and-image-backed-crop-OCR",
+      "realDataAcceptance": "pending-exact-market-package-formula-label-identity",
+      "evidence": [
+        "src/specification-holds.js",
+        "src/package-image.js",
+        "src/products.js",
+        "tests/specification-holds.test.js",
+        "tests/package-mass-quarantine.test.js",
+        "tests/ice-withheld-specifications.test.js",
+        "docs/acceptance/manufacturer-research/second-ocr-pass.json",
+        "src/ocr.js",
+        "tests/ocr-crops.test.js",
+        "docs/acceptance/decimal-ocr/replay.json",
+        "docs/acceptance/decimal-ocr/validation.json"
+      ],
+      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
     }
   ],
   "githubIssues": [
+    {
+      "number": 14,
+      "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/14"
+    },
+    {
+      "number": 13,
+      "title": "Selected SKU manufacturer conflicts are hidden by the parent listing brand",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/13"
+    },
+    {
+      "number": 12,
+      "title": "Redact embedded manufacturer access tokens before committing original evidence",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/12"
+    },
+    {
+      "number": 11,
+      "title": "Nutrition label OCR drops decimal points despite high confidence",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/11"
+    },
+    {
+      "number": 10,
+      "title": "Older cached observations overwrite newer SKU prices and package facts",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/10"
+    },
+    {
+      "number": 9,
+      "title": "Ice rankings reuse withheld package weights and create unsupported gram prices",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/9"
+    },
+    {
+      "number": 8,
+      "title": "Human food filtering admits animal feed and non-frozen protein bars; cache exclusions",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/8"
+    },
     {
       "number": 7,
       "title": "Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout",
@@ -437,15 +575,21 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "a837f603dc9f2668a2271cf2f73c25bbd284a11991249ca3526bab0159919413",
-      "bytes": 27968892,
-      "observedAt": "2026-10-11T03:53:56.741Z"
+      "sha256": "f68d204338d36dc5ca240ef70bbca5fb6e089f51daf82a4ac571c9062d694f1b",
+      "bytes": 29043673,
+      "observedAt": "2026-10-11T04:39:52.056Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
       "sha256": "d8ca26a3af4098dbf65be4f4b5a5553f2be08b850de167a5aef1bacb86f9400d",
       "bytes": 5378123,
       "observedAt": "2026-10-10T19:20:49.680532+00:00"
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/implementation-updates.json",
+      "sha256": "8235a03c146fd55652cd1a34b386ef72fb271dbdf2501d335408309847590a03",
+      "bytes": 13742,
+      "observedAt": "2026-10-11T05:31:24.989Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -455,21 +599,21 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "4610a1d08d6ae5e7c426c7e7b0d909195d7794b702448e51a8985260302bc443",
-      "bytes": 11263,
+      "sha256": "62f681928264dcb8fa2203a0a705b2188699d70fbfe71180be24568e13d3a2f6",
+      "bytes": 20223,
       "observedAt": null
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "d7bcfd1c894a6a08b54469a139fdcc3bfa05fc07c8eaac49c0d95adbe5460dc5",
-      "bytes": 181726,
-      "observedAt": "2026-10-11T03:54:12.820Z"
+      "sha256": "578139262444c2f48cf280628f3f3bb4474694c8c362fdd7d5a456574168bed9",
+      "bytes": 193803,
+      "observedAt": "2026-10-11T04:45:53.454Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "805896fda9d4717cac62a424bc9a2b1d3cd95d02bb527564c905681af67db631",
-      "bytes": 10772766,
-      "observedAt": "2026-10-11T03:54:22.701Z"
+      "sha256": "1f91395bd4042a75bbea84e43e570a5eea28f4097146eeba340fb72a71190111",
+      "bytes": 11095351,
+      "observedAt": "2026-10-11T04:41:19.719Z"
     }
   ],
   "downloads": 0,

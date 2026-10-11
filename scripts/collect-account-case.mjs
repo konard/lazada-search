@@ -15,6 +15,7 @@ import {
 } from './account-backlog-order.mjs';
 import { attemptedCollectionUrls } from './account-collection-attempts.mjs';
 import { canonicalUrl } from '../src/text.js';
+import { persistScopeDecisions } from '../src/scope-decisions.js';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -94,6 +95,9 @@ async function audit() {
       discoveries: await store.list('discovery'),
     });
     const attempted = new Set(await attemptedCollectionUrls(store, options));
+    await persistScopeDecisions(store, scoped, {
+      flavourScope: options.flavourScope,
+    });
     const urls = orderAccountBacklog(scoped);
     const result = {
       ...scoped,
@@ -119,6 +123,7 @@ async function audit() {
           categoryReview: result.categoryReview,
           excludedCategoryListings: result.excludedCategoryListings || [],
           excludedFlavourTasks: result.excludedFlavourTasks || [],
+          unavailableListings: result.unavailableListings || [],
           stop:
             (await store.get('collection-stop', 'browser-collection'))
               ?.active === true,

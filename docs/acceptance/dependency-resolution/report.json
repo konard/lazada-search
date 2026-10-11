@@ -1,0 +1,333 @@
+{
+  "observedAt": "2026-10-11T05:07:15.715Z",
+  "nodeVersion": "v22.23.0",
+  "registry": "https://registry.npmjs.org",
+  "baselineBrowserCommander": "0.29.0",
+  "scopedOverride": {
+    "browser-commander": {
+      "command-stream": "2.0.2"
+    }
+  },
+  "reports": [
+    {
+      "label": "project-current",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 5,
+        "critical": 0,
+        "total": 5
+      },
+      "auditSha256": "8a3e47958a0b4ff6e314e77416065d0c6aec5b44b77d17842d6b84a9c848c6ce",
+      "auditPath": "project-current/audit.json.gz"
+    },
+    {
+      "label": "current",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 6,
+        "critical": 0,
+        "total": 6
+      },
+      "auditSha256": "920b6d3231771ffb345281da403d49559fca5f155d525d6b7c72b52f6ffc9520",
+      "auditPath": "current/audit.json.gz",
+      "functionalTests": {
+        "passed": 7,
+        "failed": 0,
+        "tapSha256": "c3de5457f06a29fe0b64655fb5b138c95f39ee0f90864564efffe8ae493ac8eb",
+        "path": "current/compatibility.tap.gz"
+      }
+    },
+    {
+      "label": "prior",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "auditSha256": "a07aea0cb73a718795b8491eedfaea63fdc5af2b9543223e1a5590a707d89c48",
+      "auditPath": "prior/audit.json.gz",
+      "functionalTests": {
+        "passed": 7,
+        "failed": 0,
+        "tapSha256": "4f401c09e6e35f4e61ace36f2ca3b70833e044ec7f0593d3b72f6a3b8ccaa41c",
+        "path": "prior/compatibility.tap.gz"
+      }
+    },
+    {
+      "label": "latest",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "auditSha256": "8b707af40e8daa12db5be5ba33668f3941553d4aa82bea025bf1839c452781b8",
+      "auditPath": "latest/audit.json.gz",
+      "functionalTests": {
+        "passed": 7,
+        "failed": 0,
+        "tapSha256": "de3edab9d68b788539a51ea1b63649172f41d89b34a1b009710f98a78f84853e",
+        "path": "latest/compatibility.tap.gz"
+      }
+    },
+    {
+      "label": "project-latest",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "auditSha256": "aa4fd116b22d905913588af4e086d9891b94e9e4b5783b4349085a6447475a90",
+      "auditPath": "project-latest/audit.json.gz"
+    }
+  ],
+  "lockChanges": {
+    "changed": [
+      {
+        "path": "node_modules/command-stream",
+        "from": "1.6.2",
+        "to": "2.0.2"
+      },
+      {
+        "path": "node_modules/execa",
+        "from": "9.6.1",
+        "to": "10.1.0"
+      },
+      {
+        "path": "node_modules/node-pty",
+        "from": "1.2.0-beta.15",
+        "to": "1.1.0"
+      }
+    ],
+    "removed": [
+      "node_modules/@isaacs/cliui",
+      "node_modules/@nodelib/fs.scandir",
+      "node_modules/@nodelib/fs.stat",
+      "node_modules/@nodelib/fs.walk",
+      "node_modules/@types/node",
+      "node_modules/@types/shelljs",
+      "node_modules/braces",
+      "node_modules/fast-glob",
+      "node_modules/fast-glob/node_modules/glob-parent",
+      "node_modules/fastq",
+      "node_modules/fill-range",
+      "node_modules/foreground-child",
+      "node_modules/glob",
+      "node_modules/glob/node_modules/balanced-match",
+      "node_modules/glob/node_modules/brace-expansion",
+      "node_modules/glob/node_modules/minimatch",
+      "node_modules/is-number",
+      "node_modules/jackspeak",
+      "node_modules/lru-cache",
+      "node_modules/merge-stream",
+      "node_modules/merge2",
+      "node_modules/micromatch",
+      "node_modules/micromatch/node_modules/picomatch",
+      "node_modules/mimic-fn",
+      "node_modules/minipass",
+      "node_modules/package-json-from-dist",
+      "node_modules/path-scurry",
+      "node_modules/queue-microtask",
+      "node_modules/reusify",
+      "node_modules/run-parallel",
+      "node_modules/shelljs",
+      "node_modules/shelljs/node_modules/execa",
+      "node_modules/shelljs/node_modules/get-stream",
+      "node_modules/shelljs/node_modules/human-signals",
+      "node_modules/shelljs/node_modules/is-stream",
+      "node_modules/shelljs/node_modules/npm-run-path",
+      "node_modules/shelljs/node_modules/onetime",
+      "node_modules/shelljs/node_modules/signal-exit",
+      "node_modules/shelljs/node_modules/strip-final-newline",
+      "node_modules/to-regex-range",
+      "node_modules/undici-types"
+    ],
+    "added": ["node_modules/which-command"]
+  },
+  "remainingAcceptance": [
+    "Repository override not applied by this agent",
+    "Repository local browser/capture E2E must be rerun after root applies dependency change",
+    "No live Lazada/browser compatibility probe performed"
+  ],
+  "githubWrites": 0,
+  "sourceCaptures": [
+    {
+      "url": "https://registry.npmjs.org/command-stream/1.5.0",
+      "path": "command-stream-1.5.0.json.gz",
+      "sha256": "31ee52d94cdd755d834e6fd5a069e2c783b81f42620c87a0520da02f0c6818a6"
+    },
+    {
+      "url": "https://registry.npmjs.org/command-stream/1.6.2",
+      "path": "command-stream-1.6.2.json.gz",
+      "sha256": "359fde267c74593a6188dc7a185d63ce8ed88747ffbdac575e49d9259efaed98"
+    },
+    {
+      "url": "https://registry.npmjs.org/command-stream/2.0.2",
+      "path": "command-stream-2.0.2.json.gz",
+      "sha256": "37e6179161f9b965f2d60d0af2e1bad98383a48c6b3c2f62560406f24baba685"
+    },
+    {
+      "url": "https://registry.npmjs.org/browser-commander/0.29.0",
+      "path": "browser-commander-0.29.0.json.gz",
+      "sha256": "4d0c23d793adab5cf073b3e873da201322e4db9f462466c39afd37c4be67ff74"
+    },
+    {
+      "url": "https://registry.npmjs.org/shelljs/latest",
+      "path": "shelljs-latest.json.gz",
+      "sha256": "0f71a70353b878f6607aa7b75beafbab27aa1d9c6e8fc2affb8b59eca04781e4"
+    },
+    {
+      "url": "https://registry.npmjs.org/braces/latest",
+      "path": "braces-latest.json.gz",
+      "sha256": "8fd4c1db771542ab5456bb4806408fea9cdb5bf77f6cb9d5d563a3bd0ebb0b13"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "braces-latest.json.gz",
+      "originalSha256": "8fd4c1db771542ab5456bb4806408fea9cdb5bf77f6cb9d5d563a3bd0ebb0b13",
+      "originalBytes": 2428,
+      "compressedSha256": "618d18cab2ce61795ba0a9ab91923f27c8d11910d123dde453f3dedc725182de",
+      "compressedBytes": 1289
+    },
+    {
+      "path": "browser-commander-0.29.0.json.gz",
+      "originalSha256": "4d0c23d793adab5cf073b3e873da201322e4db9f462466c39afd37c4be67ff74",
+      "originalBytes": 5014,
+      "compressedSha256": "bdb9fd1eb8672dac88ddec7ad84cdae3fa606f7e87c8430bf65088f8ab246b6b",
+      "compressedBytes": 2039
+    },
+    {
+      "path": "command-stream-1.5.0.json.gz",
+      "originalSha256": "31ee52d94cdd755d834e6fd5a069e2c783b81f42620c87a0520da02f0c6818a6",
+      "originalBytes": 6142,
+      "compressedSha256": "e6c30ea3953ae9ca1ed6eda1aa6b7e50d540000860ca1aab1f2c8b5c2ec5b24d",
+      "compressedBytes": 2286
+    },
+    {
+      "path": "command-stream-1.6.2.json.gz",
+      "originalSha256": "359fde267c74593a6188dc7a185d63ce8ed88747ffbdac575e49d9259efaed98",
+      "originalBytes": 6375,
+      "compressedSha256": "05334cf0957b80322bc88ccae418128fa14fd37d57aadbb38d68e5a3e45702b2",
+      "compressedBytes": 2314
+    },
+    {
+      "path": "command-stream-2.0.2.json.gz",
+      "originalSha256": "37e6179161f9b965f2d60d0af2e1bad98383a48c6b3c2f62560406f24baba685",
+      "originalBytes": 6672,
+      "compressedSha256": "8165568e854109fae9ad44e5b9d5e43527ea90d763a6e386ed652d931b251b1f",
+      "compressedBytes": 2375
+    },
+    {
+      "path": "compatibility.test.mjs.gz",
+      "originalSha256": "91919b1f7efa4c781fb0316e9e9541b7c8f394521486e94506c3e286b4745639",
+      "originalBytes": 1797,
+      "compressedSha256": "db07e0da47ca50e520458c57b5e1b0fcc3ec2a740e4441a975cad1b1c60b3ce1",
+      "compressedBytes": 819
+    },
+    {
+      "path": "current/audit.json.gz",
+      "originalSha256": "920b6d3231771ffb345281da403d49559fca5f155d525d6b7c72b52f6ffc9520",
+      "originalBytes": 2727,
+      "compressedSha256": "f16f9d5f52a8c8c47d012bb244da734b8ddee4f33ebc0eb7db773cec078cb586",
+      "compressedBytes": 715
+    },
+    {
+      "path": "current/compatibility.tap.gz",
+      "originalSha256": "c3de5457f06a29fe0b64655fb5b138c95f39ee0f90864564efffe8ae493ac8eb",
+      "originalBytes": 1755,
+      "compressedSha256": "8600a0c68f7dbc2760e23332b52c68389e31cda5f2b8724fafa362b24bdb7d36",
+      "compressedBytes": 578
+    },
+    {
+      "path": "current/subprocess-upstream.test.mjs.gz",
+      "originalSha256": "688f38667f02d0589f0c4f94207d1a8aae240df001eff3d04e6a3a531ec5c587",
+      "originalBytes": 2469,
+      "compressedSha256": "510f64e1aebbffc155fe955da41b07f8bdb5ad54eabe62a0016d853865b78711",
+      "compressedBytes": 941
+    },
+    {
+      "path": "latest/audit.json.gz",
+      "originalSha256": "8b707af40e8daa12db5be5ba33668f3941553d4aa82bea025bf1839c452781b8",
+      "originalBytes": 361,
+      "compressedSha256": "c28a3fbb729053c47a837d2dc981de8ec02969e15c2a9af993c98481b2002bc1",
+      "compressedBytes": 185
+    },
+    {
+      "path": "latest/compatibility.tap.gz",
+      "originalSha256": "de3edab9d68b788539a51ea1b63649172f41d89b34a1b009710f98a78f84853e",
+      "originalBytes": 1756,
+      "compressedSha256": "e4324e3048cb1b542ac03220e48c8c8e3d3093f341af4c9750d4332139fb8eb0",
+      "compressedBytes": 575
+    },
+    {
+      "path": "latest/subprocess-upstream.test.mjs.gz",
+      "originalSha256": "688f38667f02d0589f0c4f94207d1a8aae240df001eff3d04e6a3a531ec5c587",
+      "originalBytes": 2469,
+      "compressedSha256": "510f64e1aebbffc155fe955da41b07f8bdb5ad54eabe62a0016d853865b78711",
+      "compressedBytes": 941
+    },
+    {
+      "path": "prior/audit.json.gz",
+      "originalSha256": "a07aea0cb73a718795b8491eedfaea63fdc5af2b9543223e1a5590a707d89c48",
+      "originalBytes": 361,
+      "compressedSha256": "25b44522134dccbf5643f3f9203afedb7a82cb76ac517955a659d45fc40afc91",
+      "compressedBytes": 185
+    },
+    {
+      "path": "prior/compatibility.tap.gz",
+      "originalSha256": "4f401c09e6e35f4e61ace36f2ca3b70833e044ec7f0593d3b72f6a3b8ccaa41c",
+      "originalBytes": 1756,
+      "compressedSha256": "8bb674ec0ce0084b1ffdc17feef4ba7942249c07c8f687cc5caad8ca70dbb5d0",
+      "compressedBytes": 579
+    },
+    {
+      "path": "prior/subprocess-upstream.test.mjs.gz",
+      "originalSha256": "688f38667f02d0589f0c4f94207d1a8aae240df001eff3d04e6a3a531ec5c587",
+      "originalBytes": 2469,
+      "compressedSha256": "510f64e1aebbffc155fe955da41b07f8bdb5ad54eabe62a0016d853865b78711",
+      "compressedBytes": 941
+    },
+    {
+      "path": "project-current/audit.json.gz",
+      "originalSha256": "8a3e47958a0b4ff6e314e77416065d0c6aec5b44b77d17842d6b84a9c848c6ce",
+      "originalBytes": 2394,
+      "compressedSha256": "47a8a7c197026c8e875980f7beee9b2edda76a6dd8ead3858e90ee08cc5e3003",
+      "compressedBytes": 678
+    },
+    {
+      "path": "project-latest/audit.json.gz",
+      "originalSha256": "aa4fd116b22d905913588af4e086d9891b94e9e4b5783b4349085a6447475a90",
+      "originalBytes": 365,
+      "compressedSha256": "c61c937a7e7d90ef818279434583581ecfdea8288bf641c4c7dc38fdfa9c1b16",
+      "compressedBytes": 190
+    },
+    {
+      "path": "shelljs-latest.json.gz",
+      "originalSha256": "0f71a70353b878f6607aa7b75beafbab27aa1d9c6e8fc2affb8b59eca04781e4",
+      "originalBytes": 2763,
+      "compressedSha256": "4fe1e1401762b60dba3aea3be73768a826f165a4411d1d3f167f22f8c9bd22e8",
+      "compressedBytes": 1379
+    }
+  ],
+  "nativeCompatibilityDetail": "Command Stream 2.0.2 retains node-pty as optionalDependency ^1.1.0; isolated full project resolves 1.2.0-beta.15 to 1.1.0. Browser E2E not performed by this agent.",
+  "lockSnapshotSha256": "6878066ef2cb17761a5e5b724ad6206a3242a8e72990081beefaeacf0fe5728b",
+  "upstream": {
+    "issueUrl": "https://github.com/link-foundation/command-stream/issues/221",
+    "statusReportedByParent": "closed",
+    "issueBodyIndependentlyRetrieved": false,
+    "fixedDependencyGraphIndependentlyVerified": true
+  }
+}

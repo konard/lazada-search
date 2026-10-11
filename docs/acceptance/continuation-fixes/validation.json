@@ -1,0 +1,267 @@
+{
+  "validatedAt": "2026-10-11T05:05:01.517538+00:00",
+  "baselineCommit": "d5f00e999dd38f9fbdf4050599de3734078e4fbc",
+  "runs": {
+    "unit": {
+      "command": "npm test",
+      "tests": 929,
+      "pass": 929,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/continuation-fixes/unit.tap.gz",
+      "uncompressedSha256": "ece23cd2e9120526e5948d2938faf9e89510de9ac3c0100630220d8a8b2f14ca",
+      "compressedSha256": "c509095c1d36f81842d4f03190fa1794a0105caea86d4ec1480282678f2dac57"
+    },
+    "e2e": {
+      "command": "npm run test:e2e",
+      "tests": 35,
+      "pass": 34,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 1,
+      "todo": 0,
+      "log": "docs/acceptance/continuation-fixes/e2e.tap.gz",
+      "uncompressedSha256": "c6b1a980781be679d55e1484bfeeb39e760ad41ca2f09cb32eacf2ee12a9aaae",
+      "compressedSha256": "5ec025a43b59d63cda369b5a6a0a09cb9156d72baef8bf06cbd605eb79157493"
+    },
+    "nativeAndOperations": {
+      "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink node --test --test-concurrency=1 tests/e2e/native-store.test.js tests/e2e/translation-catalog.test.js tests/e2e/telegram.test.js",
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/continuation-fixes/nativeAndOperations.tap.gz",
+      "uncompressedSha256": "02c70dc2400006022436230f683f106ffbd211b8020461a6491a0d78989beda1",
+      "compressedSha256": "33cb6e97db1843d60bb2e8b3280e4e15bdef8af9fff85ca6895dc2217eef7430"
+    }
+  },
+  "distinctE2eCasesValidated": 35,
+  "nativeArchiveActuallyExercised": true,
+  "liveMarketplaceOrTelegramAcceptance": false,
+  "checks": {
+    "repositoryCheck": "passed; baseline lint reports9 warnings",
+    "strictChangedJavaScript": {
+      "files": 45,
+      "errors": 0,
+      "warnings": 0
+    },
+    "duplicationPercent": 6.74,
+    "formatCheck": "passed"
+  },
+  "archiveVerification": {
+    "valid": true,
+    "records": 26122,
+    "blobs": 6536,
+    "downloads": 0
+  },
+  "manufacturerOriginalVerification": "source-original-verification.json",
+  "manufacturerReplay": {
+    "sources": 15,
+    "ocr": 5,
+    "downloads": 0,
+    "newApprovedFacts": 0
+  },
+  "sourceSnapshot": [
+    {
+      "path": "package-lock.json",
+      "sha256": "6878066ef2cb17761a5e5b724ad6206a3242a8e72990081beefaeacf0fe5728b"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e573854b365c0d349822c7097f3c94534db6c0f1f69626ba2eeae313f6fe9a24"
+    },
+    {
+      "path": "scripts/account-category-scope.mjs",
+      "sha256": "2f8fbd18f1bff5489629c163581ea2689d3e796e3d75148a34cbe08cdf7dadd8"
+    },
+    {
+      "path": "scripts/archive-manufacturer-research.mjs",
+      "sha256": "cb8d76c4bc81a83cb31daf6e485225be774b3eeba6d7e8d8ec506197ab3ee859"
+    },
+    {
+      "path": "scripts/audit-case-requirements.mjs",
+      "sha256": "7288619bf4ef8ac70185bdcc36931f08404758e4e7455b7afa1c111651787211"
+    },
+    {
+      "path": "scripts/collect-account-backlog.mjs",
+      "sha256": "8cc7742d07ded758e504f33b104adfe3ca012d4e713c8d91f890530b9649fc83"
+    },
+    {
+      "path": "scripts/collect-account-case.mjs",
+      "sha256": "76c81cc910f929487096f9a6669df873c6f705dc9b5ee163fa6f9b5c1258e4bc"
+    },
+    {
+      "path": "scripts/collect-manufacturer-research.mjs",
+      "sha256": "b9716b8808c188675113b15da279bed87d19d936916dff881330e25c06123086"
+    },
+    {
+      "path": "scripts/export-catalog-tables.mjs",
+      "sha256": "e46dd0ccde71a10c59a8e62aa73f3d51a0e908eda364ec946ff1c8b390392892"
+    },
+    {
+      "path": "scripts/export-ice-unit-report.mjs",
+      "sha256": "fbc8dd3e35f58ae15a6e3800bdd1fc192511cdf53e3d7e96d92d57d8556463bd"
+    },
+    {
+      "path": "scripts/ice-unit-rankings.mjs",
+      "sha256": "999ba2e11715d22d23d4be29b1660d6fed9fabbf112c1960b1005e32159e77ba"
+    },
+    {
+      "path": "src/application.js",
+      "sha256": "7fcc18876d92aa1de9b3c6001b999ea3cca9672c49ab951bff6e452775cb9c40"
+    },
+    {
+      "path": "src/availability.js",
+      "sha256": "11516915654bbe03cd806f622ae33a1f18ce2ec364fb2d429d10f6c16a9c838c"
+    },
+    {
+      "path": "src/catalog-products.js",
+      "sha256": "1178effcc04575a25e4df9325e007eae32775f1a262d96fcf613be6e89fe6e9f"
+    },
+    {
+      "path": "src/commands.js",
+      "sha256": "e383caa4c4a00aca60e44ce4563d2937e12f23f9da430d620b69dfc65d334de8"
+    },
+    {
+      "path": "src/config.js",
+      "sha256": "144b41719b74ae7166db811c970d37598bba65542f20f43834555666cc024c99"
+    },
+    {
+      "path": "src/coverage.js",
+      "sha256": "90914a2245029c2d3223c03a4ef05f642a2b1dc889230d8da304026052541f7e"
+    },
+    {
+      "path": "src/http-operations.js",
+      "sha256": "7586049a7cae9515bb4ddae84b7a6c590b7d61494c8fa8fa57aa420353a7dd38"
+    },
+    {
+      "path": "src/index.d.ts",
+      "sha256": "c95dcdea1ef2c9af83e622883945f1e52196600f8f284fdf1f25a7abaabd642f"
+    },
+    {
+      "path": "src/index.js",
+      "sha256": "363eeb9079a5fb3a00b5ace2e770a4eee3c7963d811d2e1fc82b3978a7020ac9"
+    },
+    {
+      "path": "src/manufacturer-research.js",
+      "sha256": "c44f289e9daeb0351c18b4acb359ceb0b8f2365a4d2020887f1f5c68728b3764"
+    },
+    {
+      "path": "src/manufacturer-source-cache.js",
+      "sha256": "acb5ee2c08699fe30d9a233d79ec5080f384851f59a7ad4885effe87c2260d7f"
+    },
+    {
+      "path": "src/manufacturers.js",
+      "sha256": "195681e221d9739d10f6806cd7b0348350528ebf902ec9e8d6749b64ded98e43"
+    },
+    {
+      "path": "src/nutrition.js",
+      "sha256": "a67c9c5136e2af48ed3dcfdda267ed59c4eb3fb7ecb08f426578bf44e7ae6f58"
+    },
+    {
+      "path": "src/operations.js",
+      "sha256": "1a0a736a80aa4ddb0ef2042c5ce03a670023cb1f661de13a82ce178ce7542f23"
+    },
+    {
+      "path": "src/package-image.js",
+      "sha256": "6a3f2e892d8a0d755db142c8643ea533f36817fabe1d661889bd605c771a238c"
+    },
+    {
+      "path": "src/products.js",
+      "sha256": "72494ccdcb825c3fe4391b1741e0c324ce0cb779d30782d2e3297e9e10aa4594"
+    },
+    {
+      "path": "src/public-captures.js",
+      "sha256": "514432bf6207e92631143c11be7b183c31c26115735a1d3e3bf82acc952c4567"
+    },
+    {
+      "path": "src/scope-decisions.js",
+      "sha256": "a35a1a3b14ae38744d7768133d20e4fff3bb66057a6238b74ab5fd4e01d4f04a"
+    },
+    {
+      "path": "src/server.js",
+      "sha256": "5565062c51991cce692a75a63f15f9f2e0e0ff19690ab7d37f42139718b8b402"
+    },
+    {
+      "path": "src/specification-holds.js",
+      "sha256": "b13853a1da1a8d0ba2bf79a9049b5925e7de5cdb39bea84f7508f9c18a3d48f0"
+    },
+    {
+      "path": "src/store.js",
+      "sha256": "53d3f1b0eef6f0099447f792fca519ea5593555878e134917ab8b35b42ab7eb0"
+    },
+    {
+      "path": "src/target-category.js",
+      "sha256": "64ff7417d145073e230b6ad8322c0b6cb29fff98f3f37f5900fdebb7eef03d6e"
+    },
+    {
+      "path": "src/telegram.js",
+      "sha256": "8900fcea8bc66b3a67668ecf942aac6d4b9771c0ea4210166b4eee6a3173103d"
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "sha256": "10df7664a56870fab500cd80d85111cc4a95986e643b0832546b69ff1f05718f"
+    },
+    {
+      "path": "src/translation.js",
+      "sha256": "4200f9e94db1bd6b3ea1f0aedbf7983201a3b159841ef07b21a07fefad6f95f4"
+    },
+    {
+      "path": "tests/availability.test.js",
+      "sha256": "22ff060937ebd3decf31f18530e5bdfd856530c89b5b40092a84239e20346140"
+    },
+    {
+      "path": "tests/e2e/translation-catalog.test.js",
+      "sha256": "b45cd303ba3cd60ff2159ae5de684127edd0c9e72f8d90f46e77ec3043c3bb23"
+    },
+    {
+      "path": "tests/human-food-scope.test.js",
+      "sha256": "d4f2497444bc81472d2de33c6c75030052d9882a7274666f9523d02081ac8050"
+    },
+    {
+      "path": "tests/ice-withheld-specifications.test.js",
+      "sha256": "d949d87d0fed105478fa444d64153aac0500d08f7d7313e49b2c4139bdfe5c03"
+    },
+    {
+      "path": "tests/manufacturer-owned-brands.test.js",
+      "sha256": "09be8074b3392e2d93eeb25afbf92669023b1aeb737f8efd37db0cba39735724"
+    },
+    {
+      "path": "tests/manufacturer-research.test.js",
+      "sha256": "15ef6b09cdf35d282914d8612b56fd4dc454ef12ef04c339a4e2e716ee53f84f"
+    },
+    {
+      "path": "tests/observation-order.test.js",
+      "sha256": "3b64127ecac23e01e69420411e0fa8af7a4b24790259f19e2852b6ebf7c6ba68"
+    },
+    {
+      "path": "tests/package-image-identity.test.js",
+      "sha256": "de806de71199f8eb3d8247ab7bd7afb194708a97ae68b1cc98e09edbf779d2cd"
+    },
+    {
+      "path": "tests/package-mass-quarantine.test.js",
+      "sha256": "58c0541d18f89a79a8a243bd6bd035422ef6980dfbe9a0e05691b98a650d7a11"
+    },
+    {
+      "path": "tests/scope-decisions.test.js",
+      "sha256": "806df9ce88cb2e3f0e55e2e8c088964ebaf3dfd9fd7a555795d3a8bea5abcd98"
+    },
+    {
+      "path": "tests/specification-holds.test.js",
+      "sha256": "93123efec44b3d82fc22a9c95f425fbe55540e1cc8c06f7fd3c980aecbe2453b"
+    },
+    {
+      "path": "tests/translation-catalog.test.js",
+      "sha256": "ccd42e62c46a84d25dfd22f99081b0068a36613813ba605e800d83ab5e8b8725"
+    }
+  ],
+  "limitations": [
+    "Fixture E2E does not establish live marketplace completeness, live Telegram delivery, complete English translation or frozen Nha Trang freight.",
+    "Full E2E run passed34 and skipped optional native; the subsequent native/interface run passed6 including native, covering35 distinct cases total.",
+    "The final audit-script edit changes only explanatory wording for the already-tested exclusions."
+  ]
+}

@@ -1,11 +1,36 @@
 import { parseHTML } from 'linkedom';
 import { sanitizePublicHtml, sanitizePublicData } from './archive.js';
 import { canonicalUrl, sha256 } from './util.js';
-import { extractPage } from './browser.js';
+import { classifyPage, extractPage } from './browser.js';
 import { parseProduct } from './products.js';
+import { recordListingUnavailable } from './availability.js';
+import { publishScopeDecisions } from './scope-decisions.js';
 
 const capturePriceContext = (capture) =>
   capture.priceContext || 'private-profile-browser-observation';
+const publishable = (record, market) =>
+  record.visibility === 'private' &&
+  ['ok', 'unavailable'].includes(record.status) &&
+  record.html &&
+  record.id.startsWith(`lazada:${market}:`);
+
+function assertSelectedPrice({ offer }, snapshot) {
+  if (!(offer.price > 0) || !offer.variantConfirmed || !snapshot.sku) {
+    throw new Error('The requested SKU and its price were not confirmed');
+  }
+}
+
+function assertPreservedPrice(original, checked) {
+  if (
+    checked.offer.sku !== original.offer.sku ||
+    checked.offer.price !== original.offer.price ||
+    !checked.offer.variantConfirmed
+  ) {
+    throw new Error(
+      'Redacted HTML did not preserve the exact selected SKU and price'
+    );
+  }
+}
 
 // Rebuild public records from redacted product DOM. Account records, account
 // screenshots, cookies, authentication forms and private raw text are not copied.
@@ -20,23 +45,20 @@ export async function publishAccountCaptures(application, accountStore) {
   }
   const published = [];
   const rejected = [];
+  const unavailablePublished = [];
   let reused = 0;
-  for (const capture of (await accountStore.list('cache')).filter(
-    (record) =>
-      record.visibility === 'private' &&
-      record.status === 'ok' &&
-      record.html &&
-      record.id.startsWith(`lazada:${application.market}:`)
+  for (const capture of (await accountStore.list('cache')).filter((record) =>
+    publishable(record, application.market)
   )) {
     try {
-      const original = parseProduct(capture.snapshot);
-      if (
-        !(original.offer.price > 0) ||
-        !original.offer.variantConfirmed ||
-        !capture.snapshot.sku
-      ) {
-        throw new Error('The requested SKU and its price were not confirmed');
+      if (capture.status === 'unavailable') {
+        unavailablePublished.push(
+          await publishUnavailable(application, accountStore, capture)
+        );
+        continue;
       }
+      const original = parseProduct(capture.snapshot);
+      assertSelectedPrice(original, capture.snapshot);
       const bytes = await accountStore.blob(capture.html.sha256);
       if (!bytes) {
         throw new Error('The captured product HTML is missing');
@@ -46,15 +68,7 @@ export async function publishAccountCaptures(application, accountStore) {
       const { document } = parseHTML(html);
       const snapshot = extractPage({ document, url: sourceUrl });
       const checked = parseProduct(snapshot);
-      if (
-        checked.offer.sku !== original.offer.sku ||
-        checked.offer.price !== original.offer.price ||
-        !checked.offer.variantConfirmed
-      ) {
-        throw new Error(
-          'Redacted HTML did not preserve the exact selected SKU and price'
-        );
-      }
+      assertPreservedPrice(original, checked);
       const id = `public-capture:${sha256(`${sourceUrl}:${html}:${capture.fetchedAt}`)}`;
       const saved = await application.store.get('publication', id);
       if (saved) {
@@ -99,7 +113,7 @@ export async function publishAccountCaptures(application, accountStore) {
         exactSkuConfirmed: true,
         manualVisualReview: false,
       };
-      await application.store.put('offer', {
+      await application.saveOffer({
         ...result.offer,
         priceContext: record.priceContext,
       });
@@ -112,6 +126,10 @@ export async function publishAccountCaptures(application, accountStore) {
     }
   }
   const allPublished = await application.store.list('publication');
+  const scopeDecisions = await publishScopeDecisions(
+    application.store,
+    accountStore
+  );
   const currentIds = new Set(published.map((record) => record.id));
   return {
     published,
@@ -121,8 +139,63 @@ export async function publishAccountCaptures(application, accountStore) {
     allPublished,
     rejected,
     reused,
+    unavailablePublished,
+    scopeDecisions,
     downloads: application.cache.stats.downloads,
   };
+}
+
+async function publishUnavailable(application, accountStore, capture) {
+  const source = await recordListingUnavailable(
+    accountStore,
+    capture,
+    capture.url
+  );
+  if (!source) {
+    throw new Error(
+      'Unavailable listing was not confirmed by its original HTML'
+    );
+  }
+  const bytes = await accountStore.blob(source.html.sha256);
+  const html = sanitizePublicHtml(bytes.toString('utf8'));
+  const url = canonicalUrl(sanitizePublicData(source.url));
+  const finalUrl = canonicalUrl(sanitizePublicData(source.finalUrl));
+  const { document } = parseHTML(html);
+  const snapshot = extractPage({ document, url: finalUrl });
+  if (classifyPage(snapshot) !== 'unavailable') {
+    throw new Error('Redacted HTML did not preserve the unavailable notice');
+  }
+  const publicCapture = {
+    id: `lazada:${application.market}:${application.deliveryArea}:${url}`,
+    url,
+    finalUrl,
+    snapshot,
+    status: 'unavailable',
+    html: await application.store.putBlob(Buffer.from(html)),
+    fetchedAt: capture.fetchedAt,
+    checkedAt: capture.checkedAt || capture.fetchedAt,
+    repositoryReusable: true,
+    availabilityVerified: true,
+  };
+  await application.store.put('cache', publicCapture);
+  const evidence = await recordListingUnavailable(
+    application.store,
+    publicCapture,
+    url
+  );
+  if (!evidence) {
+    throw new Error('Public unavailable listing verification failed');
+  }
+  return application.store.put('availability-publication', {
+    id: evidence.id,
+    url,
+    observedAt: evidence.observedAt,
+    availabilityEvidenceId: evidence.id,
+    html: evidence.html,
+    originalSourceSha256: source.html.sha256,
+    status: 'unavailable',
+    redactionApplied: true,
+  });
 }
 
 async function publishImages(publicStore, accountStore, urls) {

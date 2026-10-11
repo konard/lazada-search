@@ -56,6 +56,11 @@ const translationConfig = (getenv) => ({
   'target-language': { type: 'string', default: 'en' },
   'evidence-id': { type: 'string' },
   'evidence-hash': { type: 'string' },
+  'translation-download': { type: 'boolean', default: false },
+  'translation-limit': { type: 'number', default: 100 },
+  'translation-job': { type: 'string' },
+  'translation-product': { type: 'array', string: true },
+  'translation-sources': { type: 'boolean', default: true },
 });
 
 export function configuredStore(options) {

@@ -1,0 +1,293 @@
+{
+  "checkedAt": "2026-10-11T05:31:24.989Z",
+  "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
+  "requirements": [
+    {
+      "id": "R011",
+      "status": "partial",
+      "mechanicsStatus": "implemented",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/compare.js",
+        "tests/acceptance-corrections.test.js",
+        "tests/e2e/ice-selling-units.test.js",
+        "docs/tables/ice-unit-rankings.json"
+      ],
+      "finding": "Shared comparison now uses independently declared per-package, per-100g or per-100ml protein. Actual label and exact quantity/destination shipping coverage remains incomplete."
+    },
+    {
+      "id": "R017",
+      "status": "partial",
+      "mechanicsStatus": "implemented-cached-resumable-translation",
+      "realDataAcceptance": "missing-configured-provider-and-whole-catalog-quality-acceptance",
+      "evidence": [
+        "src/translation.js",
+        "src/translation-catalog.js",
+        "tests/translation-catalog.test.js",
+        "tests/e2e/translation-catalog.test.js",
+        "docs/translation.md"
+      ],
+      "finding": "Unicode originals, exact source hashes, provider identity/version, pending states and resumable bounded batches are implemented across library/CLI/HTTP/Telegram. Local provider fixtures pass; real complete English acceptance is pending."
+    },
+    {
+      "id": "R023",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-structured-data-operations",
+      "realDataAcceptance": "local-fixture-parity-passed-live-acceptance-pending",
+      "evidence": [
+        "src/operations.js",
+        "src/http-operations.js",
+        "src/commands.js",
+        "tests/e2e/translation-catalog.test.js"
+      ],
+      "finding": "Local HTTP POST and Telegram structured operations now dispatch collection, review, quotes, imports, research and translation through the shared application. Filesystem CLI commands and interactive login are deliberately outside this dispatcher; existing direct login APIs remain available."
+    },
+    {
+      "id": "R024",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-shared-structured-operations",
+      "realDataAcceptance": "local-mock-e2e-passed-live-deployment-pending",
+      "evidence": [
+        "src/telegram.js",
+        "src/operations.js",
+        "tests/e2e/telegram.test.js",
+        "tests/e2e/translation-catalog.test.js"
+      ],
+      "finding": "Authorized Telegram commands and /operation expose structured data workflows; local Telegram HTTP mock tests cover imports, quotes, research validation, resume and translation. No live bot deployment receipt."
+    },
+    {
+      "id": "R020",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-with-chronological-replay-guard",
+      "realDataAcceptance": "implemented-for-cached-records",
+      "evidence": [
+        "src/store.js",
+        "src/application.js",
+        "tests/observation-order.test.js",
+        "tests/availability.test.js",
+        "docs/acceptance/offline-reprocessing.json"
+      ],
+      "finding": "Older cached observations cannot replace newer prices or package identities. Original offer histories persist. Confirmed removed listings and original public source cache are reusable in fresh private overlays without downloads."
+    },
+    {
+      "id": "R014",
+      "status": "partial",
+      "mechanicsStatus": "implemented-registered-primary-source-and-exact-identity-gates",
+      "realDataAcceptance": "partial-exact-current-factory-matches",
+      "evidence": [
+        "src/manufacturer-source-cache.js",
+        "src/manufacturer-research.js",
+        "tests/manufacturer-research.test.js",
+        "docs/acceptance/manufacturer-research/replay.json",
+        "src/manufacturers.js",
+        "tests/manufacturer-owned-brands.test.js",
+        "docs/acceptance/new-manufacturer-domains/sfd-domain-proof.json"
+      ],
+      "finding": "Registered original sources and officially published assets are captured or replayed with hashes, dates, GET/POST body-sensitive cache keys, cached failures and exact source-bound review gates. Twelve originals replay offline; no unsupported new facts are approved. SFD S.A. corporate ownership now authorizes only exact linked SFD hosts as candidate sources. Selected manufacturer/parent-brand conflicts block domain trust until corrected. The cached SFD product challenge yields no approved nutrition; the twelve-source replay remains dated baseline evidence."
+    }
+  ],
+  "additionalRequirements": [
+    {
+      "id": "R044",
+      "requirement": "Record every nonmatching search result and reuse evidence-backed exclusions",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-versioned-scope-ledger",
+      "realDataAcceptance": "implemented-for-explicit-exclusions",
+      "evidence": [
+        "src/crawl.js",
+        "src/scope-decisions.js",
+        "src/target-category.js",
+        "tests/scope-decisions.test.js",
+        "tests/human-food-scope.test.js"
+      ],
+      "finding": "Every original search card is preserved; listing/SKU exclusions retain source IDs, titles, reasons, policy versions and history. New contradictory evidence revokes an exclusion; uncertainty remains queued."
+    },
+    {
+      "id": "R045",
+      "requirement": "Confirmed removed listings must not stop the queue or remain current buying offers",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-original-html-availability-proof",
+      "realDataAcceptance": "implemented-for-original-html-confirmed-outcomes",
+      "evidence": [
+        "src/availability.js",
+        "src/coverage.js",
+        "src/public-captures.js",
+        "tests/availability.test.js",
+        "tests/e2e/page-loading.test.js"
+      ],
+      "finding": "Unavailable is a per-listing outcome with reusable redacted original HTML. CAPTCHA/login/blank/redirect pages cannot prove deletion. Later positive exact observations or invalidation reopen the listing."
+    },
+    {
+      "id": "R046",
+      "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
+      "status": "partial",
+      "mechanicsStatus": "implemented-quarantine-identity-guards-and-image-backed-crop-OCR",
+      "realDataAcceptance": "pending-exact-market-package-formula-label-identity",
+      "evidence": [
+        "src/specification-holds.js",
+        "src/package-image.js",
+        "src/products.js",
+        "tests/specification-holds.test.js",
+        "tests/package-mass-quarantine.test.js",
+        "tests/ice-withheld-specifications.test.js",
+        "docs/acceptance/manufacturer-research/second-ocr-pass.json",
+        "src/ocr.js",
+        "tests/ocr-crops.test.js",
+        "docs/acceptance/decimal-ocr/replay.json",
+        "docs/acceptance/decimal-ocr/validation.json"
+      ],
+      "finding": "Disputed grams/ml remain withheld in derived views. Exact original-pixel crop transforms recover 4.5 and 4.0 from the saved manufacturer label, preserving original image/TSV, crop/renderer parameters and derived-image/TSV hashes. Identical transforms replay cached results. Crop results remain review-only; no marketplace nutrition is approved without exact flavour/market/package/formula identity."
+    }
+  ],
+  "checkpoint": {
+    "recordedAt": "2026-10-11T05:31:24.989Z",
+    "previousImplementationCheckedAt": "2026-10-11T04:43:40.556Z",
+    "latestFullSuite": "945unit/945passed;35E2E/35passed;zero failures or skips;53affected cases rechecked after lint refactor",
+    "preservedBaseline": {
+      "receipt": "docs/acceptance/continuation-fixes/validation.json",
+      "unitPassed": 929,
+      "distinctE2eCasesValidated": 35,
+      "baseE2ePassed": 34,
+      "baseE2eSkipped": 1,
+      "nativeAndOperationsPassed": 6
+    },
+    "acceptanceSnapshot": {
+      "receipt": "docs/acceptance/requirements-audit/current.json",
+      "checkedAt": "2026-10-11T05:05:10.811Z",
+      "catalogObservedAt": "2026-10-11T04:39:52.056Z",
+      "activeScope": {
+        "missingListings": 1382,
+        "missingSkuPrices": 282,
+        "missingPrices": 0,
+        "unknownSkuInventories": 0,
+        "categoryReview": 6424,
+        "specifications": 266,
+        "verifiedProducts": 14,
+        "excludedCategoryListings": 352,
+        "excludedExactOptions": 469
+      },
+      "broaderArchive": {
+        "missingListings": 1531,
+        "missingSkuPrices": 788,
+        "missingPrices": 0,
+        "unknownSkuInventories": 0,
+        "categoryReview": 7107,
+        "specifications": 278,
+        "verifiedProducts": 16
+      },
+      "wheyCoverage": {
+        "capturedPowderSkus": 255,
+        "strictWheySkus": 64,
+        "strictSoySkus": 1,
+        "verifiedStrictWheySkus": 11,
+        "missingFactoryMatches": 55,
+        "discoveryTasks": 6147,
+        "pendingSkuTasks": 287,
+        "excludedSkuOptions": 472,
+        "originalSourcePointers": 1830,
+        "unresolvedEvidencePointers": 0
+      },
+      "iceCoverage": {
+        "exactSelectedPrices": 14,
+        "bothMassAndVolume": 2,
+        "currentProteinDenominator": 3,
+        "manufacturerChocolateIdentity": 2
+      },
+      "allRequirementsDelivered": false,
+      "allTargetProductsCollected": false,
+      "productionReady": false
+    },
+    "latestReceipt": "docs/acceptance/continuation-fixes/integrated-validation.json"
+  },
+  "checkpointUpdates": [
+    {
+      "id": "decimal-ocr",
+      "issue": "https://github.com/konard/lazada-search/issues/11",
+      "status": "implemented-and-focused-tested-review-only",
+      "evidence": [
+        "docs/acceptance/decimal-ocr/replay.json",
+        "docs/acceptance/decimal-ocr/validation.json",
+        "tests/ocr-crops.test.js"
+      ],
+      "focusedTests": {
+        "passed": 30,
+        "failed": 0,
+        "realTesseractPassed": true
+      },
+      "sourceIdentityMatched": false,
+      "numericFactsAppliedToProducts": false,
+      "finding": "Exact original-pixel crop/resize/grayscale transforms recover 4.5 per 100 g and 4.0 per 100 ml source readings. No decimal is inferred from expected nutritional values; the original Singapore package/formula remains unmatched to marketplace identity."
+    },
+    {
+      "id": "transitive-audit",
+      "status": "installed-scoped-override-audit-clean; latest-full-suite-pending",
+      "scopedOverride": {
+        "browser-commander": {
+          "command-stream": "2.0.2"
+        }
+      },
+      "beforeInstalledConsumerAudit": {
+        "high": 5,
+        "total": 5
+      },
+      "afterInstalledConsumerAudit": {
+        "high": 0,
+        "total": 0
+      },
+      "evidence": [
+        "package.json",
+        "package-lock.json",
+        "docs/acceptance/dependency-resolution/report.json",
+        "docs/acceptance/dependency-resolution/README.md"
+      ],
+      "isolatedSubprocessContractsPassed": 7,
+      "finding": "Browser Commander 0.29.0 keeps its API while the scoped Command Stream 2.0.2 override removes the ShellJS/fast-glob/micromatch/braces advisory chain. Local installed audit is zero; previous full-suite logs are preserved and current full validation is pending."
+    },
+    {
+      "id": "public-manufacturer-access-token",
+      "issue": "https://github.com/konard/lazada-search/issues/12",
+      "status": "fixed-locally",
+      "evidence": [
+        "src/archive.js",
+        "src/manufacturer-source-cache.js",
+        "tests/public-source-secrets.test.js",
+        "docs/acceptance/continuation-fixes/source-original-verification.json"
+      ],
+      "finding": "Public HTML derivatives and associative archive blobs redact embedded token forms; original-source and derivative digests remain distinct and source observation provenance survives. Raw token-bearing originals stay local."
+    },
+    {
+      "id": "selected-manufacturer-conflict",
+      "issue": "https://github.com/konard/lazada-search/issues/13",
+      "status": "fixed-locally; exact-identity-gap-remains",
+      "evidence": [
+        "src/manufacturers.js",
+        "tests/manufacturer-owned-brands.test.js"
+      ],
+      "finding": "Selected manufacturer names participate in candidates and priority. Conflicting selected/parent brands block both domains from exact authority until a sourced brand correction resolves identity."
+    },
+    {
+      "id": "conditional-food-gift",
+      "issue": "https://github.com/konard/lazada-search/issues/14",
+      "status": "pending-exact-bonus-identity-and-eligibility",
+      "sku": "3255422832_VNAMZ-117013951240",
+      "finding": "Two paid bags plus one advertised gift bag do not establish bonus mass/formula/stock or unconditional quantity eligibility. Preserve gift evidence without inflating food/protein denominators."
+    },
+    {
+      "id": "sfd-corporate-domain",
+      "status": "applied-registry-candidate-only",
+      "evidence": [
+        "src/manufacturers.js",
+        "tests/manufacturer-owned-brands.test.js",
+        "docs/acceptance/new-manufacturer-domains/sfd-domain-proof.json"
+      ],
+      "corporateSourceUrl": "https://sfdsa.pl/",
+      "corporateSourceSha256": "c0928faee1e9dde56c089159f39d61821ab647e9822ff3cf8dfd593ba00b363a",
+      "trustedExactHosts": ["sfdsa.pl", "sklep.sfd.pl"],
+      "selectedSku": "13474287412_VNAMZ-117400400940",
+      "cachedProductStatus": 403,
+      "cachedProductSha256": "ec2fdadeee1f3df61f95081f23a33740aa57e43b5ad8d4d28b71a93e6fc3c494",
+      "newExactSpecApprovals": 0,
+      "finding": "Original corporate brand and official-shop links prove source ownership only. White Choco 2250 g variant nutrition and package revision remain unverified; cached managed challenge is not bypassed or retried."
+    }
+  ]
+}

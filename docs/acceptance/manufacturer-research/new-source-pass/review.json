@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-11T04:46:48.196034+00:00",
+  "status": "bounded-source-pass-complete-frozen",
+  "scope": "Existing unresolved 14 ice SKUs; current pass focuses Happy Belgian 125/475ml, Iberri 6L, white Cremo 6L and Lotte Fanfare chocolate 175ml.",
+  "newLazadaRequests": 0,
+  "newBrowserOperations": 0,
+  "newDirectSourceRequests": 4,
+  "newOriginalSourcesSaved": 3,
+  "newExactPackageFieldsResolved": 0,
+  "newBrandOwnershipProofs": 1,
+  "captchaEncountered": false,
+  "networkStoppedAtParentCheckpoint": true,
+  "sources": [
+    {
+      "url": "https://www.chomthana.com/products/",
+      "startedAt": "2026-10-11T04:42:09.906932+00:00",
+      "capturedAt": "2026-10-11T04:42:11.600417+00:00",
+      "httpResult": "200\nhttps://www.chomthana.com/products/",
+      "exitCode": 0,
+      "stderr": "",
+      "sha256": "b6fe29a28c6bcb586afc6fe7f6044963c1e55ecd0ee9395517d5b942e570c784",
+      "sizeBytes": 62732,
+      "path": "docs/acceptance/manufacturer-research/new-source-pass/chomthana-product-index.html",
+      "sourceAuthority": "manufacturer-family-index",
+      "identityMatched": false
+    },
+    {
+      "url": "https://www.icecremo.com/",
+      "startedAt": "2026-10-11T04:43:13.593076+00:00",
+      "capturedAt": "2026-10-11T04:43:15.051868+00:00",
+      "httpResult": "200\nhttps://www.icecremo.com/",
+      "exitCode": 0,
+      "stderr": "",
+      "sha256": "88c81206e51eede6bce1ded8e53df59524f736c51aa7ef2c1b6e6a67c4d65037",
+      "sizeBytes": 126908,
+      "path": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-linked-factory-domain.html",
+      "sourceAuthority": "manufacturer-linked-candidate",
+      "parentSourceUrl": "https://www.chomthana.com/products/",
+      "parentSourceSha256": "b6fe29a28c6bcb586afc6fe7f6044963c1e55ecd0ee9395517d5b942e570c784",
+      "parentPublishedHref": "http://www.icecremo.com",
+      "identityMatched": false
+    },
+    {
+      "url": "https://www.icecremo.com/products",
+      "startedAt": "2026-10-11T04:44:37.197384+00:00",
+      "capturedAt": "2026-10-11T04:44:38.465501+00:00",
+      "httpResult": "200\nhttps://www.icecremo.com/products",
+      "exitCode": 0,
+      "stderr": "",
+      "sha256": "eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606",
+      "sizeBytes": 396023,
+      "path": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-official-products.html",
+      "sourceAuthority": "manufacturer",
+      "parentSourceUrl": "https://www.icecremo.com/",
+      "parentSourceSha256": "88c81206e51eede6bce1ded8e53df59524f736c51aa7ef2c1b6e6a67c4d65037",
+      "identityMatched": false
+    }
+  ],
+  "failedRequests": [
+    {
+      "url": "https://safe.cpb.or.kr/DATA/bbs/292/20231229034720125.pdf",
+      "startedAt": "2026-10-11T04:42:09.906688+00:00",
+      "capturedAt": "2026-10-11T04:42:11.399812+00:00",
+      "httpResult": "000\nhttps://safe.cpb.or.kr/DATA/bbs/292/20231229034720125.pdf",
+      "exitCode": 60,
+      "stderr": "curl: (60) SSL: no alternative certificate subject name matches target host name 'safe.cpb.or.kr'\nMore details here: https://curl.se/docs/sslcerts.html\n\ncurl failed to verify the legitimacy of the server and therefore could not\nestablish a secure connection to it. To learn more about this situation and\nhow to fix it, please visit the web page mentioned above.\n",
+      "sha256": null,
+      "sizeBytes": 0,
+      "path": "docs/acceptance/manufacturer-research/new-source-pass/korean-regulatory-2023.pdf",
+      "sourceAuthority": "regulatory-historical",
+      "identityMatched": false
+    }
+  ],
+  "cachedOriginalsReused": [
+    {
+      "path": "docs/acceptance/ice-dual-units/expanded-root-8a2cbc2728a33c19833757824bc2af4b3cdbcfa0d9c99c5527ad1e1a94d4d197.source.gz",
+      "decompressedCopyPath": "docs/acceptance/manufacturer-research/new-source-pass/cached-white-cremo-original.webp",
+      "sourceSha256": "8a2cbc2728a33c19833757824bc2af4b3cdbcfa0d9c99c5527ad1e1a94d4d197",
+      "captureTimeUnknown": true,
+      "finding": "Selected white 6L chocolate tub promotional image has no label mass or nutrition."
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/evidence/2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86.html",
+      "url": "https://www.chomthana.com/products/icecreams/",
+      "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+      "finding": "Separate white 6L tub and yellow 6L/3kg confection, no matched GTIN or current nutrition."
+    }
+  ],
+  "ownershipProof": [
+    {
+      "brand": "Cremo",
+      "manufacturer": "Chomthana Co., Ltd.",
+      "sourceUrl": "https://www.chomthana.com/products/",
+      "sourceSha256": "b6fe29a28c6bcb586afc6fe7f6044963c1e55ecd0ee9395517d5b942e570c784",
+      "sourcePath": "docs/acceptance/manufacturer-research/new-source-pass/chomthana-product-index.html",
+      "excerpt": "We manufacture under our own house brand ‘ Cremo ’ and ‘Iberri’ for domestic and international markets, wholesale and retail.",
+      "publishedBrandLink": "http://www.icecremo.com",
+      "reciprocalSourceUrl": "https://www.icecremo.com/",
+      "reciprocalSourceSha256": "88c81206e51eede6bce1ded8e53df59524f736c51aa7ef2c1b6e6a67c4d65037",
+      "reciprocalSourcePath": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-linked-factory-domain.html",
+      "reciprocalExcerpt": "บริษัท จอมธนา จำกัด (สำนักงานใหญ่)",
+      "reciprocalPublishedLink": "http://www.chomthana.com",
+      "identityMatched": "brandOwnershipOnly",
+      "exactSelectedPackageIdentityMatched": false
+    }
+  ],
+  "reviews": [
+    {
+      "skus": ["1561216831_VNAMZ-6599331044"],
+      "name": "iBerri Thai chocolate tub 6L (seller description identity)",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "netMassG"
+      ],
+      "notes": [
+        "The 3kg marketplace title conflicts with seller ranges by flavour and is withheld.",
+        "Manufacturer white6L tub states only volume; yellow6L/3kg confection is a different package.",
+        "Distributor chocolate EAN8850387013085 and public Silom declaration13/SILOM/2020 locate the product identity, but disclose no exact label or nutrition."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["3047760589_VNAMZ-14661082727"],
+      "name": "Cremo chocolate6000ml selected SKU",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "netMassG"
+      ],
+      "notes": [
+        "GTIN8850387009361 selected hero is a white plain tub. Manufacturer yellow6L/3kg confection cannot establish its weight.",
+        "A trade catalogue independently lists Cremo Chocolate6000ml EAN8850387009361, four tubs per wholesale case; that is not the selected one-tub Lazada unit."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["2978009544_VNAMZ-14350953081"],
+      "name": "Binggrae Power Cap Choco / Pongta chocolate",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": true,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar"
+      ],
+      "notes": [
+        "Official export PowerCap Chocolate774 -> 130ml variant796 is confirmed by original manufacturer POST responses.",
+        "Original printed wrapper on importer ABC gives130ml/131g; manufacturer nutrition endpoint returns zero/placeholders and no valid basis.",
+        "Seller promotional nutrition1g protein per130ml is not factory nutrition approval."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["3040048563_VNAMZ-14623760583"],
+      "name": "Binggrae PowerCap chocolate carton of24×130ml bottles",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": true,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar"
+      ],
+      "notes": [
+        "Official export PowerCap Chocolate774 -> 130ml variant796 is confirmed by original manufacturer POST responses.",
+        "Original printed wrapper on importer ABC gives130ml/131g; manufacturer nutrition endpoint returns zero/placeholders and no valid basis.",
+        "Seller promotional nutrition1g protein per130ml is not factory nutrition approval."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["3047790409_VNAMZ-14661118301"],
+      "name": "Lotte Fanfare / 빵빠레 chocolate",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": true,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "netMassG",
+        "netVolumeConflictResolution"
+      ],
+      "notes": [
+        "GTIN8801118251313 appears with175ml locally but170ml at HMart. Exact factory front has no nutrition panel;195ml and unrelated175g records are rejected.",
+        "New exact-code label leads cvslove timeout and ynlogis403 produced no new readable label."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["3039951845_VNAMZ-14623703963"],
+      "name": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+      "status": "excluded-from-strict-chocolate",
+      "strictChocolateEligible": false,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [],
+      "notes": [
+        "Known vanilla/mixed core excluded from strict chocolate scope; retain previous evidence rather than promoting a chocolate coating as the requested flavour."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["1880785864_VNAMZ-8527716007"],
+      "name": "Happy Gelato Belgian chocolate 475ml",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "netMassG"
+      ],
+      "notes": [
+        "Happy2021 Belgian-chocolate laboratory sample gives protein4.6g/100g, fat4.8g/100g, carbohydrate24g/100g and158kcal/100g; no current formula/lot/package match. All historical nutrients are withheld.",
+        "Official Happy Gelato DNS and Happy Durian TLS negative receipts are reused; no retry while within negative-cache interval."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["1880785864_VNAMZ-8527716006"],
+      "name": "Happy Gelato Belgian chocolate 125ml",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "netMassG"
+      ],
+      "notes": [
+        "Happy2021 Belgian-chocolate laboratory sample gives protein4.6g/100g, fat4.8g/100g, carbohydrate24g/100g and158kcal/100g; no current formula/lot/package match. All historical nutrients are withheld.",
+        "Official Happy Gelato DNS and Happy Durian TLS negative receipts are reused; no retry while within negative-cache interval."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["367656830_VNAMZ-116917756014"],
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "manufacturerNetMassG",
+        "netVolumeMl"
+      ],
+      "notes": [
+        "40g is marketplace/retailer quantity for cocoa-crisp chocolate; exact candidate EAN8936011773683. Current manufacturer Merino page is a brand page without this back-label.",
+        "Wrong cantaloupe ingredient-copy text and unsourced food-composition rows are withheld."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["1561301337_VNAMZ-6599253417"],
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "manufacturerNetMassG",
+        "netVolumeMl"
+      ],
+      "notes": [
+        "40g is marketplace/retailer quantity for cocoa-crisp chocolate; exact candidate EAN8936011773683. Current manufacturer Merino page is a brand page without this back-label.",
+        "Wrong cantaloupe ingredient-copy text and unsourced food-composition rows are withheld."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["367656830_VNAMZ-610790405"],
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "manufacturerNetMassG",
+        "netVolumeMl"
+      ],
+      "notes": [
+        "40g is marketplace/retailer quantity for cocoa-crisp chocolate; exact candidate EAN8936011773683. Current manufacturer Merino page is a brand page without this back-label.",
+        "Wrong cantaloupe ingredient-copy text and unsourced food-composition rows are withheld."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["2042258411_VNAMZ-9532010624"],
+      "name": "Aice chocolate cone",
+      "status": "excluded-from-strict-chocolate",
+      "strictChocolateEligible": false,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [],
+      "notes": [
+        "Known vanilla/mixed core excluded from strict chocolate scope; retain previous evidence rather than promoting a chocolate coating as the requested flavour."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["2042294681_VNAMZ-9532082441"],
+      "name": "Aice chocolate mochi",
+      "status": "excluded-from-strict-chocolate",
+      "strictChocolateEligible": false,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [],
+      "notes": [
+        "Known vanilla/mixed core excluded from strict chocolate scope; retain previous evidence rather than promoting a chocolate coating as the requested flavour."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    },
+    {
+      "skus": ["497264871_VNAMZ-15825435034"],
+      "name": "Merino chocolate cone, five-cone pack",
+      "status": "partial-evidence-requires-exact-label",
+      "strictChocolateEligible": null,
+      "newCurrentManufacturerFacts": {},
+      "blockingEvidenceGaps": [
+        "currentExactManufacturerIdentity",
+        "ingredients",
+        "proteinPer100gOrPer100mlOrPerPackage",
+        "energy",
+        "fat",
+        "carbohydrate",
+        "sugar",
+        "manufacturerNetMassG",
+        "netVolumeMl"
+      ],
+      "notes": [
+        "60g is marketplace/retailer quantity. Multi-variant Azmart top-level EAN8936011774024 is vanilla/chocolate; brown-rice chocolate variant ends031 and candidate EAN8936011774031 needs label confirmation.",
+        "Generic vanilla/core, wrong HNF manufacturer text and estimated nutrition are not approved."
+      ],
+      "allOtherCurrentFactoryFactsApplied": false,
+      "currentFactsApplied": false,
+      "reviewCheckpoint": "2026-10-11T04:46:48.196034+00:00",
+      "newSourcePassOutcome": "No new exact current package mass or nutrition evidence identified in this bounded pass."
+    }
+  ],
+  "targetedFindings": {
+    "happy": [
+      "Existing Happy Durian Belgian chocolate lab report is from 2021; no current revision, GTIN, net mass, package protein or density was found. Protein 4.6g/100g remains historical, not a current applied fact.",
+      "Candidate official domains retain cached DNS/certificate failures; no repeated download or certificate bypass."
+    ],
+    "iberri": [
+      "EAN 8850387013085 distributor page and declaration 13/SILOM/2020 establish an exact chocolate product lead, not an exact current nutrition label.",
+      "Seller title 3kg conflicts with a 3–3.6kg flavour range. The manufacturer yellow confection 6L/3kg is a different package from the white selected tub."
+    ],
+    "cremo": [
+      "Selected SKU 3047760589_VNAMZ-14661082727 / EAN 8850387009361 is a white chocolate 6L tub; its saved seller hero has no net grams or nutrition panel.",
+      "New factory product index explicitly names Cremo as its house brand and links icecremo.com. The linked site footer independently identifies Chomthana and links back.",
+      "Current Cremo products page gives 250g/450ml for Wonderland and 250g for Cremo cups. Neither is the selected 6L tub. No conversion or density transfer is permitted."
+    ],
+    "lotte": [
+      "Exact local EAN 8801118251313 / 175ml still conflicts with HMart same-EAN 170ml. Manufacturer front image gives no back-label nutrition or grams.",
+      "A new 2023 Korean regulatory PDF search lead failed HTTPS hostname validation; the web reader also failed 502. No original bytes were obtained and no regulatory row was accepted."
+    ]
+  },
+  "sourceSearchEvidence": {
+    "recordedAt": "2026-10-11T04:46:48.196034+00:00",
+    "requestTimesNotCaptured": true,
+    "queries": [
+      "site:lottesweetmall.com \"빵빠레\" \"초코\" \"175ml\"",
+      "site:chomthana.com \"6L\" \"nutrition\"",
+      "\"Cremo\" \"8850387009361\" \"g\"",
+      "\"Happy Gelato\" \"Chocolate\" \"475\" \"g\"",
+      "빵빠레 초코 175ml 영양정보 롯데",
+      "\"cremo\" \"6000\" \"protein\"",
+      "\"Iberri\" \"chocolate\" \"nutrition\"",
+      "\"Happy Gelato\" \"chocolate Bỉ\"",
+      "\"8850387009361\" nutrition Cremo",
+      "\"8850387013085\" nutrition",
+      "\"Happy Durian\" \"chocolate\" \"grams\"",
+      "\"빵빠레\" \"초코\" \"175\" \"단백질\"",
+      "site:icecremo.com \"6\" \"Chocolate\"",
+      "site:icecremo.com \"6000\" OR \"6L\" OR \"ช็อกโกแลต\"",
+      "site:chomthana.com \"9361\" OR \"13085\" OR \"nutrition\"",
+      "\"ไอเบอร์รี่\" \"6 ลิตร\" \"ช็อกโกแลต\" \"น้ำหนัก\"",
+      "\"Happy Gelato\" \"Chocolate Bỉ\" \"khối lượng\"",
+      "\"HAPPY DURIAN\" \"KEM\" \"công bố\"",
+      "\"KEM CHOCOLATE BỈ\" \"125\"",
+      "\"8850387009361\" -site:scribd.com"
+    ],
+    "outcome": "No exact current selected-package mass or protein found; unrelated recipes, mixed flavours and third-party tables rejected.",
+    "rejectedLeads": [
+      {
+        "url": "https://www.scribd.com/document/878491911/Ba-ng-Gia-2025-GT",
+        "reason": "Third-party uploaded 2025 distributor price list. Search excerpt matches Cremo EAN 8850387009361 and 6L only; no manufacturer nutrition or grams and no original downloaded."
+      },
+      {
+        "url": "https://safe.cpb.or.kr/DATA/bbs/292/20231229034720125.pdf",
+        "reason": "Historical 2023 regulatory lead; original fetch failed certificate hostname validation, web reader failed 502; exact row/GTIN not inspected."
+      },
+      {
+        "url": "https://m.lotte.co.kr/upload/post/magazine/210406091753714.pdf",
+        "reason": "Primary Lotte 2021 magazine search excerpt refers to strawberry Fanfare, not exact chocolate 175ml; not downloaded."
+      },
+      {
+        "url": "https://vinmart.co/combo-8-hop-kem-tuoi-happy-gelato-chinh-hang-mui-vi-tu-chon-l1913525970.html",
+        "reason": "Retail marketplace mirror of a different eight-cup multivariant listing; no exact mass or nutrition; not downloaded."
+      }
+    ]
+  },
+  "integrationRules": [
+    "Only brand ownership proof is newly source-backed; it does not establish selected SKU ingredients, mass or nutrition.",
+    "Do not promote seller 3kg for Iberri or white Cremo from yellow confection or family cup examples.",
+    "Do not transfer 175g, 170ml, 195ml or different flavour Lotte rows.",
+    "Retain independently documented per-ml nutrition if later found, without deriving density.",
+    "No new exact current facts in this pass are ready for product-store mutation."
+  ]
+}

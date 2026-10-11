@@ -9,6 +9,8 @@ import {
 } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { listingKey } from '../src/util.js';
+import { applyListingAvailability } from '../src/availability.js';
+import { catalogProducts } from '../src/catalog-products.js';
 
 const options = parseArguments(process.argv.slice(2));
 if (options.account) {
@@ -51,10 +53,13 @@ const skuReview = await readFile(
 const reviewedSkus = new Map(
   skuReview.imported.map((item) => [item.sku, item])
 );
-const offers = (await app.store.list('offer')).filter(
-  (offer) => !offer.supersededBy
+const availability = await app.store.list('listing-availability');
+const offers = applyListingAvailability(
+  (await app.store.list('offer')).filter((offer) => !offer.supersededBy),
+  availability,
+  await app.store.list('invalidation')
 );
-const products = await app.store.list('product');
+const products = await catalogProducts(app.store);
 const audit = await app.audit();
 const discoveries = await app.store.list('discovery');
 const skuInventories = await app.store.list('sku-inventory');
@@ -566,6 +571,7 @@ const snapshot = {
   offers,
   discoveries,
   skuInventories,
+  availability,
   crawls: await app.store.list('crawl'),
   comparisons: entries,
   checkedAt: new Date().toISOString(),

@@ -149,6 +149,27 @@ export class AssociativeStore {
     return (await this.putMany(kind, [input]))[0];
   }
 
+  async putLatest(kind, input) {
+    const groups = prepareGroups(this, kind, [input]);
+    const observed = Date.parse(input.observedAt);
+    if (input.observedAt !== undefined && !Number.isFinite(observed)) {
+      throw new Error('Latest observation requires a valid observedAt');
+    }
+    return await this.locked(async () => {
+      const current = await this.get(kind, input.id);
+      const currentObserved = Date.parse(current?.observedAt);
+      if (
+        Number.isFinite(currentObserved) &&
+        (!Number.isFinite(observed) || currentObserved > observed)
+      ) {
+        return current;
+      }
+      return (
+        await writeGroups(groups, (entry) => this.writeRecord(kind, entry))
+      )[0];
+    });
+  }
+
   async putMany(kind, inputs) {
     const groups = prepareGroups(this, kind, inputs);
     if (!groups.length) {

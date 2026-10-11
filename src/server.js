@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { positive } from './util.js';
 import { catalogProducts } from './catalog-products.js';
 import { COLLECTION_STOP_ID } from './page-challenge.js';
+import { MUTATION_PATHS, handleHttpOperation } from './http-operations.js';
 
 export function apiComparisonOptions(params) {
   const options = {};
@@ -52,15 +53,33 @@ export async function startServer({ application, port = 8080 } = {}) {
         "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; frame-ancestors 'none'",
     };
     try {
+      const url = new URL(request.url, 'http://localhost');
+      if (request.method === 'POST' && MUTATION_PATHS.includes(url.pathname)) {
+        const result = await handleHttpOperation(
+          application,
+          request,
+          url.pathname,
+          `http://127.0.0.1:${server.address().port}`
+        );
+        response.writeHead(200, {
+          ...headers,
+          'Content-Type': 'application/json; charset=utf-8',
+        });
+        response.end(JSON.stringify(result ?? null));
+        return;
+      }
       if (request.method !== 'GET') {
         response.writeHead(405, headers);
         response.end();
         return;
       }
-      const url = new URL(request.url, 'http://localhost');
       let result;
       if (url.pathname === '/health') {
         result = { status: 'ok' };
+      } else if (url.pathname === '/api/translation-status') {
+        result = await application.translationStatus({
+          jobId: url.searchParams.get('jobId') || undefined,
+        });
       } else if (url.pathname === '/api/compare') {
         result = await application.compare(
           apiComparisonOptions(url.searchParams)

@@ -203,12 +203,13 @@ export function applySelectedPackageMass(product, evidence) {
     };
   }
   const previous = product.netMassG;
+  // Sellers can reuse a factory-container image for a metric-size repack.
+  // A conflicting OCR result must not replace that declared selling size,
+  // regardless of whether it came from the option, title or specification.
   const protectedMass =
     product.reviewedFields?.includes('netMassG') ||
     product.manufacturerVerification?.identityMatched ||
-    (!reviewed &&
-      product.massEvidence?.selected?.origin === 'selected-option' &&
-      product.massEvidence.selected.metric);
+    (!reviewed && product.massEvidence?.selected?.metric === true);
   const changed = Number.isFinite(previous) && previous !== mass.value;
   const claim = {
     field: 'netMassG',

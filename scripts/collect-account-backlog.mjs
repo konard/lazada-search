@@ -16,6 +16,7 @@ import {
   attemptedCollectionUrls,
   recordCollectionAttempt,
 } from './account-collection-attempts.mjs';
+import { persistScopeDecisions } from '../src/scope-decisions.js';
 
 const options = parseArguments(process.argv.slice(2));
 options.account ||= 'default';
@@ -24,6 +25,7 @@ const app = new LazadaSearch({
   store,
   market: options.market,
   deliveryArea: options.deliveryArea,
+  flavourScope: options.flavourScope,
   maxImages: options.maxImages,
   scheduler: new DomainScheduler({
     intervalMs: Math.max(60000, options.intervalMs),
@@ -67,6 +69,9 @@ try {
     discoveries: await app.store.list('discovery'),
   };
   const audit = scopeAccountAudit(await app.audit(), auditScope);
+  await persistScopeDecisions(app.store, audit, {
+    flavourScope: options.flavourScope,
+  });
   const batch = accountBacklogBatch(audit, {
     batchSize: options.batchSize,
     exhaustive: options.exhaustive,
@@ -111,12 +116,24 @@ try {
     } catch (error) {
       if (error.code !== 'COLLECTION_STOPPED') {
         await recordCollectionAttempt(app.store, url, {
-          status: 'deferred',
+          status:
+            error.code === 'PAGE_UNAVAILABLE' ? 'unavailable' : 'deferred',
           reason: error.message,
+          ...(error.evidence ? { evidenceId: error.evidence.id } : {}),
         });
       }
       console.log(
-        JSON.stringify({ index: index + 1, url, error: error.message })
+        JSON.stringify(
+          error.code === 'PAGE_UNAVAILABLE'
+            ? {
+                index: index + 1,
+                url,
+                status: 'unavailable',
+                evidenceId: error.evidence?.id,
+                reason: 'removed-listing',
+              }
+            : { index: index + 1, url, error: error.message }
+        )
       );
       if (
         /dialog|challenge|login|captcha|access.denied|loading did not settle|HTTP (?:403|429)/iu.test(

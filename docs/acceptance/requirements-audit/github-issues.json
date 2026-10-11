@@ -1,5 +1,61 @@
 [
   {
+    "body": "Selected bulk offer SKU3255422832_VNAMZ-117013951240 says “2 túi tặng1 túi” (two bags, one gift bag). The current gram comparison uses only the two paid bags. The additional food gift is recorded but its exact net mass, same formula, unconditional availability and quantity rules are not yet source-confirmed.\n\nRequired acceptance: preserve paid and gift food separately, distinguish them from shaker/accessory gifts, bind each food gift to exact flavour/mass/formula and eligibility, and include its confirmed amount once in an eligible bulk basket denominator. Until those facts are confirmed, report the extra bag as conditional and do not silently count it or call the paid-bag denominator the complete offer. Public originals and all other selling options must remain reusable.\n\nThe source-bound current identity audit preserves this specific evidence gap under docs/acceptance/whey-current-identity/review.json. This issue remains open, linked to full basket/factory coverage in#3.\n",
+    "labels": [],
+    "number": 14,
+    "state": "OPEN",
+    "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+    "url": "https://github.com/konard/lazada-search/issues/14"
+  },
+  {
+    "body": "Selected manufacturer names were ignored in a multi-product parent listing. SKU2019564464_VNAMZ-15735467762 selects IT'S JUST WHEY ISOLA / NATURAL, while the parent brand/title says Optimum Nutrition. The old candidate resolver returned only ON and could trust its domain for the selected different product.\n\nFix: retain the selected manufacturer lead, prioritize it, and flag all contradictory parent/selected candidates. Neither brand domain can establish an exact selected identity while the contradiction remains. A source-backed brand correction can resolve the conflict. Plain flavour labels without manufacturer names preserve the existing behavior.\n\nThe general resolver fix and targeted regression are implemented in src/manufacturers.js and tests/manufacturer-owned-brands.test.js. Fourteen owned-brand/worklist tests pass; complete exact package and nutrition proof remains in#3.\n",
+    "labels": [],
+    "number": 13,
+    "state": "OPEN",
+    "title": "Selected SKU manufacturer conflicts are hidden by the parent listing brand",
+    "url": "https://github.com/konard/lazada-search/issues/13"
+  },
+  {
+    "body": "Public manufacturer originals may contain access tokens unrelated to product evidence. Two Cremo HTML originals caused GitHub push protection to reject the publication; both contained an embedded public Mapbox token flagged as secret-style.\n\nAcceptance: public originals and associative archive blobs redact both public and secret Mapbox token forms; preserve original SHA256, derivative SHA256, actual observation date and redaction receipt; imports bind the derivative bytes and retain original provenance. Keep product text, package facts and ownership links. Raw originals remain local. Never bypass push protection or hide the raw token in compressed archives.\n\nImplemented in archive/source import, with three meaningful public-source regressions. All46 source/cache/archive focused tests pass. Complete manufacturer identity and delivery acceptance remains separate in#3.\n",
+    "labels": [],
+    "number": 12,
+    "state": "OPEN",
+    "title": "Redact embedded manufacturer access tokens before committing original evidence",
+    "url": "https://github.com/konard/lazada-search/issues/12"
+  },
+  {
+    "body": "Nutrition OCR loses decimal points in preserved exact original label images. For Häagen-Dazs source SHA256 `67907ce23aa9ff33a8431ad6ebe68289d842ab83f14586abf9d5ac7a5ab3c9e8`, original 4.0g and4.5g are transcribed as40g and45g in both tested PSM6 andPSM11. A high average confidence is insufficient to approve these numbers.\n\nReproducer and engine results: `docs/acceptance/manufacturer-research/second-ocr-pass.json`, `research-review.json`, and the preserved original label in the shared public archive. No new numeric facts from these passes were approved.\n\nAcceptance: deterministic crop/preprocessing or reviewed transcription preserves original-image/transform/TSV provenance, cache keys include transformation and OCR settings, and an actual-label regression detects decimal loss. Every nutrient still requires exact flavour/market/package/formula identity and correct serving basis. Never infer a decimal solely from expected nutrition. A corrective source review must precede ranking. The root is continuing this investigation.\n",
+    "labels": [],
+    "number": 11,
+    "state": "OPEN",
+    "title": "Nutrition label OCR drops decimal points despite high confidence",
+    "url": "https://github.com/konard/lazada-search/issues/11"
+  },
+  {
+    "body": "Current selected-SKU prices and package facts depended on replay order: saving a newer 200000VND observation, then replaying an older 150000VND original, left the stale lower price as current.\n\nRequired behavior: preserve all original observations and dates; select current product/offer state by observation time under the writer lock. Undated legacy imports remain supported but cannot overwrite a dated observation. Same-observation parser corrections remain allowed.\n\nImplemented through `AssociativeStore.putLatest`, application `saveOffer`/`saveProduct`, and public capture publication. `tests/observation-order.test.js` covers price history, concurrent saves, older package evidence, same-date corrections and legacy imports.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
+    "labels": [],
+    "number": 10,
+    "state": "OPEN",
+    "title": "Older cached observations overwrite newer SKU prices and package facts",
+    "url": "https://github.com/konard/lazada-search/issues/10"
+  },
+  {
+    "body": "Ice unit rankings reused seller/family 3000g claims for iBerri listing1561216831 and white Cremo listing3047760589 after source reviews explicitly withheld those masses. This produced an unsupported cheapest gram-price result.\n\nRequired behavior: preserve each raw source claim, carry the disputed field as a typed specification hold, and omit its denominator from catalog and every ranking fallback. Independently verified volume remains usable. Only a later exact-package manufacturer review can release the hold; density or another package must never supply missing mass.\n\nImplemented in `src/specification-holds.js`, `src/catalog-products.js`, catalog export and `scripts/ice-unit-rankings.mjs`. Regressions: `tests/specification-holds.test.js` and `tests/ice-withheld-specifications.test.js`.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
+    "labels": [],
+    "number": 9,
+    "state": "OPEN",
+    "title": "Ice rankings reuse withheld package weights and create unsupported gram prices",
+    "url": "https://github.com/konard/lazada-search/issues/9"
+  },
+  {
+    "body": "Search results for human whey powder admitted animal feed (listing13427185482) and a non-frozen Rally protein bar (listing3104297210), wasting detail requests and confusing product rankings.\n\nRequired behavior: reject explicit animal feed, pet food and non-frozen protein bars during list filtering; retain every observed result and a versioned negative decision with title, reason and source pointers. Reuse an unchanged exclusion across public/private cache; invalidate it if later evidence or scope changes contradict it. Grass-fed human whey and frozen chocolate protein ice bars must remain eligible.\n\nImplemented in `src/target-category.js`, `src/scope-decisions.js` and the account discovery/backlog/publication flow. Meaningful regressions are `tests/human-food-scope.test.js` and `tests/scope-decisions.test.js`.\n\nValidation for the implemented fixes: 929/929 unit tests passed; 35 distinct browser/interface/native E2E cases passed across the full run and the native recheck. The acceptance receipts and compressed TAP logs are being committed under `docs/acceptance/continuation-fixes`. Complete marketplace coverage and destination-specific bulk delivery remain tracked in #3.\n",
+    "labels": [],
+    "number": 8,
+    "state": "OPEN",
+    "title": "Human food filtering admits animal feed and non-frozen protein bars; cache exclusions",
+    "url": "https://github.com/konard/lazada-search/issues/8"
+  },
+  {
     "body": "The collection queue stopped on listing13439335807 with `Page loading did not settle within30000ms: product title or price is still missing`.\n\nThe current original page has the explicit title `Xin lỗi! Sản phẩm này không còn tồn tại` (Sorry! This product no longer exists), no product title and no price. The classifier did not recognize this Vietnamese title; its generic readiness timeout stopped all remaining listings. No CAPTCHA stop was recorded.\n\nFixed in commit 547fdb2de5091640bd1b33e998d0257f392a7bbd: explicit Vietnamese/English removed notices classify as unavailable before product readiness. A priced product quoting a removed related product remains valid. CAPTCHA, login and app-only guards retain precedence; genuine loading/dialog failures remain blockers. Extractor version16 supports offline reclassification of existing HTML.\n\nValidation:90 focused tests, four final classification cases, seven distinct local E2E cases across recorded runs. The browser regression captures the removed page, loads the next product successfully and then replays the unavailable-page cache without another request. The real page was recaptured and cached as unavailable with no fabricated price.\n\n[Original sanitized HTML and observation](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/docs/acceptance/removed-product/README.md), [test receipts](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/docs/acceptance/removed-product/validation.json), [classification regressions](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/tests/removed-product.test.js), [browser regression](https://github.com/konard/lazada-search/blob/547fdb2de5091640bd1b33e998d0257f392a7bbd/tests/e2e/page-loading.test.js). Full marketplace/factory/bulk/frozen coverage remains tracked in #3.\n",
     "labels": [],
     "number": 7,

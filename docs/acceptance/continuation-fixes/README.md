@@ -1,0 +1,15 @@
+# Continuation fixes and verification
+
+The collector now excludes explicit animal feed and non-frozen protein bars before detail requests, retains reusable negative decisions, handles source-confirmed removed listings without stopping the backlog, and preserves availability when catalogs are imported offline. Older cache observations cannot replace newer selected prices or package facts. Original history remains available.
+
+Disputed ice-cream weights are withheld from catalog and every ranking fallback. Package image binding rejects contradictory identities; metric repack conflicts require review instead of silently adopting the factory-container mass. Resumable Vietnamese translation and structured HTTP/Telegram operations share the library dispatcher. Registered manufacturer research preserves originals, caches public evidence, validates exact identity and source-bound nutrient excerpts, and obeys the persisted CAPTCHA stop.
+
+[Current integrated validation](integrated-validation.json) records **945/945 unit tests**, **35/35 E2E cases without skips**,53 affected archive/manufacturer cases rechecked after lint helper extraction, and strict lint for all50 changed JavaScript files. [The previous baseline](validation.json) and its logs remain preserved. Tests cover real local Chromium, Tesseract, native binary archive and local Telegram API fixtures. The compressed TAP logs are committed here. The archive verifies **26,130 records and6,542 blobs** offline. [Original-source verification](source-original-verification.json) checks all17 preserved sources against their artifact hashes;15 are exact originals and2 are redacted HTML derivatives with the original source digests retained.
+
+[Defect register](bugs.json) links the source-backed reproductions and regression tests. Image-backed crops recover the decimal OCR readings, and the scoped Command Stream2.0.2 dependency override audits with0 vulnerabilities. This checkpoint approves no questionable OCR nutrition. Browser Commander is updated to0.29.0. [Manufacturer research](../manufacturer-research/README.md) records which exact package facts remain unresolved.
+
+The current published case still has1382 uncollected target listings and282 unpriced relevant SKU options; these figures describe discovered scope, not an authoritative whole-market inventory. The [current requirements audit](../requirements-audit/current.md) recalculates acceptance from committed sources. Frozen Nha Trang shipping and exact bulk quotes remain unverified.
+
+Buying reports: [whey top10](../../tables/top-10-partial.md), [strict chocolate ice units](../../tables/ice-unit-rankings.md), [handpicked options sorted per gram](../../tables/handpicked.md). Excluded, disputed or incomplete evidence cannot manufacture an eligible cheapest offer.
+
+GitHub push protection flagged the public Mapbox token embedded in the two Cremo HTML pages. Neither token is needed for product evidence; both public and secret Mapbox access-token forms are redacted from source artifacts, structured records and public text blobs. Raw local originals remain private. Source provenance and ownership links remain intact.

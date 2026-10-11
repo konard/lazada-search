@@ -3,6 +3,12 @@ export {
   CachedTranslator,
   createHttpTranslationProvider,
 } from './translation.js';
+export {
+  planCatalogTranslation,
+  translateCatalog,
+  translationStatus,
+} from './translation-catalog.js';
+export { executeOperation, OPERATION_NAMES } from './operations.js';
 export { AssociativeStore } from './store.js';
 export { DoubletGraph } from './doublets.js';
 export { EvidenceCache, DomainScheduler } from './cache.js';
@@ -60,3 +66,24 @@ export { BROWSER_IDLE_MS, closeBrowserWindow } from './persistent-browser.js';
 export { publishAccountCaptures } from './public-captures.js';
 export { reviewListingCategory } from './category-review.js';
 export { publishAccountDiscovery } from './public-discovery.js';
+export {
+  ListingUnavailableError,
+  recordListingUnavailable,
+  currentUnavailableListings,
+  applyListingAvailability,
+} from './availability.js';
+export {
+  persistScopeDecisions,
+  publishScopeDecisions,
+  SCOPE_POLICY_VERSION,
+} from './scope-decisions.js';
+export {
+  ManufacturerSourceCache,
+  manufacturerRequest,
+  manufacturerSourceId,
+} from './manufacturer-source-cache.js';
+export {
+  ManufacturerResearch,
+  manufacturerIdentityGaps,
+  reviewManufacturerResearch,
+} from './manufacturer-research.js';

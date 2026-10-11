@@ -27,6 +27,14 @@ async function json(path) {
 }
 const catalog = await json('docs/tables/catalog.json');
 const review = await json(`${directory}/implementation-review.json`);
+const updates = await json(`${directory}/implementation-updates.json`).catch(
+  (error) => {
+    if (error.code === 'ENOENT') {
+      return { requirements: [], additionalRequirements: [] };
+    }
+    throw error;
+  }
+);
 const coverage = await json(`${directory}/coverage-review.json`);
 const issues = await json(`${directory}/github-issues.json`);
 const ice = await json('docs/tables/ice-unit-rankings.json');
@@ -50,12 +58,21 @@ const counts = (audit) =>
       'specifications',
     ].map((field) => [field, audit[field].length])
   );
-const requirements = review.requirements.map((row) => ({
+const updatesById = new Map(updates.requirements.map((row) => [row.id, row]));
+const requirements = [
+  ...review.requirements.map((row) => ({
+    ...row,
+    ...updatesById.get(row.id),
+  })),
+  ...(updates.additionalRequirements || []),
+].map((row) => ({
   id: row.id,
   requirement: row.requirement,
   status: row.status,
+  mechanicsStatus: row.mechanicsStatus,
   realDataAcceptance: row.realDataAcceptance,
   evidence: row.evidence,
+  finding: row.finding,
 }));
 const openRequirements = requirements.filter(
   (row) =>
@@ -168,7 +185,7 @@ const requirementRows = openRequirements
     (row) => `| ${row.id} | ${row.requirement} | ${row.realDataAcceptance} |`
   )
   .join('\n');
-const body = `# Current requirements and collection acceptance\n\n**All requirements delivered: ${report.allRequirementsDelivered}. All target products collected: ${report.allTargetProductsCollected}. Production ready: ${report.productionReady}.**\n\nRecalculated offline at ${report.checkedAt}, from the published catalog observed at ${catalog.checkedAt}. No marketplace requests are made by this audit.\n\nThe active chocolate/plain whey and chocolate ice-cream case has **${active.missingListings.length} uncollected listings**, **${active.missingSkuPrices.length} unpriced SKU options**, and **${active.categoryReview.length} unresolved category observations**. ${report.activeScope.excludedCategoryListings} clearly identified hardware or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.\n\n| Acceptance gate | Result |\n| --- | --- |\n${rows}\n\n## GitHub issue inventory\n\nThis state is from the saved GitHub inventory, whose SHA-256 is recorded in [current.json](current.json). Re-run the inventory download before resolving an issue or interpreting a later state.\n\n| Issue | Requirement | State |\n| --- | --- | --- |\n${issueRows}\n\n## Outstanding requirement acceptance\n\nImplemented collection mechanics and passing fixture tests do not satisfy missing real product, label, translation or delivered-price evidence.\n\n| ID | Requirement | Remaining acceptance |\n| --- | --- | --- |\n${requirementRows}\n\n[Full implementation review](implementation-review.md) · [Independent cached-list and SKU review](coverage-review.md) · [Buying tables](../../tables/top-10-partial.md) · [Requirements](../../REQUIREMENTS.md) · [Roadmap](../../ROADMAP.md)\n\nThe two saved ice routes repeat the same mixed 386-item list; they are not two independent strict chocolate inventories. Public search has no authoritative all-market SKU inventory. Exact bulk freight, frozen Nha Trang delivery and manufacturer revision matches remain evidence requirements.\n`;
+const body = `# Current requirements and collection acceptance\n\n**All requirements delivered: ${report.allRequirementsDelivered}. All target products collected: ${report.allTargetProductsCollected}. Production ready: ${report.productionReady}.**\n\nRecalculated offline at ${report.checkedAt}, from the published catalog observed at ${catalog.checkedAt}. No marketplace requests are made by this audit.\n\nThe active chocolate/plain whey and chocolate ice-cream case has **${active.missingListings.length} uncollected listings**, **${active.missingSkuPrices.length} unpriced SKU options**, and **${active.categoryReview.length} unresolved category observations**. ${report.activeScope.excludedCategoryListings} clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.\n\n| Acceptance gate | Result |\n| --- | --- |\n${rows}\n\n## GitHub issue inventory\n\nThis state is from the saved GitHub inventory, whose SHA-256 is recorded in [current.json](current.json). Re-run the inventory download before resolving an issue or interpreting a later state.\n\n| Issue | Requirement | State |\n| --- | --- | --- |\n${issueRows}\n\n## Outstanding requirement acceptance\n\nImplemented collection mechanics and passing fixture tests do not satisfy missing real product, label, translation or delivered-price evidence.\n\n| ID | Requirement | Remaining acceptance |\n| --- | --- | --- |\n${requirementRows}\n\n[Full implementation review](implementation-review.md) · [Independent cached-list and SKU review](coverage-review.md) · [Buying tables](../../tables/top-10-partial.md) · [Requirements](../../REQUIREMENTS.md) · [Roadmap](../../ROADMAP.md)\n\nThe two saved ice routes repeat the same mixed 386-item list; they are not two independent strict chocolate inventories. Public search has no authoritative all-market SKU inventory. Exact bulk freight, frozen Nha Trang delivery and manufacturer revision matches remain evidence requirements.\n`;
 await writeFile(
   `${directory}/current.md`,
   await format(body, { parser: 'markdown' })

@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-11T05:25:59.574Z",
+  "status": "ownership proof reviewed and exact SFD hosts registered; no exact SKU or nutrition approvals",
+  "network": {
+    "isolatedSourceAttempts": 3,
+    "perDomainMinimumIntervalMs": 60000,
+    "repeatRequests": 0,
+    "challengeBypassAttempts": 0,
+    "lazadaRequests": 0,
+    "credentialsUsed": false,
+    "newSourceResponseBodies": 2,
+    "failedDnsLookups": 1
+  },
+  "catalogSnapshot": {
+    "path": "docs/tables/catalog.json",
+    "checkedAt": "2026-10-11T04:39:52.056Z",
+    "sha256": "f68d204338d36dc5ca240ef70bbca5fb6e089f51daf82a4ac571c9062d694f1b"
+  },
+  "domainRegistryProposals": [
+    {
+      "name": "SFD NUTRITION",
+      "brandAliases": ["SFD NUTRITION"],
+      "legalOwner": "SFD S.A.",
+      "domains": ["sfdsa.pl", "sklep.sfd.pl"],
+      "assetDomains": [],
+      "status": "trusted ownership and exact hosts registered; package identity pending",
+      "proof": {
+        "recordedAt": "2026-10-11T05:25:59.574Z",
+        "sourceUrl": "https://sfdsa.pl/",
+        "sourceSha256": "c0928faee1e9dde56c089159f39d61821ab647e9822ff3cf8dfd593ba00b363a",
+        "sourceArtifact": "sfd-corporate-owner.html.gz",
+        "brandExcerpt": "SFD NUTRITIONSkuteczne suplementy dla osób aktywnych fizycznie. Opracowane z myślą o wynikach – od budowy masy po regenerację i zdrowie.Więcej o SFD NUTRITIONALLNUTRITIONProdukty łączące zdrowie, smak",
+        "legalOwnerExcerpt": "© 2026 SFD S.A.",
+        "links": [
+          {
+            "url": "https://sklep.sfd.pl/",
+            "text": "Nasz sklep"
+          },
+          {
+            "url": "https://sfdsa.pl/nasze-marki/sfd-nutrition",
+            "text": "Więcej o SFD NUTRITION"
+          },
+          {
+            "url": "https://sklep.sfd.pl/",
+            "text": "Pełna oferta sklepu"
+          },
+          {
+            "url": "https://sfdsa.pl/nasze-marki/sfd-nutrition",
+            "text": "SFD Nutrition"
+          }
+        ],
+        "checks": {
+          "brandVisible": true,
+          "ownerVisible": true,
+          "corporateLinksOfficialShop": true
+        }
+      },
+      "limits": [
+        "Exact manufacturer shop host sklep.sfd.pl is supported by an explicit corporate link.",
+        "A broad allowlist for every sfd.pl subdomain is not proposed.",
+        "Brand ownership proof does not verify the selected marketplace SKU or nutrition."
+      ]
+    },
+    {
+      "name": "Athleopro / Whey Lực Sĩ",
+      "brandAliases": ["Athleopro", "Whey Lực Sĩ"],
+      "domains": [],
+      "candidateDomains": ["athlepro.vn"],
+      "status": "lead only; not approved",
+      "reason": "Candidate is derived from marketplace seller username; attempted public domain lookup failed ENOTFOUND and no legal factory-owner primary source was found."
+    }
+  ],
+  "reviews": [
+    {
+      "sku": "13474287412_VNAMZ-117400400940",
+      "productId": "product:4fca2a2a06cb53602d650e636daf51ca7232e52b7ca4fbc5606bb7b3172be45a",
+      "title": "SFD Protein Instant WPC Plus 900kg – Bột Whey Protein Cho Người Tập Thể Thao",
+      "brand": "SFD NUTRITION",
+      "url": "https://www.lazada.vn/products/pdp-i13474287412.html",
+      "selectedVariant": ["White Choco"],
+      "sellerNetMassG": 2250,
+      "sellerEvidenceIds": [
+        "evidence:e20ead6fbc4eed677b6ba6ddd522fec8124f21dff540d0d988027af51632152e",
+        "evidence:e17ab3342901b5f3b8c0ee4a41671acd5d904f4739da271cae8968fc71e50522"
+      ],
+      "offer": {
+        "priceVnd": 1450000,
+        "observedAt": "2026-10-10T21:28:05.843Z",
+        "evidenceId": "evidence:e17ab3342901b5f3b8c0ee4a41671acd5d904f4739da271cae8968fc71e50522"
+      },
+      "sellerClaims": [
+        {
+          "field": "netMassG",
+          "value": 2250,
+          "excerpt": " Net Content \n2.25kg",
+          "evidenceId": "evidence:e20ead6fbc4eed677b6ba6ddd522fec8124f21dff540d0d988027af51632152e"
+        },
+        {
+          "field": "netMassG",
+          "value": 2250,
+          "excerpt": " Net Content \n2.25kg",
+          "evidenceId": "evidence:e17ab3342901b5f3b8c0ee4a41671acd5d904f4739da271cae8968fc71e50522"
+        }
+      ],
+      "manufacturerVerification": false,
+      "manufacturerCandidate": "SFD NUTRITION Wpc Protein Plus 2250g, biała czekolada",
+      "manufacturerProductUrl": "https://sklep.sfd.pl/SFD_NUTRITION_Wpc_Protein_Plus-opis33868.html",
+      "identityMatched": false,
+      "facts": {},
+      "pendingEvidence": [
+        "Original exact 2250g white-chocolate product/variant capture or label with manufacturer GTIN/package revision.",
+        "Factory nutrition and complete ingredients bound to biała czekolada, not the separate raspberry option or default flavour.",
+        "Selected seller package front/back confirming factory identity and revision."
+      ],
+      "conflicts": [
+        "Seller title says900kg but selected specification/description says2250g; only selected2250g remains the seller mass fact.",
+        "White Choco is distinct from ordinary cocoa chocolate and white-chocolate raspberry; scope eligibility requires the existing strict flavour policy."
+      ],
+      "sourceOutcome": {
+        "status": 403,
+        "challengeTitle": "Just a moment...",
+        "sha256": "ec2fdadeee1f3df61f95081f23a33740aa57e43b5ad8d4d28b71a93e6fc3c494",
+        "artifact": "sfd-white-chocolate-2250g.html.gz"
+      },
+      "nextSafeAction": "Reuse cached challenge outcome. Do not retry shop requests without an explicit legitimate access/research workflow; request exact package-label provenance from cached images or authorized access."
+    },
+    {
+      "sku": "3241302198_VNAMZ-117011483478",
+      "productId": "product:e62a71c5f59338660735e163a2a6f5e72c734de265454bc886baf07a04f40de1",
+      "title": "Whey Protein concentrate PRO GAINER túi 2kg, tặng bình cao cấp, giáo án & thực đơn độc quyền",
+      "brand": "Athleopro , Whey Lực Sĩ",
+      "url": "https://www.lazada.vn/products/pdp-i3241302198.html",
+      "selectedVariant": ["2kg socola"],
+      "sellerNetMassG": 2000,
+      "sellerEvidenceIds": [
+        "evidence:484544632b285073c500fb4360e259cdd700dd332c4d37e207a8552159260fb6",
+        "evidence:bd7df7b8d8db4a2a92e58e2143d649e6aa24a972a1ea42bbe6f7884ddd0445b2"
+      ],
+      "offer": {
+        "priceVnd": 809100,
+        "observedAt": "2026-10-10T20:27:06.416Z",
+        "evidenceId": "evidence:bd7df7b8d8db4a2a92e58e2143d649e6aa24a972a1ea42bbe6f7884ddd0445b2"
+      },
+      "sellerClaims": [
+        {
+          "field": "netMassG",
+          "value": 2000,
+          "excerpt": "2kg socola 2kg socola",
+          "evidenceId": "evidence:484544632b285073c500fb4360e259cdd700dd332c4d37e207a8552159260fb6"
+        },
+        {
+          "field": "netMassG",
+          "value": 2000,
+          "excerpt": "2kg socola 2kg socola",
+          "evidenceId": "evidence:bd7df7b8d8db4a2a92e58e2143d649e6aa24a972a1ea42bbe6f7884ddd0445b2"
+        }
+      ],
+      "manufacturerVerification": false,
+      "manufacturerCandidate": null,
+      "manufacturerProductUrl": null,
+      "identityMatched": false,
+      "facts": {},
+      "pendingEvidence": [
+        "Exact selected2kg chocolate package front/back identifying legal manufacturer, factory address, product name and serving basis.",
+        "Primary manufacturer-owned source or official declaration corresponding to seller-advertised1648/2021 ĐKSP and selected package.",
+        "Factory chocolate-formula nutrition with explicit per-serving mass or per100g basis."
+      ],
+      "conflicts": [
+        "Listing family description includes1kg while selected option is2kg chocolate.",
+        "Concentrate in title and isolate in seller description conflict.",
+        "Seller advertises29g protein/236calories without a serving-mass basis, so no protein-per100g or protein-per-package calculation is valid."
+      ],
+      "sourceOutcome": {
+        "status": "failed",
+        "errorCode": "ENOTFOUND",
+        "candidateUrl": "https://athlepro.vn/"
+      },
+      "nextSafeAction": "Find legal producer identity from exact cached factory/back label or a matching official product declaration before proposing any trusted manufacturer domain."
+    }
+  ],
+  "sourceAttempts": [
+    {
+      "name": "sfd-white-chocolate-2250g",
+      "url": "https://sklep.sfd.pl/SFD_NUTRITION_Wpc_Protein_Plus-opis33868.html",
+      "startedAt": "2026-10-11T05:22:39.999Z",
+      "capturedAt": "2026-10-11T05:22:40.294Z",
+      "status": 403,
+      "location": null,
+      "contentType": "text/html; charset=UTF-8",
+      "artifact": "sfd-white-chocolate-2250g.html.gz",
+      "sha256": "ec2fdadeee1f3df61f95081f23a33740aa57e43b5ad8d4d28b71a93e6fc3c494",
+      "bytes": 5623,
+      "bodyReceived": true,
+      "cacheHit": false,
+      "minimumPerDomainIntervalMs": 60000,
+      "authority": "unapproved source-domain candidate",
+      "credentialUse": false
+    },
+    {
+      "name": "sfd-corporate-owner",
+      "url": "https://sfdsa.pl/",
+      "startedAt": "2026-10-11T05:22:40.294Z",
+      "capturedAt": "2026-10-11T05:22:41.135Z",
+      "status": 200,
+      "location": null,
+      "contentType": "text/html",
+      "artifact": "sfd-corporate-owner.html.gz",
+      "sha256": "c0928faee1e9dde56c089159f39d61821ab647e9822ff3cf8dfd593ba00b363a",
+      "bytes": 912129,
+      "bodyReceived": true,
+      "cacheHit": false,
+      "minimumPerDomainIntervalMs": 60000,
+      "authority": "unapproved source-domain candidate",
+      "credentialUse": false
+    },
+    {
+      "name": "athlepro-domain-lead",
+      "url": "https://athlepro.vn/",
+      "startedAt": "2026-10-11T05:22:41.136Z",
+      "capturedAt": "2026-10-11T05:22:41.290Z",
+      "bodyReceived": false,
+      "status": "failed",
+      "errorName": "TypeError",
+      "errorCode": "ENOTFOUND",
+      "cacheHit": false,
+      "minimumPerDomainIntervalMs": 60000,
+      "authority": "unapproved source-domain candidate",
+      "credentialUse": false
+    }
+  ],
+  "acceptance": {
+    "newManufacturerBrandOwnershipProofs": 1,
+    "newExactSkuFactorySpecApprovals": 0,
+    "newNutritionValuesAdopted": 0,
+    "sharedStoresModified": false,
+    "sharedCodeModified": false,
+    "mainCasePublicationModified": false
+  }
+}

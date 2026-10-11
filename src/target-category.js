@@ -8,6 +8,21 @@ export function targetCategoryExclusion(title) {
     .replace(/\[[^\]]*\]/gu, ' ')
     .replace(/[-–—]/gu, ' ');
   const powder = /\b(?:powder|bot|kg|lbs?)\b/u.test(text);
+  if (
+    /\b(?:animal feed|pet food|livestock feed|fodder)\b|\b(?:chuyen dung|danh|dung)\s+cho\s+(?:ech|ca|cho|meo|ga|heo|lon|bo)\b|\bthuc an\s+(?:cho\s+)?(?:ech|ca|cho|meo|ga|heo|lon|gia suc)\b/u.test(
+      text
+    )
+  ) {
+    return 'Animal feed is outside the human whey and ice-cream categories';
+  }
+  if (
+    /\b(?:protein|whey)\s*(?:bars?|thanh)\b|\bthanh\s*(?:protein|whey)\b/u.test(
+      text
+    ) &&
+    !/ice\s*cream|gelato|\bkem\s*(?:que|hop|ly|oc que)\b/u.test(text)
+  ) {
+    return 'Protein bars are outside the protein powder category';
+  }
   const hardware =
     /binh\s*lac\s*dien|dien\s*binh\s*lac|electric\s*shaker|coc\s*khuay|\b(?:blender|shaker\s*bottle)\b|may\s*xay/u.test(
       text

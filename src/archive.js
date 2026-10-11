@@ -26,6 +26,13 @@ const PRIVATE_KEY =
 const PRIVATE_QUERY =
   /^(?:.*(?:token|cookie|x5sec|x5step|signature|csrf).*|sign|uuid|uid|userId|session|spm|scm|laz_trackid|clickTrackInfo)$/iu;
 
+export function redactPublicSecrets(text) {
+  return text.replace(
+    /\b[sp]k\.eyJ[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)+/gu,
+    '[REDACTED_MAPBOX_TOKEN]'
+  );
+}
+
 export function sanitizePublicData(value) {
   if (Array.isArray(value)) {
     return value.map(sanitizePublicData);
@@ -38,25 +45,28 @@ export function sanitizePublicData(value) {
     );
   }
   if (typeof value === 'string') {
-    return value.replace(/https?:\/\/[^\s<>"'\\]+/gu, (text) => {
-      try {
-        const url = new URL(text);
-        for (const key of [...url.searchParams.keys()]) {
-          if (PRIVATE_QUERY.test(key.replace(/^amp;/u, ''))) {
-            url.searchParams.delete(key);
-          } else {
-            const original = url.searchParams.get(key);
-            const cleaned = sanitizePublicData(original);
-            if (original !== cleaned) {
-              url.searchParams.set(key, cleaned);
+    return redactPublicSecrets(value).replace(
+      /https?:\/\/[^\s<>"'\\]+/gu,
+      (text) => {
+        try {
+          const url = new URL(text);
+          for (const key of [...url.searchParams.keys()]) {
+            if (PRIVATE_QUERY.test(key.replace(/^amp;/u, ''))) {
+              url.searchParams.delete(key);
+            } else {
+              const original = url.searchParams.get(key);
+              const cleaned = sanitizePublicData(original);
+              if (original !== cleaned) {
+                url.searchParams.set(key, cleaned);
+              }
             }
           }
+          return url.href;
+        } catch {
+          return text;
         }
-        return url.href;
-      } catch {
-        return text;
       }
-    });
+    );
   }
   return value;
 }
@@ -404,18 +414,10 @@ function discardFailedPageData(record) {
   };
 }
 
-export async function exportRepositoryArchive({
-  store,
-  directory = DEFAULT_ARCHIVE,
-  caseMetadata = {},
-}) {
-  const target = publicArchiveTarget(store, directory);
-  await mkdir(target, { recursive: true });
-  const oldText = await readOptional(join(target, 'manifest.json'), 'utf8');
-  const previous = oldText ? JSON.parse(oldText) : undefined;
-  const manifest = {
+function newArchiveManifest(caseMetadata) {
+  return {
     version: ARCHIVE_VERSION,
-    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), sanitizeImportedSource.toString(), isStoredBlobReference.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
+    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), redactPublicSecrets.toString(), sanitizeImportedSource.toString(), isStoredBlobReference.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
     case: sanitizePublicData(caseMetadata),
     kinds: {},
     blobs: {},
@@ -426,6 +428,18 @@ export async function exportRepositoryArchive({
         'Empty tracking-pixel responses contain no product evidence; browser profiles, session caches and executables are not part of the public case.',
     },
   };
+}
+
+export async function exportRepositoryArchive({
+  store,
+  directory = DEFAULT_ARCHIVE,
+  caseMetadata = {},
+}) {
+  const target = publicArchiveTarget(store, directory);
+  await mkdir(target, { recursive: true });
+  const oldText = await readOptional(join(target, 'manifest.json'), 'utf8');
+  const previous = oldText ? JSON.parse(oldText) : undefined;
+  const manifest = newArchiveManifest(caseMetadata);
   let reused = 0;
   let rebuilt = 0;
   const write = async (path, bytes) => {
@@ -465,9 +479,11 @@ export async function exportRepositoryArchive({
     const bytes =
       format === 'html'
         ? Buffer.from(sanitizePublicHtml(original.toString()))
-        : ['json', 'yaml', 'lino'].includes(format)
-          ? sanitizeImportedSource(original, format)
-          : original;
+        : format === 'public-text'
+          ? Buffer.from(redactPublicSecrets(original.toString('utf8')))
+          : ['json', 'yaml', 'lino'].includes(format)
+            ? sanitizeImportedSource(original, format)
+            : original;
     const hash = sha256(bytes);
     const updated = { sha256: hash, bytes: bytes.length };
     rewrite.set(key, updated);
@@ -502,7 +518,11 @@ export async function exportRepositoryArchive({
     if (isStoredBlobReference(value)) {
       return copyBlob(
         value,
-        field === 'html' ? 'html' : field === 'source' ? format : undefined
+        field === 'html'
+          ? 'html'
+          : field === 'source' || (field === 'blob' && format === 'public-text')
+            ? format
+            : undefined
       );
     }
     if (Array.isArray(value)) {
@@ -597,7 +617,14 @@ export async function exportRepositoryArchive({
         await walk(
           record,
           undefined,
-          kind === 'import-source' ? record.format : undefined
+          kind === 'import-source'
+            ? record.format
+            : kind === 'manufacturer-source' &&
+                /^(?:text\/|application\/(?:json|xml))/iu.test(
+                  record.contentType
+                )
+              ? 'public-text'
+              : undefined
         )
       );
     }

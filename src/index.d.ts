@@ -160,6 +160,9 @@ export interface Offer {
   seller?: string;
   sku?: string;
   available?: boolean;
+  listingUnavailableAt?: string;
+  availabilityEvidenceId?: string;
+  availabilitySourceSha256?: string;
   deliveryAvailable?: boolean;
   variantConfirmed?: boolean;
   coldChainConfirmed?: boolean;
@@ -322,6 +325,10 @@ export declare class AssociativeStore {
   recordPath(kind: string, id: string): string;
   locked<T>(action: () => Promise<T>): Promise<T>;
   put<T extends { id: string }>(kind: string, record: T): Promise<T>;
+  putLatest<T extends { id: string; observedAt?: string }>(
+    kind: string,
+    record: T
+  ): Promise<T>;
   /** Bounded writes under one lock; duplicate IDs preserve input order. */
   putMany<T extends { id: string }>(kind: string, records: T[]): Promise<T[]>;
   get<T = Record<string, unknown>>(
@@ -573,6 +580,23 @@ export interface OcrResult {
   observedAt: string;
   cacheHit: boolean;
   rawTsv?: BlobReference;
+  originalImageHash?: string;
+  derivedImage?: BlobReference;
+  imageTransform?: {
+    id: string;
+    originalImage: BlobReference;
+    originalDimensions: { width: number; height: number };
+    originalFormat: string;
+    sourceOcr?: { id: string; imageHash: string; rawTsv: BlobReference };
+    transform: Record<string, unknown>;
+    renderer: Record<string, string>;
+    derivedImage: BlobReference;
+    createdAt: string;
+    requiresReview: true;
+  };
+  parameters?: { tessdataDir: string; tessedit_create_tsv: number };
+  requiresReview?: boolean;
+  transformCacheHit?: boolean;
 }
 export declare class TesseractOcr {
   constructor(options: {
@@ -585,8 +609,17 @@ export declare class TesseractOcr {
   version(): Promise<string>;
   recognize(
     blob: BlobReference,
-    options?: { psm?: number }
+    options?: {
+      psm?: number;
+      transform?: OcrImageTransform;
+      sourceOcrId?: string;
+    }
   ): Promise<OcrResult>;
+}
+export interface OcrImageTransform {
+  crop?: { left: number; top: number; width: number; height: number };
+  resize?: { width: number; height: number; kernel?: 'lanczos3' | 'nearest' };
+  grayscale?: boolean;
 }
 export declare class NativeLinkStore {
   constructor(options?: { command?: string });
@@ -659,6 +692,10 @@ export declare class CachedTranslator {
     text: string,
     options?: TranslationOptions
   ): Promise<TranslationRecord>;
+  cached(
+    text: string,
+    options?: TranslationOptions
+  ): Promise<TranslationRecord | undefined>;
 }
 export interface ProductTranslationReport {
   productId: string;
@@ -667,7 +704,65 @@ export interface ProductTranslationReport {
   complete: boolean;
   translations: Array<TranslationRecord & { field: string; index: number }>;
 }
+export interface CatalogTranslationOptions extends TranslationOptions {
+  cacheOnly?: boolean;
+  limit?: number;
+  jobId?: string;
+  productIds?: string[];
+  includeSources?: boolean;
+  maxChunkBytes?: number;
+}
+export interface CatalogTranslationJob {
+  id: string;
+  fingerprint: string;
+  status: 'pending' | 'partial' | 'stopped' | 'complete';
+  complete: boolean;
+  presentationOnly: true;
+  authoritative: false;
+  cacheOnly: boolean;
+  catalogInventoryComplete: false;
+  counts: {
+    total: number;
+    uniqueTexts: number;
+    translated: number;
+    pending: number;
+    remaining: number;
+  };
+  lastRun: {
+    processed: number;
+    cacheHits: number;
+    providerResults: number;
+    stopped: boolean;
+  };
+  sourceGaps: Array<Record<string, unknown>>;
+  [key: string]: unknown;
+}
+export declare function planCatalogTranslation(
+  application: LazadaSearch,
+  options?: CatalogTranslationOptions
+): Promise<Record<string, unknown>>;
+export declare function translateCatalog(
+  application: LazadaSearch,
+  options?: CatalogTranslationOptions
+): Promise<CatalogTranslationJob>;
+export declare function translationStatus(
+  application: LazadaSearch,
+  options?: { jobId?: string }
+): Promise<Record<string, unknown>>;
+export declare const OPERATION_NAMES: string[];
+export declare function executeOperation(
+  application: LazadaSearch,
+  request: {
+    operation: string;
+    input?: Record<string, unknown>;
+    args?: string[];
+    options?: Record<string, unknown>;
+  }
+): Promise<unknown>;
 export declare class LazadaSearch {
+  manufacturerResearch(
+    plan: Record<string, unknown>
+  ): Promise<Record<string, unknown>>;
   constructor(options?: {
     flavourScope?: ComparisonOptions['flavourScope'];
     store?: AssociativeStore;
@@ -701,12 +796,20 @@ export declare class LazadaSearch {
     productId: string,
     options?: TranslationOptions
   ): Promise<ProductTranslationReport>;
+  translateCatalog(
+    options?: CatalogTranslationOptions
+  ): Promise<CatalogTranslationJob>;
+  translationStatus(options?: {
+    jobId?: string;
+  }): Promise<Record<string, unknown>>;
   importRecords(records: {
     products?: Product[];
     offers?: Offer[];
     discoveries?: Array<{ id: string; [key: string]: unknown }>;
     skuInventories?: Array<{ id: string; [key: string]: unknown }>;
     crawls?: Array<{ id: string; [key: string]: unknown }>;
+    availability?: ListingAvailability[];
+    invalidations?: Array<{ id: string; url: string; invalidatedAt: string }>;
   }): Promise<{ products: number; offers: number }>;
   collect(
     url: string,
@@ -903,6 +1006,7 @@ export interface Manufacturer {
   name: string;
   aliases: string[];
   domains: string[];
+  assetDomains?: string[];
   url: string;
 }
 export declare const MANUFACTURERS: Manufacturer[];
@@ -949,3 +1053,132 @@ export declare function submitPhoneCode(
   code: string,
   options?: { timeoutMs?: number }
 ): Promise<PhoneLoginState>;
+
+export interface ListingAvailability {
+  id: string;
+  url: string;
+  finalUrl: string;
+  listingKey: string;
+  status: 'unavailable';
+  verification: 'original-html-confirmed';
+  observedAt: string;
+  html: { type: 'stored-blob'; sha256: string; bytes: number };
+  cacheId?: string;
+  notice: string;
+  invalidatedAt?: string;
+}
+export declare class ListingUnavailableError extends Error {
+  readonly code: 'PAGE_UNAVAILABLE';
+  readonly url: string;
+  readonly evidence?: ListingAvailability;
+  constructor(url: string, evidence?: ListingAvailability);
+}
+export declare function recordListingUnavailable(
+  store: AssociativeStore,
+  capture: Record<string, unknown>,
+  url?: string
+): Promise<ListingAvailability | undefined>;
+export declare function currentUnavailableListings(
+  records?: ListingAvailability[],
+  offers?: Offer[],
+  invalidations?: Array<{ url: string; invalidatedAt: string }>
+): Map<string, ListingAvailability>;
+export declare function applyListingAvailability(
+  offers: Offer[],
+  records?: ListingAvailability[],
+  invalidations?: Array<{ url: string; invalidatedAt: string }>
+): Offer[];
+export declare const SCOPE_POLICY_VERSION: number;
+export declare function persistScopeDecisions(
+  store: AssociativeStore,
+  audit: Record<string, unknown>,
+  options?: { flavourScope?: 'all' | 'chocolate-or-unflavoured' }
+): Promise<{
+  decisions: Record<string, unknown>[];
+  reused: number;
+  excluded: number;
+}>;
+export declare function publishScopeDecisions(
+  publicStore: AssociativeStore,
+  accountStore: AssociativeStore
+): Promise<{ published: number; reused: number }>;
+
+export interface ManufacturerSourceRequest {
+  brand: string;
+  url: string;
+  method?: 'GET' | 'POST';
+  body?: string;
+  headers?: Record<string, string>;
+  kind?: 'page' | 'label';
+  parentSourceId?: string;
+  refresh?: boolean;
+  ocrPasses?: Array<{
+    psm?: number;
+    transform?: OcrImageTransform;
+    sourceOcrId?: string;
+  }>;
+}
+export interface ManufacturerResearchOptions {
+  store: AssociativeStore;
+  registry: Array<{
+    brand: string;
+    domains: string[];
+    assetDomains?: string[];
+  }>;
+  cache?: EvidenceCache;
+  scheduler?: DomainScheduler;
+  fetchSource?: typeof fetch;
+  offline?: boolean;
+  now?: () => number;
+  maxBytes?: number;
+  failureTtlMs?: number;
+  ocr?: TesseractOcr | false;
+}
+export declare function manufacturerRequest(
+  request: ManufacturerSourceRequest
+): {
+  url: string;
+  method: 'GET' | 'POST';
+  body: string;
+  headers: Record<string, string>;
+  fingerprint: string;
+};
+export declare function manufacturerSourceId(
+  request: ManufacturerSourceRequest
+): string;
+export declare class ManufacturerSourceCache {
+  constructor(options: ManufacturerResearchOptions);
+  cache: EvidenceCache;
+  capture(request: ManufacturerSourceRequest): Promise<Record<string, unknown>>;
+  importOriginal(
+    request: ManufacturerSourceRequest & {
+      sourceSha256: string;
+      observedAt?: string;
+      captureTimeUnknown?: boolean;
+      finalUrl?: string;
+      contentType?: string;
+      originalArtifact?: string;
+      originalSourceSha256?: string;
+      redactionApplied?: boolean;
+    },
+    bytes: Uint8Array
+  ): Promise<Record<string, unknown>>;
+  images(sourceId: string): Promise<Array<Record<string, unknown>>>;
+}
+export declare class ManufacturerResearch {
+  constructor(options: ManufacturerResearchOptions);
+  sources: ManufacturerSourceCache;
+  run(plan: {
+    id?: string;
+    sources?: ManufacturerSourceRequest[];
+    reviews?: Array<Record<string, unknown>>;
+  }): Promise<Record<string, unknown>>;
+}
+export declare function manufacturerIdentityGaps(
+  listing?: Record<string, unknown>,
+  manufacturer?: Record<string, unknown>
+): string[];
+export declare function reviewManufacturerResearch(
+  store: AssociativeStore,
+  review: Record<string, unknown>
+): Promise<Record<string, unknown>>;

@@ -1,0 +1,307 @@
+{
+  "id": "ice-manufacturer-cached-original-replay-2026-10-11",
+  "registry": [
+    {
+      "brand": "Binggrae",
+      "domains": ["bing.co.kr"]
+    },
+    {
+      "brand": "Lotte",
+      "domains": ["lottewellfood.com"],
+      "assetDomains": ["webimage.ldcc.co.kr"]
+    },
+    {
+      "brand": "Cremo",
+      "domains": ["chomthana.com", "icecremo.com"]
+    },
+    {
+      "brand": "Iberri",
+      "domains": ["chomthana.com"]
+    },
+    {
+      "brand": "Merino",
+      "domains": ["nutifood.com.vn", "ngoinhadinhduong.com"]
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "domains": ["haagendazs.com.sg"]
+    },
+    {
+      "brand": "SFD Nutrition",
+      "domains": ["sfdsa.pl", "sklep.sfd.pl"]
+    }
+  ],
+  "imports": [
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/en/product/detail?PDT=57",
+      "method": "GET",
+      "artifact": "docs/acceptance/ice-dual-units/bing-export-powercap.html",
+      "sourceSha256": "b4eae259abe69ffb8d0d5f0b29661f46546f540c6c0e2361f422ca40801a123a",
+      "observedAt": "2026-10-10T17:08:23.971527+00:00",
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/en/product/get_idt_info",
+      "method": "POST",
+      "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-nutrition.json",
+      "sourceSha256": "383c504103c19a8ae96530fc3424e263096433c33736f8d10a9ee356d5778bef",
+      "observedAt": "2026-10-10T17:10:14.061910+00:00",
+      "contentType": "application/json",
+      "kind": "page",
+      "body": "prod_val_idx=796&prod_idx=57&lang=EN",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      }
+    },
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/product/get_volume_list",
+      "method": "POST",
+      "artifact": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+      "sourceSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+      "observedAt": "2026-10-10T17:08:52.455359+00:00",
+      "contentType": "application/json",
+      "kind": "page",
+      "body": "prod_idx=774&lang=EN",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      }
+    },
+    {
+      "brand": "Lotte",
+      "url": "https://www.lottewellfood.com/brand/detail/product?seq=269&lang=ko",
+      "method": "GET",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-detail.html",
+      "sourceSha256": "4570d1e82b5bd87dc5ddd2870949ba3c5d6352810c809e78ae8a1bfd4ef64952",
+      "observedAt": "2026-10-10T17:06:25.721354+00:00",
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "Lotte",
+      "url": "https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+      "method": "GET",
+      "artifact": "docs/acceptance/ice-dual-units/lotte-fanfare-front-1.png",
+      "sourceSha256": "0578cad32e0aef26915871e75fe2cbae7eb0583a9aceb04641eab33825594a7a",
+      "observedAt": "2026-10-10T17:07:56.152930+00:00",
+      "contentType": "image/png",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:8a2ad0a69bd0491163d6ee58e878a5fd5563f6a8c7021ca4ffd6a05b546594d0"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/products/belgian-chocolate-pint",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-pint.html",
+      "sourceSha256": "ccefa7691538286980daf112f2412406db65ddc2a31d43a4cec7afe3b7da0dae",
+      "captureTimeUnknown": true,
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/-/media/project/gmi/haagendazs/haagendazs-master/bsp/hd/nutrition-images/singapore/7008211848_27153_kp_2_1_belgian-chocolate.png?h=1500&hash=E37AAD8B371FD98D9F34E697C3D8D8CE&iar=0&rev=bfe8d0802bfc4f7c98defb4d997f6bc2&w=1500",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-label.png",
+      "sourceSha256": "67907ce23aa9ff33a8431ad6ebe68289d842ab83f14586abf9d5ac7a5ab3c9e8",
+      "captureTimeUnknown": true,
+      "contentType": "image/png",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:537481f0623af237a8ef375d88cab45e5edd518a2fae07681a9f1e19f4222b21"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/products/belgian-chocolate-minicup",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-minicup.html",
+      "sourceSha256": "202b53d54dea70528cc4dadf69d1d93b14b9219db61190d1eab0b4a3df9bede4",
+      "captureTimeUnknown": true,
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/-/media/project/gmi/haagendazs/haagendazs-master/bsp/hd/nutrition-images/singapore/7008221828-27174-kp-2-1-belgian-chocolate-minicup.png?h=1500&iar=0&w=1500&rev=342357d4fc484a338d3f86e4c73df73b&hash=8B5D99B3C900CA4EDD168B93D9445956",
+      "artifact": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-mini-label.png",
+      "sourceSha256": "2992d27cf1d9214b2a94bed6b2269e036fa982755dac78799276fa8f1273dff0",
+      "captureTimeUnknown": true,
+      "contentType": "image/png",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:28f34525b7838b949021e4d202d1a5be7e4bd752af55ad59cd6d8ce3bf1043f0"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.chomthana.com/products/icecreams/",
+      "artifact": "docs/acceptance/ice-dual-units/evidence/2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86.html",
+      "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+      "captureTimeUnknown": true,
+      "contentType": "text/html"
+    },
+    {
+      "brand": "Iberri",
+      "url": "https://www.chomthana.com/products/icecreams/",
+      "artifact": "docs/acceptance/ice-dual-units/evidence/2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86.html",
+      "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+      "captureTimeUnknown": true,
+      "contentType": "text/html"
+    },
+    {
+      "brand": "Merino",
+      "url": "https://nutifood.com.vn/thuong-hieu/merino",
+      "artifact": "docs/acceptance/ice-dual-units/merino-primary-d0d76ccc12153c15dbedabe99a38b0aa16dddf1d769be1bb557e3fa04adfdb64.html.gz",
+      "sourceSha256": "d0d76ccc12153c15dbedabe99a38b0aa16dddf1d769be1bb557e3fa04adfdb64",
+      "captureTimeUnknown": true,
+      "contentType": "text/html"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.chomthana.com/products/",
+      "artifact": "docs/acceptance/manufacturer-research/new-source-pass/chomthana-product-index.html",
+      "sourceSha256": "b6fe29a28c6bcb586afc6fe7f6044963c1e55ecd0ee9395517d5b942e570c784",
+      "observedAt": "2026-10-11T04:42:11.600417+00:00",
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.icecremo.com/",
+      "artifact": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-linked-factory-domain.html",
+      "sourceSha256": "da7c252a65970e14d5db3eba50cbdcb8f36662b2e29fa5878ae6ee347b4d5711",
+      "observedAt": "2026-10-11T04:43:15.051868+00:00",
+      "contentType": "text/html",
+      "kind": "page",
+      "originalSourceSha256": "88c81206e51eede6bce1ded8e53df59524f736c51aa7ef2c1b6e6a67c4d65037",
+      "redactionApplied": true
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.icecremo.com/products",
+      "artifact": "docs/acceptance/manufacturer-research/new-source-pass/icecremo-official-products.html",
+      "sourceSha256": "6a1a01dea740e76230efeefb56898c96df0aec6436dd685f6587790302d9d8da",
+      "observedAt": "2026-10-11T04:44:38.465501+00:00",
+      "contentType": "text/html",
+      "kind": "page",
+      "originalSourceSha256": "eb7c253e00e80374b287e969d6802254693a7a8e32481792f43f79c244633606",
+      "redactionApplied": true
+    },
+    {
+      "brand": "SFD Nutrition",
+      "url": "https://sfdsa.pl/",
+      "artifact": "docs/acceptance/new-manufacturer-domains/sfd-corporate-owner.html.gz",
+      "sourceSha256": "c0928faee1e9dde56c089159f39d61821ab647e9822ff3cf8dfd593ba00b363a",
+      "observedAt": "2026-10-11T05:22:41.135Z",
+      "contentType": "text/html",
+      "kind": "page"
+    },
+    {
+      "brand": "SFD Nutrition",
+      "url": "https://sklep.sfd.pl/SFD_NUTRITION_Wpc_Protein_Plus-opis33868.html",
+      "artifact": "docs/acceptance/new-manufacturer-domains/sfd-white-chocolate-2250g.html.gz",
+      "sourceSha256": "ec2fdadeee1f3df61f95081f23a33740aa57e43b5ad8d4d28b71a93e6fc3c494",
+      "observedAt": "2026-10-11T05:22:40.294Z",
+      "contentType": "text/html; charset=UTF-8",
+      "kind": "page",
+      "status": "failed",
+      "retryAfter": 9007199254740991
+    }
+  ],
+  "sources": [
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/en/product/detail?PDT=57",
+      "method": "GET",
+      "kind": "page"
+    },
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/en/product/get_idt_info",
+      "method": "POST",
+      "kind": "page",
+      "body": "prod_val_idx=796&prod_idx=57&lang=EN",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      }
+    },
+    {
+      "brand": "Binggrae",
+      "url": "https://www.bing.co.kr/product/get_volume_list",
+      "method": "POST",
+      "kind": "page",
+      "body": "prod_idx=774&lang=EN",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded"
+      }
+    },
+    {
+      "brand": "Lotte",
+      "url": "https://www.lottewellfood.com/brand/detail/product?seq=269&lang=ko",
+      "method": "GET",
+      "kind": "page"
+    },
+    {
+      "brand": "Lotte",
+      "url": "https://webimage.ldcc.co.kr/upload/conf/upload/2022/07/05/20220705f7fd47176b1d451.png",
+      "method": "GET",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:8a2ad0a69bd0491163d6ee58e878a5fd5563f6a8c7021ca4ffd6a05b546594d0"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/products/belgian-chocolate-pint",
+      "kind": "page"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/-/media/project/gmi/haagendazs/haagendazs-master/bsp/hd/nutrition-images/singapore/7008211848_27153_kp_2_1_belgian-chocolate.png?h=1500&hash=E37AAD8B371FD98D9F34E697C3D8D8CE&iar=0&rev=bfe8d0802bfc4f7c98defb4d997f6bc2&w=1500",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:537481f0623af237a8ef375d88cab45e5edd518a2fae07681a9f1e19f4222b21"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/products/belgian-chocolate-minicup",
+      "kind": "page"
+    },
+    {
+      "brand": "Häagen-Dazs",
+      "url": "https://www.haagendazs.com.sg/-/media/project/gmi/haagendazs/haagendazs-master/bsp/hd/nutrition-images/singapore/7008221828-27174-kp-2-1-belgian-chocolate-minicup.png?h=1500&iar=0&w=1500&rev=342357d4fc484a338d3f86e4c73df73b&hash=8B5D99B3C900CA4EDD168B93D9445956",
+      "kind": "label",
+      "parentSourceId": "manufacturer-source:28f34525b7838b949021e4d202d1a5be7e4bd752af55ad59cd6d8ce3bf1043f0"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.chomthana.com/products/icecreams/"
+    },
+    {
+      "brand": "Iberri",
+      "url": "https://www.chomthana.com/products/icecreams/"
+    },
+    {
+      "brand": "Merino",
+      "url": "https://nutifood.com.vn/thuong-hieu/merino"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.chomthana.com/products/",
+      "kind": "page"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.icecremo.com/",
+      "kind": "page"
+    },
+    {
+      "brand": "Cremo",
+      "url": "https://www.icecremo.com/products",
+      "kind": "page"
+    },
+    {
+      "brand": "SFD Nutrition",
+      "url": "https://sfdsa.pl/"
+    },
+    {
+      "brand": "SFD Nutrition",
+      "url": "https://sklep.sfd.pl/SFD_NUTRITION_Wpc_Protein_Plus-opis33868.html"
+    }
+  ],
+  "reviews": []
+}

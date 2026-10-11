@@ -20,6 +20,8 @@ Commands:
   collect <lazada-url>           Collect a single listing with image OCR
   translate <text>               Cache VI-to-EN presentation text; preserve the source
   translate-product <id>         Translate cached title, description and ingredients
+  translate-catalog              Resume a bounded cached catalog text batch
+  translation-status [job-id]    Read translation checkpoints and pending totals
   collection-status             Show the persistent CAPTCHA stop checkpoint
   resume-collection             Resume only after the current challenge is cleared
   import-capture <capture.json>  Import HTML/screenshot from an existing browser
@@ -29,6 +31,7 @@ Commands:
   inspect <kind> [id]            Read products, offers, evidence, OCR or history
   verify <product-id> <url>      Cross-check an operator-supplied official page
   review-manufacturer <id> <review.json>  Record an exact visual variant and label review
+  manufacturer-research <plan.json>  Research configured trusted sources without approving facts
   review <id> <field> <JSON-value> <evidence-id>   Review an extracted product field
   review-category <url> <review.json> Review a listing category across all its SKUs
   quote <offer-id> <JSON>        Record shipping, bulk tiers and delivery checks
@@ -58,6 +61,9 @@ Options:
   --translation-provider ID --translation-version VERSION --translation-endpoint URL
   --translation-token-env NAME  Read HTTP credentials from an environment variable
   --source-language vi --target-language en --evidence-id ID --evidence-hash SHA256
+  --translation-download        Explicitly permit configured provider calls for a batch
+  --translation-limit 100 --translation-job ID --translation-product ID
+  --no-translation-sources       Restrict a catalog batch to product fields
   --session-from auto|chrome|firefox|yandex|safari --session-profile NAME --cdp-url URL
   --account NAME                Read shared public data; save new account evidence privately
   --interval-ms 60000           Minimum gap between new requests to the same host
@@ -76,6 +82,21 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'translate-catalog':
+      return application.translateCatalog({
+        sourceLanguage: options.sourceLanguage,
+        targetLanguage: options.targetLanguage,
+        cacheOnly: options.cacheOnly ?? !options.translationDownload,
+        limit: options.limit ?? options.translationLimit,
+        productIds: options.productIds ?? options.translationProduct,
+        jobId: options.jobId ?? options.translationJob,
+        includeSources: options.includeSources ?? options.translationSources,
+        refresh: options.refresh,
+      });
+    case 'translation-status':
+      return application.translationStatus({
+        jobId: options.jobId || options.translationJob || args[0],
+      });
     case 'translate':
     case 'translate-product': {
       const input = required(
@@ -166,6 +187,15 @@ export async function executeCommand(application, command, args, options = {}) {
         required(args[0], 'Product id'),
         JSON.parse(
           await readFile(required(args[1], 'Manufacturer review file'), 'utf8')
+        )
+      );
+    case 'manufacturer-research':
+      return application.manufacturerResearch(
+        JSON.parse(
+          await readFile(
+            required(args[0], 'Manufacturer research plan JSON'),
+            'utf8'
+          )
         )
       );
     case 'delivery':

@@ -91,12 +91,27 @@ function measuredAmount(
   return packageAmount(facts[field], packages, fallback);
 }
 
+function withheldFields(reviews) {
+  return [
+    ...new Set(
+      reviews.flatMap((review) => [
+        ...(review.invalidatedFields || []),
+        ...Object.keys(review.sellerClaimsNotApplied || {}),
+        ...(Array.isArray(review.conditionalManufacturerMatrix)
+          ? review.conditionalManufacturerMatrix
+              .filter((claim) => claim.applied === false)
+              .map((claim) => claim.field)
+              .filter((field) => ['netMassG', 'netVolumeMl'].includes(field))
+          : []),
+      ])
+    ),
+  ];
+}
+
 export function enrichIceRow(row, reviews = []) {
   const applicable = reviews.filter((review) => review.skus?.includes(row.sku));
   const { facts, conflicts, superseded } = selectFacts(applicable);
-  const invalidated = applicable.flatMap(
-    (review) => review.invalidatedFields || []
-  );
+  const invalidated = withheldFields(applicable);
   const packageCount =
     facts.packagesPerSellingUnit?.value || row.packagesPerSellingUnit || 1;
   const packages = packageCount * (row.quantity || 1);
@@ -161,6 +176,8 @@ export function enrichIceRow(row, reviews = []) {
     research: applicable.map((review) => ({
       id: review.id,
       blockingEvidenceGaps: review.blockingEvidenceGaps || [],
+      withheldSellerClaims: review.sellerClaimsNotApplied || {},
+      conditionalManufacturerMatrix: review.conditionalManufacturerMatrix,
     })),
   };
 }

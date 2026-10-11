@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-11T03:54:12.820Z",
-  "sourcePricesGeneratedAt": "2026-10-11T03:54:11.663Z",
+  "generatedAt": "2026-10-11T04:45:53.454Z",
+  "sourcePricesGeneratedAt": "2026-10-11T04:41:14.067Z",
   "currency": "VND",
   "deliveryArea": "Nha Trang",
   "downloads": 0,
@@ -16,7 +16,7 @@
   ],
   "coverage": {
     "exactSelectedPrices": 14,
-    "bothMassAndVolume": 3,
+    "bothMassAndVolume": 2,
     "currentProteinDenominator": 3,
     "manufacturerChocolateIdentity": 2
   },
@@ -34,20 +34,26 @@
       "originalPrice": null,
       "quantity": 1,
       "packagesPerSellingUnit": 1,
-      "massG": 3000,
+      "massG": null,
       "volumeMl": 6000,
       "proteinG": null,
       "totalBeforeDelivery": 539000,
       "totalAfterDelivery": null,
       "shippingVnd": null,
-      "beforePerFoodGram": 179.66666666666666,
+      "beforePerFoodGram": null,
       "afterPerFoodGram": null,
       "beforePerMl": 89.83333333333333,
       "afterPerMl": null,
       "beforePerProteinGram": null,
       "afterPerProteinGram": null,
       "deliveryQuoteMatched": false,
-      "invalidatedSpecificationFields": [],
+      "invalidatedSpecificationFields": [
+        "netMassG",
+        "flavourDependentMassRangeG",
+        "partialIngredients",
+        "completeIngredients",
+        "expandedFlavourDependentMassRangeG"
+      ],
       "deliveryUnavailable": false,
       "deliveryNote": null,
       "originalSellerName": "Thai chocolate ice-cream tub",
@@ -79,6 +85,45 @@
             "No current nutrition label on any of four cached product images",
             "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
             "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement"
+          ],
+          "withheldSellerClaims": {
+            "netMassG": 3000,
+            "flavourDependentMassRangeG": [3000, 3300],
+            "partialIngredients": [
+              "sugar",
+              "vegetable oil",
+              "whey powder",
+              "natural flavour"
+            ],
+            "completeIngredients": false
+          },
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "manufacturer generic Cremo confection tub",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "identityMatched": false,
+              "exactBrandMatched": false,
+              "exactIberriExportSkuMatched": false,
+              "applied": false,
+              "confidence": 1
+            },
+            {
+              "field": "chocolateCore",
+              "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+              "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Chocolate",
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1
+            }
           ]
         },
         {
@@ -94,6 +139,46 @@
             "Distributor EAN8850387013085 not printed on available Lazada package photos",
             "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
             "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
+          ],
+          "withheldSellerClaims": {
+            "netMassG": 3000,
+            "flavourDependentMassRangeG": [3000, 3300],
+            "partialIngredients": [
+              "sugar",
+              "vegetable oil",
+              "whey powder",
+              "natural flavour"
+            ],
+            "completeIngredients": false,
+            "expandedFlavourDependentMassRangeG": [3000, 3600]
+          },
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "manufacturer generic Cremo confection tub",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "identityMatched": false,
+              "exactBrandMatched": false,
+              "exactIberriExportSkuMatched": false,
+              "applied": false,
+              "confidence": 1
+            },
+            {
+              "field": "chocolateCore",
+              "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+              "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Chocolate",
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1
+            }
           ]
         }
       ]
@@ -124,7 +209,7 @@
       "beforePerProteinGram": null,
       "afterPerProteinGram": null,
       "deliveryQuoteMatched": false,
-      "invalidatedSpecificationFields": [],
+      "invalidatedSpecificationFields": ["netMassG"],
       "deliveryUnavailable": true,
       "deliveryNote": "Exact selected public page says this product cannot be delivered to Khánh Hòa, Phường Nha Trang.",
       "originalSellerName": "Cremo chocolate ice cream, white 6 L tub",
@@ -142,11 +227,34 @@
             "Find exact factory net grams for GTIN8850387009361; generic yellow-confection matrix cannot resolve this selected white tub",
             "No exact current nutrition/ingredients label for selected chocolate factory SKU",
             "Frozen shipping and quantity-specific freight require parent collector verification"
+          ],
+          "withheldSellerClaims": {},
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "specific yellow Cremo6L ice-confection tub in manufacturer catalogue",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "exactBrandMatched": true,
+              "exactVolumeMatched": true,
+              "exactChocolateFactorySkuMatched": false,
+              "exactYellowConfectionPackageMatched": false,
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1,
+              "selectedPackageConflictsWithManufacturerYellowConfection": true,
+              "reasonNotApplied": "Actual selected hero is white tub, while manufacturer3kg declaration belongs to yellow confection; explicitly withhold3kg."
+            }
           ]
         },
         {
           "id": "expanded:3047760589_VNAMZ-14661082727",
-          "blockingEvidenceGaps": []
+          "blockingEvidenceGaps": [],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -311,14 +419,16 @@
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -495,7 +605,8 @@
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -557,7 +668,8 @@
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it."
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -567,7 +679,8 @@
             "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
             "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
             "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -713,7 +826,8 @@
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Peanut topping excludes this exact listing from the requested nut-free strict chocolate scope. Seller English name is not the Korean manufacturer family name."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -778,7 +892,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "id": "ice-dual-units:1880785864_VNAMZ-8527716007",
@@ -789,7 +904,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -854,7 +970,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "id": "ice-dual-units:1880785864_VNAMZ-8527716006",
@@ -865,7 +982,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -951,7 +1069,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -962,7 +1081,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -1048,7 +1168,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -1059,7 +1180,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -1145,7 +1267,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -1156,53 +1279,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
-        }
-      ]
-    },
-    {
-      "sku": "2042258411_VNAMZ-9532010624",
-      "url": "https://www.lazada.vn/products/pdp-i2042258411.html?skuId=9532010624",
-      "name": "Aice chocolate cone",
-      "price": 15000,
-      "observedAt": "2026-10-10T17:33:37.638Z",
-      "status": "Exact selected-SKU price; factory and frozen delivery pending",
-      "available": true,
-      "sellerTitle": "[chỉ giao HCM chọn giao hàng 2h]KEM AICE ỐC QUẾ SOCOLA",
-      "selectedOptions": [],
-      "originalPrice": null,
-      "quantity": 1,
-      "packagesPerSellingUnit": 1,
-      "massG": null,
-      "volumeMl": null,
-      "proteinG": null,
-      "totalBeforeDelivery": 15000,
-      "totalAfterDelivery": null,
-      "shippingVnd": null,
-      "beforePerFoodGram": null,
-      "afterPerFoodGram": null,
-      "beforePerMl": null,
-      "afterPerMl": null,
-      "beforePerProteinGram": null,
-      "afterPerProteinGram": null,
-      "deliveryQuoteMatched": false,
-      "invalidatedSpecificationFields": ["netMassG"],
-      "deliveryUnavailable": true,
-      "deliveryNote": "Exact selected public page says this product cannot be delivered to Khánh Hòa, Phường Nha Trang.",
-      "originalSellerName": "Manufacturer pending chocolate ice cream",
-      "proteinBasis": null,
-      "strictChocolateEligible": false,
-      "specificationFacts": {},
-      "supersededSpecificationFacts": [],
-      "manufacturerIdentityMatched": false,
-      "specificationConflicts": [],
-      "research": [
-        {
-          "id": "expanded:2042258411_VNAMZ-9532010624",
-          "blockingEvidenceGaps": [
-            "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
-            "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -1248,7 +1326,55 @@
           "blockingEvidenceGaps": [
             "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
             "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
-          ]
+          ],
+          "withheldSellerClaims": {}
+        }
+      ]
+    },
+    {
+      "sku": "2042258411_VNAMZ-9532010624",
+      "url": "https://www.lazada.vn/products/pdp-i2042258411.html?skuId=9532010624",
+      "name": "Aice chocolate cone",
+      "price": 15000,
+      "observedAt": "2026-10-10T17:33:37.638Z",
+      "status": "Exact selected-SKU price; factory and frozen delivery pending",
+      "available": true,
+      "sellerTitle": "[chỉ giao HCM chọn giao hàng 2h]KEM AICE ỐC QUẾ SOCOLA",
+      "selectedOptions": [],
+      "originalPrice": null,
+      "quantity": 1,
+      "packagesPerSellingUnit": 1,
+      "massG": null,
+      "volumeMl": null,
+      "proteinG": null,
+      "totalBeforeDelivery": 15000,
+      "totalAfterDelivery": null,
+      "shippingVnd": null,
+      "beforePerFoodGram": null,
+      "afterPerFoodGram": null,
+      "beforePerMl": null,
+      "afterPerMl": null,
+      "beforePerProteinGram": null,
+      "afterPerProteinGram": null,
+      "deliveryQuoteMatched": false,
+      "invalidatedSpecificationFields": ["netMassG"],
+      "deliveryUnavailable": true,
+      "deliveryNote": "Exact selected public page says this product cannot be delivered to Khánh Hòa, Phường Nha Trang.",
+      "originalSellerName": "Manufacturer pending chocolate ice cream",
+      "proteinBasis": null,
+      "strictChocolateEligible": false,
+      "specificationFacts": {},
+      "supersededSpecificationFacts": [],
+      "manufacturerIdentityMatched": false,
+      "specificationConflicts": [],
+      "research": [
+        {
+          "id": "expanded:2042258411_VNAMZ-9532010624",
+          "blockingEvidenceGaps": [
+            "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+            "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -1334,7 +1460,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -1345,90 +1472,14 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     }
   ],
   "rankings": {
     "beforePerFoodGram": [
-      {
-        "sku": "1561216831_VNAMZ-6599331044",
-        "url": "https://www.lazada.vn/products/pdp-i1561216831.html?skuId=6599331044",
-        "name": "iBerri Thai chocolate tub 6L (seller description identity)",
-        "price": 539000,
-        "observedAt": "2026-10-10T16:20:41.067Z",
-        "status": "Exact selected-SKU price; factory and frozen delivery pending",
-        "available": true,
-        "sellerTitle": "(GIAO HỎA TỐC HCM) Kem ký Thái Lan vị socola hộp 6L (3Kg)",
-        "selectedOptions": [],
-        "originalPrice": null,
-        "quantity": 1,
-        "packagesPerSellingUnit": 1,
-        "massG": 3000,
-        "volumeMl": 6000,
-        "proteinG": null,
-        "totalBeforeDelivery": 539000,
-        "totalAfterDelivery": null,
-        "shippingVnd": null,
-        "beforePerFoodGram": 179.66666666666666,
-        "afterPerFoodGram": null,
-        "beforePerMl": 89.83333333333333,
-        "afterPerMl": null,
-        "beforePerProteinGram": null,
-        "afterPerProteinGram": null,
-        "deliveryQuoteMatched": false,
-        "invalidatedSpecificationFields": [],
-        "deliveryUnavailable": false,
-        "deliveryNote": null,
-        "originalSellerName": "Thai chocolate ice-cream tub",
-        "proteinBasis": null,
-        "strictChocolateEligible": null,
-        "specificationFacts": {
-          "netVolumeMl": {
-            "value": 6000,
-            "unit": "ml",
-            "basis": "exact-selected-marketplace-SKU declared volume",
-            "sourceUrl": "https://www.lazada.vn/products/pdp-i1561216831.html?skuId=6599331044",
-            "sourceSha256": "cada4334b344933c02437a7b42d3a5fae81056a4fa81f60015a881249ff1a552",
-            "excerpt": "Thể tích : 6 lít",
-            "identityMatched": true,
-            "manufacturerVerified": false,
-            "confidence": 1
-          }
-        },
-        "supersededSpecificationFacts": [],
-        "manufacturerIdentityMatched": false,
-        "specificationConflicts": [],
-        "research": [
-          {
-            "id": "ice-dual-units:1561216831_VNAMZ-6599331044",
-            "blockingEvidenceGaps": [
-              "Seller title/specification 3kg conflicts with description 3–3.3kg depending on flavour; exact chocolate net mass unresolved",
-              "Manufacturer 6L/3kg Cremo family lacks iBerri exact export-product mapping, barcode and current formula",
-              "No full factory chocolate ingredient list; seller prose is generic and incomplete",
-              "No current nutrition label on any of four cached product images",
-              "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
-              "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement"
-            ]
-          },
-          {
-            "id": "ice-dual-units:1561216831_VNAMZ-6599331044",
-            "blockingEvidenceGaps": [
-              "Seller title/specification 3kg conflicts with description 3–3.3kg depending on flavour; exact chocolate net mass unresolved",
-              "Manufacturer 6L/3kg Cremo family lacks iBerri exact export-product mapping, barcode and current formula",
-              "No full factory chocolate ingredient list; seller prose is generic and incomplete",
-              "No current nutrition label on any of four cached product images",
-              "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
-              "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement",
-              "Distributor title3kg conflicts with its own3–3.6kg flavour-dependent range; exact chocolate grams still absent",
-              "Distributor EAN8850387013085 not printed on available Lazada package photos",
-              "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
-              "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
-            ]
-          }
-        ]
-      },
       {
         "sku": "367656830_VNAMZ-116917756014",
         "url": "https://www.lazada.vn/products/pdp-i367656830.html?skuId=116917756014",
@@ -1511,7 +1562,8 @@
               "Complete ingredients and allergens for the same formula",
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping"
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
@@ -1522,7 +1574,8 @@
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping",
               "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -1608,7 +1661,8 @@
               "Complete ingredients and allergens for the same formula",
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping"
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
@@ -1619,7 +1673,8 @@
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping",
               "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -1705,7 +1760,8 @@
               "Complete ingredients and allergens for the same formula",
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping"
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
@@ -1716,7 +1772,8 @@
               "Current lot/formula versus historical seller artwork",
               "Exact Nha Trang delivery and selected-order shipping",
               "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -1881,14 +1938,16 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2065,7 +2124,8 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       }
@@ -2084,20 +2144,26 @@
         "originalPrice": null,
         "quantity": 1,
         "packagesPerSellingUnit": 1,
-        "massG": 3000,
+        "massG": null,
         "volumeMl": 6000,
         "proteinG": null,
         "totalBeforeDelivery": 539000,
         "totalAfterDelivery": null,
         "shippingVnd": null,
-        "beforePerFoodGram": 179.66666666666666,
+        "beforePerFoodGram": null,
         "afterPerFoodGram": null,
         "beforePerMl": 89.83333333333333,
         "afterPerMl": null,
         "beforePerProteinGram": null,
         "afterPerProteinGram": null,
         "deliveryQuoteMatched": false,
-        "invalidatedSpecificationFields": [],
+        "invalidatedSpecificationFields": [
+          "netMassG",
+          "flavourDependentMassRangeG",
+          "partialIngredients",
+          "completeIngredients",
+          "expandedFlavourDependentMassRangeG"
+        ],
         "deliveryUnavailable": false,
         "deliveryNote": null,
         "originalSellerName": "Thai chocolate ice-cream tub",
@@ -2129,6 +2195,45 @@
               "No current nutrition label on any of four cached product images",
               "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
               "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement"
+            ],
+            "withheldSellerClaims": {
+              "netMassG": 3000,
+              "flavourDependentMassRangeG": [3000, 3300],
+              "partialIngredients": [
+                "sugar",
+                "vegetable oil",
+                "whey powder",
+                "natural flavour"
+              ],
+              "completeIngredients": false
+            },
+            "conditionalManufacturerMatrix": [
+              {
+                "field": "netMassG",
+                "value": 3000,
+                "unit": "g",
+                "packageVolumeMl": 6000,
+                "basis": "manufacturer generic Cremo confection tub",
+                "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+                "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+                "excerpt": "Confection Net Weight: 6L/3kg",
+                "identityMatched": false,
+                "exactBrandMatched": false,
+                "exactIberriExportSkuMatched": false,
+                "applied": false,
+                "confidence": 1
+              },
+              {
+                "field": "chocolateCore",
+                "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+                "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+                "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+                "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+                "excerpt": "Chocolate",
+                "identityMatched": false,
+                "applied": false,
+                "confidence": 1
+              }
             ]
           },
           {
@@ -2144,6 +2249,46 @@
               "Distributor EAN8850387013085 not printed on available Lazada package photos",
               "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
               "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
+            ],
+            "withheldSellerClaims": {
+              "netMassG": 3000,
+              "flavourDependentMassRangeG": [3000, 3300],
+              "partialIngredients": [
+                "sugar",
+                "vegetable oil",
+                "whey powder",
+                "natural flavour"
+              ],
+              "completeIngredients": false,
+              "expandedFlavourDependentMassRangeG": [3000, 3600]
+            },
+            "conditionalManufacturerMatrix": [
+              {
+                "field": "netMassG",
+                "value": 3000,
+                "unit": "g",
+                "packageVolumeMl": 6000,
+                "basis": "manufacturer generic Cremo confection tub",
+                "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+                "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+                "excerpt": "Confection Net Weight: 6L/3kg",
+                "identityMatched": false,
+                "exactBrandMatched": false,
+                "exactIberriExportSkuMatched": false,
+                "applied": false,
+                "confidence": 1
+              },
+              {
+                "field": "chocolateCore",
+                "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+                "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+                "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+                "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+                "excerpt": "Chocolate",
+                "identityMatched": false,
+                "applied": false,
+                "confidence": 1
+              }
             ]
           }
         ]
@@ -2174,7 +2319,7 @@
         "beforePerProteinGram": null,
         "afterPerProteinGram": null,
         "deliveryQuoteMatched": false,
-        "invalidatedSpecificationFields": [],
+        "invalidatedSpecificationFields": ["netMassG"],
         "deliveryUnavailable": true,
         "deliveryNote": "Exact selected public page says this product cannot be delivered to Khánh Hòa, Phường Nha Trang.",
         "originalSellerName": "Cremo chocolate ice cream, white 6 L tub",
@@ -2192,11 +2337,34 @@
               "Find exact factory net grams for GTIN8850387009361; generic yellow-confection matrix cannot resolve this selected white tub",
               "No exact current nutrition/ingredients label for selected chocolate factory SKU",
               "Frozen shipping and quantity-specific freight require parent collector verification"
+            ],
+            "withheldSellerClaims": {},
+            "conditionalManufacturerMatrix": [
+              {
+                "field": "netMassG",
+                "value": 3000,
+                "unit": "g",
+                "packageVolumeMl": 6000,
+                "basis": "specific yellow Cremo6L ice-confection tub in manufacturer catalogue",
+                "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+                "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+                "excerpt": "Confection Net Weight: 6L/3kg",
+                "exactBrandMatched": true,
+                "exactVolumeMatched": true,
+                "exactChocolateFactorySkuMatched": false,
+                "exactYellowConfectionPackageMatched": false,
+                "identityMatched": false,
+                "applied": false,
+                "confidence": 1,
+                "selectedPackageConflictsWithManufacturerYellowConfection": true,
+                "reasonNotApplied": "Actual selected hero is white tub, while manufacturer3kg declaration belongs to yellow confection; explicitly withhold3kg."
+              }
             ]
           },
           {
             "id": "expanded:3047760589_VNAMZ-14661082727",
-            "blockingEvidenceGaps": []
+            "blockingEvidenceGaps": [],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2361,14 +2529,16 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2545,7 +2715,8 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2607,7 +2778,8 @@
               "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it."
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
@@ -2617,7 +2789,8 @@
               "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
               "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
               "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2682,7 +2855,8 @@
               "No full current ingredient/allergen list or sugar/saturated-fat values",
               "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
               "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "id": "ice-dual-units:1880785864_VNAMZ-8527716007",
@@ -2693,7 +2867,8 @@
               "No full current ingredient/allergen list or sugar/saturated-fat values",
               "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
               "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -2758,7 +2933,8 @@
               "No full current ingredient/allergen list or sugar/saturated-fat values",
               "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
               "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "id": "ice-dual-units:1880785864_VNAMZ-8527716006",
@@ -2769,7 +2945,8 @@
               "No full current ingredient/allergen list or sugar/saturated-fat values",
               "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
               "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       }
@@ -2936,14 +3113,16 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           },
           {
             "blockingEvidenceGaps": [
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       },
@@ -3120,7 +3299,8 @@
               "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
               "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
               "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-            ]
+            ],
+            "withheldSellerClaims": {}
           }
         ]
       }
@@ -3133,6 +3313,7 @@
     {
       "sku": "1561216831_VNAMZ-6599331044",
       "fields": [
+        "net grams",
         "current exact-formula protein",
         "manufacturer chocolate-core identity",
         "Nha Trang frozen-delivery quote"
@@ -3147,6 +3328,45 @@
             "No current nutrition label on any of four cached product images",
             "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
             "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement"
+          ],
+          "withheldSellerClaims": {
+            "netMassG": 3000,
+            "flavourDependentMassRangeG": [3000, 3300],
+            "partialIngredients": [
+              "sugar",
+              "vegetable oil",
+              "whey powder",
+              "natural flavour"
+            ],
+            "completeIngredients": false
+          },
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "manufacturer generic Cremo confection tub",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "identityMatched": false,
+              "exactBrandMatched": false,
+              "exactIberriExportSkuMatched": false,
+              "applied": false,
+              "confidence": 1
+            },
+            {
+              "field": "chocolateCore",
+              "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+              "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Chocolate",
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1
+            }
           ]
         },
         {
@@ -3162,6 +3382,46 @@
             "Distributor EAN8850387013085 not printed on available Lazada package photos",
             "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
             "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
+          ],
+          "withheldSellerClaims": {
+            "netMassG": 3000,
+            "flavourDependentMassRangeG": [3000, 3300],
+            "partialIngredients": [
+              "sugar",
+              "vegetable oil",
+              "whey powder",
+              "natural flavour"
+            ],
+            "completeIngredients": false,
+            "expandedFlavourDependentMassRangeG": [3000, 3600]
+          },
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "manufacturer generic Cremo confection tub",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "identityMatched": false,
+              "exactBrandMatched": false,
+              "exactIberriExportSkuMatched": false,
+              "applied": false,
+              "confidence": 1
+            },
+            {
+              "field": "chocolateCore",
+              "value": "Chocolate scoop flavour exists in manufacturer catalogue",
+              "basis": "manufacturer Cremo flavour family, no export SKU/GTIN mapping",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Chocolate",
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1
+            }
           ]
         }
       ]
@@ -3182,11 +3442,34 @@
             "Find exact factory net grams for GTIN8850387009361; generic yellow-confection matrix cannot resolve this selected white tub",
             "No exact current nutrition/ingredients label for selected chocolate factory SKU",
             "Frozen shipping and quantity-specific freight require parent collector verification"
+          ],
+          "withheldSellerClaims": {},
+          "conditionalManufacturerMatrix": [
+            {
+              "field": "netMassG",
+              "value": 3000,
+              "unit": "g",
+              "packageVolumeMl": 6000,
+              "basis": "specific yellow Cremo6L ice-confection tub in manufacturer catalogue",
+              "sourceUrl": "https://www.chomthana.com/products/icecreams/",
+              "sourceSha256": "2389e15df6f887e6aa18b32450d8b7eadb5d0658a1904aab856671e6df896b86",
+              "excerpt": "Confection Net Weight: 6L/3kg",
+              "exactBrandMatched": true,
+              "exactVolumeMatched": true,
+              "exactChocolateFactorySkuMatched": false,
+              "exactYellowConfectionPackageMatched": false,
+              "identityMatched": false,
+              "applied": false,
+              "confidence": 1,
+              "selectedPackageConflictsWithManufacturerYellowConfection": true,
+              "reasonNotApplied": "Actual selected hero is white tub, while manufacturer3kg declaration belongs to yellow confection; explicitly withhold3kg."
+            }
           ]
         },
         {
           "id": "expanded:3047760589_VNAMZ-14661082727",
-          "blockingEvidenceGaps": []
+          "blockingEvidenceGaps": [],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3199,14 +3482,16 @@
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3220,7 +3505,8 @@
             "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3239,7 +3525,8 @@
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it."
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -3249,7 +3536,8 @@
             "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
             "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
             "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3267,7 +3555,8 @@
             "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
             "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
             "Peanut topping excludes this exact listing from the requested nut-free strict chocolate scope. Seller English name is not the Korean manufacturer family name."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3289,7 +3578,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "id": "ice-dual-units:1880785864_VNAMZ-8527716007",
@@ -3300,7 +3590,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3322,7 +3613,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "id": "ice-dual-units:1880785864_VNAMZ-8527716006",
@@ -3333,7 +3625,8 @@
             "No full current ingredient/allergen list or sugar/saturated-fat values",
             "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
             "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3354,7 +3647,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -3365,7 +3659,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3386,7 +3681,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -3397,7 +3693,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3418,7 +3715,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -3429,26 +3727,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
-        }
-      ]
-    },
-    {
-      "sku": "2042258411_VNAMZ-9532010624",
-      "fields": [
-        "net grams",
-        "net millilitres",
-        "current exact-formula protein",
-        "manufacturer chocolate-core identity",
-        "Nha Trang frozen-delivery quote"
-      ],
-      "research": [
-        {
-          "id": "expanded:2042258411_VNAMZ-9532010624",
-          "blockingEvidenceGaps": [
-            "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
-            "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3467,7 +3747,28 @@
           "blockingEvidenceGaps": [
             "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
             "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
-          ]
+          ],
+          "withheldSellerClaims": {}
+        }
+      ]
+    },
+    {
+      "sku": "2042258411_VNAMZ-9532010624",
+      "fields": [
+        "net grams",
+        "net millilitres",
+        "current exact-formula protein",
+        "manufacturer chocolate-core identity",
+        "Nha Trang frozen-delivery quote"
+      ],
+      "research": [
+        {
+          "id": "expanded:2042258411_VNAMZ-9532010624",
+          "blockingEvidenceGaps": [
+            "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+            "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     },
@@ -3488,7 +3789,8 @@
             "Complete ingredients and allergens for the same formula",
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping"
-          ]
+          ],
+          "withheldSellerClaims": {}
         },
         {
           "blockingEvidenceGaps": [
@@ -3499,7 +3801,8 @@
             "Current lot/formula versus historical seller artwork",
             "Exact Nha Trang delivery and selected-order shipping",
             "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
-          ]
+          ],
+          "withheldSellerClaims": {}
         }
       ]
     }

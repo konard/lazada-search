@@ -19,31 +19,70 @@ function imageIdentity(value) {
   }
 }
 
-export function selectedPackageImage(snapshot, product, imageUrl) {
-  if (snapshot.skuCatalogObserved !== true || !product.sku) {
+function skuIdentity(value) {
+  const parts = String(value || '')
+    .trim()
+    .split('_VNAMZ-');
+  if (parts.length > 2 || parts.some((part) => !part)) {
     return undefined;
   }
-  const skuNumber = (value) =>
-    String(value || '')
-      .split('_VNAMZ-')
-      .at(-1);
+  return {
+    sku: parts.at(-1),
+    listing: parts.length === 2 ? parts[0] : undefined,
+  };
+}
+
+function displayedSku(snapshot, productSku) {
+  const expected = skuIdentity(productSku);
   const identities = [
     snapshot.sku,
     ...(snapshot.selectedVariant || []).map((option) => option.sku),
   ]
     .filter(Boolean)
-    .map(skuNumber);
+    .map(skuIdentity);
   const displayed = identities[0];
+  const listing =
+    expected?.listing ||
+    identities.find((identity) => identity?.listing)?.listing;
   if (
+    !expected ||
     !displayed ||
-    new Set(identities).size !== 1 ||
-    displayed !== skuNumber(product.sku)
+    identities.some(
+      (identity) =>
+        !identity ||
+        identity.sku !== expected.sku ||
+        (identity.listing && listing && identity.listing !== listing)
+    )
   ) {
     return undefined;
   }
-  const selected = snapshot.skuCatalog?.find(
-    (entry) => skuNumber(entry.sku) === displayed
+  return { sku: displayed.sku, listing };
+}
+
+export function selectedPackageImage(snapshot, product, imageUrl) {
+  if (snapshot.skuCatalogObserved !== true || !product.sku) {
+    return undefined;
+  }
+  const displayed = displayedSku(snapshot, product.sku);
+  if (!displayed) {
+    return undefined;
+  }
+  const matches = snapshot.skuCatalog?.filter(
+    (entry) => skuIdentity(entry.sku)?.sku === displayed.sku
   );
+  // Contradictory duplicate catalog entries cannot establish an exact package.
+  if (matches?.length !== 1) {
+    return undefined;
+  }
+  const selected = matches[0];
+  const catalogIdentity = skuIdentity(selected.sku);
+  if (
+    catalogIdentity.listing &&
+    displayed.listing &&
+    catalogIdentity.listing !== displayed.listing
+  ) {
+    return undefined;
+  }
   const image = imageIdentity(imageUrl);
   if (!selected?.image || !image || image !== imageIdentity(selected.image)) {
     return undefined;

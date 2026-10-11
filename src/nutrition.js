@@ -163,7 +163,11 @@ export function volumeMillilitres(value) {
 
 export function categoryOf(title) {
   const value = fold(title).replace(/[-–—]/gu, ' ');
-  if (targetCategoryExclusion(title)?.startsWith('Standalone')) {
+  if (
+    /^(?:Standalone|Animal feed|Protein bars)/u.test(
+      targetCategoryExclusion(title) || ''
+    )
+  ) {
     return 'unknown';
   }
   if (

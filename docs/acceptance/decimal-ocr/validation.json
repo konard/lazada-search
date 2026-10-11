@@ -1,0 +1,80 @@
+{
+  "observedAt": "2026-10-11T05:23:52.985435+00:00",
+  "command": "node --test --test-concurrency=2 --test-timeout=300000 tests/ocr-crops.test.js tests/lazada.test.js tests/public-cache.test.js tests/selected-package-ocr.test.js",
+  "runtime": "Node22.23.0",
+  "counts": {
+    "tests": 30,
+    "pass": 30,
+    "fail": 0,
+    "skipped": 0
+  },
+  "newCropTests": 10,
+  "realTesseractDecimalTestPassed": true,
+  "realTesseractDecimalTestSkipped": false,
+  "eslint": {
+    "status": "passed",
+    "maxWarnings": 0
+  },
+  "prettier": {
+    "status": "passed"
+  },
+  "files": [
+    {
+      "path": "src/ocr.js",
+      "sha256": "e5986783f0f20f57c276f242a75003b4c65674d1d63a46c06af34ae81af19ae3",
+      "bytes": 11673
+    },
+    {
+      "path": "tests/ocr-crops.test.js",
+      "sha256": "446e6b79097131ff64405c3959099cbcbd08e25712c2d69f4293451b26679c52",
+      "bytes": 11794
+    },
+    {
+      "path": ".changeset/image-backed-decimal-ocr.md",
+      "sha256": "562088a2c9ebbcc95dcf659e02ddc37ee5e02cfe3451b5c6d0ced6da51ffb207",
+      "bytes": 260
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/README.md",
+      "sha256": "c27cca81c66de203facd65894d474290dbabbe2d4eb91d949bf7e6d54dc5a2fb",
+      "bytes": 3402
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/original-psm11.tsv",
+      "sha256": "0ce3ceffc726fd6299cfad3a7ced6d9166fe5f7e93600f5f03dce533a6e416c3",
+      "bytes": 9757
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/protein-per100g-crop.png",
+      "sha256": "9a8e8e826712dfab8294daacb4da2fbf101975ed2bc117d2f44fac4b4aa821d8",
+      "bytes": 8887
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/protein-per100g-crop.tsv",
+      "sha256": "12136b60dc70b298eecb46d7e0f12c420040030dec63ccfabb835ec9863ce1dd",
+      "bytes": 237
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/protein-per100ml-crop.png",
+      "sha256": "54437c86347a1a6314d066fd95146e41a8e1753f2b940b43406c8cb373c4d38f",
+      "bytes": 9605
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/protein-per100ml-crop.tsv",
+      "sha256": "f8e31b11ede175e40b24212e9e13e557b1f1d82edf66783e897d5dc2606994fb",
+      "bytes": 237
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/replay.json",
+      "sha256": "a0d9b92e91da91ea43cb91bd669c1bd8d9a152da9f72837cf9d46b0d035f7140",
+      "bytes": 10563
+    },
+    {
+      "path": "docs/acceptance/decimal-ocr/validation.tap",
+      "sha256": "ddbbdd99014e7f85266b1b28a213eeea84849465012bd252f69c669aced3f8ef",
+      "bytes": 7319
+    }
+  ],
+  "sourceIdentityMatched": false,
+  "numericFactsAppliedToProducts": false
+}

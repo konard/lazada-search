@@ -1,6 +1,7 @@
 import { specificationProblems } from './verification.js';
 import { listingKey } from './util.js';
 import { categorySourceKey } from './text.js';
+import { currentUnavailableListings } from './availability.js';
 
 const skuNumber = (value) =>
   String(value || '')
@@ -31,8 +32,21 @@ export function auditCoverage({
   offers = [],
   discoveries = [],
   skuInventories = [],
+  availability = [],
+  invalidations = [],
 } = {}) {
-  const active = offers.filter((offer) => !offer.supersededBy);
+  const unavailable = currentUnavailableListings(
+    availability,
+    offers,
+    invalidations
+  );
+  const availableListing = (url) => !unavailable.has(listingKey(url));
+  const active = offers.filter(
+    (offer) => !offer.supersededBy && availableListing(offer.url)
+  );
+  const currentInventories = skuInventories.filter((inventory) =>
+    availableListing(inventory.url)
+  );
   const byUrl = new Map();
   for (const product of products) {
     const url = listingKey(product.url);
@@ -48,20 +62,22 @@ export function auditCoverage({
         .filter((entry) => entry.category !== 'unknown')
         .map((entry) => entry.url),
     ]),
-  ].filter((url) => !byUrl.has(listingKey(url)));
+  ].filter((url) => availableListing(url) && !byUrl.has(listingKey(url)));
   const categoryReview = discoveries.filter(
-    (entry) => entry.classification === 'needs-category-review'
+    (entry) =>
+      availableListing(entry.url) &&
+      entry.classification === 'needs-category-review'
   );
   const missingSkuPrices = [];
   const unknownSkuInventories = [
     ...new Set([
-      ...skuInventories
+      ...currentInventories
         .filter((inventory) => inventory.inventoryObserved !== true)
         .map((inventory) => inventory.url),
       ...active
         .filter(
           (offer) =>
-            !skuInventories.some(
+            !currentInventories.some(
               (inventory) =>
                 inventory.url === offer.url ||
                 inventory.skus?.some((sku) => sku.url === offer.url)
@@ -78,7 +94,7 @@ export function auditCoverage({
       sku: offer.sku || null,
     }));
   const missing = new Map();
-  for (const inventory of [...skuInventories].sort((a, b) =>
+  for (const inventory of [...currentInventories].sort((a, b) =>
     String(b.observedAt || '').localeCompare(String(a.observedAt || ''))
   )) {
     for (const sku of inventory.skus || []) {
@@ -168,6 +184,7 @@ export function auditCoverage({
     categoryReview,
     missingPrices,
     unknownSkuInventories,
+    unavailableListings: [...unavailable.values()],
     specifications,
     verifiedProducts: specifications.filter(
       (entry) => entry.problems.length === 0
