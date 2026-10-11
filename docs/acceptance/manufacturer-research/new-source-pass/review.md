@@ -10,4 +10,6 @@ Happy Belgian chocolate's existing 2021 lab report remains historical. It gives 
 
 Lotte Fanfare chocolate EAN8801118251313 still has a 175ml local vs 170ml HMart conflict. The manufacturer front image lacks a weight/nutrition panel. A new 2023 primary regulatory PDF could not be fetched because its certificate does not match its hostname; the web reader also returned 502. No certificate bypass or PDF facts were applied.
 
+The later [exact-label follow-up](../../ice-exact-label-followup/README.md) corrects the exclusion rationale without changing quantities or eligibility. The selected Lotte WorldCone/Crispy Crunch chocolate cone remains excluded for visible peanut/nut topping; its reviewed images do not establish a vanilla core. The Aice cone and mochi remain excluded because white ice-cream with chocolate surroundings does not prove an exclusively chocolate core. White appearance alone does not establish vanilla flavour.
+
 All 14 original SKU reviews retain their explicit missing fields in [review.json](review.json). New family package weights, other flavours, generic regulatory records and retailer estimates remain unapplied. Network work stopped at the parent checkpoint; all files in this directory are frozen.

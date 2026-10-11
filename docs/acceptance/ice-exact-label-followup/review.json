@@ -1,0 +1,2168 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-11T05:51:59.993664+00:00",
+  "scope": "All 14 rows audited offline; detailed original-image/OCR review of Lotte and Happy. No network, browser, code, Git or shared-store changes.",
+  "baseline": {
+    "rankingFile": "docs/tables/ice-unit-rankings.json",
+    "rankingGeneratedAt": "2026-10-11T05:47:30.429Z",
+    "coverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    }
+  },
+  "sources": [
+    {
+      "path": "docs/tables/ice-unit-rankings.json",
+      "sha256": "f4a23714f526e43e36d1776f490e64bafec6f65b826ac0d3a62ac4599ebbc631",
+      "bytes": 193803,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/korean-review.json",
+      "sha256": "b3254f27c37dad7d9e8045b1c3e48189308e0626ff97aba171d0a188f32583a7",
+      "bytes": 45842,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/korean-expanded-review.json",
+      "sha256": "1eed07ba2f3cf8d5fd13ec2f7bab1a4efa8688ccfeae427074d540b9e024a745",
+      "bytes": 37116,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/gelato-thai-review.json",
+      "sha256": "28cf9e149bce91f2dee7328fa526e72539837be2479195d1ef2293fb60ea5240",
+      "bytes": 21901,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json",
+      "sha256": "22de56966c9a802b4ab71774998dafd6059ef0497cc207bb3f029a553c1c7cb0",
+      "bytes": 59350,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/merino-review.json",
+      "sha256": "678a0ea88177a534b8765b6fc55c1f55cf060d11601a8da554bc9406bb535f70",
+      "bytes": 51722,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/merino-expanded-review.json",
+      "sha256": "cf4a42b2facad35939502894c22693576cc3c69377350123d32530c7d233900d",
+      "bytes": 79813,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/ice-dual-units/root-expanded-review.json",
+      "sha256": "c4830260fe2f0fa320baafdd37e546366f0147b960f6742fdaa2311bf884410e",
+      "bytes": 24280,
+      "method": "read existing public review/source receipt unchanged"
+    },
+    {
+      "path": "docs/acceptance/manufacturer-research/new-source-pass/review.json",
+      "sha256": "88d3a50d83682819531f1de131df5aa6947244d3bff59ac2f58ae4de5d650ff0",
+      "bytes": 25176,
+      "method": "read existing public review/source receipt unchanged"
+    }
+  ],
+  "rows": [
+    {
+      "sku": "1561216831_VNAMZ-6599331044",
+      "name": "iBerri Thai chocolate tub 6L (seller description identity)",
+      "observedPriceVnd": 539000,
+      "observedAt": "2026-10-10T16:20:41.067Z",
+      "decision": "held-weight-manufacturer-map-missing",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 6000,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [
+        "netMassG",
+        "flavourDependentMassRangeG",
+        "partialIngredients",
+        "completeIngredients",
+        "expandedFlavourDependentMassRangeG"
+      ],
+      "notes": "Keep 6L volume claim; do not restore3kg because seller flavour-dependent ranges and exact iBerri factory mapping remain unresolved.",
+      "missingProof": [
+        "netMassG",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Exact iBerri chocolate6L factory/import label with declared grams, GTIN8850387013085 visibly matching selected packaging, complete ingredients and nutrition with explicit basis.",
+      "existingSourceChecks": [
+        {
+          "sku": "1561216831_VNAMZ-6599331044",
+          "field": "netVolumeMl",
+          "expectedSha256": "cada4334b344933c02437a7b42d3a5fae81056a4fa81f60015a881249ff1a552",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/ca/cada4334b344933c02437a7b42d3a5fae81056a4fa81f60015a881249ff1a552.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561216831.html?skuId=6599331044",
+          "excerpt": "Thể tích : 6 lít",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cada4334b344933c02437a7b42d3a5fae81056a4fa81f60015a881249ff1a552",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "3047760589_VNAMZ-14661082727",
+      "name": "Cremo chocolate6000ml selected SKU",
+      "observedPriceVnd": 574000,
+      "observedAt": "2026-10-10T17:31:32.915Z",
+      "decision": "held-weight-package-mismatch",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 6000,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": ["netMassG"],
+      "notes": "Keep 6L seller volume; factory yellow-confection3kg matrix does not apply to the actual white tub. Delivery-unavailable flag remains separate.",
+      "missingProof": [
+        "netMassG",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Back label for exact white Cremo chocolate6L tub and GTIN8850387009361, declaring net grams and current formula; do not substitute yellow-confection family catalogue.",
+      "existingSourceChecks": [],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "2978009544_VNAMZ-14350953081",
+      "name": "Binggrae Power Cap Choco / Pongta chocolate",
+      "observedPriceVnd": 27000,
+      "observedAt": "2026-10-10T16:15:39.896Z",
+      "decision": "printed-dual-units-nutrition-secondary",
+      "existingSellingUnit": {
+        "massG": 131,
+        "volumeMl": 130,
+        "proteinG": 1,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": true,
+      "manufacturerFamilyIdentityMatched": true,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "130ml and131g are supported by matched export-wrapper evidence; 1g protein is a seller promotional transcription, not a current factory-back-panel approval.",
+      "missingProof": [],
+      "minimalNextSource": "Original back label for matched brown PowerCap Choco130ml/131g export wrapper with GTIN/lot, ingredients and protein per-package or per100ml/g. Current manufacturer numeric endpoint is blank.",
+      "existingSourceChecks": [
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "netVolumeMl",
+          "expectedSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "sourcePath": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "identityMatched": true,
+          "manufacturerVerified": true,
+          "found": true,
+          "actualSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "proteinPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "energyPerPackageKcal",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "fatPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "carbohydratePerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "sugarPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "sodiumPerPackageMg",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Sodium: 80mg",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "2978009544_VNAMZ-14350953081",
+          "field": "netMassG",
+          "expectedSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "sourcePath": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "sourceUrl": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+          "excerpt": "130mL; 净含量131克",
+          "sourceAuthority": "manufacturer-label-secondary-host",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "digestMatched": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "3040048563_VNAMZ-14623760583",
+      "name": "Binggrae PowerCap chocolate carton of24×130ml bottles",
+      "observedPriceVnd": 648000,
+      "observedAt": "2026-10-10T17:37:10.328Z",
+      "decision": "printed-dual-units-nutrition-secondary",
+      "existingSellingUnit": {
+        "massG": 3144,
+        "volumeMl": 3120,
+        "proteinG": 24,
+        "packagesPerSellingUnit": 24
+      },
+      "strictChocolateEligible": true,
+      "manufacturerFamilyIdentityMatched": true,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "24×130ml,24×131g and24×seller-claimed1g protein are aggregate observations, not24 independent exact manufacturer formula approvals.",
+      "missingProof": [],
+      "minimalNextSource": "Outer carton count24 and exact inner130ml/131g wrapper GTIN/lot plus current factory nutrition matching all included bottles.",
+      "existingSourceChecks": [
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "netVolumeMl",
+          "expectedSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "sourcePath": "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json",
+          "sourceUrl": "https://www.bing.co.kr/product/get_volume_list",
+          "excerpt": "PROD_IDX:774; PROD_NAME:\"Chocolate\"; AMT_INFO:\"130ml\"; TOT_CONT_AMT:130.0; TOT_CONT_UNIT:\"ml\"; PROD_VAL_IDX:796",
+          "sourceAuthority": "manufacturer-product-endpoint",
+          "identityMatched": true,
+          "manufacturerVerified": true,
+          "found": true,
+          "actualSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "proteinPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đạm/Protein: 1 g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "energyPerPackageKcal",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Năng lượng/Energy: 135Kcal",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "fatPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Chất béo/Total Fat: 3g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "carbohydratePerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Carbohydrate: 26g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "sugarPerPackageG",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đường/Total Sugars: 25g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "sodiumPerPackageMg",
+          "expectedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "sourcePath": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eedd4aafed00efd66687dabcd81a3c88.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Sodium: 80mg",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "netMassG",
+          "expectedSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "sourcePath": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+          "sourceUrl": "https://abcf.com.br/wp-content/uploads/2025/11/abc-powercap-chocolate.png",
+          "excerpt": "130mL; 净含量131克",
+          "sourceAuthority": "manufacturer-label-secondary-host",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+          "digestMatched": true
+        },
+        {
+          "sku": "3040048563_VNAMZ-14623760583",
+          "field": "packagesPerSellingUnit",
+          "expectedSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/39/39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i3040048563.html?skuId=14623760583",
+          "excerpt": "Thùng24 chai; Quy cách:24 cây/ thùng",
+          "sourceAuthority": "exact-selling-unit-description",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "3047790409_VNAMZ-14661118301",
+      "name": "Lotte Fanfare / 빵빠레 chocolate",
+      "observedPriceVnd": 42000,
+      "observedAt": "2026-10-10T16:17:39.769Z",
+      "decision": "blank-nutrition-volume-revision-conflict",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 175,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": true,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Seller175ml nutrition panel is literally blank. Manufacturer family/front image establishes chocolate shape, not exact export mass,GTIN or revision. Same retail GTIN has170ml versus175ml claims;195ml and family175g records are withheld.",
+      "missingProof": [
+        "netMassG",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Current back label for selected Fanfare chocolate175ml export product, with GTIN8801118251313, net grams and all nutrients. Resolve actual printed170/175ml revision; do not copy195ml or unflavoured family175g registry data.",
+      "existingSourceChecks": [
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "field": "netVolumeMl",
+          "expectedSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "sourcePath": "docs/acceptance/ice-dual-units/3047790409-seller-5.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "excerpt": "175ml; vị choco",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "digestMatched": true
+        }
+      ],
+      "proposedApprovals": [],
+      "originalSelectedHtml": [
+        {
+          "id": "evidence:09f951bc26fec0570217c46228b9d7d1f5c6814ba6e84c3db9be3df4b9a25bff",
+          "sha256": "ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e",
+          "skuReExtracted": "3047790409_VNAMZ-14661118301",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/eb/ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:a53c07e67b51c1e5b3b14c577696f4d0ccf09f8b2537d258b3fe7beca2682c56",
+          "sha256": "ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e",
+          "skuReExtracted": "3047790409_VNAMZ-14661118301",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/eb/ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:edb4230ade8a3413073314bc25cc721db587b49d22f3c2af3f37b39b4c7bdc5a",
+          "sha256": "ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e",
+          "skuReExtracted": "3047790409_VNAMZ-14661118301",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/eb/ebbbe09ddbfbb7813e604f640dc36154a3cc5df97e7bcbdb4b1aeb966fa3912e.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "linkedOcrRecordsInspected": 0,
+      "gallerySources": [
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/0139ab68425631644174e4ac693393f3.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/0139ab68425631644174e4ac693393f3.jpg_720x720q80.jpg_.webp",
+          "position": 0,
+          "sha256": "a8696e16c593a83413f54f275f2e6eb06e0d6d5739680751f552e922e54462d5",
+          "bytes": 54632,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/a8/a8696e16c593a83413f54f275f2e6eb06e0d6d5739680751f552e922e54462d5.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "a8696e16c593a83413f54f275f2e6eb06e0d6d5739680751f552e922e54462d5"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/a41b034a2e5447d8bbe121d79a8af66d.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/a41b034a2e5447d8bbe121d79a8af66d.jpg_720x720q80.jpg_.webp",
+          "position": 1,
+          "sha256": "981c7445ea61051ca9ab7bb03ab9eaf897c752a952011fb4495bceb0443d99c4",
+          "bytes": 24022,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/98/981c7445ea61051ca9ab7bb03ab9eaf897c752a952011fb4495bceb0443d99c4.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "981c7445ea61051ca9ab7bb03ab9eaf897c752a952011fb4495bceb0443d99c4"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/9b7904ca30158b0f57d849c4406b96a1.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/9b7904ca30158b0f57d849c4406b96a1.jpg_720x720q80.jpg_.webp",
+          "position": 2,
+          "sha256": "7e2e96a36ebb5c79653a34de653ebdc7bb03232ecd13b20f6ec6894c64998b77",
+          "bytes": 25900,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/7e/7e2e96a36ebb5c79653a34de653ebdc7bb03232ecd13b20f6ec6894c64998b77.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "7e2e96a36ebb5c79653a34de653ebdc7bb03232ecd13b20f6ec6894c64998b77"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/7de854431d43079de10a5146b585211c.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/7de854431d43079de10a5146b585211c.jpg_720x720q80.jpg_.webp",
+          "position": 3,
+          "sha256": "4381a60b1988d99cdbb60b87ecbd8f8ae709c08c0bfc34f23c90f0db921390f0",
+          "bytes": 28810,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/43/4381a60b1988d99cdbb60b87ecbd8f8ae709c08c0bfc34f23c90f0db921390f0.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "4381a60b1988d99cdbb60b87ecbd8f8ae709c08c0bfc34f23c90f0db921390f0"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/0b8d9653b10a13560ae37ec1755746be.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/0b8d9653b10a13560ae37ec1755746be.jpg_720x720q80.jpg_.webp",
+          "position": 4,
+          "sha256": "ea0664f0a0b976b6fb2d40a342aefba33479d2f6590ce9265578f8b0592a3a90",
+          "bytes": 27282,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/ea/ea0664f0a0b976b6fb2d40a342aefba33479d2f6590ce9265578f8b0592a3a90.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "ea0664f0a0b976b6fb2d40a342aefba33479d2f6590ce9265578f8b0592a3a90"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/bfabb648541cda5e159b93b3adab1f7f.jpg_720x720q80.jpg_.webp",
+          "position": 5,
+          "sha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+          "bytes": 21432,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/5c/5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/b416dbed51395b07491587dfcd09c88f.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/b416dbed51395b07491587dfcd09c88f.jpg_720x720q80.jpg_.webp",
+          "position": 6,
+          "sha256": "45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27",
+          "bytes": 46972,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/45/45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27"
+        },
+        {
+          "sku": "3047790409_VNAMZ-14661118301",
+          "url": "https://img.lazcdn.com/g/p/3defbdab7311208f9a88268e7c898b6d.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/3defbdab7311208f9a88268e7c898b6d.jpg_720x720q80.jpg_.webp",
+          "position": 7,
+          "sha256": "a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda",
+          "bytes": 47658,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/a1/a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda"
+        }
+      ]
+    },
+    {
+      "sku": "3039951845_VNAMZ-14623703963",
+      "name": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+      "observedPriceVnd": 39000,
+      "observedAt": "2026-10-10T16:16:39.994Z",
+      "decision": "excluded-peanut-secondary-nutrition",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 160,
+        "proteinG": 3.2,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": false,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Seller160ml panel explicitly gives3.2g protein and296kcal; no grams or exact factory revision. Peanut/nut topping supports exclusion. A previous vanilla-core summary is not established by these selected chocolate originals.",
+      "missingProof": ["netMassG", "exactManufacturerPackageIdentity"],
+      "minimalNextSource": "If kept for historical audit only, exact WorldCone/CrispyCrunch chocolate160ml export back label with GTIN/net grams/current formula. Do not make it a strict nut-free chocolate winner.",
+      "existingSourceChecks": [
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "netVolumeMl",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "160ml; vị choco",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "proteinPerPackageG",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đạm/Protein: 3.2g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "energyPerPackageKcal",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Năng lượng/Energy: 296 Kcal",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "fatPerPackageG",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Chất béo/Total Fat: 15g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "carbohydratePerPackageG",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Carbohydrate: 37g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "sugarPerPackageG",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Đường/Total Sugars: 29 g",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "field": "sodiumPerPackageMg",
+          "expectedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "sourcePath": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+          "sourceUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "excerpt": "Sodium: 80mg",
+          "sourceAuthority": "seller-promotional-panel",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "digestMatched": true
+        }
+      ],
+      "proposedApprovals": [],
+      "originalSelectedHtml": [
+        {
+          "id": "evidence:6777bcb2f81c8646870a0f21c8c739dc5f18645135417917d27ad2a32a122510",
+          "sha256": "08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f",
+          "skuReExtracted": "3039951845_VNAMZ-14623703963",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/08/08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:a6eccd4cf8ec9c8058b0ad3797ef2471cd4be6256c1d9c86db4866ca8052672b",
+          "sha256": "08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f",
+          "skuReExtracted": "3039951845_VNAMZ-14623703963",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/08/08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:0840728ad7ce45f36c1846bd8f19d7941f7bdf33c040bf5009a2cc8dfba0d7a1",
+          "sha256": "08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f",
+          "skuReExtracted": "3039951845_VNAMZ-14623703963",
+          "exactSkuMatched": true,
+          "selectedOptions": [],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/08/08b017619cde3fafe43cd94b56f4e14a9d36ae3707927e777a0e9e4a92e09e4f.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "linkedOcrRecordsInspected": 0,
+      "gallerySources": [
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/d09ecec79d48e455be2f67553114dd82.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/d09ecec79d48e455be2f67553114dd82.jpg_720x720q80.jpg_.webp",
+          "position": 0,
+          "sha256": "079fe1db4da2abb5ea54008c7792b2fd3815d2df97798f7740a741899434b14d",
+          "bytes": 66004,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/07/079fe1db4da2abb5ea54008c7792b2fd3815d2df97798f7740a741899434b14d.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "079fe1db4da2abb5ea54008c7792b2fd3815d2df97798f7740a741899434b14d"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/06e5ed22831b778683f66287c748c2c6.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/06e5ed22831b778683f66287c748c2c6.jpg_720x720q80.jpg_.webp",
+          "position": 1,
+          "sha256": "4147c50a66704db91739080c9b4fa115db918a85318838f51436adb2f18038a3",
+          "bytes": 33762,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/41/4147c50a66704db91739080c9b4fa115db918a85318838f51436adb2f18038a3.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "4147c50a66704db91739080c9b4fa115db918a85318838f51436adb2f18038a3"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/86f24de88d2620de4789180a1570267a.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/86f24de88d2620de4789180a1570267a.jpg_720x720q80.jpg_.webp",
+          "position": 2,
+          "sha256": "014cf1c423c50bf8a69d5b9c1e606485aefdf2524ee2b574bd0ded0dd8ad5025",
+          "bytes": 59540,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/01/014cf1c423c50bf8a69d5b9c1e606485aefdf2524ee2b574bd0ded0dd8ad5025.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "014cf1c423c50bf8a69d5b9c1e606485aefdf2524ee2b574bd0ded0dd8ad5025"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/eb5345ff13189a24acd714a71c0014ad.jpg_720x720q80.jpg_.webp",
+          "position": 3,
+          "sha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+          "bytes": 23926,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/cf/cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/ab9285571784761b64115febba16e731.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/ab9285571784761b64115febba16e731.jpg_720x720q80.jpg_.webp",
+          "position": 4,
+          "sha256": "87a19b4f190bd14e480525f1415376daee542dd434895e0ad11a9983aa925213",
+          "bytes": 30852,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/87/87a19b4f190bd14e480525f1415376daee542dd434895e0ad11a9983aa925213.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "87a19b4f190bd14e480525f1415376daee542dd434895e0ad11a9983aa925213"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/39e7b1d8a1c22706b2bfd7a483053ada.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/39e7b1d8a1c22706b2bfd7a483053ada.jpg_720x720q80.jpg_.webp",
+          "position": 5,
+          "sha256": "45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27",
+          "bytes": 46972,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/45/45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "45f271e370f24d74eb31b79070614dd0321579f29d7d89d7e2d932b5fa9a1d27"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/045b3e4877d86c21b6ba545f2b47e569.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/045b3e4877d86c21b6ba545f2b47e569.jpg_720x720q80.jpg_.webp",
+          "position": 6,
+          "sha256": "a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda",
+          "bytes": 47658,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/a1/a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "a1c652a8f16b3c5a171b632f1bf7371525890f6aec5c8bb05aa4b9de00a2afda"
+        },
+        {
+          "sku": "3039951845_VNAMZ-14623703963",
+          "url": "https://img.lazcdn.com/g/p/4cf65c6f1d6185bfeda5596c2ce3ec06.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/4cf65c6f1d6185bfeda5596c2ce3ec06.jpg_720x720q80.jpg_.webp",
+          "position": 7,
+          "sha256": "29a23b7afc647e055b64e4509463e785d73d60e4a2fc6c19b8b25fc75b2e747f",
+          "bytes": 35486,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/29/29a23b7afc647e055b64e4509463e785d73d60e4a2fc6c19b8b25fc75b2e747f.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "29a23b7afc647e055b64e4509463e785d73d60e4a2fc6c19b8b25fc75b2e747f"
+        }
+      ]
+    },
+    {
+      "sku": "1880785864_VNAMZ-8527716007",
+      "name": "Happy Gelato Belgian chocolate 475ml",
+      "observedPriceVnd": 150000,
+      "observedAt": "2026-10-09T11:34:33.009Z",
+      "decision": "current-label-nutrition-missing",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 475,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Current selected option475ml agrees with printed Net.475ml on exact gallery image658322.... Shared125ml images must not alter475ml. Current grams/protein absent; all nutrition-bearing gallery OCR is2021 CASE sample evidence.",
+      "missingProof": [
+        "netMassG",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Current Belgian Chocolate475ml front/back with net grams, nutrition basis, ingredients, manufacturer/GTIN and lot/revision. Manufacturer declaration must link current formula;2021 sample4.6g/100g alone is insufficient.",
+      "existingSourceChecks": [
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "field": "netVolumeMl",
+          "expectedSha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/d8/d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716007",
+          "excerpt": "475ml",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": [],
+      "originalSelectedHtml": [
+        {
+          "id": "evidence:866c32717d7aa9d81bb9885e74aecb995bcc6a773213166745026b4b02c7ce8d",
+          "sha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "skuReExtracted": "1880785864_VNAMZ-8527716007",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "docs/acceptance/ice-exact-label-followup/happy475-selected-source.public.html",
+          "artifactEncoding": "redacted-public-html",
+          "originalSourceSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        },
+        {
+          "id": "evidence:a20a19ab882a4abbe24051d3cfac1f4c85cb2b4ff2a6a181921a5b1193c56fa6",
+          "sha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "skuReExtracted": "1880785864_VNAMZ-8527716007",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "docs/acceptance/ice-exact-label-followup/happy475-selected-source.public.html",
+          "artifactEncoding": "redacted-public-html",
+          "originalSourceSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        },
+        {
+          "id": "evidence:93a6a0ab204f25649fba938a9f565ac05c3901d702a2f9fc7e8ba1f7ad07a0b1",
+          "sha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "skuReExtracted": "1880785864_VNAMZ-8527716007",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "docs/acceptance/ice-exact-label-followup/happy475-selected-source.public.html",
+          "artifactEncoding": "redacted-public-html",
+          "originalSourceSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        },
+        {
+          "id": "evidence:e7d036cacf72a91d496fe3d12305613668d49199510e82a36b46f92c04e01958",
+          "sha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+          "skuReExtracted": "1880785864_VNAMZ-8527716007",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "475ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "docs/acceptance/ice-exact-label-followup/happy475-selected-source.public.html",
+          "artifactEncoding": "redacted-public-html",
+          "originalSourceSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        }
+      ],
+      "linkedOcrRecordsInspected": 45,
+      "gallerySources": [
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/b3a7bb8fb6a11c17875f26cb07c03993.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/b3a7bb8fb6a11c17875f26cb07c03993.jpg_720x720q80.jpg_.webp",
+          "position": 0,
+          "sha256": "37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82",
+          "bytes": 30460,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/37/37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/0d87bd693f0db21304a183c817928aee.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/0d87bd693f0db21304a183c817928aee.jpg_720x720q80.jpg_.webp",
+          "position": 1,
+          "sha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2",
+          "bytes": 27918,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-475ml-original.webp",
+          "artifactEncoding": "original",
+          "decodedOriginalSha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/794d1195e4de42aed9a2d5df2a2a5d23.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/794d1195e4de42aed9a2d5df2a2a5d23.jpg_720x720q80.jpg_.webp",
+          "position": 2,
+          "sha256": "230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0",
+          "bytes": 41982,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/23/230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/52668366cc1847a8bb5206317dd2d1d8.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/52668366cc1847a8bb5206317dd2d1d8.jpg_720x720q80.jpg_.webp",
+          "position": 3,
+          "sha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6",
+          "bytes": 33852,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-125ml-original.webp",
+          "artifactEncoding": "original",
+          "decodedOriginalSha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/b7c0641ef690fdfb18edf7df80266beb.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/b7c0641ef690fdfb18edf7df80266beb.jpg_720x720q80.jpg_.webp",
+          "position": 4,
+          "sha256": "27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7",
+          "bytes": 29446,
+          "format": "webp",
+          "width": 405,
+          "height": 600,
+          "path": "data/cases/vietnam-nha-trang/blobs/27/27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/4716a6a95c451a235d0b3b53db233c88.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/4716a6a95c451a235d0b3b53db233c88.jpg_720x720q80.jpg_.webp",
+          "position": 5,
+          "sha256": "ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774",
+          "bytes": 26846,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/ff/ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/dca889b5d0946d9c583f03a3e8faad32.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/dca889b5d0946d9c583f03a3e8faad32.jpg_720x720q80.jpg_.webp",
+          "position": 6,
+          "sha256": "c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2",
+          "bytes": 31424,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/c8/c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/ea626d396b06bc1eaf48fa9171fe6930.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/ea626d396b06bc1eaf48fa9171fe6930.png_2200x2200q80.png_.webp",
+          "position": 7,
+          "sha256": "220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c",
+          "bytes": 19804,
+          "format": "webp",
+          "width": 960,
+          "height": 217,
+          "path": "data/cases/vietnam-nha-trang/blobs/22/220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/2b4f8bfc0b8ffe7a779bc34595557a3c.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/2b4f8bfc0b8ffe7a779bc34595557a3c.png_2200x2200q80.png_.webp",
+          "position": 8,
+          "sha256": "ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca",
+          "bytes": 89176,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/ce/ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/f7f188526e78a31528b6ca78416f6473.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/f7f188526e78a31528b6ca78416f6473.png_2200x2200q80.png_.webp",
+          "position": 9,
+          "sha256": "9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653",
+          "bytes": 108970,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/9d/9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/dfb9f7108fe4dbd4c2a58b3aabc91ee9.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/dfb9f7108fe4dbd4c2a58b3aabc91ee9.png_2200x2200q80.png_.webp",
+          "position": 10,
+          "sha256": "466817f09838206d9081932164707169774f74c3313230061333864ea649715e",
+          "bytes": 91436,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/46/466817f09838206d9081932164707169774f74c3313230061333864ea649715e.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "466817f09838206d9081932164707169774f74c3313230061333864ea649715e"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/d18561843acd874538fcf04d0aecb293.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/d18561843acd874538fcf04d0aecb293.png_2200x2200q80.png_.webp",
+          "position": 11,
+          "sha256": "fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571",
+          "bytes": 79692,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/fa/fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/0c5e38a007a3b32e1db7a6a18d1d2490.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/0c5e38a007a3b32e1db7a6a18d1d2490.png_2200x2200q80.png_.webp",
+          "position": 12,
+          "sha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9",
+          "bytes": 85634,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/c5/c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/edfafe2dfbb99cb6c8c2932fcd75fc10.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/edfafe2dfbb99cb6c8c2932fcd75fc10.png_2200x2200q80.png_.webp",
+          "position": 13,
+          "sha256": "8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61",
+          "bytes": 89516,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/8b/8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "position": 14,
+          "sha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "bytes": 85556,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/18/189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/93b6fc33a8213f7c14414ad90be8c6f2.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/93b6fc33a8213f7c14414ad90be8c6f2.png_2200x2200q80.png_.webp",
+          "position": 15,
+          "sha256": "c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8",
+          "bytes": 10964,
+          "format": "webp",
+          "width": 960,
+          "height": 168,
+          "path": "data/cases/vietnam-nha-trang/blobs/c5/c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8"
+        }
+      ]
+    },
+    {
+      "sku": "1880785864_VNAMZ-8527716006",
+      "name": "Happy Gelato Belgian chocolate 125ml",
+      "observedPriceVnd": 45000,
+      "observedAt": "2026-10-10T04:01:15.211Z",
+      "decision": "current-label-nutrition-missing",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 125,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Current selected option125ml agrees with printed Net.125ml on its gallery package. Shared475ml image and2021 CASE sample cannot supply125ml mass or protein.",
+      "missingProof": [
+        "netMassG",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Current Belgian Chocolate125ml front/back with net grams, current nutrition basis, ingredients,manufacturer/GTIN and lot/revision; no density or2021 sample transfer.",
+      "existingSourceChecks": [
+        {
+          "sku": "1880785864_VNAMZ-8527716006",
+          "field": "netVolumeMl",
+          "expectedSha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/9e/9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1880785864.html?skuId=8527716006",
+          "excerpt": "125ml",
+          "identityMatched": true,
+          "manufacturerVerified": false,
+          "found": true,
+          "actualSha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": [],
+      "originalSelectedHtml": [
+        {
+          "id": "evidence:09c91ca37bd3f9e9b24573e9531363216e0ca3ce1619c85dd64a4c76ec6803ba",
+          "sha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "skuReExtracted": "1880785864_VNAMZ-8527716006",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/9e/9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:5ba2930d90cfa30239cd918d234d737371fbc2da99b51c453ff058b211cc60b7",
+          "sha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "skuReExtracted": "1880785864_VNAMZ-8527716006",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/9e/9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:6d6ce480a4381ba2fe41760592aae2ef2f17ca78d03d6a1e2d77e372cb0d376c",
+          "sha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "skuReExtracted": "1880785864_VNAMZ-8527716006",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/9e/9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "id": "evidence:31c49b5df96d6173ec3a32674d287547a42664fb250c20991188a7e08dfb2e8f",
+          "sha256": "9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484",
+          "skuReExtracted": "1880785864_VNAMZ-8527716006",
+          "exactSkuMatched": true,
+          "selectedOptions": [
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            },
+            {
+              "text": "125ml",
+              "selected": true,
+              "sku": null
+            }
+          ],
+          "artifact": "data/cases/vietnam-nha-trang/blobs/9e/9e1d78e7e538a85466c148185c25c5620aa529f63a7a3980e08fe17f64b22484.gz",
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "linkedOcrRecordsInspected": 0,
+      "gallerySources": [
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/b3a7bb8fb6a11c17875f26cb07c03993.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/b3a7bb8fb6a11c17875f26cb07c03993.jpg_720x720q80.jpg_.webp",
+          "position": 0,
+          "sha256": "37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82",
+          "bytes": 30460,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/37/37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "37794b8a8e537639600d5185021e56efd4efbe00e105adaf9b8662c79f703a82"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/0d87bd693f0db21304a183c817928aee.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/0d87bd693f0db21304a183c817928aee.jpg_720x720q80.jpg_.webp",
+          "position": 1,
+          "sha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2",
+          "bytes": 27918,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-475ml-original.webp",
+          "artifactEncoding": "original",
+          "decodedOriginalSha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/794d1195e4de42aed9a2d5df2a2a5d23.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/794d1195e4de42aed9a2d5df2a2a5d23.jpg_720x720q80.jpg_.webp",
+          "position": 2,
+          "sha256": "230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0",
+          "bytes": 41982,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/23/230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "230c2506804010293e62ce3ed8e6f95ade57139d50868ac4f0fdce6af6ab7dd0"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/52668366cc1847a8bb5206317dd2d1d8.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/52668366cc1847a8bb5206317dd2d1d8.jpg_720x720q80.jpg_.webp",
+          "position": 3,
+          "sha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6",
+          "bytes": 33852,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-125ml-original.webp",
+          "artifactEncoding": "original",
+          "decodedOriginalSha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/b7c0641ef690fdfb18edf7df80266beb.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/b7c0641ef690fdfb18edf7df80266beb.jpg_720x720q80.jpg_.webp",
+          "position": 4,
+          "sha256": "27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7",
+          "bytes": 29446,
+          "format": "webp",
+          "width": 405,
+          "height": 600,
+          "path": "data/cases/vietnam-nha-trang/blobs/27/27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "27dd511dbd7be9f36e441c0a67ab7b5a543f1fed5f89261c19b00c5a232a0fd7"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/4716a6a95c451a235d0b3b53db233c88.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/4716a6a95c451a235d0b3b53db233c88.jpg_720x720q80.jpg_.webp",
+          "position": 5,
+          "sha256": "ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774",
+          "bytes": 26846,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/ff/ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "ffec6f1c8b12f91819fd18e8f5c94505f948cd67674ceeee55762a8a14c3c774"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/p/dca889b5d0946d9c583f03a3e8faad32.jpg_720x720q80.jpg_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/p/dca889b5d0946d9c583f03a3e8faad32.jpg_720x720q80.jpg_.webp",
+          "position": 6,
+          "sha256": "c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2",
+          "bytes": 31424,
+          "format": "webp",
+          "width": 720,
+          "height": 720,
+          "path": "data/cases/vietnam-nha-trang/blobs/c8/c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c8a4a339c85e6394b0c3612aec7a26708b9263f73e110f97c9bd80fc850bf4b2"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/ea626d396b06bc1eaf48fa9171fe6930.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/ea626d396b06bc1eaf48fa9171fe6930.png_2200x2200q80.png_.webp",
+          "position": 7,
+          "sha256": "220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c",
+          "bytes": 19804,
+          "format": "webp",
+          "width": 960,
+          "height": 217,
+          "path": "data/cases/vietnam-nha-trang/blobs/22/220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "220b3281571590ae2da960b730abfe26d2e44af5a6be2b571ff131b220f61f2c"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/2b4f8bfc0b8ffe7a779bc34595557a3c.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/2b4f8bfc0b8ffe7a779bc34595557a3c.png_2200x2200q80.png_.webp",
+          "position": 8,
+          "sha256": "ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca",
+          "bytes": 89176,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/ce/ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "ce937d9c6aa50df4588e05e33e1aaa2c74e2d44db122070959cb3d7bc4efdeca"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/f7f188526e78a31528b6ca78416f6473.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/f7f188526e78a31528b6ca78416f6473.png_2200x2200q80.png_.webp",
+          "position": 9,
+          "sha256": "9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653",
+          "bytes": 108970,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/9d/9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "9dbe8c58f3892776f68ffe77e0ea8f0a70405710c3120693afa59585e61d5653"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/dfb9f7108fe4dbd4c2a58b3aabc91ee9.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/dfb9f7108fe4dbd4c2a58b3aabc91ee9.png_2200x2200q80.png_.webp",
+          "position": 10,
+          "sha256": "466817f09838206d9081932164707169774f74c3313230061333864ea649715e",
+          "bytes": 91436,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/46/466817f09838206d9081932164707169774f74c3313230061333864ea649715e.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "466817f09838206d9081932164707169774f74c3313230061333864ea649715e"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/d18561843acd874538fcf04d0aecb293.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/d18561843acd874538fcf04d0aecb293.png_2200x2200q80.png_.webp",
+          "position": 11,
+          "sha256": "fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571",
+          "bytes": 79692,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/fa/fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "fa63d62916912cb57c241994acde20f209f3060690af11ad25eff2274dd08571"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/0c5e38a007a3b32e1db7a6a18d1d2490.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/0c5e38a007a3b32e1db7a6a18d1d2490.png_2200x2200q80.png_.webp",
+          "position": 12,
+          "sha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9",
+          "bytes": 85634,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/c5/c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/edfafe2dfbb99cb6c8c2932fcd75fc10.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/edfafe2dfbb99cb6c8c2932fcd75fc10.png_2200x2200q80.png_.webp",
+          "position": 13,
+          "sha256": "8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61",
+          "bytes": 89516,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/8b/8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "8bf6231701201cd92ddaee3cf38887262c7b88d1333982a4562cae8e9e9a6e61"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "position": 14,
+          "sha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "bytes": 85556,
+          "format": "webp",
+          "width": 960,
+          "height": 1000,
+          "path": "data/cases/vietnam-nha-trang/blobs/18/189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622"
+        },
+        {
+          "sku": "1880785864_VNAMZ-8527716007",
+          "url": "https://img.lazcdn.com/g/shop/93b6fc33a8213f7c14414ad90be8c6f2.png_2200x2200q80.png_.webp",
+          "cachedUrl": "https://img.lazcdn.com/g/shop/93b6fc33a8213f7c14414ad90be8c6f2.png_2200x2200q80.png_.webp",
+          "position": 15,
+          "sha256": "c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8",
+          "bytes": 10964,
+          "format": "webp",
+          "width": 960,
+          "height": 168,
+          "path": "data/cases/vietnam-nha-trang/blobs/c5/c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8.gz",
+          "artifactEncoding": "gzip",
+          "decodedOriginalSha256": "c5b0a00da25e9b360fb90120288d57b1913c087fc8e4ebedab9f9b7acdfa3bc8"
+        }
+      ]
+    },
+    {
+      "sku": "367656830_VNAMZ-116917756014",
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "observedPriceVnd": 39000,
+      "observedAt": "2026-10-10T05:42:15.424Z",
+      "decision": "seller-mass-only",
+      "existingSellingUnit": {
+        "massG": 200,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 5
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "200g selling-unit denominator is5×40g inner stick; no declaredml or exact current nutrition. Preserve selected pack count, not40-stick shipping carton text.",
+      "missingProof": [
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Original same-formula40g stick back panel declaring volume(if any),protein basis,ingredients and GTIN/lot; confirm5-stick selected selling unit separately.",
+      "existingSourceChecks": [
+        {
+          "sku": "367656830_VNAMZ-116917756014",
+          "field": "netMassG",
+          "expectedSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/bf/bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "excerpt": "Trọng lượng : 40g/ câyQuy cách : 40 cây thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "367656830_VNAMZ-116917756014",
+          "field": "packCount",
+          "expectedSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/bf/bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "excerpt": "COMBO 5 cây; COMBO 5 cây",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "367656830_VNAMZ-116917756014",
+          "field": "totalNetMassG",
+          "expectedSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/bf/bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-socola-com-cacao-merino-40g-i367656830-s116917756014.html",
+          "excerpt": "5 × 40 g = 200 g; carton count excluded",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "bf17215a7a9e359df92d81620aeac96e2431f4841e3a7f5313c27afbd6ee123d",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "1561301337_VNAMZ-6599253417",
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "observedPriceVnd": 8000,
+      "observedAt": "2026-10-09T11:22:28.282Z",
+      "decision": "seller-mass-only",
+      "existingSellingUnit": {
+        "massG": 40,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Selected single40g stick is seller-supported; no declaredml or exact current factory nutrition.",
+      "missingProof": [
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Original exact chocolate cocoa-crisp40g stick front/back, GTIN/lot,current protein basis and declaredvolume(if any).",
+      "existingSourceChecks": [
+        {
+          "sku": "1561301337_VNAMZ-6599253417",
+          "field": "netMassG",
+          "expectedSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/c6/c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "excerpt": "Định lượng 40g Hạn sử dụng 24 tháng Loại bao bì Đơn Nhu cầu dinh dưỡng Halal Loại hình lưu trữ Đông lạnh Warranty Type Không bảo hành Delivery_Option_Instant Đúng Loại sô",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "1561301337_VNAMZ-6599253417",
+          "field": "packCount",
+          "expectedSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/c6/c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "excerpt": "1 cây; 1 cây",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "1561301337_VNAMZ-6599253417",
+          "field": "totalNetMassG",
+          "expectedSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/c6/c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc.gz",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i1561301337.html",
+          "excerpt": "1 × 40 g = 40 g; carton count excluded",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "c69dd3870e2202985f9a6e2258f9ac0f4839911b6abac5ef0064af9c9698dbbc",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "367656830_VNAMZ-610790405",
+      "name": "Merino chocolate cocoa-crisp ice-cream stick",
+      "observedPriceVnd": 8000,
+      "observedAt": "2026-10-09T11:30:13.666Z",
+      "decision": "seller-mass-only",
+      "existingSellingUnit": {
+        "massG": 40,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Selected single40g stick is seller-supported; do not use40-piece carton to multiply this offer. No declaredml/current factory protein.",
+      "missingProof": [
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Original exact chocolate cocoa-crisp40g stick front/back with GTIN/lot,current protein basis and declaredvolume(if any); confirm single-unitSKU.",
+      "existingSourceChecks": [
+        {
+          "sku": "367656830_VNAMZ-610790405",
+          "field": "netMassG",
+          "expectedSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "sourcePath": "docs/acceptance/ice-exact-label-followup/merino40-selected-source.public.html",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "excerpt": "Trọng lượng : 40g/ câyQuy cách : 40 cây thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "digestMatched": true,
+          "artifactEncoding": "redacted-public-html",
+          "excerptKind": "original source transcription",
+          "excerptMatchedAfterRedaction": true,
+          "originalSourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        },
+        {
+          "sku": "367656830_VNAMZ-610790405",
+          "field": "packCount",
+          "expectedSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "sourcePath": "docs/acceptance/ice-exact-label-followup/merino40-selected-source.public.html",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "excerpt": "1 cây; 1 cây",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "digestMatched": true,
+          "artifactEncoding": "redacted-public-html",
+          "excerptKind": "joined selected-option labels",
+          "derivationInputsMatchedAfterRedaction": true,
+          "originalSourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        },
+        {
+          "sku": "367656830_VNAMZ-610790405",
+          "field": "totalNetMassG",
+          "expectedSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "sourcePath": "docs/acceptance/ice-exact-label-followup/merino40-selected-source.public.html",
+          "sourceUrl": "https://www.lazada.vn/products/pdp-i367656830.html",
+          "excerpt": "1 × 40 g = 40 g; carton count excluded",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+          "digestMatched": true,
+          "artifactEncoding": "redacted-public-html",
+          "excerptKind": "derived selling-unit calculation; not a literal HTML quotation",
+          "derivationInputsMatchedAfterRedaction": true,
+          "originalSourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+          "publicDerivativePresent": true,
+          "redactionApplied": true
+        }
+      ],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "2042294681_VNAMZ-9532082441",
+      "name": "Aice chocolate mochi",
+      "observedPriceVnd": 8000,
+      "observedAt": "2026-10-10T17:32:37.802Z",
+      "decision": "excluded-nonchocolate-core",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": false,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "Current strict exclusion remains: official depiction includes white ice-cream core/chocolate surroundings, no proof of an exclusively chocolate core. No numeric denominator approval.",
+      "missingProof": [
+        "netMassG",
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Only an exact current factory mochi label/GTIN proving chocolate ice-cream core and declared units/nutrition could justify re-review. White core must not be namedvanilla from colour.",
+      "existingSourceChecks": [],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "2042258411_VNAMZ-9532010624",
+      "name": "Aice chocolate cone",
+      "observedPriceVnd": 15000,
+      "observedAt": "2026-10-10T17:33:37.638Z",
+      "decision": "excluded-nonchocolate-core-held-weight",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "strictChocolateEligible": false,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": ["netMassG"],
+      "notes": "Current strict exclusion and held20g quantity remain. A chocolate coating with white core does not establish the requested chocolate ice-cream core.",
+      "missingProof": [
+        "netMassG",
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Exact current factory cone label/GTIN with actual netgrams,declaredml,core flavour and nutrition; do not restore generic20g attribute or infer whitecorevanilla.",
+      "existingSourceChecks": [],
+      "proposedApprovals": []
+    },
+    {
+      "sku": "497264871_VNAMZ-15825435034",
+      "name": "Merino chocolate cone, five-cone pack",
+      "observedPriceVnd": 89000,
+      "observedAt": "2026-10-10T16:19:33.761Z",
+      "decision": "seller-mass-only",
+      "existingSellingUnit": {
+        "massG": 300,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 5
+      },
+      "strictChocolateEligible": null,
+      "manufacturerFamilyIdentityMatched": false,
+      "currentFactoryProteinVerified": false,
+      "sameExactCurrentPackageMassVolumeProteinVerified": false,
+      "heldFieldsRetained": [],
+      "notes": "300g selling-unit denominator is5×60g cones, not25-cone shipping carton. No declaredml or exact current manufacturer formula.",
+      "missingProof": [
+        "netVolumeMl",
+        "proteinDenominator",
+        "exactManufacturerPackageIdentity"
+      ],
+      "minimalNextSource": "Original same-formula60g chocolatecone back panel with GTIN/lot,current nutrition/ingredients and declaredvolume(if any); confirm5-cone selected selling unit.",
+      "existingSourceChecks": [
+        {
+          "sku": "497264871_VNAMZ-15825435034",
+          "field": "netMassG",
+          "expectedSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/9d/9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "excerpt": "Trọng lượng : 60g/ câyQuy cách : 25 cây/ thùngHạn sử dụng : 24 tháng kể từ ngày sản xuất.Ngày sản xuất : Xem trên bao bì sản phẩm.Xuất xứ : Việt Nam If you want to report ",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "497264871_VNAMZ-15825435034",
+          "field": "packCount",
+          "expectedSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/9d/9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "excerpt": "COMBO 5 cây; COMBO 5 cây",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        },
+        {
+          "sku": "497264871_VNAMZ-15825435034",
+          "field": "totalNetMassG",
+          "expectedSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "sourcePath": "data/cases/vietnam-nha-trang/blobs/9d/9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235.gz",
+          "sourceUrl": "https://www.lazada.vn/products/giao-hoa-toc-hcm-kem-oc-que-merino-socola-60g-i497264871-s15825435034.html",
+          "excerpt": "5 × 60 g = 300 g; carton count excluded",
+          "sourceAuthority": "marketplace seller",
+          "identityMatched": true,
+          "found": true,
+          "actualSha256": "9d12389169d6edd98aa0a6219c27403b3343c31e5aa5d9f405f8b5a58d9fe235",
+          "digestMatched": true,
+          "artifactEncoding": "gzip",
+          "archivedOriginalPresent": true
+        }
+      ],
+      "proposedApprovals": []
+    }
+  ],
+  "additionalVolumeCorroborations": [
+    {
+      "sku": "1880785864_VNAMZ-8527716007",
+      "field": "netVolumeMl",
+      "value": 475,
+      "unit": "ml",
+      "sourceAuthority": "seller package-front promotional image",
+      "sourceUrl": "https://img.lazcdn.com/g/p/0d87bd693f0db21304a183c817928aee.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2",
+      "artifact": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-475ml-original.webp",
+      "excerpt": "Net.475ml; KEM CHOCOLATE BỈ475ML",
+      "identityMatched": true,
+      "manufacturerVerified": false,
+      "method": "Manual transcription of original cached package front, corroborated by exact selectedSKU volumeoption",
+      "applied": false,
+      "changesExistingValue": false,
+      "formulaRevisionMatched": false
+    },
+    {
+      "sku": "1880785864_VNAMZ-8527716006",
+      "field": "netVolumeMl",
+      "value": 125,
+      "unit": "ml",
+      "sourceAuthority": "seller package-front promotional image",
+      "sourceUrl": "https://img.lazcdn.com/g/p/52668366cc1847a8bb5206317dd2d1d8.jpg_720x720q80.jpg_.webp",
+      "sourceSha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6",
+      "artifact": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-125ml-original.webp",
+      "excerpt": "Net.125ml; KEM SÔCÔLA BỈ / BELGIAN CHOCOLATE",
+      "identityMatched": true,
+      "manufacturerVerified": false,
+      "method": "Manual transcription of original cached package front, corroborated by exact selectedSKU volumeoption",
+      "applied": false,
+      "changesExistingValue": false,
+      "formulaRevisionMatched": false
+    }
+  ],
+  "historicalEvidenceWithheld": [
+    {
+      "id": "targeted-review:happy-gelato-belgian-chocolate-lab-2021",
+      "sampleName": "KEM CHOCOLATE BỈ",
+      "sampleReceivedAt": "2021-11-27",
+      "reportIssuedAt": "2021-12-08",
+      "reportNumber": "MMI2111.271022372",
+      "facts": {
+        "proteinPer100g": {
+          "value": 4.6,
+          "unit": "g/100g",
+          "basis": "2021 CASE laboratory tested sample only",
+          "sourceUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "sourceSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "excerpt": "Protein | g/100g | 4,60 (Nitơ tổng số x 6,38)",
+          "identityMatched": false,
+          "currentFormulaIdentityMatched": false,
+          "applied": false,
+          "confidence": 1
+        },
+        "fatPer100g": {
+          "value": 4.8,
+          "unit": "g/100g",
+          "basis": "2021 CASE laboratory tested sample only",
+          "sourceUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "sourceSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "excerpt": "Béo | g/100g | 4,80",
+          "identityMatched": false,
+          "currentFormulaIdentityMatched": false,
+          "applied": false,
+          "confidence": 1
+        },
+        "carbohydratePer100g": {
+          "value": 24,
+          "unit": "g/100g",
+          "basis": "2021 CASE laboratory tested sample only",
+          "sourceUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "sourceSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "excerpt": "Carbohydrate | g/100g | 24,0",
+          "identityMatched": false,
+          "currentFormulaIdentityMatched": false,
+          "applied": false,
+          "confidence": 1
+        },
+        "kcalPer100g": {
+          "value": 158,
+          "unit": "kcal/100g",
+          "basis": "2021 CASE laboratory tested sample only",
+          "sourceUrl": "https://img.lazcdn.com/g/shop/c1815343141ad0581e91f1a6515a5604.png_2200x2200q80.png_.webp",
+          "sourceSha256": "189a68860572709367700e60d87bf477806f54ad27565369bc60daefa92eb622",
+          "excerpt": "Năng lượng | kcal/100g | 158",
+          "identityMatched": false,
+          "currentFormulaIdentityMatched": false,
+          "applied": false,
+          "confidence": 1
+        }
+      },
+      "appliesOnlyToTestedSample": true,
+      "currentSkuIdentityMatched": false,
+      "applied": false,
+      "sugarIsNotCarbohydrate": true
+    }
+  ],
+  "counts": {
+    "rowsAudited": 14,
+    "priorityRows": 4,
+    "originalPublicGalleryImagesReviewed": 32,
+    "uniqueOriginalGalleryDigests": 30,
+    "linkedOcrRecordsInspected": 45,
+    "existingFieldSourceDigestsMatched": 40,
+    "existingFieldSourceDigestsChecked": 40,
+    "newExactNumericalFieldsResolved": 0,
+    "newManufacturerApprovals": 0,
+    "newVolumeCorroborations": 2,
+    "sameExactCurrentPackageMassVolumeProteinVerified": 0,
+    "networkRequests": 0,
+    "sharedStoreMutations": 0
+  },
+  "reportingFindings": [
+    {
+      "id": "ice-protein-authority-not-factory",
+      "finding": "Coverage currentProteinDenominator3 counts2PowerCap sellingunits from one seller-promotional1g table plus excludedWorldCone3.2g seller table. This is not3current factory nutrition labels, nor3strict eligible independently verified products.",
+      "applied": false
+    },
+    {
+      "id": "worldcone-exclusion-reason",
+      "finding": "Retain strictChocolateEligiblefalse due peanut/nut topping. Prior new-source-pass review note calls coreknownvanilla/mixed, while this exact selected source review proveschocolate family imagery andpeanutdepiction, notvanilla. Use supported peanutreason andretain formula ambiguity.",
+      "source": "docs/acceptance/manufacturer-research/new-source-pass/review.json",
+      "applied": false,
+      "documentationCorrection": {
+        "completed": true,
+        "paths": [
+          "docs/acceptance/manufacturer-research/new-source-pass/review.json",
+          "docs/acceptance/manufacturer-research/new-source-pass/review.md"
+        ],
+        "quantityAndEligibilityUnchanged": true
+      }
+    }
+  ],
+  "validation": {
+    "all14SkusRetained": true,
+    "all40ExistingFieldDigestChecksPassed": true,
+    "densityConversionsPerformed": 0,
+    "otherFlavourFormulaTransfers": 0,
+    "historicalFormulaPromotions": 0,
+    "heldFieldsRestored": 0,
+    "codeOrStoreChanges": 0
+  },
+  "publication": {
+    "publishedAt": "2026-10-11T05:56:18.582923+00:00",
+    "originalImageCopies": [
+      {
+        "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-475ml-original.webp",
+        "sha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2",
+        "bytes": 27918,
+        "mimeType": "image/webp",
+        "originalBytesUnchanged": true
+      },
+      {
+        "path": "docs/acceptance/ice-exact-label-followup/happy-belgian-chocolate-125ml-original.webp",
+        "sha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6",
+        "bytes": 33852,
+        "mimeType": "image/webp",
+        "originalBytesUnchanged": true
+      }
+    ],
+    "archiveOriginalsPending": [],
+    "ignoredDraftPathsRemoved": true,
+    "corroborationsAppliedToStore": false,
+    "archiveVerifiedOriginalGalleryDigests": 30,
+    "publicSourceProvenance": "docs/acceptance/ice-exact-label-followup/public-source-provenance.json",
+    "publicDerivativeChecks": [
+      {
+        "path": "docs/acceptance/ice-exact-label-followup/happy475-selected-source.public.html",
+        "originalSourceSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
+        "publicDerivativeSha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
+        "sku": "1880785864_VNAMZ-8527716007",
+        "exactSkuMatched": true,
+        "literalExcerptMatches": 0,
+        "derivationInputMatches": 0,
+        "privateOriginalPublished": false,
+        "selectedOptionsReExtracted": ["475ml", "475ml"],
+        "selectedVolumeLabelMatches": true
+      },
+      {
+        "path": "docs/acceptance/ice-exact-label-followup/merino40-selected-source.public.html",
+        "originalSourceSha256": "a52e71d56692a8645ba5da09fe96a7f3914691930f3d9253f2abca83a71a1414",
+        "publicDerivativeSha256": "8089ed02a957b2864546069e248f0d1a97c1cb3d5dd01e5212fd70713a1c5c89",
+        "sku": "367656830_VNAMZ-610790405",
+        "exactSkuMatched": true,
+        "literalExcerptMatches": 1,
+        "derivationInputMatches": 2,
+        "privateOriginalPublished": false,
+        "selectedOptionsReExtracted": ["1 cây", "1 cây"]
+      }
+    ],
+    "privateOriginalsPublished": false
+  }
+}
