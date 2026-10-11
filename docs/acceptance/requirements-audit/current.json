@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T17:06:21.487Z",
+  "checkedAt": "2026-10-11T17:37:58.829Z",
   "catalogObservedAt": "2026-10-11T13:54:15.320Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
@@ -365,16 +365,18 @@
       "requirement": "Update Browser Commander when newer version available",
       "status": "implemented",
       "mechanicsStatus": "implemented",
-      "realDataAcceptance": "Installed0.31.1 and shared root Links Notation0.25.2 accepted full localBun1312/1312 zero failures/skips and real-browser/interfaces2/2. npm audit0. Original official tarball and registry/source differences preserved. Fresh complete nine-platform/native CI pending; no product requests.",
+      "realDataAcceptance": "installed-0.31.1-shared-notation-0.25.2-native-browser-48-accepted-complete-platform-matrix-pending",
       "evidence": [
         "package.json",
         "package-lock.json",
         "docs/acceptance/browser-commander-031/README.md",
         "docs/acceptance/browser-commander-031/review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
-        "docs/acceptance/browser-commander-0311/review.json"
+        "docs/acceptance/browser-commander-0311/review.json",
+        "deno.lock",
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
       ],
-      "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data. The earlier1,291/48 dependency checkpoint remains dated evidence; current local results include model bytes and fresh shopping defaults."
+      "finding": "Official latest Browser Commander0.31.1 and root Links Notation0.25.2 are installed with reviewed registry/archive integrity, full local Bun1312 and real browser/interface2 passes, audit0 and actual native/browser CI48/48 zero failures/skips. Final JSON formatting initially blocked the runtime matrix; the corrected frozen lock and release child completion follow-up require fresh complete platform acceptance. No product requests."
     },
     {
       "id": "R035",
@@ -520,7 +522,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Current sourcee63df14 accepts eight full runtime jobs and48/48 native/browser E2E; Windows Node1269/1269 and Deno1158tests+8steps pass. Windows Bun1271pass2fail finishes1273tests within600s. Two3000ms redirect watchdogs are replaced by deterministic queue probes; fresh full-platform acceptance pending. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "actual-native-browser-48-accepted-on-0.31.1-complete-platform-matrix-pending",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -535,9 +537,11 @@
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
         "docs/acceptance/ocr-model-identity/bun-parallel-validation.json",
-        "docs/acceptance/ocr-model-identity/ci-e63df14-review.json"
+        "docs/acceptance/ocr-model-identity/ci-e63df14-review.json",
+        "docs/acceptance/ocr-model-identity/ci-3821770-review.json",
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
       ],
-      "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
+      "finding": "Actual source3821770 accepts all Windows redirect probes, Windows Node1271 and Deno1160+8 steps; Windows Bun completes1275 tests with one20-second release child timeout. Source d46a7d7 accepts all48 native/browser cases on updated0.31.1 but executes no runtime jobs because final JSON formatting fails. Original failures remain preserved; corrected release completion and Deno workspace metadata need a fresh full matrix. Native OCR recipes/model identity remain implemented; unmatched manufacturer nutrition is never approved."
     }
   ],
   "githubIssues": [
@@ -797,9 +801,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "2e3751b8f6db341a0125ebab4cda6cff69de33c9447f6aa437e52311ef373a48",
-      "bytes": 51748,
-      "observedAt": "2026-10-11T17:06:15.561322+00:00"
+      "sha256": "b1d74e844d454e6aa68b1f7a9d480129eb0e919b6a1a4483363cec2772ea1465",
+      "bytes": 53977,
+      "observedAt": "2026-10-11T17:28:25.024291+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",

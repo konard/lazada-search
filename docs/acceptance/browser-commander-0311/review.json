@@ -88,11 +88,7 @@
   "publicConsumer": {
     "sharedModuleAndLinkClass": true,
     "exactScalarCases": 10,
-    "streamingChunks": [
-      1,
-      17,
-      "entire"
-    ],
+    "streamingChunks": [1, 17, "entire"],
     "producer": "browser-commander-0311-consumer.mjs.gz",
     "log": "browser-commander-0311-consumer.log.gz",
     "note": "A first root probe incorrectly imported an internal helper; a second incorrectly required unrelated codec parsers to deduplicate. Both rejected original logs are retained as probe construction errors, not dependency bugs or accepted tests. Correct public traceLinks API and only Browser Commander/root identity are verified."
@@ -204,8 +200,6 @@
     "originalBytes": 1728,
     "originalSha256": "4f76513fab7016302841694a5a1a69d74124dea718dbc30828cb2d70401bf748",
     "changedJavascriptRuntimeFiles": [],
-    "changedJavascriptTestFiles": [
-      "package/tests/SharedTextParity.test.js"
-    ]
+    "changedJavascriptTestFiles": ["package/tests/SharedTextParity.test.js"]
   }
 }

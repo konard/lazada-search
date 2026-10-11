@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-11T17:19:38.352205+00:00",
+  "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
+  "matrixRun": "https://github.com/konard/lazada-search/actions/runs/38158390583",
+  "allNineMatrixJobsPassed": false,
+  "runtimeJobsExecuted": 0,
+  "reason": "Lint failed solely on final dependency review JSON formatting; all expanded runtime jobs skipped. Full native/browser and offline-link workflows run independently and passed. Missing registry package-owner OIDC publisher also rejects release preflight separately.",
+  "formattingCorrection": "Full local npmrunformat:check now passes after JSON formatting; fresh actual corrected matrix required.",
+  "nativeE2e": {
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "duration_ms": 407798.722214
+  },
+  "nativeE2eRun": "https://github.com/konard/lazada-search/actions/runs/38158390652",
+  "offlineLinks": {
+    "total": 34841,
+    "successful": 439,
+    "excluded": 34402,
+    "errors": 0
+  },
+  "offlineLinksRun": "https://github.com/konard/lazada-search/actions/runs/38158390567",
+  "frozenExecutableSnapshot": "browser-commander-0311-frozen-code.json",
+  "originals": [
+    {
+      "path": "ci-d46a7d7-matrix-jobs.json.gz",
+      "originalBytes": 11477,
+      "originalSha256": "1be23df65cc7ce24b09f792f74a415561ec8143cc0d5abe16ee5f1e575e6b181",
+      "gzipSha256": "4768ac56aad782cc08eb3f6408ac0582532ed60bd929f3045eaa569b3a6e8d7a"
+    },
+    {
+      "path": "ci-d46a7d7-native-jobs.json.gz",
+      "originalBytes": 3935,
+      "originalSha256": "2be0b76521a2ef014aeedd7d2afb2802e0e3a4a5136248b65534c9bc8b9b84d1",
+      "gzipSha256": "fcdd2e00c18efc9f3f3342489edc2eaff3338bbfe47f68abac0be317fd51d754"
+    },
+    {
+      "path": "ci-d46a7d7-links-jobs.json.gz",
+      "originalBytes": 2809,
+      "originalSha256": "579f1325ce81ac8c6e94660c6590b08d43c8a0b7dd78ab0451e3ce7e3591cdbc",
+      "gzipSha256": "00c952f576c49e2078488b16653762e4e742fb20a43ae272b296c526d4b8b8f2"
+    },
+    {
+      "path": "ci-d46a7d7-native-e2e.log.gz",
+      "originalBytes": 87498,
+      "originalSha256": "23a4994e4b0650c6883a9f986294e70bab3597ca90fa1c01afc06396be75a21d",
+      "gzipSha256": "947fb2a02c8be6dd8339cfd13e73963c865bc65e083520bb31535e71211168f1"
+    },
+    {
+      "path": "ci-d46a7d7-offline-links.log.gz",
+      "originalBytes": 5132236,
+      "originalSha256": "fdbe99f13100d6ca5ed78d8dd4c86de61530ac30486a728da5a6498f51cecf16",
+      "gzipSha256": "35414410a1ea5c2f7e2ed2058006692e0459127d5efdf34a545723fdc215ea93"
+    },
+    {
+      "path": "ci-d46a7d7-preflight.log.gz",
+      "originalBytes": 17390,
+      "originalSha256": "e7f6e8e3e4060b67f3d06a3dd00eced2c1aef17ef8ffd2a75e8b6e630e5d1c18",
+      "gzipSha256": "6f0b2f10c72b90a1a7f934c44e9ca337e53e349bad12f38f0d182d6622c8ffdd"
+    },
+    {
+      "path": "ci-d46a7d7-format.log.gz",
+      "originalBytes": 21430,
+      "originalSha256": "106984a2d9c71c74bbf3ce491641e504755002cc656b24ebabf9552218b556f4",
+      "gzipSha256": "4419917cbfa216d0785a5423daa612c2b1cf0cb2d5145a9c8506290dcdbedf41"
+    },
+    {
+      "path": "ci-d46a7d7-failed.log.gz",
+      "originalBytes": 12621,
+      "originalSha256": "631b472a99734c8e1a4cba04802ecb06cdcd1f0a97298c673ea821c55d2edb43",
+      "gzipSha256": "2001d9ad429d0dd941563b24d8f8977f4b32547a74316c8a9fe733580d6c0ad1"
+    },
+    {
+      "path": "d46a7d7-format-correction-check.log.gz",
+      "originalBytes": 126,
+      "originalSha256": "788c7a7304849229f07632ee5a7bd57fd5d292cb33e41bbc5e2d6c86af386529",
+      "gzipSha256": "e44774189499099f05856401c2b73fdf63ad59550830a0afe26ce9e2fa7a1d25"
+    }
+  ],
+  "productDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false,
+  "productionReady": false
+}

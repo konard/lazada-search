@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-11T17:36:06.821356+00:00",
+  "sourceBaseCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
+  "frozenExecutableSnapshot": "release-child-frozen-code.json",
+  "sourceFiles": 593,
+  "installedNativeFiles": 230,
+  "totalFrozenFiles": 823,
+  "reason": "Actual Windows Bun failed the real release child separate20000ms timeout. A real descendant experiment also proved direct-child cancellation left a formatter grandchild writing after parent close. Both are corrected only in the test helper.",
+  "productionLibraryChanges": [],
+  "dependencyResolutionChanges": [],
+  "DenoWorkspaceMetadataCorrection": "BrowserCommander~0.31.0 to~0.31.1 only; actualDeno2.9.7 cached-only normalization retains every resolution/integrity and the scoped override.",
+  "fullLocalBun": {
+    "pass": 1316,
+    "fail": 0,
+    "skip": 0,
+    "files": 158,
+    "seconds": 106.58,
+    "wrapperSeconds": 107,
+    "budgetSeconds": 600,
+    "nativeOcrActualPassObserved": true,
+    "originalLog": "release-child-completion-review/release-child-final-tree-full-bun.log.gz",
+    "originalSha256": "7723e190928430a742aae8ecfd44d2c8fa53bcb59b6104462297db5445e6950b",
+    "originalBytes": 150847,
+    "gzipSha256": "64bd77e888dc5d2e03b402c6bf58214f0e65425c616a94291e04699edf2f1a7d"
+  },
+  "focusedActualRuntimeResults": {
+    "Node": {
+      "pass": 8,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "Bun": {
+      "pass": 8,
+      "fail": 0
+    },
+    "Deno2.9.7": {
+      "suites": 4,
+      "steps": 8,
+      "failed": 0
+    }
+  },
+  "delayedRealReleaseProof": "Actual unchanged Changesets/Prettier child exits successfully after21000ms deliberate hold; Node andBun both8/8 including the live descendant cancellation case.",
+  "originalAgentReceipt": "release-child-completion-review/receipt.json.gz",
+  "originalAgentFiles": "release-child-completion-review/originals.json",
+  "priorDirectChildOnlyDraft": "release-child-completion-review/prior-direct-child-test.js.gz",
+  "priorLocalFullRuns": "1315 tests passed both before and after lock metadata refresh; superseded by the final1316-test tree-cancellation suite. Original logs retained.",
+  "olderDeno2.4.5Failure": "Frozen old lock rejected; its copied normalized-lock tests then failed on unimplemented TestContext.signal. Both originals retained, not accepted as currentDeno2.9.7 proof.",
+  "remainingActualAcceptance": "Fresh complete nine-runtime CI and native/browser receipt on the frozen published source. No local Windows taskkill acceptance claimed.",
+  "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+  "productDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "repositoryCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "lint": "Passed; strict changed release test lint0warnings. Existing9 unchanged-line warnings suppressed by the established policy.",
+    "format": "Entire repository formatting passed. New review JSON formatted and independently checked.",
+    "duplication": "Passed;6.45percent duplicated lines below existing10percent threshold.",
+    "originalLog": "release-child-completion-review/release-child-final-repository-check.log.gz",
+    "originalSha256": "2735b51dd3e197f8de69449104c8fbdf80e480f6340c46a0844a91617bb0f095",
+    "originalBytes": 120738,
+    "gzipSha256": "f6e7138e883b17383a1e4adc09847bd26a791489943f0973b79d52dd763afd9d"
+  },
+  "all823FrozenFilesVerifiedAfterCompleteSuiteAndChecks": true
+}
