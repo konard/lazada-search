@@ -9,11 +9,27 @@ export { normalizeText, fold, canonicalUrl, listingKey } from './text.js';
 
 export { positive } from './values.js';
 
-export async function atomicWrite(path, contents) {
-  await mkdir(dirname(path), { recursive: true, mode: 0o700 });
+export async function atomicWrite(
+  path,
+  contents,
+  { directoryPrepared = false } = {}
+) {
+  if (!directoryPrepared) {
+    await mkdir(dirname(path), { recursive: true, mode: 0o700 });
+  }
   const temporary = `${path}.${randomUUID()}.tmp`;
+  let renamed = false;
   try {
-    const file = await open(temporary, 'wx', 0o600);
+    let file;
+    try {
+      file = await open(temporary, 'wx', 0o600);
+    } catch (error) {
+      if (!directoryPrepared || error.code !== 'ENOENT') {
+        throw error;
+      }
+      await mkdir(dirname(path), { recursive: true, mode: 0o700 });
+      file = await open(temporary, 'wx', 0o600);
+    }
     try {
       await file.writeFile(contents);
       await file.sync();
@@ -21,6 +37,7 @@ export async function atomicWrite(path, contents) {
       await file.close();
     }
     await rename(temporary, path);
+    renamed = true;
     // Windows does not support opening a directory for fsync. The file
     // itself is synced on every platform before its atomic rename.
     if (process.platform !== 'win32') {
@@ -32,7 +49,9 @@ export async function atomicWrite(path, contents) {
       }
     }
   } finally {
-    await rm(temporary, { force: true });
+    if (!renamed) {
+      await rm(temporary, { force: true });
+    }
   }
 }
 

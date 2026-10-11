@@ -587,3 +587,30 @@ test('a failed chronological projection retains the committed newer canonical ob
   assert.ok(graph.names.has('number:900'));
   assert.equal(graph.names.has('number:100'), false);
 });
+
+test('a record-kind directory deleted after batch preparation is recovered without losing canonical or binary records', async (t) => {
+  const store = await temporary(t);
+  const records = Array.from({ length: 17 }, (_, index) => ({
+    id: `recovered-${index}`,
+    selectedSku: `original-sku-${index}`,
+    title: 'Sô cô la',
+    observedAt: '2026-10-10T05:42:15.424Z',
+  }));
+  const write = store.writeRecord.bind(store);
+  let removed;
+  store.writeRecord = async (kind, entry) => {
+    removed ||= rm(join(store.directory, kind), { recursive: true });
+    await removed;
+    return write(kind, entry);
+  };
+  assert.deepEqual(await store.putLatestMany('discovery', records), records);
+  assert.deepEqual(
+    await store.list('discovery'),
+    [...records].sort((left, right) => left.id.localeCompare(right.id))
+  );
+  for (const record of records) {
+    assert.deepEqual(await store.get('discovery', record.id), record);
+    const graph = await store.graph('discovery', record.id);
+    assert.ok(graph.names.has(`string:${record.selectedSku}`));
+  }
+});

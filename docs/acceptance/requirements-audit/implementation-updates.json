@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T17:28:25.024291+00:00",
+  "checkedAt": "2026-10-11T18:02:01.463Z",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -129,9 +129,11 @@
         "tests/e2e/telegram.test.js",
         "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
         "docs/acceptance/ocr-model-identity/ci-3821770-review.json",
-        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json",
+        "docs/acceptance/ocr-model-identity/ci-7e47c37-review.json",
+        "docs/acceptance/ocr-model-identity/release-ps-validation.json"
       ],
-      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined full local interface suite and actual GitHub48/48 native/browser E2E passed with zero skips; source3821770 accepts every redirect probe and full Windows Node/Deno, while its separate release child timeout remains preserved. Latest source d46a7d7 accepts all48 native/browser tests on0.31.1 but executes no runtime jobs due the formatting gate; the current release completion/lock follow-up requires fresh full runtime acceptance."
+      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Exact cached variants remain reusable and explicit requested SKUs retain their own observed price. Fresh CLI/Telegram options default to chocolate-or-unflavoured with paid-shaker exclusions; explicit broad overrides remain supported. Historical source3821770 accepted the redirect probes and eight runtime jobs; sourced46a7d7 formatting prevented runtime execution. Current source7e47c37 accepts48/48 native/browser cases but rejects four runtime jobs. The locally validated ps correction and Windows catalog/suite follow-up require fresh full runtime acceptance. No current stock, complete inventory or delivered winner is inferred."
     },
     {
       "id": "R001",
@@ -208,7 +210,7 @@
       "id": "R033",
       "status": "implemented",
       "mechanicsStatus": "implemented",
-      "realDataAcceptance": "installed-0.31.1-shared-notation-0.25.2-native-browser-48-accepted-complete-platform-matrix-pending",
+      "realDataAcceptance": "installed-0.31.1-shared-notation-0.25.2-native-browser-48-accepted;5-of9-current-runtime-jobs-accepted",
       "evidence": [
         "package.json",
         "package-lock.json",
@@ -217,9 +219,11 @@
         "docs/acceptance/ocr-model-identity/validation.json",
         "docs/acceptance/browser-commander-0311/review.json",
         "deno.lock",
-        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json",
+        "docs/acceptance/ocr-model-identity/ci-7e47c37-review.json",
+        "docs/acceptance/ocr-model-identity/release-ps-validation.json"
       ],
-      "finding": "Official latest Browser Commander0.31.1 and root Links Notation0.25.2 are installed with reviewed registry/archive integrity, full local Bun1312 and real browser/interface2 passes, audit0 and actual native/browser CI48/48 zero failures/skips. Final JSON formatting initially blocked the runtime matrix; the corrected frozen lock and release child completion follow-up require fresh complete platform acceptance. No product requests."
+      "finding": "Official Browser Commander0.31.1 and shared root Links Notation0.25.2 remain installed with reviewed archive/registry integrity and audit0. The completed source7e47c37 run accepts five runtime jobs and independent48/48 native/browser cases, but four runtime jobs fail. The former d46a7d7 formatting gate is historical. The owned-process ps correction has focused Node/Bun8 each and scopedDeno4 suites8 steps plus full localBun1316/1316 acceptance; further Windows filesystem work is a draft with no platform proof. No marketplace requests or broader Deno permissions are authorized."
     },
     {
       "id": "R002",
@@ -383,7 +387,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "actual-native-browser-48-accepted-on-0.31.1-complete-platform-matrix-pending",
+      "realDataAcceptance": "actual-source7e47-native-browser-48-accepted;complete-runtime-matrix-rejected5-pass4-fail",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -400,16 +404,18 @@
         "docs/acceptance/ocr-model-identity/bun-parallel-validation.json",
         "docs/acceptance/ocr-model-identity/ci-e63df14-review.json",
         "docs/acceptance/ocr-model-identity/ci-3821770-review.json",
-        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json",
+        "docs/acceptance/ocr-model-identity/ci-7e47c37-review.json",
+        "docs/acceptance/ocr-model-identity/release-ps-validation.json"
       ],
-      "finding": "Actual source3821770 accepts all Windows redirect probes, Windows Node1271 and Deno1160+8 steps; Windows Bun completes1275 tests with one20-second release child timeout. Source d46a7d7 accepts all48 native/browser cases on updated0.31.1 but executes no runtime jobs because final JSON formatting fails. Original failures remain preserved; corrected release completion and Deno workspace metadata need a fresh full matrix. Native OCR recipes/model identity remain implemented; unmatched manufacturer nutrition is never approved."
+      "finding": "Current source7e47c37 accepts48/48 native/browser cases and five full runtime jobs. Ubuntu Deno fails its new protected-/proc process-state test (1160 tests+15 steps pass, one test/step fails); Windows Bun fails the catalog450-second test (1278 pass,1 fail,523.74-second complete suite); Windows Node/Deno reach600 seconds without full footers. Deno Windows completed import in532770ms and reached cleanup. The ps correction passes focused Node/Bun8 each and scopedDeno4 suites8 steps plus full localBun1316/1316 in74.83s; no fresh Linux/Windows or NTFS optimization acceptance is claimed. Historical redirect, release-child and formatting failures remain preserved. Native recipes and model-byte guards do not approve unmatched factory nutrition."
     },
     {
       "id": "R049",
       "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
       "status": "implemented",
       "mechanicsStatus": "offline-link-policy-guards-implemented-and-full-local-suite-tested-without-online-retry-or-archive-probes",
-      "realDataAcceptance": "actual-offline-workflow-38158390567-success-439-local-links-zero-errors",
+      "realDataAcceptance": "actual-offline-workflow-38160632506-success-444-local-links-zero-errors",
       "evidence": [
         ".github/workflows/links.yml",
         "tests/links-workflow.test.js",
@@ -418,9 +424,10 @@
         "docs/acceptance/ocr-model-identity/offline-link-contract.json",
         "docs/acceptance/ocr-model-identity/post-full-link-policy.json",
         "docs/acceptance/ocr-model-identity/ci-e63df14-review.json",
-        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json"
+        "docs/acceptance/ocr-model-identity/ci-d46a7d7-review.json",
+        "docs/acceptance/ocr-model-identity/ci-7e47c37-review.json"
       ],
-      "finding": "Actual latest source d46a7d7 offline workflow parsed34841 links:439 local successful,34402 excluded,0 errors, without external probes. Source originals retain archive digest checks. The independent authored-link acceptance does not imply runtime or market completeness."
+      "finding": "Latest source7e47c37 offline publication parsed34846 links:444 local successes,34402 excluded,zero errors, without external probes. Original sources retain archive digest checks. Separate48/48 native/browser acceptance does not imply the rejected runtime matrix or market completeness."
     }
   ],
   "checkpoint": {
@@ -738,6 +745,17 @@
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
       ],
       "finding": "Full1,309/1,309 unit and single native-enabled48/48 E2E pass with zero failures/cancellations/skips. Local Bun and Deno each pass63 focused tests, including genuine native restart cache reuse; those subsets do not establish complete alternative-runtime/platform acceptance. All766 frozen files remain unchanged. Full34,253-record/7,030-blob archive verifies offline with zero downloads. Fresh chocolate/unflavoured/no-paid-shaker defaults are exercised separately from broad replay. Earlier1,306/1,306 unit plus rejected44/48 E2E and native-flag-omitted47-pass/1-skip runs remain preserved and are not accepted as the current native full suite. Actual source99 CI passes eight runtime jobs and48/48 native/browser cases; Windows Node alone cancels the catalog import at450000ms. Node reports1309passes with0skips, Bun1309passes0failures, Deno1157passedtests plus8steps0failed. These distinct runtime summaries are retained rather than equated. The priorWindowsDeno600-second timeout is resolved by actual source99 full1157+8step acceptance in567seconds; this does not accept the cancelled Node suite. No factory facts, market coverage, gift quantities, freight, real translations or live bot acceptance are inferred."
+    },
+    {
+      "id": "owned-process-ps-and-current-platform-acceptance",
+      "recordedAt": "2026-10-11T18:02:01.463Z",
+      "status": "local-ps-correction-accepted;actual-current-runtime-matrix-rejected",
+      "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+      "evidence": [
+        "docs/acceptance/ocr-model-identity/ci-7e47c37-review.json",
+        "docs/acceptance/ocr-model-identity/release-ps-validation.json"
+      ],
+      "finding": "Ubuntu Deno protected /proc process-state read; Windows Bun450-second catalog deadline; Windows Node and Deno600-second suite deadlines with no full footer. Four failed jobs are not accepted. The ps correction is test-only and locally accepted; avoidable NTFS directory mutations are a further draft. Native/browser48/48 and444 offline links pass independently. Issues3,14,32,33,34,36,37,38,39 remain open; saved CAPTCHA stop and all real-data acceptance gaps remain unchanged."
     }
   ],
   "sourceIntegrityCheckpoint": {
@@ -892,20 +910,92 @@
     "scope": "Historical source99 acceptance and failures, retained unchanged; current runtime claims belong to latestRuntimeCheckpoint."
   },
   "latestRuntimeCheckpoint": {
-    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
-    "receipt": "../ocr-model-identity/ci-d46a7d7-review.json",
-    "runtimeJobsExecuted": 0,
+    "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "receipt": "../ocr-model-identity/ci-7e47c37-review.json",
+    "runtimeJobsExecuted": 9,
+    "matrixJobsPassed": 5,
+    "matrixJobsFailed": 4,
+    "matrixJobsPending": [],
     "allNineAccepted": false,
     "nativeBrowserE2ePassed": 48,
     "nativeBrowserE2eFailures": 0,
+    "nativeBrowserE2eCancellations": 0,
     "nativeBrowserE2eSkips": 0,
-    "remainingFailure": "Final dependency review JSON formatting blocked the runtime matrix before execution. Corrected locally; fresh full platform acceptance remains required.",
-    "priorExecutedRuntimeCheckpoint": "../ocr-model-identity/ci-3821770-review.json",
-    "priorExecutedRuntimeJobsPassed": 8,
-    "deterministicRedirectActualWindowsPass": true,
-    "priorExecutedRuntimeFailure": "Windows Bun real release-versioning child exceeded its separate 20000ms spawnSync timeout, despite completion output. Original failure retained.",
-    "releaseChildFollowup": "Actual child close and owned formatter-tree termination before temporary removal, with completion-text/nonzero/live-grandchild controls; final full localBun1316 and focusedNode/Bun8 each,Deno4 suites8 steps pass. Fresh full original-budget matrix acceptance required.",
+    "nativeBrowserE2eRun": "https://github.com/konard/lazada-search/actions/runs/38160632497",
+    "WindowsNodeAccepted": false,
+    "WindowsDenoAccepted": false,
+    "failedRuntimeJobs": [
+      {
+        "runtime": "deno",
+        "platform": "ubuntu",
+        "counts": {
+          "passed": 1160,
+          "steps": 15,
+          "failed": 1,
+          "failedSteps": 1
+        },
+        "observedFailure": "Owned formatter grandchild state check read protected /proc/3290/stat; scoped Deno NotCapable. Only this new test failed; no --allow-all or suppression accepted.",
+        "originalLog": "ci-7e47c37-deno-ubuntu.log.gz",
+        "originalSha256": "c0f12e847f2311acae71c13d7ce15d89660df9c2d6937045baab1d940833ffef"
+      },
+      {
+        "runtime": "node",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-node-windows.log.gz",
+        "originalSha256": "428b4d0b717bcebecddc74ad7088fcddbc9e4f9ba5acc4bce7320e0b568ba6a2"
+      },
+      {
+        "runtime": "deno",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-deno-windows.log.gz",
+        "originalSha256": "a12306d850f6ed44337a8b72cf6dce4341ce8e167687b532cf227fac3cd1c1f6",
+        "importDurationMs": 532770,
+        "cleanupStarted": true,
+        "cleanupFinished": false
+      },
+      {
+        "runtime": "bun",
+        "platform": "windows",
+        "counts": {
+          "pass": 1278,
+          "fail": 1,
+          "tests": 1279,
+          "files": 158,
+          "seconds": 523.74
+        },
+        "observedFailure": "Full committed catalog import hit450000ms test deadline",
+        "originalLog": "ci-7e47c37-bun-windows.log.gz",
+        "originalSha256": "0cbb426644cba630999a50f5a8cf0d92acdc6e484367051888ad6833f2e30572",
+        "failedTests": [
+          "committed catalog imports offline with the same offers and explicit coverage gaps [450000.73ms]"
+        ]
+      }
+    ],
+    "remainingFailure": "Ubuntu Deno protected /proc process-state read; Windows Bun450-second catalog deadline; Windows Node and Deno600-second suite deadlines with no full footer. Four failed jobs are not accepted.",
+    "psCorrection": "../ocr-model-identity/release-ps-validation.json",
+    "WindowsFilesystemFollowup": "Locally validated bounded directory preparation and successful rename cleanup; full1321-test suite and original catalog pass. Fresh actual platform proof remains required.",
+    "openIssues": [3, 14, 32, 33, 34, 36, 37, 38, 39],
     "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false,
+    "collectionStopActive": true,
     "productDownloads": 0
   },
   "latestDependencyCheckpoint": {
@@ -918,8 +1008,11 @@
     "actualNewPlatformAcceptancePending": true,
     "productDownloads": 0,
     "fullNativeBrowserCiPass": 48,
-    "fullNativeBrowserCiSource": "d46a7d70c1a762a651363278ef67e92195bbddb2",
-    "fullNativeBrowserCiRun": "https://github.com/konard/lazada-search/actions/runs/38158390652"
+    "fullNativeBrowserCiSource": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "fullNativeBrowserCiRun": "https://github.com/konard/lazada-search/actions/runs/38160632497",
+    "currentRuntimeMatrixReceipt": "../ocr-model-identity/ci-7e47c37-review.json",
+    "currentRuntimeMatrixJobsPassed": 5,
+    "currentRuntimeMatrixJobsFailed": 4
   },
   "historicalRuntimeCheckpointE63df14": {
     "sourceCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
@@ -952,6 +1045,84 @@
     }
   },
   "latestReleaseChildFollowup": {
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": true,
+    "productDownloads": 0
+  },
+  "historicalRuntimeCheckpointD46a7d7": {
+    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
+    "receipt": "../ocr-model-identity/ci-d46a7d7-review.json",
+    "runtimeJobsExecuted": 0,
+    "allNineAccepted": false,
+    "nativeBrowserE2ePassed": 48,
+    "nativeBrowserE2eFailures": 0,
+    "nativeBrowserE2eSkips": 0,
+    "remainingFailure": "Final dependency review JSON formatting blocked the runtime matrix before execution. Corrected locally; fresh full platform acceptance remains required.",
+    "priorExecutedRuntimeCheckpoint": "../ocr-model-identity/ci-3821770-review.json",
+    "priorExecutedRuntimeJobsPassed": 8,
+    "deterministicRedirectActualWindowsPass": true,
+    "priorExecutedRuntimeFailure": "Windows Bun real release-versioning child exceeded its separate 20000ms spawnSync timeout, despite completion output. Original failure retained.",
+    "releaseChildFollowup": "Actual child close and owned formatter-tree termination before temporary removal, with completion-text/nonzero/live-grandchild controls; final full localBun1316 and focusedNode/Bun8 each,Deno4 suites8 steps pass. Fresh full original-budget matrix acceptance required.",
+    "allRequirementsDelivered": false,
+    "productDownloads": 0,
+    "scope": "Historical format-blocked matrix; independent native/browser48/48 passed. Superseded as current platform status by completed source7e47c37."
+  },
+  "historicalReleaseChildFollowup": {
     "receipt": "../ocr-model-identity/release-child-validation.json",
     "frozenCode": "../ocr-model-identity/release-child-frozen-code.json",
     "fullLocalBunTestsPassed": 1316,
@@ -962,6 +1133,89 @@
     "currentDenoSteps": 8,
     "actualDelayedChildMs": 21000,
     "confirmedDescendantCancellationFixedLocally": true,
+    "freshCompletePlatformAcceptancePending": true,
+    "productDownloads": 0,
+    "scope": "Historical child completion and tree-cancellation correction before the protected-proc ps follow-up."
+  },
+  "latestReleasePsFollowup": {
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": true,
+    "productDownloads": 0
+  },
+  "latestCatalogIOFollowup": {
+    "receipt": "../ocr-model-identity/catalog-io-validation.json",
+    "frozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "sourceFiles": 595,
+    "installedNativeFiles": 230,
+    "totalFrozenFiles": 825,
+    "fullLocalBunTestsPassed": 1321,
+    "fullLocalBunFailures": 0,
+    "fullLocalBunSkips": 0,
+    "focusedNodeBunDenoStorageCasesEach": 33,
+    "fullOriginalCatalogCasesEachRuntime": 3,
+    "fullOriginalCatalogFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+    "observedKindMkdirCallsBeforeAfter": [288, 1],
+    "observedSuccessfulTempRmCallsBeforeAfter": [289, 0],
+    "fileSyncDirectorySyncRenameCallsPreservedEach": 289,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "noGuaranteedWindowsLatencyClaim": true,
     "freshCompletePlatformAcceptancePending": true,
     "productDownloads": 0
   }

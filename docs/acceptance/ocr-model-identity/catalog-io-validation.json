@@ -1,0 +1,330 @@
+{
+  "checkedAt": "2026-10-11T18:14:07.133860+00:00",
+  "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+  "frozenExecutableSnapshot": "catalog-io-frozen-code.json",
+  "sourceFiles": 595,
+  "installedNativeFiles": 230,
+  "totalFrozenFiles": 825,
+  "productionLibraryChanges": ["src/util.js", "src/store.js"],
+  "dependencyResolutionChanges": [],
+  "reason": "Actual Windows Bun catalog450s deadline; Deno532.77s import then600s cleanup deadline; Node complete suite600s deadline without footer. Remove observed redundant kind mkdir and vanished-temp unlink operations while preserving every durable write. Scoped POSIX ps correction is retained.",
+  "fullLocalBun": {
+    "tests": 1321,
+    "pass": 1321,
+    "fail": 0,
+    "skip": 0,
+    "files": 159,
+    "seconds": 57.12,
+    "wrapperSeconds": 58,
+    "budgetSeconds": 600,
+    "nativeOcrActualPassObserved": true,
+    "originalLog": "catalog-io-review/catalog-io-full-bun.log.gz",
+    "originalBytes": 148726,
+    "originalSha256": "0f9500a71e2c3d5ac67e783d2378acfcce663f46b863f3c7875947f259b3c0c2",
+    "gzipSha256": "a7020632c95e23d6755b1da9bfb5c5910c0f93515bfeece03affc7c059b502cd"
+  },
+  "focusedStorageCasesEachRuntime": 33,
+  "fullOriginalCatalogCasesEachRuntime": 3,
+  "fullOriginalCatalog": {
+    "fixturePath": "docs/tables/catalog.json",
+    "fixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+    "fixtureBytes": 35726819,
+    "fixtureCounts": {
+      "products": 415,
+      "offers": 411,
+      "discoveries": 10237,
+      "skuInventories": 417,
+      "crawls": 17,
+      "availability": 5,
+      "invalidations": 0
+    },
+    "Node": {
+      "status": "passed",
+      "command": "PATH=/Users/konard/.nvm/versions/node/v22.23.0/bin:$PATH UV_THREADPOOL_SIZE=8 bash scripts/run-with-budget-warning.sh 600 \"Node full committed catalog optimized import\" /Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-timeout=450000 tests/catalog-tables.test.js",
+      "log": "node-catalog.log",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "exitCode": 0,
+      "phases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 160,
+          "elapsedMs": 161
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 152922,
+          "elapsedMs": 153083
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 5088,
+          "elapsedMs": 158172
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 219,
+          "elapsedMs": 158393
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 158393
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 2497,
+          "elapsedMs": 160891
+        }
+      ],
+      "zeroDownloadsAssertionPassed": true,
+      "durationMs": 161810.461834
+    },
+    "Bun": {
+      "status": "passed",
+      "command": "PATH=/Users/konard/.nvm/versions/node/v22.23.0/bin:$PATH bash scripts/run-with-budget-warning.sh 600 \"Bun full committed catalog optimized import\" bun test --parallel=2 --no-orphans --timeout 450000 ./tests/catalog-tables.test.js",
+      "log": "bun-catalog.log",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "exitCode": 0,
+      "phases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 46,
+          "elapsedMs": 46
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 5021,
+          "elapsedMs": 5068
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 3170,
+          "elapsedMs": 8239
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 237,
+          "elapsedMs": 8476
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 8479
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 3108,
+          "elapsedMs": 11587
+        }
+      ],
+      "zeroDownloadsAssertionPassed": true,
+      "durationSeconds": 12.18
+    },
+    "Deno": {
+      "status": "passed",
+      "command": "PATH=/Users/konard/.nvm/versions/node/v22.23.0/bin:$PATH bash scripts/run-with-budget-warning.sh 600 \"Deno full committed catalog optimized import\" /private/tmp/lazada-runtime-ci-fixture/runtime-bin/deno test --frozen --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi --allow-net=127.0.0.1,localhost tests/catalog-tables.test.js",
+      "log": "deno-catalog.log",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "exitCode": 0,
+      "phases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 218,
+          "elapsedMs": 218
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 151150,
+          "elapsedMs": 151369
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 9412,
+          "elapsedMs": 160781
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 273,
+          "elapsedMs": 161056
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 161056
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 2983,
+          "elapsedMs": 164040
+        }
+      ],
+      "zeroDownloadsAssertionPassed": true,
+      "wrapperSeconds": 165
+    }
+  },
+  "observedDurableIOCounts": {
+    "source": "first96originaldiscovery rows from full unchanged catalog; diagnostic sample not acceptance",
+    "fixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+    "fixtureBytes": 35726819,
+    "records": 96,
+    "before": {
+      "scope": "Actual unchanged-code durable writes of first96originaldiscovery records, diagnostic sample not whole-catalog acceptance",
+      "runtime": "v22.23.0",
+      "platform": "darwin",
+      "sourceFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+      "sourceFixtureBytes": 35726819,
+      "records": 96,
+      "durationMs": 1274.7444999999998,
+      "counts": {
+        "kindDirectoryMkdir": 288,
+        "temporaryRm": 289,
+        "fileSync": 289,
+        "directorySync": 289,
+        "rename": 289
+      },
+      "storeSourceSha256": "16b43693feabdeafb391a1c6200f8b00e58a1180b96d18e93d3ffd02e7c51168",
+      "utilSourceSha256": "bd01eb211df0e9773aab0390887e7651808b710e3df37c890168b3795354176b"
+    },
+    "after": {
+      "scope": "Actual unchanged-code durable writes of first96originaldiscovery records, diagnostic sample not whole-catalog acceptance",
+      "runtime": "v22.23.0",
+      "platform": "darwin",
+      "sourceFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+      "sourceFixtureBytes": 35726819,
+      "records": 96,
+      "durationMs": 3245.7441249999997,
+      "counts": {
+        "kindDirectoryMkdir": 1,
+        "temporaryRm": 0,
+        "fileSync": 289,
+        "directorySync": 289,
+        "rename": 289
+      },
+      "storeSourceSha256": "f1ed26c7843544c24629970671e89e7ab81b5d6daad723ca828054eb2c81470b",
+      "utilSourceSha256": "97ba038919a5f1d9337929f6385e473e3991eab7c815059300e81da691b669c9"
+    },
+    "producerNote": "Inherited raw producer wording unchanged-code means unchanged original row inputs; source digests in each original log explicitly identify before/after code. Timing samples have different I/O contention and are not used to claim speed."
+  },
+  "scopedPsFocusedCasesNodeBunEach": 8,
+  "scopedPsFocusedDenoSuites": 4,
+  "scopedPsFocusedDenoSteps": 8,
+  "actualMissingPsErrorFails": true,
+  "all825FrozenFilesVerifiedAfterCompleteSuite": true,
+  "rootRepositoryCheck": "catalog-io-doc-review.json",
+  "independentReadOnlyReview": "catalog-io-doc-review.json",
+  "originalAgentReceipt": "catalog-io-review/receipt.json.gz",
+  "originalAgentFiles": "catalog-io-review/originals.json",
+  "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+  "DenoScopedPermissionsUnchanged": true,
+  "noGuaranteedWindowsLatencyClaim": true,
+  "freshCompletePlatformAcceptancePending": true,
+  "remainingAcceptance": "Actual fresh complete nine-runtime and48native/browser CI on the frozen published source; all prior original failures remain rejected.",
+  "productDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false
+}

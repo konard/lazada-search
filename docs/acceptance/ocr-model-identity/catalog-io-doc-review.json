@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-11T18:09:43.593807+00:00",
+  "scope": "Independent read-only ps, atomic-write/batch-directory and four status-document review; fresh platform acceptance still required.",
+  "reviewedFiles": [
+    {
+      "path": "docs/REQUIREMENTS.md",
+      "sha256": "836be38d05e4c19181afee0db0596f1f7b40b42fd4b34711b2fe079a4a835d85",
+      "bytes": 43311
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "c80699aaf9b10756955f0036bb9bff4e1f3c907bc5e92aed8e68c45b5ec74222",
+      "bytes": 30482
+    },
+    {
+      "path": "docs/acceptance/requirements-audit/implementation-updates.json",
+      "sha256": "bfa69e6387a8f30456c260446baf3bae4f8da6abb20df6289e5ef1baef5f925c",
+      "bytes": 63467
+    },
+    {
+      "path": "docs/acceptance/source-integrity/remaining-work.json",
+      "sha256": "e50ad6201957ead7e6f40d879758d5d902ff936821d23f9af2c36425e0a7cce4",
+      "bytes": 21247
+    },
+    {
+      "path": "src/util.js",
+      "sha256": "97ba038919a5f1d9337929f6385e473e3991eab7c815059300e81da691b669c9",
+      "bytes": 1982
+    },
+    {
+      "path": "src/store.js",
+      "sha256": "f1ed26c7843544c24629970671e89e7ab81b5d6daad723ca828054eb2c81470b",
+      "bytes": 11660
+    },
+    {
+      "path": "tests/atomic-write.test.js",
+      "sha256": "220e67ad51cd5cc02d7060466fb61cd0a2ea0cd9cdab91e160c4ceba6e9ca3a2",
+      "bytes": 2907
+    },
+    {
+      "path": "tests/store-batch.test.js",
+      "sha256": "c0a86da294c3c2c8ea785501d38248f892f33705a4abf4e1454fb65dcb60e3c7",
+      "bytes": 21131
+    },
+    {
+      "path": "tests/changeset-config.test.js",
+      "sha256": "5494e3ad053f50cee0b5c35ef48319209ee23ccb06dd14378e8d39eae351df92",
+      "bytes": 14146
+    }
+  ],
+  "findings": [
+    "Owned-process ps inspection retains scoped permissions and fails on unexpected command errors; local evidence is not Linux/Windows acceptance.",
+    "Batch-kind directory preparation is inside the existing writer lock with no global memoization; missing parent recovery occurs only for actual ENOENT.",
+    "Every canonical, binary and digest file sync and atomic rename remains, followed by supported directory sync. Failed content/rename cleanup preserves prior bytes.",
+    "Eight-worker bounds, duplicate ordering, chronological/private fallback and drained failures remain; actual byte/mode/deleted-parent/write-failure/rename-failure regressions passed on three local runtimes.",
+    "Actual source7e47 all9jobs completed:5accepted4rejected; complete native48zero/link444zero are separate accepted observations.",
+    "All nine GitHub issues remain open and market/purchase/production completion flags remain false; CAPTCHA stop remains active."
+  ],
+  "limits": [
+    "Actual final full9runtime/48native acceptance remains required.",
+    "Tree-termination failure retains unsafe fixture, but induced failure with a surviving child was not one of the8 focused release cases; no claim of that branch being fully exercised."
+  ],
+  "repositoryCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "lint": "Passed; strict changed-file agent lint0warnings",
+    "format": "Entire repository passed before final documentation-only receipts; late JSON is formatted and independently checked.",
+    "duplicationPercent": 6.44,
+    "existingThresholdPercent": 10,
+    "originalLog": "catalog-io-review/catalog-io-repository-check.log.gz",
+    "originalBytes": 120738,
+    "originalSha256": "7d0b3c402d06d2979821f37ad7c4f1f8cc4452fa65cfbb8f12ece042b24a3ac2",
+    "gzipSha256": "2e4e3f09c5c59471a8c47159d32aeb333b9c192fd295a0ec19d089c5881e48ca"
+  },
+  "productDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false
+}

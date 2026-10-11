@@ -172,8 +172,9 @@ export class AssociativeStore {
     if (!groups.length) {
       return [];
     }
-    return await this.locked(() =>
-      processGroups(groups, async (entry) => {
+    return await this.locked(async () => {
+      await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
+      return processGroups(groups, async (entry) => {
         const current = await this.get(kind, entry.record.id);
         const currentObserved = Date.parse(current?.observedAt);
         if (
@@ -182,9 +183,9 @@ export class AssociativeStore {
         ) {
           return current;
         }
-        return this.writeRecord(kind, entry);
-      })
-    );
+        return this.writeRecord(kind, { ...entry, directoryPrepared: true });
+      });
+    });
   }
 
   async putMany(kind, inputs) {
@@ -192,12 +193,18 @@ export class AssociativeStore {
     if (!groups.length) {
       return [];
     }
-    return await this.locked(() =>
-      processGroups(groups, (entry) => this.writeRecord(kind, entry))
-    );
+    return await this.locked(async () => {
+      await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
+      return processGroups(groups, (entry) =>
+        this.writeRecord(kind, { ...entry, directoryPrepared: true })
+      );
+    });
   }
 
-  async writeRecord(kind, { record, notation, path }) {
+  async writeRecord(
+    kind,
+    { record, notation, path, directoryPrepared = false }
+  ) {
     const previous = await readOptional(path, 'utf8');
     if (this.visibility === 'private') {
       if (!record.visibility && previous === undefined) {
@@ -214,17 +221,29 @@ export class AssociativeStore {
     }
     // Canonical text commits first. A failed or interrupted binary write is
     // rebuilt on read from the exact canonical file and its digest.
-    await atomicWrite(path, notation);
-    await this.project(kind, record, notation, path);
+    await atomicWrite(path, notation, { directoryPrepared });
+    await this.project(kind, record, notation, path, { directoryPrepared });
     return record;
   }
 
-  async project(kind, record, notation, path) {
+  async project(
+    kind,
+    record,
+    notation,
+    path,
+    { directoryPrepared = false } = {}
+  ) {
     const graph = new DoubletGraph();
     graph.addRecord(kind, record);
     const bytes = graph.toBinary();
-    await atomicWrite(path.replace(/\.lino$/u, '.links'), bytes);
-    await atomicWrite(`${path}.sha256`, `${sha256(notation)}:${sha256(bytes)}`);
+    await atomicWrite(path.replace(/\.lino$/u, '.links'), bytes, {
+      directoryPrepared,
+    });
+    await atomicWrite(
+      `${path}.sha256`,
+      `${sha256(notation)}:${sha256(bytes)}`,
+      { directoryPrepared }
+    );
     return graph;
   }
 

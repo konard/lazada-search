@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T17:28:25.024291+00:00",
+  "checkedAt": "2026-10-11T18:02:01.463Z",
   "priorDatedAudit": "next-implementation-audit.json",
   "implementedSincePriorAudit": [
     "Durable bounded quantity/voucher/payment scenario planning with original-source cache reuse across all interfaces",
@@ -12,11 +12,12 @@
     "Fresh CLI/case and Telegram chocolate/unflavoured defaults plus the existing no-paid-shaker selection policy, with explicit broad replay overrides",
     "Bounded deterministic canonical record reads and full committed-catalog phase diagnostics without write durability or budget changes",
     "Offline-only documentation link-policy guards without uncontrolled online probes or archive-input probes",
-    "Nodepool8 runtime draft and cancellation-safe test teardown; actual small real-store cancellation preserves failure while draining before removal"
+    "Nodepool8 runtime draft and cancellation-safe test teardown; actual small real-store cancellation preserves failure while draining before removal",
+    "Test-only owned-process ps state inspection replaces protected /proc reads while retaining scoped Deno permissions; focused Node/Bun/Deno and full local Bun pass, fresh platform acceptance pending"
   ],
   "remainingEngineering": [
     "Acquire genuine current prepared-checkout originals, then implement and validate an exact observed Lazada layout adapter; current planner accepts source-bound prepared captures only",
-    "Accept the complete actual nine-runtime matrix after correcting final JSON formatting, Deno workspace version metadata and the Windows Bun real release child completion test. Source3821770 accepted every redirect probe; its one20-second subprocess timeout remains preserved. Native/browser source d46a7d7 is48/48 zero errors/skips. Full catalog fixtures, durable writes and450-second test/600-second suite budgets remain unchanged."
+    "Complete actual nine-runtime acceptance after the locally validated ps correction and Windows catalog/suite follow-up. Source7e47c37 completed all9 jobs with5pass4fail; independent48/48 native/browser cases pass. Avoidable NTFS directory operations are being drafted with no platform acceptance. Full original fixtures, durable writes and450-second test/600-second suite/15-minute job budgets remain unchanged."
   ],
   "remainingDataAcceptance": [
     "Authoritative category discovery and every exact relevant SKU price",
@@ -40,11 +41,11 @@
   "remainingOperationalConfiguration": [
     "npm package-owner trusted-publisher configuration (issue32), with mandatory credential preflight retained"
   ],
-  "latestCompleteLocalRuntimeAcceptance": "../ocr-model-identity/validation.json",
+  "latestCompleteLocalRuntimeAcceptance": "../ocr-model-identity/release-ps-validation.json",
   "actualPriorPlatformAcceptance": "../ocr-decimal-portability/ci-16c3aa2-review.json",
-  "latestDraftFrozenCode": "../ocr-model-identity/release-child-frozen-code.json",
+  "latestDraftFrozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
   "remainingValidationAcceptance": [
-    "Fresh complete nine-runtime acceptance on Browser Commander0.31.1/shared Notation0.25.2 after real release child completion and lock metadata correction. Latest actual native/browser48/48 passes; prior skipped/failed runtime matrices are not accepted.",
+    "Fresh final-source complete nine-runtime and48 native/browser acceptance on BrowserCommander0.31.1/shared Notation0.25.2 after the ps and Windows filesystem follow-ups. Current source7e47c37 accepts5/9 runtime jobs and independent48/48 native/browser; four actual failed jobs remain rejected.",
     "Actual live marketplace/CDN/auth behavior after the persisted challenge is resolved and explicitly resumed"
   ],
   "remainingExternalAcceptance": [
@@ -109,7 +110,8 @@
     "auditDurationMs": 5392,
     "compareDurationMs": 228,
     "cleanupDurationMs": 2352,
-    "finding": "Historical source99 diagnostic: local import dominates; Windows Node import then cancelled at450000ms. Later source3821770 accepted bounded filesystem pool8 with full Windows Node1271/1271 and Deno1160+8 steps. See the exact original CI phases; the remaining failure is the separate release child timeout, not catalog or redirect acceptance."
+    "finding": "Historical source99 and source382 diagnostics remain preserved. Current source7e47c37 fails Windows Bun at the450-second catalog-test deadline (complete suite523.74seconds), and Windows Node/Deno reach the600-second suite deadline without complete footers. Deno Windows finished import in532770ms and started cleanup. Avoidable NTFS directory operations are being drafted; no actual optimized platform acceptance is claimed.",
+    "scope": "Preserved historical source99 measurements; later source382 success is not current acceptance."
   },
   "publication": {
     "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
@@ -125,23 +127,105 @@
   },
   "cancellationEvidence": "../ocr-model-identity/post-full-runtime-policy.json",
   "offlinePublicationPolicyAcceptance": {
-    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
-    "workflow": "https://github.com/konard/lazada-search/actions/runs/38158390567",
+    "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "workflow": "https://github.com/konard/lazada-search/actions/runs/38160632506",
     "conclusion": "success",
-    "localLinksPassed": 439,
+    "localLinksPassed": 444,
+    "totalLinks": 34846,
+    "excludedLinks": 34402,
     "errors": 0,
-    "externalURLLivenessAttested": false
+    "externalURLLivenessAttested": false,
+    "evidence": "../ocr-model-identity/ci-7e47c37-review.json"
   },
   "latestRuntimeAcceptance": {
-    "sourceCommit": "3821770761fba16467ec9be8b7aa045b645a1278",
-    "receipt": "../ocr-model-identity/ci-3821770-review.json",
-    "fullRuntimeJobsPassed": 8,
-    "WindowsNodeAccepted": true,
-    "WindowsDenoAccepted": true,
-    "redirectTestsWindowsAccepted": true,
-    "remainingFailure": "Windows Bun release child20000ms spawnSync timeout; complete1275-test suite has1274pass1fail within600s.",
+    "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "receipt": "../ocr-model-identity/ci-7e47c37-review.json",
+    "runtimeJobsExecuted": 9,
+    "matrixJobsPassed": 5,
+    "matrixJobsFailed": 4,
+    "matrixJobsPending": [],
+    "allNineAccepted": false,
     "nativeBrowserE2ePassed": 48,
-    "productDownloads": 0
+    "nativeBrowserE2eFailures": 0,
+    "nativeBrowserE2eCancellations": 0,
+    "nativeBrowserE2eSkips": 0,
+    "nativeBrowserE2eRun": "https://github.com/konard/lazada-search/actions/runs/38160632497",
+    "WindowsNodeAccepted": false,
+    "WindowsDenoAccepted": false,
+    "failedRuntimeJobs": [
+      {
+        "runtime": "deno",
+        "platform": "ubuntu",
+        "counts": {
+          "passed": 1160,
+          "steps": 15,
+          "failed": 1,
+          "failedSteps": 1
+        },
+        "observedFailure": "Owned formatter grandchild state check read protected /proc/3290/stat; scoped Deno NotCapable. Only this new test failed; no --allow-all or suppression accepted.",
+        "originalLog": "ci-7e47c37-deno-ubuntu.log.gz",
+        "originalSha256": "c0f12e847f2311acae71c13d7ce15d89660df9c2d6937045baab1d940833ffef"
+      },
+      {
+        "runtime": "node",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-node-windows.log.gz",
+        "originalSha256": "428b4d0b717bcebecddc74ad7088fcddbc9e4f9ba5acc4bce7320e0b568ba6a2"
+      },
+      {
+        "runtime": "deno",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-deno-windows.log.gz",
+        "originalSha256": "a12306d850f6ed44337a8b72cf6dce4341ce8e167687b532cf227fac3cd1c1f6",
+        "importDurationMs": 532770,
+        "cleanupStarted": true,
+        "cleanupFinished": false
+      },
+      {
+        "runtime": "bun",
+        "platform": "windows",
+        "counts": {
+          "pass": 1278,
+          "fail": 1,
+          "tests": 1279,
+          "files": 158,
+          "seconds": 523.74
+        },
+        "observedFailure": "Full committed catalog import hit450000ms test deadline",
+        "originalLog": "ci-7e47c37-bun-windows.log.gz",
+        "originalSha256": "0cbb426644cba630999a50f5a8cf0d92acdc6e484367051888ad6833f2e30572",
+        "failedTests": [
+          "committed catalog imports offline with the same offers and explicit coverage gaps [450000.73ms]"
+        ]
+      }
+    ],
+    "remainingFailure": "Ubuntu Deno protected /proc process-state read; Windows Bun450-second catalog deadline; Windows Node and Deno600-second suite deadlines with no full footer. Four failed jobs are not accepted.",
+    "psCorrection": "../ocr-model-identity/release-ps-validation.json",
+    "WindowsFilesystemFollowup": "Avoidable NTFS directory operations being drafted; no platform acceptance claimed.",
+    "openIssues": [3, 14, 32, 33, 34, 36, 37, 38, 39],
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false,
+    "collectionStopActive": true,
+    "productDownloads": 0,
+    "fullRuntimeJobsPassed": 5
   },
   "latestDependencyUpdate": {
     "browserCommander": "0.31.1",
@@ -153,7 +237,11 @@
     "actualCompleteNewMatrixPending": true,
     "actualNativeBrowserCiPass": 48,
     "actualNativeBrowserCiFailures": 0,
-    "actualNativeBrowserCiSkips": 0
+    "actualNativeBrowserCiSkips": 0,
+    "actualNativeBrowserCiSource": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "actualNativeBrowserCiRun": "https://github.com/konard/lazada-search/actions/runs/38160632497",
+    "currentRuntimeMatrixJobsPassed": 5,
+    "currentRuntimeMatrixJobsFailed": 4
   },
   "historicalSource99RemotePlatformAcceptance": {
     "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
@@ -173,18 +261,88 @@
     "WindowsDenoSuiteSeconds": 567
   },
   "currentRemotePlatformAcceptance": {
-    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
-    "evidence": "../ocr-model-identity/ci-d46a7d7-review.json",
-    "runtimeJobsExecuted": 0,
+    "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "evidence": "../ocr-model-identity/ci-7e47c37-review.json",
+    "runtimeJobsExecuted": 9,
+    "matrixJobsPassed": 5,
+    "matrixJobsFailed": 4,
+    "matrixJobsPending": [],
     "allNineMatrixJobsPassed": false,
     "nativeE2e": {
       "tests": 48,
       "pass": 48,
       "fail": 0,
       "cancelled": 0,
-      "skipped": 0
+      "skipped": 0,
+      "duration_ms": 408970.534328
     },
-    "remainingFailure": "Final review JSON formatting blocked runtime jobs; fresh corrected source required."
+    "failedRuntimeJobs": [
+      {
+        "runtime": "deno",
+        "platform": "ubuntu",
+        "counts": {
+          "passed": 1160,
+          "steps": 15,
+          "failed": 1,
+          "failedSteps": 1
+        },
+        "observedFailure": "Owned formatter grandchild state check read protected /proc/3290/stat; scoped Deno NotCapable. Only this new test failed; no --allow-all or suppression accepted.",
+        "originalLog": "ci-7e47c37-deno-ubuntu.log.gz",
+        "originalSha256": "c0f12e847f2311acae71c13d7ce15d89660df9c2d6937045baab1d940833ffef"
+      },
+      {
+        "runtime": "node",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-node-windows.log.gz",
+        "originalSha256": "428b4d0b717bcebecddc74ad7088fcddbc9e4f9ba5acc4bce7320e0b568ba6a2"
+      },
+      {
+        "runtime": "deno",
+        "platform": "windows",
+        "counts": {
+          "fullSuiteFooterPresent": false,
+          "budgetExceeded": true,
+          "suiteBudgetSeconds": 600,
+          "exitCode": 124,
+          "accepted": false
+        },
+        "observedFailure": "600-second suite deadline; no complete result footer, not accepted",
+        "originalLog": "ci-7e47c37-deno-windows.log.gz",
+        "originalSha256": "a12306d850f6ed44337a8b72cf6dce4341ce8e167687b532cf227fac3cd1c1f6",
+        "importDurationMs": 532770,
+        "cleanupStarted": true,
+        "cleanupFinished": false
+      },
+      {
+        "runtime": "bun",
+        "platform": "windows",
+        "counts": {
+          "pass": 1278,
+          "fail": 1,
+          "tests": 1279,
+          "files": 158,
+          "seconds": 523.74
+        },
+        "observedFailure": "Full committed catalog import hit450000ms test deadline",
+        "originalLog": "ci-7e47c37-bun-windows.log.gz",
+        "originalSha256": "0cbb426644cba630999a50f5a8cf0d92acdc6e484367051888ad6833f2e30572",
+        "failedTests": [
+          "committed catalog imports offline with the same offers and explicit coverage gaps [450000.73ms]"
+        ]
+      }
+    ],
+    "remainingFailure": "Ubuntu Deno protected /proc process-state read; Windows Bun450-second catalog deadline; Windows Node and Deno600-second suite deadlines with no full footer. Four failed jobs are not accepted.",
+    "WindowsNodeAccepted": false,
+    "WindowsDenoAccepted": false,
+    "productDownloads": 0
   },
   "historicalRuntimeAcceptanceE63df14": {
     "sourceCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
@@ -197,16 +355,173 @@
     "productDownloads": 0
   },
   "latestReleaseChildFollowup": {
-    "receipt": "../ocr-model-identity/release-child-validation.json",
-    "frozenCode": "../ocr-model-identity/release-child-frozen-code.json",
-    "fullLocalBunTestsPassed": 1316,
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": true,
+    "productDownloads": 0
+  },
+  "allTargetProductsCollected": false,
+  "collectionStopActive": true,
+  "latestLocalReleasePsAcceptance": {
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": true,
+    "productDownloads": 0
+  },
+  "historicalRuntimeAcceptance3821770": {
+    "sourceCommit": "3821770761fba16467ec9be8b7aa045b645a1278",
+    "receipt": "../ocr-model-identity/ci-3821770-review.json",
+    "fullRuntimeJobsPassed": 8,
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "redirectTestsWindowsAccepted": true,
+    "remainingFailure": "Windows Bun release child20000ms spawnSync timeout; complete1275-test suite has1274pass1fail within600s.",
+    "nativeBrowserE2ePassed": 48,
+    "productDownloads": 0,
+    "scope": "Historical eight-job checkpoint; source7e47c37 supersedes current platform status."
+  },
+  "historicalRemotePlatformAcceptanceD46a7d7": {
+    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
+    "evidence": "../ocr-model-identity/ci-d46a7d7-review.json",
+    "runtimeJobsExecuted": 0,
+    "allNineMatrixJobsPassed": false,
+    "nativeE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "remainingFailure": "Final review JSON formatting blocked runtime jobs; fresh corrected source required.",
+    "scope": "Historical format-blocked matrix with independent48 native/browser passes; no runtime jobs executed."
+  },
+  "latestCatalogIOFollowup": {
+    "receipt": "../ocr-model-identity/catalog-io-validation.json",
+    "frozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "sourceFiles": 595,
+    "installedNativeFiles": 230,
+    "totalFrozenFiles": 825,
+    "fullLocalBunTestsPassed": 1321,
     "fullLocalBunFailures": 0,
     "fullLocalBunSkips": 0,
-    "localFocusedNodeBunCasesEach": 8,
-    "currentDenoSuites": 4,
-    "currentDenoSteps": 8,
-    "actualDelayedChildMs": 21000,
-    "confirmedDescendantCancellationFixedLocally": true,
+    "focusedNodeBunDenoStorageCasesEach": 33,
+    "fullOriginalCatalogCasesEachRuntime": 3,
+    "fullOriginalCatalogFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+    "observedKindMkdirCallsBeforeAfter": [288, 1],
+    "observedSuccessfulTempRmCallsBeforeAfter": [289, 0],
+    "fileSyncDirectorySyncRenameCallsPreservedEach": 289,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "noGuaranteedWindowsLatencyClaim": true,
     "freshCompletePlatformAcceptancePending": true,
     "productDownloads": 0
   }

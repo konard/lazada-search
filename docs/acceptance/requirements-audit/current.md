@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T17:37:58.829Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T18:15:05.176Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -97,7 +97,6 @@ Implemented collection mechanics and passing fixture tests do not satisfy missin
 | R024 | Telegram interface with E2E tests                                                                   | local-mock-e2e-passed-live-deployment-pending                                                                                                                                                 |
 | R025 | Fully automated existing account / separate profile login                                           | credential-dependent-unconfirmed-current-session                                                                                                                                              |
 | R029 | No restore/translation/promotional browser chrome obstruction                                       | upstream-state-not-live-rechecked                                                                                                                                                             |
-| R033 | Update Browser Commander when newer version available                                               | installed-0.31.1-shared-notation-0.25.2-native-browser-48-accepted-complete-platform-matrix-pending                                                                                           |
 | R035 | Publish top10 partial prices immediately                                                            | partial-buying-data                                                                                                                                                                           |
 | R037 | Production ready and exhaustive market winner                                                       | missing                                                                                                                                                                                       |
 | R038 | Independent ice grams/ml/protein rankings and dual-unit details                                     | 2-of14 captured selling units have both supported grams and millilitres;3 have a supported protein denominator; current usable rankings5gram/7ml/2protein, zero exact frozen delivered quotes |
@@ -107,7 +106,7 @@ Implemented collection mechanics and passing fixture tests do not satisfy missin
 | R043 | Protein type, ingredients and disclosed nutritional components for healthy-buy comparison           | partial                                                                                                                                                                                       |
 | R046 | Disputed package quantities and ambiguous OCR must not produce unit-price rankings                  | pending-exact-market-package-formula-label-identity                                                                                                                                           |
 | R047 | Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders | pending-exact-bonus-identity-formula-stock-and-order-eligibility-for-real-offers                                                                                                              |
-| R048 | Native OCR model bytes and actual platform recipes bind cache provenance                            | actual-native-browser-48-accepted-on-0.31.1-complete-platform-matrix-pending                                                                                                                  |
+| R048 | Native OCR model bytes and actual platform recipes bind cache provenance                            | actual-source7e47-native-browser-48-accepted;complete-runtime-matrix-rejected5-pass4-fail                                                                                                     |
 
 [Full implementation review](implementation-review.md) · [Independent cached-list and SKU review](coverage-review.md) · [Buying tables](../../tables/top-10-partial.md) · [Requirements](../../REQUIREMENTS.md) · [Roadmap](../../ROADMAP.md)
 

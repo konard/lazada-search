@@ -119,17 +119,30 @@ async function runReleaseChild(args, { cwd, env, signal, onStdout } = {}) {
 function processCanWrite(pid) {
   try {
     process.kill(pid, 0);
-    if (process.platform === 'linux') {
-      const status = readFileSync(`/proc/${pid}/stat`, 'utf8');
-      return !/^Z\b/.test(status.slice(status.lastIndexOf(')') + 2));
-    }
-    return true;
   } catch (error) {
-    if (error.code === 'ESRCH' || error.code === 'ENOENT') {
+    if (error.code === 'ESRCH') {
       return false;
     }
     throw error;
   }
+  if (process.platform === 'win32') {
+    return true;
+  }
+  const state = spawnSync('ps', ['-o', 'stat=', '-p', String(pid)], {
+    encoding: 'utf8',
+  });
+  if (state.error) {
+    throw state.error;
+  }
+  if (state.status === 1 && !state.stdout.trim() && !state.stderr.trim()) {
+    return false;
+  }
+  assert.equal(state.status, 0, `Owned process state failed: ${state.stderr}`);
+  assert.equal(state.signal, null);
+  assert.equal(state.stderr.trim(), '');
+  const value = state.stdout.trim();
+  assert.match(value, /^[A-Za-z][A-Za-z0-9+<]*$/);
+  return !value.startsWith('Z');
 }
 
 describe('Changesets release formatter', () => {

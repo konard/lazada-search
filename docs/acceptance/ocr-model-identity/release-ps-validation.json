@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-10-11T17:57:35.712021+00:00",
+  "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+  "frozenExecutableSnapshot": "release-ps-frozen-code.json",
+  "sourceFiles": 593,
+  "installedNativeFiles": 230,
+  "totalFrozenFiles": 823,
+  "reason": "Actual scoped Ubuntu Deno rejects protected proc state reads. Use real ps for only the owned POSIX PID; no all-access permission or suppression.",
+  "productionLibraryChanges": [],
+  "dependencyResolutionChanges": [],
+  "fullLocalBun": {
+    "tests": 1316,
+    "pass": 1316,
+    "fail": 0,
+    "skip": 0,
+    "files": 158,
+    "seconds": 74.83,
+    "wrapperSeconds": 75,
+    "budgetSeconds": 600,
+    "nativeOcrActualPassObserved": true,
+    "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+    "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+    "originalBytes": 149277,
+    "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+  },
+  "focusedActualRuntimeResults": {
+    "Node": {
+      "version": "22.23.0",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "cancel": 0,
+      "skip": 0,
+      "durationMs": 1381.527667,
+      "exitCode": 0,
+      "log": "node-ps.log"
+    },
+    "Bun": {
+      "version": "1.4.3",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "durationMs": 859,
+      "exitCode": 0,
+      "log": "bun-ps.log"
+    },
+    "Deno": {
+      "version": "2.9.7",
+      "suites": 4,
+      "steps": 8,
+      "failed": 0,
+      "durationMs": 848,
+      "exitCode": 0,
+      "frozenCachedOnly": true,
+      "log": "deno-2.9.7-ps.log"
+    }
+  },
+  "actualMissingPsFaultThrows": true,
+  "originalAgentReceipt": "release-ps-review/ps-inspection-receipt.json.gz",
+  "originalAgentFiles": "release-ps-review/originals.json",
+  "remainingActualAcceptance": "Fresh complete nine-runtime and48native/browser CI; source7e47WindowsBun catalog450s deadline additionally rejected. No local Windows/Linux proof claimed.",
+  "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+  "DenoScopedPermissionsUnchanged": true,
+  "productDownloads": 0,
+  "collectionStopActive": true,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false
+}
