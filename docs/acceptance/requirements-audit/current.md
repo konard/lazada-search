@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T12:42:03.325Z, from the published catalog observed at 2026-10-11T12:20:06.492Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T12:46:34.046Z, from the published catalog observed at 2026-10-11T12:20:06.492Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -28,17 +28,17 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 
 | Issue                                                    | Requirement                                                                                         | State  |
 | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------ |
-| [#28](https://github.com/konard/lazada-search/issues/28) | Keep full associative archive decode working for the 144MB saved notation                           | OPEN   |
-| [#27](https://github.com/konard/lazada-search/issues/27) | Inspect and pace every image redirect hop before following it                                       | OPEN   |
-| [#26](https://github.com/konard/lazada-search/issues/26) | Detect and cache original image-endpoint challenges before OCR retries                              | OPEN   |
-| [#25](https://github.com/konard/lazada-search/issues/25) | Propagate collection stops from image and OCR workflows immediately                                 | OPEN   |
-| [#24](https://github.com/konard/lazada-search/issues/24) | Bound reciprocal cross-host manufacturer redirect scheduling without deferred requests              | OPEN   |
-| [#23](https://github.com/konard/lazada-search/issues/23) | Persist a collection stop for original manufacturer Cloudflare challenge responses                  | OPEN   |
-| [#22](https://github.com/konard/lazada-search/issues/22) | Batch chronological catalog imports to avoid full-case replay timeout                               | OPEN   |
-| [#21](https://github.com/konard/lazada-search/issues/21) | Selected package label conflicts create wrong gram prices in two cheapest powder rows               | OPEN   |
-| [#20](https://github.com/konard/lazada-search/issues/20) | Preserve reviewed paid package mass when replaying the identical original source                    | OPEN   |
-| [#19](https://github.com/konard/lazada-search/issues/19) | Hold seller net mass when same-product protein and serving count contradict the package denominator | OPEN   |
-| [#18](https://github.com/konard/lazada-search/issues/18) | Defer automatic public checkpoints when unrelated changes are staged without stopping collection    | OPEN   |
+| [#28](https://github.com/konard/lazada-search/issues/28) | Keep full associative archive decode working for the 144MB saved notation                           | CLOSED |
+| [#27](https://github.com/konard/lazada-search/issues/27) | Inspect and pace every image redirect hop before following it                                       | CLOSED |
+| [#26](https://github.com/konard/lazada-search/issues/26) | Detect and cache original image-endpoint challenges before OCR retries                              | CLOSED |
+| [#25](https://github.com/konard/lazada-search/issues/25) | Propagate collection stops from image and OCR workflows immediately                                 | CLOSED |
+| [#24](https://github.com/konard/lazada-search/issues/24) | Bound reciprocal cross-host manufacturer redirect scheduling without deferred requests              | CLOSED |
+| [#23](https://github.com/konard/lazada-search/issues/23) | Persist a collection stop for original manufacturer Cloudflare challenge responses                  | CLOSED |
+| [#22](https://github.com/konard/lazada-search/issues/22) | Batch chronological catalog imports to avoid full-case replay timeout                               | CLOSED |
+| [#21](https://github.com/konard/lazada-search/issues/21) | Selected package label conflicts create wrong gram prices in two cheapest powder rows               | CLOSED |
+| [#20](https://github.com/konard/lazada-search/issues/20) | Preserve reviewed paid package mass when replaying the identical original source                    | CLOSED |
+| [#19](https://github.com/konard/lazada-search/issues/19) | Hold seller net mass when same-product protein and serving count contradict the package denominator | CLOSED |
+| [#18](https://github.com/konard/lazada-search/issues/18) | Defer automatic public checkpoints when unrelated changes are staged without stopping collection    | CLOSED |
 | [#17](https://github.com/konard/lazada-search/issues/17) | Whey Chocolate Ice Cream flavour overrides powder category during original replay                   | CLOSED |
 | [#16](https://github.com/konard/lazada-search/issues/16) | Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination          | CLOSED |
 | [#15](https://github.com/konard/lazada-search/issues/15) | Explicit container metric package mass loses to rounded pound headline                              | CLOSED |
