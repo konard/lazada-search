@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T08:49:18.181Z",
-  "catalogObservedAt": "2026-10-11T08:46:25.800Z",
+  "checkedAt": "2026-10-11T09:00:24.892Z",
+  "catalogObservedAt": "2026-10-11T08:59:56.147Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -123,7 +123,7 @@
         "docs/acceptance/collection-progress.json",
         "docs/tables/catalog.json"
       ],
-      "finding": "1616 active missing listings and143 strict missingSKU prices;1629/406 in broader public audit."
+      "finding": "Current discovered listing/SKU gaps are recalculated in activeScope and broaderArchive in current.json; dated review counts are historical snapshots. Source completeness does not establish authoritative market inventory."
     },
     {
       "id": "R009",
@@ -520,6 +520,12 @@
   ],
   "githubIssues": [
     {
+      "number": 18,
+      "title": "Defer automatic public checkpoints when unrelated changes are staged without stopping collection",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/18"
+    },
+    {
       "number": 17,
       "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
       "state": "CLOSED",
@@ -625,9 +631,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "01a2d35068968ff86d750340c047ece138d05258fe796f1bc66203045b0d3989",
-      "bytes": 34896709,
-      "observedAt": "2026-10-11T08:46:25.800Z"
+      "sha256": "c55e62ff7898351fcfde4a8e329e07d47724334e0379df93002661fa79db85f7",
+      "bytes": 34896729,
+      "observedAt": "2026-10-11T08:59:56.147Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -637,8 +643,8 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "748c8eacc0cb394ae07fcb37ba146ad0ec1bd9a20f3130739870c1cb6259f626",
-      "bytes": 26490,
+      "sha256": "1a3af1fec470092c86ae229982697dadacbc0680c29e07eb33128f637c655b13",
+      "bytes": 26763,
       "observedAt": "2026-10-11T08:44:43.901936+00:00"
     },
     {
@@ -649,21 +655,21 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "e84b15b4f212979e2fc3acdded852a19620ee5f6265c0ea5cee8019abc174055",
-      "bytes": 24451,
+      "sha256": "d25ce9b564839203e127cdb200320f328adbea26e9d053ba9bb4c3a759a8d0de",
+      "bytes": 26304,
       "observedAt": null
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "be33db0ec2815b168733f7366709193bc5a1df4e59c58844ec322c363a0bb1bf",
+      "sha256": "1030ddfa4cd1499f0122fda0dcfffb198e60768d1cb1025b00ce8ef41eccdf1b",
       "bytes": 193637,
-      "observedAt": "2026-10-11T08:46:40.997Z"
+      "observedAt": "2026-10-11T09:00:12.736Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "1c9267c224ec4504a47eaa60d7619b0a3a65311951ec780473ca9e7a9e4b06e9",
+      "sha256": "a710a5fbfd85a8b79eea72445955da7b85339050d19fc1e679708f637af25f87",
       "bytes": 12060333,
-      "observedAt": "2026-10-11T08:46:45.935Z"
+      "observedAt": "2026-10-11T09:00:18.228Z"
     }
   ],
   "downloads": 0,

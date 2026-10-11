@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T08:49:18.181Z, from the published catalog observed at 2026-10-11T08:46:25.800Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T09:00:24.892Z, from the published catalog observed at 2026-10-11T08:59:56.147Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1323 uncollected listings**, **341 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -26,25 +26,26 @@ The active chocolate/plain whey and chocolate ice-cream case has **1323 uncollec
 
 This state is from the saved GitHub inventory, whose SHA-256 is recorded in [current.json](current.json). Re-run the inventory download before resolving an issue or interpreting a later state.
 
-| Issue                                                    | Requirement                                                                                   | State  |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------ |
-| [#17](https://github.com/konard/lazada-search/issues/17) | Whey Chocolate Ice Cream flavour overrides powder category during original replay             | CLOSED |
-| [#16](https://github.com/konard/lazada-search/issues/16) | Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination    | CLOSED |
-| [#15](https://github.com/konard/lazada-search/issues/15) | Explicit container metric package mass loses to rounded pound headline                        | CLOSED |
-| [#14](https://github.com/konard/lazada-search/issues/14) | Verify and count food gifts in bulk selling options separately from accessory gifts           | OPEN   |
-| [#13](https://github.com/konard/lazada-search/issues/13) | Selected SKU manufacturer conflicts are hidden by the parent listing brand                    | CLOSED |
-| [#12](https://github.com/konard/lazada-search/issues/12) | Redact embedded manufacturer access tokens before committing original evidence                | CLOSED |
-| [#11](https://github.com/konard/lazada-search/issues/11) | Nutrition label OCR drops decimal points despite high confidence                              | CLOSED |
-| [#10](https://github.com/konard/lazada-search/issues/10) | Older cached observations overwrite newer SKU prices and package facts                        | CLOSED |
-| [#9](https://github.com/konard/lazada-search/issues/9)   | Ice rankings reuse withheld package weights and create unsupported gram prices                | CLOSED |
-| [#8](https://github.com/konard/lazada-search/issues/8)   | Human food filtering admits animal feed and non-frozen protein bars; cache exclusions         | CLOSED |
-| [#7](https://github.com/konard/lazada-search/issues/7)   | Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout | CLOSED |
-| [#6](https://github.com/konard/lazada-search/issues/6)   | Recognize ice-cream carton category and exact selling-unit package count                      | CLOSED |
-| [#5](https://github.com/konard/lazada-search/issues/5)   | Distinguish capture provenance metadata from stored blob references during archive export     | CLOSED |
-| [#4](https://github.com/konard/lazada-search/issues/4)   | Prefer selected metric selling-unit weights over imperial headline conversions                | CLOSED |
-| [#3](https://github.com/konard/lazada-search/issues/3)   | Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage   | OPEN   |
-| [#2](https://github.com/konard/lazada-search/issues/2)   | Failed persistent browser reconnect deletes another live worker descriptor                    | CLOSED |
-| [#1](https://github.com/konard/lazada-search/issues/1)   | Account workflow retains stale archive shards after re-export                                 | CLOSED |
+| Issue                                                    | Requirement                                                                                      | State  |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------ |
+| [#18](https://github.com/konard/lazada-search/issues/18) | Defer automatic public checkpoints when unrelated changes are staged without stopping collection | OPEN   |
+| [#17](https://github.com/konard/lazada-search/issues/17) | Whey Chocolate Ice Cream flavour overrides powder category during original replay                | CLOSED |
+| [#16](https://github.com/konard/lazada-search/issues/16) | Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination       | CLOSED |
+| [#15](https://github.com/konard/lazada-search/issues/15) | Explicit container metric package mass loses to rounded pound headline                           | CLOSED |
+| [#14](https://github.com/konard/lazada-search/issues/14) | Verify and count food gifts in bulk selling options separately from accessory gifts              | OPEN   |
+| [#13](https://github.com/konard/lazada-search/issues/13) | Selected SKU manufacturer conflicts are hidden by the parent listing brand                       | CLOSED |
+| [#12](https://github.com/konard/lazada-search/issues/12) | Redact embedded manufacturer access tokens before committing original evidence                   | CLOSED |
+| [#11](https://github.com/konard/lazada-search/issues/11) | Nutrition label OCR drops decimal points despite high confidence                                 | CLOSED |
+| [#10](https://github.com/konard/lazada-search/issues/10) | Older cached observations overwrite newer SKU prices and package facts                           | CLOSED |
+| [#9](https://github.com/konard/lazada-search/issues/9)   | Ice rankings reuse withheld package weights and create unsupported gram prices                   | CLOSED |
+| [#8](https://github.com/konard/lazada-search/issues/8)   | Human food filtering admits animal feed and non-frozen protein bars; cache exclusions            | CLOSED |
+| [#7](https://github.com/konard/lazada-search/issues/7)   | Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout    | CLOSED |
+| [#6](https://github.com/konard/lazada-search/issues/6)   | Recognize ice-cream carton category and exact selling-unit package count                         | CLOSED |
+| [#5](https://github.com/konard/lazada-search/issues/5)   | Distinguish capture provenance metadata from stored blob references during archive export        | CLOSED |
+| [#4](https://github.com/konard/lazada-search/issues/4)   | Prefer selected metric selling-unit weights over imperial headline conversions                   | CLOSED |
+| [#3](https://github.com/konard/lazada-search/issues/3)   | Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage      | OPEN   |
+| [#2](https://github.com/konard/lazada-search/issues/2)   | Failed persistent browser reconnect deletes another live worker descriptor                       | CLOSED |
+| [#1](https://github.com/konard/lazada-search/issues/1)   | Account workflow retains stale archive shards after re-export                                    | CLOSED |
 
 ## Outstanding requirement acceptance
 
