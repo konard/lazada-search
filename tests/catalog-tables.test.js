@@ -79,6 +79,10 @@ test('Markdown export retains a newly collected product without a pre-existing m
     join(directory, 'scripts/export-catalog-tables.mjs')
   );
   await copyFile(
+    join(root, 'scripts/catalog-markdown-pages.mjs'),
+    join(directory, 'scripts/catalog-markdown-pages.mjs')
+  );
+  await copyFile(
     join(root, 'tests/fixtures/products.json'),
     join(directory, 'tests/fixtures/products.json')
   );

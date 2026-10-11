@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T13:15:37.848283+00:00",
+  "priorAcceptedImplementationCommit": "c7149901c1877c12cc6a08c4e65ed0a42dd58224",
+  "priorAcceptedValidation": "validation.json",
+  "scope": "Repository CI, example preview readiness and lossless Markdown report paging; marketplace extraction/runtime files remain unchanged.",
+  "catalogPagination": "catalog-pagination.json",
+  "downloads": 0,
+  "newManufacturerOrDeliveryFactsApproved": false,
+  "issues": [
+    {
+      "number": 29,
+      "url": "https://github.com/konard/lazada-search/issues/29",
+      "status": "awaiting-real-ubuntu-sandbox-run",
+      "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398080",
+      "failedHelperFollowup": "https://github.com/konard/lazada-search/actions/runs/38141001119",
+      "fix": "Chromium-documented AppArmor namespace exemption attached only to exact canonical job-cache executables; host restrictions and Chromium sandbox remain enabled. Smoke checks downloaded normal/headless and installed Chrome before the suite."
+    },
+    {
+      "number": 30,
+      "url": "https://github.com/konard/lazada-search/issues/30",
+      "status": "local-real-browser-preview-passed;remote-workflow-pending",
+      "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398065",
+      "fix": "Build and upload the ordinary web artifact independently; deploy only an already configured Actions Pages site. Preview checks current rendered import/package controls, error state and fonts."
+    },
+    {
+      "number": 31,
+      "url": "https://github.com/konard/lazada-search/issues/31",
+      "status": "row-preservation-passed;final-checks-pending",
+      "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398064",
+      "fix": "Bounded linked Markdown pages preserve every original inventory and review row, with headers and navigation; no architecture guard is relaxed."
+    },
+    {
+      "number": 32,
+      "url": "https://github.com/konard/lazada-search/issues/32",
+      "status": "external-package-owner-configuration-required",
+      "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398064",
+      "finding": "The package-specific npm OIDC exchange returned 404 and no bootstrap token is configured. The mandatory preflight remains active; no registry credentials or settings are fabricated."
+    }
+  ],
+  "fullLocalSuites": "running-current-frozen-code;previous-1261-unit-and-47-e2e-acceptance-preserved-in-validation.json",
+  "remoteAcceptance": "pending",
+  "allRequirementsDelivered": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "actualCollectionStop": "natural-chocolate-manufacturer/collection-stop.json",
+  "focusedSandboxTests": {
+    "tests": 24,
+    "pass": 24,
+    "fail": 0,
+    "skipped": 0
+  },
+  "focusedExampleWorkflowTests": {
+    "tests": 65,
+    "pass": 65,
+    "fail": 0,
+    "skipped": 0
+  },
+  "previewRealLocalBrowserPassed": true,
+  "sandboxRealLocalMacBrowserContractPassed": true,
+  "repositoryChecks": {
+    "command": "npm run check",
+    "exitCode": 0
+  },
+  "typescript": {
+    "exitCode": 0
+  },
+  "strictModifiedJavaScriptLint": {
+    "exitCode": 0,
+    "warnings": 0
+  },
+  "frozenCode": "ci-frozen-code.json",
+  "testLogReceipts": "ci-test-evidence.json"
+}

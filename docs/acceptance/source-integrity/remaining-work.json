@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T12:41:50.976857+00:00",
+  "checkedAt": "2026-10-11T13:09:31.072885+00:00",
   "priorDatedAudit": "next-implementation-audit.json",
   "implementedSincePriorAudit": [
     "Durable bounded quantity/voucher/payment scenario planning with original-source cache reuse across all interfaces",
@@ -25,11 +25,15 @@
   "allRequirementsDelivered": false,
   "productionReady": false,
   "purchaseReady": false,
-  "remainingIssues": [3, 14],
+  "remainingIssues": [3, 14, 29, 30, 31, 32],
   "imageRedirectIssue": "https://github.com/konard/lazada-search/issues/27",
   "imageRedirectMechanics": "focused62/62-and-real-local-browser2/2-passed;final-full-unit-and-e2e-passed",
   "imageRedirectLiveAcceptance": "pending actual marketplace/CDN contract under current security stop",
   "runtimeConfigurationPresence": "runtime-configuration-presence.json",
   "fullValidation": "validation.json",
-  "archiveGrowthFollowup": "github-publication.json"
+  "archiveGrowthFollowup": "github-publication.json",
+  "repositoryCiFollowup": "ci-followup.json",
+  "remainingOperationalConfiguration": [
+    "npm package-owner trusted-publisher configuration (issue32), with mandatory credential preflight retained"
+  ]
 }

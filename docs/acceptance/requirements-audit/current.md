@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T12:46:34.046Z, from the published catalog observed at 2026-10-11T12:20:06.492Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T13:10:54.985Z, from the published catalog observed at 2026-10-11T13:06:26.070Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -28,6 +28,10 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 
 | Issue                                                    | Requirement                                                                                         | State  |
 | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------ |
+| [#32](https://github.com/konard/lazada-search/issues/32) | Configure npm trusted publishing before enabling a successful release                               | OPEN   |
+| [#31](https://github.com/konard/lazada-search/issues/31) | Keep complete generated catalog Markdown within the architecture line limit                         | OPEN   |
+| [#30](https://github.com/konard/lazada-search/issues/30) | Build previews without requiring an unconfigured Pages deployment                                   | OPEN   |
+| [#29](https://github.com/konard/lazada-search/issues/29) | Run sandboxed Chromium E2E on the Ubuntu 24.04 CI image                                             | OPEN   |
 | [#28](https://github.com/konard/lazada-search/issues/28) | Keep full associative archive decode working for the 144MB saved notation                           | CLOSED |
 | [#27](https://github.com/konard/lazada-search/issues/27) | Inspect and pace every image redirect hop before following it                                       | CLOSED |
 | [#26](https://github.com/konard/lazada-search/issues/26) | Detect and cache original image-endpoint challenges before OCR retries                              | CLOSED |

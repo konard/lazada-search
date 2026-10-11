@@ -27,19 +27,78 @@ jobs:
           node-version: '22.x'
           cache: npm
       - run: npm ci
-      - name: Use the installed Chrome sandbox helper
+      - name: Install Chromium and local OCR
         shell: bash
         run: |
-          sandbox_helper=/opt/google/chrome/chrome-sandbox
-          test -f "$sandbox_helper"
-          test -u "$sandbox_helper"
-          test "$(stat -c '%u' "$sandbox_helper")" = 0
-          echo "CHROME_DEVEL_SANDBOX=$sandbox_helper" >> "$GITHUB_ENV"
-      - name: Install Chromium and local OCR
-        run: |
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/lazada-playwright"
+          echo "PLAYWRIGHT_BROWSERS_PATH=$PLAYWRIGHT_BROWSERS_PATH" >> "$GITHUB_ENV"
           npx playwright install --with-deps chromium
           sudo apt-get update
           sudo apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie
+      # Chromium's documented selective userns exception. Only canonical browser
+      # executables in this job's cache are attached; host restrictions stay on.
+      # https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+      - name: Allow sandbox namespaces for exact test browser executables
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v apparmor_parser >/dev/null; then
+            echo "::error::AppArmor parser is missing on the Ubuntu E2E runner"
+            exit 1
+          fi
+          if [[ "$(cat /sys/module/apparmor/parameters/enabled)" != Y ]]; then
+            echo "::error::AppArmor is not enabled; refusing an unverified sandbox configuration"
+            exit 1
+          fi
+          browser_root=$(realpath "$PLAYWRIGHT_BROWSERS_PATH")
+          if [[ "$browser_root" != "$RUNNER_TEMP/lazada-playwright" ]]; then
+            echo "::error::Unexpected Playwright browser cache: $browser_root"
+            exit 1
+          fi
+          profile_file="$RUNNER_TEMP/lazada-playwright-userns"
+          printf 'abi <abi/4.0>,\ninclude <tunables/global>\n' > "$profile_file"
+          browser_count=0
+          while IFS= read -r -d '' candidate; do
+            browser_path=$(realpath "$candidate")
+            if [[ "$browser_path" != "$browser_root/"* || ! "$browser_path" =~ ^/[a-zA-Z0-9_./-]+$ ]]; then
+              echo "::error::Unsafe browser attachment path: $browser_path"
+              exit 1
+            fi
+            browser_count=$((browser_count + 1))
+            printf 'profile lazada-playwright-%s "%s" flags=(unconfined) {\n  userns,\n}\n' "$browser_count" "$browser_path" >> "$profile_file"
+            echo "Sandbox namespace profile: $browser_path"
+          done < <(find "$browser_root" -type f \( -name chrome -o -name chrome-headless-shell -o -name headless_shell \) -perm -u+x -print0)
+          if [[ "$browser_count" -lt 2 ]]; then
+            echo "::error::Expected installed Chromium and headless-shell executables, found $browser_count"
+            exit 1
+          fi
+          sudo install -o root -g root -m 0644 "$profile_file" /etc/apparmor.d/lazada-playwright-userns
+          if ! sudo apparmor_parser -r /etc/apparmor.d/lazada-playwright-userns; then
+            echo "::error::Failed to load the exact Chromium sandbox namespace profile"
+            exit 1
+          fi
+      - name: Verify normal, headless and installed Chrome with the sandbox enabled
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          for (const channel of [undefined, 'chromium', 'chrome']) {
+            const browser = await chromium.launch({ headless: true, chromiumSandbox: true, args: ['--enable-automation'], ...(channel ? { channel } : {}) });
+            try {
+              const session = await browser.newBrowserCDPSession();
+              const { arguments: args } = await session.send('Browser.getBrowserCommandLine');
+              if (args.some((arg) => /^--(?:no-sandbox|disable-(?:setuid|namespace|seccomp-filter)-sandbox)(?:=|$)/.test(arg))) {
+                throw new Error('Chromium launched with a disabled sandbox');
+              }
+              const page = await browser.newPage();
+              await page.setContent('<h1>Sandbox smoke check</h1>');
+              if (await page.locator('h1').textContent() !== 'Sandbox smoke check') throw new Error('Sandboxed renderer failed');
+              console.log(`Sandbox-enabled Chromium smoke passed: ${channel ?? 'headless-shell'}`);
+            } finally {
+              await browser.close();
+            }
+          }
+          NODE
       - name: Install the associative binary store CLI
         run: cargo install link-cli --version 1.0.0 --locked
       - name: Run complete deterministic E2E tests

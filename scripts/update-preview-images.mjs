@@ -11,6 +11,7 @@
  *   node scripts/update-preview-images.mjs
  *   PREVIEW_VERBOSE=1 node scripts/update-preview-images.mjs
  *   node scripts/update-preview-images.mjs --skip-build   # reuse existing dist
+ *   node scripts/update-preview-images.mjs --output-dir /tmp/example-preview
  *
  * The matrix is sized to demonstrate locale × theme variation even when the
  * shipped example app does not yet have i18n or a theme toggle: downstream
@@ -75,10 +76,17 @@ function verbose(message) {
 }
 
 function parseArgs(argv) {
-  const args = { skipBuild: false };
-  for (const value of argv) {
+  const args = { skipBuild: false, outputDir: screenshotsDir };
+  for (let index = 0; index < argv.length; index += 1) {
+    const value = argv[index];
     if (value === '--skip-build') {
       args.skipBuild = true;
+    } else if (value === '--output-dir') {
+      const directory = argv[++index];
+      if (!directory || directory.startsWith('--')) {
+        throw new Error('--output-dir requires a directory');
+      }
+      args.outputDir = path.resolve(directory);
     } else if (value === '--help' || value === '-h') {
       args.help = true;
     } else {
@@ -201,7 +209,42 @@ async function reportPng(label, filePath) {
   }
 }
 
-async function captureTile({ browser, locale, theme, contextLocale, url }) {
+async function waitForPreviewReady(page) {
+  const visible = { state: 'visible', timeout: 10000 };
+  await page
+    .getByRole('heading', { name: 'Lazada protein comparison', exact: true })
+    .waitFor(visible);
+  const records = page.getByLabel('Product records', { exact: true });
+  await records.waitFor(visible);
+  const quantity = page.getByLabel('Packages', { exact: true });
+  await quantity.waitFor(visible);
+  await page
+    .getByRole('heading', { name: 'Offers needing information', exact: true })
+    .waitFor(visible);
+  if (
+    (await records.getAttribute('type')) !== 'file' ||
+    (await records.getAttribute('accept')) !== '.json' ||
+    (await quantity.getAttribute('type')) !== 'number' ||
+    (await quantity.inputValue()) !== '1'
+  ) {
+    throw new Error('Example app import or package controls are not ready');
+  }
+  const error = (await page.getByRole('status').textContent()).trim();
+  if (error) {
+    throw new Error(`Example app comparison failed: ${error}`);
+  }
+  await page.waitForLoadState('networkidle', { timeout: 10000 });
+  await page.evaluate(() => document.fonts.ready);
+}
+
+async function captureTile({
+  browser,
+  locale,
+  theme,
+  contextLocale,
+  url,
+  outputDir,
+}) {
   log(`capturing preview tile: locale=${locale} theme=${theme}`);
 
   const context = await browser.newContext({
@@ -252,11 +295,7 @@ async function captureTile({ browser, locale, theme, contextLocale, url }) {
     }
 
     await commander.waitForSelector({ selector: '.app-shell', timeout: 10000 });
-    await commander.waitForSelector({
-      selector: '#calculator-title',
-      timeout: 10000,
-    });
-    await page.waitForLoadState('networkidle');
+    await waitForPreviewReady(page);
 
     if (VERBOSE) {
       const probe = await commander.evaluate({
@@ -270,10 +309,10 @@ async function captureTile({ browser, locale, theme, contextLocale, url }) {
     }
 
     const outFile = path.resolve(
-      screenshotsDir,
+      outputDir,
       `example-app-${locale}-${theme}.png`
     );
-    await mkdir(screenshotsDir, { recursive: true });
+    await mkdir(outputDir, { recursive: true });
     await page.screenshot({
       path: outFile,
       fullPage: false,
@@ -291,7 +330,9 @@ async function captureTile({ browser, locale, theme, contextLocale, url }) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
-    console.log('Usage: node scripts/update-preview-images.mjs [--skip-build]');
+    console.log(
+      'Usage: node scripts/update-preview-images.mjs [--skip-build] [--output-dir directory]'
+    );
     return;
   }
 
@@ -316,13 +357,14 @@ async function main() {
           theme,
           contextLocale,
           url: server.url,
+          outputDir: args.outputDir,
         });
       }
     }
 
-    const fallback = path.resolve(screenshotsDir, 'example-app.png');
+    const fallback = path.resolve(args.outputDir, 'example-app.png');
     const fallbackSource = path.resolve(
-      screenshotsDir,
+      args.outputDir,
       'example-app-en-light.png'
     );
     await copyFile(fallbackSource, fallback);

@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'test-anywhere';
 import { readFileSync, readdirSync } from 'node:fs';
+import { rejects } from 'node:assert/strict';
+import { parse } from 'yaml';
 
 const WORKFLOW_DIRECTORY = '.github/workflows';
 const SUPPORTED_CONCURRENCY_KEYS = new Set(['group', 'cancel-in-progress']);
@@ -178,6 +180,102 @@ function createTestJobContext({
     },
   };
 }
+
+async function executePagesProbe({ data, error }) {
+  const workflow = parse(readWorkflow('.github/workflows/example-app.yml'));
+  const probe = workflow.jobs['web-build'].steps.find(
+    (step) => step.id === 'pages'
+  );
+  const outputs = {};
+  const notices = [];
+  const requests = [];
+  const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+  await new AsyncFunction('github', 'context', 'core', probe.with.script)(
+    {
+      rest: {
+        repos: {
+          getPages: async (repository) => {
+            requests.push(repository);
+            if (error) {
+              throw error;
+            }
+            return { data };
+          },
+        },
+      },
+    },
+    { repo: { owner: 'fixture-owner', repo: 'fixture-repo' } },
+    {
+      setOutput: (name, value) => (outputs[name] = value),
+      notice: (message) => notices.push(message),
+    }
+  );
+  expect(requests).toEqual([{ owner: 'fixture-owner', repo: 'fixture-repo' }]);
+  return { outputs, notices };
+}
+
+describe('optional example app Pages deployment', () => {
+  it('builds and uploads the standalone artifact before any Pages API/configuration', () => {
+    const workflow = parse(readWorkflow('.github/workflows/example-app.yml'));
+    const steps = workflow.jobs['web-build'].steps;
+    const build = steps.find((step) => step.name === 'Build app');
+    const artifact = steps.find(
+      (step) => step.name === 'Upload web build artifact'
+    );
+    expect(build.if).toBeUndefined();
+    expect(artifact.if).toBeUndefined();
+    expect(build.env.GITHUB_PAGES).toBe('false');
+    expect(steps.indexOf(artifact)).toBeLessThan(
+      steps.findIndex((step) => step.id === 'pages')
+    );
+    for (const step of steps.filter((item) =>
+      /^(Configure existing GitHub Pages|Build existing GitHub Pages app|Upload GitHub Pages artifact)$/.test(
+        item.name ?? ''
+      )
+    )) {
+      expect(step.if).toBe("steps.pages.outputs.enabled == 'true'");
+    }
+    expect(
+      steps.find((step) => step.uses === 'actions/configure-pages@v6').with
+        .enablement
+    ).toBe(false);
+    expect(workflow.jobs['pages-deploy'].if).toContain(
+      "needs.web-build.outputs.pages-enabled == 'true'"
+    );
+  });
+
+  it('preserves deployment for an existing Actions Pages site', async () => {
+    expect(
+      await executePagesProbe({ data: { build_type: 'workflow' } })
+    ).toEqual({ outputs: { enabled: 'true' }, notices: [] });
+  });
+
+  for (const buildType of ['legacy', undefined]) {
+    it(`skips a Pages source with build type ${String(buildType)} without changing settings`, async () => {
+      const result = await executePagesProbe({
+        data: { build_type: buildType },
+      });
+      expect(result.outputs).toEqual({ enabled: 'false' });
+      expect(result.notices.length).toBe(1);
+    });
+  }
+
+  it('skips an unconfigured Pages site on 404', async () => {
+    const result = await executePagesProbe({ error: { status: 404 } });
+    expect(result.outputs).toEqual({ enabled: 'false' });
+    expect(result.notices.length).toBe(1);
+  });
+
+  for (const status of [403, 500]) {
+    it(`preserves a real Pages API failure with status ${status}`, async () => {
+      const error = Object.assign(new Error('fixture API failure'), { status });
+      await rejects(
+        executePagesProbe({ error }),
+        (failure) => failure === error
+      );
+    });
+  }
+});
 
 describe('workflow concurrency policy', () => {
   it('detects unsupported keys in a concurrency block', () => {

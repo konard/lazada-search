@@ -37,6 +37,11 @@ jobs:
     name: Build web app
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
+    outputs:
+      pages-enabled: ${{ steps.pages.outputs.enabled }}
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-web-build
       cancel-in-progress: true
@@ -52,17 +57,13 @@ jobs:
           cache: npm
           cache-dependency-path: examples/universal-app/package-lock.json
 
-      - name: Configure GitHub Pages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v6
-
       - name: Install app dependencies
         run: npm ci --prefix examples/universal-app --no-audit --no-fund
 
       - name: Build app
         run: npm run example:web:build
         env:
-          GITHUB_PAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          GITHUB_PAGES: 'false'
           VITE_REPOSITORY_URL: https://github.com/${{ github.repository }}
 
       - name: Upload web build artifact
@@ -72,19 +73,51 @@ jobs:
           path: examples/universal-app/dist
           if-no-files-found: error
 
-      - name: Upload GitHub Pages artifact
+      - name: Detect existing GitHub Pages configuration
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: pages
+        uses: actions/github-script@v8
+        with:
+          script: |
+            try {
+              const { data } = await github.rest.repos.getPages(context.repo);
+              const enabled = data.build_type === 'workflow';
+              core.setOutput('enabled', String(enabled));
+              if (!enabled) {
+                core.notice('Pages deployment skipped: the existing site does not use GitHub Actions.');
+              }
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              core.setOutput('enabled', 'false');
+              core.notice('Pages deployment skipped: no existing Pages site is configured.');
+            }
+
+      - name: Configure existing GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/configure-pages@v6
+        with:
+          enablement: false
+
+      - name: Build existing GitHub Pages app
+        if: steps.pages.outputs.enabled == 'true'
+        run: npm run example:web:build
+        env:
+          GITHUB_PAGES: 'true'
+          VITE_REPOSITORY_URL: https://github.com/${{ github.repository }}
+
+      - name: Upload GitHub Pages artifact
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: examples/universal-app/dist
 
-  # Requires Settings → Pages → Source = GitHub Actions to be set once
-  # in the repository before this job can succeed. See README → "Deploying
-  # the example app". The Pages source cannot be configured from a workflow.
+  # Deploy only a Pages site already configured with GitHub Actions as its
+  # source. Building the ordinary web artifact does not require a Pages site;
+  # this workflow neither creates a site nor changes its source settings.
   pages-deploy:
     name: Deploy GitHub Pages
     needs: [web-build]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.web-build.outputs.pages-enabled == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:

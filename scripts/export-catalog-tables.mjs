@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, rm } from 'node:fs/promises';
 import { format, resolveConfig } from 'prettier';
 import {
   LazadaSearch,
@@ -11,6 +11,7 @@ import { configuredStore, parseArguments } from '../src/config.js';
 import { listingKey } from '../src/util.js';
 import { applyListingAvailability } from '../src/availability.js';
 import { catalogProducts } from '../src/catalog-products.js';
+import { catalogMarkdownPages } from './catalog-markdown-pages.mjs';
 
 const options = parseArguments(process.argv.slice(2));
 if (options.account) {
@@ -174,7 +175,24 @@ const priceHeaders = [
 ];
 await mkdir('docs/tables', { recursive: true });
 async function save(name, text) {
-  await writeFormatted(`docs/tables/${name}`, `${text}\n`);
+  const result = name.endsWith('.md')
+    ? catalogMarkdownPages(name, text)
+    : { index: text, pages: [] };
+  for (const page of result.pages) {
+    await writeFormatted(`docs/tables/${page.name}`, page.text);
+  }
+  await writeFormatted(`docs/tables/${name}`, `${result.index.trimEnd()}\n`);
+  const stem = name.replace(/\.md$/u, '');
+  const retained = new Set(result.pages.map((page) => page.name));
+  for (const previous of await readdir('docs/tables')) {
+    if (
+      previous.startsWith(`${stem}-page-`) &&
+      /^\d+\.md$/u.test(previous.slice(stem.length + 6)) &&
+      !retained.has(previous)
+    ) {
+      await rm(`docs/tables/${previous}`);
+    }
+  }
 }
 const listingReviews = new Map(
   (await app.store.list('category-review')).map((record) => [
