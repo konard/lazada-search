@@ -721,7 +721,9 @@ export async function exportRepositoryArchive({
       }
       throw error;
     })) {
-      const path = `${area}/${file}`;
+      // Manifest paths always use '/', while recursive readdir uses native
+      // separators. Comparing Windows names verbatim deletes live blobs.
+      const path = `${area}/${file.replaceAll('\\', '/')}`;
       if (file.endsWith('.gz') && !keep.has(path)) {
         await rm(join(target, path), { force: true });
       }

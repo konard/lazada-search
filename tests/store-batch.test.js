@@ -30,7 +30,7 @@ test('a batch validates every kind, ID and serializable record before taking a w
   circular.self = circular;
   await assert.rejects(
     store.putMany('discovery', [{ id: 'would-write' }, circular]),
-    /circular/iu
+    /circular|cyclic/iu
   );
   for (const kind of [null, '', '../discovery']) {
     await assert.rejects(store.putMany(kind, []), /Invalid record kind/u);
@@ -376,7 +376,7 @@ test('chronological batches validate every timestamp and record before acquiring
   circular.self = circular;
   await assert.rejects(
     store.putLatestMany('offer', [valid, circular]),
-    /circular/iu
+    /circular|cyclic/iu
   );
   await assert.rejects(
     store.putLatestMany('../offer', []),

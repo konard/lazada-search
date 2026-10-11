@@ -275,8 +275,8 @@ jobs:
   test:
     name: Test (${{ matrix.runtime }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    # Typical run: <1min per runtime/OS on warm runners, with Windows
-    # sometimes slower on cold starts. Each test step owns an explicit
+    # Real catalog/source fixtures take several minutes, with Windows
+    # slower on cold starts. Each test step owns an explicit
     # budget below (see scripts/run-with-budget-warning.sh); this cap is
     # only the backstop behind those budgets, sized so the budgets always
     # expire first. A job killed by timeout-minutes reports *cancelled*,
@@ -330,19 +330,19 @@ jobs:
         run: bash scripts/simulate-fresh-merge.sh
 
       - name: Setup Node.js
-        if: matrix.runtime == 'node'
         uses: actions/setup-node@v6
         with:
           node-version: '24.x'
 
-      - name: Install dependencies (Node.js)
-        if: matrix.runtime == 'node'
-        run: npm install
+      # All runtimes consume the same reviewed package-lock.json, including its
+      # integrity hashes, scoped overrides and required postinstall codec fix.
+      - name: Install locked dependencies
+        run: npm ci
 
       - name: Run tests (Node.js)
         if: matrix.runtime == 'node'
         shell: bash
-        run: bash scripts/run-with-budget-warning.sh 300 "Node.js test suite" npm test
+        run: bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test
 
       - name: Setup Bun
         if: matrix.runtime == 'bun'
@@ -350,19 +350,14 @@ jobs:
         with:
           bun-version: '1.x'
 
-      - name: Install dependencies (Bun)
-        if: matrix.runtime == 'bun'
-        run: bun install
-
       - name: Run tests (Bun)
         if: matrix.runtime == 'bun'
         shell: bash
-        # --timeout caps an *individual* test at 30s; Node instead gives
-        # each test file 120s for suites that create many Git fixtures.
-        # It is a per-test bound and does not bound the suite: 25 tests of
-        # 29s each pass every per-test check. The suite budget below is
-        # what bounds the whole run.
-        run: bash scripts/run-with-budget-warning.sh 200 "Bun test suite" bun test --timeout 30000
+        # The committed source/catalog fixtures need the same five-minute cap
+        # as Node. This is a per-test bound and does not bound the suite; the
+        # explicit suite budget stays below the job backstop. Match Node's
+        # top-level unit manifest; the separate Lazada E2E job runs every E2E.
+        run: bash scripts/run-with-budget-warning.sh 600 "Bun test suite" bun test --timeout 300000 ./tests/*.test.js
 
       - name: Setup Deno
         if: matrix.runtime == 'deno'
@@ -373,7 +368,15 @@ jobs:
       - name: Run tests (Deno)
         if: matrix.runtime == 'deno'
         shell: bash
-        run: bash scripts/run-with-budget-warning.sh 100 "Deno test suite" deno test --allow-read
+        env:
+          DENO_JOBS: '4'
+        # Manual node_modules uses npm ci's integrity-checked graph instead of
+        # resolving fresh semver ranges or the obsolete template deno.lock.
+        # No minimum-dependency-age override and no remote dependency fetches.
+        # These JavaScript runtime assertions need temporary files, local HTTP,
+        # subprocess Git/CLI fixtures and native image addons. Compilation/API
+        # checks remain separate; do not type-check dependencies' ambient types.
+        run: bash scripts/run-with-budget-warning.sh 600 "Deno test suite" deno test --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi --allow-net=127.0.0.1,localhost tests/*.test.js
 
   # === DOCKER IMAGE BUILD CHECK (pull requests) ===
   # Builds the Dockerfile without pushing so a broken image fails the pull

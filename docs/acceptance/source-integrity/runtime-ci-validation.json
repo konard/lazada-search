@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T13:40:48.472003+00:00",
+  "issues": [33, 34],
+  "upstreamIssue": "https://github.com/link-foundation/lino-env/issues/32",
+  "frozenCode": "runtime-ci-frozen-code.json",
+  "codeFiles": 569,
+  "fullSuites": "running;not-yet-accepted",
+  "focused": {
+    "nodeWorkflow": {
+      "tests": 91,
+      "pass": 91,
+      "skipped": 0
+    },
+    "bun": {
+      "version": "1.4.3",
+      "tests": 37,
+      "pass": 37,
+      "skipped": 0
+    },
+    "deno": {
+      "version": "2.9.7",
+      "tests": 37,
+      "pass": 37,
+      "skipped": 0
+    },
+    "rootArchiveConfig": {
+      "tests": 39,
+      "pass": 39,
+      "skipped": 0
+    }
+  },
+  "logs": [
+    {
+      "path": "runtime-ci-node-focused.tap.gz",
+      "sourceSha256": "405df3c2ab5150f1914f4759e0d4b46881c41546a8b843a6b1b19da65ed32ab3",
+      "sourceBytes": 21740,
+      "gzipSha256": "274ee95b4fed55358fd0d895a4288390993d503091db1b360d7c3c88b3c4ff7c",
+      "gzipBytes": 4125
+    },
+    {
+      "path": "runtime-ci-bun-focused.log.gz",
+      "sourceSha256": "08cfd3bd3a254cd516b1a93f7222ab86e2193800986f8ed53a2bae37d405ede9",
+      "sourceBytes": 4208,
+      "gzipSha256": "cc7d7c2e244dd3e7dda2e36fb3d6577fbb55885c274ba381b246afc09a862ad5",
+      "gzipBytes": 1721
+    },
+    {
+      "path": "runtime-ci-deno-focused.log.gz",
+      "sourceSha256": "452ca77510924ec95ca3c7c02bd0d15ec1e3f761eacd33b27cfb8203dd5ddd8a",
+      "sourceBytes": 5557,
+      "gzipSha256": "532dc2d8bb1d6280a11cea42f2c06da6473fb9937749e4367c2b2736e23e3317",
+      "gzipBytes": 1813
+    },
+    {
+      "path": "runtime-ci-root-focused.tap.gz",
+      "sourceSha256": "feafdb6ba430244b57cec7385e3601f60803a318e72cca47a3e775ec4512f89b",
+      "sourceBytes": 10568,
+      "gzipSha256": "f65e06dfb0862c78387e460edc1666de15d18b164502faf3f3e71db9b71e92a6",
+      "gzipBytes": 2387
+    },
+    {
+      "path": "runtime-ci-eslint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-format.log.gz",
+      "sourceSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "sourceBytes": 66,
+      "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59",
+      "gzipBytes": 82
+    },
+    {
+      "path": "runtime-ci-actionlint.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-workflow-policy.log.gz",
+      "sourceSha256": "5b12353fe67d10850a6b1385a76ef27258bdfd14ef6018077056808aa2b515b2",
+      "sourceBytes": 58,
+      "gzipSha256": "1155499d8b63284b3581fdbb3beecffd7d799bbc67d0ff529dfc14f4c6cf08f8",
+      "gzipBytes": 78
+    },
+    {
+      "path": "runtime-ci-root-strict.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-typescript.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "gzipBytes": 20
+    },
+    {
+      "path": "runtime-ci-case-rebuild.log.gz",
+      "sourceSha256": "fb2bfbbeb103fcb0ac87047d2584709e888731f2a28068c252a9742c9f0ffe32",
+      "sourceBytes": 3071,
+      "gzipSha256": "11348306c77cb4fa470f4cf681f6bfded6f21d8313df8ea4a07eadba5b368049",
+      "gzipBytes": 1120
+    },
+    {
+      "path": "lino-env-crlf-repro.json.gz",
+      "sourceSha256": "1702ff5f8fbba9a29cd1ce48ad72f3fb0e9ce7bed799a17e964bb6ebeac71c45",
+      "sourceBytes": 50,
+      "gzipSha256": "02b728585370de9189b23fbc5f817a705273664ed3f1f595b96852331ccde888",
+      "gzipBytes": 67
+    }
+  ],
+  "offlineCase": {
+    "valid": true,
+    "records": 34253,
+    "blobs": 7030,
+    "downloads": 0
+  },
+  "sourcePriceAudit": {
+    "matched": 411,
+    "currentConfirmedPrices": 411,
+    "unresolved": 0,
+    "downloads": 0
+  },
+  "remoteWindowsAndRuntimeMatrix": "pending-new-pushed-run",
+  "knownExternalBlockers": [
+    "Actual manufacturer challenge requires manual clearance and explicit resume",
+    "npm package-owner trusted publisher configuration",
+    "Live Telegram and reviewed translation configuration",
+    "Exact prepared checkout data, all inventory/factory matches, gifts and Nha Trang bulk/frozen freight"
+  ],
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false
+}

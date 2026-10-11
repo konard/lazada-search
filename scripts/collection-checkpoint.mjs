@@ -67,6 +67,7 @@ export async function publishCollectionCheckpoint({
   remote = 'origin',
   message = 'Publish verified cached Lazada collection checkpoint',
   deferStaged = false,
+  executeGit,
 } = {}) {
   validatePaths(paths);
   if (typeof deferStaged !== 'boolean') {
@@ -74,7 +75,10 @@ export async function publishCollectionCheckpoint({
   }
   const git = async (...args) =>
     (
-      await execute('git', args, { cwd, maxBuffer: 16 * 1024 ** 2 })
+      await (executeGit ?? execute)('git', args, {
+        cwd,
+        maxBuffer: 16 * 1024 ** 2,
+      })
     ).stdout.trim();
   const branch = await git('symbolic-ref', '--quiet', '--short', 'HEAD');
   if (!branch) {

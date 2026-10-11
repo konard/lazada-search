@@ -207,22 +207,19 @@ test('real push failures remain failures and a later checkpoint retries the comm
 });
 
 async function raceWrapper(ctx, stageBefore) {
-  const bin = join(ctx.directory, 'fixture-bin');
-  await mkdir(bin);
-  const wrapper = join(bin, 'git');
-  await writeFile(
-    wrapper,
-    '#!/bin/sh\nif [ "$1" = "$CHECKPOINT_FIXTURE_STAGE_BEFORE" ]; then\n  /usr/bin/git add -- src/in-progress.js || exit $?\nfi\nexec /usr/bin/git "$@"\n'
-  );
-  await chmod(wrapper, 0o700);
-  return execute(process.execPath, [publisher, '--defer-staged'], {
+  // Intercept the command boundary and still execute genuine Git commands.
+  // Windows cannot use a PATH shell wrapper to intercept git.exe; pre-commit
+  // hooks run after Git locks its index, too late for this staging race.
+  return publishCollectionCheckpoint({
     cwd: ctx.work,
-    env: {
-      ...process.env,
-      PATH: `${bin}:${process.env.PATH}`,
-      CHECKPOINT_FIXTURE_STAGE_BEFORE: stageBefore,
+    deferStaged: true,
+    executeGit: async (command, args, options) => {
+      if (args[0] === stageBefore) {
+        await ctx.git('add', '--', 'src/in-progress.js');
+      }
+      return execute(command, args, options);
     },
-  }).then(({ stdout }) => JSON.parse(stdout));
+  });
 }
 
 test('code staged during publication is deferred without clearing any staged source', async (t) => {

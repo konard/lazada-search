@@ -95,7 +95,10 @@ function loadConfiguration(path, override) {
   }
   const file = new LinoEnv(path);
   file.read();
-  for (const [key, value] of Object.entries(file.toObject())) {
+  for (const [key, original] of Object.entries(file.toObject())) {
+    // lino-env 0.2.8 splits on LF and leaves a CRLF terminator in values.
+    // Remove only that terminator; preserve meaningful unquoted spaces.
+    const value = original.replace(/\r$/u, '');
     const name = toUpperCase(key);
     if (override || process.env[name] === undefined) {
       const trimmed = value.trim();

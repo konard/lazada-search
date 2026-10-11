@@ -1,5 +1,23 @@
 [
   {
+    "body": "The actual Bun/Windows 2025 CI at cf99cd05efe793bde2c6ca15f3c2840532456a0b reports freshly exported source blobs as corrupt. `readdir({recursive:true})` returns nested Windows paths with backslashes, while the archive manifest records slash paths. Cleanup compares the native path directly with the manifest keep set and deletes valid nested blobs.\n\nFix: normalize native directory-entry separators only for the manifest comparison; preserve checksum verification and original bytes. Regression acceptance must export, verify and repeat with both live nested blobs and a superseded gzip fixture on Windows, plus archive provenance/challenge replay.\n\nAlso fix CRLF buying preference values from lino-env 0.2.8 (reported upstream), portable cyclic-record error matching and Git staging-race fixtures. These bugs must not be hidden with skips or weakened assertions.\n\nActual failure: https://github.com/konard/lazada-search/actions/runs/38142531710 . Node Windows also exhausted its 300-second suite budget; the separate runtime setup tracking is https://github.com/konard/lazada-search/issues/33 .\n",
+    "createdAt": "2026-10-11T13:33:50Z",
+    "number": 34,
+    "state": "OPEN",
+    "title": "Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation",
+    "updatedAt": "2026-10-11T13:33:50Z",
+    "url": "https://github.com/konard/lazada-search/issues/34"
+  },
+  {
+    "body": "The real Checks and release matrix at cf99cd05efe793bde2c6ca15f3c2840532456a0b fails all three Deno jobs before running tests. The npm resolver rejects reviewed browser-commander0.30.1 because Deno2.9.7 enforces a default24-hour dependency age; the current Deno graph/lock predates the application dependencies and the job has no lock-bound npm installation.\n\nActual run: https://github.com/konard/lazada-search/actions/runs/38142531710 ; Linux job114479750802, error timestamp2026-10-11T13:20:30Z. Node Ubuntu full unit passes, example artifacts/previews pass, and Ubuntu sandbox namespace/smoke passes. Those successes do not imply alternative runtime acceptance.\n\nUse an integrity-verified reviewed dependency graph and explicit supported module layout. Retain security defaults rather than globally disabling the dependency-age protection. Check actual fixture permissions, appropriate root unit test selection and portable platform fixtures with real runtime evidence; keep all unresolved matrix failures visible. Do not disguise a missing dependency as passing tests. Current investigation is separate from the actual manufacturer CAPTCHA and npm publisher configuration.\n",
+    "createdAt": "2026-10-11T13:24:58Z",
+    "number": 33,
+    "state": "OPEN",
+    "title": "Run alternative-runtime CI against the reviewed locked dependency graph",
+    "updatedAt": "2026-10-11T13:24:58Z",
+    "url": "https://github.com/konard/lazada-search/issues/33"
+  },
+  {
     "body": "Actual npm OIDC package exchange rejects404 during release preflight at commitc714990: https://github.com/konard/lazada-search/actions/runs/38140398064 . No npm bootstrap token is configured. Local unit/E2E acceptance and GitHub report publication do not prove npm registry publishing.\n\nKeep the mandatory credential preflight and release guards. Authorized package-owner configuration must establish a trusted GitHub publisher for konard/lazada-search and release.yml, or provide an appropriate configured bootstrap token. Credential values must stay out of repository artifacts. Verify actual exchange/release only after configuration; no bypass, fabricated successful probe or automatic new registry credentials. This is an external configuration blocker, separate from the manufacturer challenge and product data gaps.\n",
     "createdAt": "2026-10-11T13:01:13Z",
     "number": 32,
@@ -12,27 +30,27 @@
     "body": "The saved category-review.md and discovered-listings.md have more than the enforced1500 lines and cause the actual Check File Line Limits job to fail. Run https://github.com/konard/lazada-search/actions/runs/38140398064 , commitc714990.\n\nGenerate bounded linked Markdown pages without dropping any source row, keep machine-readable catalog.json complete, repeat headers correctly at split boundaries, retain source-line intervals and navigation, and remove only stale generated page names. Verify original row equality/counts, page line budgets after formatting and existing real catalog exports. Do not widen the architecture limit or omit complete discovery evidence.\n",
     "createdAt": "2026-10-11T13:01:09Z",
     "number": 31,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Keep complete generated catalog Markdown within the architecture line limit",
-    "updatedAt": "2026-10-11T13:01:09Z",
+    "updatedAt": "2026-10-11T13:21:30Z",
     "url": "https://github.com/konard/lazada-search/issues/31"
   },
   {
     "body": "Example CI fails at commit c714990: Pages configure GET returns404 because no Actions Pages site exists, and preview capture waits for the removed calculator-title selector. Actual run: https://github.com/konard/lazada-search/actions/runs/38140398065 .\n\nMake ordinary web build/artifact independent of optional deployment; read-only probe must skip exactly an unconfigured/non-Actions site and propagate authentication/service failures. Do not enable Pages or change repository settings. Existing configured Actions deployment remains supported. Preview must validate the current real title/import/Packages controls and initial quantity/error state before taking screenshots. Preserve actual failures, add executable workflow behavior coverage and a real local-browser preview proof.\n",
     "createdAt": "2026-10-11T13:01:06Z",
     "number": 30,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Build previews without requiring an unconfigured Pages deployment",
-    "updatedAt": "2026-10-11T13:01:06Z",
+    "updatedAt": "2026-10-11T13:21:20Z",
     "url": "https://github.com/konard/lazada-search/issues/30"
   },
   {
     "body": "The sandboxed deterministic E2E workflow fails on Ubuntu24.04 before page loading after installing Browser Commander0.30.1. Local macOS E2E passes47/47 on the same application code.\n\nActual failing run: https://github.com/konard/lazada-search/actions/runs/38140398080 at commitc7149901c1877c12cc6a08c4e65ed0a42dd58224. BrowserLaunchError reports No usable sandbox and Ubuntu AppArmor restricted unprivileged namespaces. The test runner correctly fails; do not add skips or disable Chromium sandboxing.\n\nUse the root-owned setuid helper supplied by the runner's installed Google Chrome via CHROME_DEVEL_SANDBOX, check its ownership/mode, and export it only inside the isolated CI job. This follows Chromium's documented environment support option without disabling the host namespace protection globally: https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md.\n\nAcceptance: original failing log retained, existing workflow-policy checks pass, the complete actual Ubuntu E2E job passes with sandboxing enabled and zero skipped tests. This is CI environment configuration, not evidence that live marketplace collection may resume through its active security stop.\n",
     "createdAt": "2026-10-11T12:52:13Z",
     "number": 29,
-    "state": "OPEN",
+    "state": "CLOSED",
     "title": "Run sandboxed Chromium E2E on the Ubuntu 24.04 CI image",
-    "updatedAt": "2026-10-11T12:52:13Z",
+    "updatedAt": "2026-10-11T13:26:45Z",
     "url": "https://github.com/konard/lazada-search/issues/29"
   },
   {

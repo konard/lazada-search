@@ -10,7 +10,7 @@ import {
   stat,
   writeFile,
 } from 'node:fs/promises';
-import { join } from 'node:path';
+import { delimiter, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { parse } from 'yaml';
@@ -24,10 +24,33 @@ const profileStep = steps.find((step) =>
 );
 const smokeStep = steps.find((step) => step.name?.startsWith('Verify normal'));
 
+function shellPath(path) {
+  if (process.platform !== 'win32') {
+    return path;
+  }
+  const result = spawnSync(
+    'bash',
+    ['-c', 'cygpath -u "$1"', 'fixture-path', path],
+    {
+      encoding: 'utf8',
+    }
+  );
+  assert.equal(result.status, 0, result.stderr);
+  return result.stdout.trim();
+}
+
 async function executable(path, source = '#!/bin/bash\nexit 0\n') {
   await mkdir(join(path, '..'), { recursive: true });
   await writeFile(path, source);
   await chmod(path, 0o755);
+  if (process.platform === 'win32') {
+    const result = spawnSync(
+      'bash',
+      ['-c', 'chmod +x "$1"', 'fixture-chmod', shellPath(path)],
+      { encoding: 'utf8' }
+    );
+    assert.equal(result.status, 0, result.stderr);
+  }
   return path;
 }
 
@@ -36,8 +59,12 @@ async function fixture({
   unsafe = false,
   parserFails = false,
 } = {}) {
+  const fixtureParent =
+    process.platform === 'win32'
+      ? (process.env.RUNNER_TEMP ?? tmpdir())
+      : tmpdir();
   const directory = await realpath(
-    await mkdtemp(join(tmpdir(), 'lazada-ci-sandbox-'))
+    await mkdtemp(join(fixtureParent, 'lazada-ci-sandbox-'))
   );
   const cache = join(directory, 'lazada-playwright');
   const bin = join(directory, 'bin');
@@ -46,7 +73,7 @@ async function fixture({
   await executable(
     join(
       cache,
-      unsafe ? 'chromium*' : 'chromium-1248',
+      unsafe ? 'chromium unsafe' : 'chromium-1248',
       'chrome-linux64',
       'chrome'
     )
@@ -75,16 +102,19 @@ async function fixture({
   const enabled = join(directory, 'apparmor-enabled');
   await writeFile(enabled, 'Y\n');
   const source = profileStep.run
-    .replaceAll('/sys/module/apparmor/parameters/enabled', enabled)
-    .replaceAll('/etc/apparmor.d/lazada-playwright-userns', installed);
+    .replaceAll('/sys/module/apparmor/parameters/enabled', shellPath(enabled))
+    .replaceAll(
+      '/etc/apparmor.d/lazada-playwright-userns',
+      shellPath(installed)
+    );
   const result = spawnSync('bash', ['-e', '-o', 'pipefail', '-c', source], {
     encoding: 'utf8',
     env: {
       ...process.env,
-      PATH: `${bin}:${process.env.PATH}`,
-      RUNNER_TEMP: directory,
-      PLAYWRIGHT_BROWSERS_PATH: cache,
-      APPARMOR_RECEIPT: receipt,
+      PATH: `${bin}${delimiter}${process.env.PATH}`,
+      RUNNER_TEMP: shellPath(directory),
+      PLAYWRIGHT_BROWSERS_PATH: shellPath(cache),
+      APPARMOR_RECEIPT: shellPath(receipt),
     },
   });
   return { directory, cache, installed, receipt, result };
@@ -107,14 +137,16 @@ test('runner profile attaches only exact canonical normal and headless browser f
     assert.equal(attachments.length, 2);
     assert.ok(
       attachments.includes(
-        join(value.cache, 'chromium-1248/chrome-linux64/chrome')
+        shellPath(join(value.cache, 'chromium-1248/chrome-linux64/chrome'))
       )
     );
     assert.ok(
       attachments.includes(
-        join(
-          value.cache,
-          'chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell'
+        shellPath(
+          join(
+            value.cache,
+            'chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell'
+          )
         )
       )
     );

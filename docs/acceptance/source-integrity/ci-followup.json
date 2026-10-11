@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T13:15:37.848283+00:00",
+  "checkedAt": "2026-10-11T13:37:00Z",
   "priorAcceptedImplementationCommit": "c7149901c1877c12cc6a08c4e65ed0a42dd58224",
   "priorAcceptedValidation": "validation.json",
   "scope": "Repository CI, example preview readiness and lossless Markdown report paging; marketplace extraction/runtime files remain unchanged.",
@@ -11,24 +11,27 @@
     {
       "number": 29,
       "url": "https://github.com/konard/lazada-search/issues/29",
-      "status": "awaiting-real-ubuntu-sandbox-run",
+      "status": "closed-actual-github-acceptance-passed",
       "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398080",
       "failedHelperFollowup": "https://github.com/konard/lazada-search/actions/runs/38141001119",
-      "fix": "Chromium-documented AppArmor namespace exemption attached only to exact canonical job-cache executables; host restrictions and Chromium sandbox remain enabled. Smoke checks downloaded normal/headless and installed Chrome before the suite."
+      "fix": "Chromium-documented AppArmor namespace exemption attached only to exact canonical job-cache executables; host restrictions and Chromium sandbox remain enabled. Smoke checks downloaded normal/headless and installed Chrome before the suite.",
+      "closureComment": "https://github.com/konard/lazada-search/issues/29#issuecomment-6109510795"
     },
     {
       "number": 30,
       "url": "https://github.com/konard/lazada-search/issues/30",
-      "status": "local-real-browser-preview-passed;remote-workflow-pending",
+      "status": "closed-actual-github-acceptance-passed",
       "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398065",
-      "fix": "Build and upload the ordinary web artifact independently; deploy only an already configured Actions Pages site. Preview checks current rendered import/package controls, error state and fonts."
+      "fix": "Build and upload the ordinary web artifact independently; deploy only an already configured Actions Pages site. Preview checks current rendered import/package controls, error state and fonts.",
+      "closureComment": "https://github.com/konard/lazada-search/issues/30#issuecomment-6109463316"
     },
     {
       "number": 31,
       "url": "https://github.com/konard/lazada-search/issues/31",
-      "status": "row-preservation-passed;final-checks-pending",
+      "status": "closed-actual-github-acceptance-passed",
       "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398064",
-      "fix": "Bounded linked Markdown pages preserve every original inventory and review row, with headers and navigation; no architecture guard is relaxed."
+      "fix": "Bounded linked Markdown pages preserve every original inventory and review row, with headers and navigation; no architecture guard is relaxed.",
+      "closureComment": "https://github.com/konard/lazada-search/issues/31#issuecomment-6109464672"
     },
     {
       "number": 32,
@@ -36,10 +39,60 @@
       "status": "external-package-owner-configuration-required",
       "failureRun": "https://github.com/konard/lazada-search/actions/runs/38140398064",
       "finding": "The package-specific npm OIDC exchange returned 404 and no bootstrap token is configured. The mandatory preflight remains active; no registry credentials or settings are fabricated."
+    },
+    {
+      "number": 33,
+      "url": "https://github.com/konard/lazada-search/issues/33",
+      "status": "drafted-runtime-fix;final-acceptance-pending",
+      "finding": "Use reviewed integrity-checked npm graph and identical top-level runtime unit manifests, bounded suite budgets and actual fixture permissions. Preserve minimum dependency age and dedicated complete E2E job."
+    },
+    {
+      "number": 34,
+      "url": "https://github.com/konard/lazada-search/issues/34",
+      "status": "drafted-root-fix;focused39/39-passed;Windows-acceptance-pending",
+      "finding": "Normalize native archive directory separators before cleanup comparison; strip only the CRLF terminator from configuration values; portable real-Git race/cyclic validation."
     }
   ],
-  "fullLocalSuites": "running-current-frozen-code;previous-1261-unit-and-47-e2e-acceptance-preserved-in-validation.json",
-  "remoteAcceptance": "pending",
+  "fullLocalSuites": {
+    "implementationCommit": "cf99cd05efe793bde2c6ca15f3c2840532456a0b",
+    "unit": {
+      "tests": 1279,
+      "pass": 1279,
+      "fail": 0,
+      "skipped": 0
+    },
+    "e2e": {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "skipped": 0
+    },
+    "status": "passed-on-first-ci-followup-frozen-code;subsequent-runtime-fixes-require-fresh-acceptance"
+  },
+  "remoteAcceptance": {
+    "implementationCommit": "cf99cd05efe793bde2c6ca15f3c2840532456a0b",
+    "ubuntuE2e": {
+      "url": "https://github.com/konard/lazada-search/actions/runs/38142531761",
+      "tests": 47,
+      "pass": 47,
+      "skipped": 0,
+      "status": "passed"
+    },
+    "exampleApp": {
+      "url": "https://github.com/konard/lazada-search/actions/runs/38142531797",
+      "status": "passed"
+    },
+    "checksAndRelease": {
+      "url": "https://github.com/konard/lazada-search/actions/runs/38142531710",
+      "status": "failed",
+      "findings": [
+        "npm OIDC owner configuration issue32",
+        "alternative-runtime setup issue33",
+        "Windows archive/CRLF portability issue34",
+        "Windows Node full-suite budget exceeded"
+      ]
+    }
+  },
   "allRequirementsDelivered": false,
   "productionReady": false,
   "purchaseReady": false,
@@ -70,5 +123,9 @@
     "warnings": 0
   },
   "frozenCode": "ci-frozen-code.json",
-  "testLogReceipts": "ci-test-evidence.json"
+  "testLogReceipts": "ci-test-evidence.json",
+  "implementationCommit": "cf99cd05efe793bde2c6ca15f3c2840532456a0b",
+  "allChangesDraftedBeforeAcceptedTests": true,
+  "frozenCodeDuringAcceptedSuites": true,
+  "upstreamConfigurationBug": "https://github.com/link-foundation/lino-env/issues/32"
 }

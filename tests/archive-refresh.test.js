@@ -96,6 +96,27 @@ test('a persistent private fallback observes re-exported records, previously unl
   assert.equal(app.cache.stats.downloads, 0);
 });
 
+test('archive cleanup preserves nested live blobs and removes only superseded gzip files', async (t) => {
+  const { store, target } = await setup(t);
+  const source = await store.putBlob('Original chocolate label bytes');
+  await store.put('cache', { id: 'label', source });
+  await exportRepositoryArchive({ store, directory: target });
+  const archive = new RepositoryArchive({ directory: target });
+  const manifest = await archive.manifest();
+  const live = manifest.blobs[source.sha256].path;
+  const original = await readFile(join(target, live));
+  const stale = join(target, 'blobs', source.sha256.slice(0, 2), 'stale.gz');
+  await writeFile(stale, 'Superseded fixture');
+  const repeated = await exportRepositoryArchive({ store, directory: target });
+  assert.equal(repeated.rebuilt, 0);
+  assert.deepEqual(await readFile(join(target, live)), original);
+  assert.equal(
+    (await new RepositoryArchive({ directory: target }).verify()).valid,
+    true
+  );
+  await assert.rejects(access(stale), /ENOENT/u);
+});
+
 for (const readBeforeReplacement of [false, true]) {
   test(`an active archive read ${readBeforeReplacement ? 'with cached old bytes' : 'whose old shard is deleted'} retries the new generation without poisoning its index`, async (t) => {
     const { store, target } = await setup(t);
