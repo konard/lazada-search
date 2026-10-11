@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-11T14:39:01.585145+00:00",
+  "node": {
+    "tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 2148.322417,
+    "command": "node --test --test-concurrency=4 --test-timeout=450000 tests/source-byte-checkout.test.js tests/package-metadata.test.js tests/ocr-crops.test.js"
+  },
+  "bun": {
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0
+  },
+  "deno": {
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0
+  },
+  "macNativeTesseract": "5.5.2",
+  "otherRuntimesOriginalReceipt": "receipt.json.gz",
+  "logs": [
+    {
+      "path": "before.json.gz",
+      "originalBytes": 1679,
+      "originalSha256": "b04a6f9d6afbe24dc0c7c9f70db77aab6ce559e7d8dcb0140477db990e1b417b",
+      "gzipSha256": "1ae8cd0fa2c7787c61b66aa986668c42b188dff0a5efbf93f0678255e86b0d53"
+    },
+    {
+      "path": "bun-focused.log.gz",
+      "originalBytes": 1420,
+      "originalSha256": "e1fb54d3b52f47f3aa6df7e37444e239d6c017865d0f4a2c5a2be44385ed3277",
+      "gzipSha256": "469d31c18fc7ac9b1592aa86ae5b9e08b43782d8e7e1b63e650e6fbabe25f61a"
+    },
+    {
+      "path": "deno-focused.log.gz",
+      "originalBytes": 1943,
+      "originalSha256": "0613ce32b24a0029bc9edd71133a16f371d78467857ac483f7eff5cbf714a65a",
+      "gzipSha256": "5a79dae7243f828d0a9716dffc220bfbfe9dc191771d9bd71a7b39e5cc74f441"
+    },
+    {
+      "path": "format.log.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "path": "native-only-transform.diff.gz",
+      "originalBytes": 783,
+      "originalSha256": "e34f550ab78ea6b5eca8ce3c97fc55bfef15726295656fcf6b0cbcade6346903",
+      "gzipSha256": "8bbef4cfc006633a278055527b0b05b15b31b397b0861af2b94788823471fade"
+    },
+    {
+      "path": "receipt.json.gz",
+      "originalBytes": 6756,
+      "originalSha256": "e0ebf516c50f5510b96bef99e92a4a917611e2af373427e4b33551edcabcd86f",
+      "gzipSha256": "c65d24a26c7cc1c6e1127b2e5d5f2b0409d0738a3ecf955564a09bac440b50be"
+    },
+    {
+      "path": "node-focused.tap.gz",
+      "originalBytes": 3073,
+      "originalSha256": "3f60d4cf7af716193e1b03ad3e2284f8112bc165b363f18db26406dfd5d7e1f1",
+      "gzipSha256": "0601ae68777d3239f69ade66a8114356db32b6e2511bde1b06e5b7f9b82a46b4"
+    }
+  ],
+  "actualWindows": "pending fresh CI",
+  "actualUbuntu": "pixel experiment succeeds; fresh complete matrix pending",
+  "finalFormattedNode": {
+    "tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 2724.010333
+  },
+  "finalQualityChecks": {
+    "npmRunCheck": "passed",
+    "strictLint": "passed",
+    "fileLineLimits": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "formattedLogs": [
+    {
+      "path": "portable-cli-ocr-node-formatted.tap.gz",
+      "sourceSha256": "38fb694c81e8866be4a1d3d63ddfc9aaef8771b03180dee267ebb8393ad87bc7",
+      "sourceBytes": 3078,
+      "gzipSha256": "51b44ff4045c5588ce059bca41c0d10d1d58799d43c18c067050b9cab88688c3"
+    },
+    {
+      "path": "portable-cli-ocr-format.log.gz",
+      "sourceSha256": "dc6a35b8d501cacc7140011ced294dab62ef44c0e9a19f2d01e449abb837ae0f",
+      "sourceBytes": 1090,
+      "gzipSha256": "e0c2593b6ba9e7bc7aba2f7d4c12e96d2fcc7f8cc5d5863df42f76116bfc0c9a"
+    },
+    {
+      "path": "portable-cli-ocr-strict.log.gz",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "path": "portable-cli-ocr-check.log.gz",
+      "sourceSha256": "d69cfe868e4236e26e577653aeed0537f0d84304269cb7e762742d909df93d51",
+      "sourceBytes": 119180,
+      "gzipSha256": "fdf7101def5d5e35e94faa1e200ded2018b34cd9aa9d58eb3aa1a6030f3b0c4f"
+    },
+    {
+      "path": "portable-cli-ocr-line-check.log.gz",
+      "sourceSha256": "6ced3e35172fbc10de55e068515a8f97131a1e849e4f234bb787c70ae39009d6",
+      "sourceBytes": 27486,
+      "gzipSha256": "66d335fe87386b96f899e271c8e3731afe648813e1ded4b6e29bdb8aaac92777"
+    },
+    {
+      "path": "portable-cli-ocr-requirements.log.gz",
+      "sourceSha256": "f33945c3cb7fbc63ffa0787bf1aff1c09c66a14db1418959c3a2ce4009d2aeb5",
+      "sourceBytes": 356,
+      "gzipSha256": "846e41e8dbf7ab8efd0d7e198753ead12b28470b910ba241a734cd052c5a2399"
+    }
+  ],
+  "committedSourceDigests": [
+    {
+      "path": ".gitattributes",
+      "sha256": "d6aae992ff46f83e93d1461e8e9281836912ed7cf54f99b2229f3bd01bb2a823"
+    },
+    {
+      "path": "tests/ocr-crops.test.js",
+      "sha256": "0859c3a92e3d8363f7fa90d9374fca4d7be4e612d8214c221341e3dbdbd6686c"
+    },
+    {
+      "path": "tests/source-byte-checkout.test.js",
+      "sha256": "23090ac381433b60f22d3379688731c05794424dc59f4c0f55aba9561a1cc3be"
+    },
+    {
+      "path": "src/ocr.js",
+      "sha256": "e5986783f0f20f57c276f242a75003b4c65674d1d63a46c06af34ae81af19ae3"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ef8e36bed74220c7cc713e3c6be77e326953edf025016cd20ee243b9131f6efe"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "ada4b3a5bb17f77f15c63d239a488e34b15f8a6b0bb304dd3c32b7a5e60e0b79"
+    },
+    {
+      "path": "deno.lock",
+      "sha256": "7f72c6801fff3716c7453a34ca70810791ea22a801310bce9588014b1f3ddbba"
+    }
+  ]
+}

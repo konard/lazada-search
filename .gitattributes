@@ -5,3 +5,6 @@ tests/fixtures/public-cache/**/*.lino whitespace=-blank-at-eol
 docs/acceptance/** -text
 tests/fixtures/** -text
 data/cases/** -text
+
+# CLI shebangs must stay portable when a release is checked out on Windows.
+bin/** text eol=lf

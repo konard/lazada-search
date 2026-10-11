@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T14:06:12.393Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T14:39:10.618Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -22,12 +22,16 @@ The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollec
 | allRequirementsAccepted                    | Open   |
 | allGithubIssuesClosed                      | Open   |
 
+The SKU-inventory gate covers captured listing sources. Entire-market discovery remains a separate open gate; a passing captured-source inventory check does not establish exhaustive Lazada coverage.
+
 ## GitHub issue inventory
 
 This state is from the saved GitHub inventory, whose SHA-256 is recorded in [current.json](current.json). Re-run the inventory download before resolving an issue or interpreting a later state.
 
 | Issue                                                    | Requirement                                                                                                | State  |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------ |
+| [#38](https://github.com/konard/lazada-search/issues/38) | Fingerprint trained-model bytes in OCR cache identity                                                      | OPEN   |
+| [#37](https://github.com/konard/lazada-search/issues/37) | Preserve decimal pixels across native OCR engines and require actual matrix acceptance                     | OPEN   |
 | [#36](https://github.com/konard/lazada-search/issues/36) | Preserve original source bytes on Windows checkout and bound transient cache lock recreation               | OPEN   |
 | [#35](https://github.com/konard/lazada-search/issues/35) | Keep category E2E redirects local and drain every image producer before browser close                      | OPEN   |
 | [#34](https://github.com/konard/lazada-search/issues/34) | Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation | OPEN   |

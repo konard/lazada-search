@@ -324,7 +324,9 @@ test('actual local line OCR recovers source-image protein decimals without numer
   const ocr = new TesseractOcr({ store });
   const per100g = await ocr.recognize(blob, {
     psm: 7,
-    transform: transform(),
+    transform: transform({
+      resize: { width: 164, height: 136, kernel: 'nearest' },
+    }),
     sourceOcrId: baseline.id,
   });
   const per100ml = await ocr.recognize(blob, {
@@ -332,7 +334,7 @@ test('actual local line OCR recovers source-image protein decimals without numer
     sourceOcrId: baseline.id,
     transform: transform({
       crop: { left: 1074, top: 512, width: 83, height: 73 },
-      resize: { width: 166, height: 146 },
+      resize: { width: 166, height: 146, kernel: 'nearest' },
     }),
   });
   assert.equal(per100g.text.trim(), '4.5');

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T14:06:03.535308+00:00",
+  "checkedAt": "2026-10-11T14:41:51.017101+00:00",
   "issues": [33, 34, 35, 36],
   "upstreamIssue": "https://github.com/link-foundation/lino-env/issues/32",
   "frozenCode": "runtime-ci-final-frozen-code.json",
   "codeFiles": 575,
-  "fullSuites": "pending-new-frozen-complete-runs",
+  "fullSuites": "Earlier frozen code575 unit1291passed; earlier local E2E47passed and1native skip is unaccepted; latest dependency code576 unit1291/nativeBrowser48 complete with zero skips in separate0.31receipt.",
   "focused": {
     "nodeWorkflow": {
       "tests": 91,
@@ -395,6 +395,20 @@
       "sourceBytes": 356,
       "gzipSha256": "d4f0eeb53d7816e2cb8497736cbb6627026f33e4e6db9899b5d3f093d2320141",
       "gzipBytes": 246
+    },
+    {
+      "path": "runtime-ci-final-unit.tap.gz",
+      "sourceSha256": "b5b760f9ba4c2ece39ff92ad26b6324ce0430673f36b0b6832f71b3520a1a253",
+      "sourceBytes": 317574,
+      "gzipSha256": "4653b023e57378a7b28b04f20621cf4f2ccd77e7ced426789f6e21cb6de8b388",
+      "gzipBytes": 59900
+    },
+    {
+      "path": "runtime-ci-final-e2e.tap.gz",
+      "sourceSha256": "6d1ecedf4321e97379affc5da7afaa89e7ef7c15edd0ce3b557cb20266eaac2b",
+      "sourceBytes": 13747,
+      "gzipSha256": "113a259f1e31ff81eb2c21daccb9e052231c9cc88c749b9eba040ceaf532bfb4",
+      "gzipBytes": 3349
     }
   ],
   "offlineCase": {
@@ -510,5 +524,138 @@
       "scope": "strict consumer fixture; declaration libraries skipped",
       "setupAttempts": "original no-project and Node-type attempts failed; original logs retained"
     }
+  },
+  "acceptedFrozenUnit": {
+    "tests": 1291,
+    "pass": 1291,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 299934.961917,
+    "exitCode": 0,
+    "codeUnchangedAfterCommitHook": true,
+    "implementationCommit": "bce62fd6e90c94b862dfc3539e2b8f276758913d"
+  },
+  "latestBrowserCommanderReview": {
+    "registryVersion": "0.31.0",
+    "registryModifiedAt": "2026-10-11T12:39:31.998Z",
+    "installedDuringFrozenRun": "0.30.1",
+    "update": "installed0.31.0; new frozen full acceptance pending",
+    "recordingDefault": "off",
+    "existingCaptureScrollPersistentModules": "unchanged-static-review;installed-runtime-acceptance-pending"
+  },
+  "frozenBrowserResult": {
+    "tests": 48,
+    "pass": 47,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1,
+    "durationMs": 425149.158833,
+    "exitCode": 0,
+    "omittedCase": "Native link-cli test: LAZADA_TEST_CLINK was absent in this local command",
+    "acceptance": "not complete; new latest-version full run must supply the real existing .lazada-search/bin/clink"
+  },
+  "latestCompleteDependencyAcceptance": "../browser-commander-031/review.json",
+  "latestFixtureCorrectionAcceptance": "../ocr-decimal-portability/focused-validation.json",
+  "bceActualCi": {
+    "commit": "bce62fd6e90c94b862dfc3539e2b8f276758913d",
+    "run": "https://github.com/konard/lazada-search/actions/runs/38146125500",
+    "matrix": "All three macOS runtimes success; all three Ubuntu runtimes fail only actual decimal OCR; all three Windows runtimes fail only CLI CRLF shebang. New fixes require fresh actual matrix acceptance.",
+    "actualE2e": {
+      "run": "https://github.com/konard/lazada-search/actions/runs/38146125510",
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "releaseCredentialPreflight": "Still failed due to owner npm publisher configuration; issue32 remains open and mandatory guard retained.",
+    "otherWorkflows": "Workflows/security/example succeed; broken-link checker cancelled and retained as such.",
+    "rawEvidence": [
+      {
+        "path": "runtime-ci-bce-bun-macos.log.gz",
+        "sourceSha256": "3e5093a06688aae4f77c148d3372eddc6cd7fe9adb529122cc20c0e6b8d6190a",
+        "sourceBytes": 330610,
+        "gzipSha256": "23e767615f0b581605d47ffaa693cba6c22ab6d54362528c13f3f1d6f726be66"
+      },
+      {
+        "path": "runtime-ci-bce-bun-ubuntu.log.gz",
+        "sourceSha256": "5fcd438f2869a370a27c42a855696b1f4031e787e0ec000c8c4e0e89e1dc49d8",
+        "sourceBytes": 236957,
+        "gzipSha256": "637a05c4e25d51256b024f585b084a62df48c35f0f7c557694f816a1ee61bd79"
+      },
+      {
+        "path": "runtime-ci-bce-bun-windows-steps.json.gz",
+        "sourceSha256": "ab2ce511e1214113b837dfd4abe9121c11c6d51c3fda947a3db18eb6ee37a64d",
+        "sourceBytes": 2820,
+        "gzipSha256": "91fdd8be98a5c38260ec3ed9bb78d4b14e99de60981216eb1d90e812a4664250"
+      },
+      {
+        "path": "runtime-ci-bce-bun-windows.log.gz",
+        "sourceSha256": "14b59d842b84c34b05ee39b96e7ed223004e358e678ff768b65af8b1b270d061",
+        "sourceBytes": 233439,
+        "gzipSha256": "914991efca3e1d693c25ef1efc9de90384f784789986c07b912332a2e1047919"
+      },
+      {
+        "path": "runtime-ci-bce-completed-runs.json.gz",
+        "sourceSha256": "6243a28a072c0b1711a7ea5758e017257c24e93908dadc265de95c98b93647bd",
+        "sourceBytes": 1003,
+        "gzipSha256": "93f8bc75d3801638bce2dddb201ed03e46c44d339c5754125f08854a310750ee"
+      },
+      {
+        "path": "runtime-ci-bce-deno-macos.log.gz",
+        "sourceSha256": "8d3f5b5fb3c397ebcc2d108e31d5eb38fe697ff89a79fa14699c6e4dc491c837",
+        "sourceBytes": 364554,
+        "gzipSha256": "2033454f67da7ae32221d11b5e74df641918894eb7a3f5052a994f6e50d2791b"
+      },
+      {
+        "path": "runtime-ci-bce-deno-ubuntu.log.gz",
+        "sourceSha256": "32e17b0ed93f1140a1bf50c488bc46d1f7ae163755030d07ab673912f3ccf6c5",
+        "sourceBytes": 291508,
+        "gzipSha256": "af4c584af6e2503d76d0e76b8464cad214117639d8271770902b57b385f0f136"
+      },
+      {
+        "path": "runtime-ci-bce-deno-windows.log.gz",
+        "sourceSha256": "d0b9cced8a3620d2a77a31ace5652c8f40ef47ac9ba40abf0fa0cbb7de9f0c3d",
+        "sourceBytes": 290749,
+        "gzipSha256": "982841d4e2cbc89fb38c58875ae28b5dbf8d61574ac0b7856a139ad2148bf3db"
+      },
+      {
+        "path": "runtime-ci-bce-e2e-accepted.log.gz",
+        "sourceSha256": "210e9cf0002c7314b07713a30aea3654c6f983b74f0a0e9f0db55dc2c55a7daf",
+        "sourceBytes": 87558,
+        "gzipSha256": "ef0f9f769e8e7dc2ade95d2d00678f1129df9e8580449f1762ddca99bf146a80"
+      },
+      {
+        "path": "runtime-ci-bce-e2e-status.json.gz",
+        "sourceSha256": "be605f52265009a37b86b48dd01eab36146b3146e6d0c1b7c611cb7387e4bab9",
+        "sourceBytes": 3809,
+        "gzipSha256": "b6c0f101ebbb0c5cc677400b7243da9de69511751552d9711a5f7ff6db57a601"
+      },
+      {
+        "path": "runtime-ci-bce-matrix-status.json.gz",
+        "sourceSha256": "8cec6ea5ff31538a5d9e4bc0da4ff39512cfac1f23526a922a0e4c574e7a8a8d",
+        "sourceBytes": 39978,
+        "gzipSha256": "633cde2cc0501a06013635a0afcf9f9e2a6964949a9128ca8da129d1fe21c61b"
+      },
+      {
+        "path": "runtime-ci-bce-node-macos.log.gz",
+        "sourceSha256": "56e6d01952719696ee0fed4a8c8fcc262e111bc944d6cdf3c031dcdfb7253941",
+        "sourceBytes": 301329,
+        "gzipSha256": "4dd6722921b3b6d7e266f5aa6a620d0bf7a4acb7349f90ba34b7e691d11548bc"
+      },
+      {
+        "path": "runtime-ci-bce-node-ubuntu.log.gz",
+        "sourceSha256": "bb9de87267792c6bace522f1cbb3aacdb7e0babdfea61b814d942d5238461522",
+        "sourceBytes": 212067,
+        "gzipSha256": "aa3af424e14fbda5e77614369526e06aac70e61021d2deb9bf97c8456aa6dbef"
+      },
+      {
+        "path": "runtime-ci-bce-node-windows.log.gz",
+        "sourceSha256": "307e75c3e16df2e7f3270e78a0d0fdb4acaf6dd82c1a2a0e1c71357fa8a93b76",
+        "sourceBytes": 205055,
+        "gzipSha256": "824651a169858ab2d785836101e265af48ec5b4ac64a2494b64134980855bbfa"
+      }
+    ]
   }
 }

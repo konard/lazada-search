@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-10-11T14:15:13.511089+00:00",
+  "source": "https://registry.npmjs.org/browser-commander/0.31.0",
+  "previousInstalledVersion": "0.30.1",
+  "newVersion": "0.31.0",
+  "registryPublishedMetadata": "runtime-ci-browser-commander-latest.json",
+  "packageMetadata": "browser-commander-031-metadata.json",
+  "archiveSha256": "215e2fb78b965af09dc8d8df94a53278977a1a3006dc277fc00f452457f76bd1",
+  "registryIntegrity": "sha512-tL+gFX5VO6UeZc3kGgNN7w2cYMOve298MLPYtbWXFN1UoC54Bz94qdTie8x8cJYOGPltoMLkN4rqMsMR9lsUQw==",
+  "review": {
+    "mainChange": "Recording disabled by default with optional bounded managed recording directories",
+    "captureInteractionsPersistentSession": "byte-identical to previous installed modules; static review",
+    "existingExplicitDebugFalse": "retained",
+    "shutdown": "bounded close RPC deadline",
+    "engine": "Node>=22.12.0",
+    "newDependencyGraph": "same declared dependency ranges as 0.30.1"
+  },
+  "installedRuntimeAcceptance": {
+    "unit": {
+      "tests": 1291,
+      "pass": 1291,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 351723.109584
+    },
+    "nativeBrowserE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 456503.155917
+    },
+    "qualityCheck": {
+      "npmRunCheck": "passed",
+      "strictChangedScriptLint": "passed"
+    },
+    "rawLogs": [
+      {
+        "path": "browser-commander-031-check.log.gz",
+        "sourceSha256": "bced8de47feceddc96c7c21a3777fa70fa624f8e58ee895fb97a7a4612b9f427",
+        "sourceBytes": 119180,
+        "gzipSha256": "3dea512db8473217de52f01770d7baa2a062556d2a75d9bcde5f05dabf6c96c7",
+        "gzipBytes": 15275
+      },
+      {
+        "path": "browser-commander-031-clink-version.log.gz",
+        "sourceSha256": "2c945ae09817592f558297be26c263d1555132fc92308275e0bf94a6dc770f21",
+        "sourceBytes": 12,
+        "gzipSha256": "4f434d226c0dfb4d6fd4c9704421eb0325153f43c3438cfa1473849afd3ad7f1",
+        "gzipBytes": 32
+      },
+      {
+        "path": "browser-commander-031-decoder-gate.log.gz",
+        "sourceSha256": "e81d18d68becf0b8888144167728ce37a97beffd8560142e45df735e36b61112",
+        "sourceBytes": 378,
+        "gzipSha256": "a1d2e0453344bab73c39ba02befef5c830c9372b94f2d3cf7b24c54eefb7928e",
+        "gzipBytes": 241
+      },
+      {
+        "path": "browser-commander-031-e2e.tap.gz",
+        "sourceSha256": "90f59a0f7175a53974951d34fb17cbd50088426300b4b29547cf7b2dfcc44f84",
+        "sourceBytes": 13848,
+        "gzipSha256": "2cae3590d7dd0ea08ec9887df83fc9dcf09bd6cca34cd161937d8f7d45251f88",
+        "gzipBytes": 3348
+      },
+      {
+        "path": "browser-commander-031-format.log.gz",
+        "sourceSha256": "d25cd5145bb00d5b450b66bb861a81cade75e390133fa7bb7e2eca7ac1863d79",
+        "sourceBytes": 580,
+        "gzipSha256": "6f96978ae7d603e10af438d26bac67dabea23801a3e7b2a02d7cd49603029c87",
+        "gzipBytes": 249
+      },
+      {
+        "path": "browser-commander-031-freeze-format.log.gz",
+        "sourceSha256": "7beccfa3deaf30b9a876e74422468c5d9d7f0c99e5dcee13f504749e822e7906",
+        "sourceBytes": 202,
+        "gzipSha256": "20a0f37713c6fa947176bcd80328cbb7ae6acd95e039af865c1897db8ae3b8db",
+        "gzipBytes": 135
+      },
+      {
+        "path": "browser-commander-031-install.log.gz",
+        "sourceSha256": "f44c4ed1a9fc1d11e559b25f9821753a9f9e3d3f8bee57e0ea7ac4d4abe6cb5d",
+        "sourceBytes": 25,
+        "gzipSha256": "bb0bfd59adc85840d9a06a75e61b8c8febc0753c0972a7709bc1364ad9eca45e",
+        "gzipBytes": 45
+      },
+      {
+        "path": "browser-commander-031-requirements.log.gz",
+        "sourceSha256": "7a63ee9ef2ddb6bea5779d15a55a0ce8f11c4915d2a3055b09f9a3fa6d732839",
+        "sourceBytes": 356,
+        "gzipSha256": "d4f0eeb53d7816e2cb8497736cbb6627026f33e4e6db9899b5d3f093d2320141",
+        "gzipBytes": 246
+      },
+      {
+        "path": "browser-commander-031-strict.log.gz",
+        "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceBytes": 0,
+        "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+        "gzipBytes": 20
+      },
+      {
+        "path": "browser-commander-031-unit.tap.gz",
+        "sourceSha256": "d6237f3fc1a45267fc5aa582382eeae6266c90ad46b8ff648d1038b97786222e",
+        "sourceBytes": 317607,
+        "gzipSha256": "937c46687d2ed1541809696c084cc5aa8cc5fccdaaa79ccedc0af473351dbac4",
+        "gzipBytes": 59908
+      }
+    ],
+    "postFullSuiteChanges": [
+      {
+        "path": ".gitattributes",
+        "frozenSha256": "01d2e078b43fb05ea1b6e2a241b374ebc7007c70349ed6a1bcb564838634bb1a",
+        "currentSha256": "d6aae992ff46f83e93d1461e8e9281836912ed7cf54f99b2229f3bd01bb2a823"
+      },
+      {
+        "path": "tests/ocr-crops.test.js",
+        "frozenSha256": "446e6b79097131ff64405c3959099cbcbd08e25712c2d69f4293451b26679c52",
+        "currentSha256": "0859c3a92e3d8363f7fa90d9374fca4d7be4e612d8214c221341e3dbdbd6686c"
+      },
+      {
+        "path": "tests/source-byte-checkout.test.js",
+        "frozenSha256": "da02123fc8dec056b671f7d82cbd38e8ce8610f1837d2edca613dbad0dbd6652",
+        "currentSha256": "440131dbbb5c3c8402b58f3a31182501de77235fd0f0d91da0cb0fc09d616819"
+      }
+    ],
+    "postFullSuiteChangesScope": "Only Git checkout and native OCR fixture portability corrections; complete library/browser source and installed dependency fingerprints unchanged. Focused acceptance for corrections is recorded separately.",
+    "installedDependencyFilesChecked": 178,
+    "installedDependencyFingerprintChanges": []
+  },
+  "allProductDataCollection": "still stopped on original manufacturer CAPTCHA",
+  "installedVersion": "0.31.0",
+  "frozenCode": "frozen-code.json",
+  "upgradeDiff": "Only browser-commander package root/locked version changed; one installed package changed; no other dependency lock changes",
+  "updatedAt": "2026-10-11T14:36:05.820699+00:00"
+}

@@ -1,0 +1,217 @@
+{
+  "completedAt": "2026-10-11T14:27:34.012557+00:00",
+  "sourceOriginalSha256": "67907ce23aa9ff33a8431ad6ebe68289d842ab83f14586abf9d5ac7a5ab3c9e8",
+  "sourceOriginalUnchanged": true,
+  "reviewOnly": true,
+  "identityMatched": false,
+  "approvedFacts": 0,
+  "numericRepair": false,
+  "whitelist": false,
+  "macVersion": "tesseract 5.5.2",
+  "ubuntuVersion": "tesseract 5.3.4",
+  "englishModelSha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+  "ubuntuModelSha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+  "dockerImage": "[\"ubuntu@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55\"] sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55",
+  "renderer": {
+    "aom": "3.15.1",
+    "archive": "3.8.9",
+    "cairo": "1.18.6",
+    "cgif": "0.5.4",
+    "exif": "0.6.26",
+    "expat": "2.8.5",
+    "ffi": "3.8.0",
+    "fontconfig": "2.18.3",
+    "freetype": "2.14.3",
+    "fribidi": "1.0.17",
+    "glib": "2.90.0",
+    "harfbuzz": "14.5.0",
+    "heif": "1.23.5",
+    "highway": "1.4.0",
+    "imagequant": "2.4.1",
+    "lcms": "2.19.1",
+    "mozjpeg": "0826579",
+    "pango": "1.58.2",
+    "pixman": "0.46.4",
+    "png": "1.6.58",
+    "proxy-libintl": "0.5",
+    "rsvg": "2.63.2",
+    "tiff": "4.7.2",
+    "uhdr": "2.0.2",
+    "vips": "8.18.7",
+    "webp": "1.6.0",
+    "xml2": "2.15.4",
+    "zlib-ng": "2.3.3",
+    "sharp": "0.35.5"
+  },
+  "winningTransforms": [
+    {
+      "name": "per100g-2x-nearest-gray",
+      "basis": "per100g",
+      "transform": {
+        "crop": {
+          "left": 801,
+          "top": 517,
+          "width": 82,
+          "height": 68
+        },
+        "resize": {
+          "width": 164,
+          "height": 136,
+          "kernel": "nearest"
+        },
+        "grayscale": true
+      },
+      "imageSha256": "6c81406db64dc7beae7f505b4187fa1fe9647e56bf6720f076088fce2491dff7",
+      "imageBytes": 2923,
+      "mac": {
+        "command": [
+          "tesseract",
+          "/private/tmp/lazada-ocr-ubuntu-experiment/per100g-2x-nearest-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "0732c712c00c8097ba6bf346a1f759e6ee38f84cc0688d4f73610d03fa1fb291",
+        "text": "4.5",
+        "confidence": [69.355453]
+      },
+      "ubuntu": {
+        "command": [
+          "tesseract",
+          "/work/per100g-2x-nearest-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "2fef0281bc196d19f333bc6b1b3d9d41f87902f5d37d1e3e33181fe282e976d5",
+        "text": "4.5",
+        "confidence": [62.196907]
+      }
+    },
+    {
+      "name": "per100ml-2x-nearest-gray",
+      "basis": "per100ml",
+      "transform": {
+        "crop": {
+          "left": 1074,
+          "top": 512,
+          "width": 83,
+          "height": 73
+        },
+        "resize": {
+          "width": 166,
+          "height": 146,
+          "kernel": "nearest"
+        },
+        "grayscale": true
+      },
+      "imageSha256": "f9e0b534387a2845997eeddb3835cf423ed40caf414a9fe5bb229e8b01bbcb10",
+      "imageBytes": 3207,
+      "mac": {
+        "command": [
+          "tesseract",
+          "/private/tmp/lazada-ocr-ubuntu-experiment/per100ml-2x-nearest-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "642d7aa222ee3ea019a419090d507286c8a4f990458ebc5954243dc3986a8535",
+        "text": "4.0",
+        "confidence": [92.606575]
+      },
+      "ubuntu": {
+        "command": [
+          "tesseract",
+          "/work/per100ml-2x-nearest-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "4a359099374f43e052b21958a6ea8f810d160176a55b8c2bb3ba057cf003fda9",
+        "text": "4.0",
+        "confidence": [90.764595]
+      }
+    }
+  ],
+  "preservedControls": {
+    "lanczos3-2x-per100g": {
+      "name": "per100g-2x-lanczos3-gray",
+      "basis": "per100g",
+      "transform": {
+        "crop": {
+          "left": 801,
+          "top": 517,
+          "width": 82,
+          "height": 68
+        },
+        "resize": {
+          "width": 164,
+          "height": 136,
+          "kernel": "lanczos3"
+        },
+        "grayscale": true
+      },
+      "imageSha256": "9a8e8e826712dfab8294daacb4da2fbf101975ed2bc117d2f44fac4b4aa821d8",
+      "imageBytes": 8887,
+      "mac": {
+        "command": [
+          "tesseract",
+          "/private/tmp/lazada-ocr-ubuntu-experiment/per100g-2x-lanczos3-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "12136b60dc70b298eecb46d7e0f12c420040030dec63ccfabb835ec9863ce1dd",
+        "text": "4.5",
+        "confidence": [61.852322]
+      },
+      "ubuntu": {
+        "command": [
+          "tesseract",
+          "/work/per100g-2x-lanczos3-gray.png",
+          "stdout",
+          "-l",
+          "eng",
+          "--psm",
+          "7",
+          "-c",
+          "tessedit_create_tsv=1"
+        ],
+        "tsvSha256": "90d9ea395c8c8deaf45dd852b623b649f3e5f0f7c05c4c014c0721068b716959",
+        "text": "45",
+        "confidence": [66.142868]
+      }
+    }
+  },
+  "proposedChange": "Use kernel nearest in the two real native OCR test transforms only, retaining source rectangles,2x dimensions,grayscale,psm7 and exact assertions; existing library already supports this transform.",
+  "originalExperiment": {
+    "path": "experiment.tar.gz",
+    "sha256": "f03ebf381932b6e3154d184c4414f496c9b60d9683c176f84762dd9ce7f37b63",
+    "bytes": 1119290,
+    "files": 71,
+    "sourceReceipt": "winning-review.json inside archive; original bytes unchanged",
+    "manifest": "file-digests.json inside archive"
+  },
+  "repositoryChange": "Only the final actual-native test recipes choose existing 2x nearest resizing; original mock/cached Lanczos controls and assertions unchanged.",
+  "windowsAcceptance": "pending actual revised-recipe CI"
+}

@@ -31,6 +31,10 @@ test('Git autocrlf checkout preserves original OCR, Links Notation and cached HT
     ['docs/acceptance/decimal-ocr/original-psm11.tsv', tsv],
     ['tests/fixtures/public-cache/store/product/original.lino', notation],
     ['data/cases/source.html', Buffer.from('<p>Sô cô la</p>\r\n<p>40 g</p>\n')],
+    [
+      'bin/lazada-search.js',
+      await readFile(new URL('../bin/lazada-search.js', import.meta.url)),
+    ],
   ]);
   await writeFile(join(directory, '.gitattributes'), attributes);
   for (const [path, bytes] of sources) {
@@ -56,6 +60,12 @@ test('Git autocrlf checkout preserves original OCR, Links Notation and cached HT
     assert.deepEqual(checkedOut, bytes, path);
     assert.equal(sha256(checkedOut), sha256(bytes), path);
   }
+  assert.equal(
+    (await readFile(join(restored, 'bin/lazada-search.js'), 'utf8')).split(
+      '\n'
+    )[0],
+    '#!/usr/bin/env node'
+  );
   assert.equal(
     await readFile(join(restored, 'control.txt'), 'utf8'),
     'Ordinary text\r\n',
