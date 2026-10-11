@@ -220,7 +220,7 @@
     },
     {
       "id": "transitive-audit",
-      "status": "installed-scoped-override-audit-clean; latest-full-suite-pending",
+      "status": "installed-scoped-override-audit-clean; full-suite945unit35e2e-passed",
       "scopedOverride": {
         "browser-commander": {
           "command-stream": "2.0.2"
@@ -241,7 +241,7 @@
         "docs/acceptance/dependency-resolution/README.md"
       ],
       "isolatedSubprocessContractsPassed": 7,
-      "finding": "Browser Commander 0.29.0 keeps its API while the scoped Command Stream 2.0.2 override removes the ShellJS/fast-glob/micromatch/braces advisory chain. Local installed audit is zero; previous full-suite logs are preserved and current full validation is pending."
+      "finding": "Browser Commander 0.29.0 keeps its API while the scoped Command Stream 2.0.2 override removes the ShellJS/fast-glob/micromatch/braces advisory chain. Local installed audit is zero; full-suite945-unit and35-E2E validation passed without failures or skips; original baseline logs are preserved."
     },
     {
       "id": "public-manufacturer-access-token",
@@ -288,6 +288,19 @@
       "cachedProductSha256": "ec2fdadeee1f3df61f95081f23a33740aa57e43b5ad8d4d28b71a93e6fc3c494",
       "newExactSpecApprovals": 0,
       "finding": "Original corporate brand and official-shop links prove source ownership only. White Choco 2250 g variant nutrition and package revision remain unverified; cached managed challenge is not bypassed or retried."
+    },
+    {
+      "id": "seller-container-metric-mass",
+      "issue": "https://github.com/konard/lazada-search/issues/15",
+      "status": "implemented-source-corrected-and-focused-tested",
+      "evidence": [
+        "src/nutrition.js",
+        "scripts/deadline-report-costs.mjs",
+        "scripts/review-cached-container-mass.mjs",
+        "docs/acceptance/container-metric-mass/validation.json",
+        "docs/acceptance/container-metric-mass/review-replay.json"
+      ],
+      "finding": "Exact selected Hydropure source declares2040g; rounded4.5lb and unmatched factory2050g no longer replace seller food mass in gram rankings. Same-observation review preserves price/date and original contradictory claims. Historical exact-SKU evidence cannot be replaced by a sibling listing cache.47 affected unit,7 E2E and24 additional report checks passed;322 alias captures replayed with zero downloads. Exact factory revision/protein remains pending."
     }
   ]
 }

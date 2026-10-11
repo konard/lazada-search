@@ -9,6 +9,35 @@ import { sha256 } from '../src/util.js';
 const report = JSON.parse(
   await readFile('docs/tables/top-10-partial.json', 'utf8')
 );
+const iceUnits = JSON.parse(
+  await readFile('docs/tables/ice-unit-rankings.json', 'utf8')
+);
+const handpicked = JSON.parse(
+  await readFile('docs/tables/handpicked.json', 'utf8')
+);
+for (const [metric, rows] of Object.entries(iceUnits.rankings)) {
+  assert.ok(rows.length <= 10, metric);
+  assert.equal(new Set(rows.map((row) => row.sku)).size, rows.length, metric);
+  for (const [index, row] of rows.entries()) {
+    assert.ok(Number.isFinite(row[metric]) && row[metric] > 0, row.sku);
+    assert.notEqual(row.available, false, row.sku);
+    assert.notEqual(row.strictChocolateEligible, false, row.sku);
+    assert.ok(index === 0 || rows[index - 1][metric] <= row[metric], metric);
+    if (metric.startsWith('after')) {
+      assert.equal(row.deliveryQuoteMatched, true, row.sku);
+    }
+  }
+}
+assert.equal(handpicked.rows.length, 6);
+for (const [index, row] of handpicked.rows.entries()) {
+  assert.ok(row.costs?.beforePerFoodGram > 0, row.exactSku);
+  assert.ok(
+    index === 0 ||
+      handpicked.rows[index - 1].costs.beforePerFoodGram <=
+        row.costs.beforePerFoodGram,
+    row.exactSku
+  );
+}
 const reviews = await Promise.all(
   ['whey', 'ice'].map(async (type) =>
     JSON.parse(
@@ -30,17 +59,28 @@ for (const [group, rows] of [
   ['whey', report.whey],
   ['whey-protein', report.verifiedProtein],
   ['ice-cream', report.iceCream],
+  ['ice-unit', iceUnits.rows],
+  [
+    'handpicked',
+    handpicked.rows.map((row) => ({
+      ...row.costs,
+      sku: row.exactSku,
+      price: row.priceVnd,
+      manufacturerVerified: row.manufacturerVerified,
+    })),
+  ],
 ]) {
-  if (group === 'ice-cream') {
-    assert.ok(rows.length > 0, 'Every captured ice-cream SKU must be audited');
-  } else {
+  if (group.startsWith('whey')) {
     assert.equal(rows.length, 10);
+  } else {
+    assert.ok(rows.length > 0, 'Every published selected SKU must be audited');
   }
   for (const row of rows) {
     const results = {};
     for (const [denominator, before, after] of [
       ['massG', 'beforePerFoodGram', 'afterPerFoodGram'],
       ['volumeMl', 'beforePerMl', 'afterPerMl'],
+      ['proteinG', 'beforePerProteinGram', 'afterPerProteinGram'],
     ]) {
       if (row[denominator] > 0) {
         assert.ok(
@@ -84,6 +124,7 @@ for (const [group, rows] of [
       price: row.price,
       massG: row.massG,
       volumeMl: row.volumeMl,
+      proteinG: row.proteinG,
       results,
       exactSourcePriceMatched: true,
       sourceHash: evidence.html.sha256,
@@ -97,6 +138,13 @@ const receipt = {
   inputGeneratedAt: report.generatedAt,
   downloads: 0,
   checkedRows: checked.length,
+  inputs: {
+    top10: report.generatedAt,
+    iceUnits: iceUnits.generatedAt,
+    handpicked: handpicked.generatedAt,
+  },
+  iceRankingsSortedAndEligible: true,
+  handpickedGramPricesSorted: true,
   wheyAndSoySeparated: true,
   allPublishedWheyPowderAndIceSourcesMatched: checked.every(
     (row) => row.exactSourcePriceMatched
@@ -116,7 +164,7 @@ await writeFile(
 await writeFile(
   'docs/acceptance/top10-check/unit-cost-audit.md',
   await format(
-    `# Top-ten unit cost audit\n\nUpdated ${receipt.auditedAt}. **${checked.length} report rows recomputed offline**, including the separate ten-row whey protein-cost table. All ${report.whey.length} whey powder and ${report.iceCream.length} captured ice-cream exact SKU/source prices were independently checked against original cached HTML and source hashes.\n\nProSupps uses printed **907 g**; Merino selling packs are **5 × 40 g = 200 g** and **5 × 60 g = 300 g**. The latter is sold out. Thai ice cream explicitly declares **6000 ml**; its seller title claims **3000 g**, while description says 3–3.3 kg by flavour. That mass remains a seller claim.\n\nShipping costs require the captured quote quantity and Nha Trang destination; ice cream also requires confirmed cold-chain delivery before a delivered ranking. No gram/millilitre conversion or shaker capacity enters any food denominator. Hydropure's exact factory package/revision remains conditional. Price arithmetic does not establish manufacturer authenticity, current stock or complete marketplace coverage.\n\n[Whey original sources](whey-source-review.md) · [Ice original sources](ice-source-review.md) · [Audit JSON](unit-cost-audit.json) · [Updated top tens](../../tables/top-10-partial.md).\n`,
+    `# Top-ten unit cost audit\n\nUpdated ${receipt.auditedAt}. **${checked.length} report rows recomputed offline**, covering both ten-row whey rankings, all selected ice rows in both reports, and all six handpicked options. Every price and exact SKU was independently re-extracted from original cached HTML with its SHA256 verified. Gram, millilitre and protein arithmetic, missing-field propagation and published sorting were checked.\n\nHydropure uses the selected seller's **2040 g**, giving **490.19 VND/g before delivery**; the unmatched factory2050g/protein profile remains a separate conditional reference. ProSupps uses printed **907 g**. Merino selling packs are **5 × 40 g = 200 g** and **5 × 60 g = 300 g**; the latter is sold out. Thai ice cream declares **6000 ml**; its conflicting seller3kg claim stays withheld.\n\nShipping costs require the captured quote quantity and Nha Trang destination; ice cream also requires confirmed cold-chain delivery before a delivered ranking. No gram/millilitre conversion or shaker capacity enters any food denominator. Exact current label coverage remains incomplete. Correct arithmetic and source matching do not establish current stock, manufacturer authenticity or complete marketplace coverage.\n\n[Whey original sources](whey-source-review.md) · [Ice original sources](ice-source-review.md) · [Audit JSON](unit-cost-audit.json) · [Updated top tens](../../tables/top-10-partial.md).\n`,
     { parser: 'markdown' }
   )
 );

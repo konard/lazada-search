@@ -71,7 +71,12 @@ function massScope(prefix, suffix) {
   ) {
     return 'net';
   }
-  return /\b(?:goi|tui(?: zip)?|bich|bag|pack|repack|share)\s*$/u.test(prefix)
+  return /\b(?:goi|tui(?: zip)?|bich|bag|pack|repack|share)\s*$/u.test(
+    prefix
+  ) ||
+    /(?:^|[.;])\s*(?:dong goi|quy cach|package size|pack size)\s*[:=]\s*(?:hop|hu|tub|jar|box)\s*$/u.test(
+      prefix
+    )
     ? 'selling'
     : 'headline';
 }

@@ -7,6 +7,7 @@ import { parseHTML } from 'linkedom';
 import { extractPage } from '../src/browser.js';
 import { massEvidence, massGrams } from '../src/nutrition.js';
 import { applySelectedPackageMass, parseProduct } from '../src/products.js';
+import { calculateOffer } from '../src/compare.js';
 
 const directory = new URL('./fixtures/selected-package-mass/', import.meta.url);
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -259,4 +260,125 @@ test('explicit selected food size wins family metadata, and conflicting selected
       )
       .every((claim) => claim.requiresReview)
   );
+});
+
+test('original Hydropure seller container declaration overrides rounded pounds without approving factory identity', async () => {
+  const html = await readFile(
+    new URL(
+      '../docs/acceptance/bonus-hydropure-evidence/3095127497-14849213302-public.html',
+      import.meta.url
+    )
+  );
+  const hash =
+    '55616c2c7fce2641eb592a39517f29d3371ed5dd48585c1c1a0f7100331ec852';
+  assert.equal(digest(html), hash);
+  const { document } = parseHTML(html.toString());
+  const snapshot = extractPage({
+    document,
+    url: 'https://www.lazada.vn/products/pdp-i3095127497.html?skuId=14849213302',
+  });
+  assert.ok(snapshot.specs.includes('Đóng gói: Hộp 2.04kg ~ 57 servings'));
+  const observedAt = '2026-10-10T15:35:24.245Z';
+  const { product, offer } = parseProduct(snapshot, {
+    evidenceId: `original:${hash}`,
+    observedAt,
+  });
+  assert.equal(product.sku, '3095127497_VNAMZ-14849213302');
+  assert.deepEqual(
+    [...new Set(product.selectedVariant.map((option) => option.text))],
+    ['Extreme Chocolate']
+  );
+  assert.equal(offer.variantConfirmed, true);
+  assert.equal(offer.price, 999997);
+  assert.equal(product.netMassG, 2040);
+  assert.equal(product.massEvidence.selected.metric, true);
+  assert.equal(product.massEvidence.selected.scope, 'selling');
+  assert.match(product.massEvidence.selected.context, /Hộp 2\.04kg/u);
+  assert.equal(product.massEvidence.conflicting, false);
+  const metricClaim = product.claims.find(
+    (claim) => claim.field === 'netMassG' && !claim.requiresReview
+  );
+  assert.equal(metricClaim.value, 2040);
+  assert.equal(metricClaim.source, 'dom');
+  assert.equal(metricClaim.evidenceId, `original:${hash}`);
+  assert.ok(
+    product.claims.some(
+      (claim) =>
+        claim.field === 'netMassG' &&
+        claim.value === 4.5 * 453.59237 &&
+        claim.supersededForSellingMass
+    )
+  );
+  assert.equal(product.manufacturerVerification, undefined);
+  assert.equal(product.proteinPer100g, undefined);
+  assert.equal(product.proteinPerPackageG, undefined);
+  assert.ok(product.claims.every((claim) => claim.source !== 'manufacturer'));
+  const comparison = calculateOffer(product, offer, {
+    requireManufacturer: false,
+    requireShipping: false,
+    now: Date.parse(observedAt),
+  });
+  assert.equal(comparison.metrics.costPerGramBeforeDelivery, 999997 / 2040);
+  assert.equal(comparison.metrics.costPerProteinGramBeforeDelivery, null);
+  assert.equal(comparison.metrics.costPerGramAfterDelivery, null);
+});
+
+test('only explicit container package declarations gain selling mass priority', () => {
+  const snapshot = {
+    url: 'https://www.lazada.vn/products/fixture-i1.html',
+    title: 'Chocolate whey 4.5 lb',
+    selectedVariant: [{ text: 'Chocolate' }],
+  };
+  for (const description of [
+    'Đóng gói: Hộp 2.04kg ~ 57 servings',
+    'Quy cách: Hũ 2,04kg',
+    'Package size: tub 2.04kg',
+    'Pack size: jar 2.04kg',
+  ]) {
+    const { product } = parseProduct({ ...snapshot, description });
+    assert.equal(product.netMassG, 2040, description);
+    assert.equal(product.massEvidence.selected.scope, 'selling', description);
+  }
+  for (const description of [
+    'Hộp 2.04kg',
+    'Trọng lượng đóng gói: Hộp 3kg',
+    'Shipping package size: box 3kg',
+    'Quà tặng: Hộp 2.04kg',
+    'Gift pack size: box 2.04kg',
+    'Shaker: Hộp 500g',
+    'Serving size: Hộp 36g',
+    'Repacked from original container: Hộp 2.04kg',
+  ]) {
+    const { product } = parseProduct({ ...snapshot, description });
+    assert.equal(product.netMassG, 4.5 * 453.59237, description);
+    assert.equal(product.massEvidence.selected.origin, 'title', description);
+  }
+});
+
+test('container declarations retain selected size priority and reject comparisons with distinct metric package sizes', () => {
+  const snapshot = {
+    url: 'https://www.lazada.vn/products/fixture-i1.html',
+    title: 'Chocolate whey 4.5 lb',
+    selectedVariant: [{ text: 'Chocolate 500g' }],
+    description: 'Đóng gói: Hộp 2.04kg',
+  };
+  assert.equal(parseProduct(snapshot).product.netMassG, 500);
+  const { product, offer } = parseProduct({
+    ...snapshot,
+    selectedVariant: [{ text: 'Chocolate' }],
+    description: 'Đóng gói: Hộp 2.04kg; Quy cách: Hũ 2.05kg',
+    priceText: '999.997 ₫',
+  });
+  assert.equal(product.massEvidence.conflicting, true);
+  assert.ok(
+    product.claims
+      .filter((claim) => claim.field === 'netMassG' && claim.value === 2040)
+      .every((claim) => claim.requiresReview)
+  );
+  const comparison = calculateOffer(product, offer, {
+    requireManufacturer: false,
+    requireShipping: false,
+  });
+  assert.equal(comparison.eligible, false);
+  assert.ok(comparison.problems.includes('netMassG needs evidence review'));
 });

@@ -157,6 +157,18 @@
         "docs/tables/catalog.json"
       ],
       "reproduction": "SKU 3255422832_VNAMZ-117013951240 selects “2 túi tặng 1 túi”. The current 4,000 g denominator covers the two paid 2 kg bags only; the gift bag has no exact confirmed mass/flavour/formula or unconditional availability/quantity rules. Preserve paid/bonus/accessory evidence separately and include a confirmed eligible bonus once; this remains unfinished data acceptance."
+    },
+    {
+      "id": "container-metric-mass",
+      "status": "fixed; corrected cached reports being published",
+      "issue": "https://github.com/konard/lazada-search/issues/15",
+      "title": "Explicit metric container packaging declaration lost to rounded pound title",
+      "evidence": [
+        "src/nutrition.js",
+        "tests/selected-package-mass.test.js",
+        "docs/acceptance/container-metric-mass/validation.json"
+      ],
+      "reproduction": "Original exact Extreme Chocolate seller declaration2.04kg was treated as headline, yielding2041.165665g from4.5lb. Corrected selling declaration yields2040g and490.19VND/g; no factory nutrition or revision approval."
     }
   ],
   "validationCheckpoint": {

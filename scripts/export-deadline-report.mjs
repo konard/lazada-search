@@ -4,6 +4,7 @@ import { format } from 'prettier';
 import { LazadaSearch, productFlavour } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import { powderCategory, reportUnitCosts } from './report-unit-costs.mjs';
+import { deadlineFoodGramRanking } from './deadline-report-costs.mjs';
 const options = parseArguments(process.argv.slice(2));
 assert.ok(!options.account, 'Use redacted public sources');
 const app = new LazadaSearch({
@@ -80,36 +81,7 @@ try {
         })
       )
   );
-  const whey = definite
-    .filter(
-      (row) =>
-        powderCategory(row.product) === 'whey' && row.metrics.totalMassG > 0
-    )
-    .map((row) => {
-      const hydro = row.offer.sku === '3095127497_VNAMZ-14849213302';
-      const costs = reportUnitCosts(
-        row,
-        hydro
-          ? {
-              productOverride: {
-                netMassG: 2050,
-                packCount: 1,
-                proteinPer100g: (100 * 28) / 36,
-              },
-            }
-          : {}
-      );
-      return {
-        row,
-        mass: costs.massG,
-        before: costs.beforePerFoodGram,
-        after: costs.afterPerFoodGram,
-        costs,
-        conditional: hydro,
-      };
-    })
-    .sort((a, b) => a.before - b.before)
-    .slice(0, 10);
+  const whey = deadlineFoodGramRanking(definite);
   assert.equal(whey.length, 10);
   const verified = definite
     .filter(
@@ -248,7 +220,7 @@ Updated **${receipt.generatedAt}**. Vietnam / Nha Trang, **VND**. Powder selecti
 
 ## Top 10 whey: lowest price per gram of powder
 
-These are positive selected-SKU prices and captured availability. The ranking is per gram of powder; formula verification is separately stated. **ProSupps uses the printed 907 g** as the food-mass denominator. Shipping is included only when a non-invalidated quote matches Nha Trang and one package. No price cap excludes large packages.
+These are positive selected-SKU prices and captured availability. The ranking is per gram of powder using the selected source's declared mass; unmatched factory calculations do not replace it. Formula verification is separately stated. **ProSupps uses the printed 907 g** as the food-mass denominator. Shipping is included only when a non-invalidated quote matches Nha Trang and one package. No price cap excludes large packages.
 
 ${table(
   [

@@ -1,0 +1,93 @@
+{
+  "validatedAt": "2026-10-11T05:53:58.386716+00:00",
+  "runs": {
+    "unit": {
+      "tests": 47,
+      "pass": 47,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "unit.tap.gz",
+      "uncompressedSha256": "d2274de5dc9e0baf3e9c70b2355802255d10d757b28cf78947262f926dc785de",
+      "compressedSha256": "9b9067dfcc0ab671bae7b5607a7ce15ede70e94be16eb58a6e601bf572c4c29d"
+    },
+    "e2e": {
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "e2e.tap.gz",
+      "uncompressedSha256": "6e5a93f4d5830b0cb14bc70c352b4dc0988a096a801c2d6dd923478485b43b4a",
+      "compressedSha256": "d243e1b344cd54b51390f8eb1d7252d98499265139cd2e11448d084578e6ccd5"
+    },
+    "foodRanking": {
+      "tests": 24,
+      "pass": 24,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "food-ranking-unit.tap.gz",
+      "uncompressedSha256": "33e1f37d0afc571b04fa0f3fc3523a7069495eecf8eb54e169b71b781cf3eff5",
+      "compressedSha256": "6dbabd1902d2f6573f1040d2688be0fe50ace471c0cc73a5f810aec9adb4233e"
+    }
+  },
+  "sourceHtmlSha256": "55616c2c7fce2641eb592a39517f29d3371ed5dd48585c1c1a0f7100331ec852",
+  "sku": "3095127497_VNAMZ-14849213302",
+  "sellerNetMassG": 2040,
+  "priceVnd": 999997,
+  "vndPerGramBefore": 490.19460784313725,
+  "factoryMatchApproved": false,
+  "offlineReplay": {
+    "captures": 322,
+    "errors": 0,
+    "downloads": 0
+  },
+  "sourceSnapshot": [
+    {
+      "path": "src/nutrition.js",
+      "sha256": "33d0e78c89157886efb6a27e1cc2929c62b6a03d025277dba4a54c6bcd437004"
+    },
+    {
+      "path": "tests/selected-package-mass.test.js",
+      "sha256": "73a4f35fad466dad44275d7975ec9da1e76387bf8b06f6817d27349c4ad7565e"
+    },
+    {
+      "path": "scripts/export-deadline-report.mjs",
+      "sha256": "8f174dfdd18b074c92da044c9f677f2a72ee94fbf4e5972724b0b686a4be8e8f"
+    },
+    {
+      "path": "scripts/deadline-report-costs.mjs",
+      "sha256": "815f417dda14d8d8a49aa9f37f04ce64340a1d2abab167562710ab4059b21024"
+    },
+    {
+      "path": "tests/deadline-report.test.js",
+      "sha256": "edb624a0986c38f652f07e500272d6144832d2dca97c0a80e0528d7b8e299771"
+    },
+    {
+      "path": "scripts/review-cached-container-mass.mjs",
+      "sha256": "7796d67fc448b4c4f49df9882b6e4c37f24b14db1298c16ced5e680561f345d9"
+    }
+  ],
+  "strictLint": {
+    "errors": 0,
+    "warnings": 0,
+    "files": 7
+  },
+  "sourcePriceAndArithmeticAudit": {
+    "receipt": "docs/acceptance/top10-check/unit-cost-audit.json",
+    "rows": 54,
+    "downloads": 0,
+    "exactSourcePricesMatched": true,
+    "foodVolumeProteinArithmeticChecked": true
+  },
+  "caseArchive": {
+    "records": 26130,
+    "blobs": 6542,
+    "valid": true,
+    "downloads": 0
+  }
+}

@@ -5,7 +5,7 @@
       "repository": "link-foundation/browser-commander",
       "url": "https://github.com/link-foundation/browser-commander/issues/136#issuecomment-6098863210",
       "kind": "dependency-audit",
-      "status": "reported upstream; no compatible patched resolution verified"
+      "status": "fixed consumer scoped2.0.2 override; installed audit0 and35E2E passed; remaining upstream0.29.0 range reported164"
     },
     {
       "repository": "konard/lazada-search",
@@ -53,25 +53,49 @@
       "repository": "konard/lazada-search",
       "url": "https://github.com/konard/lazada-search/issues/8",
       "kind": "human-food-negative-cache",
-      "status": "open; corrected implementation validated, pending pushed commit"
+      "status": "closed; implemented fix and source regressions pushed;945unit/35E2E passing without skips"
     },
     {
       "repository": "konard/lazada-search",
       "url": "https://github.com/konard/lazada-search/issues/9",
       "kind": "disputed-ice-quantities",
-      "status": "open; corrected implementation validated, pending pushed commit"
+      "status": "closed; implemented fix and source regressions pushed;945unit/35E2E passing without skips"
     },
     {
       "repository": "konard/lazada-search",
       "url": "https://github.com/konard/lazada-search/issues/10",
       "kind": "chronological-price-cache",
-      "status": "open; corrected implementation validated, pending pushed commit"
+      "status": "closed; implemented fix and source regressions pushed;945unit/35E2E passing without skips"
     },
     {
       "repository": "konard/lazada-search",
       "url": "https://github.com/konard/lazada-search/issues/11",
       "kind": "decimal-nutrition-ocr",
-      "status": "open; source-backed decimal OCR reproducer, no questionable numeric approval"
+      "status": "closed; implemented fix and source regressions pushed;945unit/35E2E passing without skips"
+    },
+    {
+      "repository": "konard/lazada-search",
+      "url": "https://github.com/konard/lazada-search/issues/12",
+      "kind": "public-source-token-redaction",
+      "status": "closed; original/derivative digests and sanitized public text archives preserve provenance"
+    },
+    {
+      "repository": "konard/lazada-search",
+      "url": "https://github.com/konard/lazada-search/issues/13",
+      "kind": "selected-manufacturer-conflict",
+      "status": "closed; contradictory selected/parent brand source trust is blocked"
+    },
+    {
+      "repository": "konard/lazada-search",
+      "url": "https://github.com/konard/lazada-search/issues/14",
+      "kind": "conditional-food-gift",
+      "status": "open; exact bonus mass/flavour/eligibility and full-offer denominator pending"
+    },
+    {
+      "repository": "konard/lazada-search",
+      "url": "https://github.com/konard/lazada-search/issues/15",
+      "kind": "container-metric-mass",
+      "status": "open; seller2040g correction under cached replay and targeted validation"
     }
   ],
   "noPrivateAccountEvidencePublished": true,
@@ -88,10 +112,14 @@
       "url": "https://github.com/link-foundation/browser-commander/issues/159",
       "kind": "CDP reconnect with zero-page headed Chrome and noDefaults forwarding",
       "consumerWorkaround": "src/browser-connection.js; create a page only when the existing default context has none, then reconnect through Browser Commander"
+    },
+    {
+      "url": "https://github.com/link-foundation/browser-commander/issues/164",
+      "kind": "remaining command-stream1.x dependency range retains advisory; clean scoped2.0.2 workaround verified"
     }
   ],
   "iceResearchUpdate": "https://github.com/konard/lazada-search/issues/3#issuecomment-6100117871",
   "expandedIceResearch": "14 selected prices;5 gram rows,7 millilitre rows,2 protein-reference rows; disputed weights held, frozen Nha Trang delivery remains unconfirmed",
-  "continuation": "272 public captures published;322 capture/SKU aliases reprocessed offline with0 downloads and0 errors;15 manufacturer sources replayed offline with0 new approvals;929 unit tests and35 distinct E2E cases validated",
-  "updatedAt": "2026-10-11T05:06:16.009835+00:00"
+  "continuation": "Integrated checkpoint:26130publicrecords/6542blobs/17manufacturerartifacts replayed offline;945unit/35E2E pass0skip; six defects closed; container seller metric correction under replay",
+  "updatedAt": "2026-10-11T05:44:54.194343+00:00"
 }

@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T05:37:58.632Z, from the published catalog observed at 2026-10-11T04:39:52.056Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T05:54:47.408Z, from the published catalog observed at 2026-10-11T05:52:29.616Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1382 uncollected listings**, **282 unpriced SKU options**, and **6424 unresolved category observations**. 352 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -28,13 +28,14 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 
 | Issue                                                    | Requirement                                                                                   | State  |
 | -------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------ |
+| [#15](https://github.com/konard/lazada-search/issues/15) | Explicit container metric package mass loses to rounded pound headline                        | OPEN   |
 | [#14](https://github.com/konard/lazada-search/issues/14) | Verify and count food gifts in bulk selling options separately from accessory gifts           | OPEN   |
-| [#13](https://github.com/konard/lazada-search/issues/13) | Selected SKU manufacturer conflicts are hidden by the parent listing brand                    | OPEN   |
-| [#12](https://github.com/konard/lazada-search/issues/12) | Redact embedded manufacturer access tokens before committing original evidence                | OPEN   |
-| [#11](https://github.com/konard/lazada-search/issues/11) | Nutrition label OCR drops decimal points despite high confidence                              | OPEN   |
-| [#10](https://github.com/konard/lazada-search/issues/10) | Older cached observations overwrite newer SKU prices and package facts                        | OPEN   |
-| [#9](https://github.com/konard/lazada-search/issues/9)   | Ice rankings reuse withheld package weights and create unsupported gram prices                | OPEN   |
-| [#8](https://github.com/konard/lazada-search/issues/8)   | Human food filtering admits animal feed and non-frozen protein bars; cache exclusions         | OPEN   |
+| [#13](https://github.com/konard/lazada-search/issues/13) | Selected SKU manufacturer conflicts are hidden by the parent listing brand                    | CLOSED |
+| [#12](https://github.com/konard/lazada-search/issues/12) | Redact embedded manufacturer access tokens before committing original evidence                | CLOSED |
+| [#11](https://github.com/konard/lazada-search/issues/11) | Nutrition label OCR drops decimal points despite high confidence                              | CLOSED |
+| [#10](https://github.com/konard/lazada-search/issues/10) | Older cached observations overwrite newer SKU prices and package facts                        | CLOSED |
+| [#9](https://github.com/konard/lazada-search/issues/9)   | Ice rankings reuse withheld package weights and create unsupported gram prices                | CLOSED |
+| [#8](https://github.com/konard/lazada-search/issues/8)   | Human food filtering admits animal feed and non-frozen protein bars; cache exclusions         | CLOSED |
 | [#7](https://github.com/konard/lazada-search/issues/7)   | Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout | CLOSED |
 | [#6](https://github.com/konard/lazada-search/issues/6)   | Recognize ice-cream carton category and exact selling-unit package count                      | CLOSED |
 | [#5](https://github.com/konard/lazada-search/issues/5)   | Distinguish capture provenance metadata from stored blob references during archive export     | CLOSED |
