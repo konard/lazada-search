@@ -27,6 +27,14 @@ jobs:
           node-version: '22.x'
           cache: npm
       - run: npm ci
+      - name: Use the installed Chrome sandbox helper
+        shell: bash
+        run: |
+          sandbox_helper=/opt/google/chrome/chrome-sandbox
+          test -f "$sandbox_helper"
+          test -u "$sandbox_helper"
+          test "$(stat -c '%u' "$sandbox_helper")" = 0
+          echo "CHROME_DEVEL_SANDBOX=$sandbox_helper" >> "$GITHUB_ENV"
       - name: Install Chromium and local OCR
         run: |
           npx playwright install --with-deps chromium
