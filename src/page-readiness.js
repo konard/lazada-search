@@ -62,6 +62,16 @@ export function inspectPageReadiness(context) {
   ]
     .map((element) => element.textContent)
     .join('|');
+  const selectedOptions = [
+    ...document.querySelectorAll(
+      '.sku-variable-size, .sku-variable-img-wrap, .sku-variable-img-wrap-selected, .sku-variable-name, .sku-variable-name-selected, [data-sku-option], .quantity-content-warning'
+    ),
+  ]
+    .map(
+      (element) =>
+        `${element.className}:${element.getAttribute('aria-checked')}:${element.textContent}`
+    )
+    .join('|');
   return {
     ready: [
       document.readyState !== 'loading',
@@ -72,7 +82,7 @@ export function inspectPageReadiness(context) {
     blockers,
     missingProduct,
     missingSearch,
-    fingerprint: `${title}|${price}|${content}|${searchCards.map((card) => card.textContent).join('|')}`,
+    fingerprint: `${title}|${price}|${content}|${selectedOptions}|${searchCards.map((card) => card.textContent).join('|')}`,
   };
 }
 

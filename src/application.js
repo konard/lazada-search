@@ -16,6 +16,7 @@ import { auditCoverage } from './coverage.js';
 import { MANUFACTURERS, isTrustedManufacturer } from './manufacturers.js';
 import { reconcileManufacturer } from './verification.js';
 import { captureDelivery } from './delivery.js';
+import { deliveryAreaForDestination } from './delivery-context.js';
 import { importBrowserCapture } from './capture-import.js';
 import { reviewManufacturer } from './manufacturer-review.js';
 import { applyListingCategoryReview } from './category-review.js';
@@ -96,7 +97,12 @@ export class LazadaSearch {
     this.cache = cache || new EvidenceCache({ store, offline, scheduler });
     this.collector =
       collector ||
-      new BrowserCollector({ cache: this.cache, store, browserOptions });
+      new BrowserCollector({
+        cache: this.cache,
+        store,
+        browserOptions,
+        flavourScope,
+      });
     this.ocr = ocr === false ? undefined : ocr || new TesseractOcr({ store });
     this.market = market;
     this.host = MARKETS[market].host;
@@ -240,11 +246,22 @@ export class LazadaSearch {
       : this.store.put('product', product);
   }
 
-  async collect(url, { refresh = false, reprocess = false } = {}) {
+  async collect(
+    url,
+    {
+      refresh = false,
+      reprocess = false,
+      flavourScope = this.flavourScope,
+    } = {}
+  ) {
+    if (!['all', 'chocolate-or-unflavoured'].includes(flavourScope)) {
+      throw new Error('Unsupported flavour scope');
+    }
     this.assertMarket(url);
     const capture = await this.collector.page(canonicalUrl(url), {
       refresh,
       reprocess,
+      flavourScope,
       namespace: `lazada:${this.market}:${this.deliveryArea}`,
       ...(this.store.visibility === 'private'
         ? {
@@ -289,6 +306,7 @@ export class LazadaSearch {
       inventoryObserved: capture.snapshot.skuCatalogObserved === true,
       observedAt: new Date(capture.fetchedAt).toISOString(),
       cacheId: capture.id,
+      variantSelection: capture.variantSelection,
     });
     const id = evidenceId(
       capture.snapshot.url,
@@ -696,6 +714,7 @@ export class LazadaSearch {
         `Public delivery estimate unavailable (${result.status}): ${result.error}`
       );
     }
+    const quotedArea = deliveryAreaForDestination(result.shippingDestination);
     await this.store.put('evidence', {
       id: result.evidenceId,
       role: 'delivery',
@@ -725,7 +744,8 @@ export class LazadaSearch {
       if (/không thể giao|cannot.*deliver/iu.test(result.text)) {
         await this.quote(offer.id, {
           deliveryAvailable: false,
-          deliveryArea: this.deliveryArea,
+          deliveryArea: quotedArea,
+          quoteObservedAt: result.observedAt,
           shippingDestination: result.shippingDestination,
           quoteEvidenceId: result.evidenceId,
         });
@@ -740,7 +760,8 @@ export class LazadaSearch {
       shipping: result.shipping,
       shippingQuantity: 1,
       shippingDestination: result.shippingDestination,
-      deliveryArea: this.deliveryArea,
+      deliveryArea: quotedArea,
+      quoteObservedAt: result.observedAt,
       quoteEvidenceId: result.evidenceId,
     });
     return { ...result, applied: true, offerId: offer.id };

@@ -488,6 +488,7 @@ export declare class BrowserCollector {
     settleMs?: number;
     maxScrolls?: number;
     captureTimeoutMs?: number;
+    flavourScope?: ComparisonOptions['flavourScope'];
   });
   start(): Promise<void>;
   assertCollecting(): Promise<void>;
@@ -500,6 +501,7 @@ export declare class BrowserCollector {
       refresh?: boolean;
       reprocess?: boolean;
       acceptCached?: (cached: Capture) => boolean;
+      flavourScope?: ComparisonOptions['flavourScope'];
     }
   ): Promise<Capture>;
   capture(url: string): Promise<Partial<Capture>>;
@@ -551,6 +553,7 @@ export declare function publishAccountDiscovery(
 ): Promise<{
   published: Array<Record<string, unknown>>;
   rejected: Array<{ url: string; reason: string }>;
+  reused: number;
   downloads: number;
 }>;
 export declare function reviewListingCategory(
@@ -813,7 +816,11 @@ export declare class LazadaSearch {
   }): Promise<{ products: number; offers: number }>;
   collect(
     url: string,
-    options?: { refresh?: boolean; reprocess?: boolean }
+    options?: {
+      refresh?: boolean;
+      reprocess?: boolean;
+      flavourScope?: ComparisonOptions['flavourScope'];
+    }
   ): Promise<{
     product: Product;
     offer: Offer;
@@ -1182,3 +1189,40 @@ export declare function reviewManufacturerResearch(
   store: AssociativeStore,
   review: Record<string, unknown>
 ): Promise<Record<string, unknown>>;
+export interface HistoricalCaptureReplayReport {
+  reprocessedAt: string;
+  mode: string;
+  visibility: 'public' | 'private';
+  downloads: number;
+  captures: number;
+  reprocessed: number;
+  reused: number;
+  errors: number;
+  results: Array<{
+    sourceRecords: Array<{
+      kind: string;
+      id: string;
+      evidenceId?: string;
+      visibility?: 'public' | 'private';
+    }>;
+    sourceUrl?: string;
+    sourceSha256?: string;
+    expectedSku?: string;
+    observedAt: string | null;
+    status: 'reprocessed' | 'reused' | 'rejected';
+    sku?: string;
+    price?: number;
+    cacheHit?: boolean;
+    category?: Category;
+    packCount?: number;
+    netMassG?: number;
+    netVolumeMl?: number;
+    currentOffer?: Offer;
+    error?: string;
+  }>;
+}
+/** Re-extract exact stored historical HTML without navigation or cache writes. */
+export declare function replayHistoricalCaptures(
+  application: LazadaSearch,
+  options?: { includeLatestCache?: boolean }
+): Promise<HistoricalCaptureReplayReport>;

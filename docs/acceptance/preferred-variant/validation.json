@@ -1,0 +1,159 @@
+{
+  "validatedAt": "2026-10-11T07:11:00.598959+00:00",
+  "runs": {
+    "unitInitial": {
+      "command": "npm test",
+      "tests": 996,
+      "pass": 995,
+      "fail": 0,
+      "cancelled": 1,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/unitInitial.tap.gz",
+      "sourceSha256": "eab90cdd4f2dffab11cef3a5df587d556a88e713e58d1b66c910d30f8959db7e",
+      "compressedSha256": "2e36d3a0458c79b72fa7dbc13073251b6719847aca54974a0c117f652cd2c126"
+    },
+    "catalogRetry": {
+      "command": "node --test --test-timeout=300000 tests/catalog-tables.test.js",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/catalogRetry.tap.gz",
+      "sourceSha256": "4ac5b14745a36087fc1ddeebe74c4c2f05311b8b0f3e29cbe4304afd5e4a6ef5",
+      "compressedSha256": "63f528efe0388347f747a9be0a70f9dc1b023232e0d5be238866f1bbdd8bb85b"
+    },
+    "e2eInitial": {
+      "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink npm run test:e2e",
+      "tests": 37,
+      "pass": 36,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/e2eInitial.tap.gz",
+      "sourceSha256": "bc7dce5d11b81bfb65ffa2ebcc01803ffc9b8e29f5388a16508ead157afe4c20",
+      "compressedSha256": "bf468d00e765f4ef6079712fd694568c3d6e821b672451670a271ac6283d08e8"
+    },
+    "preferredVariantRetry": {
+      "command": "node --test tests/e2e/preferred-variant.test.js",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/preferredVariantRetry.tap.gz",
+      "sourceSha256": "8527e664b635f2cc6fbbb2d08393666216e78b6ed3e53da14915babf3d7a3457",
+      "compressedSha256": "d4117ff04230ece92a253cefcba45ba955cc534ce4012754231e18177f05bbd8"
+    },
+    "focusedRegressions": {
+      "command": "node --test tests/variant-policy.test.js tests/delivery-context.test.js tests/manufacturer-package-basis.test.js tests/promotion-identity.test.js tests/publication-cache.test.js",
+      "tests": 35,
+      "pass": 35,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/focusedRegressions.tap.gz",
+      "sourceSha256": "0c4bec5af1eb18fd23092a26152bf4c0104ae8fe274501647bda2811746e4b90",
+      "compressedSha256": "4ba1e14717775901cf552f737b0d535473b9463a810d0082e8196e72589b0b48"
+    },
+    "powderCategoryAffected": {
+      "command": "node --test selected-package-mass ice-selling-units browser-import-review flavour-scope",
+      "tests": 43,
+      "pass": 43,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/powderCategoryAffected.tap.gz",
+      "sourceSha256": "39bf3ad7f1a4c0e7422c5bbc0b4771eb01c813222222ecc8b491fe713f4dd630",
+      "compressedSha256": "5d8da39e88c63657a931a03674e63898028f3ab1f31378c8c24c4cd683d31dfb"
+    },
+    "scopedCategoryAffectedE2e": {
+      "command": "LAZADA_TEST_CLINK=.lazada-search/bin/clink node --test preferred-variant flavour-scope ice-selling-units verified-case",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/scopedCategoryAffectedE2e.tap.gz",
+      "sourceSha256": "73facd209e75c3fe87d5e96a866fe275ac74c3d588e21179cc092f7fc2b03ee6",
+      "compressedSha256": "430bf76701a613b538bf5f09859ed4c1d49a3eb5f2e01f7edf809bf97725a579"
+    },
+    "cacheProofsFinal": {
+      "command": "node --test tests/historical-capture-replay.test.js tests/publication-cache.test.js tests/discovery-publication-cache.test.js",
+      "tests": 26,
+      "pass": 26,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/cacheProofsFinal.tap.gz",
+      "sourceSha256": "d1e19aaa16ac6fbab66908823715ac76ba1538708d3bee753d2ba2b6faf49fce",
+      "compressedSha256": "b0dcbc42838f99d580923e887501b88702c0953caa43a2f9e1c4e63440e011e3"
+    },
+    "publicationSourcesFinal": {
+      "command": "node --test tests/public-captures.test.js tests/public-discovery.test.js",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/publicationSourcesFinal.tap.gz",
+      "sourceSha256": "915f6a759009b09f55f8a8e11498da4a55660eeefc832159ed137aa71165fc70",
+      "compressedSha256": "409babefe3b335ec14c154a0467745351d791dcaf5aaf97a8e47b71a7640942b"
+    },
+    "publicationBeforeArchive": {
+      "command": "historical intermediate invocation, publication proof tests before refreshed archive",
+      "tests": 23,
+      "pass": 22,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/publicationBeforeArchive.tap.gz",
+      "sourceSha256": "53897454af5050cac9f5ac410135f6805aa987cbf3d0f853dfee042abd2fd207",
+      "compressedSha256": "8c982b5b90774a21d70b091cc3ed907f6c4601c84e6228b1f040b4d41975ae5c"
+    },
+    "publicationTimestampTie": {
+      "command": "historical intermediate invocation, public-captures before exact-source timestamp-tie assertion",
+      "tests": 4,
+      "pass": 3,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "docs/acceptance/preferred-variant/publicationTimestampTie.tap.gz",
+      "sourceSha256": "2ad5f431fa43fab9f97e8b9c26d15a5eaee2020f116ebb89f4cc295a4ec3959c",
+      "compressedSha256": "ecd9e841746edb8b1b781d61f1ba28e10c17a774c3efc127a1f8009271cc6a55"
+    }
+  },
+  "distinctUnitCasesValidated": 1006,
+  "distinctE2eCasesValidated": 37,
+  "remainingKnownTestFailures": 0,
+  "realBrowserRegressionPassed": true,
+  "nativeArchiveE2eActuallyExercised": true,
+  "liveMarketplaceOrTelegramAcceptance": false,
+  "explanation": [
+    "Initial full unit run had995passing cases and one file-level cancellation: the complete cached-catalog import exceeded300000ms while publication was also running. Its three tests passed alone in180447ms; the file-level cancellation is not counted as a product test.",
+    "Initial E2E run had36passing cases and one newly added fixture assertion failure: fixture seeded page namespace differed from the application Nha Trang namespace. Correcting the fixture namespace produced a passing real-browser rerun; no production behavior was changed for that correction.",
+    "Original initial logs are preserved; this receipt reports the union of successful suite cases and successful affected-file retries, not a single clean full-suite invocation.",
+    "Eight additional search-publication proof cases passed. Final cache/replay run passed26/26; committed-source publication run passed7/7 after archive refresh. Intermediate publication checks ran against a stale archive and then arbitrarily chose one of two same-time session-context receipts. Current verification binds session metadata to exact HTML/SKU/price/time without asserting authentication for an unconfirmed session. These intermediate logs are preserved."
+  ],
+  "postParserCorrectionAffectedUnitCases": 43,
+  "postParserCorrectionAffectedE2eCases": 8,
+  "postSearchProofAffectedUnitCases": 26,
+  "postArchivePublicationCases": 7,
+  "repositoryArchiveVerification": {
+    "valid": true,
+    "records": 27248,
+    "blobs": 6627,
+    "downloads": 0
+  }
+}

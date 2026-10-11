@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T05:31:24.989Z",
+  "checkedAt": "2026-10-11T06:43:51.017530+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -11,9 +11,13 @@
         "src/compare.js",
         "tests/acceptance-corrections.test.js",
         "tests/e2e/ice-selling-units.test.js",
-        "docs/tables/ice-unit-rankings.json"
+        "docs/tables/ice-unit-rankings.json",
+        "src/delivery-context.js",
+        "src/manufacturer-research.js",
+        "tests/delivery-context.test.js",
+        "tests/manufacturer-package-basis.test.js"
       ],
-      "finding": "Shared comparison now uses independently declared per-package, per-100g or per-100ml protein. Actual label and exact quantity/destination shipping coverage remains incomplete."
+      "finding": "After-delivery arithmetic requires source-confirmed actual destination and exact quantity. HCM shipping is withheld from Nha Trang comparisons. Per-100g protein cannot be reclassified as whole-package protein. Complete exact freight and label denominators remain pending."
     },
     {
       "id": "R017",
@@ -65,9 +69,13 @@
         "src/application.js",
         "tests/observation-order.test.js",
         "tests/availability.test.js",
-        "docs/acceptance/offline-reprocessing.json"
+        "docs/acceptance/offline-reprocessing.json",
+        "src/historical-capture-replay.js",
+        "src/publication-cache.js",
+        "tests/historical-capture-replay.test.js",
+        "tests/publication-cache.test.js"
       ],
-      "finding": "Older cached observations cannot replace newer prices or package identities. Original offer histories persist. Confirmed removed listings and original public source cache are reusable in fresh private overlays without downloads."
+      "finding": "Historical source replay preserves original dates, newer prices, reviews and CAPTCHA stops; wrong source/SKU associations are rejected. Publication receipts reuse verified source/snapshot/code/output contexts without repeated extraction, and changes invalidate reuse."
     },
     {
       "id": "R014",
@@ -84,6 +92,74 @@
         "docs/acceptance/new-manufacturer-domains/sfd-domain-proof.json"
       ],
       "finding": "Registered original sources and officially published assets are captured or replayed with hashes, dates, GET/POST body-sensitive cache keys, cached failures and exact source-bound review gates. Twelve originals replay offline; no unsupported new facts are approved. SFD S.A. corporate ownership now authorizes only exact linked SFD hosts as candidate sources. Selected manufacturer/parent-brand conflicts block domain trust until corrected. The cached SFD product challenge yields no approved nutrition; the twelve-source replay remains dated baseline evidence."
+    },
+    {
+      "id": "R004",
+      "requirement": "Never select protein plus shaker; buyer already owns one",
+      "requirementSource": "docs/REQUIREMENTS.md:10",
+      "declaredStatus": "Implemented for strict case",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-complete-scoped-SKU-selection-before-capture",
+      "realDataAcceptance": "live-Scitec-chocolate-no-shaker-correction-and-browser-regression-passed",
+      "evidence": [
+        "src/variant-policy.js",
+        "src/browser-variant.js",
+        "tests/e2e/preferred-variant.test.js",
+        "docs/acceptance/preferred-variant/live-check.json"
+      ],
+      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price."
+    },
+    {
+      "id": "R001",
+      "requirement": "Vietnam, VND, delivery to Nha Trang",
+      "requirementSource": "docs/REQUIREMENTS.md:7",
+      "declaredStatus": "Implemented",
+      "status": "partial",
+      "mechanicsStatus": "implemented-source-bound-destination-validation",
+      "realDataAcceptance": "pending-exact-Nha-Trang-freight-for-all-selected-quantities",
+      "evidence": [
+        "src/delivery-context.js",
+        "src/delivery.js",
+        "src/compare.js",
+        "tests/delivery-context.test.js"
+      ],
+      "finding": "HCM/default-location quotes cannot produce Nha Trang delivered prices. Original captured address and quantity govern delivery arithmetic; complete target freight remains pending."
+    },
+    {
+      "id": "R009",
+      "requirement": "Verify exact selected SKU price and availability",
+      "requirementSource": "docs/REQUIREMENTS.md:15",
+      "declaredStatus": "Implemented, coverage partial",
+      "status": "partial",
+      "mechanicsStatus": "implemented-source-and-selection-bound-price-verification",
+      "realDataAcceptance": "current-captured-prices-audited;uncollected-SKU-prices-pending",
+      "evidence": [
+        "src/variant-policy.js",
+        "src/page-readiness.js",
+        "scripts/audit-current-offer-sources.mjs",
+        "docs/acceptance/current-offer-source-audit.json",
+        "docs/acceptance/preferred-variant/live-check.json"
+      ],
+      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory."
+    },
+    {
+      "id": "R010",
+      "requirement": "Extract every discount and its eligibility",
+      "requirementSource": "docs/REQUIREMENTS.md:16",
+      "declaredStatus": "Partial",
+      "status": "partial",
+      "mechanicsStatus": "partial",
+      "realDataAcceptance": "partial",
+      "evidence": [
+        "src/promotions.js:147",
+        "src/promotions.js:369",
+        "tests/promotions.test.js",
+        "tests/lazada.test.js:434",
+        "src/promotions.js",
+        "scripts/collect-promotions.mjs",
+        "tests/promotion-identity.test.js"
+      ],
+      "finding": "Voucher identity includes IDs, codes, sellers, terms, validity windows and observed status changes; distinct equal-value vouchers cannot collapse. All real discounts and eligibility remain incomplete."
     }
   ],
   "additionalRequirements": [
@@ -140,9 +216,9 @@
     }
   ],
   "checkpoint": {
-    "recordedAt": "2026-10-11T05:31:24.989Z",
+    "recordedAt": "2026-10-11T07:11:00.598959+00:00",
     "previousImplementationCheckedAt": "2026-10-11T04:43:40.556Z",
-    "latestFullSuite": "945unit/945passed;35E2E/35passed;zero failures or skips;53affected cases rechecked after lint refactor",
+    "latestFullSuite": "1006 distinct unit cases and 37 distinct E2E cases validated across full runs and successful affected-file retries. Initial timeout and fixture/source-receipt verification failures are preserved; final cache/replay26 and publication7 pass.",
     "preservedBaseline": {
       "receipt": "docs/acceptance/continuation-fixes/validation.json",
       "unitPassed": 929,
@@ -152,39 +228,38 @@
       "nativeAndOperationsPassed": 6
     },
     "acceptanceSnapshot": {
-      "receipt": "docs/acceptance/requirements-audit/current.json",
-      "checkedAt": "2026-10-11T05:05:10.811Z",
-      "catalogObservedAt": "2026-10-11T04:39:52.056Z",
+      "checkedAt": "2026-10-11T07:10:08.933Z",
+      "catalogObservedAt": "2026-10-11T07:00:24.878Z",
       "activeScope": {
-        "missingListings": 1382,
-        "missingSkuPrices": 282,
+        "missingListings": 1373,
+        "missingSkuPrices": 305,
         "missingPrices": 0,
         "unknownSkuInventories": 0,
-        "categoryReview": 6424,
-        "specifications": 266,
+        "categoryReview": 6403,
+        "specifications": 272,
         "verifiedProducts": 14,
-        "excludedCategoryListings": 352,
-        "excludedExactOptions": 469
+        "excludedCategoryListings": 371,
+        "excludedExactOptions": 495
       },
       "broaderArchive": {
-        "missingListings": 1531,
-        "missingSkuPrices": 788,
+        "missingListings": 1524,
+        "missingSkuPrices": 840,
         "missingPrices": 0,
         "unknownSkuInventories": 0,
         "categoryReview": 7107,
-        "specifications": 278,
+        "specifications": 284,
         "verifiedProducts": 16
       },
       "wheyCoverage": {
-        "capturedPowderSkus": 255,
-        "strictWheySkus": 64,
+        "capturedPowderSkus": 261,
+        "strictWheySkus": 65,
         "strictSoySkus": 1,
         "verifiedStrictWheySkus": 11,
-        "missingFactoryMatches": 55,
-        "discoveryTasks": 6147,
-        "pendingSkuTasks": 287,
-        "excludedSkuOptions": 472,
-        "originalSourcePointers": 1830,
+        "missingFactoryMatches": 56,
+        "discoveryTasks": 6141,
+        "pendingSkuTasks": 310,
+        "excludedSkuOptions": 498,
+        "originalSourcePointers": 1935,
         "unresolvedEvidencePointers": 0
       },
       "iceCoverage": {
@@ -197,7 +272,7 @@
       "allTargetProductsCollected": false,
       "productionReady": false
     },
-    "latestReceipt": "docs/acceptance/continuation-fixes/integrated-validation.json"
+    "latestReceipt": "docs/acceptance/preferred-variant/validation.json"
   },
   "checkpointUpdates": [
     {
@@ -301,6 +376,82 @@
         "docs/acceptance/container-metric-mass/review-replay.json"
       ],
       "finding": "Exact selected Hydropure source declares2040g; rounded4.5lb and unmatched factory2050g no longer replace seller food mass in gram rankings. Same-observation review preserves price/date and original contradictory claims. Historical exact-SKU evidence cannot be replaced by a sibling listing cache.47 affected unit,7 E2E and24 additional report checks passed;322 alias captures replayed with zero downloads. Exact factory revision/protein remains pending."
+    },
+    {
+      "id": "scoped-default-variant",
+      "status": "implemented-and-regression-tested",
+      "evidence": [
+        "docs/acceptance/preferred-variant/live-check.json",
+        "docs/acceptance/preferred-variant/cached-selection-review.json",
+        "tests/e2e/preferred-variant.test.js"
+      ],
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "issue": "https://github.com/konard/lazada-search/issues/16"
+    },
+    {
+      "id": "source-bound-delivery",
+      "status": "implemented-and-regression-tested",
+      "evidence": ["src/delivery-context.js", "tests/delivery-context.test.js"],
+      "finding": "Original captured address and quantity govern delivery metrics, including legacy subset receipts; optional shipping mode cannot use another destination.",
+      "issue": "https://github.com/konard/lazada-search/issues/16"
+    },
+    {
+      "id": "direct-package-protein-basis",
+      "status": "implemented-and-regression-tested",
+      "evidence": [
+        "src/manufacturer-research.js",
+        "tests/manufacturer-package-basis.test.js"
+      ],
+      "finding": "Direct proteinPerPackageG approval requires explicit original package basis, gram units and exact single-inner-package identity. Per100g/serving claims and ambiguous count conversions remain withheld."
+    },
+    {
+      "id": "voucher-observation-identity",
+      "status": "implemented-and-regression-tested",
+      "evidence": [
+        "src/promotions.js",
+        "scripts/collect-promotions.mjs",
+        "tests/promotion-identity.test.js"
+      ],
+      "finding": "Equal amounts do not merge distinct voucher IDs/sellers/windows/terms. Changed observed status or validity remains separate evidence."
+    },
+    {
+      "id": "publication-proof-reuse",
+      "status": "implemented-and-regression-tested",
+      "evidence": [
+        "src/publication-cache.js",
+        "tests/publication-cache.test.js"
+      ],
+      "finding": "Proofs bind source bytes/snapshot/images/date/SKU/market/destination/code and output records; unchanged proofs avoid repeated DOM extraction/import. Changed or invalidated contexts rebuild."
+    },
+    {
+      "id": "vietnamese-energy-bar-exclusion",
+      "status": "implemented-and-regression-tested",
+      "evidence": [
+        "src/target-category.js",
+        "src/scope-decisions.js",
+        "tests/human-food-scope.test.js"
+      ],
+      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+    },
+    {
+      "id": "powder-ice-flavour",
+      "issue": "https://github.com/konard/lazada-search/issues/17",
+      "status": "implemented-original-source-replayed-and-tested",
+      "evidence": [
+        "src/products.js",
+        "tests/selected-package-mass.test.js",
+        "docs/acceptance/preferred-variant/powder-ice-flavour-replay.json"
+      ],
+      "finding": "Chocolate Ice Cream is a flavour of explicitly identified powder, not proof of frozen food.43 affected unit and8 affected E2E cases pass; original price/date/907g retained."
+    },
+    {
+      "id": "discovery-publication-proof-reuse",
+      "status": "implemented-and-focused-tested",
+      "evidence": [
+        "src/discovery-publication-cache.js",
+        "tests/discovery-publication-cache.test.js"
+      ],
+      "finding": "Unchanged validated search pages reuse source/snapshot/observation/code/output-bound proofs without DOM extraction or output writes. Invalidated or changed sources, pagination, proofs and output rebuild/reject; older sources cannot overwrite newer list/crawl caches."
     }
   ]
 }

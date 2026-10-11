@@ -7,6 +7,7 @@ export const OPERATION_NAMES = [
   'crawl',
   'audit',
   'collect',
+  'replay-captures',
   'collection-status',
   'resume-collection',
   'delivery',

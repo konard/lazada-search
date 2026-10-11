@@ -281,7 +281,9 @@ export function normalizeApiVoucher(fields) {
     .filter(Boolean)
     .join(' · ');
   return {
-    voucherId: String(fields.voucherId ?? fields.promotionId ?? ''),
+    voucherId: String(
+      fields.voucherId ?? fields.promotionId ?? fields.couponId ?? ''
+    ),
     voucherCode: fields.voucherCode || null,
     title: fields.mainTitle || null,
     tag: fields.newVoucherTag || fields.voucherTagDesc || null,
@@ -312,6 +314,14 @@ function nestedJson(item) {
   }
 }
 
+function mergeVoucherObservations(left = [], right = []) {
+  const observations = new Map();
+  for (const observation of [...left, ...right]) {
+    observations.set(JSON.stringify(observation), { ...observation });
+  }
+  return [...observations.values()];
+}
+
 // Walks API JSON and returns objects that look like voucher definitions,
 // keeping only scalar fields so private account wrappers are dropped.
 export function findVoucherObjects(value, path = '$', out = [], depth = 0) {
@@ -340,15 +350,42 @@ export function findVoucherObjects(value, path = '$', out = [], depth = 0) {
 }
 
 export function voucherKey(voucher) {
-  return [
-    voucher.discountPercent ?? '',
-    voucher.discountAmount ?? '',
-    voucher.maxDiscount ?? '',
-    voucher.minSpend ?? '',
-    voucher.validUntil ?? '',
-    [...(voucher.scopes || [])].sort().join('+'),
-    [...(voucher.codes || [])].sort().join('+'),
-  ].join('|');
+  const fields = [
+    'voucherId',
+    'voucherCode',
+    'sellerId',
+    'toolCode',
+    'discountPercent',
+    'discountAmount',
+    'maxDiscount',
+    'minSpend',
+    'validFrom',
+    'validUntil',
+    'collectFrom',
+    'collectUntil',
+    'usageLimitPerCustomer',
+    'leftBudget',
+    'totalBudget',
+    'status',
+    'collected',
+    'text',
+    'terms',
+    'title',
+    'tag',
+    'name',
+  ];
+  const scope = [...(voucher.scopes || [])].sort();
+  return JSON.stringify({
+    fields: fields.map((field) => [field, voucher[field] ?? null]),
+    scopes: scope,
+    codes: [...(voucher.codes || [])].sort(),
+    // Without a seller identifier, equal shop cards on different source
+    // pages cannot establish the same voucher or product eligibility.
+    unidentifiedShopSources:
+      !voucher.sellerId && !voucher.voucherId && scope.includes('shop')
+        ? [...new Set(voucher.sources || [])].sort()
+        : [],
+  });
 }
 
 export function dedupeVouchers(vouchers) {
@@ -357,9 +394,23 @@ export function dedupeVouchers(vouchers) {
     const key = voucherKey(voucher);
     const known = merged.get(key);
     if (known) {
-      known.sources = [...new Set([...known.sources, ...voucher.sources])];
+      known.sources = [
+        ...new Set([...known.sources, ...(voucher.sources || [])]),
+      ];
+      if (known.observations || voucher.observations) {
+        known.observations = mergeVoucherObservations(
+          known.observations,
+          voucher.observations
+        );
+      }
     } else {
-      merged.set(key, { ...voucher, sources: [...voucher.sources] });
+      merged.set(key, {
+        ...voucher,
+        sources: [...(voucher.sources || [])],
+        ...(voucher.observations
+          ? { observations: mergeVoucherObservations(voucher.observations) }
+          : {}),
+      });
     }
   }
   return [...merged.values()];

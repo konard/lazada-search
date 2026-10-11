@@ -95,7 +95,7 @@ export function createTelegramBot({
   });
   bot.command(['start', 'help'], (ctx) =>
     ctx.reply(
-      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /translate_catalog, /translation_status JOB_ID, /operation JSON, /collection_status, /resume_collection. Catalog translation defaults to cache-only; --translation-download explicitly enables configured provider calls. /operation accepts structured imports, reviews and manufacturer-research plans without filesystem access. Translations are presentation only; original product facts remain authoritative. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
+      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /replay_captures --offline, /delivery URL, /compare --category whey --quantity 10, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /translate_catalog, /translation_status JOB_ID, /operation JSON, /collection_status, /resume_collection. Catalog translation defaults to cache-only; --translation-download explicitly enables configured provider calls. /operation accepts structured imports, reviews and manufacturer-research plans without filesystem access. Translations are presentation only; original product facts remain authoritative. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
     )
   );
   bot.command(
@@ -104,6 +104,7 @@ export function createTelegramBot({
       'discover',
       'audit',
       'collect',
+      'replay_captures',
       'collection_status',
       'resume_collection',
       'delivery',

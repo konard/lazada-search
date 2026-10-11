@@ -5,6 +5,13 @@ import { acquireBrowserWindow } from './persistent-browser.js';
 import { waitForPageReady } from './page-readiness.js';
 import { scrollProductContent } from './page-scroll.js';
 import { storeViewport } from './page-capture.js';
+import { selectVariantOptions } from './browser-variant.js';
+import {
+  requestedSku,
+  preferredVariant,
+  cachedVariantMatches,
+  VARIANT_POLICY_VERSION,
+} from './variant-policy.js';
 import {
   inspectPageChallenge,
   assertPageNotChallenged,
@@ -467,12 +474,17 @@ export class BrowserCollector {
     settleMs = 1000,
     maxScrolls = 20,
     captureTimeoutMs = 240000,
+    flavourScope = 'all',
   } = {}) {
     this.cache = cache;
     this.store = store;
     this.browserOptions = browserOptions;
     this.settleMs = settleMs;
     this.maxScrolls = maxScrolls;
+    if (!['all', 'chocolate-or-unflavoured'].includes(flavourScope)) {
+      throw new Error('Unsupported flavour scope');
+    }
+    this.flavourScope = flavourScope;
     if (!Number.isFinite(captureTimeoutMs) || captureTimeoutMs <= 0) {
       throw new Error('captureTimeoutMs must be positive');
     }
@@ -598,20 +610,34 @@ export class BrowserCollector {
   }
 
   async page(url, options = {}) {
-    const result = await this.cache.get(url, {
+    const flavourScope = options.flavourScope ?? this.flavourScope;
+    if (!['all', 'chocolate-or-unflavoured'].includes(flavourScope)) {
+      throw new Error('Unsupported flavour scope');
+    }
+    const reusableUrl = await this.cachedPreferredUrl(
+      url,
+      options,
+      flavourScope
+    );
+    const result = await this.cache.get(reusableUrl, {
       // A public login wall must not suppress a later account collection.
       // Account failures remain cached, so retries require explicit refresh.
-      ...(this.store.visibility === 'private'
-        ? {
-            acceptCached: (cached) =>
-              cached.visibility === 'private' || cached.status === 'ok',
-          }
-        : {}),
       ...options,
+      acceptCached: (cached) =>
+        (options.acceptCached
+          ? options.acceptCached(cached)
+          : this.store.visibility !== 'private' ||
+            cached.visibility === 'private' ||
+            cached.status === 'ok') &&
+        (cached.status !== 'ok' ||
+          cachedVariantMatches(reusableUrl, cached.snapshot, flavourScope)),
       load: () => {
         // One page owns one navigation at a time, even for different hosts.
         const capture = () =>
-          this.captureWithBudget(url, { refresh: options.refresh });
+          this.captureWithBudget(reusableUrl, {
+            refresh: options.refresh,
+            flavourScope,
+          });
         const operation = this.tail.then(capture, capture);
         this.tail = operation.catch(() => {});
         return operation;
@@ -659,6 +685,46 @@ export class BrowserCollector {
     return result;
   }
 
+  async cachedPreferredUrl(url, options, flavourScope) {
+    if (options.refresh || flavourScope === 'all' || requestedSku(url)) {
+      return url;
+    }
+    const namespace = options.namespace || 'page';
+    const current = await this.store.get(
+      'cache',
+      `${namespace}:${canonicalUrl(url)}`
+    );
+    const preferred =
+      current?.snapshot && preferredVariant(current.snapshot, flavourScope);
+    if (
+      !preferred ||
+      cachedVariantMatches(url, current.snapshot, flavourScope)
+    ) {
+      return url;
+    }
+    const selected = new URL(url);
+    selected.searchParams.set('skuId', preferred.sku);
+    for (const candidateUrl of [preferred.url, selected.href].filter(Boolean)) {
+      const candidate = await this.store.get(
+        'cache',
+        `${namespace}:${canonicalUrl(candidateUrl)}`
+      );
+      if (
+        this.cache.accepts(candidate, {
+          ttlMs: options.ttlMs ?? 21600000,
+          refresh: false,
+          acceptCached: (entry) =>
+            entry.status === 'ok' &&
+            (!options.acceptCached || options.acceptCached(entry)) &&
+            cachedVariantMatches(candidateUrl, entry.snapshot, flavourScope),
+        })
+      ) {
+        return candidateUrl;
+      }
+    }
+    return url;
+  }
+
   async captureWithBudget(url, options) {
     let timer;
     let timedOut = false;
@@ -701,7 +767,10 @@ export class BrowserCollector {
     }
   }
 
-  async capture(url, { refresh = false } = {}) {
+  async capture(
+    url,
+    { refresh = false, flavourScope = this.flavourScope } = {}
+  ) {
     await assertCollectionRunning(this.store);
     await this.start();
     await this.runtime.touch?.();
@@ -729,9 +798,15 @@ export class BrowserCollector {
     }
     let scrolling;
     const screenshots = [];
+    let variantSelection;
     if (status === 'ok') {
       await waitForPageReady(page);
-      await this.selectRequestedVariant(url, snapshot);
+      snapshot = await page.evaluate(extractPage);
+      variantSelection = await this.selectRequestedVariant(
+        url,
+        snapshot,
+        flavourScope
+      );
       snapshot = await page.evaluate(extractPage);
       screenshots.push(await storeViewport(this.store, page, 'before-scroll'));
     }
@@ -768,24 +843,39 @@ export class BrowserCollector {
       finalUrl,
       scrollLimit: this.maxScrolls,
       scrolling,
+      variantSelection,
       extractorVersion: EXTRACTOR_VERSION,
       imagesRefreshed: refresh,
     };
   }
 
-  async selectRequestedVariant(url, snapshot) {
-    const parsed = new URL(url);
-    const requestedValue =
-      parsed.searchParams.get('skuId') ||
-      parsed.pathname.match(/-s(\d+)\.html$/u)?.[1];
-    const requested = requestedValue?.split('_VNAMZ-').at(-1);
+  async selectRequestedVariant(
+    url,
+    snapshot,
+    flavourScope = this.flavourScope
+  ) {
+    const explicit = requestedSku(url);
+    const preferred = !explicit && preferredVariant(snapshot, flavourScope);
+    const requested = explicit || preferred?.sku?.split('_VNAMZ-').at(-1);
+    const decision = {
+      policyVersion: VARIANT_POLICY_VERSION,
+      flavourScope,
+      reason: explicit
+        ? 'exact-requested-sku'
+        : preferred
+          ? 'preferred-scoped-sku'
+          : 'no-confirmed-scoped-combination',
+      requestedSku: requested,
+      initialSku: snapshot.sku,
+      changed: false,
+    };
     if (
       !requested ||
       String(snapshot.sku || '')
         .split('_VNAMZ-')
         .at(-1) === requested
     ) {
-      return;
+      return decision;
     }
     const target = snapshot.skuCatalog?.find(
       (sku) => String(sku.sku).split('_VNAMZ-').at(-1) === requested
@@ -795,36 +885,14 @@ export class BrowserCollector {
         'Requested SKU is absent from the observed variant inventory'
       );
     }
-    const selector =
-      '[data-sku-option], .sku-variable-size, .sku-variable-img-wrap, .sku-variable-img-wrap-selected, .sku-variable-name, .sku-variable-name-selected';
-    for (const option of target.options) {
-      await resolvePageDialogs(this.runtime.page);
-      const choices = this.runtime.page.locator(selector);
-      const index = await choices.evaluateAll(
-        (elements, value) =>
-          elements.findIndex((element) => {
-            const bounds = element.getBoundingClientRect();
-            const labels = [
-              element.textContent?.trim(),
-              element.getAttribute('title'),
-              element.querySelector('img')?.alt,
-            ];
-            return (
-              bounds.width > 0 && bounds.height > 0 && labels.includes(value)
-            );
-          }),
-        option.value
-      );
-      if (index < 0) {
-        throw new Error('Requested SKU option has no visible selector');
-      }
-      await this.cache.scheduler.pace(url);
-      await this.runtime.pace?.(url, this.cache.scheduler.intervalMs);
-      await choices.nth(index).click();
-      await this.runtime.page.waitForTimeout(Math.max(500, this.settleMs));
-      await resolvePageDialogs(this.runtime.page);
-      await waitForPageReady(this.runtime.page);
-    }
+    await selectVariantOptions({
+      page: this.runtime.page,
+      target,
+      url,
+      scheduler: this.cache.scheduler,
+      runtime: this.runtime,
+      settleMs: this.settleMs,
+    });
     const selected = await this.runtime.page.evaluate(extractPage);
     if (
       String(selected.sku || '')
@@ -835,6 +903,7 @@ export class BrowserCollector {
         'Requested SKU did not become the selected SKU; no price was recorded'
       );
     }
+    return { ...decision, changed: true, selectedSku: selected.sku };
   }
 
   async assertCollecting() {

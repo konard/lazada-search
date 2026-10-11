@@ -47,6 +47,14 @@ test('observed whey protein bars are not protein powder and frozen chocolate bar
   assert.match(targetCategoryExclusion(title), /Protein bars/u);
   assert.equal(categoryOf(title), 'unknown');
   assert.equal(categoryOf('Whey protein bars chocolate 12 x 58g'), 'unknown');
+  assert.match(
+    targetCategoryExclusion('M-ACTION | Thanh Năng Lượng Cao Whey Protein'),
+    /Protein bars/u
+  );
+  assert.equal(
+    categoryOf('M-ACTION | Thanh Năng Lượng Cao Whey Protein'),
+    'unknown'
+  );
   assert.equal(
     categoryOf('Chocolate protein ice cream bars 60ml'),
     'chocolate-ice-cream'

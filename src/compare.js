@@ -3,6 +3,7 @@ import { specificationProblems } from './verification.js';
 import { matchesFlavourScope } from './flavour-scope.js';
 import { uniqueComparisons } from './comparison-observations.js';
 import { proteinAmount } from './protein-amount.js';
+import { deliveryContextMatches } from './delivery-context.js';
 
 function evidenceProblem(product, field) {
   if (product.pendingSpecificationReview?.includes(field)) {
@@ -56,10 +57,11 @@ export function calculateOffer(product, offer, options = {}) {
   if (offer.available === false) {
     problems.push('Unavailable');
   }
-  if (
-    offer.deliveryAvailable === false &&
-    (!options.deliveryArea || offer.deliveryArea === options.deliveryArea)
-  ) {
+  const quoteMatchesDestination = deliveryContextMatches(
+    offer,
+    options.deliveryArea
+  );
+  if (offer.deliveryAvailable === false && quoteMatchesDestination) {
     problems.push('The listing cannot deliver to this destination');
   }
   if (offer.variantConfirmed !== true) {
@@ -103,14 +105,16 @@ export function calculateOffer(product, offer, options = {}) {
   ) {
     problems.push('Frozen delivery needs confirmation');
   }
-  if (options.deliveryArea && offer.deliveryArea !== options.deliveryArea) {
+  if (!quoteMatchesDestination) {
     problems.push('Delivery price not confirmed for this area');
   }
   const quoteMatchesQuantity =
     offer.shippingQuantity === undefined || offer.shippingQuantity === quantity;
   const shipping =
     options.shipping ??
-    (quoteMatchesQuantity && !offer.shippingInvalidated
+    (quoteMatchesDestination &&
+    quoteMatchesQuantity &&
+    !offer.shippingInvalidated
       ? offer.shipping
       : undefined);
   if (!quoteMatchesQuantity && options.shipping === undefined) {

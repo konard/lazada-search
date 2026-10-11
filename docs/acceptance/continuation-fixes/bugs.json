@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-10-11T05:31:24.989Z",
+  "recordedAt": "2026-10-11T06:44:57.983349+00:00",
   "bugs": [
     {
       "id": "scope-human-food",
@@ -169,6 +169,86 @@
         "docs/acceptance/container-metric-mass/validation.json"
       ],
       "reproduction": "Original exact Extreme Chocolate seller declaration2.04kg was treated as headline, yielding2041.165665g from4.5lb. Corrected selling declaration yields2040g and490.19VND/g; no factory nutrition or revision approval."
+    },
+    {
+      "id": "scoped-default-variant",
+      "title": "Generic listing default captured another powder family and shaker",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "Scitec13427532777 default Zprotein Brownie5lbs plus Bình Lắc at3070000VND was captured although Socola plus Không Bình was available. Live correction confirmed exact SKU117192556069 at3540000VND.",
+      "evidence": [
+        "src/variant-policy.js",
+        "src/browser-variant.js",
+        "tests/e2e/preferred-variant.test.js",
+        "docs/acceptance/preferred-variant/live-check.json"
+      ],
+      "issue": "https://github.com/konard/lazada-search/issues/16"
+    },
+    {
+      "id": "destination-label-mismatch",
+      "title": "Default HCM freight could become Nha Trang delivered price",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "A source quotes shipping to Hồ Chí Minh while collection is configured for Nha Trang; derived quote labels alone previously allowed the wrong freight into comparisons. Source destination validation now rejects it.",
+      "evidence": [
+        "src/delivery-context.js",
+        "src/delivery.js",
+        "tests/delivery-context.test.js"
+      ],
+      "issue": "https://github.com/konard/lazada-search/issues/16"
+    },
+    {
+      "id": "manufacturer-package-protein-basis",
+      "title": "Per-100g nutrition could approve whole-package protein",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "An original label stating Protein4gper100g could supply proteinPerPackageG4 through direct-claim review. Approval now requires original package basis, gram units and exact single-inner-package identity.",
+      "evidence": [
+        "src/manufacturer-research.js",
+        "tests/manufacturer-package-basis.test.js"
+      ]
+    },
+    {
+      "id": "voucher-observation-collapse",
+      "title": "Equal-value vouchers and changed validity/status could collapse",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "Two vouchers with equal amounts but different IDs, sellers, terms or validity windows could merge. API observations retaining the first ID discarded changed terms/status. Full eligibility identity and distinct observations now survive.",
+      "evidence": [
+        "src/promotions.js",
+        "scripts/collect-promotions.mjs",
+        "tests/promotion-identity.test.js"
+      ]
+    },
+    {
+      "id": "historical-source-association",
+      "title": "Historical alias original could be attached to another exact SKU",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "376 cached candidates yielded342 valid source-bound replays and34 rejected exact-SKU source-price associations. Replay verifies original digest/date/market/SKU/price and cannot overwrite newer observations. Current audited prices remain independently source-confirmed.",
+      "evidence": [
+        "src/historical-capture-replay.js",
+        "tests/historical-capture-replay.test.js",
+        "docs/acceptance/offline-reprocessing.json"
+      ]
+    },
+    {
+      "id": "vietnamese-energy-bar-filter",
+      "title": "Vietnamese energy bars admitted by powder discovery",
+      "status": "fixed; real-data-coverage-remains-open",
+      "reproduction": "MAction13413229284 Thanh Năng Lượng was queued for powder detail collection; explicit non-frozen Vietnamese energy/nutrition-bar phrases are now excluded by version3 scope policy with reusable source decisions.",
+      "evidence": [
+        "src/target-category.js",
+        "src/scope-decisions.js",
+        "tests/human-food-scope.test.js"
+      ]
+    },
+    {
+      "id": "powder-ice-flavour",
+      "title": "Selected Chocolate Ice Cream flavour overrode explicit whey category",
+      "status": "fixed and original-source-replayed",
+      "issue": "https://github.com/konard/lazada-search/issues/17",
+      "reproduction": "ProSupps1553990700_VNAMZ-6552645102 selected Chocolate Ice Cream under Whey Isolate2lbs; replay wrongly inserted powder into frozen-food tables. Parent powder identity now governs this flavour, while real frozen products remain ice cream. Price1150000VND/date/907g unchanged; zero downloads.",
+      "evidence": [
+        "src/products.js",
+        "tests/selected-package-mass.test.js",
+        "docs/acceptance/preferred-variant/powder-ice-flavour-replay.json"
+      ]
     }
   ],
   "validationCheckpoint": {

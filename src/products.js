@@ -121,8 +121,15 @@ function sellingMass(selectedText, title, nutrition, description, specs) {
 function selectedAmounts(selected, title, nutrition, description, specs = []) {
   const selectedText = selected.map((entry) => entry.text).join(' ');
   const selectedCategory = categoryOf(selectedText);
+  const titleCategory = categoryOf(title);
+  // "Chocolate ice cream" is also a whey flavour. It cannot change an
+  // explicitly identified powder into frozen food or supply a volume.
   const category =
-    selectedCategory === 'unknown' ? categoryOf(title) : selectedCategory;
+    selectedCategory === 'unknown' ||
+    (selectedCategory === 'chocolate-ice-cream' &&
+      ['whey', 'protein-powder'].includes(titleCategory))
+      ? titleCategory
+      : selectedCategory;
   const count = sellingPackCount({ selectedText, title, description });
   const weightEvidence = sellingMass(
     selectedText,

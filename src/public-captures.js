@@ -5,6 +5,13 @@ import { classifyPage, extractPage } from './browser.js';
 import { parseProduct } from './products.js';
 import { recordListingUnavailable } from './availability.js';
 import { publishScopeDecisions } from './scope-decisions.js';
+import {
+  publicationApplication,
+  publicationFingerprint,
+  publicationSourceContext,
+  reusablePublication,
+  savePublicationProof,
+} from './publication-cache.js';
 
 const capturePriceContext = (capture) =>
   capture.priceContext || 'private-profile-browser-observation';
@@ -46,8 +53,13 @@ export async function publishAccountCaptures(application, accountStore) {
   const published = [];
   const rejected = [];
   const unavailablePublished = [];
+  const fingerprint = await publicationFingerprint();
+  const sourceRecords = await accountStore.list('cache');
+  const sourceCache = new Map(
+    sourceRecords.map((record) => [record.id, record])
+  );
   let reused = 0;
-  for (const capture of (await accountStore.list('cache')).filter((record) =>
+  for (const capture of sourceRecords.filter((record) =>
     publishable(record, application.market)
   )) {
     try {
@@ -57,67 +69,15 @@ export async function publishAccountCaptures(application, accountStore) {
         );
         continue;
       }
-      const original = parseProduct(capture.snapshot);
-      assertSelectedPrice(original, capture.snapshot);
-      const bytes = await accountStore.blob(capture.html.sha256);
-      if (!bytes) {
-        throw new Error('The captured product HTML is missing');
-      }
-      const html = sanitizePublicHtml(bytes.toString('utf8'));
-      const sourceUrl = canonicalUrl(sanitizePublicData(capture.snapshot.url));
-      const { document } = parseHTML(html);
-      const snapshot = extractPage({ document, url: sourceUrl });
-      const checked = parseProduct(snapshot);
-      assertPreservedPrice(original, checked);
-      const id = `public-capture:${sha256(`${sourceUrl}:${html}:${capture.fetchedAt}`)}`;
-      const saved = await application.store.get('publication', id);
-      if (saved) {
-        published.push(saved);
-        reused++;
-        continue;
-      }
-      await publishImages(
-        application.store,
+      const result = await publishProductCapture(
+        application,
         accountStore,
-        snapshot.productImages || []
+        capture,
+        fingerprint,
+        sourceCache
       );
-      const observedAt = new Date(capture.fetchedAt).toISOString();
-      const result = await application.importCapture({
-        url: sourceUrl,
-        html,
-        observedAt,
-      });
-      const publicPage = await application.store.get(
-        'cache',
-        `lazada:${application.market}:${application.deliveryArea}:${result.offer.url}`
-      );
-      // Exact variant URLs are also reusable in a fresh archive-backed account.
-      await application.store.put('cache', {
-        ...publicPage,
-        id: `lazada:${application.market}:${application.deliveryArea}:${sourceUrl}`,
-        url: sourceUrl,
-        finalUrl: sourceUrl,
-        snapshot: { ...publicPage.snapshot, url: sourceUrl },
-      });
-      const record = {
-        id,
-        url: result.offer.url,
-        sourceUrl,
-        sku: result.offer.sku,
-        category: result.product.category,
-        price: result.offer.price,
-        observedAt,
-        html: publicPage.html,
-        offerId: result.offer.id,
-        priceContext: capturePriceContext(capture),
-        exactSkuConfirmed: true,
-        manualVisualReview: false,
-      };
-      await application.saveOffer({
-        ...result.offer,
-        priceContext: record.priceContext,
-      });
-      published.push(await application.store.put('publication', record));
+      published.push(result.record);
+      reused += Number(result.reused);
     } catch (error) {
       rejected.push({
         url: sanitizePublicData(capture.url),
@@ -125,7 +85,9 @@ export async function publishAccountCaptures(application, accountStore) {
       });
     }
   }
-  const allPublished = await application.store.list('publication');
+  const allPublished = (await application.store.list('publication')).filter(
+    (record) => record.visibility !== 'private'
+  );
   const scopeDecisions = await publishScopeDecisions(
     application.store,
     accountStore
@@ -143,6 +105,80 @@ export async function publishAccountCaptures(application, accountStore) {
     scopeDecisions,
     downloads: application.cache.stats.downloads,
   };
+}
+
+async function publishProductCapture(
+  application,
+  accountStore,
+  capture,
+  fingerprint,
+  sourceCache
+) {
+  const bytes = await accountStore.blob(capture.html.sha256);
+  const sourceImages = (capture.snapshot.productImages || []).map((url) => {
+    const source = sourceCache.get(`image:${canonicalUrl(url)}`);
+    return {
+      urlSha256: sha256(url),
+      sha256: source?.blob?.sha256,
+      contentType: source?.contentType,
+      invalidatedAt: source?.invalidatedAt,
+    };
+  });
+  const context = publicationSourceContext(
+    application,
+    capture,
+    bytes,
+    fingerprint,
+    sourceImages
+  );
+  const saved = await reusablePublication(application, context);
+  if (saved) {
+    return { record: saved, reused: true };
+  }
+  const original = parseProduct(capture.snapshot);
+  assertSelectedPrice(original, capture.snapshot);
+  const html = sanitizePublicHtml(bytes.toString('utf8'));
+  const { sourceUrl, observedAt } = context;
+  const { document } = parseHTML(html);
+  const snapshot = extractPage({ document, url: sourceUrl });
+  const checked = parseProduct(snapshot);
+  assertPreservedPrice(original, checked);
+  const id = `public-capture:${sha256(`${sourceUrl}:${html}:${capture.fetchedAt}`)}`;
+  await publishImages(
+    application.store,
+    accountStore,
+    snapshot.productImages || [],
+    sourceCache
+  );
+  const { view, state } = publicationApplication(application);
+  const result = await view.importCapture({ url: sourceUrl, html, observedAt });
+  assertPreservedPrice(original, result);
+  const publicPage = state.page;
+  await view.store.put('cache', {
+    ...publicPage,
+    id: `lazada:${application.market}:${application.deliveryArea}:${sourceUrl}`,
+    url: sourceUrl,
+    finalUrl: sourceUrl,
+    snapshot: { ...publicPage.snapshot, url: sourceUrl },
+  });
+  const record = {
+    id,
+    url: result.offer.url,
+    sourceUrl,
+    sku: result.offer.sku,
+    category: result.product.category,
+    price: result.offer.price,
+    observedAt,
+    html: publicPage.html,
+    offerId: result.offer.id,
+    priceContext: capturePriceContext(capture),
+    exactSkuConfirmed: true,
+    manualVisualReview: false,
+  };
+  await view.saveOffer({ ...result.offer, priceContext: record.priceContext });
+  const publication = await application.store.put('publication', record);
+  await savePublicationProof(application, context, publication);
+  return { record: publication, reused: false };
 }
 
 async function publishUnavailable(application, accountStore, capture) {
@@ -198,12 +234,9 @@ async function publishUnavailable(application, accountStore, capture) {
   });
 }
 
-async function publishImages(publicStore, accountStore, urls) {
+async function publishImages(publicStore, accountStore, urls, sourceCache) {
   for (const imageUrl of urls) {
-    const source = await accountStore.get(
-      'cache',
-      `image:${canonicalUrl(imageUrl)}`
-    );
+    const source = sourceCache.get(`image:${canonicalUrl(imageUrl)}`);
     if (!source?.blob || source.invalidatedAt) {
       continue;
     }

@@ -1,4 +1,6 @@
 import { canonicalUrl, sha256 } from './util.js';
+import { parseHTML } from 'linkedom';
+import { fold, normalizeText } from './text.js';
 import { extractPage, classifyPage } from './browser.js';
 import { parsePrice } from './nutrition.js';
 import { resolvePageDialogs } from './page-dialogs.js';
@@ -8,6 +10,74 @@ import {
   assertPageNotChallenged,
   assertCollectionRunning,
 } from './page-challenge.js';
+
+function verifyDeliverySubset(result, destination) {
+  const lines = String(result.text || '')
+    .split(/\r?\n/u)
+    .map(normalizeText);
+  const header = lines.findIndex((line) =>
+    /^(?:tuy chon giao hang|delivery options)\s*:$/u.test(fold(line))
+  );
+  if (
+    result.captureSubset !== true ||
+    !/^[a-f\d]{64}$/u.test(result.originalSnapshotSha256 || '') ||
+    !result.evidenceId ||
+    header < 0 ||
+    lines[header + 1] !== normalizeText(destination)
+  ) {
+    throw new Error(
+      'Delivery subset requires its captured destination and source provenance'
+    );
+  }
+  const amount = result.text.match(/phí vận chuyển\s*([\d.,]+)\s*(?:₫|đ)/iu);
+  if (
+    Number.isFinite(result.shipping) &&
+    (!amount || parsePrice(amount[1]) !== result.shipping)
+  ) {
+    throw new Error(
+      'Delivery subset shipping does not match its captured amount'
+    );
+  }
+  return { ...result, deliverySourceValidation: 'captured-text-subset' };
+}
+
+async function verifyDeliverySource(store, result, destination) {
+  if (result.error) {
+    return result;
+  }
+  try {
+    if (
+      result.shippingDestination !== destination ||
+      result.shippingQuantity !== 1
+    ) {
+      throw new Error(
+        'Delivery source requires its exact destination and package quantity'
+      );
+    }
+    if (!result.html?.sha256) {
+      return verifyDeliverySubset(result, destination);
+    }
+    const bytes = await store.blob(result.html.sha256);
+    if (
+      sha256(bytes) !== result.html.sha256 ||
+      bytes.length !== result.html.bytes
+    ) {
+      throw new Error('Delivery HTML does not match its original digest');
+    }
+    const { document } = parseHTML(bytes.toString('utf8'));
+    const address = document
+      .querySelector('.location-v2__address, .location__address')
+      ?.textContent?.trim();
+    if (address !== destination) {
+      throw new Error(
+        `Delivery source destination mismatch: ${address || 'missing address'}`
+      );
+    }
+    return { ...result, deliverySourceValidation: 'original-html' };
+  } catch (error) {
+    return { ...result, status: 'unavailable', error: error.message };
+  }
+}
 
 // Lazada's product-page estimate describes one selected package. Its quantity
 // picker does not establish a checkout freight quote for a bulk order.
@@ -22,7 +92,7 @@ export async function captureDelivery(
     );
   }
   const destination = `${province}, ${locality}`;
-  return await collector.cache.get(canonicalUrl(url), {
+  const result = await collector.cache.get(canonicalUrl(url), {
     namespace: `delivery:${destination}:1`,
     ttlMs: 21600000,
     refresh,
@@ -149,4 +219,5 @@ export async function captureDelivery(
       return await pending;
     },
   });
+  return verifyDeliverySource(collector.store, result, destination);
 }

@@ -535,23 +535,29 @@ async function collectLazada(store, options, own) {
   return { campaign, session, pages };
 }
 
-// Store and campaign vouchers from API modules, one row per voucher ID.
+// Repeated identical API definitions share source pointers. Changes to terms,
+// status, amounts or validity remain separately observed eligibility states.
 function mergeApiVouchers(pages) {
-  const merged = new Map();
+  const vouchers = [];
   for (const page of pages) {
     for (const response of page.apiResponses || []) {
       for (const voucher of response.vouchers || []) {
-        const known = merged.get(voucher.voucherId) || {
+        vouchers.push({
           ...voucher,
           api: response.api,
-          sources: [],
-        };
-        known.sources = [...new Set([...known.sources, page.url])];
-        merged.set(voucher.voucherId, known);
+          sources: [page.url],
+          observations: [
+            {
+              sourceUrl: page.url,
+              observedAt: page.observedAt,
+              api: response.api,
+            },
+          ],
+        });
       }
     }
   }
-  return [...merged.values()];
+  return dedupeVouchers(vouchers);
 }
 
 function pageSummary(page) {

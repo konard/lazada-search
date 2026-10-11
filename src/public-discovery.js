@@ -1,7 +1,18 @@
 import { parseHTML } from 'linkedom';
 import { extractPage, EXTRACTOR_VERSION } from './browser.js';
 import { sanitizePublicHtml, sanitizePublicData } from './archive.js';
-import { sha256 } from './util.js';
+import {
+  discoveryDigest,
+  discoveryObservedAt,
+  discoveryPublicationFingerprint,
+  discoveryPublicationId,
+  discoveryPublicationStore,
+  discoverySourceContext,
+  reusableDiscoveryPublication,
+  saveDiscoveryProof,
+  saveDiscoveryMetadata,
+  verifyDiscoveryBlob,
+} from './discovery-publication-cache.js';
 
 const cards = (snapshot) =>
   (snapshot.cards || []).map(({ url, title, priceText, sku }) => ({
@@ -16,22 +27,20 @@ const samePage = (first, second) =>
   JSON.stringify(first.searchCoverage) ===
     JSON.stringify(second.searchCoverage);
 
-async function publicSnapshot(accountStore, capture) {
-  const originalHtml = (
-    await accountStore.blob(capture.html.sha256)
-  ).toString();
+function publicSnapshot(originalBytes, sourceUrl, capturedSnapshot) {
+  const originalHtml = originalBytes.toString();
   const html = sanitizePublicHtml(originalHtml);
   const snapshot = extractPage({
     document: parseHTML(html).document,
-    url: capture.snapshot.url,
+    url: sourceUrl,
   });
-  if (samePage(snapshot, capture.snapshot)) {
+  if (samePage(snapshot, capturedSnapshot)) {
     return { html, snapshot, extractionReprocessed: false };
   }
   // Compare serialized source bytes when live innerText differs from textContent.
   const original = extractPage({
     document: parseHTML(originalHtml).document,
-    url: capture.snapshot.url,
+    url: sourceUrl,
   });
   if (!samePage(snapshot, original)) {
     throw new Error('Redaction changed search cards or pagination evidence');
@@ -39,15 +48,30 @@ async function publicSnapshot(accountStore, capture) {
   return { html, snapshot, extractionReprocessed: true };
 }
 
+function matchesPublishedCache(cached, record) {
+  return (
+    cached?.status === 'ok' &&
+    cached.visibility !== 'private' &&
+    record.visibility !== 'private' &&
+    !cached.invalidatedAt &&
+    cached.repositoryReusable &&
+    cached.extractorVersion === EXTRACTOR_VERSION &&
+    cached.html?.sha256 === record.html.sha256 &&
+    (!record.snapshotSha256 ||
+      record.snapshotSha256 === discoveryDigest(cached.snapshot))
+  );
+}
+
 async function publishedCaches(store) {
   const valid = new Set();
   for (const record of await store.list('discovery-publication')) {
+    if (!record.cacheId || !record.html?.sha256) {
+      continue;
+    }
     const cached = await store.get('cache', record.cacheId);
     if (
-      cached?.status === 'ok' &&
-      cached.repositoryReusable &&
-      cached.extractorVersion === EXTRACTOR_VERSION &&
-      cached.html?.sha256 === record.html.sha256
+      matchesPublishedCache(cached, record) &&
+      (await verifyDiscoveryBlob(store, cached.html))
     ) {
       valid.add(record.cacheId);
     }
@@ -67,6 +91,10 @@ export async function publishAccountDiscovery(application, accountStore) {
   }
   const published = [];
   const rejected = [];
+  let reused = 0;
+  const pipeline = await discoveryPublicationFingerprint();
+  const store = discoveryPublicationStore(application.store);
+  const sourceTimes = new Map();
   const validCaches = await publishedCaches(application.store);
   for (const capture of (await accountStore.list('cache')).filter(
     (record) =>
@@ -76,65 +104,104 @@ export async function publishAccountDiscovery(application, accountStore) {
       record.html
   )) {
     try {
+      const bytes = await accountStore.blob(capture.html.sha256);
+      const context = discoverySourceContext(
+        application,
+        capture,
+        bytes,
+        pipeline
+      );
+      sourceTimes.set(context.cacheId, context.observedAt);
+      const saved = await reusableDiscoveryPublication(application, context);
+      if (saved) {
+        published.push(saved);
+        validCaches.add(context.cacheId);
+        reused += 1;
+        continue;
+      }
       const { html, snapshot, extractionReprocessed } = await publicSnapshot(
-        accountStore,
-        capture
+        bytes,
+        context.finalUrl,
+        capture.snapshot
       );
       const blob = await application.store.putBlob(Buffer.from(html));
-      await application.store.put('cache', {
-        id: capture.id,
-        url: capture.url,
+      const publicationId = await discoveryPublicationId(store, context, blob);
+      await store.putLatest('cache', {
+        id: context.cacheId,
+        url: context.url,
         finalUrl: snapshot.url,
         snapshot,
         status: 'ok',
         html: blob,
         fetchedAt: capture.fetchedAt,
         checkedAt: capture.checkedAt,
+        observedAt: context.observedAt,
         extractorVersion: EXTRACTOR_VERSION,
         extractedHtmlSha256: blob.sha256,
         repositoryReusable: true,
-        scrolling: capture.scrolling,
+        discoveryPublicationId: publicationId,
+        scrolling: sanitizePublicData(capture.scrolling),
       });
-      validCaches.add(capture.id);
+      validCaches.add(context.cacheId);
       const record = {
-        id: `discovery-publication:${sha256(`${capture.id}:${blob.sha256}`)}`,
-        url: capture.url,
+        id: publicationId,
+        url: context.url,
         html: blob,
-        cacheId: capture.id,
-        observedAt: new Date(capture.fetchedAt).toISOString(),
+        cacheId: context.cacheId,
+        observedAt: context.observedAt,
+        snapshotSha256: discoveryDigest(snapshot),
         cards: snapshot.cards.length,
-        scrolling: capture.scrolling,
+        scrolling: sanitizePublicData(capture.scrolling),
         ...(extractionReprocessed ? { extractionReprocessed: true } : {}),
         ...snapshot.searchCoverage,
       };
-      published.push(
-        await application.store.put('discovery-publication', record)
+      const savedRecord = await store.putLatest(
+        'discovery-publication',
+        record
       );
+      await saveDiscoveryProof(store, context, savedRecord, snapshot);
+      published.push(savedRecord);
     } catch (error) {
-      rejected.push({ url: capture.url, reason: error.message });
+      validCaches.delete(sanitizePublicData(capture.id));
+      rejected.push({
+        url: sanitizePublicData(capture.url),
+        reason: error.message,
+      });
     }
   }
   for (const kind of ['discovery', 'crawl-page', 'crawl']) {
     for (const input of (await accountStore.list(kind)).filter(
       (record) => record.visibility === 'private'
     )) {
+      const record = sanitizePublicData(input);
+      delete record.visibility;
       if (
         kind === 'crawl'
-          ? !input.pages.every(
+          ? !record.pages.every(
               (page) =>
                 page.status !== 'ok' ||
                 validCaches.has(
                   `search:${application.market}:${application.deliveryArea}:${page.url}`
                 )
             )
-          : !validCaches.has(input.cacheId)
+          : !validCaches.has(record.cacheId)
       ) {
         continue;
       }
-      const record = sanitizePublicData(input);
-      delete record.visibility;
-      await application.store.put(kind, record);
+      const observedAt = discoveryObservedAt(
+        record,
+        sourceTimes.get(record.cacheId)
+      );
+      await saveDiscoveryMetadata(store, kind, {
+        ...record,
+        ...(observedAt ? { observedAt } : {}),
+      });
     }
   }
-  return { published, rejected, downloads: application.cache.stats.downloads };
+  return {
+    published,
+    rejected,
+    reused,
+    downloads: application.cache.stats.downloads,
+  };
 }

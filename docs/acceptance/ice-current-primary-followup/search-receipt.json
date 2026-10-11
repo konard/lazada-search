@@ -1,0 +1,59 @@
+{
+  "observedAt": "2026-10-11 06:09:46 UTC",
+  "searchQueries": [
+    {
+      "query": "\"HAPPY DURIAN\" \"kem\" \"công ty\"",
+      "purpose": "Find exact company identity and current first-party contact/product URLs",
+      "resultStoreKey": "ice-followup-search1",
+      "sourceUrl": "https://icheck.vn/san-pham/kem-bo-sau-rieng-125ml-8938530482206",
+      "kind": "search-index-owner-lead",
+      "facts": {
+        "companyName": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HAPPY DURIAN",
+        "taxId": "0315603499",
+        "publicCompanyTelephone": "0858993939",
+        "publicCompanyLocation": "169/1/19 Lương Định Của, KP3, Phường An Khánh, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam"
+      },
+      "limits": "Non-chocolate barcode; page states owner has not provided product information; search snippets only, direct web fetch cache miss. No exact current package/formula approval."
+    },
+    {
+      "query": "\"8801118251313\" \"175\" lotte label nutrition",
+      "purpose": "Find exact export-chocolate GTIN label",
+      "outcome": "No relevant source returned"
+    },
+    {
+      "query": "\"Happy Gelato\" \"Chocolate\" \"happydurian\"",
+      "purpose": "Find first-party Belgian chocolate product/specification",
+      "outcome": "No relevant source returned"
+    },
+    {
+      "query": "\"빵빠레 초코\" \"175\" \"원재료\"",
+      "purpose": "Find exact Korean chocolate175 export ingredients",
+      "outcome": "Results were unrelated financial filings and retail exhibition pages; no exact label"
+    }
+  ],
+  "webFetchFailures": [
+    {
+      "url": "https://icheck.vn/san-pham/kem-bo-sau-rieng-125ml-8938530482206",
+      "method": "web-open",
+      "result": "Internal Error ()\nciteturn265view0 [wordlim: 200] Source: open({\"ref_id\":\"https://icheck.vn/san-pham/kem-bo-sau-rieng-125ml-8938530482206\",\"lineno\":null}); Total lines: 1\nL0: Failed to fetch https://icheck.vn/san-pham/kem-bo-sau-rieng-125ml-8938530482206: Cache miss\n",
+      "originalResponseBytesObtained": false,
+      "retry": false
+    },
+    {
+      "url": "https://thitruongsi.com/kem-mui-sau-rieng-happy-durian-gelato-1681292.html",
+      "method": "web-open",
+      "result": "Internal Error ()\nciteturn266view0 [wordlim: 200] Source: open({\"ref_id\":\"https://thitruongsi.com/kem-mui-sau-rieng-happy-durian-gelato-1681292.html\",\"lineno\":null}); Total lines: 1\nL0: Failed to fetch https://thitruongsi.com/kem-mui-sau-rieng-happy-durian-gelato-1681292.html: Cache miss\n",
+      "originalResponseBytesObtained": false,
+      "retry": false,
+      "authority": "self-published supplier lead; durian product only"
+    }
+  ],
+  "budget": {
+    "maxSearchQueries": 4,
+    "searchQueriesUsed": 4,
+    "maxDistinctNewUrls": 4,
+    "distinctNewUrlsUsed": 4
+  },
+  "zeroLazadaRequests": true,
+  "zeroOutreachMessages": true
+}

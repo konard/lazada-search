@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-11T06:13:09.556073+00:00",
+  "status": "bounded source acquisition complete; no exact current numerical approvals",
+  "scope": "Happy BelgianChocolate125/475ml and Lotte Fanfarechocolate175ml",
+  "budget": {
+    "searchQueries": 4,
+    "distinctNewUrls": 4,
+    "maximumQueries": 4,
+    "maximumDistinctUrls": 4
+  },
+  "unapprovedContactLeads": [
+    {
+      "id": "happy-owner-contact-unapproved-lead",
+      "company": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ HAPPY DURIAN",
+      "taxId": "0315603499",
+      "publicCompanyTelephone": "0858993939",
+      "publicCompanyLocation": "169/1/19 Lương Định Của, KP3, Phường An Khánh, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam",
+      "sourceUrl": "https://icheck.vn/san-pham/kem-bo-sau-rieng-125ml-8938530482206",
+      "evidenceMethod": "search index excerpt only; direct open cache miss",
+      "authority": "third-party-barcode-owner-index",
+      "appliesToBarcode": "8938530482206",
+      "appliesToProduct": "Kem Bơ Sầu Riêng125ml, NOT Belgian chocolate",
+      "currentChocolateIdentityMatched": false,
+      "contactValidatedByFirstParty": false,
+      "outreachSent": false,
+      "applyToCurrentProducts": false
+    }
+  ],
+  "rows": [
+    {
+      "sku": "1880785864_VNAMZ-8527716006",
+      "name": "Happy Gelato Belgian chocolate 125ml",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 125,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "approvedNewFields": {},
+      "currentFormulaIdentityMatched": false,
+      "currentManufacturerNutritionVerified": false,
+      "strictChocolateEligible": null,
+      "findings": [
+        {
+          "claim": "Happy Durian is named by trade association as a gelato producer/exhibitor",
+          "sourceUrl": "https://hvnclc.vn/33-dn-cung-hoi-dn-hvnclc-tham-du-thaifex-anuga-2023/",
+          "sourceSha256": "ca86b8bd80c83a384eb98d5f18e7870b5611a3c43c8be731fbd53e7f41779a22",
+          "excerpt": "Công ty TNHH TM-DV Happy Durian; Kem Gelato từ công nghệ Ý, sử dụng nông sản Việt",
+          "identityLevel": "company family only; not current chocolate package/formula",
+          "originalSourceSha256": "0b5a69acfe244a27f3586d80f19558db2d2b26e0716654a0ebe5c1469c81f705"
+        },
+        {
+          "claim": "Historical laboratory customer Happy Durian at216 Nguyễn Thị Minh Khai, Ward6,District3, HCMC; different address from current directory lead",
+          "sourceArtifact": "data/cases/vietnam-nha-trang/blobs/c5/c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9.gz",
+          "sourceSha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9",
+          "excerpt": "CÔNG TY TNHH TMDV HAPPY DURIAN; 216 NGUYEN THI MINH KHAI; KEM CHOCOLATE Bi; 08/12/2021",
+          "identityLevel": "2021 lab sample; withheld from current SKU"
+        }
+      ],
+      "blockingEvidenceGaps": [
+        "Current exact selected package identity/GTIN and market/formula revision",
+        "Declared net grams; no density conversion",
+        "Current full nutrients and explicit per100g/per100ml/perPackage serving basis",
+        "Current ingredients and allergen list"
+      ],
+      "minimalNextSource": "Current Belgian Chocolate125ml front/back with net grams, current nutrition basis, ingredients,manufacturer/GTIN and lot/revision; no density or2021 sample transfer.",
+      "storeUpdatesApplied": false,
+      "unapprovedContactLeadId": "happy-owner-contact-unapproved-lead",
+      "notRetriedSources": [
+        "https://happygelato.vn/ (cached DNS negative)",
+        "https://happydurian.vn/ (cached expired TLS certificate)",
+        "https://www.facebook.com/happygelatovn/ (cached temporary-block barrier)"
+      ]
+    },
+    {
+      "sku": "1880785864_VNAMZ-8527716007",
+      "name": "Happy Gelato Belgian chocolate 475ml",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 475,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "approvedNewFields": {},
+      "currentFormulaIdentityMatched": false,
+      "currentManufacturerNutritionVerified": false,
+      "strictChocolateEligible": null,
+      "findings": [
+        {
+          "claim": "Happy Durian is named by trade association as a gelato producer/exhibitor",
+          "sourceUrl": "https://hvnclc.vn/33-dn-cung-hoi-dn-hvnclc-tham-du-thaifex-anuga-2023/",
+          "sourceSha256": "ca86b8bd80c83a384eb98d5f18e7870b5611a3c43c8be731fbd53e7f41779a22",
+          "excerpt": "Công ty TNHH TM-DV Happy Durian; Kem Gelato từ công nghệ Ý, sử dụng nông sản Việt",
+          "identityLevel": "company family only; not current chocolate package/formula",
+          "originalSourceSha256": "0b5a69acfe244a27f3586d80f19558db2d2b26e0716654a0ebe5c1469c81f705"
+        },
+        {
+          "claim": "Historical laboratory customer Happy Durian at216 Nguyễn Thị Minh Khai, Ward6,District3, HCMC; different address from current directory lead",
+          "sourceArtifact": "data/cases/vietnam-nha-trang/blobs/c5/c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9.gz",
+          "sourceSha256": "c5801c68d08c5fe8c9c655c47f0877073b16b1729831f9336428190d3654bad9",
+          "excerpt": "CÔNG TY TNHH TMDV HAPPY DURIAN; 216 NGUYEN THI MINH KHAI; KEM CHOCOLATE Bi; 08/12/2021",
+          "identityLevel": "2021 lab sample; withheld from current SKU"
+        }
+      ],
+      "blockingEvidenceGaps": [
+        "Current exact selected package identity/GTIN and market/formula revision",
+        "Declared net grams; no density conversion",
+        "Current full nutrients and explicit per100g/per100ml/perPackage serving basis",
+        "Current ingredients and allergen list"
+      ],
+      "minimalNextSource": "Current Belgian Chocolate475ml front/back with net grams, nutrition basis, ingredients, manufacturer/GTIN and lot/revision. Manufacturer declaration must link current formula;2021 sample4.6g/100g alone is insufficient.",
+      "storeUpdatesApplied": false,
+      "unapprovedContactLeadId": "happy-owner-contact-unapproved-lead",
+      "notRetriedSources": [
+        "https://happygelato.vn/ (cached DNS negative)",
+        "https://happydurian.vn/ (cached expired TLS certificate)",
+        "https://www.facebook.com/happygelatovn/ (cached temporary-block barrier)"
+      ]
+    },
+    {
+      "sku": "3047790409_VNAMZ-14661118301",
+      "name": "Lotte Fanfare / 빵빠레 chocolate",
+      "existingSellingUnit": {
+        "massG": null,
+        "volumeMl": 175,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1
+      },
+      "approvedNewFields": {},
+      "currentFormulaIdentityMatched": false,
+      "currentManufacturerNutritionVerified": false,
+      "strictChocolateEligible": true,
+      "findings": [
+        {
+          "claim": "Current official ice cream index lists Fanfare and provides manufacturer contact intake",
+          "sourceUrl": "https://www.lottewellfood.com/brand/product?searchType1=LC700",
+          "sourceSha256": "6163467d65f855c73242e49c44f56120a02f896710bae397482b4e26be4e22d1",
+          "excerpt": "빵빠레; Contact Us; Country; Brand; Full Name; Email Address; Content",
+          "identityLevel": "family/contact only; no export175ml nutrition or grams",
+          "originalSourceSha256": "1b8edab8db1e0319f686723fefb81187ecbdfd7b0b800df7bd41b19ee74a119c"
+        }
+      ],
+      "blockingEvidenceGaps": [
+        "Current exact selected package identity/GTIN and market/formula revision",
+        "Declared net grams; no density conversion",
+        "Current full nutrients and explicit per100g/per100ml/perPackage serving basis",
+        "Current ingredients and allergen list",
+        "Resolve GTIN8801118251313 printed170ml vs175ml revision;195ml and family175g records not transferable"
+      ],
+      "minimalNextSource": "Current back label for selected Fanfare chocolate175ml export product, with GTIN8801118251313, net grams and all nutrients. Resolve actual printed170/175ml revision; do not copy195ml or unflavoured family175g registry data.",
+      "storeUpdatesApplied": false,
+      "officialContact": {
+        "pageUrl": "https://www.lottewellfood.com/brand/product?searchType1=LC700",
+        "formAction": "https://www.lottewellfood.com/contact-us",
+        "requestMethod": "POST",
+        "formFields": [
+          "Country",
+          "Brand",
+          "Full Name",
+          "Email Address",
+          "Content"
+        ],
+        "outreachSent": false,
+        "actionUrlRequested": false
+      }
+    }
+  ],
+  "transportReceipts": [
+    "docs/acceptance/ice-current-primary-followup/search-receipt.json",
+    "docs/acceptance/ice-current-primary-followup/web-extract-provenance.json",
+    "docs/acceptance/ice-current-primary-followup/happy-trade-association-receipt.json",
+    "docs/acceptance/ice-current-primary-followup/happy-trade-association-original-receipt.json",
+    "docs/acceptance/ice-current-primary-followup/lotte-manufacturer-index-original-receipt.json",
+    "docs/acceptance/ice-current-primary-followup/happy-trade-association-capture-receipt.json",
+    "docs/acceptance/ice-current-primary-followup/lotte-manufacturer-index-capture-receipt.json"
+  ],
+  "failureHandling": {
+    "pythonTrustFailuresNotHostOutage": true,
+    "systemCurlTlsValidationRecovered": true,
+    "knownBadManufacturerUrlsNotRetried": true,
+    "challengesNotBypassed": true,
+    "minimumManufacturerHostRequestIntervalSeconds": 60
+  },
+  "numericApprovals": 0,
+  "newLazadaRequests": 0,
+  "browserActions": 0,
+  "sharedStoreMutations": 0,
+  "outreachMessages": 0,
+  "searchReceipt": "docs/acceptance/ice-current-primary-followup/search-receipt.json",
+  "primarySources": [
+    {
+      "prefix": "happy-trade-association",
+      "url": "https://hvnclc.vn/33-dn-cung-hoi-dn-hvnclc-tham-du-thaifex-anuga-2023/",
+      "finalUrl": "https://hvnclc.vn/33-dn-cung-hoi-dn-hvnclc-tham-du-thaifex-anuga-2023/",
+      "observedAt": "2026-10-11T06:11:50.477738+00:00",
+      "artifact": "docs/acceptance/ice-current-primary-followup/happy-trade-association.public.html",
+      "sourceSha256": "ca86b8bd80c83a384eb98d5f18e7870b5611a3c43c8be731fbd53e7f41779a22",
+      "byteLength": 107583,
+      "originalSourceSha256": "0b5a69acfe244a27f3586d80f19558db2d2b26e0716654a0ebe5c1469c81f705",
+      "originalByteLength": 130598,
+      "originalDigestCheckedBeforeRedaction": true,
+      "originalResponsePrivate": true,
+      "originalResponsePublished": false,
+      "redactionApplied": true,
+      "redactionMethod": "public HTML and embedded-secret sanitizers; hidden controls removed",
+      "executableScriptsRemoved": true,
+      "rawResponseHeadersPublished": false,
+      "httpStatus": 200,
+      "tlsVerification": true,
+      "credentialsSent": false,
+      "authority": "trade-association-member-list",
+      "exactCurrentProductIdentityMatched": false,
+      "reviewOnly": true
+    },
+    {
+      "prefix": "lotte-manufacturer-index",
+      "url": "https://www.lottewellfood.com/brand/product?searchType1=LC700",
+      "finalUrl": "https://www.lottewellfood.com/brand/product?searchType1=LC700",
+      "observedAt": "2026-10-11T06:11:51.290036+00:00",
+      "artifact": "docs/acceptance/ice-current-primary-followup/lotte-manufacturer-index.public.html",
+      "sourceSha256": "6163467d65f855c73242e49c44f56120a02f896710bae397482b4e26be4e22d1",
+      "byteLength": 59086,
+      "originalSourceSha256": "1b8edab8db1e0319f686723fefb81187ecbdfd7b0b800df7bd41b19ee74a119c",
+      "originalByteLength": 64606,
+      "originalDigestCheckedBeforeRedaction": true,
+      "originalResponsePrivate": true,
+      "originalResponsePublished": false,
+      "redactionApplied": true,
+      "redactionMethod": "public HTML and embedded-secret sanitizers; hidden controls removed",
+      "executableScriptsRemoved": true,
+      "rawResponseHeadersPublished": false,
+      "httpStatus": 200,
+      "tlsVerification": true,
+      "credentialsSent": false,
+      "authority": "manufacturer-family-index",
+      "exactCurrentProductIdentityMatched": false,
+      "reviewOnly": true
+    }
+  ],
+  "publication": {
+    "safePublicDerivativesOnly": true,
+    "rawOriginalsRemainPrivate": true,
+    "rawResponseHeadersPublished": false,
+    "sourceFactApprovals": 0,
+    "preserveExistingSellingUnits": true
+  }
+}

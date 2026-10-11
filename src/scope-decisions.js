@@ -1,7 +1,7 @@
 import { sha256 } from './util.js';
 import { sanitizePublicData } from './archive.js';
 
-export const SCOPE_POLICY_VERSION = 2;
+export const SCOPE_POLICY_VERSION = 3;
 
 function decisionsFor(audit, scope) {
   return [

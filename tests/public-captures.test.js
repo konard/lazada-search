@@ -64,10 +64,24 @@ test('every published real SKU price re-extracts from committed redacted HTML an
       ),
       `Historical selected price is preserved for ${record.id}`
     );
-    const latestOfferReceipt = publications
-      .filter((item) => item.offerId === record.offerId)
-      .sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
-    assert.equal(offer.priceContext, latestOfferReceipt.priceContext);
+    const currentEvidence = await archive.get('evidence', offer.evidenceId);
+    // Several publication receipts can preserve the same original observation
+    // with different session metadata. A timestamp tie must not select an
+    // arbitrary receipt or promote an unconfirmed session to authenticated.
+    const currentOfferReceipts = publications.filter(
+      (item) =>
+        item.offerId === offer.id &&
+        item.observedAt === offer.observedAt &&
+        item.sku === offer.sku &&
+        item.price === offer.price &&
+        item.html.sha256 === currentEvidence.html.sha256
+    );
+    assert.ok(
+      currentOfferReceipts.some(
+        (item) => item.priceContext === offer.priceContext
+      ),
+      `Current session metadata is bound to its exact source for ${offer.id}`
+    );
     assert.notEqual(offer.visibility, 'private');
     const newest = publications
       .filter((item) => item.sourceUrl === record.sourceUrl)

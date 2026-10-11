@@ -16,7 +16,7 @@ export function targetCategoryExclusion(title) {
     return 'Animal feed is outside the human whey and ice-cream categories';
   }
   if (
-    /\b(?:protein|whey)\s*(?:bars?|thanh)\b|\bthanh\s*(?:protein|whey)\b/u.test(
+    /\b(?:protein|whey)\s*(?:bars?|thanh)\b|\bthanh\s*(?:protein|whey|nang luong|dinh duong)\b|\benergy\s*bars?\b/u.test(
       text
     ) &&
     !/ice\s*cream|gelato|\bkem\s*(?:que|hop|ly|oc que)\b/u.test(text)

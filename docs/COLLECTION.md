@@ -46,6 +46,7 @@ An exhausted task queue does not prove that all marketplace inventory or manufac
 ## Correct derived extraction offline
 
 ```sh
+node bin/lazada-search.js replay-captures --offline --no-ocr
 node scripts/reprocess-public-captures.mjs --offline --no-ocr
 node scripts/export-catalog-tables.mjs --offline --no-ocr
 node scripts/export-whey-verification-worklist.mjs docs/tables/catalog.json

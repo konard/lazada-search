@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { LazadaSearch, DomainScheduler } from '../src/index.js';
+import { LazadaSearch, DomainScheduler, TesseractOcr } from '../src/index.js';
 import { configuredStore, parseArguments } from '../src/config.js';
 import {
   runAccountCase,
@@ -164,6 +164,8 @@ async function publish() {
   await run('export-whey-verification-worklist.mjs', [
     'docs/tables/catalog.json',
   ]);
+  await run('audit-deadline-unit-costs.mjs', []);
+  await run('audit-current-offer-sources.mjs', ['--strict']);
   await run('archive-case.mjs', [...sharedFlags, '--offline', '--no-ocr']);
   await run('../bin/lazada-search.js', [
     'archive-verify',
@@ -188,7 +190,14 @@ async function recollect() {
     store,
     market: options.market,
     deliveryArea: options.deliveryArea,
-    ocr: options.ocr,
+    flavourScope: options.flavourScope,
+    ocr: options.ocr
+      ? new TesseractOcr({
+          store,
+          languages: options.ocrLanguages,
+          tessdataDir: options.ocrDataDir || undefined,
+        })
+      : false,
     scheduler: new DomainScheduler({
       intervalMs: Math.max(60000, options.intervalMs),
     }),

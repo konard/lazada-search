@@ -237,7 +237,75 @@ function supportedQuantity(field, claim, value) {
   }
 }
 
-function supportedBasis(field, claim, text) {
+function exactSinglePackage(identity) {
+  const packages = [identity.listing, identity.manufacturer, identity.source];
+  return (
+    packages.every((item) => item?.innerPackCount === 1) &&
+    ['netMassG', 'netVolumeMl'].some((field) =>
+      packages.every(
+        (item) =>
+          Number.isFinite(item[field]) &&
+          item[field] > 0 &&
+          item[field] === packages[0][field]
+      )
+    )
+  );
+}
+
+function directPackageBasis(text, basis) {
+  const explicitPackage =
+    /\bper\s+(?:(?:one|1|a|whole|entire)\s+)?(?:package|pack|pint|tub|bottle|container|can|unit)\b|\bmoi\s+(?:(?:mot|1)\s+)?(?:goi|hop|chai|coc|ly|don vi)\b|\btren\s+(?:mot|1)\s+(?:goi|hop|chai|coc|ly|don vi)\b/gu;
+  for (const match of basis.matchAll(explicitPackage)) {
+    for (
+      let at = text.indexOf(basis);
+      at >= 0;
+      at = text.indexOf(basis, at + basis.length)
+    ) {
+      const position = at + match.index;
+      const prefix = text.slice(Math.max(0, position - 48), position);
+      if (
+        !/(?:servings?|portions?|scoops?|sajian|khau phan)\s*$/u.test(prefix)
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function supportedPackageBasis(claim, text, identity) {
+  const basis = fold(claim.basisExcerpt || '');
+  const otherBasis =
+    /\b(?:per|moi|tren)\s*(?:100\s*(?:g|ml)\b|(?:one\s+|1\s+|a\s+)?(?:serving|portion|scoop|khau phan)\b)/u;
+  if (
+    !basis ||
+    !fold(text).includes(basis) ||
+    !fold(claim.excerpt).includes(basis) ||
+    !directPackageBasis(fold(text), basis) ||
+    otherBasis.test(basis)
+  ) {
+    throw new Error(
+      'Package nutrition basis must be explicitly stated in its original source excerpt'
+    );
+  }
+  if (
+    (claim.sourceUnit && claim.sourceUnit !== 'g') ||
+    !/(?<![\p{L}])g\b/iu.test(claim.unitExcerpt || claim.valueExcerpt)
+  ) {
+    throw new Error('Package protein requires the original gram unit');
+  }
+  if (!exactSinglePackage(identity)) {
+    throw new Error(
+      'Package protein requires an exact matched single-inner-package quantity'
+    );
+  }
+}
+
+function supportedBasis(field, claim, text, identity) {
+  if (field === 'proteinPerPackageG') {
+    supportedPackageBasis(claim, text, identity);
+    return;
+  }
   if (!/Per100(?:g|ml)$/u.test(field)) {
     return;
   }
@@ -251,7 +319,14 @@ function supportedBasis(field, claim, text) {
   }
 }
 
-async function validateClaimOriginal(store, source, claim, field, bytes) {
+async function validateClaimOriginal(
+  store,
+  source,
+  claim,
+  field,
+  bytes,
+  identity
+) {
   const text = await claimText(store, source, claim, bytes);
   if (!fold(text).includes(fold(claim.excerpt))) {
     throw new Error(
@@ -264,7 +339,7 @@ async function validateClaimOriginal(store, source, claim, field, bytes) {
     );
   }
   supportedValue(field, claim);
-  supportedBasis(field, claim, text);
+  supportedBasis(field, claim, text, identity);
 }
 
 function strictChocolateEligibility(identity) {
@@ -314,7 +389,10 @@ async function verifiedClaim(store, review, field, claim) {
       'Reviewed original source bytes are unavailable or corrupt'
     );
   }
-  await validateClaimOriginal(store, source, claim, field, bytes);
+  await validateClaimOriginal(store, source, claim, field, bytes, {
+    ...review.identity,
+    source: review.sourceIdentities[source.id],
+  });
   const quantity = review.identity.manufacturer[field];
   if (['netMassG', 'netVolumeMl'].includes(field) && quantity !== claim.value) {
     throw new Error('Quantity fact conflicts with the exact reviewed package');

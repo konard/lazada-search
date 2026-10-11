@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T06:05:39.617Z",
-  "catalogObservedAt": "2026-10-11T06:03:41.118Z",
+  "checkedAt": "2026-10-11T07:11:20.754Z",
+  "catalogObservedAt": "2026-10-11T07:00:24.878Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,35 +21,35 @@
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1382,
-    "missingSkuPrices": 282,
+    "missingListings": 1373,
+    "missingSkuPrices": 305,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
-    "categoryReview": 6424,
-    "specifications": 266,
+    "categoryReview": 6403,
+    "specifications": 272,
     "verifiedProducts": 14,
-    "excludedCategoryListings": 352,
-    "excludedExactOptions": 469
+    "excludedCategoryListings": 371,
+    "excludedExactOptions": 495
   },
   "broaderArchive": {
-    "missingListings": 1531,
-    "missingSkuPrices": 788,
+    "missingListings": 1524,
+    "missingSkuPrices": 840,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 278,
+    "specifications": 284,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 255,
-    "strictWheySkus": 64,
+    "capturedPowderSkus": 261,
+    "strictWheySkus": 65,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 55,
-    "discoveryTasks": 6147,
-    "pendingSkuTasks": 287,
-    "excludedSkuOptions": 472,
-    "originalSourcePointers": 1830,
+    "missingFactoryMatches": 56,
+    "discoveryTasks": 6141,
+    "pendingSkuTasks": 310,
+    "excludedSkuOptions": 498,
+    "originalSourcePointers": 1935,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
@@ -63,14 +63,15 @@
       "id": "R001",
       "requirement": "Vietnam, VND, delivery to Nha Trang",
       "status": "partial",
-      "mechanicsStatus": "implemented",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "implemented-source-bound-destination-validation",
+      "realDataAcceptance": "pending-exact-Nha-Trang-freight-for-all-selected-quantities",
       "evidence": [
-        "src/application.js:19",
-        "src/delivery.js:14",
-        "tests/browser-import-review.test.js:164"
+        "src/delivery-context.js",
+        "src/delivery.js",
+        "src/compare.js",
+        "tests/delivery-context.test.js"
       ],
-      "finding": "Nha Trang destination arithmetic exists; exact bulk address and basket freight remain unconfirmed."
+      "finding": "HCM/default-location quotes cannot produce Nha Trang delivered prices. Original captured address and quantity govern delivery arithmetic; complete target freight remains pending."
     },
     {
       "id": "R002",
@@ -128,15 +129,16 @@
       "id": "R009",
       "requirement": "Verify exact selected SKU price and availability",
       "status": "partial",
-      "mechanicsStatus": "implemented",
-      "realDataAcceptance": "partial",
+      "mechanicsStatus": "implemented-source-and-selection-bound-price-verification",
+      "realDataAcceptance": "current-captured-prices-audited;uncollected-SKU-prices-pending",
       "evidence": [
-        "src/browser.js:704",
-        "src/capture-import.js",
-        "tests/browser-import-review.test.js:144",
-        "tests/lazada.test.js:524"
+        "src/variant-policy.js",
+        "src/page-readiness.js",
+        "scripts/audit-current-offer-sources.mjs",
+        "docs/acceptance/current-offer-source-audit.json",
+        "docs/acceptance/preferred-variant/live-check.json"
       ],
-      "finding": "Exact selected SKU mismatches are rejected; pending prices are not transferred from default or sibling SKUs."
+      "finding": "Scoped options are selected before capture and loading/selection/stock/price stability is required. Every published confirmed price is checked against original SHA-256, exact SKU and source amount. Captured correctness does not establish complete inventory."
     },
     {
       "id": "R010",
@@ -148,9 +150,12 @@
         "src/promotions.js:147",
         "src/promotions.js:369",
         "tests/promotions.test.js",
-        "tests/lazada.test.js:434"
+        "tests/lazada.test.js:434",
+        "src/promotions.js",
+        "scripts/collect-promotions.mjs",
+        "tests/promotion-identity.test.js"
       ],
-      "finding": "Discount conditions and original/sale prices are retained. Basket eligibility, time/payment/new-user restrictions and stackable combinations are not fully validated."
+      "finding": "Voucher identity includes IDs, codes, sellers, terms, validity windows and observed status changes; distinct equal-value vouchers cannot collapse. All real discounts and eligibility remain incomplete."
     },
     {
       "id": "R011",
@@ -162,9 +167,13 @@
         "src/compare.js",
         "tests/acceptance-corrections.test.js",
         "tests/e2e/ice-selling-units.test.js",
-        "docs/tables/ice-unit-rankings.json"
+        "docs/tables/ice-unit-rankings.json",
+        "src/delivery-context.js",
+        "src/manufacturer-research.js",
+        "tests/delivery-context.test.js",
+        "tests/manufacturer-package-basis.test.js"
       ],
-      "finding": "Shared comparison now uses independently declared per-package, per-100g or per-100ml protein. Actual label and exact quantity/destination shipping coverage remains incomplete."
+      "finding": "After-delivery arithmetic requires source-confirmed actual destination and exact quantity. HCM shipping is withheld from Nha Trang comparisons. Per-100g protein cannot be reclassified as whole-package protein. Complete exact freight and label denominators remain pending."
     },
     {
       "id": "R012",
@@ -488,6 +497,18 @@
   ],
   "githubIssues": [
     {
+      "number": 17,
+      "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/17"
+    },
+    {
+      "number": 16,
+      "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
+      "state": "OPEN",
+      "url": "https://github.com/konard/lazada-search/issues/16"
+    },
+    {
       "number": 15,
       "title": "Explicit container metric package mass loses to rounded pound headline",
       "state": "CLOSED",
@@ -581,9 +602,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "3a85a46bf8c3f3cfccb219928139f02373a0cf68f85c532434af71de0ef02a16",
-      "bytes": 29054969,
-      "observedAt": "2026-10-11T06:03:41.118Z"
+      "sha256": "ae461b48c79a3184b81065823518e7f1ce3588753d017b139d7471b83e682c10",
+      "bytes": 33393432,
+      "observedAt": "2026-10-11T07:00:24.878Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -593,9 +614,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "17e037a730581b26675b4228e0d7585d8c9718fe90f4127c99b5999a888823f7",
-      "bytes": 14730,
-      "observedAt": "2026-10-11T05:31:24.989Z"
+      "sha256": "0ca4c4161292c9b24d50040327cc31c72619bb6a29a6b609dfc3b9e74b782e4d",
+      "bytes": 22526,
+      "observedAt": "2026-10-11T06:43:51.017530+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -605,21 +626,21 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "b90b8c0d5139266095c17787b62222ea5a9b9c44fe5b44b8eae22745e51a5699",
-      "bytes": 20740,
+      "sha256": "8e47d5ae5b7d49effba411275f32c96f62b87fffacd270c316839d2ff9491a3c",
+      "bytes": 24447,
       "observedAt": null
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "89e800d82b228a7dc0a4c387546274a5d2b5b55e7a543154f8f7cd3e54fd5a60",
-      "bytes": 193803,
-      "observedAt": "2026-10-11T06:03:53.652Z"
+      "sha256": "81b7c5dfba3eb8b0d66ab42a6297cdfc9826f1186af97f5de554b601a3af990d",
+      "bytes": 193637,
+      "observedAt": "2026-10-11T07:00:39.263Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "fbcaf72c7f7f1f605109039ffed0f31ff16ba81c57658e4c05ddb78ee2921fc2",
-      "bytes": 11100383,
-      "observedAt": "2026-10-11T06:03:59.144Z"
+      "sha256": "ec8f17ae5ca5ce75815bb2a226f7db9b0b5735a32244724d585d64e54a031b45",
+      "bytes": 11758285,
+      "observedAt": "2026-10-11T07:00:44.577Z"
     }
   ],
   "downloads": 0,

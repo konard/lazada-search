@@ -2,9 +2,9 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T06:05:39.617Z, from the published catalog observed at 2026-10-11T06:03:41.118Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T07:11:20.754Z, from the published catalog observed at 2026-10-11T07:00:24.878Z. No marketplace requests are made by this audit.
 
-The active chocolate/plain whey and chocolate ice-cream case has **1382 uncollected listings**, **282 unpriced SKU options**, and **6424 unresolved category observations**. 352 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
+The active chocolate/plain whey and chocolate ice-cream case has **1373 uncollected listings**, **305 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
 | Acceptance gate                            | Result |
 | ------------------------------------------ | ------ |
@@ -28,6 +28,8 @@ This state is from the saved GitHub inventory, whose SHA-256 is recorded in [cur
 
 | Issue                                                    | Requirement                                                                                   | State  |
 | -------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------ |
+| [#17](https://github.com/konard/lazada-search/issues/17) | Whey Chocolate Ice Cream flavour overrides powder category during original replay             | OPEN   |
+| [#16](https://github.com/konard/lazada-search/issues/16) | Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination    | OPEN   |
 | [#15](https://github.com/konard/lazada-search/issues/15) | Explicit container metric package mass loses to rounded pound headline                        | CLOSED |
 | [#14](https://github.com/konard/lazada-search/issues/14) | Verify and count food gifts in bulk selling options separately from accessory gifts           | OPEN   |
 | [#13](https://github.com/konard/lazada-search/issues/13) | Selected SKU manufacturer conflicts are hidden by the parent listing brand                    | CLOSED |
@@ -50,12 +52,12 @@ Implemented collection mechanics and passing fixture tests do not satisfy missin
 
 | ID   | Requirement                                                                               | Remaining acceptance                                             |
 | ---- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| R001 | Vietnam, VND, delivery to Nha Trang                                                       | partial                                                          |
+| R001 | Vietnam, VND, delivery to Nha Trang                                                       | pending-exact-Nha-Trang-freight-for-all-selected-quantities      |
 | R002 | Plain/unflavoured or chocolate protein powder only                                        | partial                                                          |
 | R003 | Strict chocolate ice-cream core, no other flavours                                        | partial                                                          |
 | R006 | Relevant category filters and price sorting                                               | partial                                                          |
 | R008 | Every product and every selling option captured                                           | partial                                                          |
-| R009 | Verify exact selected SKU price and availability                                          | partial                                                          |
+| R009 | Verify exact selected SKU price and availability                                          | current-captured-prices-audited;uncollected-SKU-prices-pending   |
 | R010 | Extract every discount and its eligibility                                                | partial                                                          |
 | R011 | Before/after shipping cost per g, ml and protein g                                        | partial                                                          |
 | R012 | Exact bulk freight and best basket price                                                  | missing-live-acceptance                                          |

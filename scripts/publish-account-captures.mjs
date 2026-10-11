@@ -24,6 +24,18 @@ try {
     'docs/acceptance/account-publication.json',
     `${JSON.stringify(report, null, 2)}\n`
   );
+  await writeFile(
+    'docs/acceptance/discovery-publication.json',
+    `${JSON.stringify(
+      {
+        ...report.discovery,
+        published: await application.store.list('discovery-publication'),
+        selectedPublished: report.discovery.published.length,
+      },
+      null,
+      2
+    )}\n`
+  );
   console.log(
     JSON.stringify({
       published: report.published.length,

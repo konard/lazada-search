@@ -57,3 +57,38 @@ The urgent report module accepts reviewed numeric facts only when they carry exa
 | P1       | Complete archival round trip                                           | Original sources, reviews and derived reports replay identically from committed JSON/HTML/YAML, `.lino` and binary links; invalidate selectively when evidence changes.         |
 
 [Requirements](REQUIREMENTS.md) · [Roadmap](ROADMAP.md) · [Open collection/shipping issue](https://github.com/konard/lazada-search/issues/3) · [Manufacturer research captures](acceptance/ice-dual-units/) · [Current exact price/source audit](acceptance/top10-check/ice-source-review.md).
+
+## Exact label acceptance for the 14-row snapshot
+
+The [offline follow-up](acceptance/ice-exact-label-followup/README.md) audits the 14-row ranking snapshot dated 2026-10-11T05:47:30.429Z. Its three protein denominators are two PowerCap selling units sharing one seller promotional 1 g/package claim, plus the excluded WorldCone seller claim of 3.2 g/package. They are not three current factory nutrition labels. Manufacturer family identity, printed package quantities, source authority and current formula approval must remain separate checks.
+
+Queue the following exact label tasks without repeating already correct price, volume or image captures. Each accepted field needs the original source bytes, digest, excerpt/crop, explicit unit and basis, and a match to the selected flavour, package, GTIN and market/formula revision. Keep held weights and excluded products quarantined. A missing volume declaration cannot be supplied through an assumed density, and Happy's 2021 tested sample cannot supply current nutrition.
+
+| Exact selected SKU           | Minimum next label evidence                                                                                                                                    |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1561216831_VNAMZ-6599331044  | iBerri chocolate 6 L: factory/import back label with grams, current nutrition and visible selected-package GTIN; resolve flavour-dependent seller weights.     |
+| 3047760589_VNAMZ-14661082727 | White Cremo chocolate 6 L tub: exact back label and GTIN 8850387009361 mapping; exclude the yellow confection's 3 kg matrix.                                   |
+| 2978009544_VNAMZ-14350953081 | PowerCap chocolate 130 ml/131 g: original back label with current protein basis, ingredients and GTIN/lot; replace no factory placeholders with seller claims. |
+| 3040048563_VNAMZ-14623760583 | PowerCap carton: confirm 24 matching inner wrappers and their current factory nutrition; preserve outer count separately from inner quantities.                |
+| 3047790409_VNAMZ-14661118301 | Fanfare chocolate: exact export back label with GTIN 8801118251313, grams and nutrition; reconcile printed 170/175 ml revision.                                |
+| 3039951845_VNAMZ-14623703963 | WorldCone/Crispy Crunch 160 ml: exact back label for historical audit only; retain peanut/nut exclusion and unmatched factory revision.                        |
+| 1880785864_VNAMZ-8527716007  | Happy Belgian chocolate 475 ml: current back label with grams, nutrition basis, ingredients, manufacturer/GTIN and lot/revision.                               |
+| 1880785864_VNAMZ-8527716006  | Happy Belgian chocolate 125 ml: its own current back label with grams, nutrition basis, ingredients, manufacturer/GTIN and lot/revision.                       |
+| 367656830_VNAMZ-116917756014 | Merino cocoa-crisp: same-formula 40 g stick back label, current protein basis and declared volume if disclosed; confirm five-stick selected unit.              |
+| 1561301337_VNAMZ-6599253417  | Merino cocoa-crisp: exact single 40 g stick back label with current nutrition, ingredients, GTIN/lot and declared volume if disclosed.                         |
+| 367656830_VNAMZ-610790405    | Merino cocoa-crisp: exact single-stick SKU/back label; do not multiply by the 40-stick shipping carton.                                                        |
+| 2042294681_VNAMZ-9532082441  | Aice mochi: exact factory label proving chocolate ice-cream core and quantities before any scope re-review; white colour does not prove vanilla.               |
+| 2042258411_VNAMZ-9532010624  | Aice cone: exact core-flavour and quantity label before re-review; retain the held 20 g attribute and current exclusion.                                       |
+| 497264871_VNAMZ-15825435034  | Merino chocolate cone: same-formula 60 g cone back label and current nutrition; confirm five-cone unit separately from the 25-cone carton.                     |
+
+Acceptance replay must retain all 14 SKUs and their raw prices, compare only supported denominators, and preserve the exclusions/holds after offline refresh. A new label can resolve a field only with exact identity proof; it cannot upgrade unrelated seller nutrients or another flavour's formula. Destination- and quantity-matched frozen delivery remains a separate requirement for purchase-ready bulk rankings.
+
+## Current Happy and Fanfare source leads
+
+The [current primary-source follow-up](acceptance/ice-current-primary-followup/README.md) records a bounded four-query internet pass and two captured public HTML sources. The trade association identifies Happy Durian as a gelato business. A barcode-owner directory provides the unapproved company contact lead tax ID 0315603499 and telephone 0858993939 at 169/1/19 Lương Định Của, Thủ Đức. That directory product is avocado/durian; it does not establish the current Belgian Chocolate manufacturer/package formula, and its address differs from the 2021 lab sample customer address. Existing unavailable Happy domains and blocked social-page receipts were reused without retry.
+
+The current Lotte manufacturer ice-cream index lists Fanfare and provides an official product inquiry form at `/contact-us`. Its captured page does not disclose the selected chocolate 175 ml export back label, grams, nutrition or ingredients. The same-GTIN 170/175 ml revision conflict remains. No outreach was sent or form submitted.
+
+For Happy SKUs `1880785864_VNAMZ-8527716006` and `1880785864_VNAMZ-8527716007`, queue separate current 125 ml and 475 ml labels with declared grams, serving basis, nutrients, full ingredients/allergens, manufacturer/GTIN and market/formula revision. For Fanfare SKU `3047790409_VNAMZ-14661118301`, require the current export label for GTIN 8801118251313 and resolve printed volume before using any related nutrition. Neither company identity nor a contact lead can promote historical samples or another package's formula.
+
+The follow-up producer replays committed safe derivatives and receipts without network, OCR, outreach or product-fact writes. Raw HTML responses and cookie headers remain private; public provenance retains original and derivative hashes. Verify the identity excerpts survive redaction, retain failed-source receipts as source-specific gaps, and perform no repeat downloads for these already cached pages.

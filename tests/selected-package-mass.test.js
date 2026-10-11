@@ -78,6 +78,7 @@ test('original ON selected 900 g zip repack overrides 2 lb headline and retains 
 
 test('original ProSupps exact Chocolate Ice Cream label supplies printed 907 g without assigning nutrition', async () => {
   const { product, source } = await originalProduct('prosupps-907g');
+  assert.equal(product.category, 'whey');
   const oldClaims = globalThis.structuredClone(product.claims);
   const oldProtein = product.proteinPer100g;
   const label = await originalLabel(product, source);

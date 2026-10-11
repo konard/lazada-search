@@ -1,6 +1,7 @@
 import { listingKey } from '../src/util.js';
 import { positive } from '../src/values.js';
 import { canonicalUrl, fold } from '../src/text.js';
+import { targetCategoryExclusion } from '../src/target-category.js';
 
 export const MAX_ACCOUNT_BATCH_SIZE = 25;
 export const VN_FACTORY_PRIORITY_URLS = Object.freeze(
@@ -28,6 +29,9 @@ function selectedSkuUrl(entry) {
 // Search categories contain unrelated recommendations. Ambiguous cards remain
 // in the category-review audit; food cues admit additional detail candidates.
 export function categoryReviewCandidate(entry) {
+  if (targetCategoryExclusion(entry.title)) {
+    return false;
+  }
   const title = fold(entry.title);
   return (
     /\b(?:whey|hydropure|nitrotech|prostar)\b/u.test(title) ||

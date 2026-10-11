@@ -10,6 +10,7 @@ import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
 import { COLLECTION_STOP_ID } from './page-challenge.js';
+import { replayHistoricalCaptures } from './historical-capture-replay.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
 
@@ -18,6 +19,7 @@ Commands:
   crawl                         Discover and collect whey and chocolate ice cream
   audit                         Audit missing listings, SKU prices and manufacturer specs
   collect <lazada-url>           Collect a single listing with image OCR
+  replay-captures --offline      Reparse all exact historical SKU originals without downloads
   translate <text>               Cache VI-to-EN presentation text; preserve the source
   translate-product <id>         Translate cached title, description and ingredients
   translate-catalog              Resume a bounded cached catalog text batch
@@ -82,6 +84,8 @@ Options:
 
 export async function executeCommand(application, command, args, options = {}) {
   switch (command) {
+    case 'replay-captures':
+      return replayHistoricalCaptures(application);
     case 'translate-catalog':
       return application.translateCatalog({
         sourceLanguage: options.sourceLanguage,
@@ -168,6 +172,7 @@ export async function executeCommand(application, command, args, options = {}) {
       return application.collect(required(args[0], 'Lazada URL'), {
         refresh: options.refresh,
         reprocess: options.reprocess,
+        ...(options.flavourScope ? { flavourScope: options.flavourScope } : {}),
       });
     case 'compare':
       return application.compare(comparisonOptions(options));

@@ -13,6 +13,7 @@ import {
   createHttpTranslationProvider,
   createTelegramBot,
   startServer,
+  replayHistoricalCaptures,
 } from '../../src/index.js';
 
 const execute = promisify(execFile);
@@ -158,6 +159,75 @@ async function telegram(t, application) {
   };
   return { send, replies };
 }
+
+test('exact historical originals replay through library, CLI, HTTP and authorized Telegram while the CAPTCHA stop remains active', async (t) => {
+  const { app, directory, origin, store, requests } = await setup(t);
+  app.cache.offline = true;
+  const url = 'https://www.lazada.vn/products/pdp-i900.html';
+  const source = (sku, price) =>
+    `<h1>Chocolate whey4.5lb</h1><div data-product-price>${price} ₫</div><div class="key-li"><span class="key-title">SKU</span><span class="key-value">900_VNAMZ-${sku}</span></div><div class="pdp-product-desc">Đóng gói: Hộp2.04kg</div>`;
+  const older = await app.importCapture({
+    url,
+    html: source('21', '250.000'),
+    observedAt: '2026-10-09T09:00:00.000Z',
+  });
+  const newer = await app.importCapture({
+    url,
+    html: source('22', '260.000'),
+    observedAt: '2026-10-10T09:00:00.000Z',
+  });
+  await store.put('product', {
+    ...older.product,
+    netMassG: 4.5 * 453.59237,
+  });
+  const cache = await store.list('cache');
+  const stop = await store.put('collection-stop', {
+    id: 'browser-collection',
+    active: true,
+    reason: 'challenge',
+  });
+  app.collector.page = () => {
+    throw new Error('Historical replay must never navigate');
+  };
+  const library = await replayHistoricalCaptures(app);
+  const command = await cli(directory, ['replay-captures', '--offline']);
+  const http = await post(origin, '/api/operations', {
+    operation: 'replay-captures',
+  });
+  assert.equal(http.status, 200);
+  const bot = await telegram(t, app);
+  const telegramCommand = await bot.send('/replay_captures');
+  const telegramOperation = await bot.send(
+    '/operation {"operation":"replay-captures"}'
+  );
+  for (const report of [
+    library,
+    command,
+    http.result,
+    telegramCommand,
+    telegramOperation,
+  ]) {
+    assert.equal(report.errors, 0);
+    assert.equal(report.downloads, 0);
+    assert.equal(report.reprocessed, 2);
+    const selected = report.results.find((row) => row.sku === older.offer.sku);
+    assert.equal(selected.netMassG, 2040);
+    assert.equal(selected.price, 250000);
+    assert.equal(selected.observedAt, '2026-10-09T09:00:00.000Z');
+  }
+  assert.equal((await store.get('product', older.product.id)).netMassG, 2040);
+  assert.equal((await store.get('offer', newer.offer.id)).price, 260000);
+  assert.deepEqual(await store.list('cache'), cache);
+  assert.deepEqual(await store.get('collection-stop', stop.id), stop);
+  assert.equal(requests.length, 0);
+  assert.equal(app.cache.stats.downloads, 0);
+  app.cache.offline = false;
+  const rejected = await post(origin, '/api/operations', {
+    operation: 'replay-captures',
+  });
+  assert.equal(rejected.status, 400);
+  assert.match(rejected.result.error, /requires an offline application/u);
+});
 
 test('bounded catalog jobs resume through library, real CLI, HTTP and Telegram and replay offline', async (t) => {
   const { app, directory, origin, endpoint, requests } = await setup(t);
