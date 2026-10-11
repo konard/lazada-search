@@ -1,5 +1,23 @@
 # OCR model identity, shopping defaults and bounded catalog reads
 
+## Latest actual platform acceptance: source `ad1be26`
+
+[The complete CI receipt](ci-ad1be26-review.json) accepts **all nine Node/Bun/Deno jobs on Ubuntu, macOS and Windows**, plus **48/48 native/browser/CLI/Telegram/binary-store E2E tests**, with zero failures, cancellations or skips. Every original job log and its SHA-256 is preserved. The overall Checks workflow still fails its separate npm publishing preflight under [issue32](https://github.com/konard/lazada-search/issues/32); runtime acceptance does not clear package-owner configuration.
+
+| Platform | Node         | Bun          | Deno                   |
+| -------- | ------------ | ------------ | ---------------------- |
+| Ubuntu   | 1,321 passed | 1,321 passed | 1,166 passed, 16 steps |
+| macOS    | 1,321 passed | 1,321 passed | 1,166 passed, 16 steps |
+| Windows  | 1,280 passed | 1,284 passed | 1,166 passed, 16 steps |
+
+All three Windows jobs finish the unchanged full catalog import, audit, comparison, close and cleanup. Import takes 307,145 ms on Node, 315,528 ms on Bun and 425,573 ms on Deno in this run. The fixture retains 415 products, 411 offers, 10,237 discovery rows, 417 inventories, 17 crawls and five availability records. Existing worker bounds, every file/directory sync and atomic rename, exact original fixture assertions, scoped Deno permissions, the 450-second catalog-test limit and 600-second suite limit are preserved. These measurements attest this actual run; they do not guarantee future host latency.
+
+[Local combined validation](catalog-io-validation.json), [frozen 825-file snapshot](catalog-io-frozen-code.json) and [publication/archive proof](catalog-io-publication.json) retain the full 1,321-test local pass, 33 storage cases and three unchanged catalog cases on each runtime. All 34,253 archived records and 7,030 blobs verify offline with zero downloads. [Offline CI](ci-ad1be26-review.json) checks 446 local links with zero errors; it deliberately excludes 34,402 external links and does not attest their liveness.
+
+The exact live Scitec correction remains [Socola/Không Bình](../preferred-variant/README.md), selected and checked before capturing the resulting SKU price. Verified software acceptance allows issues33,34,36,37,38,39 to close. Exhaustive market/SKU coverage, exact current factory and food-gift identity, bulk/frozen Nha Trang freight, configured translations and live Telegram operation remain open. [The current audit](../requirements-audit/current.md) preserves those gaps and the active CAPTCHA stop. No collection resumes or nutrition facts are approved by these test results.
+
+The following receipts are dated history, including original failures before the accepted `ad1be26` correction.
+
 This checkpoint binds native OCR cache entries to actual trained-model bytes, applies the requested chocolate/unflavoured policy before CLI/Telegram preferences exist, and removes uncontrolled documentation URL probes. It changes no marketplace prices or accepted manufacturer facts.
 
 Selected language files and PSM12 orientation files are content-hashed with bounded streaming reads. A recognition miss uses private copies verified against those exact hashes. Warm entries must match the complete manifest and their original TSV; parsed text, confidence and words are checked again. Same-path, equal-size, restored-mtime model replacement creates a new entry. Historical outputs remain available.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T18:02:01.463Z",
+  "checkedAt": "2026-10-11T18:32:27.306145+00:00",
   "priorDatedAudit": "next-implementation-audit.json",
   "implementedSincePriorAudit": [
     "Durable bounded quantity/voucher/payment scenario planning with original-source cache reuse across all interfaces",
@@ -16,8 +16,7 @@
     "Test-only owned-process ps state inspection replaces protected /proc reads while retaining scoped Deno permissions; focused Node/Bun/Deno and full local Bun pass, fresh platform acceptance pending"
   ],
   "remainingEngineering": [
-    "Acquire genuine current prepared-checkout originals, then implement and validate an exact observed Lazada layout adapter; current planner accepts source-bound prepared captures only",
-    "Complete actual nine-runtime acceptance after the locally validated ps correction and Windows catalog/suite follow-up. Source7e47c37 completed all9 jobs with5pass4fail; independent48/48 native/browser cases pass. Avoidable NTFS directory operations are being drafted with no platform acceptance. Full original fixtures, durable writes and450-second test/600-second suite/15-minute job budgets remain unchanged."
+    "Acquire genuine current prepared-checkout originals, then implement and validate an exact observed Lazada layout adapter; current planner accepts source-bound prepared captures only"
   ],
   "remainingDataAcceptance": [
     "Authoritative category discovery and every exact relevant SKU price",
@@ -30,7 +29,7 @@
   "allRequirementsDelivered": false,
   "productionReady": false,
   "purchaseReady": false,
-  "remainingIssues": [3, 14, 32, 33, 34, 36, 37, 38, 39],
+  "remainingIssues": [39, 38, 37, 36, 34, 33, 32, 14, 3],
   "imageRedirectIssue": "https://github.com/konard/lazada-search/issues/27",
   "imageRedirectMechanics": "focused62/62-and-real-local-browser2/2-passed;final-full-unit-and-e2e-passed",
   "imageRedirectLiveAcceptance": "pending actual marketplace/CDN contract under current security stop",
@@ -43,9 +42,8 @@
   ],
   "latestCompleteLocalRuntimeAcceptance": "../ocr-model-identity/release-ps-validation.json",
   "actualPriorPlatformAcceptance": "../ocr-decimal-portability/ci-16c3aa2-review.json",
-  "latestDraftFrozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+  "latestDraftFrozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
   "remainingValidationAcceptance": [
-    "Fresh final-source complete nine-runtime and48 native/browser acceptance on BrowserCommander0.31.1/shared Notation0.25.2 after the ps and Windows filesystem follow-ups. Current source7e47c37 accepts5/9 runtime jobs and independent48/48 native/browser; four actual failed jobs remain rejected.",
     "Actual live marketplace/CDN/auth behavior after the persisted challenge is resolved and explicitly resumed"
   ],
   "remainingExternalAcceptance": [
@@ -53,7 +51,7 @@
     "Deploy and verify a real authorized allowlisted Telegram bot; local mock/API E2E acceptance is already recorded"
   ],
   "previousCompleteLocalRuntimeAcceptance": "../browser-commander-031/review.json",
-  "acceptedFrozenCode": "../ocr-model-identity/final-frozen-code.json",
+  "acceptedFrozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
   "latestLocalAcceptance": {
     "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
     "unit": {
@@ -104,14 +102,270 @@
     "scope": "Historical source99 local acceptance; subsequent complete local runtime and latest source-specific CI remain separately recorded."
   },
   "catalogPerformanceEvidence": {
-    "evidence": "../ocr-model-identity/validation.json",
-    "platform": "local-macOS-Node22",
-    "importDurationMs": 274475,
-    "auditDurationMs": 5392,
-    "compareDurationMs": 228,
-    "cleanupDurationMs": 2352,
-    "finding": "Historical source99 and source382 diagnostics remain preserved. Current source7e47c37 fails Windows Bun at the450-second catalog-test deadline (complete suite523.74seconds), and Windows Node/Deno reach the600-second suite deadline without complete footers. Deno Windows finished import in532770ms and started cleanup. Avoidable NTFS directory operations are being drafted; no actual optimized platform acceptance is claimed.",
-    "scope": "Preserved historical source99 measurements; later source382 success is not current acceptance."
+    "sourceCommit": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "evidence": "../ocr-model-identity/ci-ad1be26-review.json",
+    "scope": "Actual full catalog phase receipts in each complete runtime job; no guaranteed latency for future hosts.",
+    "Windows": [
+      {
+        "runtime": "node",
+        "counts": {
+          "tests": 1280,
+          "pass": 1280,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 0,
+          "duration_ms": 377724.9489
+        },
+        "catalogPhases": [
+          {
+            "phase": "load",
+            "state": "started"
+          },
+          {
+            "phase": "load",
+            "state": "finished",
+            "durationMs": 315,
+            "elapsedMs": 316
+          },
+          {
+            "phase": "import",
+            "state": "started"
+          },
+          {
+            "phase": "import",
+            "state": "finished",
+            "durationMs": 307145,
+            "elapsedMs": 307462
+          },
+          {
+            "phase": "audit",
+            "state": "started"
+          },
+          {
+            "phase": "audit",
+            "state": "finished",
+            "durationMs": 14064,
+            "elapsedMs": 321527
+          },
+          {
+            "phase": "compare",
+            "state": "started"
+          },
+          {
+            "phase": "compare",
+            "state": "finished",
+            "durationMs": 892,
+            "elapsedMs": 322424
+          },
+          {
+            "phase": "close",
+            "state": "started"
+          },
+          {
+            "phase": "close",
+            "state": "finished",
+            "durationMs": 0,
+            "elapsedMs": 322425
+          },
+          {
+            "phase": "cleanup",
+            "state": "started"
+          },
+          {
+            "phase": "cleanup",
+            "state": "finished",
+            "durationMs": 30124,
+            "elapsedMs": 352550
+          }
+        ],
+        "catalogFixtures": [
+          {
+            "fixtureRecords": {
+              "products": 415,
+              "offers": 411,
+              "discoveries": 10237,
+              "skuInventories": 417,
+              "crawls": 17,
+              "availability": 5,
+              "invalidations": 0
+            }
+          }
+        ],
+        "originalSha256": "4f08cb555be980a658e2bd6b061786bb0ff107bae705c8cf901859d5e8ba7fb2"
+      },
+      {
+        "runtime": "bun",
+        "counts": {
+          "pass": 1284,
+          "fail": 0,
+          "tests": 1284,
+          "files": 159,
+          "seconds": 426.31
+        },
+        "catalogPhases": [
+          {
+            "phase": "load",
+            "state": "started"
+          },
+          {
+            "phase": "load",
+            "state": "finished",
+            "durationMs": 123,
+            "elapsedMs": 124
+          },
+          {
+            "phase": "import",
+            "state": "started"
+          },
+          {
+            "phase": "import",
+            "state": "finished",
+            "durationMs": 315528,
+            "elapsedMs": 315653
+          },
+          {
+            "phase": "audit",
+            "state": "started"
+          },
+          {
+            "phase": "audit",
+            "state": "finished",
+            "durationMs": 9073,
+            "elapsedMs": 324726
+          },
+          {
+            "phase": "compare",
+            "state": "started"
+          },
+          {
+            "phase": "compare",
+            "state": "finished",
+            "durationMs": 545,
+            "elapsedMs": 325273
+          },
+          {
+            "phase": "close",
+            "state": "started"
+          },
+          {
+            "phase": "close",
+            "state": "finished",
+            "durationMs": 0,
+            "elapsedMs": 325274
+          },
+          {
+            "phase": "cleanup",
+            "state": "started"
+          },
+          {
+            "phase": "cleanup",
+            "state": "finished",
+            "durationMs": 25091,
+            "elapsedMs": 350365
+          }
+        ],
+        "catalogFixtures": [
+          {
+            "fixtureRecords": {
+              "products": 415,
+              "offers": 411,
+              "discoveries": 10237,
+              "skuInventories": 417,
+              "crawls": 17,
+              "availability": 5,
+              "invalidations": 0
+            }
+          }
+        ],
+        "originalSha256": "7c55a6b398cd36eb9f736561d90bb22817915934afdd177ca1456bb666af907b"
+      },
+      {
+        "runtime": "deno",
+        "counts": {
+          "passed": 1166,
+          "steps": 16,
+          "failed": 0,
+          "failedSteps": 0
+        },
+        "catalogPhases": [
+          {
+            "phase": "load",
+            "state": "started"
+          },
+          {
+            "phase": "load",
+            "state": "finished",
+            "durationMs": 219,
+            "elapsedMs": 222
+          },
+          {
+            "phase": "import",
+            "state": "started"
+          },
+          {
+            "phase": "import",
+            "state": "finished",
+            "durationMs": 425573,
+            "elapsedMs": 425796
+          },
+          {
+            "phase": "audit",
+            "state": "started"
+          },
+          {
+            "phase": "audit",
+            "state": "finished",
+            "durationMs": 22356,
+            "elapsedMs": 448152
+          },
+          {
+            "phase": "compare",
+            "state": "started"
+          },
+          {
+            "phase": "compare",
+            "state": "finished",
+            "durationMs": 825,
+            "elapsedMs": 448981
+          },
+          {
+            "phase": "close",
+            "state": "started"
+          },
+          {
+            "phase": "close",
+            "state": "finished",
+            "durationMs": 0,
+            "elapsedMs": 448981
+          },
+          {
+            "phase": "cleanup",
+            "state": "started"
+          },
+          {
+            "phase": "cleanup",
+            "state": "finished",
+            "durationMs": 22913,
+            "elapsedMs": 471894
+          }
+        ],
+        "catalogFixtures": [
+          {
+            "fixtureRecords": {
+              "products": 415,
+              "offers": 411,
+              "discoveries": 10237,
+              "skuInventories": 417,
+              "crawls": 17,
+              "availability": 5,
+              "invalidations": 0
+            }
+          }
+        ],
+        "originalSha256": "09414e7a0601fb0ab269a34d8d746b47a89a5c4213a8b89f8cc77a926f6ae8a2"
+      }
+    ],
+    "finding": "All three Windows suites complete within unchanged450-second catalog and600-second suite budgets after bounded directory preparation and successful-temp cleanup. Exact original records, writer bounds, chronology, file sync, directory sync and renames remain required. All failed earlier originals are preserved."
   },
   "publication": {
     "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
@@ -127,17 +381,294 @@
   },
   "cancellationEvidence": "../ocr-model-identity/post-full-runtime-policy.json",
   "offlinePublicationPolicyAcceptance": {
-    "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
-    "workflow": "https://github.com/konard/lazada-search/actions/runs/38160632506",
+    "sourceCommit": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "workflow": "https://github.com/konard/lazada-search/actions/runs/38163139368",
     "conclusion": "success",
-    "localLinksPassed": 444,
-    "totalLinks": 34846,
+    "localLinksPassed": 446,
+    "totalLinks": 34848,
     "excludedLinks": 34402,
     "errors": 0,
     "externalURLLivenessAttested": false,
-    "evidence": "../ocr-model-identity/ci-7e47c37-review.json"
+    "evidence": "../ocr-model-identity/ci-ad1be26-review.json"
   },
   "latestRuntimeAcceptance": {
+    "sourceCommit": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "receipt": "../ocr-model-identity/ci-ad1be26-review.json",
+    "runtimeJobsExecuted": 9,
+    "matrixJobsPassed": 9,
+    "matrixJobsFailed": 0,
+    "matrixJobsPending": [],
+    "allNineAccepted": true,
+    "nativeBrowserE2ePassed": 48,
+    "nativeBrowserE2eFailures": 0,
+    "nativeBrowserE2eCancellations": 0,
+    "nativeBrowserE2eSkips": 0,
+    "nativeBrowserE2eRun": "https://github.com/konard/lazada-search/actions/runs/38163139384",
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "failedRuntimeJobs": [],
+    "remainingFailure": null,
+    "psCorrection": "../ocr-model-identity/release-ps-validation.json",
+    "WindowsFilesystemFollowup": "Actual complete ad1be26 matrix accepts bounded prepared directories and successful temporary rename cleanup without changing original fixtures, fsync, worker limits or deadlines.",
+    "openIssues": [39, 38, 37, 36, 34, 33, 32, 14, 3],
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false,
+    "collectionStopActive": true,
+    "productDownloads": 0,
+    "fullRuntimeJobsPassed": 9
+  },
+  "latestDependencyUpdate": {
+    "browserCommander": "0.31.1",
+    "linksNotationRoot": "0.25.2",
+    "fullLocalBun": 1312,
+    "realBrowserInterfaces": 2,
+    "npmVulnerabilities": 0,
+    "receipt": "../browser-commander-0311/review.json",
+    "actualCompleteNewMatrixPending": false,
+    "actualNativeBrowserCiPass": 48,
+    "actualNativeBrowserCiFailures": 0,
+    "actualNativeBrowserCiSkips": 0,
+    "actualNativeBrowserCiSource": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "actualNativeBrowserCiRun": "https://github.com/konard/lazada-search/actions/runs/38163139384",
+    "currentRuntimeMatrixJobsPassed": 9,
+    "currentRuntimeMatrixJobsFailed": 0,
+    "currentRuntimeMatrixReceipt": "../ocr-model-identity/ci-ad1be26-review.json"
+  },
+  "historicalSource99RemotePlatformAcceptance": {
+    "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+    "evidence": "../ocr-model-identity/ci-99ffc7c-review.json",
+    "matrixJobsPassed": 8,
+    "matrixJobsPending": [],
+    "allNineMatrixJobsPassed": false,
+    "nativeE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "skipped": 0
+    },
+    "WindowsDenoAccepted": true,
+    "matrixJobsFailed": 1,
+    "remainingFailure": "Windows Node catalog per-file timeout",
+    "WindowsDenoSuiteSeconds": 567
+  },
+  "currentRemotePlatformAcceptance": {
+    "sourceCommit": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "evidence": "../ocr-model-identity/ci-ad1be26-review.json",
+    "runtimeJobsExecuted": 9,
+    "matrixJobsPassed": 9,
+    "matrixJobsFailed": 0,
+    "matrixJobsPending": [],
+    "allNineMatrixJobsPassed": true,
+    "nativeE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 399796.241199
+    },
+    "failedRuntimeJobs": [],
+    "remainingFailure": null,
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "productDownloads": 0
+  },
+  "historicalRuntimeAcceptanceE63df14": {
+    "sourceCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
+    "receipt": "../ocr-model-identity/ci-e63df14-review.json",
+    "fullRuntimeJobsPassed": 8,
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "remainingFailure": "Windows Bun two3000ms redirect watchdogs; complete suite457.33s within600s",
+    "nativeBrowserE2ePassed": 48,
+    "productDownloads": 0
+  },
+  "latestReleaseChildFollowup": {
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-plus-actual-nine-runtime-and-native-browser-accepted",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": false,
+    "productDownloads": 0,
+    "actualCompletePlatformReceipt": "../ocr-model-identity/ci-ad1be26-review.json",
+    "actualCompletePlatformSource": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "actualCompletePlatformJobsPassed": 9,
+    "actualNativeBrowserE2ePassed": 48
+  },
+  "allTargetProductsCollected": false,
+  "collectionStopActive": true,
+  "latestLocalReleasePsAcceptance": {
+    "receipt": "../ocr-model-identity/release-ps-validation.json",
+    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "status": "focused-and-full-local-plus-actual-nine-runtime-and-native-browser-accepted",
+    "fullLocalBun": {
+      "tests": 1316,
+      "pass": 1316,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 74.83,
+      "wrapperSeconds": 75,
+      "budgetSeconds": 600,
+      "nativeOcrActualPassObserved": true,
+      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
+      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
+      "originalBytes": 149277,
+      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
+    },
+    "focusedActualRuntimeResults": {
+      "Node": {
+        "version": "22.23.0",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancel": 0,
+        "skip": 0,
+        "durationMs": 1381.527667,
+        "exitCode": 0,
+        "log": "node-ps.log"
+      },
+      "Bun": {
+        "version": "1.4.3",
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "durationMs": 859,
+        "exitCode": 0,
+        "log": "bun-ps.log"
+      },
+      "Deno": {
+        "version": "2.9.7",
+        "suites": 4,
+        "steps": 8,
+        "failed": 0,
+        "durationMs": 848,
+        "exitCode": 0,
+        "frozenCachedOnly": true,
+        "log": "deno-2.9.7-ps.log"
+      }
+    },
+    "actualMissingPsFaultThrows": true,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "productionLibraryChanges": [],
+    "dependencyResolutionChanges": [],
+    "freshCompletePlatformAcceptancePending": false,
+    "productDownloads": 0,
+    "actualCompletePlatformReceipt": "../ocr-model-identity/ci-ad1be26-review.json",
+    "actualCompletePlatformSource": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "actualCompletePlatformJobsPassed": 9,
+    "actualNativeBrowserE2ePassed": 48
+  },
+  "historicalRuntimeAcceptance3821770": {
+    "sourceCommit": "3821770761fba16467ec9be8b7aa045b645a1278",
+    "receipt": "../ocr-model-identity/ci-3821770-review.json",
+    "fullRuntimeJobsPassed": 8,
+    "WindowsNodeAccepted": true,
+    "WindowsDenoAccepted": true,
+    "redirectTestsWindowsAccepted": true,
+    "remainingFailure": "Windows Bun release child20000ms spawnSync timeout; complete1275-test suite has1274pass1fail within600s.",
+    "nativeBrowserE2ePassed": 48,
+    "productDownloads": 0,
+    "scope": "Historical eight-job checkpoint; source7e47c37 supersedes current platform status."
+  },
+  "historicalRemotePlatformAcceptanceD46a7d7": {
+    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
+    "evidence": "../ocr-model-identity/ci-d46a7d7-review.json",
+    "runtimeJobsExecuted": 0,
+    "allNineMatrixJobsPassed": false,
+    "nativeE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "remainingFailure": "Final review JSON formatting blocked runtime jobs; fresh corrected source required.",
+    "scope": "Historical format-blocked matrix with independent48 native/browser passes; no runtime jobs executed."
+  },
+  "latestCatalogIOFollowup": {
+    "receipt": "../ocr-model-identity/catalog-io-validation.json",
+    "frozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
+    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
+    "sourceFiles": 595,
+    "installedNativeFiles": 230,
+    "totalFrozenFiles": 825,
+    "fullLocalBunTestsPassed": 1321,
+    "fullLocalBunFailures": 0,
+    "fullLocalBunSkips": 0,
+    "focusedNodeBunDenoStorageCasesEach": 33,
+    "fullOriginalCatalogCasesEachRuntime": 3,
+    "fullOriginalCatalogFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
+    "observedKindMkdirCallsBeforeAfter": [288, 1],
+    "observedSuccessfulTempRmCallsBeforeAfter": [289, 0],
+    "fileSyncDirectorySyncRenameCallsPreservedEach": 289,
+    "DenoScopedPermissionsUnchanged": true,
+    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
+    "noGuaranteedWindowsLatencyClaim": true,
+    "freshCompletePlatformAcceptancePending": false,
+    "productDownloads": 0,
+    "actualCompletePlatformReceipt": "../ocr-model-identity/ci-ad1be26-review.json",
+    "actualCompletePlatformSource": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+    "actualCompletePlatformJobsPassed": 9,
+    "actualNativeBrowserE2ePassed": 48
+  },
+  "historicalRuntimeAcceptance7e47c37": {
     "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
     "receipt": "../ocr-model-identity/ci-7e47c37-review.json",
     "runtimeJobsExecuted": 9,
@@ -227,40 +758,7 @@
     "productDownloads": 0,
     "fullRuntimeJobsPassed": 5
   },
-  "latestDependencyUpdate": {
-    "browserCommander": "0.31.1",
-    "linksNotationRoot": "0.25.2",
-    "fullLocalBun": 1312,
-    "realBrowserInterfaces": 2,
-    "npmVulnerabilities": 0,
-    "receipt": "../browser-commander-0311/review.json",
-    "actualCompleteNewMatrixPending": true,
-    "actualNativeBrowserCiPass": 48,
-    "actualNativeBrowserCiFailures": 0,
-    "actualNativeBrowserCiSkips": 0,
-    "actualNativeBrowserCiSource": "7e47c37040ce26496c0995edb36180f1267c2398",
-    "actualNativeBrowserCiRun": "https://github.com/konard/lazada-search/actions/runs/38160632497",
-    "currentRuntimeMatrixJobsPassed": 5,
-    "currentRuntimeMatrixJobsFailed": 4
-  },
-  "historicalSource99RemotePlatformAcceptance": {
-    "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
-    "evidence": "../ocr-model-identity/ci-99ffc7c-review.json",
-    "matrixJobsPassed": 8,
-    "matrixJobsPending": [],
-    "allNineMatrixJobsPassed": false,
-    "nativeE2e": {
-      "tests": 48,
-      "pass": 48,
-      "fail": 0,
-      "skipped": 0
-    },
-    "WindowsDenoAccepted": true,
-    "matrixJobsFailed": 1,
-    "remainingFailure": "Windows Node catalog per-file timeout",
-    "WindowsDenoSuiteSeconds": 567
-  },
-  "currentRemotePlatformAcceptance": {
+  "historicalRemotePlatformAcceptance7e47c37": {
     "sourceCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
     "evidence": "../ocr-model-identity/ci-7e47c37-review.json",
     "runtimeJobsExecuted": 9,
@@ -344,185 +842,14 @@
     "WindowsDenoAccepted": false,
     "productDownloads": 0
   },
-  "historicalRuntimeAcceptanceE63df14": {
-    "sourceCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
-    "receipt": "../ocr-model-identity/ci-e63df14-review.json",
-    "fullRuntimeJobsPassed": 8,
-    "WindowsNodeAccepted": true,
-    "WindowsDenoAccepted": true,
-    "remainingFailure": "Windows Bun two3000ms redirect watchdogs; complete suite457.33s within600s",
-    "nativeBrowserE2ePassed": 48,
-    "productDownloads": 0
-  },
-  "latestReleaseChildFollowup": {
-    "receipt": "../ocr-model-identity/release-ps-validation.json",
-    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
-    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
-    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
-    "fullLocalBun": {
-      "tests": 1316,
-      "pass": 1316,
-      "fail": 0,
-      "skip": 0,
-      "files": 158,
-      "seconds": 74.83,
-      "wrapperSeconds": 75,
-      "budgetSeconds": 600,
-      "nativeOcrActualPassObserved": true,
-      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
-      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
-      "originalBytes": 149277,
-      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
-    },
-    "focusedActualRuntimeResults": {
-      "Node": {
-        "version": "22.23.0",
-        "tests": 8,
-        "pass": 8,
-        "fail": 0,
-        "cancel": 0,
-        "skip": 0,
-        "durationMs": 1381.527667,
-        "exitCode": 0,
-        "log": "node-ps.log"
-      },
-      "Bun": {
-        "version": "1.4.3",
-        "tests": 8,
-        "pass": 8,
-        "fail": 0,
-        "durationMs": 859,
-        "exitCode": 0,
-        "log": "bun-ps.log"
-      },
-      "Deno": {
-        "version": "2.9.7",
-        "suites": 4,
-        "steps": 8,
-        "failed": 0,
-        "durationMs": 848,
-        "exitCode": 0,
-        "frozenCachedOnly": true,
-        "log": "deno-2.9.7-ps.log"
-      }
-    },
-    "actualMissingPsFaultThrows": true,
-    "DenoScopedPermissionsUnchanged": true,
-    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
-    "productionLibraryChanges": [],
-    "dependencyResolutionChanges": [],
-    "freshCompletePlatformAcceptancePending": true,
-    "productDownloads": 0
-  },
-  "allTargetProductsCollected": false,
-  "collectionStopActive": true,
-  "latestLocalReleasePsAcceptance": {
-    "receipt": "../ocr-model-identity/release-ps-validation.json",
-    "frozenCode": "../ocr-model-identity/release-ps-frozen-code.json",
-    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
-    "status": "focused-and-full-local-Bun-accepted;actual-current-platform-CI-pending",
-    "fullLocalBun": {
-      "tests": 1316,
-      "pass": 1316,
-      "fail": 0,
-      "skip": 0,
-      "files": 158,
-      "seconds": 74.83,
-      "wrapperSeconds": 75,
-      "budgetSeconds": 600,
-      "nativeOcrActualPassObserved": true,
-      "originalLog": "release-ps-review/release-ps-full-bun.log.gz",
-      "originalSha256": "f3afb6e6b448ef17dcde2a28238ceeef4e8396cee298020b5def3f608697d809",
-      "originalBytes": 149277,
-      "gzipSha256": "17f5f5769269f1af4e09f2acdc863949cf71b2921fd1f889926ca476dc32dbac"
-    },
-    "focusedActualRuntimeResults": {
-      "Node": {
-        "version": "22.23.0",
-        "tests": 8,
-        "pass": 8,
-        "fail": 0,
-        "cancel": 0,
-        "skip": 0,
-        "durationMs": 1381.527667,
-        "exitCode": 0,
-        "log": "node-ps.log"
-      },
-      "Bun": {
-        "version": "1.4.3",
-        "tests": 8,
-        "pass": 8,
-        "fail": 0,
-        "durationMs": 859,
-        "exitCode": 0,
-        "log": "bun-ps.log"
-      },
-      "Deno": {
-        "version": "2.9.7",
-        "suites": 4,
-        "steps": 8,
-        "failed": 0,
-        "durationMs": 848,
-        "exitCode": 0,
-        "frozenCachedOnly": true,
-        "log": "deno-2.9.7-ps.log"
-      }
-    },
-    "actualMissingPsFaultThrows": true,
-    "DenoScopedPermissionsUnchanged": true,
-    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
-    "productionLibraryChanges": [],
-    "dependencyResolutionChanges": [],
-    "freshCompletePlatformAcceptancePending": true,
-    "productDownloads": 0
-  },
-  "historicalRuntimeAcceptance3821770": {
-    "sourceCommit": "3821770761fba16467ec9be8b7aa045b645a1278",
-    "receipt": "../ocr-model-identity/ci-3821770-review.json",
-    "fullRuntimeJobsPassed": 8,
-    "WindowsNodeAccepted": true,
-    "WindowsDenoAccepted": true,
-    "redirectTestsWindowsAccepted": true,
-    "remainingFailure": "Windows Bun release child20000ms spawnSync timeout; complete1275-test suite has1274pass1fail within600s.",
-    "nativeBrowserE2ePassed": 48,
-    "productDownloads": 0,
-    "scope": "Historical eight-job checkpoint; source7e47c37 supersedes current platform status."
-  },
-  "historicalRemotePlatformAcceptanceD46a7d7": {
-    "sourceCommit": "d46a7d70c1a762a651363278ef67e92195bbddb2",
-    "evidence": "../ocr-model-identity/ci-d46a7d7-review.json",
-    "runtimeJobsExecuted": 0,
-    "allNineMatrixJobsPassed": false,
-    "nativeE2e": {
-      "tests": 48,
-      "pass": 48,
-      "fail": 0,
-      "cancelled": 0,
-      "skipped": 0
-    },
-    "remainingFailure": "Final review JSON formatting blocked runtime jobs; fresh corrected source required.",
-    "scope": "Historical format-blocked matrix with independent48 native/browser passes; no runtime jobs executed."
-  },
-  "latestCatalogIOFollowup": {
-    "receipt": "../ocr-model-identity/catalog-io-validation.json",
-    "frozenCode": "../ocr-model-identity/catalog-io-frozen-code.json",
-    "sourceBaseCommit": "7e47c37040ce26496c0995edb36180f1267c2398",
-    "sourceFiles": 595,
-    "installedNativeFiles": 230,
-    "totalFrozenFiles": 825,
-    "fullLocalBunTestsPassed": 1321,
-    "fullLocalBunFailures": 0,
-    "fullLocalBunSkips": 0,
-    "focusedNodeBunDenoStorageCasesEach": 33,
-    "fullOriginalCatalogCasesEachRuntime": 3,
-    "fullOriginalCatalogFixtureSha256": "3cae59b96b6bc1c717167a93be741e389679bb2d4ff1f6498787118a845c1948",
-    "observedKindMkdirCallsBeforeAfter": [288, 1],
-    "observedSuccessfulTempRmCallsBeforeAfter": [289, 0],
-    "fileSyncDirectorySyncRenameCallsPreservedEach": 289,
-    "DenoScopedPermissionsUnchanged": true,
-    "fullFixturesDurableWritesAndBudgetsUnchanged": true,
-    "noGuaranteedWindowsLatencyClaim": true,
-    "freshCompletePlatformAcceptancePending": true,
-    "productDownloads": 0
+  "historicalCatalogPerformanceEvidenceSource99": {
+    "evidence": "../ocr-model-identity/validation.json",
+    "platform": "local-macOS-Node22",
+    "importDurationMs": 274475,
+    "auditDurationMs": 5392,
+    "compareDurationMs": 228,
+    "cleanupDurationMs": 2352,
+    "finding": "Historical source99 and source382 diagnostics remain preserved. Current source7e47c37 fails Windows Bun at the450-second catalog-test deadline (complete suite523.74seconds), and Windows Node/Deno reach the600-second suite deadline without complete footers. Deno Windows finished import in532770ms and started cleanup. Avoidable NTFS directory operations are being drafted; no actual optimized platform acceptance is claimed.",
+    "scope": "Preserved historical source99 measurements; later source382 success is not current acceptance."
   }
 }

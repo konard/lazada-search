@@ -2,7 +2,7 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-11T18:15:05.176Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-11T18:34:50.850Z, from the published catalog observed at 2026-10-11T13:54:15.320Z. No marketplace requests are made by this audit.
 
 The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
@@ -106,7 +106,6 @@ Implemented collection mechanics and passing fixture tests do not satisfy missin
 | R043 | Protein type, ingredients and disclosed nutritional components for healthy-buy comparison           | partial                                                                                                                                                                                       |
 | R046 | Disputed package quantities and ambiguous OCR must not produce unit-price rankings                  | pending-exact-market-package-formula-label-identity                                                                                                                                           |
 | R047 | Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders | pending-exact-bonus-identity-formula-stock-and-order-eligibility-for-real-offers                                                                                                              |
-| R048 | Native OCR model bytes and actual platform recipes bind cache provenance                            | actual-source7e47-native-browser-48-accepted;complete-runtime-matrix-rejected5-pass4-fail                                                                                                     |
 
 [Full implementation review](implementation-review.md) · [Independent cached-list and SKU review](coverage-review.md) · [Buying tables](../../tables/top-10-partial.md) · [Requirements](../../REQUIREMENTS.md) · [Roadmap](../../ROADMAP.md)
 
