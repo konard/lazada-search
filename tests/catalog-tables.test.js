@@ -169,9 +169,15 @@ test('committed catalog imports offline with the same offers and explicit covera
     }
   };
   const directory = await mkdtemp(join(tmpdir(), 'lazada-catalog-import-'));
-  t.after(() =>
-    phase('cleanup', () => rm(directory, { recursive: true, force: true }))
-  );
+  let importPromise = null;
+  t.after(async () => {
+    // A test deadline does not abort the store's in-flight durable writes.
+    // Drain the same import before removal; the original test failure remains.
+    await importPromise?.catch(() => undefined);
+    await phase('cleanup', () =>
+      rm(directory, { recursive: true, force: true })
+    );
+  });
   const catalog = await phase('load', async () =>
     JSON.parse(
       await readFile(new URL('../docs/tables/catalog.json', import.meta.url))
@@ -202,7 +208,11 @@ test('committed catalog imports offline with the same offers and explicit covera
   app.collector.start = () => {
     throw new Error('Committed catalog import must never start a browser');
   };
-  const imported = await phase('import', () => app.importRecords(catalog));
+  importPromise = phase('import', () => app.importRecords(catalog));
+  const imported = await importPromise;
+  if (t.signal.aborted) {
+    return;
+  }
   assert.equal(imported.offers, catalog.offers.length);
   const audit = await phase('audit', () => app.audit());
   assert.deepEqual(audit.missingListings, catalog.audit.missingListings);

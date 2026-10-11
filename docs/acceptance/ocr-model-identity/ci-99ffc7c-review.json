@@ -1,0 +1,842 @@
+{
+  "checkedAt": "2026-10-11T15:50:27.038305+00:00",
+  "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+  "matrixRun": "https://github.com/konard/lazada-search/actions/runs/38151349532",
+  "nativeE2eRun": "https://github.com/konard/lazada-search/actions/runs/38151349419",
+  "allNineMatrixJobsPassed": false,
+  "matrixJobsPassed": 8,
+  "matrixJobsFailed": 1,
+  "matrixJobsPending": [],
+  "remainingFailure": "Windows Node catalog import reached the unchanged450000ms per-file deadline.1267 other tests passed,0 assertion failures,1cancelled,0skipped. Full import remained active during cancellation cleanup; this does not count as suite acceptance.",
+  "WindowsDenoAccepted": true,
+  "WindowsDenoSuiteSeconds": 567,
+  "WindowsDenoBudgetSeconds": 600,
+  "nativeE2e": {
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "skipped": 0
+  },
+  "releasePreflight": "Failed separately on package-owner npm publisher configuration; mandatory gate retained under issue32.",
+  "results": [
+    {
+      "runtime": "bun",
+      "platform": "macos",
+      "jobId": 114506676885,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676885",
+      "counts": {
+        "pass": 1309,
+        "fail": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 117,
+          "elapsedMs": 117
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 9329,
+          "elapsedMs": 9446
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 6000,
+          "elapsedMs": 15446
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 674,
+          "elapsedMs": 16123
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 16124
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 4765,
+          "elapsedMs": 20889
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-bun-macos.log.gz",
+      "originalBytes": 239503,
+      "originalSha256": "a372b1758e19322f87dd91b34ace375541a773e3a3afa9bc25994d489c6c6b6c",
+      "gzipSha256": "3da36a4e3ecfdfecdf5f5bf84b7558c68ee86a9d67094ee89349655ab1a3fd6a"
+    },
+    {
+      "runtime": "bun",
+      "platform": "ubuntu",
+      "jobId": 114506676893,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676893",
+      "counts": {
+        "pass": 1309,
+        "fail": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 83,
+          "elapsedMs": 83
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 14434,
+          "elapsedMs": 14517
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 6321,
+          "elapsedMs": 20838
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 257,
+          "elapsedMs": 21097
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 21097
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 6739,
+          "elapsedMs": 27835
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-bun-ubuntu.log.gz",
+      "originalBytes": 239841,
+      "originalSha256": "1d32f67bdba654f2461026919b45f4ae0c6b22dac23f9bfd2e95033b1f3c0646",
+      "gzipSha256": "240f650d2281add90ed9917c4bf74f42c6b76a48545359cfb9194aac826f2783"
+    },
+    {
+      "runtime": "node",
+      "platform": "ubuntu",
+      "jobId": 114506676899,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676899",
+      "counts": {
+        "tests": 1309,
+        "pass": 1309,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 105821.665782
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 132,
+          "elapsedMs": 133
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 64262,
+          "elapsedMs": 64396
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 12982,
+          "elapsedMs": 77378
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 497,
+          "elapsedMs": 77879
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 77880
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 2756,
+          "elapsedMs": 80636
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-node-ubuntu.log.gz",
+      "originalBytes": 215211,
+      "originalSha256": "d929210cc5f13476f11bb8a1c89710210350fce198e2b8a21417666509ca1616",
+      "gzipSha256": "15fb70b4dd69a3e02cd1ee5f0b0f6fbc8373c0e062ca7a65a69f010d24740159"
+    },
+    {
+      "runtime": "deno",
+      "platform": "macos",
+      "jobId": 114506676907,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676907",
+      "counts": {
+        "passed": 1157,
+        "steps": 8,
+        "failed": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 148,
+          "elapsedMs": 149
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 110587,
+          "elapsedMs": 110737
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 14673,
+          "elapsedMs": 125411
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 444,
+          "elapsedMs": 125858
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 125859
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 4039,
+          "elapsedMs": 129898
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-deno-macos.log.gz",
+      "originalBytes": 297507,
+      "originalSha256": "c3e21cda34ba102bd2519245580de8b57e1bf1e0d07745932fcee70bca072116",
+      "gzipSha256": "70d6ee57cdd04814abf5b2a2698e81a5f571de4700edaa9823b2c313760e7749"
+    },
+    {
+      "runtime": "deno",
+      "platform": "windows",
+      "jobId": 114506676924,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676924",
+      "counts": {
+        "passed": 1157,
+        "steps": 8,
+        "failed": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 367,
+          "elapsedMs": 375
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 473971,
+          "elapsedMs": 474347
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 22315,
+          "elapsedMs": 496663
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 856,
+          "elapsedMs": 497522
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 497523
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 36290,
+          "elapsedMs": 533812
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-deno-windows.log.gz",
+      "originalBytes": 296472,
+      "originalSha256": "c3b6d1b5b5cb768fa68c9dc8bb29ac0ceb690ef49d2bba43a3f5ac642734ab8d",
+      "gzipSha256": "860adaf91096fb98f5a163c8965ba0c9b1bfc5a578f12f97aea6281b2f042541"
+    },
+    {
+      "runtime": "node",
+      "platform": "macos",
+      "jobId": 114506676938,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676938",
+      "counts": {
+        "tests": 1309,
+        "pass": 1309,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 175061.8585
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 274,
+          "elapsedMs": 276
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 86640,
+          "elapsedMs": 86921
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 26695,
+          "elapsedMs": 113617
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 1017,
+          "elapsedMs": 114656
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 114659
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 4836,
+          "elapsedMs": 119497
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-node-macos.log.gz",
+      "originalBytes": 215344,
+      "originalSha256": "9b29b992f0aa03799dd2c10966816bd709df5d18ab4c4d3593e89656c9030cfc",
+      "gzipSha256": "61c85a6bbbbffd518f938db888c3f0ce6dc605974b9a956d4387aae6efb1bfa6"
+    },
+    {
+      "runtime": "deno",
+      "platform": "ubuntu",
+      "jobId": 114506676941,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676941",
+      "counts": {
+        "passed": 1157,
+        "steps": 8,
+        "failed": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 272,
+          "elapsedMs": 273
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 32629,
+          "elapsedMs": 32902
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 33464,
+          "elapsedMs": 66367
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 744,
+          "elapsedMs": 67119
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 67119
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 4494,
+          "elapsedMs": 71613
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-deno-ubuntu.log.gz",
+      "originalBytes": 296408,
+      "originalSha256": "318b20d7254ef2efc5177620c3d329f9a405e0ca7d773a2aa64f38e25eae533a",
+      "gzipSha256": "ba66ad8e734e743f8dcc110628dff61ba9b84beaa5ea38c8b7efd42cbc7004ed"
+    },
+    {
+      "runtime": "bun",
+      "platform": "windows",
+      "jobId": 114506676946,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676946",
+      "counts": {
+        "pass": 1272,
+        "fail": 0
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 62,
+          "elapsedMs": 63
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 232022,
+          "elapsedMs": 232085
+        },
+        {
+          "phase": "audit",
+          "state": "started"
+        },
+        {
+          "phase": "audit",
+          "state": "finished",
+          "durationMs": 5911,
+          "elapsedMs": 237997
+        },
+        {
+          "phase": "compare",
+          "state": "started"
+        },
+        {
+          "phase": "compare",
+          "state": "finished",
+          "durationMs": 252,
+          "elapsedMs": 238251
+        },
+        {
+          "phase": "close",
+          "state": "started"
+        },
+        {
+          "phase": "close",
+          "state": "finished",
+          "durationMs": 0,
+          "elapsedMs": 238251
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 9664,
+          "elapsedMs": 247916
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-bun-windows.log.gz",
+      "originalBytes": 234815,
+      "originalSha256": "d107f34cc53f0e11639bb4f340ebb432f90a56d363a7c17d1c6cb041c757e06a",
+      "gzipSha256": "d851acafe0781101526d87ad22199c6e693034059a7e17af1451eb36c8ab4809"
+    },
+    {
+      "runtime": "node",
+      "platform": "windows",
+      "jobId": 114506676948,
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349532/job/114506676948",
+      "counts": {
+        "tests": 1268,
+        "pass": 1267,
+        "fail": 0,
+        "cancelled": 1,
+        "skipped": 0,
+        "duration_ms": 501469.0998
+      },
+      "catalogPhases": [
+        {
+          "phase": "load",
+          "state": "started"
+        },
+        {
+          "phase": "load",
+          "state": "finished",
+          "durationMs": 286,
+          "elapsedMs": 287
+        },
+        {
+          "phase": "import",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "started"
+        },
+        {
+          "phase": "cleanup",
+          "state": "finished",
+          "durationMs": 21441,
+          "elapsedMs": 471444
+        },
+        {
+          "phase": "import",
+          "state": "finished",
+          "durationMs": 471294,
+          "elapsedMs": 471583
+        }
+      ],
+      "catalogFixtures": [
+        {
+          "fixtureRecords": {
+            "products": 415,
+            "offers": 411,
+            "discoveries": 10237,
+            "skuInventories": 417,
+            "crawls": 17,
+            "availability": 5,
+            "invalidations": 0
+          }
+        }
+      ],
+      "log": "ci-99ffc7c-node-windows.log.gz",
+      "originalBytes": 208896,
+      "originalSha256": "aa42284953c7b810e93a3bfc7c7f995fa56ee897d878d32b317dad6c19a1d31a",
+      "gzipSha256": "1e1d69e6f7550d7e9efe3ff03069e30a1f6ca3326f77354efa1c5fded82d5b63"
+    },
+    {
+      "runtime": "native-e2e",
+      "platform": "ubuntu",
+      "jobId": 114505291433,
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38151349419/job/114505291433",
+      "counts": {
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 378885.869588
+      },
+      "catalogPhases": [],
+      "catalogFixtures": [],
+      "log": "ci-99ffc7c-native-e2e.log.gz",
+      "originalBytes": 87628,
+      "originalSha256": "4df2869c78656d51ca2c5c9503e128ac520feca10ae5febf02a3445daa3cbed5",
+      "gzipSha256": "551e68d77618842ae078d4da4d56ccbacda1555eb3f5a4b13610e80bfd0ca2bb"
+    }
+  ],
+  "productDownloads": 0,
+  "allRequirementsDelivered": false,
+  "productionReady": false
+}

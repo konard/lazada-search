@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T15:16:50.234850+00:00",
+  "checkedAt": "2026-10-11T15:53:17.658303+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -128,7 +128,7 @@
         "tests/e2e/archive.test.js",
         "tests/e2e/telegram.test.js"
       ],
-      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined revised full-interface suite is in progress."
+      "finding": "Complete observed chocolate/no-shaker SKU combinations replace incompatible generic defaults before saving a price. Correct exact cached variants are reusable; explicit requested SKU identities remain bound to their own observed price. Fresh CLI and Telegram options now default to chocolate-or-unflavoured with the existing paid-shaker exclusions; explicit all-scope overrides remain supported. The combined full local interface suite and actual GitHub48/48 native/browser E2E passed with zero skips; current source99 Windows Node catalog cancellation remains a separate runtime issue."
     },
     {
       "id": "R001",
@@ -205,14 +205,15 @@
       "id": "R033",
       "status": "implemented",
       "mechanicsStatus": "implemented",
-      "realDataAcceptance": "Installed0.31.0 complete local unit1291/nativeBrowserE2E48 acceptance; fresh actual platform matrix recorded separately.",
+      "realDataAcceptance": "Installed0.31.0 accepted local1309/1309 unit and48/48 native/browser E2E0skip. Actual source99 eight runtime jobs and48/48 native/browser CI pass; full Windows Deno accepted567s. Windows Node alone cancels the catalog import at450000ms.",
       "evidence": [
         "package.json",
         "package-lock.json",
         "docs/acceptance/browser-commander-031/README.md",
-        "docs/acceptance/browser-commander-031/review.json"
+        "docs/acceptance/browser-commander-031/review.json",
+        "docs/acceptance/ocr-model-identity/validation.json"
       ],
-      "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data."
+      "finding": "Fresh authoritative registry check found0.31.0 after the earlier0.30.1 check. Only that locked package changed. Optional recording stays disabled. Static capture/session code matches the previous version; upgrade does not approve product data. The earlier1,291/48 dependency checkpoint remains dated evidence; current local results include model bytes and fresh shopping defaults."
     },
     {
       "id": "R002",
@@ -229,9 +230,10 @@
         "src/config.js",
         "tests/flavour-scope.test.js",
         "tests/e2e/archive.test.js",
-        "tests/e2e/telegram.test.js"
+        "tests/e2e/telegram.test.js",
+        "docs/acceptance/ocr-model-identity/validation.json"
       ],
-      "finding": "Chocolate/unflavoured powder scope applies before preferences exist. Exact generic listing SKU selection chooses observed Socola/Kh\u00f4ng B\u00ecnh combinations; explicit all-scope options remain available for generic library/CLI use. Fixture and actual marketplace case acceptance remain separately dated."
+      "finding": "Fresh CLI/case and Telegram options apply chocolate/unflavoured scope and existing no-paid-shaker gates before preferences exist. Full local interface E2E independently verifies default scoped replay and explicit all-scope preservation. General library constructors retain deliberate generic scope. Actual exhaustive selected-SKU inventory and exact factory acceptance remain partial."
     },
     {
       "id": "R038",
@@ -246,6 +248,20 @@
         "docs/tables/ice-unit-rankings.json"
       ],
       "finding": "Current counts are recomputed from ice-unit-rankings.json. Missing exact selling-unit mass, volume, formula and cold-chain Nha Trang quotes remain worklist tasks; no density or nutrition is invented."
+    },
+    {
+      "id": "R036",
+      "requirement": "Commit/push code, tests and precached public evidence",
+      "status": "partial",
+      "mechanicsStatus": "published-source99-code-tests-reports-public-case;final-receipt-tracker-delta-pending",
+      "realDataAcceptance": "Source99ffc7c is pushed to main and observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Final full-validation receipts and current tracker changes await separate root publication; private authentication/profile/checkout material is excluded.",
+      "evidence": [
+        "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "data/cases/vietnam-nha-trang/manifest.json"
+      ],
+      "finding": "The earlier commit-push-not-independently-checked finding remains a dated baseline. Current source identity is bound by saved GitHub run evidence, not inferred from local changes; this does not claim the newest documentation delta is already pushed."
     }
   ],
   "additionalRequirements": [
@@ -331,7 +347,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Full combined final native/cache/platform acceptance in progress; actual prior matrix native decimal cases passed but Windows Deno suite timed out. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "Accepted full local1309/1309 unit and48/48 native/browser E2E0skip; local Bun/Deno63/63 focused each. Actual source99 eight runtime jobs pass, including full Windows Deno1157+8steps0failed in567s of600s and Windows Bun1272pass0fail. Windows Node has1267pass0assertionfail1catalog-timeout cancellation0skip; its full suite remains unaccepted. Actual GitHub native/browser48/48 passes. No unmatched manufacturer nutrition approved.",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -341,22 +357,26 @@
         "tests/ocr-models.test.js",
         "tests/ocr-crops.test.js",
         "docs/acceptance/ocr-model-identity/initial-validation.json",
-        "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json"
+        "docs/acceptance/ocr-decimal-portability/ci-16c3aa2-review.json",
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
       ],
-      "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes. Warm reads verify full model manifests and reparse original cached TSV; historical unbound records remain preserved. The new native fixture also asserts warm restart reuse; final combined validation is in progress."
+      "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
     },
     {
       "id": "R049",
       "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
       "status": "partial",
-      "mechanicsStatus": "offline-link-validation-drafted-without-online-retry-or-archive-probes",
-      "realDataAcceptance": "pending-full-workflow-and-actual-CI-offline-link-validation",
+      "mechanicsStatus": "offline-link-policy-guards-implemented-and-full-local-suite-tested-without-online-retry-or-archive-probes",
+      "realDataAcceptance": "Local full unit policy checks and npmRunCheck pass. The subsequent served-web-root link exception passes4 focused tests, but actual corrected repository links workflow remains pending. No external URL liveness claimed.",
       "evidence": [
         ".github/workflows/links.yml",
         "tests/links-workflow.test.js",
-        "https://github.com/konard/lazada-search/issues/40"
+        "https://github.com/konard/lazada-search/issues/40",
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/ocr-model-identity/offline-link-contract.json"
       ],
-      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow now checks local repository links offline and excludes captured original pages from authored-document input; original archive digests remain independently validated. External URL liveness is not claimed."
+      "finding": "Online documentation probes were a separate uncontrolled request path. The workflow is restricted to offline authored-repository input without online retries; captured original pages remain excluded from authored-document input and covered by independent archive digest checks. Actual configured repository-workflow execution remains pending. The served web root src/web/index.html needs its separate offline input context; that later workflow-only correction is not part of source99 full-suite fingerprints."
     }
   ],
   "checkpoint": {
@@ -416,7 +436,8 @@
       "allTargetProductsCollected": false,
       "productionReady": false
     },
-    "latestReceipt": "docs/acceptance/basket-food-translation/validation.json"
+    "latestReceipt": "docs/acceptance/basket-food-translation/validation.json",
+    "scope": "Historical basket/food/translation checkpoint recorded at 2026-10-11T08:44:43.901936+00:00; results and collection counts are preserved, not current whole-project acceptance."
   },
   "checkpointUpdates": [
     {
@@ -529,7 +550,7 @@
         "docs/acceptance/preferred-variant/cached-selection-review.json",
         "tests/e2e/preferred-variant.test.js"
       ],
-      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Kh\u00f4ng B\u00ecnh SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
+      "finding": "Scitec default Zprotein Brownie plus shaker at3070000VND replaced by exact Socola plus Không Bình SKU117192556069 at3540000VND. Previous observations remain;73 other affected selections are queued after the initial product pass.",
       "issue": "https://github.com/konard/lazada-search/issues/16"
     },
     {
@@ -575,7 +596,7 @@
         "src/scope-decisions.js",
         "tests/human-food-scope.test.js"
       ],
-      "finding": "Thanh N\u0103ng L\u01b0\u1ee3ng and Thanh Dinh D\u01b0\u1ee1ng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
+      "finding": "Thanh Năng Lượng and Thanh Dinh Dưỡng non-frozen bars are excluded from powder discovery; version3 invalidates older scope decisions without losing source history."
     },
     {
       "id": "powder-ice-flavour",
@@ -660,6 +681,19 @@
         "docs/acceptance/source-integrity/validation.json"
       ],
       "finding": "Automatic checkpoints defer unrelated staged work and retry. Exact selected promotions remain potential, dietary free wording is not a gift, decimal count tails cannot approve multipacks, and conflicting inner/total weights are held. Same-original reviews stay reusable; newer sources and explicit holds do not inherit exemptions. No new marketplace nutrition, gift quantity or freight facts are approved by these fixes. Actual ON Natural Chocolate label corrects864g without nutrition approval; Yingbang conflicting artwork withholds mass. Manufacturer security responses/imports persist failed originals and global stop before queued requests; research plans throw with partial receipts and explicit resume requires cleared challenged origin. Each manufacturer HTTP hop has a separate paced queue slot; same-host nesting and reciprocal cross-host cycles are fixed. Complete inventory, factory and freight acceptance stays open. Ordinary image failures are negatively cached, actual returned HTML security challenges stop before OCR, browser image routes never fulfill failure bytes, and failed public HTML is sanitized with original digest relations preserved. The actual144497741-byte notation exposes upstream codec whole-document character-array allocation and quoted-character rope failures (#68). The exact-version/source-gated packaged workaround passes full33649-record/7030-blob verification at the default Node heap under local#28; no history or decode checks are skipped. Image redirects now release each actual host slot before the next hop, inspect every original body before follow and verify saved chain originals offline. Browser requests use manually bounded redirect chains; images on active page/frame hosts defer without a negative cache. Cached route fulfillment preserves acquired provenance. Actual live CDN/auth contract acceptance remains pending under the stop."
+    },
+    {
+      "id": "ocr-model-byte-shopping-defaults-and-platform-acceptance",
+      "status": "accepted-full-frozen-local-unit-and-native-browser;actual-current-platform-CI-pending",
+      "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+      "recordedAt": "2026-10-11T15:33:48.898859+00:00",
+      "evidence": [
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/ocr-model-identity/final-frozen-code.json",
+        "docs/acceptance/ocr-model-identity/final-portable-receipt.json.gz",
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json"
+      ],
+      "finding": "Full1,309/1,309 unit and single native-enabled48/48 E2E pass with zero failures/cancellations/skips. Local Bun and Deno each pass63 focused tests, including genuine native restart cache reuse; those subsets do not establish complete alternative-runtime/platform acceptance. All766 frozen files remain unchanged. Full34,253-record/7,030-blob archive verifies offline with zero downloads. Fresh chocolate/unflavoured/no-paid-shaker defaults are exercised separately from broad replay. Earlier1,306/1,306 unit plus rejected44/48 E2E and native-flag-omitted47-pass/1-skip runs remain preserved and are not accepted as the current native full suite. Actual source99 CI passes six Ubuntu/macOS runtime jobs and48/48 native/browser cases; three Windows jobs remain pending. Node reports1309passes with0skips, Bun1309passes0failures, Deno1157passedtests plus8steps0failed. These distinct runtime summaries are retained rather than equated. The priorWindowsDeno600-second timeout remains unresolved until fresh actual evidence. No factory facts, market coverage, gift quantities, freight, real translations or live bot acceptance are inferred."
     }
   ],
   "sourceIntegrityCheckpoint": {
@@ -721,6 +755,95 @@
       "fail": 0,
       "cancelled": 0,
       "skipped": 0
+    },
+    "scope": "Historical source-integrity checkpoint; current combined source acceptance is recorded in modelIdentityCheckpoint."
+  },
+  "modelIdentityCheckpoint": {
+    "recordedAt": "2026-10-11T15:33:48.898859+00:00",
+    "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+    "status": "accepted-local-full-unit-native-browser-and8-runtime-jobs;Windows-Node-catalog-cancelled",
+    "evidence": "docs/acceptance/ocr-model-identity/validation.json",
+    "unit": {
+      "tests": 1309,
+      "pass": 1309,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 303296.27475
+    },
+    "singleFullNativeE2e": {
+      "tests": 48,
+      "pass": 48,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 412390.419,
+      "explicitNativeBinaryActivation": true,
+      "sameFrozenSourceAndDependencies": true
+    },
+    "portableFocused": {
+      "Bun": {
+        "tests": 63,
+        "pass": 63,
+        "fail": 0,
+        "skipped": 0
+      },
+      "Deno": {
+        "tests": 63,
+        "pass": 63,
+        "fail": 0,
+        "skipped": 0
+      },
+      "nativeCropFirstRecognitions": 2,
+      "nativeRestartCropCacheHits": 2,
+      "noAdditionalRecognition": true,
+      "originalReceipt": "docs/acceptance/ocr-model-identity/final-portable-receipt.json.gz"
+    },
+    "fullCaseArchive": {
+      "valid": true,
+      "records": 34253,
+      "blobs": 7030,
+      "downloads": 0
+    },
+    "frozenSourceFiles": 588,
+    "installedDependencyFiles": 178,
+    "unchangedFiles": true,
+    "currentPlatformCI": "eight-runtime-jobs-and48-native-browser-cases-passed;Windows-Node-catalog-cancelled",
+    "allRequirementsDelivered": false,
+    "allTargetProductsCollected": false,
+    "productionReady": false,
+    "purchaseReady": false,
+    "collectionStopActive": true,
+    "openIssues": [3, 14, 32, 33, 34, 36, 37, 38, 39, 40],
+    "platformEvidence": "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+    "remotePlatformAcceptance": {
+      "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+      "evidence": "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+      "matrixJobsPassed": 8,
+      "matrixJobsPending": [],
+      "allNineMatrixJobsPassed": false,
+      "nativeE2e": {
+        "tests": 48,
+        "pass": 48,
+        "fail": 0,
+        "skipped": 0
+      },
+      "WindowsDenoAccepted": true,
+      "matrixJobsFailed": 1,
+      "remainingFailure": "Windows Node450000ms catalog deadline",
+      "WindowsDenoSuiteSeconds": 567
+    },
+    "publication": {
+      "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+      "sourcePublishedMain": true,
+      "observedEvidence": "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+      "publicArchiveVerified": {
+        "records": 34253,
+        "blobs": 7030,
+        "downloads": 0
+      },
+      "finalReceiptAndTrackerDelta": "pending-root-publication",
+      "privateAuthenticationAndProfileMaterial": "excluded-from-public-artifacts"
     }
   }
 }

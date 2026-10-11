@@ -1,0 +1,187 @@
+{
+  "checkedAt": "2026-10-11T15:59:43.758440+00:00",
+  "baseSourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+  "frozenFilesChecked": 766,
+  "changes": [
+    {
+      "group": "files",
+      "path": ".github/workflows/links.yml",
+      "before": "31722731e324b5334366502a60743dd12df3c90fcb8451e0725339595a576f74",
+      "after": "0bcb8d5d19ca99205b62669a327a5fad6346f49ca3b2e0ce4ffc1de5b71147fd"
+    },
+    {
+      "group": "files",
+      "path": ".github/workflows/release.yml",
+      "before": "8ea67e8013b93a2a4538d8fe42c5f825a1cf0f3b2c9aa913370db7f491a44e2c",
+      "after": "a10873872661d684611860e742da5556210a09113303303add402b2da68ef2fe"
+    },
+    {
+      "group": "files",
+      "path": "tests/catalog-tables.test.js",
+      "before": "5c3a41e806e063264b425d6574a70be5794f199f2ccd799e24357f9c0feb19e7",
+      "after": "a333f0848daf9be37cd268d24c81c1a8fc03096ea875045609e14ded04740d10"
+    }
+  ],
+  "newChangeDeclaration": ".changeset/bounded-node-catalog-runtime.md",
+  "newChangeDeclarationSha256": "44b481378f34194b959525d1f23bad4b619c67dab556da3ca304289bbce897ab",
+  "libraryAndInstalledDependenciesUnchanged": true,
+  "boundedNodeFilesystemPool": 8,
+  "existingStoreOperationWorkers": 8,
+  "unchangedTestFileBudgetMs": 450000,
+  "unchangedSuiteBudgetSeconds": 600,
+  "observedFailure": "Source99 Windows Node1267pass0assertionfail1catalog-cancellation0skip; actual full Windows Deno567s success,8of9 runtime jobs pass.",
+  "mitigationNotAcceptedOnWindowsYet": true,
+  "officialRuntimeReference": "https://nodejs.org/api/cli.html#uv_threadpool_sizesize",
+  "interpretation": "Node documents a default filesystem threadpool of4 and a launch-time size increase as a potential mitigation. Pool8 matches existing bounded store concurrency. Local timings do not establish cause or Windows acceptance.",
+  "localCounts": {
+    "node-pool8-full-catalog.tap": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 164661.850958
+    },
+    "node-pool8-drained-catalog.tap": {
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 160667.098667
+    },
+    "pipeline-policy-focused.tap": {
+      "tests": 44,
+      "pass": 44,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 133.477
+    }
+  },
+  "fixtureCounts": {
+    "products": 415,
+    "offers": 411,
+    "discoveries": 10237,
+    "skuInventories": 417,
+    "crawls": 17,
+    "availability": 5,
+    "invalidations": 0
+  },
+  "cancellationSafeguard": "Drain the already-started importPromise before fixture removal; after cancellation the test body exits before starting new audits. Original cancellation remains nonzero.",
+  "firstBenchmarkScope": "One selected original source99 committed-catalog test with process-start pool8; not the complete unit suite.",
+  "secondBenchmarkScope": "All three catalog-table tests after drain guard; later nullable initializer and cancelled-body early-return validated separately, not inferred from this non-cancelled run.",
+  "actualFinalCancellationReview": {
+    "receipt": "cancellation-review/receipt.json.gz",
+    "syntheticSmallRealStoreFixture": true,
+    "drained": {
+      "exitCode": 1,
+      "testCancelled": 1,
+      "testFail": 0,
+      "testSkip": 0,
+      "cleanupWaitedForProducer": true,
+      "storePresentUntilProducerRelease": true,
+      "postImportAuditNotStarted": true
+    },
+    "original": {
+      "exitCode": 1,
+      "testCancelled": 1,
+      "testFail": 0,
+      "testSkip": 0,
+      "cleanupRemovedStoreBeforeProducerFinished": true,
+      "postImportAuditNotStarted": true
+    },
+    "harnessInitialAttemptPreserved": true,
+    "originals": [
+      {
+        "path": "cancellation-review/drained-events.json.gz",
+        "originalSha256": "a92a06af263d525f026c0e36b8394f9eca602b91462781cbd10ee16bf6b821bb",
+        "originalBytes": 805,
+        "gzipSha256": "d42588fd78ee1ed2d3c8e7ed7272da5c39368527daa3af08cdc1e855dec9256b"
+      },
+      {
+        "path": "cancellation-review/drained.tap.gz",
+        "originalSha256": "814d222fedf749a3fd2d0c3b3800e00d22e9a5d827677a95e2047d08a48ec26b",
+        "originalBytes": 1464,
+        "gzipSha256": "1c29bac8072229d46946a6a65e2a682ea59c5ba15a2d112308440097d77838f2"
+      },
+      {
+        "path": "cancellation-review/drained.test.mjs.gz",
+        "originalSha256": "962e4d7ffd6a8d4876f6b0537574ab2374a6cf4fdf078a6fa2f66a40502c24e7",
+        "originalBytes": 3428,
+        "gzipSha256": "cd7f0bd25f84214df3b4cd720a4704506363a820eb45b82823688156bf2e9a4b"
+      },
+      {
+        "path": "cancellation-review/exits.txt.gz",
+        "originalSha256": "8574f496e1c88f013577c66c74ff0be93986adb3cd379fbefb75dffe591d21ec",
+        "originalBytes": 31,
+        "gzipSha256": "93a69b77cdbae8eaefdcfe0499a5705035433e79ce5c9510c77fe6d1e9239ac3"
+      },
+      {
+        "path": "cancellation-review/initial-harness-drained.tap.gz",
+        "originalSha256": "8f2649d194a5e33c3b23d80fed58076d8b871ff05e3164ce3e83ba6122564dc7",
+        "originalBytes": 1307,
+        "gzipSha256": "9246302cb698cdd2eb1599f91d88f22205b433775cac616e91a79905ee3807e7"
+      },
+      {
+        "path": "cancellation-review/initial-harness-drained.test.mjs.gz",
+        "originalSha256": "8b7d8174f3a99d78d00b243e302c5c7ad7bca80d39c0c22040a204ce5de4d864",
+        "originalBytes": 3301,
+        "gzipSha256": "0058ceaf08f5118a98befe3f824019fdccbb4aa8fc836a46413a3d7dc9fcacfc"
+      },
+      {
+        "path": "cancellation-review/original-events.json.gz",
+        "originalSha256": "c814a7934fc49e31675912f6b3b0c1fdc5dba8e6521a8297e3e5d95c3648b06a",
+        "originalBytes": 809,
+        "gzipSha256": "885ca998e130cd1712a1c9d59d229d53cadc3198f6d71c562ab77bdd2499974c"
+      },
+      {
+        "path": "cancellation-review/original.tap.gz",
+        "originalSha256": "27487d6a088c1c559bdb06398415efb6dfe2ac1f76dbc98b5ac5847e7ad0af23",
+        "originalBytes": 1472,
+        "gzipSha256": "f7c4e66043697c6bd834dbfc8227f8eb5c8bb3fc788c289cb5f62e3da3efa942"
+      },
+      {
+        "path": "cancellation-review/original.test.mjs.gz",
+        "originalSha256": "b49794b6d939749b703070b7117d734627a1e3d655ed2572925d2a8597f62b2d",
+        "originalBytes": 3430,
+        "gzipSha256": "dcc2a0e2e5a54b4641a84c332447a35ba1326fecaef7874aeab345a6e8afa141"
+      },
+      {
+        "path": "cancellation-review/receipt.json.gz",
+        "originalSha256": "e63447ff97a1dfa9f76fb379d658eaff246490d68aeb3f9aff2da3bbbda7e574",
+        "originalBytes": 2987,
+        "gzipSha256": "43fa31991d3287b55cec5f3a8677a2f455bac698ac6de29d106c25723a2699de"
+      }
+    ]
+  },
+  "logs": [
+    {
+      "path": "node-pool8-full-catalog.tap.gz",
+      "originalSha256": "8f2f5478bd05eebfcfb3bd2064d8dd99abed2c50eb2b642a117bb8450bb5ddb0",
+      "originalBytes": 1512,
+      "gzipSha256": "c462808e676706a81d0b364186119458be2fcd182117e1dd0d413822ade98062"
+    },
+    {
+      "path": "node-pool8-drained-catalog.tap.gz",
+      "originalSha256": "e58f1a79fd46dd28f575d221499e16b0bc7b842b326cefef04ada4a029d86eea",
+      "originalBytes": 2018,
+      "gzipSha256": "06ac290847ce6d4a7d7c7bd1a404860ea94c685a3aaec7f4e75a4e351a5233c7"
+    },
+    {
+      "path": "pipeline-policy-focused.tap.gz",
+      "originalSha256": "b18bda5493e2ef070f08937f436161a2a17a9cb53b88b45e2128d67186b4ad9a",
+      "originalBytes": 10881,
+      "gzipSha256": "048c2161710768a024900e7d22d751aa5594f02ca0ef88715aa8d4ae5019b089"
+    },
+    {
+      "path": "catalog-harness-strict-lint.log.gz",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    }
+  ],
+  "productDownloads": 0,
+  "allRequirementsDelivered": false,
+  "productionReady": false
+}

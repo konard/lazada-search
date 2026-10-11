@@ -378,6 +378,10 @@ jobs:
 
       - name: Run tests (Node.js)
         if: matrix.runtime == 'node'
+        # Match the store's eight bounded I/O workers at process startup.
+        # Preserve complete fixtures, per-file/suite budgets and fsync writes.
+        env:
+          UV_THREADPOOL_SIZE: '8'
         shell: bash
         run: bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test
 

@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-11T15:42:38.739836+00:00",
+  "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+  "previousAcceptedUnitTests": 1309,
+  "previousAcceptedNativeE2eTests": 48,
+  "frozenFilesChecked": 766,
+  "changes": [
+    {
+      "group": "files",
+      "path": ".github/workflows/links.yml",
+      "before": "31722731e324b5334366502a60743dd12df3c90fcb8451e0725339595a576f74",
+      "after": "0bcb8d5d19ca99205b62669a327a5fad6346f49ca3b2e0ce4ffc1de5b71147fd"
+    }
+  ],
+  "sourceAndDependenciesUnchanged": true,
+  "delta": "Exclude the HTTP-served calculator HTML from repository file-link scanning; its root-relative assets are checked by the actual browser E2E. Correct historical online-check comments.",
+  "focusedLinkPolicy": {
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0
+  },
+  "logs": [
+    {
+      "path": "post-full-links-focused.tap.gz",
+      "originalSha256": "a51c408ddb7c4ed193d9efe9b8aaa96d5f062839def54255e31edc5425a72493",
+      "originalBytes": 1167,
+      "gzipSha256": "e8e994e06bb215228b1435f9ee98d9bf038e64ae578352e3d8442f9e20ea13c2"
+    },
+    {
+      "path": "offline-link-ci-original.log.gz",
+      "originalSha256": "b06ea1db739a3e872b1e9166670d78cd3e6bad99e23d5be9c8266abcdf20d682",
+      "originalBytes": 6414180,
+      "gzipSha256": "7581b6044fcd6c9f1f4328b953a00d40dfc5f8209202ff2c94573c6348ab7b72"
+    }
+  ],
+  "actualCorrectedOfflineCi": "pending push and completed actual workflow",
+  "productDownloads": 0
+}

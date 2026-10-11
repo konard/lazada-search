@@ -43,8 +43,7 @@ jobs:
   link-checker:
     name: Check Links
     runs-on: ubuntu-24.04
-    # Typical run: <1min with lychee cache. 10min prevents slow
-    # external hosts or Wayback Machine probes from hanging the workflow.
+    # Bound the local repository scan; external URLs are never requested.
     timeout-minutes: 10
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-link-checker
@@ -68,6 +67,8 @@ jobs:
           # in this repository (similar exclusion pattern as eslint.config.js)
           # Exclude the Vite source HTML because its root-relative app asset
           # URLs are only valid when served by Vite.
+          # The library calculator's /app.css and /app.js resolve at its HTTP
+          # server root; its real browser E2E validates that served page.
           # Exclude tests/fixtures - the captured lychee reports there contain
           # deliberately broken links used as parser test input.
           args: >-
@@ -80,14 +81,15 @@ jobs:
             --timeout 30
             --exclude-path docs/case-studies
             --exclude-path examples/universal-app/index.html
+            --exclude-path src/web/index.html
             --exclude-path tests/fixtures
             --exclude-path docs/acceptance
             --exclude-path data/cases
             './**/*.md'
             './**/*.html'
-          # Don't fail the workflow immediately - we want to check web archive first
+          # Retain the report before the explicit local-link failure gate.
           fail: false
-          # Output file for broken links report (used by check-web-archive.mjs)
+          # Output file for the local broken-link report.
           output: lychee/out.md
           # Write a job summary
           jobSummary: true

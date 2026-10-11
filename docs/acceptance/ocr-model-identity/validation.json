@@ -1,6 +1,6 @@
 {
-  "recordedAt": "2026-10-11T15:26:17.774712+00:00",
-  "status": "full-unit-and-complete-case-coverage-passed-single-run-native-and-remote-matrix-pending",
+  "recordedAt": "2026-10-11T15:33:48.898859+00:00",
+  "status": "full-frozen-local-unit-and-native-e2e-accepted-remote-matrix-pending",
   "baseCommit": "16c3aa2bb3d208b35014f4bc84c9e1b0ebac0820",
   "frozenCode": "final-frozen-code.json",
   "frozenSourceFiles": 588,
@@ -35,7 +35,16 @@
     "command": "LAZADA_TEST_CLINK=<verifiedinstalledclink> node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/native-store.test.js",
     "sameFrozenSource": true
   },
-  "singleFullNativeE2e": "running with LAZADA_TEST_CLINK set; no final result claimed",
+  "singleFullNativeE2e": {
+    "tests": 48,
+    "pass": 48,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 412390.419,
+    "explicitNativeBinaryActivation": true,
+    "sameFrozenSourceAndDependencies": true
+  },
   "portableFocused": {
     "Bun": {
       "tests": 63,
@@ -121,7 +130,7 @@
       "elapsedMs": 282585
     }
   ],
-  "windowsDenoTimeoutResolution": "unproven until actual phase-enabled full CI; no budget or durability changes",
+  "windowsDenoTimeoutResolution": "Actual full Windows Deno source99 CI accepted567s of600s; Windows Node import still cancelled at450000ms per-file budget.",
   "productDownloads": 0,
   "allRequirementsDelivered": false,
   "productionReady": false,
@@ -144,6 +153,28 @@
       "originalSha256": "371adcfab1f1ce2caf09f549d1799cd750568dda4554ec12fc5b89bd0cc277a5",
       "originalBytes": 380,
       "gzipSha256": "b8ee9dca325fb62afce0302710afe4f9d2afc2961187faca296e7d5e1dab13eb"
+    },
+    {
+      "path": "final-complete-e2e.tap.gz",
+      "originalSha256": "4cf5c478dfb77e8bb6b9cf1255275c170f45dec7c7e0ef33aad4e0a98d9b06c1",
+      "originalBytes": 13619,
+      "gzipSha256": "5e9cab2803f6297de5747c146d2a9d9600f94fd4294e38139362449f3bef4546"
+    },
+    {
+      "path": "final-case-archive-verify.json.gz",
+      "originalSha256": "19517c48df607c7fa8b6e1c131f64116baecdee6487f29e0c971c870b21219c0",
+      "originalBytes": 75,
+      "gzipSha256": "67a91f82517727c12e73f77e01a6f0b4368a6dc3b629e8861a545a2aa038f3ed"
     }
-  ]
+  ],
+  "sourceCommit": "99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+  "fullCaseArchive": {
+    "valid": true,
+    "records": 34253,
+    "blobs": 7030,
+    "downloads": 0
+  },
+  "actualPlatformCI": "ci-99ffc7c-review.json",
+  "actualPlatformJobsPassed": 8,
+  "actualPlatformRemaining": "Windows Node full catalog per-file timeout; npm publisher preflight independently blocked."
 }
