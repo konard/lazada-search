@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-11T15:53:17.658303+00:00",
+  "checkedAt": "2026-10-11T16:55:36.866913+00:00",
   "baseline": "implementation-review.json remains a preserved dated independent audit; these updates record subsequent implementation and focused evidence",
   "requirements": [
     {
@@ -206,7 +206,7 @@
       "id": "R033",
       "status": "implemented",
       "mechanicsStatus": "implemented",
-      "realDataAcceptance": "Installed0.31.0 accepted local1309/1309 unit and48/48 native/browser E2E0skip. Actual source99 eight runtime jobs and48/48 native/browser CI pass; full Windows Deno accepted567s. Windows Node alone cancels the catalog import at450000ms.",
+      "realDataAcceptance": "Installed0.31.0 accepted local1309/1309 unit and48/48 native/browser E2E0skip. Current sourcee63df14 passes eight full runtime jobs and48/48 native/browser E2E, including complete Windows Node and Deno; Windows Bun completes within600s but two separate3000ms redirect probes fail.",
       "evidence": [
         "package.json",
         "package-lock.json",
@@ -254,17 +254,45 @@
       "id": "R036",
       "requirement": "Commit/push code, tests and precached public evidence",
       "status": "implemented",
-      "mechanicsStatus": "published-source3af-code-tests-reports-public-case-and-local-full-acceptance",
-      "realDataAcceptance": "Source3af0885 is pushed to main and independently observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Full local source99 receipts and earlier platform originals are already public; new follow-up receipts and tracker updates accompany the next publication. Private authentication/profile/checkout material is excluded.",
+      "mechanicsStatus": "published-code-tests-public-cache-reports-and-complete-local-validation",
+      "realDataAcceptance": "accepted-publication-observed-in-actual-GitHub-checkout",
       "evidence": [
         "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/validation.json",
         "data/cases/vietnam-nha-trang/manifest.json",
         "https://github.com/konard/lazada-search/commit/3af08859f4e31154a51eadb20736dc5d3e249225",
-        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json"
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json",
+        "https://github.com/konard/lazada-search/actions/runs/38155677345"
       ],
-      "finding": "The earlier commit-push-not-independently-checked finding remains a dated baseline. Current source identity is bound by saved GitHub run evidence, not inferred from local changes; this does not claim the newest documentation delta is already pushed."
+      "finding": "Sourcee63df14 publishes all source3af runtime originals, full local1309unit/48native-browser evidence, the unchanged34,253record/7,030blob public case, full1310-test Bun follow-up and current tracker. Actual GitHub run38155677345 observes this published source. Private authentication/profile/checkout material stays local."
+    },
+    {
+      "id": "R041",
+      "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-observed-behavior",
+      "realDataAcceptance": "actual-original-manufacturer-challenge-stop-persisted-and-no-collection-resume",
+      "evidence": [
+        "docs/acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json",
+        "tests/e2e/captcha-stop.test.js",
+        "tests/image-source-challenge.test.js",
+        "docs/acceptance/ocr-model-identity/validation.json"
+      ],
+      "finding": "The original manufacturer403/interstitial is preserved and collection remains globally stopped. Full local and actual native/browser guard suites pass; this continuation performs no marketplace/manufacturer/image downloads. Clearing the external challenge and explicit guarded resume remain necessary to continue collection, without making CAPTCHA detection itself incomplete."
+    },
+    {
+      "id": "R034",
+      "requirement": "At most2 agents for continued work, root also works",
+      "status": "implemented",
+      "mechanicsStatus": "implemented-observed-behavior",
+      "realDataAcceptance": "current-followup-one-subagent-root-concurrent-work-recorded",
+      "evidence": [
+        "docs/acceptance/ocr-model-identity/bun-parallel-review/receipt.json.gz",
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
+      ],
+      "finding": "One resumed subagent froze the bounded-worker proof and workflow contracts while root diagnosed real CI, ran the full suite, preserved originals, updated trackers and published. No other subagent was started. Historical process evidence remains a dated baseline."
     }
   ],
   "additionalRequirements": [
@@ -350,7 +378,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Accepted source99 full local1309unit/48native-browser0skip. Source3af actual eight runtime jobs and48native/browser pass; full Windows Node1268pass0fail0cancel0skip and full Windows Deno1157+8steps0failed pass. Windows Bun completes all catalog assertions but reaches600s before finishing the entire suite. Two-worker follow-up full localBun1310pass0fail accepted, actual current Windows still pending. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "Current sourcee63df14 accepts eight full runtime jobs and48/48 native/browser E2E; Windows Node1269/1269 and Deno1158tests+8steps pass. Windows Bun1271pass2fail finishes1273tests within600s. Two3000ms redirect watchdogs are replaced by deterministic queue probes; fresh full-platform acceptance pending. No unmatched manufacturer nutrition approved.",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -364,7 +392,8 @@
         "docs/acceptance/ocr-model-identity/validation.json",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
-        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json",
+        "docs/acceptance/ocr-model-identity/ci-e63df14-review.json"
       ],
       "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
     },
@@ -373,14 +402,15 @@
       "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
       "status": "implemented",
       "mechanicsStatus": "offline-link-policy-guards-implemented-and-full-local-suite-tested-without-online-retry-or-archive-probes",
-      "realDataAcceptance": "Actual corrected offline workflow38153747585 completedSUCCESS on3af0885,34837links parsed,435local successful,34402excluded,0errors; terminal status gate passed. Captured source originals retain archive digest validation. No external URL liveness claimed.",
+      "realDataAcceptance": "Actual sourcee63df14 offline workflow38155677354 completedSUCCESS;34839links parsed,437local successful,34402excluded,0errors. Issue40 closed after prior source3af acceptance. Originals retain archive digest validation; no external URL liveness claimed.",
       "evidence": [
         ".github/workflows/links.yml",
         "tests/links-workflow.test.js",
         "https://github.com/konard/lazada-search/issues/40",
         "docs/acceptance/ocr-model-identity/validation.json",
         "docs/acceptance/ocr-model-identity/offline-link-contract.json",
-        "docs/acceptance/ocr-model-identity/post-full-link-policy.json"
+        "docs/acceptance/ocr-model-identity/post-full-link-policy.json",
+        "docs/acceptance/ocr-model-identity/ci-e63df14-review.json"
       ],
       "finding": "Offline-only authored repository validation is accepted by actual GitHub execution. Online retries and archive fallback are absent; original capture input remains protected separately by hashes. Served app source HTML is excluded because root-relative assets are validated by the actual browser suite."
     }
@@ -853,15 +883,15 @@
     }
   },
   "latestRuntimeCheckpoint": {
-    "sourceCommit": "3af08859f4e31154a51eadb20736dc5d3e249225",
-    "receipt": "../ocr-model-identity/ci-3af0885-review.json",
+    "sourceCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
+    "receipt": "../ocr-model-identity/ci-e63df14-review.json",
     "runtimeJobsPassed": 8,
     "allNineAccepted": false,
     "WindowsNodeAccepted": true,
     "WindowsDenoAccepted": true,
     "nativeBrowserE2ePassed": 48,
-    "remainingFailure": "Windows Bun600s suite timeout after passing entire committed catalog",
-    "twoWorkerFollowupAcceptancePending": true,
+    "remainingFailure": "Windows Bun two3000ms redirect watchdogs; complete suite457.33s inside600s",
+    "twoWorkerFollowupAcceptancePending": false,
     "allRequirementsDelivered": false,
     "twoWorkerFullLocalBunSuite": {
       "tests": 1310,
@@ -869,6 +899,17 @@
       "fail": 0,
       "files": 158,
       "seconds": 57.73
+    },
+    "deterministicRedirectProbeAcceptancePending": true,
+    "deterministicRedirectFullLocalBunSuite": {
+      "tests": 1312,
+      "pass": 1312,
+      "fail": 0,
+      "skip": 0,
+      "files": 158,
+      "seconds": 61.85,
+      "actualNativeOcr": true,
+      "receipt": "../ocr-model-identity/redirect-queue-validation.json"
     }
   }
 }

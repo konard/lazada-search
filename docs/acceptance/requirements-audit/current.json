@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-11T16:27:49.592Z",
+  "checkedAt": "2026-10-11T16:57:19.546Z",
   "catalogObservedAt": "2026-10-11T13:54:15.320Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
@@ -361,18 +361,6 @@
       "finding": "Dedicated profile disables translate and SessionRestoreInfobar. Existing attached browser preferences are not overwritten; upstream report state not rechecked online."
     },
     {
-      "id": "R034",
-      "requirement": "At most2 agents for continued work, root also works",
-      "status": "implemented",
-      "mechanicsStatus": "recorded-process-compliance",
-      "realDataAcceptance": "historical-not-independently-replayed",
-      "evidence": [
-        "docs/REQUIREMENTS.md:40",
-        "docs/acceptance/collection-readiness.md"
-      ],
-      "finding": "Current audit spawned no agents; previous two research-agent frozen handoffs are documented."
-    },
-    {
       "id": "R035",
       "requirement": "Publish top10 partial prices immediately",
       "status": "implemented",
@@ -385,22 +373,6 @@
         "tests/deadline-report.test.js"
       ],
       "finding": "Published10whey gram,10verified whey protein rows and14ice prices are partial observations; soy is separate, freight/factory gaps remain."
-    },
-    {
-      "id": "R036",
-      "requirement": "Commit/push code, tests and precached public evidence",
-      "status": "implemented",
-      "mechanicsStatus": "published-source3af-code-tests-reports-public-case-and-local-full-acceptance",
-      "realDataAcceptance": "Source3af0885 is pushed to main and independently observed by saved actual GitHub CI. The public case verifies34,253 records and7,030 blobs offline. Full local source99 receipts and earlier platform originals are already public; new follow-up receipts and tracker updates accompany the next publication. Private authentication/profile/checkout material is excluded.",
-      "evidence": [
-        "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
-        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
-        "docs/acceptance/ocr-model-identity/validation.json",
-        "data/cases/vietnam-nha-trang/manifest.json",
-        "https://github.com/konard/lazada-search/commit/3af08859f4e31154a51eadb20736dc5d3e249225",
-        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json"
-      ],
-      "finding": "The earlier commit-push-not-independently-checked finding remains a dated baseline. Current source identity is bound by saved GitHub run evidence, not inferred from local changes; this does not claim the newest documentation delta is already pushed."
     },
     {
       "id": "R037",
@@ -452,20 +424,6 @@
         "docs/acceptance/top10-check/handpicked-manufacturer-review.json"
       ],
       "finding": "All6links map to6selectedSKU across5listings; unavailableVanilla andChocolatePeanutButter are outsidestrictbuyingscope."
-    },
-    {
-      "id": "R041",
-      "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
-      "status": "implemented",
-      "mechanicsStatus": "implemented",
-      "realDataAcceptance": "partial",
-      "evidence": [
-        "src/page-challenge.js:117",
-        "src/cache.js:112",
-        "tests/page-challenge.test.js:78",
-        "tests/e2e/captcha-stop.test.js"
-      ],
-      "finding": "Page/image/manufacturer/login/delivery guard mechanics are present. Offline cached comparisons remainavailable."
     },
     {
       "id": "R042",
@@ -546,7 +504,7 @@
       "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
       "status": "partial",
       "mechanicsStatus": "implemented-bounded-model-byte-fingerprints-private-snapshots-and-original-TSV-reparse",
-      "realDataAcceptance": "Accepted source99 full local1309unit/48native-browser0skip. Source3af actual eight runtime jobs and48native/browser pass; full Windows Node1268pass0fail0cancel0skip and full Windows Deno1157+8steps0failed pass. Windows Bun completes all catalog assertions but reaches600s before finishing the entire suite. Two-worker follow-up full localBun1310pass0fail accepted, actual current Windows still pending. No unmatched manufacturer nutrition approved.",
+      "realDataAcceptance": "Current sourcee63df14 accepts eight full runtime jobs and48/48 native/browser E2E; Windows Node1269/1269 and Deno1158tests+8steps pass. Windows Bun1271pass2fail finishes1273tests within600s. Two3000ms redirect watchdogs are replaced by deterministic queue probes; fresh full-platform acceptance pending. No unmatched manufacturer nutrition approved.",
       "evidence": [
         "https://github.com/konard/lazada-search/issues/37",
         "https://github.com/konard/lazada-search/issues/38",
@@ -560,7 +518,8 @@
         "docs/acceptance/ocr-model-identity/validation.json",
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
-        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json",
+        "docs/acceptance/ocr-model-identity/ci-e63df14-review.json"
       ],
       "finding": "Every selected native language model and PSM12 orientation model is bounded and content-hashed. Same-path equal-size/mtime replacements invalidate cache identity. Cache misses execute against private snapshots verified against those exact hashes; warm entries validate full manifests and reparse original TSV. Historical unbound records remain preserved. The genuine native fixture performs two recognitions, then two restarted crop/TSV/model cache hits without additional recognition. All766 frozen source/dependency/native files remain unchanged in accepted local runs. Platform acceptance remains separately open."
     }
@@ -822,9 +781,9 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-updates.json",
-      "sha256": "3c11017262ea98089f0cb7c4b1d301eeeed750350b9e49142db7ed10a315448a",
-      "bytes": 49252,
-      "observedAt": "2026-10-11T15:53:17.658303+00:00"
+      "sha256": "b6e0247a7674340818cb993f795f4bdaf6f276f33b94bbf45d30733e3e6da5dd",
+      "bytes": 51338,
+      "observedAt": "2026-10-11T16:55:36.866913+00:00"
     },
     {
       "path": "docs/acceptance/requirements-audit/coverage-review.json",
@@ -834,7 +793,7 @@
     },
     {
       "path": "docs/acceptance/requirements-audit/github-issues.json",
-      "sha256": "ac18784b3eb8a248d9ca920a9f263feda4ec70f0a38a32d167a8840b39527441",
+      "sha256": "2e6f201afa504cc2e8e3412c9a2d1f95aa6d7af3e03e371327e27d7d05ea41f0",
       "bytes": 9913,
       "observedAt": null
     },

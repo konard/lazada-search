@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -76,9 +77,54 @@ async function bounded(operation) {
   }
 }
 
+function nonNestedScheduler(options = {}) {
+  const scheduler = new DomainScheduler(options);
+  const context = new AsyncLocalStorage();
+  const run = scheduler.run.bind(scheduler);
+  scheduler.run = (url, action) => {
+    assert.notEqual(
+      context.getStore()?.active,
+      true,
+      'Redirect scheduling must release its preceding scheduler callback'
+    );
+    return run(url, () => {
+      const held = { active: true };
+      return context.run(held, async () => {
+        try {
+          return await action();
+        } finally {
+          held.active = false;
+        }
+      });
+    });
+  };
+  return scheduler;
+}
+
+for (const targetHost of ['a.example', 'b.example']) {
+  test(`redirect scheduler probe rejects nested ${targetHost === 'a.example' ? 'same-host' : 'cross-host'} calls before acquiring another queue`, async () => {
+    const scheduler = nonNestedScheduler({ intervalMs: 0 });
+    const source = 'https://a.example/source.png';
+    const target = `https://${targetHost}/target.png`;
+    let targetRuns = 0;
+    await scheduler.run(source, async () => {
+      await Promise.resolve();
+      const precedingQueue = scheduler.tails.get(targetHost);
+      assert.throws(
+        () => scheduler.run(target, () => targetRuns++),
+        /release its preceding scheduler callback/u
+      );
+      assert.equal(scheduler.tails.get(targetHost), precedingQueue);
+      assert.equal(targetRuns, 0);
+    });
+    await scheduler.run(target, () => targetRuns++);
+    assert.equal(targetRuns, 1);
+  });
+}
+
 test('each same-host redirect is independently paced and preserved before its next request without nested queue locks', async (t) => {
   const waits = [];
-  const scheduler = new DomainScheduler({
+  const scheduler = nonNestedScheduler({
     intervalMs: 60000,
     sleep: async (wait) => waits.push(wait),
   });
@@ -108,7 +154,7 @@ test('each same-host redirect is independently paced and preserved before its ne
     assert.deepEqual(await store.blob(hop.blob.sha256), redirectHtml);
     return response(url, png, { etag: 'exact-label' });
   };
-  const image = await bounded(cache.image(initial, { fetchImage }));
+  const image = await cache.image(initial, { fetchImage });
   assert.deepEqual(calls, [initial, final]);
   assert.equal(downloads, 2);
   assert.equal(waits.length, 1);
@@ -122,7 +168,10 @@ test('each same-host redirect is independently paced and preserved before its ne
 });
 
 test('opposing cross-host chains release each initial host before requesting the other host', async (t) => {
-  const { cache, store } = await temporary(t);
+  const { cache, store } = await temporary(
+    t,
+    nonNestedScheduler({ intervalMs: 0 })
+  );
   const a = 'https://a.example/start.png';
   const b = 'https://b.example/start.png';
   const calls = [];
@@ -152,12 +201,10 @@ test('opposing cross-host chains release each initial host before requesting the
     assert.equal((await store.list('image-source-hop')).length, 2);
     return response(url, png);
   };
-  const results = await bounded(
-    Promise.all([
-      cache.image(a, { fetchImage }),
-      cache.image(b, { fetchImage }),
-    ])
-  );
+  const results = await Promise.all([
+    cache.image(a, { fetchImage }),
+    cache.image(b, { fetchImage }),
+  ]);
   assert.deepEqual(
     new Set(calls),
     new Set([
@@ -226,7 +273,10 @@ test('a redirect response challenge is preserved before the durable stop and no 
 
 for (const cycle of [true, false]) {
   test(`redirect ${cycle ? 'cross-host cycle' : 'hop limit'} fails with bounded preserved originals and negative-cache replay`, async (t) => {
-    const { cache, store } = await temporary(t);
+    const { cache, store } = await temporary(
+      t,
+      nonNestedScheduler({ intervalMs: 0 })
+    );
     const initial = 'https://a.example/0.png';
     const calls = [];
     const fetchImage = async (url) => {
@@ -242,7 +292,7 @@ for (const cycle of [true, false]) {
         location: next,
       });
     };
-    await assert.rejects(bounded(cache.image(initial, { fetchImage })), {
+    await assert.rejects(cache.image(initial, { fetchImage }), {
       code: 'IMAGE_SOURCE_FAILED',
       message: cycle ? /cycle/u : /too long/u,
     });

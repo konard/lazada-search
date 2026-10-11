@@ -1,0 +1,125 @@
+{
+  "checkedAt": "2026-10-11T16:56:43.865291+00:00",
+  "sourceBaseCommit": "e63df146280ea9baff57c56656e7d7b7dabcf727",
+  "reason": "Two3000ms wallclock redirect-chain watchdogs failed Windows Bun despite complete1273-test suite inside600s. Replace four chain watchdogs with callback ownership assertions and retain actual durable source and queue checks.",
+  "productionLibraryChanges": [],
+  "testChanges": [
+    {
+      "group": "files",
+      "path": "tests/image-redirect-pacing.test.js",
+      "before": "894fd6ce85e7a7dd8a4aa904abf43b8eed4c1fd74e015b268201676ae22c82a1",
+      "after": "cd9d9846fecad0a318faa7554fdee932673dca321ebfcbf958bd521a4f70faff"
+    }
+  ],
+  "fullLocalBun": {
+    "pass": 1312,
+    "fail": 0,
+    "skip": 0,
+    "files": 158,
+    "seconds": 61.85,
+    "wrapperSeconds": 62,
+    "budgetSeconds": 600,
+    "nativeOcrActualPassObserved": true,
+    "command": "PATH=/Users/konard/.nvm/versions/node/v22.23.0/bin:/Users/konard/.bun/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin LAZADA_REQUIRE_NATIVE_OCR=1 bash scripts/run-with-budget-warning.sh 600 \"Bun test suite\" bun test --parallel=2 --no-orphans --timeout 450000 ./tests/*.test.js",
+    "note": "Native activation is established by the installed Tesseract on PATH and actual pass output; LAZADA_REQUIRE_NATIVE_OCR has no test behavior."
+  },
+  "rejectedPriorLocalAttempt": {
+    "pass": 1311,
+    "fail": 0,
+    "skip": 1,
+    "reason": "Root launch omitted /opt/homebrew/bin from PATH; actual native OCR unavailable. Original retained; this is not zero-skip acceptance."
+  },
+  "focusedRuntimePasses": {
+    "Node": 18,
+    "Bun": 18,
+    "Deno": 18
+  },
+  "artificialDurableLatency": {
+    "Node": "Both affected completed native writes delayed3500ms;18/18pass0fail/cancel/skip",
+    "Bun": "Both affected completed native writes delayed3500ms;18/18pass0fail/skip",
+    "receipt": "redirect-queue-review/durable-delay-receipt.json.gz",
+    "isWindowsAcceptance": false
+  },
+  "negativeControls": "Deliberate inherited async nested same-host and cross-host run fail before acquiring a queue; allowed external runs subsequently succeed. Temporary preload observes genuine underlying target entries only for allowed runs.",
+  "unchanged": "Every complete catalog record, store fsync write,450000ms file limit,600s suite limit and15min job limit. One test file plus changeset differs from sourcee63; all178 installed/native files and production library hashes unchanged.",
+  "frozenExecutableSnapshot": "redirect-frozen-code.json",
+  "rawOriginals": [
+    {
+      "path": "redirect-queue-review/bun.log.gz",
+      "originalBytes": 2336,
+      "originalSha256": "9e28003cd8dbf17d17ce8c44f1fa8e0e0762889246779d6527aeedf377b40878",
+      "gzipSha256": "4487349450996a1f27427123c9315336284a9216511c0c8e7a56f8abe941c783"
+    },
+    {
+      "path": "redirect-queue-review/deno.log.gz",
+      "originalBytes": 2929,
+      "originalSha256": "ebe8799a0a70a99460e8248da60a621ffc5a3c98c93447b68acaa604e2b8be7b",
+      "gzipSha256": "986b78b3e0053fa9dd1b4cdee528d39ba4b08d9f41b97a690caec8ff4b622b24"
+    },
+    {
+      "path": "redirect-queue-review/durable-delay-bun.log.gz",
+      "originalBytes": 3170,
+      "originalSha256": "319131e3bdf5c5055550391a248fe7fa0329da8d12f7d3fcc8e36298c117a561",
+      "gzipSha256": "3c8456ad27386d6c25bd242e606b771d2cb675f70c85a7145169f7be245335ed"
+    },
+    {
+      "path": "redirect-queue-review/durable-delay-node.log.gz",
+      "originalBytes": 6022,
+      "originalSha256": "e51db7ee870f4d2b5af265d300552faa1f4f581e7100bf6cfdbc1b0d8d885b75",
+      "gzipSha256": "6b82e0c775eb45f24eb58d7b88dc1958a78688f7cefb5b87e24c6a6d987bc8d9"
+    },
+    {
+      "path": "redirect-queue-review/durable-delay-preload.mjs.gz",
+      "originalBytes": 1777,
+      "originalSha256": "40455be89ac2a512474f774ac4c5b4c7bbd61d034082e1fb8bd3c6ad53ac129c",
+      "gzipSha256": "468460e8258eb343ddbd8e3bbe383d0ea0743f14dc3937d4ecade83d60277d68"
+    },
+    {
+      "path": "redirect-queue-review/durable-delay-receipt.json.gz",
+      "originalBytes": 5709,
+      "originalSha256": "6973122122b764e2c2b1d53d1dfd76e9f1d9880ce74534cf0488fabe05d93521",
+      "gzipSha256": "487b0c20609de3daf3472a206f852ef9931de349cb4680d83b3bdefcd909b7eb"
+    },
+    {
+      "path": "redirect-queue-review/eslint.log.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "path": "redirect-queue-review/full-bun-native-path-omitted.log.gz",
+      "originalBytes": 147957,
+      "originalSha256": "7040a8ee5f6816a48ba5532a90b5ce6ffe1a2fbf9b11b0362d0f156ec5a9590f",
+      "gzipSha256": "1e25d97bdfd23b39b0f87ef2bfbebd0a9fbcb2e9bab6f629ee4ad5db7e306c92"
+    },
+    {
+      "path": "redirect-queue-review/full-bun.log.gz",
+      "originalBytes": 148126,
+      "originalSha256": "db8551edc74567ca2d950d5b97725ed7a047e3b2b10c3a9d7bdcc582f0db18bf",
+      "gzipSha256": "07ca0570f2f9b285083cccfe1e725165032a58f426e7f3972d3bcb6f2c71bc2a"
+    },
+    {
+      "path": "redirect-queue-review/node.log.gz",
+      "originalBytes": 5187,
+      "originalSha256": "88fe5c506505b1c122f28f194161f6d7e29eb748fd17914442920b003976e4a0",
+      "gzipSha256": "1c2b60665c10160510ec7832f9b50f909a13b051809cf09024f59d5936b9705c"
+    },
+    {
+      "path": "redirect-queue-review/prettier.log.gz",
+      "originalBytes": 66,
+      "originalSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59"
+    },
+    {
+      "path": "redirect-queue-review/receipt.json.gz",
+      "originalBytes": 4713,
+      "originalSha256": "583ef03ce2a85147ea26af82be7b4d41b388035c348cc1d01b3d8d3365e782f6",
+      "gzipSha256": "894d43d74ca7d1eb31a7a5348e6b85881d0fe37e35cae07a6a0915808c9e92b0"
+    }
+  ],
+  "productDownloads": 0,
+  "fullCurrentPlatformAcceptance": "Pending new original9-runtime CI checkout after publication; previous sourcee63 is8/9, not accepted complete.",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false
+}
