@@ -14,6 +14,7 @@ export async function connectPersistentBrowser(
     return await connect(connectionOptions);
   } catch (error) {
     if (
+      options.targetId ||
       !/Browser\.setDownloadBehavior/u.test(error.message) ||
       !/Browser context management is not supported/u.test(error.message)
     ) {

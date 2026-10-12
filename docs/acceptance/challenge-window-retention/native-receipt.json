@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-12T15:12:01.565363+00:00",
+  "runtime": "Node v22.23.0",
+  "browserCommanderVersion": "0.31.2",
+  "fixture": "tests/e2e/challenge-window-retention.test.js",
+  "fixtureSha256": "3f7440825800d6975feb3883901ab3a1339637245faa1b9a03c0902a90f9d930",
+  "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/challenge-window-retention.test.js",
+  "log": "/private/tmp/lazada-challenge-window-retention-browser-0312-diagnostic-final.tap",
+  "tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 73902.63025,
+  "isolation": "Isolated headless Chrome temporary private stores/profiles; fixture requests intercepted; all later documents static with no requests. No real accounts/profiles/Lazada sources or collection-stop state touched.",
+  "guards": [
+    "Original page target/browser PID survives close and idle",
+    "Independent client restart reconnects original target behind foreground tab",
+    "Manual challenge-target closure refuses any new page or window",
+    "Attached challenged tab retained",
+    "Timeout challenge retained",
+    "SIGKILL/SIGTERM/SIGINT replaces supervisor only",
+    "Adopted SIGTERM replacement survives later SIGINT",
+    "Wrong clear/challenged targets cannot replace or resume original challenge",
+    "Missing/false persistentWindow retains pending challenge",
+    "Explicit fixture clearance and resume permits normal idle closure",
+    "False normal unchallenged close shuts owned browser"
+  ],
+  "preservedFailureLogs": [
+    "/private/tmp/lazada-challenge-window-retention-final-twelve.tap",
+    "/private/tmp/lazada-challenge-window-retention-browser-0312.tap",
+    "/private/tmp/lazada-challenge-window-retention-browser-0312-final.tap",
+    "/private/tmp/lazada-retention-sigkill-0312-diagnostic.tap",
+    "/private/tmp/lazada-retention-sigkill-0312-traced.tap"
+  ],
+  "lintLog": "/private/tmp/lazada-challenge-window-retention-eslint-final.log",
+  "formatLog": "/private/tmp/lazada-challenge-window-retention-prettier-final.log",
+  "fixtureDiagnosticChanges": "Bound cleanup CDP promises and preserve resume acquisition cause in assertions; keep runner alive until original120s deadline. Original target/PID/page-set/navigation/stop assertions retained. No test skips or production retries added."
+}

@@ -26,6 +26,15 @@ declare const source: BasketSourceMapping;
 declare const originalHtml: Uint8Array;
 declare const manufacturerSources: ManufacturerSourceCache;
 declare const nativeOcr: TesseractOcr;
+const challengeStatus = await application.collector.collectionStatus();
+const challengePageOpen: boolean | undefined =
+  challengeStatus.handoff?.pageOpen;
+const challengeTarget: string | undefined = challengeStatus.browser?.targetId;
+await application.collector.start({
+  existingOnly: true,
+  targetId: challengeTarget,
+});
+void challengePageOpen;
 const modelBoundOcr = await nativeOcr.recognize({
   type: 'stored-blob',
   sha256: 'b'.repeat(64),

@@ -908,8 +908,9 @@ export declare class BrowserCollector {
     captureTimeoutMs?: number;
     flavourScope?: ComparisonOptions['flavourScope'];
   });
-  start(): Promise<void>;
+  start(options?: { existingOnly?: boolean; targetId?: string }): Promise<void>;
   assertCollecting(): Promise<void>;
+  collectionStatus(): Promise<CollectionStopState>;
   resumeCollection(): Promise<CollectionStopState>;
   page(
     url: string,
@@ -938,6 +939,23 @@ export interface CollectionStopState {
   resumedAt?: string;
   origin?: string | null;
   signals?: string[];
+  browser?: {
+    targetId?: string;
+    mode: 'persistent' | 'attached' | 'ephemeral';
+    headless?: boolean;
+  };
+  handoff?: {
+    status:
+      | 'no-browser-page'
+      | 'window-unavailable'
+      | 'window-unreachable'
+      | 'window-closed'
+      | 'page-open'
+      | 'awaiting-user'
+      | 'headless-page'
+      | 'visibility-unconfirmed';
+    pageOpen: boolean;
+  };
 }
 export declare const COLLECTION_STOP_ID: string;
 export declare class CollectionStoppedError extends Error {

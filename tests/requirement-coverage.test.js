@@ -46,12 +46,12 @@ test('all recorded requirements retain executable regression references or expli
 });
 
 test('GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates', async () => {
+  const registry = requirementDraftStatus();
   const snapshot = JSON.parse(
     await readFile(
-      new URL('../docs/drafts/github-issues-review.json', import.meta.url)
+      new URL(`../${registry.githubIssueSnapshot}`, import.meta.url)
     )
   );
-  const registry = requirementDraftStatus();
   const ids = new Set(registry.requirements.map((row) => row.id));
   assert.equal(registry.githubIssues.length, snapshot.length);
   for (const issue of snapshot) {
@@ -67,7 +67,7 @@ test('GitHub issue coverage retains every recorded issue, current source paths a
     registry.githubIssues
       .filter((row) => row.state === 'OPEN')
       .map((row) => row.number),
-    [3, 14, 32]
+    [3, 14, 32, 42]
   );
 });
 

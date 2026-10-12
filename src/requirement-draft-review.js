@@ -399,8 +399,11 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   },
   R028: {
     reviewedDraftBehavior:
-      'The existing owned persistent browser worker reuses its window across restarts and closes after 30 idle minutes; draft workflows reuse the same collector.',
+      'Owned windows preserve the exact detected challenge target through cleanup, timeouts, idle and supervisor recovery. Read-only status never launches. Resume reconnects the original target only; ordinary 30-minute idle closure applies after explicit clearance.',
     testDraftFiles: [
+      'tests/browser-challenge-handoff.test.js',
+      'tests/browser-connection.test.js',
+      'tests/e2e/challenge-window-retention.test.js',
       'tests/browser-pacing.test.js',
       'tests/e2e/persistent-window.test.js',
       'tests/e2e/persistent-window-recovery.test.js',
@@ -452,7 +455,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   },
   R032: {
     reviewedDraftBehavior:
-      'All 40 GitHub issues are reconciled with the refreshed snapshot; historical upstream reports remain linked, and newly reproduced dependency defects must be checked for duplicates and reported.',
+      'All 41 project GitHub issues are reconciled with the current snapshot. Browser Commander interruption ownership is reported upstream as issue174, with its consumer workaround and actual native regression evidence retained.',
     testDraftFiles: [],
     additionalDraftSourceFiles: [
       'docs/drafts/github-issues-review.json',
@@ -467,7 +470,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   },
   R033: {
     reviewedDraftBehavior:
-      'Official release latestness was checked: installed Browser Commander and latest official release are both 0.31.1. Future upgrades retain locked dependency and native/interface acceptance.',
+      'The official registry/release check found Browser Commander0.31.2, and npm/lock dependencies were updated. Focused and full runtime/native acceptance must use that exact reviewed graph.',
     testDraftFiles: [
       'tests/runtime-workflow.test.js',
       'tests/package-metadata.test.js',
@@ -579,6 +582,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'A persisted global collection stop blocks all new website requests, including factory/images and prepared checkout. Offline reports and planning never clear that stop.',
     testDraftFiles: [
+      'tests/browser-challenge-handoff.test.js',
+      'tests/e2e/challenge-window-retention.test.js',
       'tests/handpicked-links.test.js',
       'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
@@ -586,7 +591,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'tests/lazada-checkout-draft.test.js',
       'tests/e2e/captcha-stop.test.js',
     ],
-    additionalDraftSourceFiles: [],
+    additionalDraftSourceFiles: ['src/browser-challenge-handoff.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
     functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',

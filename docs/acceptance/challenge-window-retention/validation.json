@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12T15:13:38.757819+00:00",
+  "branch": "draft/remaining-requirements",
+  "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
+  "scope": "Detected-page retention and truthful handoff status; no live collection or user-browser opening.",
+  "browserCommander": {
+    "installedVersion": "0.31.2",
+    "latestRegistryVersion": "0.31.2",
+    "releasePublishedAt": "2026-10-12T07:01:35Z",
+    "releaseUrl": "https://github.com/link-foundation/browser-commander/releases/tag/v0.31.2",
+    "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
+  },
+  "local": {
+    "nodeFull": {
+      "passed": 1470,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "qualification": "Before the final additional close-guard control; final full source revalidation remains required."
+    },
+    "finalFocusedNode": {
+      "passed": 113,
+      "failed": 0
+    },
+    "finalCloseControls": {
+      "passed": 10,
+      "failed": 0
+    },
+    "focusedBun": {
+      "passed": 112,
+      "failed": 0
+    },
+    "focusedDeno": {
+      "passed": 112,
+      "failed": 0
+    },
+    "nativeRetention": {
+      "passed": 12,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "strictTypes": "passed",
+    "finalFullSourceAcceptance": "pending"
+  },
+  "sourceSha256": {
+    "bin/lazada-search.js": "ca18e4118347a6babd13a765ecb608efdf3a895407a4d84e3e4366b66c4cbdf7",
+    "deno.lock": "b82263a5abcceaec083b0dcafefb1d4a96a17dbbc78dfabd4ccc7cd5667279fa",
+    "package-lock.json": "27ee9afca7c9debfa008fb5b4e82c6f11fe737ddb6c73dfd3b5d7d2d8b63d0a0",
+    "package.json": "cafb28c897cc55873641a07172ef4b815c2e7eb2ccb2de1a738859e23a6ca4ee",
+    "scripts/collect-manufacturer-sources.mjs": "c94529140c3cad1bd7e1d0870baf02cae8493abb035bbb15de1ea80b1fb2fa67",
+    "src/browser-challenge-handoff.js": "24b4ee308b7a6e62e8bc0306c20397785b68232852295424ea0e853aedf1c430",
+    "src/browser-connection.js": "cf8064be68f78cbae15dd181b37cf0d2aa0fc7c7ac0c00bda393c2df66f80295",
+    "src/browser.js": "dd5bedc25ef6e0e17ecf066ecf52d0ed0d7d05d2da7edb1fd0de12bfd166af33",
+    "src/commands.js": "668a8459fb2400bbce45a1a523dc3d0fbc3194eebc947d0b179834d26fe4432c",
+    "src/index.d.ts": "6dc267b5408d224938da79e21db4284598f455daa47123891347b10f3050faea",
+    "src/page-challenge.js": "f1893a6a9d660e07469441cbace2983e5212f687c9ff21f8bad24b9ea019a5db",
+    "src/persistent-browser-worker.js": "845f84f57ee1341a36eaad07c0b16935d2305f1f9cd8e5123ff88bc2b2d913a9",
+    "src/persistent-browser.js": "c1e4d83c8f83f7c0a04023ed87e481dd2812c61bb8619450bd31b81e16cc24f5",
+    "src/requirement-draft-review.js": "b8f98aef440cf241b19a3ed415e6105adaed076b18e79a0ba9649efc43ce6b44",
+    "src/requirement-registry.js": "3f45f83e3ed0a3bbc53462ed54ad1de43a6bfc63d69d5d0d7644b11247af19da",
+    "src/server.js": "953cde3d85c290e83bcececd6b71822466572242c87663ff7915f5375b155a4e",
+    "tests/browser-challenge-handoff.test.js": "0f118d638de8fc9c3f15f8ee064d91dac31afebb7cdb2a079aeb1ff419f1e2f2",
+    "tests/browser-connection.test.js": "3ad5db014baf37345d15606cfca1b65cb8b3f99bac479f598ac76f1745880875",
+    "tests/e2e/challenge-window-retention.test.js": "3f7440825800d6975feb3883901ab3a1339637245faa1b9a03c0902a90f9d930",
+    "tests/fixtures/public-api-types.ts": "43834efeec71bc09b37cb7ff588c49f169201c369c3fcccc1f7ce7fb733712fd",
+    "tests/requirement-coverage.test.js": "cf0f9fc01045861894ba2aef6a596670dfa3a4b078db2ab2fda0cadc581e0479"
+  },
+  "logs": {
+    "node-full-before-final-close-guard.tap.gz": {
+      "rawSha256": "3a94598d67aee24c23d2603a74f24c5f823489e293d6cd40628c4ee538f303ad",
+      "rawBytes": 363833,
+      "footer": {
+        "tests": "1470",
+        "pass": "1470",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "396765.299"
+      }
+    },
+    "node-final-focused.tap.gz": {
+      "rawSha256": "d30df17f7cfda90d9dd1b4ae3ce24c6cba6879a7691ec85e6a5a4dfe6a735241",
+      "rawBytes": 27001,
+      "footer": {
+        "tests": "113",
+        "pass": "113",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "8576.917791"
+      }
+    },
+    "node-final-close-controls.tap.gz": {
+      "rawSha256": "ca746c357a2ca7e09e23f8fd831ab55ab051862d1819c7be05b5eeb40cc81bf6",
+      "rawBytes": 2454,
+      "footer": {
+        "tests": "10",
+        "pass": "10",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "1802.266667"
+      }
+    },
+    "bun-focused.log.gz": {
+      "rawSha256": "ee70e13d8ce0f30c80f6ea11525b1a41192d096f715b9786f49531680db6d6d1",
+      "rawBytes": 11707
+    },
+    "deno-focused.log.gz": {
+      "rawSha256": "afd40369d1356c0b80847b44d23a7776a5cf65987af3e0a552b482b0271da8d0",
+      "rawBytes": 12609
+    },
+    "native-final.tap.gz": {
+      "rawSha256": "0c26b13eafb7773e5eb91a597ab798c790bf10ead1b8058ebb4502f3e8efd29a",
+      "rawBytes": 4048,
+      "footer": {
+        "tests": "12",
+        "pass": "12",
+        "fail": "0",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "73902.63025"
+      }
+    },
+    "types.log.gz": {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    "checks-before-final-controls.log.gz": {
+      "rawSha256": "c13bd8476172724689be42fb8183b8806262916d132b26f81e36832ab9930a1d",
+      "rawBytes": 141316
+    },
+    "dependency-update.log.gz": {
+      "rawSha256": "58c5283a1e9fe56f49f97bc1d0f7a8e35063aa50f402c414a03c4c1084bd229a",
+      "rawBytes": 142
+    },
+    "initial-node-offline-cleanup-failures.tap.gz": {
+      "rawSha256": "485d20a315526e39c21c411895e4fd2fe1c7921dc99a02bc7d26f2c5292659cf",
+      "rawBytes": 365008,
+      "footer": {
+        "tests": "1466",
+        "pass": "1464",
+        "fail": "2",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "295603.344959"
+      }
+    },
+    "initial-node-memory-adapter-failures.tap.gz": {
+      "rawSha256": "479838a5bfa6bc4f50c2d95c7ef9d6cfc4aab2decc3b9c799b4e92820fd2e213",
+      "rawBytes": 366209,
+      "footer": {
+        "tests": "1470",
+        "pass": "1467",
+        "fail": "3",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "279924.076666"
+      }
+    },
+    "initial-full-native-overlapping-source.tap.gz": {
+      "rawSha256": "a306b6c1266456b6d25d1f32f40636842b8204814caf2d9236d4a4df7fd6577b",
+      "rawBytes": 22722,
+      "footer": {
+        "tests": "78",
+        "pass": "75",
+        "fail": "2",
+        "cancelled": "1",
+        "skipped": "0",
+        "duration_ms": "580595.274583"
+      }
+    },
+    "initial-context-handle-native-failure.tap.gz": {
+      "rawSha256": "a988c3071cc686c45003ac7da4d94f92bc11f5572940872138bd42fb626a7523",
+      "rawBytes": 5908,
+      "footer": {
+        "tests": "4",
+        "pass": "0",
+        "fail": "4",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "8025.084958"
+      }
+    },
+    "initial-twelve-native-failures.tap.gz": {
+      "rawSha256": "adacc6dd8ab5ef7bbbcffdb39e486c841a6d3ac8ac3d6394d588c0404c0fa8d5",
+      "rawBytes": 6759,
+      "footer": {
+        "tests": "12",
+        "pass": "7",
+        "fail": "5",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "79838.633042"
+      }
+    },
+    "native-0311-startup-failure.tap.gz": {
+      "rawSha256": "46215826825170b659c0200de4181560959925bc80584c2fe4c0e823d2dca6c3",
+      "rawBytes": 6385,
+      "footer": {
+        "tests": "12",
+        "pass": "11",
+        "fail": "1",
+        "cancelled": "0",
+        "skipped": "0",
+        "duration_ms": "94048.218125"
+      }
+    },
+    "native-0312-initial-failure.tap.gz": {
+      "rawSha256": "28e59eab0fac0995c9d736fb1b387e3659aba99a64e9f53648f447ec75d5a24c",
+      "rawBytes": 6809,
+      "footer": {
+        "tests": "12",
+        "pass": "4",
+        "fail": "1",
+        "cancelled": "7",
+        "skipped": "0",
+        "duration_ms": "56104.998292"
+      }
+    },
+    "native-0312-initial-cancellation.tap.gz": {
+      "rawSha256": "8ff471322802bbb8226b7fa4613a08120589c55f27d027957a32153b9b5db8fe",
+      "rawBytes": 6514,
+      "footer": {
+        "tests": "12",
+        "pass": "4",
+        "fail": "0",
+        "cancelled": "8",
+        "skipped": "0",
+        "duration_ms": "59104.242166"
+      }
+    },
+    "initial-deno-lock-mismatch.log.gz": {
+      "rawSha256": "6f79c0520e35eb632f45833b96bd6fee5aecdca69bee96b238e5dccdec30bae8",
+      "rawBytes": 223
+    }
+  },
+  "github": {
+    "pullRequest": "https://github.com/konard/lazada-search/pull/41",
+    "consumerIssue": "https://github.com/konard/lazada-search/issues/42",
+    "currentIssueInventory": "github-issues.json",
+    "mappedRequirements": 49,
+    "mappedProjectIssues": 41,
+    "finalCI": "pending"
+  },
+  "liveMarketplaceRequests": 0,
+  "liveManufacturerRequests": 0,
+  "userBrowserOpenedOrReopened": false,
+  "savedCollectionStopCleared": false,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false
+}

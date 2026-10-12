@@ -1,7 +1,15 @@
 import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
 import { resolvePageDialogs } from './page-dialogs.js';
-import { acquireBrowserWindow } from './persistent-browser.js';
+import {
+  acquireBrowserWindow,
+  closeBrowserWindow,
+} from './persistent-browser.js';
+import {
+  collectionStatus,
+  pageTargetId,
+  retainChallengePage,
+} from './browser-challenge-handoff.js';
 import { waitForPageReady } from './page-readiness.js';
 import { scrollProductContent } from './page-scroll.js';
 import { storeViewport } from './page-capture.js';
@@ -20,9 +28,9 @@ import {
   inspectPageChallenge,
   assertPageNotChallenged,
   assertCollectionRunning,
-  stopForChallenge,
   COLLECTION_STOP_ID,
   registerChallengeStore,
+  mutateCollectionStop,
   CollectionStoppedError,
 } from './page-challenge.js';
 
@@ -499,8 +507,16 @@ export class BrowserCollector {
     }
   }
 
-  async start() {
+  async start({ existingOnly = false, targetId } = {}) {
     if (!this.runtime) {
+      if (
+        this.browserOptions.launch === 'engine' &&
+        this.browserOptions.headless === false
+      ) {
+        throw new Error(
+          'Interactive challenge retention requires an owned real browser or an existing CDP browser; headed engine mode is unsupported'
+        );
+      }
       const { launchBrowser, connectBrowser, makeBrowserCommander } =
         await import('browser-commander');
       this.attached = Boolean(this.browserOptions.cdpEndpoint);
@@ -526,24 +542,33 @@ export class BrowserCollector {
         ],
       };
       this.persistent =
-        !this.attached &&
-        (this.browserOptions.persistentWindow ??
-          (launchOptions.headless === false &&
-            launchOptions.launch !== 'engine'));
+        !this.attached && (existingOnly || launchOptions.launch !== 'engine');
+      if (existingOnly && !targetId) {
+        throw new Error(
+          'The original challenge tab was not retained; no window will be opened'
+        );
+      }
       this.runtime = this.attached
         ? await connectBrowser({
             engine: 'playwright',
             cdpEndpoint: this.browserOptions.cdpEndpoint,
             timeout: 30000,
             debug: this.browserOptions.debug ?? false,
+            ...(existingOnly ? { targetId, fallback: false } : {}),
           })
         : this.persistent
-          ? await acquireBrowserWindow(this.store.directory, launchOptions)
+          ? await acquireBrowserWindow(this.store.directory, {
+              ...launchOptions,
+              existingOnly,
+              targetId,
+            })
           : await launchBrowser(launchOptions);
-      if (this.attached) {
+      if (this.attached && !existingOnly) {
         this.runtime.page = await this.runtime.page.context().newPage();
       }
-      registerChallengeStore(this.runtime.page, this.store);
+      registerChallengeStore(this.runtime.page, this.store, (challenge) =>
+        this.retainChallenge(challenge)
+      );
       this.closing = false;
       this.imageTasks = new Set();
       this.imageRoute = async (route) => {
@@ -731,9 +756,17 @@ export class BrowserCollector {
       ]);
     } catch (error) {
       if (error.code === 'COLLECTION_STOPPED') {
-        await stopForChallenge(this.store, error.challenge || {});
+        await this.retainChallenge(error.challenge || {});
       }
       if (timedOut) {
+        // A timeout must not replace a challenge tab while the person needs it.
+        try {
+          await assertPageNotChallenged(this.runtime.page);
+        } catch (challengeError) {
+          if (challengeError.code === 'COLLECTION_STOPPED') {
+            throw challengeError;
+          }
+        }
         // Close the collector-owned page so a late navigation cannot modify
         // the next capture. Existing attached-browser tabs stay untouched.
         if (this.persistent) {
@@ -775,6 +808,7 @@ export class BrowserCollector {
       waitForNetworkIdle: false,
     });
     await page.waitForTimeout(this.settleMs);
+    await this.assertCollecting();
     await resolvePageDialogs(page);
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
@@ -905,35 +939,75 @@ export class BrowserCollector {
         await assertPageNotChallenged(this.runtime.page);
       } catch (error) {
         if (error.code === 'COLLECTION_STOPPED') {
-          await stopForChallenge(this.store, error.challenge);
+          await this.retainChallenge(error.challenge);
         }
         throw error;
       }
     }
   }
 
+  async retainChallenge(challenge) {
+    await retainChallengePage(this, challenge);
+  }
+
+  collectionStatus() {
+    return collectionStatus(this.store, this);
+  }
+
   async resumeCollection() {
-    await this.start();
-    await assertPageNotChallenged(this.runtime.page);
     const previous = await this.store.get(
       'collection-stop',
       COLLECTION_STOP_ID
     );
+    if (!previous?.active) {
+      return previous || { id: COLLECTION_STOP_ID, active: false };
+    }
+    if (!this.runtime) {
+      try {
+        await this.start({
+          existingOnly: true,
+          targetId: previous.browser?.targetId,
+        });
+      } catch (cause) {
+        const error = new CollectionStoppedError(previous);
+        error.cause = cause;
+        error.message +=
+          ' The original challenge page is unavailable; no window or tab was opened.';
+        throw error;
+      }
+    }
+    if (this.runtime.page.isClosed()) {
+      throw new CollectionStoppedError(previous);
+    }
     if (
-      previous?.active &&
-      previous.origin &&
+      previous.browser?.targetId &&
+      (await pageTargetId(this.runtime.page).catch(() => null)) !==
+        previous.browser.targetId
+    ) {
+      throw new CollectionStoppedError(previous);
+    }
+    if (previous.browser?.targetId) {
+      this.challengePage = this.runtime.page;
+    }
+    await assertPageNotChallenged(this.runtime.page);
+    if (
+      !previous.origin ||
       new URL(this.runtime.page.url()).origin !== previous.origin
     ) {
       throw new CollectionStoppedError(previous);
     }
-    const state = {
-      ...(previous || {}),
-      id: COLLECTION_STOP_ID,
-      active: false,
-      resumedAt: new Date().toISOString(),
-    };
-    await this.store.put('collection-stop', state);
+    const state = await mutateCollectionStop(this.store, (current) => {
+      if (JSON.stringify(current) !== JSON.stringify(previous)) {
+        throw new CollectionStoppedError(current);
+      }
+      return {
+        ...current,
+        active: false,
+        resumedAt: new Date().toISOString(),
+      };
+    });
     this.imageStop = undefined;
+    this.challengePage = undefined;
     return state;
   }
 
@@ -955,11 +1029,28 @@ export class BrowserCollector {
           .catch(() => {});
         this.runtime.page.off('response', this.imageResponse);
       }
-      if (this.attached) {
+      const retained =
+        this.runtime &&
+        this.challengePage &&
+        !this.challengePage.isClosed() &&
+        (await this.store.get('collection-stop', COLLECTION_STOP_ID))?.active;
+      if (this.attached && !retained) {
         await this.runtime?.page.close();
       }
       if (this.persistent) {
+        const retainedWindow =
+          this.runtime && this.browserOptions.persistentWindow === false
+            ? (await this.collectionStatus()).handoff?.pageOpen === true
+            : false;
         await this.runtime?.release();
+        if (
+          this.runtime &&
+          this.browserOptions.persistentWindow === false &&
+          !retained &&
+          !retainedWindow
+        ) {
+          await closeBrowserWindow(this.store.directory);
+        }
       } else {
         await this.runtime?.browser.close();
       }

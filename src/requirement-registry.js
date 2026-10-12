@@ -331,12 +331,12 @@ const requirementDefinitions = [
     'Persistent browser window across restarts,30-minute idle close',
     'existing-implementation',
     'src/persistent-browser.js src/persistent-browser-worker.js',
-    '',
-    'Owned persistent browser adoption, restart reuse and 30-minute idle closure exist.',
+    'src/browser-challenge-handoff.js src/browser-connection.js',
+    'Owned windows reuse exact targets across restarts. Detected challenge pages survive cleanup and idle; ordinary 30-minute idle closure resumes after explicit clearance. Missing targets are never automatically reopened.',
     'implemented',
     'docs/acceptance/requirements-audit/implementation-review.json',
     'Current live session adoption/idle behavior when collection resumes; new code has not launched a browser.',
-    [2],
+    [2, 42],
   ],
   [
     'R029',
@@ -392,7 +392,7 @@ const requirementDefinitions = [
     'existing-implementation',
     'package.json package-lock.json deno.lock',
     '',
-    'Installed Browser Commander is 0.31.1 with reviewed root notation dependencies; future latestness requires an actual official release check.',
+    'Official npm/release checks found Browser Commander0.31.2; package/lock graphs were updated and new runtime/native validation is recorded in the challenge-retention acceptance.',
     'implemented',
     'docs/acceptance/ocr-model-identity/ci-ad1be26-review.json docs/acceptance/browser-commander-031/README.md docs/acceptance/browser-commander-031/review.json docs/acceptance/ocr-model-identity/validation.json',
     'An actual official latest-release check and new dependency acceptance before any future update.',
@@ -491,8 +491,8 @@ const requirementDefinitions = [
     'Persisted CAPTCHA stops guard marketplace, image, manufacturer, login and delivery requests; draft execution never clears the stop implicitly.',
     'implemented',
     'docs/acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json docs/acceptance/ocr-model-identity/validation.json',
-    'Manually resolve the original Optimum Nutrition challenge and use guarded explicit resume; offline drafting must not count as resumed collection.',
-    [23, 25, 26, 27, 40],
+    'The saved Optimum Nutrition stop came from an HTTP original, with no retained browser page. Do not claim it awaits the user or open a window automatically. Actual browser challenges retain the exact page; resume requires explicit same-origin clearance.',
+    [23, 25, 26, 27, 40, 42],
   ],
   [
     'R042',
@@ -1023,6 +1023,15 @@ export const REQUIREMENT_GITHUB_ISSUES = [
     requirementIds: ['R026', 'R041', 'R049'],
     draftStatus: 'closed-in-saved-github-snapshot',
   },
+  {
+    number: 42,
+    state: 'OPEN',
+    title:
+      'Retain the detected CAPTCHA tab and never reopen a window to claim human waiting',
+    url: 'https://github.com/konard/lazada-search/issues/42',
+    requirementIds: ['R026', 'R028', 'R041'],
+    draftStatus: 'implemented-acceptance-in-progress',
+  },
 ];
 
 export function requirementDraftStatus() {
@@ -1032,7 +1041,8 @@ export function requirementDraftStatus() {
     githubIssues: REQUIREMENT_GITHUB_ISSUES,
     mappedRequirements: REQUIREMENT_REGISTRY.length,
     mappedGithubIssues: REQUIREMENT_GITHUB_ISSUES.length,
-    githubIssueSnapshot: 'docs/drafts/github-issues-review.json',
+    githubIssueSnapshot:
+      'docs/acceptance/challenge-window-retention/github-issues.json',
     draftReview: 'docs/drafts/draft-review.json',
     draftCoverageComplete: REQUIREMENT_REGISTRY.every(
       (row) =>

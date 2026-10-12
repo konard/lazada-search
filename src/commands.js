@@ -9,7 +9,7 @@ import { parse as parseYaml } from 'yaml';
 import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
-import { COLLECTION_STOP_ID } from './page-challenge.js';
+import { collectionStatus } from './browser-challenge-handoff.js';
 import { replayHistoricalCaptures } from './historical-capture-replay.js';
 import { reviewPackageQuantities } from './package-quantity-review.js';
 import {
@@ -201,12 +201,7 @@ export async function executeCommand(application, command, args, options = {}) {
         : application.translateProduct(input, translationOptions);
     }
     case 'collection-status':
-      return (
-        (await application.store.get(
-          'collection-stop',
-          COLLECTION_STOP_ID
-        )) || { id: COLLECTION_STOP_ID, active: false }
-      );
+      return collectionStatus(application.store, application.collector);
     case 'resume-collection':
       return application.collector.resumeCollection();
     case 'review-category':

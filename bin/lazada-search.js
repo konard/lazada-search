@@ -84,11 +84,7 @@ export async function runCli(
           : false,
         browserOptions: {
           headless: command === 'login' ? false : options.headless,
-          persistentWindow:
-            options.persistentBrowser &&
-            (command === 'login' ||
-              Boolean(options.account) ||
-              !options.headless),
+          persistentWindow: options.persistentBrowser,
           idleTimeoutMs: options.browserIdleMs,
           ...(options.cdpUrl ? { cdpEndpoint: options.cdpUrl } : {}),
           ...(imported ? { seedCookies: imported.cookies } : {}),

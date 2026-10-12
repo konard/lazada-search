@@ -8,6 +8,50 @@ import { pacePersistentHost } from './browser-pacing.js';
 
 export const BROWSER_IDLE_MS = 30 * 60 * 1000;
 
+async function recoveryTarget(directory, targetId) {
+  try {
+    const recovery = JSON.parse(
+      await readFile(join(directory, 'browser-window-recovery.json'), 'utf8')
+    );
+    process.kill(recovery.browserPid, 0);
+    const endpoint = new URL(recovery.cdpEndpoint);
+    if (endpoint.hostname !== '127.0.0.1' || endpoint.protocol !== 'http:') {
+      return false;
+    }
+    const response = await fetch(new URL('/json/list', endpoint), {
+      signal: AbortSignal.timeout(2000),
+    });
+    const targets = await response.json();
+    return (
+      response.ok &&
+      targets.some((target) => target.type === 'page' && target.id === targetId)
+    );
+  } catch {
+    return false;
+  }
+}
+
+// Read-only: checking a stopped collection must never create a window or tab.
+export async function browserWindowStatus(directory, targetId) {
+  const state = await descriptor(directory);
+  if (!state) {
+    const pageOpen = await recoveryTarget(directory, targetId);
+    return { status: pageOpen ? 'page-open' : 'window-closed', pageOpen };
+  }
+  try {
+    const status = await request(state, 'status', { targetId });
+    return {
+      status: status.pageOpen ? 'page-open' : 'window-closed',
+      pageOpen: status.pageOpen === true,
+    };
+  } catch {
+    if (await recoveryTarget(directory, targetId)) {
+      return { status: 'page-open', pageOpen: true };
+    }
+    return { status: 'window-unreachable', pageOpen: false };
+  }
+}
+
 async function descriptor(directory) {
   try {
     return JSON.parse(
@@ -108,13 +152,30 @@ async function launchWorker(directory, options) {
   }
 }
 
-export async function acquireBrowserWindow(directory, options = {}) {
+async function prepareAcquisition(directory, options) {
+  if (options.existingOnly && !options.targetId) {
+    throw new Error('Resuming requires the original challenge tab identity');
+  }
   const idleMs = options.idleTimeoutMs ?? BROWSER_IDLE_MS;
   if (!Number.isFinite(idleMs) || idleMs <= 0) {
     throw new Error('Browser idle timeout must be positive');
   }
-  await mkdir(directory, { recursive: true, mode: 0o700 });
+  if (!options.existingOnly) {
+    await mkdir(directory, { recursive: true, mode: 0o700 });
+  }
+  return idleMs;
+}
+
+export async function acquireBrowserWindow(directory, options = {}) {
+  const idleMs = await prepareAcquisition(directory, options);
   let state = await available(directory);
+  if (
+    options.existingOnly &&
+    !state &&
+    !(await recoveryTarget(directory, options.targetId))
+  ) {
+    throw new Error('The original challenge window is no longer available');
+  }
   if (!state) {
     await launchWorker(directory, { ...options, idleTimeoutMs: idleMs });
   }
@@ -141,6 +202,9 @@ export async function acquireBrowserWindow(directory, options = {}) {
       engine: 'playwright',
       cdpEndpoint: lease.cdpEndpoint,
       timeout: 30000,
+      ...(options.existingOnly
+        ? { targetId: options.targetId, fallback: false }
+        : {}),
     });
     runtime.persistent = true;
     runtime.touch = () => request(state, 'touch');
@@ -159,7 +223,7 @@ export async function acquireBrowserWindow(directory, options = {}) {
 }
 
 export async function closeBrowserWindow(directory) {
-  const state = await available(directory);
+  const state = await descriptor(directory);
   if (state) {
     await request(state, 'shutdown');
     const deadline = Date.now() + 45000;
