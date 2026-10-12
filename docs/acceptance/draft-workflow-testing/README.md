@@ -32,3 +32,13 @@ The saved manufacturer CAPTCHA stop remains active. No Lazada, manufacturer or i
 The [fixture-helper follow-up](root/manufacturer-helper-followup.json) removes the architecture warning without changing production code. All 40 manufacturer workflow cases pass again on Node/Bun/current frozen Deno after the move.
 
 The [first PR CI follow-up](root/ci-configuration-followup.json) records successful native E2E on `a0f9131`, the rejected three-changeset PR, and the disabled dependency graph. The PR changesets are consolidated and repository dependency graph/Dependabot alerts are enabled. The dependency-review severity gate remains enforced; a new exact-head run verifies the repairs.
+
+[Exact-head CI `d197cc0`](root/ci-d197-review.json) passes all nine full runtime jobs, all 68 native/browser E2E cases, security/dependency review, workflow lint, offline links and example builds. Additional source-validity/tag-readiness fixes and composed interface/gift/action tests have separate follow-up receipts and require fresh exact-head CI. npm registry publishing remains unverified under issue 32.
+
+The [checkout/gift follow-up](checkout-followup/README.md) exercises original-bound gift acquisition and real intercepted Chromium quantity/voucher/payment events without purchase submission. The [composed interface follow-up](root/composed-interface-followup.json) imports an exact synthetic inventory and manual review, resumes cached case batches across all interfaces, verifies independent food grams/ml/protein rates before/after delivery, and refuses invalidated originals.
+
+## Final local follow-up
+
+[The stable final-source receipt](root/final-local-followup.json) records complete Node **1,460/1,460**, zero failures/skips, full native E2E **71/71**, and seven additional stable-source native/interface consumers. The full E2E run overlapped only the [lazy source-validation optimization](../source-validity-performance/README.md); the final exact-head CI must validate the entire current graph. Source validity passes 84 targeted cases each on Node/Bun/frozen Deno, and current Deno 2.9.7 passes all 17 new source/readiness controls.
+
+The [source-validity/readiness defect receipt](../source-validity-regressions/README.md) retains its original 80/80 and 3/3 evidence. An existing release fixture precondition failed in the first new full run; [atomic readiness publication](root/release-ready-marker-followup.json) preserves that failure and 20 consecutive unchanged cancellation/cleanup checks. The final complete unit run passes without relaxing assertions or deadlines.

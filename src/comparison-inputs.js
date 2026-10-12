@@ -1,6 +1,7 @@
 import { catalogProducts, resolveProductReviews } from './catalog-products.js';
 import { applyListingAvailability } from './availability.js';
 import { validateFoodComponentEvidence } from './food-component-evidence.js';
+import { createManufacturerSourceValidityLoader } from './manufacturer-source-validity.js';
 
 // Every comparison interface applies the same shared reviews, holds, source
 // invalidations and original-HTML availability receipts before calculating.
@@ -9,6 +10,9 @@ export async function comparisonInputs(
   { offerIds, manufacturerRegistry } = {}
 ) {
   const invalidations = await store.list('invalidation');
+  const manufacturerSources = createManufacturerSourceValidityLoader(store, {
+    invalidations,
+  });
   let offers = applyListingAvailability(
     (await store.list('offer')).filter((offer) => !offer.supersededBy),
     await store.list('listing-availability'),
@@ -23,10 +27,12 @@ export async function comparisonInputs(
   const products = offerIds
     ? await Promise.all(
         [...new Set(offers.map((offer) => offer.productId))].map(async (id) =>
-          resolveProductReviews(store, await store.get('product', id))
+          resolveProductReviews(store, await store.get('product', id), {
+            manufacturerSources,
+          })
         )
       ).then((items) => items.filter(Boolean))
-    : await catalogProducts(store);
+    : await catalogProducts(store, { manufacturerSources });
   const invalidated = [];
   for (const entry of invalidations) {
     for (const id of entry.cacheIds || []) {
@@ -49,9 +55,10 @@ export async function comparisonInputs(
     product.specificationsInvalidated ||= invalidated.some(
       (source) =>
         source.url === product.url ||
-        product.crossChecks?.some(
-          (check) => check.manufacturerUrl === source.url
-        )
+        (!product.manufacturerSourceValidityHandledUrls?.includes(source.url) &&
+          product.crossChecks?.some(
+            (check) => check.manufacturerUrl === source.url
+          ))
     );
   }
   return { products, offers };

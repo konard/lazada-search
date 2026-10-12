@@ -1,4 +1,4 @@
-// Source-inspected draft coverage; every functional acceptance remains deferred.
+// Executable requirement coverage; live data and owner acceptance remain deferred.
 export const REQUIREMENT_DRAFT_REVIEW = {
   R001: {
     reviewedDraftBehavior:
@@ -68,6 +68,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'The durable task queue places uncompleted list scopes ahead of product detail work; configured terminal scopes must be accounted for first.',
     testDraftFiles: [
+      'tests/page-readiness-tag.test.js',
+      'tests/e2e/tag-search-readiness.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/category-discovery.test.js',
       'tests/e2e/category-discovery.test.js',
@@ -94,6 +96,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Case definitions reject package-price cutoffs, preserving potentially cheaper large packages and bulk baskets.',
     testDraftFiles: [
+      'tests/page-readiness-tag.test.js',
+      'tests/e2e/tag-search-readiness.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/category-discovery.test.js',
     ],
@@ -185,10 +189,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Factory worklists discover trusted official originals and labels; structured facts require literal identity/revision/currentness. A preview and explicit human review can apply exact verified sources to the catalog.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/manufacturer-research.test.js',
     ],
     additionalDraftSourceFiles: [
+      'src/manufacturer-source-validity.js',
+      'src/source-invalidation.js',
       'src/manufacturer-workflow-review.js',
       'src/ocr-evidence.js',
     ],
@@ -199,8 +206,15 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   R015: {
     reviewedDraftBehavior:
       'The review bridge stages original-bound identity/quantity/nutrition reconciliation before publishing corrected product fields, retains seller claims and leaves actual offer prices unchanged.',
-    testDraftFiles: ['tests/manufacturer-workflow-draft.test.js'],
-    additionalDraftSourceFiles: ['src/manufacturer-workflow-review.js'],
+    testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
+      'tests/manufacturer-workflow-draft.test.js',
+    ],
+    additionalDraftSourceFiles: [
+      'src/manufacturer-source-validity.js',
+      'src/source-invalidation.js',
+      'src/manufacturer-workflow-review.js',
+    ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
     functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
@@ -209,6 +223,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Persisted OCR, original/derived image bytes, transform recipe, TSV words/confidence and model provenance are checked together before any proposed fact is accepted.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/ocr-crops.test.js',
       'tests/e2e/ice-quantity-review.test.js',
@@ -266,12 +281,15 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Source/evidence/cache-ID invalidations prevent reuse; search result limits participate in cache keys. Missing work is distinct from deferred recollection and volatile offer revalidation.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
       'tests/handpicked-links.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/publication-cache.test.js',
     ],
     additionalDraftSourceFiles: [
+      'src/manufacturer-source-validity.js',
+      'src/source-invalidation.js',
       'src/manufacturer-workflow-facts.js',
       'src/label-worklist.js',
     ],
@@ -283,6 +301,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Public sources can feed private workflows through exact verified originals; private checkout visibility and credentials remain separate. OCR metadata does not replace physical source proof.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/lazada-checkout-draft.test.js',
       'tests/account-cache.test.js',
@@ -312,6 +331,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'New review preview/approval, case, checkout and report operations are wired through application methods, exports, declarations and the shared CLI/HTTP dispatcher.',
     testDraftFiles: [
+      'tests/lazada-checkout-gifts.test.js',
       'tests/public-api-typecheck.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/fixtures/public-api-types.ts',
@@ -518,6 +538,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Ice report rows keep independent grams/ml/protein quantities and all corresponding before/after rates, while label tasks seek missing units. No density is fabricated.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
+      'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/shopping-workflow-draft.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/ice-unit-rankings.test.js',
@@ -573,6 +595,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Missing-first work remains durable and bounded; interrupted tasks/locks/failures are retained, old recollection is deferred, and a valid manual review can finish its task.',
     testDraftFiles: [
+      'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/account-backlog-order.test.js',
       'tests/account-collection-attempts.test.js',
@@ -646,6 +669,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Gift discovery produces review work; only confirmed exact food quantity/nutrition/allocation/eligibility changes denominators. Paid multipacks, bonuses and non-food gifts remain separate.',
     testDraftFiles: [
+      'tests/lazada-checkout-gifts.test.js',
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/food-components.test.js',
       'tests/food-component-evidence.test.js',
       'tests/food-component-persistence.test.js',
@@ -660,6 +685,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Native model provenance fingerprints actual model bytes; transformed OCR verifies persisted renderer/crop/source-pass/TSV proofs without relabelling derived pixels as original.',
     testDraftFiles: [
+      'tests/manufacturer-source-validity.test.js',
       'tests/ocr-models.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/ocr-crops.test.js',

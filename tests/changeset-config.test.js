@@ -373,7 +373,7 @@ describe('release formatter descendants', () => {
     const ready = new Promise((resolve) => {
       started = resolve;
     });
-    const grandchild = `const fs=require('node:fs');fs.writeFileSync('descendant-ready',String(process.pid));const timer=setInterval(()=>{if(fs.existsSync('release-descendant')){fs.writeFileSync('late-output','unsafe write after parent close');clearInterval(timer);}},5);`;
+    const grandchild = `const fs=require('node:fs');fs.writeFileSync('descendant-ready.tmp',String(process.pid));fs.renameSync('descendant-ready.tmp','descendant-ready');const timer=setInterval(()=>{if(fs.existsSync('release-descendant')){fs.writeFileSync('late-output','unsafe write after parent close');clearInterval(timer);}},5);`;
     const parent = `const fs=require('node:fs');require('node:child_process').spawn(process.execPath,['-e',${JSON.stringify(grandchild)}],{stdio:'ignore'});const timer=setInterval(()=>{if(fs.existsSync('descendant-ready')){process.stdout.write('All files have been updated.\\n');clearInterval(timer);setInterval(()=>{},1000);}},5);`;
     const operation = runReleaseChild(['-e', parent], {
       cwd,
@@ -385,6 +385,7 @@ describe('release formatter descendants', () => {
       descendantPid = Number(
         readFileSync(join(cwd, 'descendant-ready'), 'utf8')
       );
+      assert.ok(Number.isSafeInteger(descendantPid) && descendantPid > 0);
       assert.equal(processCanWrite(descendantPid), true);
       controller.abort(new Error('Cancel release with a live formatter'));
       await assert.rejects(operation, (error) => {

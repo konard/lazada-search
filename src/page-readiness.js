@@ -32,7 +32,7 @@ export function inspectPageReadiness(context) {
     /\/products\//u.test(new URL(url).pathname);
   const searchPage =
     /lazada\./u.test(new URL(url).hostname) &&
-    /\/(?:catalog|protein|bach-hoa-online-kem-(?:cac-loai|daua))\//u.test(
+    /\/(?:catalog|tag|protein|bach-hoa-online-kem-(?:cac-loai|daua))\//u.test(
       new URL(url).pathname
     );
   const searchCards = [

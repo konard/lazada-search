@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-12T08:04:25.824603+00:00",
+  "initialFullManifest": {
+    "tests": 1455,
+    "passed": 1454,
+    "failed": 1,
+    "skipped": 0,
+    "soleFailure": "existing live-owned-grandchild precondition before cancellation at changeset-config.test.js:388"
+  },
+  "fix": "Publish the fixture PID marker via atomic temporary-file rename, so parent exists-check cannot observe a marker before its PID bytes are complete. Require a positive safe integer PID before retaining the existing process-liveness assertion.",
+  "causality": "The old log does not retain the failed PID; premature file publication is a plausible race corrected by construction, rather than a proved root cause of the historical failure.",
+  "repeatedTrialsPassed": 20,
+  "assertionsRelaxed": false,
+  "deadlinesChanged": false,
+  "productionReleaseCodeChanged": false,
+  "logs": {
+    "node-followup-release-precondition-failure": {
+      "path": "docs/acceptance/draft-workflow-testing/root/node-followup-release-precondition-failure.log.gz",
+      "sha256": "ec19b451ce75dbf5e1d483dc4bf174eff719485acbc6d338c2d407a0f34b0ff9"
+    },
+    "release-ready-marker-focused": {
+      "path": "docs/acceptance/draft-workflow-testing/root/release-ready-marker-focused.log.gz",
+      "sha256": "65372c163465a54eafc99f010653c567b84e0e2e7ceb42fec6debc20d0025c8f"
+    },
+    "release-ready-marker-repeated": {
+      "path": "docs/acceptance/draft-workflow-testing/root/release-ready-marker-repeated.log.gz",
+      "sha256": "b2424a3465577423579fed64a4e3db0d1f786f051fbdbc3b04c3ddc59ac92de4"
+    }
+  },
+  "sourceSha256": "bfeb7f30e838f3fc78dc56e286bf02a446ec9fd950967cabe7714a534ddefaee",
+  "remainingAcceptance": "Complete new source manifest and exact-head CI must pass; initial failure is retained."
+}

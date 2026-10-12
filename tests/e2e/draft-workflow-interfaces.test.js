@@ -122,7 +122,7 @@ function prices(report) {
   }));
 }
 
-// These local end-to-end test drafts have not been executed.
+// Every source request is disabled; the interfaces use retained originals.
 test('library, executable CLI, HTTP and Telegram preserve identical target prices/units with zero website requests', async (t) => {
   const { app, store, directory } = await draftWorkflowFixture(t);
   await store.put('collection-stop', {
@@ -267,4 +267,166 @@ test('structured interfaces reject credential destination overrides and persiste
     (await store.get('collection-stop', COLLECTION_STOP_ID)).active,
     true
   );
+});
+
+async function importSyntheticCaseInventory(store, data, directory, post) {
+  const at = new Date().toISOString();
+  await store.put('crawl', {
+    id: `crawl:${at}`,
+    startedAt: at,
+    queries: ['fixture whey'],
+    categoryUrls: [],
+    scopes: [{ query: 'fixture whey', terminalConfirmed: true }],
+    failures: [],
+    uncollectedUrls: [],
+  });
+  for (const offer of data.offers) {
+    await store.put('sku-inventory', {
+      id: offer.url,
+      url: offer.url,
+      inventoryObserved: true,
+      observedAt: at,
+      skus: [{ sku: offer.sku, url: offer.url }],
+    });
+  }
+  const blob = await store.putBlob(
+    Buffer.from(
+      JSON.stringify({
+        rows: data.offers.map(({ url, sku }) => ({ url, sku })),
+        total: data.offers.length,
+        next: null,
+      })
+    )
+  );
+  const evidence = await store.put('evidence', {
+    id: 'synthetic-inventory-original',
+    url: 'https://www.lazada.vn/catalog/?q=fixture+whey',
+    role: 'inventory',
+    blob,
+    observedAt: at,
+  });
+  const scope = (await post({ operation: 'case-coverage-status' })).body.scope;
+  const manifestInput = {
+    evidenceId: evidence.id,
+    sourceSha256: blob.sha256,
+    reviewedBy: 'Synthetic fixture reviewer',
+    scope,
+    mapping: {
+      rowsPointer: '/rows',
+      urlPointer: '/url',
+      skuPointer: '/sku',
+      reportedTotalPointer: '/total',
+      terminalPointer: '/next',
+      terminalValue: null,
+    },
+  };
+  const manifestFile = join(directory, 'inventory.json');
+  await writeFile(manifestFile, JSON.stringify(manifestInput));
+  const manifest = await cli(directory, 'import-case-inventory', [
+    manifestFile,
+  ]);
+  const coverage = await post({
+    operation: 'case-coverage-status',
+    input: { inventoryId: manifest.id },
+  });
+  assert.equal(coverage.status, 200);
+  assert.equal(coverage.body.manifest.declaredRows, 8);
+  assert.equal(coverage.body.manifest.scopedPricesComplete, true);
+  assert.deepEqual(coverage.body.manifest.missing, []);
+  assert.equal(coverage.body.manifest.allMarketCoverageProven, false);
+  return { scope, coverage, evidence, blob, manifestInput };
+}
+
+test('cached case batches resume across library, CLI, HTTP and Telegram with exact inventory and manual-review originals', async (t) => {
+  const { app, store, directory, data } = await draftWorkflowFixture(t);
+  const post = await http(t, app);
+  const { scope, coverage, evidence, blob, manifestInput } =
+    await importSyntheticCaseInventory(store, data, directory, post);
+  const reviewed = await post({
+    operation: 'record-case-manual-review',
+    input: {
+      review: {
+        scope,
+        scopeFingerprint: coverage.body.scopeFingerprint,
+        reviewedBy: 'Synthetic fixture reviewer',
+        reason: 'All synthetic original item/SKU prices and units checked',
+        evidence: [{ evidenceId: evidence.id, sourceSha256: blob.sha256 }],
+        exactPriceExtractionReviewed: true,
+        quantityExtractionReviewed: true,
+        classificationReviewed: true,
+        listPaginationReviewed: true,
+      },
+    },
+  });
+  assert.equal(reviewed.status, 200);
+  const planned = await app.planCaseWorkflow({
+    queries: ['fixture whey'],
+    categoryUrls: [],
+    quantities: [1],
+    recollectAfterInitialPass: false,
+  });
+  const id = planned.workflow.id;
+  assert.ok(planned.tasks.every((task) => task.stage !== 'discovery'));
+  const options = { maxTasks: 1, manualReviewId: reviewed.body.id };
+  const first = await app.runCaseWorkflow(id, options);
+  assert.equal(first.executed, 1);
+  const optionsFile = join(directory, 'resume-options.json');
+  await writeFile(optionsFile, JSON.stringify(options));
+  const command = await cli(directory, 'run-case-workflow', [id, optionsFile]);
+  assert.equal(command.executed, 1);
+  const web = await post({
+    operation: 'run-case-workflow',
+    input: { workflowId: id },
+    options,
+  });
+  assert.equal(web.status, 200);
+  assert.equal(web.body.executed, 1);
+  const send = await telegram(t, app);
+  const replies = await send({
+    operation: 'run-case-workflow',
+    input: { workflowId: id },
+    options: { ...options, maxTasks: 50 },
+  });
+  const last = JSON.parse(replies.map((reply) => reply.text).join(''));
+  assert.ok(last.executed > 0);
+  const completed = last.tasks.filter((task) => task.status === 'succeeded');
+  assert.ok(completed.some((task) => task.stage === 'manual-review'));
+  assert.ok(completed.some((task) => task.stage === 'report'));
+  const taskIds = new Set(last.tasks.map((task) => task.id));
+  assert.equal(taskIds.size, last.tasks.length);
+  for (const result of [first, command, web.body, last]) {
+    assert.ok(await store.get('shopping-report', result.reportId));
+    assert.equal(result.cache.downloads, 0);
+    assert.equal(result.allTargetProductsCollected, false);
+    assert.equal(result.purchaseReady, false);
+  }
+  const report = await app.shoppingReport({ quantities: [1] });
+  const ice = report.reports[0].rows.find(
+    (row) => row.category === 'chocolate-ice-cream'
+  );
+  assert.equal(ice.metrics.costPerGramBeforeDelivery, 200);
+  assert.equal(ice.metrics.costPerMlBeforeDelivery, 100);
+  assert.equal(ice.metrics.costPerProteinGramBeforeDelivery, 4000);
+  assert.equal(ice.metrics.costPerGramAfterDelivery, 250);
+  assert.equal(ice.metrics.costPerMlAfterDelivery, 125);
+  assert.equal(ice.metrics.costPerProteinGramAfterDelivery, 5000);
+  await store.put('invalidation', {
+    id: 'recollect-synthetic-inventory',
+    evidenceIds: [evidence.id],
+    invalidatedAt: new Date().toISOString(),
+  });
+  const revoked = await post({
+    operation: 'case-coverage-status',
+    input: { manualReviewId: reviewed.body.id },
+  });
+  assert.equal(revoked.status, 200);
+  assert.equal(revoked.body.manualReview, null);
+  assert.equal(revoked.body.observedScopeReady, false);
+  const stale = await post({
+    operation: 'import-case-inventory',
+    input: { inventory: manifestInput },
+  });
+  assert.equal(stale.status, 400);
+  assert.match(stale.body.error, /recollection/u);
+  assert.equal(app.cache.stats.downloads, 0);
 });
