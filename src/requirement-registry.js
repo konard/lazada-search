@@ -1056,9 +1056,15 @@ export const REQUIREMENT_GITHUB_ISSUES = [
       'tests/mass-evidence-performance.test.js',
       'tests/nutrition-parsing-performance.test.js',
       'tests/manufacturer-source-validity.test.js',
+      'src/browser.js',
+      'src/products.js',
+      'src/translation-quality.js',
+      'scripts/promotion-report.mjs',
+      'tests/source-text-parsing-performance.test.js',
+      'tests/promotion-report-escaping.test.js',
     ],
     acceptanceRemaining:
-      'Accept bounded mass, volume and nutrition readers, exact source excerpts, malformed-token and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
+      'Accept bounded mass, volume, nutrition, count, discount and protected-translation readers, exact source excerpts, table escaping and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
   },
 ];
 
@@ -1080,7 +1086,7 @@ export function requirementDraftStatus() {
     testsExecuted: true,
     codeValidation: 'automated-local-tests-passed',
     validationEvidence:
-      'docs/acceptance/draft-workflow-testing/validation.json',
+      'docs/acceptance/challenge-window-retention/validation.json',
     allRequirementsDelivered: false,
     allTargetProductsCollected: false,
     productionReady: false,

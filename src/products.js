@@ -300,12 +300,34 @@ export function applySelectedPackageMass(product, evidence) {
   return { applied: true, massG: mass.value };
 }
 
+function discountPercent(value) {
+  const text = String(value || '');
+  for (const token of text.matchAll(/\d[\d.,]*/gu)) {
+    if (!/^\d+(?:[.,]\d+)?$/u.test(token[0])) {
+      continue;
+    }
+    const before = text[token.index - 1];
+    if (
+      (before === '.' || before === ',') &&
+      (token.index === 1 || /\s/u.test(text[token.index - 2]))
+    ) {
+      continue;
+    }
+    let cursor = token.index + token[0].length;
+    while (cursor < text.length && /\s/u.test(text[cursor])) {
+      cursor++;
+    }
+    if (text[cursor] === '%') {
+      return Number(token[0].replace(',', '.'));
+    }
+  }
+  return undefined;
+}
+
 function saleDetails(snapshot, price, currency) {
   const originalPrice = parsePrice(snapshot.originalPriceText, currency);
-  const displayedDiscountPercent = Number(
+  const displayedDiscountPercent = discountPercent(
     snapshot.discountPercentText
-      ?.match(/(\d+(?:[.,]\d+)?)\s*%/u)?.[1]
-      ?.replace(',', '.')
   );
   return {
     ...(originalPrice >= price && originalPrice > 0

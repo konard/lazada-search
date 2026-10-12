@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-12T19:12:34.235892+00:00",
+  "status": "passed",
+  "tests": {
+    "node": 5,
+    "bun": 5,
+    "frozenCachedOnlyDeno": 5
+  },
+  "lint": "zero warnings/errors",
+  "format": "passed",
+  "sourceSha256": {
+    "scripts/promotion-report.mjs": "1ad78f6b17623186a76ba053abbe4d030cc554c321ee62ac735955d5954cb123",
+    "tests/promotion-report-escaping.test.js": "c96558e36c8360dc5003ec69f066c4467e1abd8907e89e2023f0c1ecbeeac261"
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/lazada-promotion-renderer-final-node.tap",
+      "sha256": "edfc4f7966d739274369de4bded33f038073e678db13fdb4c6642f32216ae490"
+    },
+    "bun": {
+      "path": "/private/tmp/lazada-promotion-renderer-final-bun.log",
+      "sha256": "e85f878527f2177f0c6a2b8b4e56dc654ce7157ee38988bbdedf0f864086375a"
+    },
+    "deno": {
+      "path": "/private/tmp/lazada-promotion-renderer-final-deno.log",
+      "sha256": "814ab520855986ec885af3a0d04607a8d39f43e901d164054c6c36322a140c52"
+    },
+    "lint": {
+      "path": "/private/tmp/lazada-promotion-renderer-final-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format": {
+      "path": "/private/tmp/lazada-promotion-renderer-final-format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    }
+  },
+  "scope": "Actual generated Markdown tables parsed by installed GFM parser; all five row types, complete link destinations and normal code rendering, exact literal delimiters and explicit whitespace-code original text; no website/browser/network access."
+}

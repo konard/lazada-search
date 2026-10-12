@@ -8,12 +8,38 @@ const money = (value) =>
   value === null || value === undefined
     ? '—'
     : `₫${Math.round(value).toLocaleString('en-US')}`;
-const cell = (value) =>
+const cell = (value, limit = 160) =>
   String(value ?? '—')
-    .replace(/\|/gu, '\\|')
     .replace(/\s+/gu, ' ')
     .trim()
-    .slice(0, 160);
+    .slice(0, limit)
+    .replace(/[\\|`[\]<>]/gu, '\\$&');
+const destination = (value) =>
+  [...String(value ?? '')]
+    .map((character) => {
+      const point = character.codePointAt(0);
+      if (point > 31 && point !== 127 && !/[\s\\|<>"'`()]/u.test(character)) {
+        return character;
+      }
+      return encodeURIComponent(character).replace(
+        /[!'()*]/gu,
+        (literal) => `%${literal.codePointAt(0).toString(16).toUpperCase()}`
+      );
+    })
+    .join('');
+
+function codeCell(value) {
+  const text = String(value);
+  const whitespace = /\s/u.test(text);
+  if (!whitespace && !/[`|\\]/u.test(text)) {
+    return `\`${text}\``;
+  }
+  const literal = whitespace ? JSON.stringify(text) : text;
+  const encoded = [...literal]
+    .map((character) => `&#${character.codePointAt(0)};`)
+    .join('');
+  return `<code>${encoded}</code>${whitespace ? ' (contains whitespace)' : ''}`;
+}
 
 function discount(voucher) {
   if (voucher.discountPercent) {
@@ -35,7 +61,7 @@ export function vnTime(value) {
 const validWindow = (voucher) =>
   voucher.validFrom || voucher.validUntil
     ? `${vnTime(voucher.validFrom)} – ${vnTime(voucher.validUntil)}`
-    : cell(voucher.validityText);
+    : voucher.validityText;
 const values = (voucher) =>
   BASKETS.map((basket) => money(voucherValue(voucher, basket))).join(' / ');
 const byValue = (a, b) =>
@@ -61,7 +87,7 @@ function apiRows(summary) {
     .sort(byValue)
     .map(
       (voucher) =>
-        `| ${cell(voucher.name || voucher.title)} | ${cell(voucher.tag)} | ${discount(voucher)} | ${money(voucher.maxDiscount)} | ${money(voucher.minSpend)} | ${values(voucher)} | ${validWindow(voucher)} | ${voucher.usageLimitPerCustomer ?? '—'} | ${budget(voucher)} | ${voucher.voucherCode ? `\`${voucher.voucherCode}\`` : '—'} | ${pageNames(summary, voucher.sources)} |`
+        `| ${cell(voucher.name || voucher.title)} | ${cell(voucher.tag)} | ${cell(discount(voucher))} | ${cell(money(voucher.maxDiscount))} | ${cell(money(voucher.minSpend))} | ${cell(values(voucher))} | ${cell(validWindow(voucher))} | ${cell(voucher.usageLimitPerCustomer)} | ${cell(budget(voucher))} | ${voucher.voucherCode ? codeCell(voucher.voucherCode) : '—'} | ${pageNames(summary, voucher.sources)} |`
     );
 }
 
@@ -70,7 +96,7 @@ function cardRows(summary) {
     .sort(byValue)
     .map(
       (voucher) =>
-        `| ${discount(voucher)} | ${money(voucher.maxDiscount)} | ${money(voucher.minSpend)} | ${values(voucher)} | ${cell(voucher.scopes.join(', ') || '—')} | ${validWindow(voucher)} | ${voucher.collectable ? 'yes' : 'no'} | ${cell(voucher.text)} | ${pageNames(summary, voucher.sources)} |`
+        `| ${cell(discount(voucher))} | ${cell(money(voucher.maxDiscount))} | ${cell(money(voucher.minSpend))} | ${cell(values(voucher))} | ${cell(voucher.scopes.join(', ') || '—')} | ${cell(validWindow(voucher))} | ${voucher.collectable ? 'yes' : 'no'} | ${cell(voucher.text)} | ${pageNames(summary, voucher.sources)} |`
     );
 }
 
@@ -88,7 +114,7 @@ export function renderPromotionReport(summary) {
     '| --- | --- | --- | ---: | ---: | --- | --- |',
     ...summary.pages.map(
       (page) =>
-        `| [${cell(page.role)}](${page.url}) | ${cell(page.status)}${page.error ? `: ${cell(page.error)}` : ''} | ${cell(page.title)} | ${page.vouchers} | ${page.apiVouchers ?? 0} | ${cell(page.apis?.join(', ') || '—')} | ${cell(page.observedAt)} |`
+        `| [${cell(page.role)}](${destination(page.url)}) | ${cell(page.status)}${page.error ? `: ${cell(page.error)}` : ''} | ${cell(page.title)} | ${cell(page.vouchers)} | ${cell(page.apiVouchers ?? 0)} | ${cell(page.apis?.join(', ') || '—')} | ${cell(page.observedAt)} |`
     ),
     '',
     `## Vouchers from Lazada's page data (${summary.apiVouchers.length})`,
@@ -115,7 +141,7 @@ export function renderPromotionReport(summary) {
         const source = summary.codeSources.find(
           (item) => item.source === code.source
         );
-        return `| \`${code.code}\` | ${discount(code)} | ${money(code.maxDiscount)} | ${money(code.minSpend)} | ${code.source} | ${cell(source?.published || 'undated')} | ${cell(code.text)} |`;
+        return `| ${codeCell(code.code)} | ${cell(discount(code))} | ${cell(money(code.maxDiscount))} | ${cell(money(code.minSpend))} | ${cell(code.source, Infinity)} | ${cell(source?.published || 'undated')} | ${cell(code.text)} |`;
       }),
     '',
     `Codes without a discount in their context stay in \`promotions.json\` only (${summary.codes.filter((code) => !code.isVoucher && !code.fromAttribute).length}).`,
@@ -126,7 +152,7 @@ export function renderPromotionReport(summary) {
     '| --- | --- | --- | ---: | --- |',
     ...summary.codeSources.map(
       (source) =>
-        `| ${source.source} | ${source.status ?? cell(source.error)} | ${cell(source.published || 'undated')} | ${source.codes} | ${source.fetchedAt} |`
+        `| ${cell(source.source, Infinity)} | ${cell(source.status ?? source.error)} | ${cell(source.published || 'undated')} | ${cell(source.codes)} | ${cell(source.fetchedAt)} |`
     ),
     '',
   ];

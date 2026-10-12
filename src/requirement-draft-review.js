@@ -455,7 +455,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   },
   R032: {
     reviewedDraftBehavior:
-      'All 41 project GitHub issues are reconciled with the current snapshot. Browser Commander interruption ownership is reported upstream as issue174, with its consumer workaround and actual native regression evidence retained.',
+      'All 42 project GitHub issues are reconciled with the current snapshot. Browser Commander interruption ownership is reported upstream as issue174, with its consumer workaround and actual native regression evidence retained.',
     testDraftFiles: [],
     additionalDraftSourceFiles: [
       'docs/drafts/github-issues-review.json',

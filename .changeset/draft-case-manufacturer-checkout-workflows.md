@@ -19,3 +19,5 @@ Commit independent binary and digest projections concurrently after canonical du
 Use bounded token readers for volume, nutrient and serving declarations, retain exact bilingual source excerpts and conflicting-column holds, and assert complete URL membership on an explicit array. Retry pinned Windows OCR installation at most three times while retaining executable/model and failure gates.
 
 Bound independent record writers at sixteen and canonical readers at eight, configure thirty-two Node projection I/O slots at startup, and run complete fixtures in the intended runner temporary directory without weakening data, durability or deadlines.
+
+Bound result-count, displayed-discount, protected URL and decimal suffix parsing while retaining valid extraction behavior and cache-only revalidation. Escape literal report backslashes and pipes after truncation to preserve Markdown columns; add hostile-source subprocess and actual rendered-report regressions.

@@ -90,3 +90,32 @@ test('passing synthetic arithmetic cannot certify real catalog coverage, shippin
   assert.ok(readiness.externalGates.some((gate) => /frozen/u.test(gate)));
   assert.ok(readiness.externalGates.some((gate) => /publisher/u.test(gate)));
 });
+
+test('published requirement mapping stays synchronized with source and current issue evidence', async () => {
+  const registry = requirementDraftStatus();
+  const published = JSON.parse(
+    await readFile(new URL('../docs/drafts/requirements.json', import.meta.url))
+  );
+  for (const key of [
+    'requirements',
+    'githubIssues',
+    'mappedRequirements',
+    'mappedGithubIssues',
+    'githubIssueSnapshot',
+    'validationEvidence',
+    'allRequirementsDelivered',
+    'allTargetProductsCollected',
+    'productionReady',
+    'purchaseReady',
+  ]) {
+    assert.deepEqual(published[key], registry[key], key);
+  }
+  assert.deepEqual(
+    published.openGithubIssues,
+    registry.githubIssues
+      .filter((row) => row.state === 'OPEN')
+      .map((row) => row.number)
+  );
+  assert.equal(published.collectionStop.handoff.status, 'no-browser-page');
+  assert.equal(published.collectionStop.handoff.pageOpen, false);
+});

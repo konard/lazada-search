@@ -34,7 +34,7 @@ import {
   CollectionStoppedError,
 } from './page-challenge.js';
 
-export const EXTRACTOR_VERSION = 16;
+export const EXTRACTOR_VERSION = 17;
 
 async function boundedImageBody(response, timeoutMs = 30000) {
   let timer;
@@ -288,9 +288,45 @@ export function extractPage(context) {
   const bodyText = context?.document
     ? textBody?.textContent || ''
     : document.body?.innerText || textBody?.textContent || '';
-  const resultCount = bodyText.match(
-    /Tìm thấy\s+([\d.,]+)\s+sản phẩm|([\d.,]+)\s+(?:items|products)\s+found/iu
-  );
+  const resultCount = (() => {
+    for (const token of bodyText.matchAll(/[\d.,]+/gu)) {
+      if (!/^\d+(?:[.,]\d+)*$/u.test(token[0])) {
+        continue;
+      }
+      const tokenEnd = token.index + token[0].length;
+      let labelStart = tokenEnd;
+      while (labelStart < bodyText.length && /\s/u.test(bodyText[labelStart])) {
+        labelStart++;
+      }
+      if (labelStart === tokenEnd) {
+        continue;
+      }
+      let prefixEnd = token.index;
+      while (prefixEnd > 0 && /\s/u.test(bodyText[prefixEnd - 1])) {
+        prefixEnd--;
+      }
+      const vietnamese =
+        prefixEnd < token.index &&
+        bodyText.slice(Math.max(0, prefixEnd - 8), prefixEnd).toLowerCase() ===
+          'tìm thấy' &&
+        bodyText.slice(labelStart, labelStart + 8).toLowerCase() === 'sản phẩm';
+      const englishLabel = bodyText
+        .slice(labelStart, labelStart + 8)
+        .match(/^(?:items|products)/iu)?.[0];
+      let foundStart = labelStart + (englishLabel?.length || 0);
+      while (foundStart < bodyText.length && /\s/u.test(bodyText[foundStart])) {
+        foundStart++;
+      }
+      const english =
+        englishLabel &&
+        foundStart > labelStart + englishLabel.length &&
+        bodyText.slice(foundStart, foundStart + 5).toLowerCase() === 'found';
+      if (vietnamese || english) {
+        return token[0];
+      }
+    }
+    return undefined;
+  })();
   let skuCatalog = [];
   let skuCatalogObserved = false;
   for (const script of document.querySelectorAll('script:not([src])')) {
@@ -425,7 +461,7 @@ export function extractPage(context) {
       currentPage,
       lastPage: pageNumbers.length ? Math.max(...pageNumbers) : null,
       reportedTotal: resultCount
-        ? Number((resultCount[1] || resultCount[2]).replace(/[.,]/gu, ''))
+        ? Number(resultCount.replace(/[.,]/gu, ''))
         : null,
       terminalConfirmed: nextDisabled,
       nextAvailable: nextButton ? !nextDisabled : null,
