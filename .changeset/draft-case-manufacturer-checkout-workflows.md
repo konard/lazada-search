@@ -13,3 +13,5 @@ Update Browser Commander to 0.31.2, preserve the first challenge/target binding 
 Retry transient Windows lock-owner reads during concurrent writer cleanup without treating permission errors as a missing or dead owner. Keep persistent permission errors and all durable-write/fixture checks intact.
 
 Extract package mass through a single numeric-token pass and anchored unit checks, preserving exact abbreviations, quantities and source positions while bounding malformed-input work. Add adversarial subprocess controls and verify the separate CodeQL PR gate alongside workflow tests.
+
+Commit independent binary and digest projections concurrently after canonical durability, drain both writes before returning or releasing the writer lock, and match bounded Node I/O capacity without changing complete fixtures, sync writes or deadlines.

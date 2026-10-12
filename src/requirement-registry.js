@@ -986,10 +986,17 @@ export const REQUIREMENT_GITHUB_ISSUES = [
       'Preserve original source bytes on Windows checkout and bound transient cache lock recreation',
     url: 'https://github.com/konard/lazada-search/issues/36',
     requirementIds: ['R019', 'R020', 'R022', 'R037'],
-    draftStatus: 'owner-read-follow-up-in-draft-pr',
-    sourceFiles: ['src/store-lock-directory.js', 'src/store.js'],
+    draftStatus: 'owner-read-and-projection-follow-up-in-draft-pr',
+    sourceFiles: [
+      'src/store-lock-directory.js',
+      'src/store-projection.js',
+      'src/store.js',
+      'tests/store-projection.test.js',
+      'tests/catalog-tables.test.js',
+      '.github/workflows/release.yml',
+    ],
     acceptanceRemaining:
-      'Track fresh complete Windows/runtime acceptance and the pending PR merge; inaccessible locks must never be treated as missing or dead.',
+      'Track fresh complete Windows/runtime acceptance under unchanged fixtures, sync writes and deadlines, then PR merge; inaccessible locks must never be treated as missing or dead and failed projections must drain before unlock.',
   },
   {
     number: 37,

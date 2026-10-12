@@ -10,6 +10,7 @@ import {
   readStoreLockOwner,
 } from './store-lock-directory.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
+import { writeStoreProjection } from './store-projection.js';
 
 const validKind = (kind) => {
   if (typeof kind !== 'string' || !/^[a-z][a-z-]*$/u.test(kind)) {
@@ -239,14 +240,7 @@ export class AssociativeStore {
     const graph = new DoubletGraph();
     graph.addRecord(kind, record);
     const bytes = graph.toBinary();
-    await atomicWrite(path.replace(/\.lino$/u, '.links'), bytes, {
-      directoryPrepared,
-    });
-    await atomicWrite(
-      `${path}.sha256`,
-      `${sha256(notation)}:${sha256(bytes)}`,
-      { directoryPrepared }
-    );
+    await writeStoreProjection(path, notation, bytes, { directoryPrepared });
     return graph;
   }
 

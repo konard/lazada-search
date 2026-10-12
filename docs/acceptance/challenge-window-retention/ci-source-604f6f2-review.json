@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "604f6f291bd2439b5cfb37c30349a09681824273",
+  "observedAt": "2026-10-12 17:42:26 UTC",
+  "automatedAcceptance": false,
+  "pullRequestAccepted": false,
+  "summary": {
+    "matrixJobs": 9,
+    "matrixSuccessful": 8,
+    "matrixFailed": 1,
+    "workflows": 6,
+    "workflowsSuccessful": 5,
+    "workflowsFailed": 1,
+    "nativeE2ePassed": 84,
+    "nativeE2eFailed": 0,
+    "separateCodeQl": "success",
+    "separateCodeQlAnnotations": 0
+  },
+  "workflows": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991729",
+      "id": 38283991729,
+      "name": "Workflows",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:25:34Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991726",
+      "id": 38283991726,
+      "name": "Broken Link Checker",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:25:41Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991725",
+      "id": 38283991725,
+      "name": "Security",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:27:06Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991777",
+      "id": 38283991777,
+      "name": "Example app",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:26:43Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991673",
+      "id": 38283991673,
+      "name": "Lazada E2E",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:35:19Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-10-12T17:24:28Z",
+      "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38283991684",
+      "id": 38283991684,
+      "name": "Checks and release",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T17:41:16Z"
+    }
+  ],
+  "matrix": [
+    {
+      "jobId": 114929078889,
+      "name": "Test (node on windows-2025)",
+      "status": "completed",
+      "conclusion": "failure",
+      "counts": {
+        "total": 1436,
+        "passed": 1435,
+        "failed": 0,
+        "cancelled": 1,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1436",
+        "\u2139 pass 1435",
+        "\u2139 fail 0",
+        "\u2139 cancelled 1",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 594216.3655",
+        "Node.js test suite finished in 596s of its 600s budget (exit 1)."
+      ],
+      "suiteWrapperSeconds": 596,
+      "durationMs": 594216.3655,
+      "catalogPhaseMs": {
+        "load": 271,
+        "import": 517472,
+        "cleanup": 33269
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929078889.log.gz",
+        "sha256": "0c3ebc2096daa93521a3660e7ae29d70dae4620e967de232c48a4b4b35bc54e0",
+        "bytes": 232112
+      }
+    },
+    {
+      "jobId": 114929078929,
+      "name": "Test (bun on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1477,
+        "passed": 1477,
+        "failed": 0,
+        "files": 174
+      },
+      "footerLines": [
+        "1477 pass",
+        "0 fail",
+        "Ran 1477 tests across 174 files. [79.41s]",
+        "Bun test suite finished in 80s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 80,
+      "durationMs": 79410,
+      "catalogPhaseMs": {
+        "load": 105,
+        "import": 10532,
+        "audit": 5829,
+        "compare": 309,
+        "close": 0,
+        "cleanup": 10052
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929078929.log.gz",
+        "sha256": "2aebe6d885377d5bd6d1b569a29e11c22fbde593d4e8287ed96779a7f408ed8e",
+        "bytes": 296185
+      }
+    },
+    {
+      "jobId": 114929078971,
+      "name": "Test (deno on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1322,
+        "passed": 1322,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1322 passed (16 steps) | 0 failed (3m4s)",
+        "Deno test suite finished in 186s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 186,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 174,
+        "import": 150362,
+        "audit": 15770,
+        "compare": 492,
+        "close": 0,
+        "cleanup": 3274
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929078971.log.gz",
+        "sha256": "10c06b345d0b86b6f20950adde37723ff711d5d842abd16113f691ac4620bec3",
+        "bytes": 339415
+      }
+    },
+    {
+      "jobId": 114929079083,
+      "name": "Test (node on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1477,
+        "passed": 1477,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1477",
+        "\u2139 pass 1477",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 99466.521504",
+        "Node.js test suite finished in 99s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 99,
+      "durationMs": 99466.521504,
+      "catalogPhaseMs": {
+        "load": 95,
+        "import": 42211,
+        "audit": 13532,
+        "compare": 550,
+        "close": 0,
+        "cleanup": 3223
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079083.log.gz",
+        "sha256": "9efe302a504a0aecce013435d714450f7fd9fd479ad19e13cec5b8bda7718f66",
+        "bytes": 241101
+      }
+    },
+    {
+      "jobId": 114929079120,
+      "name": "Test (bun on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1440,
+        "passed": 1440,
+        "failed": 0,
+        "files": 174
+      },
+      "footerLines": [
+        "1440 pass",
+        "0 fail",
+        "Ran 1440 tests across 174 files. [500.81s]",
+        "Bun test suite finished in 502s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 502,
+      "durationMs": 500810,
+      "catalogPhaseMs": {
+        "load": 84,
+        "import": 391540,
+        "audit": 8850,
+        "compare": 692,
+        "close": 0,
+        "cleanup": 18359
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079120.log.gz",
+        "sha256": "d35b8d435529a34d91daf67505b9ecc0b66524956bc97779be920f5b4dad7396",
+        "bytes": 269983
+      }
+    },
+    {
+      "jobId": 114929079158,
+      "name": "Test (bun on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1477,
+        "passed": 1477,
+        "failed": 0,
+        "files": 174
+      },
+      "footerLines": [
+        "1477 pass",
+        "0 fail",
+        "Ran 1477 tests across 174 files. [90.68s]",
+        "Bun test suite finished in 91s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 91,
+      "durationMs": 90680,
+      "catalogPhaseMs": {
+        "load": 80,
+        "import": 8751,
+        "audit": 4651,
+        "compare": 270,
+        "close": 0,
+        "cleanup": 4525
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079158.log.gz",
+        "sha256": "7c5c6d8125821511e4b90022dc991697320978b33a492f4295ef72752f1a819a",
+        "bytes": 291796
+      }
+    },
+    {
+      "jobId": 114929079167,
+      "name": "Test (deno on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1322,
+        "passed": 1322,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1322 passed (16 steps) | 0 failed (9m50s)",
+        "Deno test suite finished in 594s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 594,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 246,
+        "import": 498817,
+        "audit": 18052,
+        "compare": 843,
+        "close": 0,
+        "cleanup": 29260
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079167.log.gz",
+        "sha256": "a537a1cee36909bbc80a78ea457341a5bab8304842f5eacff5bb9cb20f8e2855",
+        "bytes": 338385
+      }
+    },
+    {
+      "jobId": 114929079187,
+      "name": "Test (node on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1477,
+        "passed": 1477,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1477",
+        "\u2139 pass 1477",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 202660.3765",
+        "Node.js test suite finished in 205s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 205,
+      "durationMs": 202660.3765,
+      "catalogPhaseMs": {
+        "load": 178,
+        "import": 87154,
+        "audit": 21969,
+        "compare": 1289,
+        "close": 0,
+        "cleanup": 5307
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079187.log.gz",
+        "sha256": "2d59eb6e9a7f9f3c35c6d5fd1bc0b68ae79b18d991f40d899168151d7f8a4b96",
+        "bytes": 240010
+      }
+    },
+    {
+      "jobId": 114929079295,
+      "name": "Test (deno on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1322,
+        "passed": 1322,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1322 passed (16 steps) | 0 failed (1m7s)",
+        "Deno test suite finished in 68s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 68,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 154,
+        "import": 18421,
+        "audit": 17322,
+        "compare": 401,
+        "close": 0,
+        "cleanup": 5871
+      },
+      "log": {
+        "path": "ci-source-604f6f2/job-114929079295.log.gz",
+        "sha256": "8e8478308491a1dd8837da397ab886b6e82e5adac85492fdf65a9110d5d0b641",
+        "bytes": 340036
+      }
+    }
+  ],
+  "nativeE2e": {
+    "jobId": 114927831160,
+    "name": "Browser, OCR, CLI, Telegram and binary store",
+    "status": "completed",
+    "conclusion": "success",
+    "counts": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "footerLines": [
+      "# tests 84",
+      "# pass 84",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0",
+      "# duration_ms 508002.453467"
+    ],
+    "suiteWrapperSeconds": null,
+    "durationMs": 508002.453467,
+    "catalogPhaseMs": {},
+    "log": {
+      "path": "ci-source-604f6f2/job-114927831160.log.gz",
+      "sha256": "2ac3dc6dcd06803e4da85d1895e46cf6e9a2e2c13b6fae3da67fac3dc22288d0",
+      "bytes": 105708
+    }
+  },
+  "codeQl": {
+    "conclusion": "success",
+    "details_url": "https://github.com/konard/lazada-search/runs/114928138376",
+    "head_sha": "604f6f291bd2439b5cfb37c30349a09681824273",
+    "id": 114928138376,
+    "name": "CodeQL",
+    "output": {
+      "annotations_count": 0,
+      "annotations_url": "https://api.github.com/repos/konard/lazada-search/check-runs/114928138376/annotations",
+      "summary": "[View all branch alerts](/konard/lazada-search/security/code-scanning?query=pr%3A41+tool%3ACodeQL+is%3Aopen).",
+      "text": null,
+      "title": "No new alerts in code changed by this pull request"
+    },
+    "status": "completed",
+    "metadataPath": "codeql-source-604f6f2-success.json"
+  },
+  "failure": {
+    "jobId": 114929078889,
+    "name": "Test (node on windows-2025)",
+    "path": "tests/catalog-tables.test.js:149:1",
+    "test": "committed catalog imports offline with the same offers and explicit coverage gaps",
+    "error": "test timed out after 450000ms",
+    "catalogImportMs": 517472,
+    "testDurationMs": 551015.9982,
+    "suiteWrapperSeconds": 596,
+    "suiteBudgetSeconds": 600,
+    "classification": "per-test deadline exceeded during durable committed-catalog import; no assertion failures; one cancelled test; no weakened deadline or fixture"
+  },
+  "artifactNormalization": "Full decoded GitHub job logs retained with initial UTF-8 BOM removed, CRLF normalized to LF and one final newline; SHA256 and byte counts refer to saved complete files.",
+  "scope": "Offline committed-cache/runtime regression and deterministic native browser/OCR/interface E2E plus workflow/security gates. This receipt does not establish live market completeness, manufacturer verification or delivery quotes.",
+  "preservedReceipts": [
+    "ci-source-7d43-review.json",
+    "ci-source-08236-review.json",
+    "ci-source-44b5729-review.json"
+  ],
+  "issues": {
+    "repositoryIssueCount": 42,
+    "remainOpenUntilMerge": [36, 42, 43]
+  }
+}

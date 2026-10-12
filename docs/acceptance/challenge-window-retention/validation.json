@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T17:17:32.387655+00:00",
+  "checkedAt": "2026-10-12T17:47:15.421061+00:00",
   "branch": "draft/remaining-requirements",
-  "sourceCommit": "08236d87f1a5f28fd10eb184d0e903b8a281d4ce",
+  "sourceCommit": "604f6f291bd2439b5cfb37c30349a09681824273",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
-  "scope": "Retained original CAPTCHA target, truthful handoff, atomic supervisor publication and bounded Windows lock-owner reads; no live product collection or user-browser opening.",
+  "scope": "Retained original CAPTCHA target, truthful handoff, atomic supervisor publication, bounded Windows lock-owner reads and linear package-mass scanning; no live product collection or user-browser opening.",
   "browserCommander": {
     "installedVersion": "0.31.2",
     "latestRegistryVersion": "0.31.2",
@@ -13,44 +13,37 @@
     "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
   },
   "latestDependencyCheck": "browser-latest-final.json",
-  "sourceManifest": "source-08236-manifest.json",
+  "sourceManifest": "source-604f6f2-manifest.json",
   "local": {
     "nodeFull": {
-      "passed": 1474,
+      "passed": 1477,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 328270.815834
+      "durationMs": 342649.912708
     },
     "fullE2E": {
       "passed": 84,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 568025.342459
+      "durationMs": 573580.229833
     },
     "nativeRetention": {
       "passed": 13,
       "includedInFullE2E": true
     },
-    "lockControls": {
-      "node": 6,
-      "bun": 6,
-      "deno": 6,
-      "currentFrozenDeno": 6
-    },
     "strictTypes": "passed",
     "lintFormattingDuplication": "passed",
-    "duplicationPercent": 6.18,
-    "fullSourceAcceptance": "passed"
+    "duplicationPercent": 6.17
   },
   "ci": {
-    "accepted": true,
-    "sourceCommit": "08236d87f1a5f28fd10eb184d0e903b8a281d4ce",
-    "checksRunId": 38278378048,
-    "e2eRunId": 38278378504,
-    "runtimeJobsPassed": 9,
-    "runtimeJobsFailed": 0,
+    "accepted": false,
+    "sourceCommit": "604f6f291bd2439b5cfb37c30349a09681824273",
+    "checksRunId": 38283991684,
+    "e2eRunId": 38283991673,
+    "runtimeJobsPassed": 8,
+    "runtimeJobsFailed": 1,
     "runtimeJobsCancelled": 0,
     "nativeE2E": {
       "total": 84,
@@ -59,9 +52,10 @@
       "cancelled": 0,
       "skipped": 0
     },
-    "workflowsPassed": 6,
-    "workflowsFailed": 0,
-    "receipt": "ci-source-08236-review.json"
+    "workflowsPassed": 5,
+    "workflowsFailed": 1,
+    "receipt": "ci-source-604f6f2-review.json",
+    "failure": "Windows Node full catalog import exceeded the unchanged 450-second test deadline; all complete records and writes remain in the fixture."
   },
   "tracking": {
     "requirements": 49,
@@ -73,7 +67,11 @@
   "historicalReviews": {
     "source6280": "source-6280-review.json",
     "source7d43Local": "local-source-7d43-review.json",
-    "source7d43CI": "ci-source-7d43-review.json"
+    "source7d43CI": "ci-source-7d43-review.json",
+    "source08236BeforeSecurityGate": "source-08236-security-pending-review.json",
+    "source08236CI": "ci-source-08236-review.json",
+    "source44b5729CI": "ci-source-44b5729-review.json",
+    "source604Local": "local-source-604f6f2-review.json"
   },
   "savedCollectionStatus": "saved-stop-status.json",
   "allRequirementsDelivered": false,
@@ -83,31 +81,31 @@
   "marketCollectionRequests": 0,
   "userBrowserInteraction": false,
   "logs": {
-    "node-source-08236-full.tap.gz": {
-      "rawSha256": "0b7e6e5898622e34bf40d9d7d2eb21251c50e4c81590479cc7ca0d1cf5b92403",
-      "rawBytes": 364663
+    "node-source-604f6f2-full.tap.gz": {
+      "rawSha256": "43ccccbc1c8c73ecbfc5cb7d9fc36603f70f94cdb280e73ad5ac717cd72e7b4a",
+      "rawBytes": 365447
     },
-    "native-source-08236-full.tap.gz": {
-      "rawSha256": "6b633d2b6400d95e35bacb2e19fdfa1d820b511c4f0191fc696d2b4afadb0854",
-      "rawBytes": 22617
+    "native-source-604f6f2-full.tap.gz": {
+      "rawSha256": "efd3f4a9a88af1e25ab7e95255890b9234cd792f32893abcf0a1967171bfffd9",
+      "rawBytes": 22622
     },
-    "checks-source-08236.log.gz": {
-      "rawSha256": "d8c134d75564fa1642e3d99e0260c63e5bee1c98dfa9daaebe45bcfdd8a66675",
-      "rawBytes": 142623
+    "checks-source-604f6f2.log.gz": {
+      "rawSha256": "cdc2befe13f1b4d1ffe6b324912204512b4644cb3a6a57c18e4e774cb6886f7f",
+      "rawBytes": 142841
     },
-    "types-source-08236.log.gz": {
+    "types-source-604f6f2.log.gz": {
       "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
       "rawBytes": 77
     },
-    "deno-297-owner-lock-controls.log.gz": {
-      "rawSha256": "0c1d023430f9532e76e57fe844dee466e5ab57c95b5622329d8f6dbb198c4228",
-      "rawBytes": 681
+    "mass-linear-final-focused.tap.gz": {
+      "rawSha256": "deb183e1bf1da0ca458fada04b6c642b2a7530e199f96ec9620cb5701c374770",
+      "rawBytes": 6998
     }
   },
-  "sourceWorkflowAcceptance": true,
+  "sourceWorkflowAcceptance": false,
   "sourceAccepted": false,
-  "pullRequestSecurityAccepted": false,
-  "followUpIssue": "https://github.com/konard/lazada-search/issues/43",
+  "pullRequestSecurityAccepted": true,
+  "followUpIssue": "https://github.com/konard/lazada-search/issues/36",
   "codeqlFailure": {
     "headCommit": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
     "checkRunId": 114918061515,
@@ -115,6 +113,13 @@
     "severity": "high",
     "checkReceipt": "codeql-source-44b5729-failure.json",
     "annotations": "codeql-source-44b5729-annotations.json",
-    "fixAcceptance": "pending-linear-parser"
+    "fixAcceptance": "passed-source-604f6f2-separate-CodeQL"
+  },
+  "localSourceQualification": "The full local runs began before the final lint-only correction of an internal comment in src/nutrition.js. Executable code, tests, dependencies and CI configuration were unchanged; the complete CI runs validate committed source 604f6f2.",
+  "separateCodeQL": {
+    "checkRunId": 114928138376,
+    "conclusion": "success",
+    "annotations": 0,
+    "receipt": "codeql-source-604f6f2-success.json"
   }
 }
