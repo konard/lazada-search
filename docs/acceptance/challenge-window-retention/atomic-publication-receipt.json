@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-12T16:08:17.736599+00:00",
+  "runtime": "Node v22.23.0",
+  "browserCommanderVersion": "0.31.2",
+  "fixture": "tests/e2e/challenge-window-retention.test.js",
+  "fixtureSha256": "96f778c624391ed3998a567f6a731820948224d5ed3d711a2393d7d2f3ea9cd1",
+  "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 --test-name-pattern='startup publication readers retain' tests/e2e/challenge-window-retention.test.js",
+  "log": "/private/tmp/lazada-challenge-publication-atomic-final.tap",
+  "tests": 1,
+  "passed": 1,
+  "failed": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 9210.168083,
+  "isolation": "Temporary private store and headless Chrome; all fixture network intercepted; exact-fixture-directory-scoped Node preload gates only recovery and state publication; environment restored. No real accounts/profiles or live websites.",
+  "proof": "Each held write contains exactly one partial JSON byte. Recovery remains fully readable before readiness; concurrent collectionStatus retains original target, browserPID, page-set and navigation count. Only the explicitly resumed replacement supervisor is published.",
+  "lintLog": "/private/tmp/lazada-challenge-publication-eslint.log",
+  "formatLog": "/private/tmp/lazada-challenge-publication-prettier.log",
+  "preservedFailureLog": "/private/tmp/lazada-challenge-handoff-6280-full-e2e.tap"
+}

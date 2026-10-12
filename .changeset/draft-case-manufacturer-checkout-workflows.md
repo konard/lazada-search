@@ -8,4 +8,4 @@ Withdraw source-approved manufacturer facts after later invalidation or original
 
 Keep detected browser challenge pages in the original window through cleanup, capture timeouts, idle waiting and supervisor recovery. Resume reconnects the exact existing target without opening a replacement browser or tab. Distinguish actual headed handoff from headless, closed and HTTP/archive-only challenge evidence across library, CLI, HTTP and Telegram.
 
-Update Browser Commander to0.31.2, preserve the first challenge/target binding atomically across tabs, retain pending pages during graceful supervisor interruption, and keep offline cleanup independent of unavailable archives.
+Update Browser Commander to 0.31.2, preserve the first challenge/target binding atomically across tabs, retain pending pages during graceful supervisor interruption, and keep offline cleanup independent of unavailable archives. Publish complete supervisor recovery/status metadata atomically, and preserve the suite deadline through measured cold Windows setup.

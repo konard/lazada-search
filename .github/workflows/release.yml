@@ -299,7 +299,9 @@ jobs:
     # only the backstop behind those budgets, sized so the budgets always
     # expire first. A job killed by timeout-minutes reports *cancelled*,
     # which hides the failure -- see docs/CI-TIMEOUT-BUDGETS.md.
-    timeout-minutes: 15
+    # A measured cold Windows setup took over five minutes; leave its full
+    # 600-second suite deadline and cleanup room before this job backstop.
+    timeout-minutes: 20
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-test-${{ matrix.runtime }}-${{ matrix.os }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T15:13:38.757819+00:00",
+  "checkedAt": "2026-10-12T16:09:59.478386+00:00",
   "branch": "draft/remaining-requirements",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
   "scope": "Detected-page retention and truthful handoff status; no live collection or user-browser opening.",
@@ -42,7 +42,19 @@
       "skipped": 0
     },
     "strictTypes": "passed",
-    "finalFullSourceAcceptance": "pending"
+    "finalFullSourceAcceptance": "pending-atomic-publication-correction",
+    "atomicPublicationRegression": {
+      "passed": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "atomicStoreAndHandoffControls": {
+      "passed": 16,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
   },
   "sourceSha256": {
     "bin/lazada-search.js": "ca18e4118347a6babd13a765ecb608efdf3a895407a4d84e3e4366b66c4cbdf7",
@@ -56,16 +68,19 @@
     "src/commands.js": "668a8459fb2400bbce45a1a523dc3d0fbc3194eebc947d0b179834d26fe4432c",
     "src/index.d.ts": "6dc267b5408d224938da79e21db4284598f455daa47123891347b10f3050faea",
     "src/page-challenge.js": "f1893a6a9d660e07469441cbace2983e5212f687c9ff21f8bad24b9ea019a5db",
-    "src/persistent-browser-worker.js": "845f84f57ee1341a36eaad07c0b16935d2305f1f9cd8e5123ff88bc2b2d913a9",
-    "src/persistent-browser.js": "c1e4d83c8f83f7c0a04023ed87e481dd2812c61bb8619450bd31b81e16cc24f5",
+    "src/persistent-browser-worker.js": "74ba12c2b68cc39ecc01b2906b330813d9b11dba32f1f78dc823c3ee75a0fbb1",
+    "src/persistent-browser.js": "a1a5b6b952f7191cb5b6a20a330e43736c81d85dfb4704015dd3b303337925ca",
     "src/requirement-draft-review.js": "b8f98aef440cf241b19a3ed415e6105adaed076b18e79a0ba9649efc43ce6b44",
     "src/requirement-registry.js": "3f45f83e3ed0a3bbc53462ed54ad1de43a6bfc63d69d5d0d7644b11247af19da",
     "src/server.js": "953cde3d85c290e83bcececd6b71822466572242c87663ff7915f5375b155a4e",
     "tests/browser-challenge-handoff.test.js": "0f118d638de8fc9c3f15f8ee064d91dac31afebb7cdb2a079aeb1ff419f1e2f2",
     "tests/browser-connection.test.js": "3ad5db014baf37345d15606cfca1b65cb8b3f99bac479f598ac76f1745880875",
-    "tests/e2e/challenge-window-retention.test.js": "3f7440825800d6975feb3883901ab3a1339637245faa1b9a03c0902a90f9d930",
+    "tests/e2e/challenge-window-retention.test.js": "96f778c624391ed3998a567f6a731820948224d5ed3d711a2393d7d2f3ea9cd1",
     "tests/fixtures/public-api-types.ts": "43834efeec71bc09b37cb7ff588c49f169201c369c3fcccc1f7ce7fb733712fd",
-    "tests/requirement-coverage.test.js": "cf0f9fc01045861894ba2aef6a596670dfa3a4b078db2ab2fda0cadc581e0479"
+    "tests/requirement-coverage.test.js": "cf0f9fc01045861894ba2aef6a596670dfa3a4b078db2ab2fda0cadc581e0479",
+    ".github/workflows/release.yml": "8c48322cba91e2ad7ecdf5e82a88d6f31d87238200c5e45f08d78411a45bbcba",
+    "tests/ci-timeouts.test.js": "82adbd70c5955576d54a5e44b2d538858c25df4acb577145352883040426a47f",
+    "src/util.js": "97ba038919a5f1d9337929f6385e473e3991eab7c815059300e81da691b669c9"
   },
   "logs": {
     "node-full-before-final-close-guard.tap.gz": {
@@ -235,6 +250,18 @@
     "initial-deno-lock-mismatch.log.gz": {
       "rawSha256": "6f79c0520e35eb632f45833b96bd6fee5aecdca69bee96b238e5dccdec30bae8",
       "rawBytes": 223
+    },
+    "native-atomic-publication-regression.tap.gz": {
+      "rawSha256": "95fb73785161ed99f542f8cf61a8670f4ecc179fe1f8080bd9d2b597954b6305",
+      "rawBytes": 416
+    },
+    "node-atomic-handoff-controls.tap.gz": {
+      "rawSha256": "e05cbe3f6697fb0906ac4b4faff7d4232d95f53f9908661779a295f9eaef1313",
+      "rawBytes": 3882
+    },
+    "ci-source-6280-windows-deno-pass.log.gz": {
+      "rawSha256": "b7e978f4c3a614facf55a47efeabd4d1a6306cbcfb589e9ec46e80766eb120c8",
+      "rawBytes": 337376
     }
   },
   "github": {
@@ -252,5 +279,7 @@
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
-  "purchaseReady": false
+  "purchaseReady": false,
+  "source6280Review": "source-6280-review.json",
+  "ci": "pending-new-source-run"
 }

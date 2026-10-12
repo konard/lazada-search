@@ -1,0 +1,48 @@
+{
+  "sourceCommit": "6280da56d800b018adbcd2dae2f580eb4e6730bb",
+  "accepted": false,
+  "localUnit": {
+    "pass": 1471,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "localNative": {
+    "pass": 82,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0,
+    "failure": "Persistent descriptor published before its JSON write completed during supervisor replacement."
+  },
+  "ci": {
+    "runId": 38269121235,
+    "matrixPassed": 7,
+    "matrixFailed": 1,
+    "matrixCancelled": 1,
+    "windowsBun": "Complete catalog import exceeded450000ms; full fixture retained.",
+    "windowsNode": "Cold setup consumed over five minutes;15-minute job backstop cancelled the600-second suite before its deadline.",
+    "windowsNodeSetupSeconds": 357.57
+  },
+  "logs": {
+    "node-source-6280-full.tap.gz": {
+      "rawSha256": "8817ea328919aacab4815abe7d8caae85c618686023827fab1e701ec4bddf553",
+      "rawBytes": 363931
+    },
+    "native-source-6280-readiness-race.tap.gz": {
+      "rawSha256": "bd7c6870ecb2e9730969db0c8aaaecb0b731b32bff5d35aaa6e52068ccebaa0b",
+      "rawBytes": 24794
+    },
+    "ci-source-6280-windows-bun-failure.log.gz": {
+      "rawSha256": "8ac9b164f7c321296a774d730b601c27732744fb380100ca8c91e9c4124ec5dc",
+      "rawBytes": 269459
+    },
+    "ci-source-6280-windows-node-cancellation.log.gz": {
+      "rawSha256": "44599ab57ee443774c23716fcbb12876286a2fe04b631aac809d80c3b0c27c7d",
+      "rawBytes": 60374
+    },
+    "ci-source-6280-required-pipeline-failure.log.gz": {
+      "rawSha256": "dbe04a1b223dbd91c0dda6681eb5b7d92b118139e3e38822e07182b589b0e0b1",
+      "rawBytes": 20852
+    }
+  }
+}

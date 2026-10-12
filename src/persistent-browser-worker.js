@@ -1,12 +1,13 @@
 import { randomBytes } from 'node:crypto';
 import { createServer } from 'node:http';
-import { readFile, rm, writeFile } from 'node:fs/promises';
+import { readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { launchBrowser, saveStorageState } from 'browser-commander';
 import { connectPersistentBrowser } from './browser-connection.js';
 import { AssociativeStore } from './store.js';
 import { COLLECTION_STOP_ID } from './page-challenge.js';
+import { atomicWrite } from './util.js';
 
 const directory = process.argv[2];
 const stateFile = join(directory, 'browser-window.json');
@@ -84,13 +85,12 @@ function shutdown() {
       if (sessionFile) {
         const state = await saveStorageState(runtime.page).catch(() => null);
         if (state) {
-          await writeFile(
+          await atomicWrite(
             sessionFile,
             JSON.stringify({
               cookies: state.cookies.filter((cookie) => !(cookie.expires > 0)),
               origins: [],
-            }),
-            { mode: 0o600 }
+            })
           );
         }
       }
@@ -270,23 +270,23 @@ try {
     void serve(token, req, res);
   });
   await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-  await writeFile(
-    stateFile,
-    JSON.stringify({
-      pid: process.pid,
-      token,
-      controlEndpoint: `http://127.0.0.1:${server.address().port}/`,
-    }),
-    { mode: 0o600 }
-  );
-  await writeFile(
+  // Recovery must be complete before publishing readiness. Readers may poll
+  // these files while a worker starts or replaces a stopped supervisor.
+  await atomicWrite(
     recoveryFile,
     JSON.stringify({
       pid: process.pid,
       browserPid: runtime.browserProcess?.pid || runtime.browserPid,
       cdpEndpoint: runtime.cdpEndpoint,
-    }),
-    { mode: 0o600 }
+    })
+  );
+  await atomicWrite(
+    stateFile,
+    JSON.stringify({
+      pid: process.pid,
+      token,
+      controlEndpoint: `http://127.0.0.1:${server.address().port}/`,
+    })
   );
   await rm(lock, { recursive: true, force: true });
   runtime.browserProcess?.once('exit', () => {
@@ -317,7 +317,7 @@ try {
     }
   }
 } catch (error) {
-  await writeFile(errorFile, error.message, { mode: 0o600 }).catch(() => {});
+  await atomicWrite(errorFile, error.message).catch(() => {});
   if (reconnectOnly && adopted) {
     // A failed supervisor attach does not own the borrowed challenge window.
     releasingSupervisor = true;

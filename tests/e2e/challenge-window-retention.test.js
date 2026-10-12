@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
@@ -427,6 +427,158 @@ async function waitProcessExit(pid) {
   }
   assert.fail('Isolated test supervisor did not exit');
 }
+
+async function writePublicationPreload(directory) {
+  const path = join(directory, 'delay-publication.cjs');
+  const source = `const fs=require('node:fs/promises');
+const {join}=require('node:path');
+const {syncBuiltinESMExports}=require('node:module');
+const {setTimeout:delay}=require('node:timers/promises');
+const directory=${JSON.stringify(directory)};
+const originalWrite=fs.writeFile;
+const originalOpen=fs.open;
+const publications=['browser-window-recovery.json','browser-window.json'];
+function publication(path){
+  return publications.find(name=>path===join(directory,name)||
+    (String(path).startsWith(join(directory,name)+'.')&&String(path).endsWith('.tmp')));
+}
+async function pause(path,name){
+  await originalWrite(join(directory,'test-'+name+'.paused'),JSON.stringify({path,pid:process.pid}));
+  const deadline=Date.now()+10000;
+  while(Date.now()<deadline){
+    if(await fs.stat(join(directory,'test-'+name+'.release')).then(()=>true,()=>false))return;
+    await delay(20);
+  }
+  throw new Error('Synthetic publication gate was not released: '+name);
+}
+fs.writeFile=async function(path,data,...options){
+  const name=publication(path);
+  if(name){
+    await originalWrite(path,Buffer.from(data).subarray(0,1),...options);
+    await pause(path,name);
+  }
+  return originalWrite(path,data,...options);
+};
+fs.open=async function(path,...options){
+  const file=await originalOpen(path,...options);
+  const name=publication(path);
+  if(name){
+    const original=file.writeFile.bind(file);
+    file.writeFile=async function(data,...writeOptions){
+      const first=Buffer.from(data).subarray(0,1);
+      await file.write(first,0,first.length,0);
+      await pause(path,name);
+      return original(data,...writeOptions);
+    };
+  }
+  return file;
+};
+syncBuiltinESMExports();`;
+  await writeFile(path, source);
+  return path;
+}
+
+async function waitPublicationPaused(directory, name) {
+  const path = join(directory, `test-${name}.paused`);
+  const deadline = Date.now() + 10000;
+  while (Date.now() < deadline) {
+    const value = await readFile(path, 'utf8').catch((error) => {
+      if (error.code === 'ENOENT') {
+        return null;
+      }
+      throw error;
+    });
+    if (value) {
+      return JSON.parse(value);
+    }
+    await delay(20);
+  }
+  assert.fail(`Synthetic worker did not pause ${name}`);
+}
+
+test('startup publication readers retain the exact challenge target while metadata writes are held partially complete', async (t) => {
+  const record = await fixture(t);
+  await assert.rejects(record.collector.assertCollecting(), {
+    code: 'COLLECTION_STOPPED',
+  });
+  const before = await targets(record.observer);
+  await record.collector.close();
+  process.kill(record.original.pid, 'SIGTERM');
+  await waitProcessExit(record.original.pid);
+  const preload = await writePublicationPreload(record.directory);
+  const previousOptions = process.env.NODE_OPTIONS;
+  process.env.NODE_OPTIONS = `${previousOptions || ''} --require=${JSON.stringify(preload)}`;
+  const client = collectorFor(record.store);
+  record.clients.push(client);
+  let pending;
+  try {
+    pending = client.resumeCollection().then(
+      (value) => ({ value }),
+      (error) => ({ error })
+    );
+    const recoveryPause = await waitPublicationPaused(
+      record.directory,
+      'browser-window-recovery.json'
+    );
+    assert.notEqual(recoveryPause.pid, record.original.pid);
+    assert.equal(await readFile(recoveryPause.path, 'utf8'), '{');
+    await assertHeadlessStop(client);
+    assert.equal((await recovery(record.directory)).pid, record.original.pid);
+    await assertOriginalDocument(record.observedPage, record.targetId);
+    assert.deepEqual(await targets(record.observer), before);
+    await writeFile(
+      join(record.directory, 'test-browser-window-recovery.json.release'),
+      'release'
+    );
+    const statePause = await waitPublicationPaused(
+      record.directory,
+      'browser-window.json'
+    );
+    assert.equal(statePause.pid, recoveryPause.pid);
+    assert.equal(await readFile(statePause.path, 'utf8'), '{');
+    const publishedRecovery = await recovery(record.directory);
+    assert.equal(publishedRecovery.pid, statePause.pid);
+    assert.equal(publishedRecovery.browserPid, record.original.browserPid);
+    await assertHeadlessStop(client);
+    await assertOriginalDocument(record.observedPage, record.targetId);
+    assert.deepEqual(await targets(record.observer), before);
+    await writeFile(
+      join(record.directory, 'test-browser-window.json.release'),
+      'release'
+    );
+    const result = await pending;
+    assert.equal(result.error?.code, 'COLLECTION_STOPPED');
+    assert.ok(client.runtime, result.error?.cause?.stack);
+    await assertOriginalDocument(client.runtime.page, record.targetId);
+    const replacement = await recovery(record.directory);
+    assert.equal(replacement.pid, statePause.pid);
+    assert.equal(replacement.browserPid, record.original.browserPid);
+    assert.equal(
+      (await record.store.get('collection-stop', COLLECTION_STOP_ID)).browser
+        .targetId,
+      record.targetId
+    );
+    assert.deepEqual(await targets(record.observer), before);
+    assert.deepEqual(record.navigations, [fixtureUrl]);
+    assert.deepEqual(record.requests, [fixtureUrl]);
+  } finally {
+    if (previousOptions === undefined) {
+      delete process.env.NODE_OPTIONS;
+    } else {
+      process.env.NODE_OPTIONS = previousOptions;
+    }
+    for (const name of [
+      'browser-window-recovery.json',
+      'browser-window.json',
+    ]) {
+      await writeFile(
+        join(record.directory, `test-${name}.release`),
+        'release'
+      );
+    }
+    await pending;
+  }
+});
 
 for (const signal of ['SIGKILL', 'SIGTERM', 'SIGINT']) {
   test(`active native challenge survives supervisor ${signal} and resume replaces only that supervisor while retaining the exact foreground-independent target`, async (t) => {

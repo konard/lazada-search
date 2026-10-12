@@ -1,10 +1,11 @@
 import { spawn } from 'node:child_process';
-import { mkdir, readFile, rm, writeFile, stat } from 'node:fs/promises';
+import { mkdir, readFile, rm, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { connectPersistentBrowser } from './browser-connection.js';
 import { pacePersistentHost } from './browser-pacing.js';
+import { atomicWrite } from './util.js';
 
 export const BROWSER_IDLE_MS = 30 * 60 * 1000;
 
@@ -128,9 +129,7 @@ async function launchWorker(directory, options) {
   try {
     const config = join(directory, 'browser-window-options.json');
     await rm(join(directory, 'browser-window-error.txt'), { force: true });
-    await writeFile(config, JSON.stringify({ debug: false, ...options }), {
-      mode: 0o600,
-    });
+    await atomicWrite(config, JSON.stringify({ debug: false, ...options }));
     const worker = spawn(
       process.execPath,
       [
