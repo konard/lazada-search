@@ -81,15 +81,48 @@ function massScope(prefix, suffix) {
     : 'headline';
 }
 
+function* massDeclarations(text) {
+  // Each numeric run has one candidate, including malformed or unitless runs.
+  // Unit validation starts after the complete numeric token.
+  for (const token of text.matchAll(/\d[\d.,]*/gu)) {
+    if (!/^\d+(?:[.,]\d+)*$/u.test(token[0])) {
+      continue;
+    }
+    const before = text[token.index - 1];
+    if (
+      (before === '.' || before === ',') &&
+      (token.index === 1 || /\s/u.test(text[token.index - 2]))
+    ) {
+      continue;
+    }
+    let unitStart = token.index + token[0].length;
+    while (unitStart < text.length && /\s/u.test(text[unitStart])) {
+      unitStart++;
+    }
+    // Longest unit is nine code units; include one possible astral code point
+    // for its trailing Unicode letter/number guard, without copying the tail.
+    const unit = text
+      .slice(unitStart, unitStart + 11)
+      .match(
+        /^(kilograms?|kgs?|grams?|gam|gr|g|pounds?|lbs?|ounces?|oz)(?![\p{L}\p{N}])/iu
+      );
+    if (unit) {
+      const match = [
+        text.slice(token.index, unitStart + unit[0].length),
+        token[0],
+        unit[1],
+      ];
+      match.index = token.index;
+      yield match;
+    }
+  }
+}
+
 // Keep every declaration so metric preference never erases a parent package,
 // rounded imperial headline, gross weight or conflicting food-size claim.
 export function massEvidence(value) {
   const text = String(value || '');
-  const candidates = [
-    ...text.matchAll(
-      /(\d+(?:[.,]\d+)*)\s*(kilograms?|kgs?|grams?|gam|gr|g|pounds?|lbs?|ounces?|oz)(?![\p{L}\p{N}])/giu
-    ),
-  ]
+  const candidates = [...massDeclarations(text)]
     .map((match) => {
       const unit = match[2].toLowerCase();
       const metric = !/^(?:lb|pound|oz|ounce)/u.test(unit);

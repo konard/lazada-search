@@ -1,0 +1,101 @@
+{
+  "head": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+  "workflowSet": {
+    "passed": 6,
+    "failed": 0,
+    "cancelled": 0,
+    "runs": [
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280914005",
+        "id": 38280914005,
+        "name": "Security",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T16:59:35Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280913989",
+        "id": 38280913989,
+        "name": "Broken Link Checker",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T16:57:38Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280913961",
+        "id": 38280913961,
+        "name": "Workflows",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T16:57:51Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280913932",
+        "id": 38280913932,
+        "name": "Example app",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T16:58:56Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280913936",
+        "id": 38280913936,
+        "name": "Checks and release",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T17:00:39Z"
+      },
+      {
+        "conclusion": "success",
+        "created_at": "2026-10-12T16:56:50Z",
+        "head_sha": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38280913957",
+        "id": 38280913957,
+        "name": "Lazada E2E",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-10-12T17:07:54Z"
+      }
+    ]
+  },
+  "pullRequestAccepted": false,
+  "blockingAdditionalChecks": [
+    {
+      "id": 114918061515,
+      "name": "CodeQL",
+      "conclusion": "failure",
+      "severity": "high",
+      "rule": "js/polynomial-redos",
+      "alert": 33,
+      "source": "src/nutrition.js:89\u201391",
+      "annotationPath": "/private/tmp/lazada-codeql-44b5729-annotations.json",
+      "checkPath": "/private/tmp/lazada-codeql-44b5729-check.json"
+    }
+  ],
+  "sourceAcceptance": {
+    "commit": "08236d87f1a5f28fd10eb184d0e903b8a281d4ce",
+    "matrixPassed": 9,
+    "nativeE2ePassed": 84,
+    "receipt": "/private/tmp/lazada-ci-08236-acceptance.json",
+    "equivalence": "git diff verifies docs/acceptance changes only; source/tests/workflows/packages/case/tables unchanged at44b5729"
+  },
+  "scope": "Workflow/test receipts are retained as actual successes; the independent CodeQL finding blocks full PR acceptance until fixed and verified.",
+  "repositoryEditsForThisReview": false,
+  "marketRequests": 0,
+  "userBrowserInteraction": false
+}

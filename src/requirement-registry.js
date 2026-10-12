@@ -1035,6 +1035,21 @@ export const REQUIREMENT_GITHUB_ISSUES = [
     requirementIds: ['R026', 'R028', 'R041'],
     draftStatus: 'implemented-acceptance-in-progress',
   },
+  {
+    number: 43,
+    state: 'OPEN',
+    title:
+      'Bound mass extraction on adversarial numeric input and verify the separate CodeQL PR gate',
+    url: 'https://github.com/konard/lazada-search/issues/43',
+    requirementIds: ['R011', 'R016', 'R023', 'R037', 'R048'],
+    draftStatus: 'linear-mass-parser-in-draft-pr',
+    sourceFiles: [
+      'src/nutrition.js',
+      'tests/mass-evidence-performance.test.js',
+    ],
+    acceptanceRemaining:
+      'Accept the bounded adversarial and literal-declaration controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
+  },
 ];
 
 export function requirementDraftStatus() {

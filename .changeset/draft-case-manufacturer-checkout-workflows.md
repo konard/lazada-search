@@ -11,3 +11,5 @@ Keep detected browser challenge pages in the original window through cleanup, ca
 Update Browser Commander to 0.31.2, preserve the first challenge/target binding atomically across tabs, retain pending pages during graceful supervisor interruption, and keep offline cleanup independent of unavailable archives. Publish complete supervisor recovery/status metadata atomically, and preserve the suite deadline through measured cold Windows setup.
 
 Retry transient Windows lock-owner reads during concurrent writer cleanup without treating permission errors as a missing or dead owner. Keep persistent permission errors and all durable-write/fixture checks intact.
+
+Extract package mass through a single numeric-token pass and anchored unit checks, preserving exact abbreviations, quantities and source positions while bounding malformed-input work. Add adversarial subprocess controls and verify the separate CodeQL PR gate alongside workflow tests.
