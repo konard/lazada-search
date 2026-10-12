@@ -2,6 +2,7 @@ import {
   ManufacturerResearch,
   manufacturerIdentityGaps,
   reviewManufacturerResearch,
+  validateManufacturerOriginalFact,
 } from './manufacturer-research.js';
 import { workflowOriginalForTask } from './manufacturer-workflow.js';
 import {
@@ -15,7 +16,11 @@ import { validateProduct } from './products.js';
 import { isTrustedManufacturer } from './manufacturers.js';
 import { fold, sha256, listingKey } from './util.js';
 import { isDeepStrictEqual } from 'node:util';
-import { boundWorkflowOcrText } from './manufacturer-workflow-facts.js';
+import {
+  boundWorkflowOcrText,
+  extractStructuredWorkflowCandidates,
+  workflowSourceText,
+} from './manufacturer-workflow-facts.js';
 
 const DAY = 86400000;
 const REQUIRED_IDENTITY = [
@@ -358,7 +363,51 @@ async function preparedSources(context, candidates, input, staged) {
   const attachments = new Map();
   const anchors = new Map();
   for (const candidate of candidates) {
-    const { source } = await sourceForReview(context, candidate, maximum);
+    const { source, bytes } = await sourceForReview(
+      context,
+      candidate,
+      maximum
+    );
+    const declaredIdentity = input.sourceIdentities?.[source.id];
+    if (candidate.identity) {
+      reviewedIdentity(
+        candidate.identity,
+        declaredIdentity,
+        'Original candidate identity'
+      );
+    }
+    if (/json/iu.test(source.contentType || '')) {
+      const original = extractStructuredWorkflowCandidates({
+        source,
+        text: workflowSourceText(source, bytes),
+      });
+      if (
+        (candidate.structuredJsonPointer ||
+          candidate.structuredOriginalSha256) &&
+        !original.identity
+      ) {
+        throw new Error('Structured original lost its explicit exact identity');
+      }
+      if (original.identity) {
+        reviewedIdentity(
+          original.identity,
+          declaredIdentity,
+          'Original structured source identity'
+        );
+      }
+    }
+    await validateManufacturerOriginalFact(
+      context.application.store,
+      source,
+      candidate,
+      {
+        identity: {
+          listing: input.listingIdentity,
+          manufacturer: input.manufacturerIdentity,
+          source: input.sourceIdentities?.[source.id],
+        },
+      }
+    );
     sources.set(source.id, source);
     if (candidate.sourceRecordKind === 'evidence') {
       attachments.set(
@@ -453,7 +502,11 @@ async function applyQuantityReview(
       'Quantity source identity'
     );
     const gaps = manufacturerIdentityGaps(input.listingIdentity, declared);
-    if (gaps.length || candidate.basis !== 'one-inner-food-package') {
+    if (
+      gaps.length ||
+      candidate.basis !== 'one-inner-food-package' ||
+      declared[candidate.field] !== candidate.value
+    ) {
       throw new Error(
         `Quantity source package identity remains unresolved: ${gaps.join(', ')}`
       );

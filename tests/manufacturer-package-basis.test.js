@@ -241,12 +241,22 @@ test('original cached Häagen-Dazs image and TSV cannot promote density or a ser
     sha256(bytes),
     '0ce3ceffc726fd6299cfad3a7ced6d9166fe5f7e93600f5f03dce533a6e416c3'
   );
-  const ocr = {
-    id: 'cached-original-negative-basis',
-    imageHash: original.blob.sha256,
-    rawTsv: await store.putBlob(bytes),
-    text: parseTsv(bytes.toString('utf8')).text,
-  };
+  const preservedOcr = JSON.parse(
+    await readFile(
+      'docs/acceptance/manufacturer-research/second-ocr-pass.json',
+      'utf8'
+    )
+  ).find(
+    (entry) =>
+      entry.imageHash === original.blob.sha256 &&
+      entry.rawTsv?.sha256 === sha256(bytes)
+  );
+  assert.ok(preservedOcr, 'Original label OCR metadata must be archived');
+  const parsed = parseTsv(bytes.toString('utf8'));
+  assert.equal(preservedOcr.text, parsed.text);
+  assert.equal(preservedOcr.confidence, parsed.confidence);
+  assert.deepEqual(preservedOcr.words, parsed.words);
+  const ocr = { ...preservedOcr, rawTsv: await store.putBlob(bytes) };
   await store.put('ocr', ocr);
   for (const basis of ['Per 100g', 'Per Package']) {
     const review = reviewed(original, ocr.text, {

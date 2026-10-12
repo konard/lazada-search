@@ -188,7 +188,10 @@ test('case plan, persisted status and requirement registry are shared across eve
     input: { workflowId: id },
   });
   assert.equal(status.status, 200);
-  assert.deepEqual(status.body, await app.caseWorkflowStatus(id));
+  assert.deepEqual(
+    status.body,
+    JSON.parse(JSON.stringify(await app.caseWorkflowStatus(id)))
+  );
   assert.deepEqual(
     await cli(directory, 'case-workflow-status', [id]),
     status.body
@@ -207,7 +210,8 @@ test('case plan, persisted status and requirement registry are shared across eve
   });
   assert.equal(registry.mappedRequirements, 49);
   assert.equal(registry.allRequirementsDelivered, false);
-  assert.equal(registry.testsExecuted, false);
+  assert.equal(registry.testsExecuted, true);
+  assert.equal(registry.codeValidation, 'automated-local-tests-passed');
   assert.deepEqual(
     (await post({ operation: 'requirement-draft-status' })).body,
     registry

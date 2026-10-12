@@ -330,6 +330,28 @@ async function validateClaimOriginal(
   supportedBasis(field, claim, text, identity);
 }
 
+/** Validate a proposed fact against preserved bytes without granting authority. */
+export async function validateManufacturerOriginalFact(
+  store,
+  source,
+  claim,
+  { field = claim.field, identity } = {}
+) {
+  claimShape(field, claim);
+  const bytes = await store.blob(source.blob.sha256);
+  if (
+    !bytes ||
+    sha256(bytes) !== source.blob.sha256 ||
+    bytes.length !== source.blob.bytes ||
+    claim.sourceSha256 !== source.blob.sha256
+  ) {
+    throw new Error(
+      'Reviewed fact no longer matches its original source bytes'
+    );
+  }
+  await validateClaimOriginal(store, source, claim, field, bytes, identity);
+}
+
 function strictChocolateEligibility(identity) {
   if (identity?.listing?.category === 'whey') {
     return null;

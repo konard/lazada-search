@@ -12,7 +12,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R002: {
     reviewedDraftBehavior:
@@ -30,7 +30,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R003: {
     reviewedDraftBehavior:
@@ -46,7 +46,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R004: {
     reviewedDraftBehavior:
@@ -62,7 +62,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R005: {
     reviewedDraftBehavior:
@@ -75,7 +75,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R006: {
     reviewedDraftBehavior:
@@ -88,7 +88,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R007: {
     reviewedDraftBehavior:
@@ -100,7 +100,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R008: {
     reviewedDraftBehavior:
@@ -112,12 +112,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/case-coverage.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R009: {
     reviewedDraftBehavior:
       'Readiness and selected-SKU proof precede pricing; checkout row bindings preserve original item, SKU, quantity, stock and source SHA without rewriting HTML.',
     testDraftFiles: [
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/lazada-checkout-draft.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/e2e/page-loading.test.js',
@@ -125,7 +126,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/lazada-checkout-line-bindings.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R010: {
     reviewedDraftBehavior:
@@ -138,7 +139,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R011: {
     reviewedDraftBehavior:
@@ -151,7 +152,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R012: {
     reviewedDraftBehavior:
@@ -165,7 +166,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R013: {
     reviewedDraftBehavior:
@@ -178,7 +179,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R014: {
     reviewedDraftBehavior:
@@ -193,7 +194,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R015: {
     reviewedDraftBehavior:
@@ -202,7 +203,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/manufacturer-workflow-review.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R016: {
     reviewedDraftBehavior:
@@ -218,7 +219,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R017: {
     reviewedDraftBehavior:
@@ -231,19 +232,22 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/shopping-report.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R018: {
     reviewedDraftBehavior:
       'Per-card manual decisions bind the current card fingerprint and original source SHA. Aggregate review flags cannot waive unknown/conflicting details; a current stored review is consumable by the runner.',
-    testDraftFiles: ['tests/case-workflow-draft.test.js'],
+    testDraftFiles: [
+      'tests/requirement-coverage.test.js',
+      'tests/case-workflow-draft.test.js',
+    ],
     additionalDraftSourceFiles: [
       'src/case-coverage.js',
       'src/case-workflow.js',
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R019: {
     reviewedDraftBehavior:
@@ -256,12 +260,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['docs/architecture.md', 'README.md'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R020: {
     reviewedDraftBehavior:
       'Source/evidence/cache-ID invalidations prevent reuse; search result limits participate in cache keys. Missing work is distinct from deferred recollection and volatile offer revalidation.',
     testDraftFiles: [
+      'tests/handpicked-links.test.js',
       'tests/manufacturer-workflow-draft.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/publication-cache.test.js',
@@ -272,7 +277,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R021: {
     reviewedDraftBehavior:
@@ -286,7 +291,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R022: {
     reviewedDraftBehavior:
@@ -301,12 +306,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R023: {
     reviewedDraftBehavior:
       'New review preview/approval, case, checkout and report operations are wired through application methods, exports, declarations and the shared CLI/HTTP dispatcher.',
     testDraftFiles: [
+      'tests/public-api-typecheck.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/fixtures/public-api-types.ts',
     ],
@@ -317,19 +323,20 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R024: {
     reviewedDraftBehavior:
       'Allowlisted private Telegram uses the same operation dispatcher; new E2E drafts compare report values and workflow status with library/CLI/HTTP and check chunking/authorization.',
     testDraftFiles: [
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/e2e/telegram.test.js',
     ],
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R025: {
     reviewedDraftBehavior:
@@ -343,12 +350,14 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Operator supplies current OTP if required; codes and profile credentials stay private.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R026: {
     reviewedDraftBehavior:
       'Collectors and prepared checkout requests retain global challenge/dialog/loading gates and slow scheduling. Actions verify the current original control and selected SKU before each change.',
     testDraftFiles: [
+      'tests/browser-pacing.test.js',
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/lazada-checkout-draft.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/image-redirect-pacing.test.js',
@@ -357,7 +366,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R027: {
     reviewedDraftBehavior:
@@ -366,19 +375,20 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R028: {
     reviewedDraftBehavior:
       'The existing owned persistent browser worker reuses its window across restarts and closes after 30 idle minutes; draft workflows reuse the same collector.',
     testDraftFiles: [
+      'tests/browser-pacing.test.js',
       'tests/e2e/persistent-window.test.js',
       'tests/e2e/persistent-window-recovery.test.js',
     ],
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R029: {
     reviewedDraftBehavior:
@@ -392,7 +402,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Verify the visible owned-browser chrome during later live acceptance; report a reproduced unresolved obstruction upstream after checking existing issues.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R030: {
     reviewedDraftBehavior:
@@ -404,12 +414,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/lazada-checkout-actions.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R031: {
     reviewedDraftBehavior:
       'Prepared capture uses existing viewport screenshot paths and stable page checks, avoiding full-page resizing and retaining capture geometry.',
     testDraftFiles: [
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/lazada-checkout-draft.test.js',
       'tests/page-capture.test.js',
       'tests/e2e/page-scroll.test.js',
@@ -417,7 +428,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R032: {
     reviewedDraftBehavior:
@@ -431,7 +442,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Root or maintainer verifies a reproduced dependency defect in the respective upstream repository, checks for an existing report, then files or updates a source-backed report. Static-only drafting does not claim a new runtime defect was reproduced.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance:
+      'operator-procedure-recorded-external-execution-pending',
   },
   R033: {
     reviewedDraftBehavior:
@@ -445,7 +457,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Root checks official releases before the next collection session; when newer, updates package/lock graphs and records new acceptance before release.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R034: {
     reviewedDraftBehavior:
@@ -456,7 +468,8 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Root keeps at most two delegated agents active and also performs implementation/review work.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance:
+      'operator-procedure-recorded-external-execution-pending',
   },
   R035: {
     reviewedDraftBehavior:
@@ -469,7 +482,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/shopping-report.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R036: {
     reviewedDraftBehavior:
@@ -483,12 +496,13 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Root commits and pushes this reviewed draft checkpoint, then verifies local and remote branch identity; do not merge unexecuted drafts into the accepted release.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R037: {
     reviewedDraftBehavior:
       'Readiness distinguishes drafted coverage from accepted production and all-market data; source-bound inventory/manual review and the full deferred runtime/live acceptance checklist remain mandatory.',
     testDraftFiles: [
+      'tests/requirement-coverage.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/e2e/verified-case.test.js',
@@ -498,7 +512,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
       'Run deferred functional/native/interface suites and original-layout/source acceptance; complete current inventory/specs/English/discounts/exact freight and live bot. Package owner configures npm trusted publishing for issue 32 before release.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R038: {
     reviewedDraftBehavior:
@@ -511,7 +525,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['src/manufacturer-workflow-review.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R039: {
     reviewedDraftBehavior:
@@ -524,24 +538,27 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R040: {
     reviewedDraftBehavior:
       'Submitted links are retained distinctly, resolved only against intact source bytes and displayed by gram cost; exact SKU and listing membership counts are separate.',
     testDraftFiles: [
+      'tests/handpicked-links.test.js',
       'tests/shopping-workflow-draft.test.js',
       'tests/handpicked-report.test.js',
     ],
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R041: {
     reviewedDraftBehavior:
       'A persisted global collection stop blocks all new website requests, including factory/images and prepared checkout. Offline reports and planning never clear that stop.',
     testDraftFiles: [
+      'tests/handpicked-links.test.js',
+      'tests/e2e/prepared-checkout-adapter.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/lazada-checkout-draft.test.js',
@@ -550,7 +567,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R042: {
     reviewedDraftBehavior:
@@ -563,7 +580,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R043: {
     reviewedDraftBehavior:
@@ -579,7 +596,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R044: {
     reviewedDraftBehavior:
@@ -594,7 +611,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R045: {
     reviewedDraftBehavior:
@@ -607,7 +624,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R046: {
     reviewedDraftBehavior:
@@ -623,7 +640,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     ],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R047: {
     reviewedDraftBehavior:
@@ -637,20 +654,20 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: [],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R048: {
     reviewedDraftBehavior:
       'Native model provenance fingerprints actual model bytes; transformed OCR verifies persisted renderer/crop/source-pass/TSV proofs without relabelling derived pixels as original.',
     testDraftFiles: [
-      'tests/manufacturer-workflow-draft.test.js',
       'tests/ocr-models.test.js',
+      'tests/manufacturer-workflow-draft.test.js',
       'tests/ocr-crops.test.js',
     ],
     additionalDraftSourceFiles: ['src/ocr-evidence.js'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
   R049: {
     reviewedDraftBehavior:
@@ -662,6 +679,6 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     additionalDraftSourceFiles: ['.github/workflows/links.yml'],
     operatorSteps: [],
     draftReviewStatus: 'statically-reviewed-draft',
-    functionalAcceptance: 'deferred-not-executed',
+    functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',
   },
 };

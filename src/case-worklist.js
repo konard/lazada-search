@@ -233,7 +233,8 @@ function recollectionTasks(products, offers, audit, definition) {
     audit.missingSkuPrices.length ||
     audit.unknownSkuInventories.length ||
     audit.missingPrices.length ||
-    audit.categoryReview.length
+    audit.categoryReview.length ||
+    audit.categoryReviewProducts?.length
   ) {
     return [];
   }

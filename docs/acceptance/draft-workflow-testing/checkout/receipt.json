@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "recordedAt": "2026-10-12T06:11:19.734Z",
+  "scope": "isolated synthetic originals, DOM page double, virtual clock and independent local Node lease workers only",
+  "runtimeVersions": {
+    "node": "22.23.0",
+    "bun": "1.4.3",
+    "deno": "2.4.5"
+  },
+  "realAccountAccess": false,
+  "externalRequests": 0,
+  "captchaStopCleared": false,
+  "productionReady": false,
+  "allTargetProductsCollected": false,
+  "sourceSha256": {
+    "src/case-workflow.js": "b0e35c292c9d46738ad41414ddd3f72abe0bc7db5f40f476070430bf08f60857",
+    "src/case-worklist.js": "27f4f56944d90745b92a19d7d7dd000ec152321c51c567c085de974905d202ce",
+    "src/case-workflow-lock.js": "8ec995215e81a874258ec555b64c2ac7d0346d862152a7309b9ba1f86b8122de",
+    "src/case-coverage.js": "7af88068e79a91378cb256a99db9539e479dfcc520558a36d64dd64c25374b9f",
+    "src/lazada-checkout-adapter.js": "d3105e08d6f69ef1197fcec509168ac88cb7bbfac986aeb0d50bfb16784dc86b",
+    "src/lazada-checkout-actions.js": "7d7be721eef17a97475b6a506749d3bcb0b95bac3e4c35a154b8abe02629d5a0",
+    "src/lazada-checkout-capture.js": "87546fdd2e48722f407b255d250bb613e3e5344e195d9685835752c1ac79f7a7",
+    "src/lazada-checkout-fields.js": "30a4b6e02f142b6bf6e8f452393a011728355926d181dd7ea16373d9b897e62d",
+    "src/lazada-checkout-line-bindings.js": "60e5d328d90d73ebdde7ffc5fc49a6bddbaaab12f1ab3c47a087e02cc80b4260",
+    "src/lazada-checkout-gifts.js": "38c6a66abbb79745662b485e2876da03f02b9aabd991fb04515e5c8852f91060",
+    "tests/case-workflow-draft.test.js": "fcfe409526944bf194bae11418d0327835feb8dbd6a10230e3da3e77732c4250",
+    "tests/lazada-checkout-draft.test.js": "a41bb3cdd57e4e04c0d0b94626b4222aaa311d43d20a944ce5114faa47fe5153"
+  },
+  "results": [
+    {
+      "id": "node",
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js",
+      "tests": 45,
+      "exitCode": 0,
+      "log": "node.log.gz",
+      "logOriginalBytes": 11553,
+      "logOriginalSha256": "71351506f0feda0a5775510b689c46b57c5572d738583e0a63dbd413df8b99eb",
+      "logCompressedSha256": "f8f29e7a92cd154891657bdaf6accbc6710b49dc14f4113b1ef15923e3549bc3"
+    },
+    {
+      "id": "bun",
+      "command": "/Users/konard/.bun/bin/bun test --timeout 120000 tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js",
+      "tests": 45,
+      "exitCode": 0,
+      "log": "bun.log.gz",
+      "logOriginalBytes": 5066,
+      "logOriginalSha256": "799d18b8e7509c99db979e3fb42665781a24acdc7b53e75da86a20bcaa458520",
+      "logCompressedSha256": "bbe894d81df9d0be509935f43f71faa455ba7b8f80ef0b34d00cd9078430a172"
+    },
+    {
+      "id": "deno",
+      "command": "/opt/homebrew/bin/deno test --frozen --cached-only --no-check --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi --allow-net=127.0.0.1,localhost tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js",
+      "tests": 45,
+      "exitCode": 0,
+      "log": "deno.log.gz",
+      "logOriginalBytes": 4849,
+      "logOriginalSha256": "b0e648da514fe32ed056fcceed96e63bfdb9939cd8621f2c3215afa7ffe13af0",
+      "logCompressedSha256": "073718b7788c02d69faf7acca73d91959e57a0ad1f8f2df6e56338f730191325"
+    },
+    {
+      "id": "regressions",
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js tests/category-review.test.js tests/page-challenge.test.js tests/category-coverage.test.js tests/human-food-scope.test.js tests/account-case-workflow.test.js tests/translation-presentation-baskets.test.js tests/category-discovery.test.js tests/basket-quotes.test.js tests/checkout-scenarios.test.js tests/handpicked-report.test.js tests/checkout-credentials.test.js tests/page-readiness.test.js tests/flavour-scope.test.js tests/account-category-scope.test.js tests/scope-decisions.test.js tests/food-component-evidence.test.js",
+      "tests": 143,
+      "exitCode": 0,
+      "log": "regressions.log.gz",
+      "logOriginalBytes": 36662,
+      "logOriginalSha256": "f3afcefd4298aec1825b308042683948f907cfdc50e277ea0c92b959a6916633",
+      "logCompressedSha256": "733639fb38bc1d24b7b30530e19a92c3945b3abefedd83196c70b6fbbd6c2269"
+    },
+    {
+      "id": "lint",
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node node_modules/eslint/bin/eslint.js src/case-workflow-lock.js src/case-workflow.js src/case-worklist.js src/case-coverage.js src/lazada-checkout-*.js tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js",
+      "tests": null,
+      "exitCode": 0,
+      "log": "lint.log.gz",
+      "logOriginalBytes": 0,
+      "logOriginalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "logCompressedSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "id": "initial-fixture-failure",
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/lazada-checkout-draft.test.js",
+      "tests": 22,
+      "exitCode": 1,
+      "log": "initial-fixture-failure.log.gz",
+      "logOriginalBytes": 8530,
+      "logOriginalSha256": "7b9ccbcac190461792cc02ce7e9d2a82defee4235269deb0586e7649a1c8bcf7",
+      "logCompressedSha256": "10374f4cf8cab436da049f6d3fb390b708a833665da2a493b5fb4ad0eaa970ec"
+    }
+  ]
+}

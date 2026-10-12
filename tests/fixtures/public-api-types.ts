@@ -155,7 +155,7 @@ applyBasketComparisonTranslations(
   application.translator
 );
 
-// Draft API contracts: compiler execution remains deferred.
+// Workflow API contracts participate in the public declaration check.
 const caseDraft = await application.planCaseWorkflow({ quantities: [1, 10] });
 await application.runCaseWorkflow(String(caseDraft.workflow.id), {
   maxTasks: 25,

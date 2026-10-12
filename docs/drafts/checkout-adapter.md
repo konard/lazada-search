@@ -1,6 +1,6 @@
 # Draft prepared-checkout adapter and food-gift acquisition
 
-This code is drafted at the user's explicit request without running tests, imports, collectors, browser sessions or website requests. It has no real Lazada layout acceptance, no new captured checkout, and no purchase-ready claim. The saved CAPTCHA stop remains active. Previously accepted basket, scenario and component gates are reused; this draft adds source mapping and preparation code rather than treating missing original data as approved facts.
+This code was initially drafted at the user's explicit request without executing it. The user subsequently authorized local testing: the [checkout and case acceptance receipt](../acceptance/draft-workflow-testing/checkout/README.md) records executed Node, Bun and Deno checks against isolated synthetic originals and temporary stores. Real Lazada layout acceptance, new live checkout evidence and purchase readiness remain pending. The saved CAPTCHA stop remains active. Previously accepted basket, scenario and component gates are reused; missing original data still requires source review.
 
 ## Code and public contracts
 

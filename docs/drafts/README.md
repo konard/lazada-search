@@ -1,8 +1,8 @@
 # Remaining requirements: code draft
 
-This branch drafts the outstanding automation at the user's request on 2026-10-12. **The new modules have not been imported, executed or tested.** Formatting and static inspection are separate from functional acceptance; [the static receipt](static-review.json) records their limited scope. The accepted `main` checkpoint is `cec067aaaa1cacabeb2d57d04bb753fdde83731b`; its earlier test receipts do not validate this draft.
+This branch drafts the outstanding automation at the user's request on 2026-10-12. **They were initially saved without execution; the user then authorized local automated testing. [Current acceptance](../acceptance/draft-workflow-testing/README.md) records the actual tests and repaired gaps.** The prior formatting/static-only checkpoint remains historical; [the static receipt](static-review.json) records their limited scope. The accepted `main` checkpoint is `cec067aaaa1cacabeb2d57d04bb753fdde83731b`; its earlier test receipts do not validate this draft.
 
-[The draft recheck](draft-review.md) source-inspects all 49 requirements and reconciles all 40 GitHub issues. It repairs 17 concrete gaps and adds five meaningful, unexecuted unit/E2E suites, a synthetic fixture and revised type usage. [The new static receipt](draft-review-static.json) describes this checkpoint; the earlier static receipt above belongs to the preceding draft. [The requirement registry](requirements.md) retains the code/acceptance mapping. Existing source originals, `.lino`, associative binary archives, cached OCR, published comparisons and accepted test fixtures remain in the repository. No source collection, report regeneration or price refresh was performed for this draft. The active manufacturer CAPTCHA stop remains in force.
+[The draft recheck](draft-review.md) source-inspects all 49 requirements and reconciles all 40 GitHub issues. It repairs 17 concrete gaps and initially added five unit/E2E suites, a synthetic fixture and revised type usage. [The new static receipt](draft-review-static.json) describes this checkpoint; the earlier static receipt above belongs to the preceding draft. [The requirement registry](requirements.md) retains the code/acceptance mapping. Existing source originals, `.lino`, associative binary archives, cached OCR, published comparisons and accepted test fixtures remain in the repository. No source collection, report regeneration or price refresh was performed for this draft. The active manufacturer CAPTCHA stop remains in force.
 
 ## Drafted implementation
 
@@ -20,7 +20,7 @@ This branch drafts the outstanding automation at the user's request on 2026-10-1
 
 ## Example operator workflow
 
-These are examples for later acceptance, **not commands executed for this draft**. Use an offline application to enforce cache-only execution. Store checkout originals under a private account; publish only the existing reviewed public evidence/archives. Provider keys, phone codes, cookies and exact address originals must remain private.
+These are examples for later acceptance, **examples rather than live collection commands executed for this checkpoint**. Use an offline application to enforce cache-only execution. Store checkout originals under a private account; publish only the existing reviewed public evidence/archives. Provider keys, phone codes, cookies and exact address originals must remain private.
 
 ```sh
 node bin/lazada-search.js plan-case-workflow docs/drafts/case-plan.json --offline --no-ocr
@@ -59,9 +59,9 @@ Telegram uses the existing private-chat allowlist and shared structured interfac
 
 Send that JSON after `/operation`. HTTP uses the existing authenticated operation endpoint and the same request shape. Source search can be configured at application startup, or by the trusted local CLI `--manufacturer-search-config provider.json` / `LAZADA_MANUFACTURER_SEARCH_CONFIG`. `run-manufacturer-workflow ID runtime.json` also accepts a local `searchConfiguration`. A configured provider does not authorize clearing a collection stop.
 
-## Deferred acceptance and remaining real data
+## Automated acceptance and remaining real data
 
-[The acceptance plan](acceptance-plan.md) lists the meaningful tests and genuine original fixtures to run after the draft is reviewed. Every new workflow retains draft markers. `allRequirementsDelivered`, `allTargetProductsCollected`, `productionReady` and `purchaseReady` remain false.
+[The acceptance plan](acceptance-plan.md) links completed local tests and the remaining genuine-layout/source/provider/live checks. Every new workflow retains draft markers. `allRequirementsDelivered`, `allTargetProductsCollected`, `productionReady` and `purchaseReady` remain false.
 
 Missing target listings/SKU prices, exact manufacturer/current formula verification, second ice-cream quantity units, full nutrients, reviewed English, live authentication/Telegram, current eligible discounts and exact Nha Trang bulk/frozen delivery require real evidence. Issue 32 additionally requires package-owner trusted-publisher configuration. Source collection can resume only after the original challenge has been cleared and the existing guarded explicit resume succeeds.
 

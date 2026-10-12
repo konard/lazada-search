@@ -144,7 +144,7 @@ async function checkedOcr(store, ocr) {
     !isDeepStrictEqual(parsed.words, stored.words)
   ) {
     throw new Error(
-      'OCR transcription, confidence or word geometry differs from original TSV'
+      'OCR transcription, confidence or word geometry differs from its original TSV'
     );
   }
   return { stored, text: parsed.text };
@@ -200,6 +200,11 @@ async function checkedTransform(store, ocr, original) {
 export async function verifyOriginalBoundOcr(store, original, input) {
   await preservedBytes(store, original, 'source image');
   const ocr = typeof input === 'string' ? await store.get('ocr', input) : input;
+  if (!ocr || (ocr.imageHash !== original.sha256 && !ocr.imageTransform)) {
+    throw new Error(
+      'Label review requires OCR bound to the original image; derived OCR needs its preserved transformation'
+    );
+  }
   const checked = await checkedOcr(store, ocr);
   if (checked.stored.imageTransform) {
     await checkedTransform(store, checked.stored, original);

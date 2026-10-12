@@ -18,6 +18,8 @@ async function scopeFingerprint(application) {
       'crawl',
       'invalidation',
       'case-category-review',
+      'case-inventory',
+      'listing-availability',
     ].map((kind) => application.store.list(kind)),
   ]);
   return sha256(
@@ -102,6 +104,22 @@ const categoryDefinition = (record) =>
       'reason',
       'evidence',
       'reviewedBy',
+    ].map((field) => [field, record[field]])
+  );
+
+const manualDefinition = (record) =>
+  Object.fromEntries(
+    [
+      'reviewedBy',
+      'reason',
+      'evidence',
+      'scope',
+      'scopeFingerprint',
+      'exactPriceExtractionReviewed',
+      'quantityExtractionReviewed',
+      'classificationReviewed',
+      'listPaginationReviewed',
+      'categoryReviewIds',
     ].map((field) => [field, record[field]])
   );
 
@@ -374,7 +392,16 @@ function exactManifestRows(application, source, mapping) {
       throw new Error('Exact marketplace item/SKU identity required');
     }
     application.assertMarket(url);
-    if (!new URL(url).pathname.includes(`-i${sku.split('_VNAMZ-')[0]}`)) {
+    const parsedUrl = new URL(url);
+    const identity = parsedUrl.pathname.match(/-i(\d+)(?:-s(\d+))?\.html$/u);
+    const [itemId, skuId] = sku.split('_VNAMZ-');
+    if (
+      !identity ||
+      identity[1] !== itemId ||
+      (identity[2] && identity[2] !== skuId) ||
+      (parsedUrl.searchParams.has('skuId') &&
+        parsedUrl.searchParams.get('skuId') !== skuId)
+    ) {
       throw new Error('Inventory item/SKU and URL disagree');
     }
     return { url, sku };
@@ -605,7 +632,15 @@ export async function caseCoverageStatus(application, input = {}) {
   const fingerprint = await scopeFingerprint(application);
   const scope = caseScope(application);
   let reviewValid = Boolean(
-    review && review.scope === scope && review.scopeFingerprint === fingerprint
+    review &&
+    !review.invalidated &&
+    !review.invalidatedAt &&
+    review.scope === scope &&
+    review.scopeFingerprint === fingerprint &&
+    review.id ===
+      `case-manual-review:${sha256(JSON.stringify(manualDefinition(review)))}` &&
+    Number.isFinite(Date.parse(review.reviewedAt)) &&
+    Date.parse(review.reviewedAt) <= Date.now() + 60000
   );
   if (review) {
     try {

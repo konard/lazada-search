@@ -3,7 +3,11 @@ import {
   checkoutScenarioStatus,
   runCheckoutScenarios,
 } from './checkout-scenarios.js';
-import { checkoutCount, checkoutPointer } from './lazada-checkout-fields.js';
+import {
+  checkoutCount,
+  checkoutField,
+  checkoutPointer,
+} from './lazada-checkout-fields.js';
 import { extractCheckoutLineBinding } from './lazada-checkout-line-bindings.js';
 import {
   requirePreparedCheckoutPage,
@@ -19,6 +23,8 @@ import { resolveProductReviews } from './catalog-products.js';
 import { matchesFlavourScope } from './flavour-scope.js';
 import { shoppingCategory } from './shopping-report.js';
 import { animateScroll } from './page-scroll.js';
+import { deliveryAreaForDestination } from './delivery-context.js';
+import { fold } from './text.js';
 
 function reviewedActions(input) {
   const layout = input.layout;
@@ -192,8 +198,24 @@ async function verifiedControl(page, action) {
   return control;
 }
 
-async function verifySelectedRows(application, page, layout, scenario) {
+async function verifySelectedRows(application, page, layout, scenario, plan) {
   const { document } = parseHTML(await page.content());
+  const destination = checkoutField(
+    document,
+    layout.selectors?.destination,
+    'scenario delivery destination'
+  );
+  const destinationControl = page.locator(destination.selector);
+  if (
+    (await destinationControl.count()) !== 1 ||
+    !(await destinationControl.isVisible()) ||
+    fold(deliveryAreaForDestination(destination.text)) !==
+      fold(plan.definition.deliveryArea)
+  ) {
+    throw new Error(
+      'Scenario preparation destination differs from the immutable planned delivery area'
+    );
+  }
   for (const line of scenario.definition.lines) {
     const offer = await application.store.get('offer', line.offerId);
     const stored =
@@ -233,6 +255,14 @@ async function verifySelectedRows(application, page, layout, scenario) {
             value: checkoutPointer(identity.value, source.stockBinding.pointer),
           }
         : checkoutCount(document, source.selectors?.stock, 'selected stock');
+    if (
+      !source.stockBinding &&
+      !identity.row.contains(document.querySelector(stock.selector))
+    ) {
+      throw new Error(
+        'Scenario stock proof belongs to a different selected row'
+      );
+    }
     if (!Number.isSafeInteger(stock.value) || stock.value < line.quantity) {
       throw new Error(
         'Requested scenario quantity exceeds exact original available stock'
@@ -327,7 +357,7 @@ async function prepareCurrentScenario(application, input) {
     );
   }
   await waitPreparedCheckoutStable(application, page, { sourceUrl });
-  await verifySelectedRows(application, page, layout, scenario);
+  await verifySelectedRows(application, page, layout, scenario, plan);
   // Validate every target control before the first change, avoiding partial
   // preparation because a later binding is unknown or points at submission.
   for (const action of actions) {
@@ -337,9 +367,10 @@ async function prepareCurrentScenario(application, input) {
   for (const action of actions) {
     await paceMutation(application, page, sourceUrl, intervalMs);
     await waitPreparedCheckoutStable(application, page, { sourceUrl });
-    await verifySelectedRows(application, page, layout, scenario);
+    await verifySelectedRows(application, page, layout, scenario, plan);
     await animateControlIntoView(page, action.selector);
     await waitPreparedCheckoutStable(application, page, { sourceUrl });
+    await verifySelectedRows(application, page, layout, scenario, plan);
     const changed = await applyAction(
       await verifiedControl(page, action),
       action

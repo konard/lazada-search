@@ -11,6 +11,7 @@ import {
   checkoutStructuredState,
   checkoutDialogs,
   checkoutPointer,
+  checkoutNodeVisible,
 } from './lazada-checkout-fields.js';
 import {
   extractCheckoutLineBinding,
@@ -59,6 +60,7 @@ function exactOffer(offers, sku, offerId) {
     matches[0].currency !== 'VND' ||
     matches[0].available === false ||
     matches[0].priceInvalidated ||
+    matches[0].supersededBy ||
     matches[0].variantConfirmed !== true
   ) {
     throw new Error(
@@ -84,6 +86,15 @@ function observedSku(document, line) {
       .value;
   if (!(quantity > 0)) {
     throw new Error('Selected checkout quantity must be positive');
+  }
+  if (
+    identity &&
+    !line.quantityBinding &&
+    !identity.row.contains(document.querySelector(line.selectors?.quantity))
+  ) {
+    throw new Error(
+      'Visible selected quantity belongs to another checkout row'
+    );
   }
   return { sku, quantity, identity };
 }
@@ -145,6 +156,16 @@ function lineAvailability(document, line, quantity, identity) {
     line.selectors?.eligibility,
     'original quantity eligibility'
   );
+  if (
+    identity &&
+    [stock, availability, eligibility].some(
+      (field) => !identity.row.contains(document.querySelector(field.selector))
+    )
+  ) {
+    throw new Error(
+      'Original stock, availability and eligibility must belong to the same exact selected checkout row'
+    );
+  }
   if (
     !/^(?:in stock|available|con hang|co san)$/u.test(
       fold(availability.text)
@@ -334,6 +355,19 @@ export function discoverLazadaCheckoutSnapshot(
       gaps,
       'dialogs',
       new Error('Resolve every original page dialog before source extraction')
+    );
+  }
+  if (
+    [
+      ...document.querySelectorAll(
+        '[aria-busy="true"], [data-loading="true"], [data-page-loading], .next-loading, .ant-spin-spinning'
+      ),
+    ].some(checkoutNodeVisible)
+  ) {
+    issue(
+      gaps,
+      'loading',
+      new Error('Original checkout loading is unresolved')
     );
   }
   readOrGap(gaps, 'layoutReview', () => reviewLayout(layout));

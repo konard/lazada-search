@@ -623,7 +623,7 @@ export const REQUIREMENT_REGISTRY = requirementDefinitions.map(
     priorAcceptanceEvidence: files(priorAcceptanceEvidence),
     externalAcceptanceRequired,
     githubIssues,
-    currentDraftAcceptance: 'unexecuted-tests-deferred',
+    currentDraftAcceptance: 'local-regressions-passed-live-acceptance-pending',
   })
 );
 
@@ -1027,7 +1027,7 @@ export const REQUIREMENT_GITHUB_ISSUES = [
 
 export function requirementDraftStatus() {
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     requirements: REQUIREMENT_REGISTRY,
     githubIssues: REQUIREMENT_GITHUB_ISSUES,
     mappedRequirements: REQUIREMENT_REGISTRY.length,
@@ -1039,8 +1039,10 @@ export function requirementDraftStatus() {
         row.draftReviewStatus === 'statically-reviewed-draft' &&
         (row.testDraftFiles.length > 0 || row.operatorSteps.length > 0)
     ),
-    testsExecuted: false,
-    codeValidation: 'draft-untested',
+    testsExecuted: true,
+    codeValidation: 'automated-local-tests-passed',
+    validationEvidence:
+      'docs/acceptance/draft-workflow-testing/validation.json',
     allRequirementsDelivered: false,
     allTargetProductsCollected: false,
     productionReady: false,

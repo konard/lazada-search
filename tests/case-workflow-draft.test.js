@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { AssociativeStore } from '../src/store.js';
@@ -8,10 +10,14 @@ import { auditCoverage } from '../src/coverage.js';
 import { reviewListingCategory } from '../src/category-review.js';
 import { sha256 } from '../src/util.js';
 import { planCaseWorkflow, runCaseWorkflow } from '../src/case-workflow.js';
+import { acquireCaseLease } from '../src/case-workflow-lock.js';
+import { recordListingUnavailable } from '../src/availability.js';
 import {
   applyCaseCategoryDecisions,
   caseCoverageStatus,
   recordCaseManualReview,
+  importCaseInventoryManifest,
+  verifyCaseInventory,
 } from '../src/case-coverage.js';
 
 async function fixture(t) {
@@ -45,6 +51,8 @@ async function fixture(t) {
       offers: await store.list('offer'),
       discoveries: await store.list('discovery'),
       skuInventories: await store.list('sku-inventory'),
+      availability: await store.list('listing-availability'),
+      invalidations: await store.list('invalidation'),
     });
   const at = new Date(Date.now() - 1000).toISOString();
   await store.put('crawl', {
@@ -478,4 +486,459 @@ test('draft preliminary inclusion cannot hide unknown or contradictory detailed 
     (await caseCoverageStatus(app)).audit.categoryReviewProducts.length,
     1
   );
+});
+
+async function pendingSku(store, at) {
+  return store.put('sku-inventory', {
+    id: 'inventory-999',
+    url: 'https://www.lazada.vn/products/pdp-i999.html',
+    inventoryObserved: true,
+    observedAt: at,
+    skus: [{ sku: '999_VNAMZ-91', options: [{ value: 'Chocolate' }] }],
+  });
+}
+
+const simplePlan = {
+  queries: ['whey protein'],
+  categoryUrls: [],
+  recollectAfterInitialPass: false,
+};
+
+test('case terminal discovery barrier defers exact-SKU work until every configured list is complete', async (t) => {
+  const { app, store, calls, at } = await fixture(t);
+  await pendingSku(store, at);
+  const [crawl] = await store.list('crawl');
+  await store.put('crawl', {
+    ...crawl,
+    scopes: [{ query: 'whey protein', terminalConfirmed: false }],
+  });
+  app.crawl = async (input) => {
+    assert.equal(input.discoveryOnly, true);
+    assert.equal(input.exhaustive, true);
+    assert.equal(input.searchSort, 'priceasc');
+    await store.put('crawl', crawl);
+    return { id: crawl.id, discoveryComplete: true };
+  };
+  const planned = await planCaseWorkflow(app, simplePlan);
+  assert.deepEqual(
+    planned.tasks
+      .filter((task) => task.stage !== 'report')
+      .map((task) => task.stage),
+    ['discovery']
+  );
+  const result = await runCaseWorkflow(app, planned.workflow.id, {
+    maxTasks: 1,
+  });
+  assert.deepEqual(calls, []);
+  assert.ok(
+    result.tasks.some(
+      (task) => task.stage === 'discovery' && task.status === 'succeeded'
+    )
+  );
+  assert.ok(
+    result.tasks.some(
+      (task) => task.stage === 'sku' && task.status === 'pending'
+    )
+  );
+});
+
+test('case retries remain bounded and interrupted checkpoints require explicit recovery', async (t) => {
+  const { app, store, at } = await fixture(t);
+  await pendingSku(store, at);
+  let attempts = 0;
+  app.collect = async () => {
+    attempts += 1;
+    throw new Error('Original quantity price is still loading');
+  };
+  const planned = await planCaseWorkflow(app, {
+    ...simplePlan,
+    maxAttempts: 2,
+  });
+  const sku = planned.tasks.find((task) => task.stage === 'sku');
+  await store.put('case-task', { ...sku, status: 'running', runs: 1 });
+  await runCaseWorkflow(app, planned.workflow.id, { maxTasks: 1 });
+  assert.equal(attempts, 0);
+  await runCaseWorkflow(app, planned.workflow.id, {
+    maxTasks: 1,
+    recoverInterrupted: true,
+  });
+  assert.equal(attempts, 1);
+  await runCaseWorkflow(app, planned.workflow.id, { maxTasks: 1 });
+  assert.equal(attempts, 1);
+  await runCaseWorkflow(app, planned.workflow.id, {
+    maxTasks: 1,
+    retryBlocked: true,
+  });
+  await runCaseWorkflow(app, planned.workflow.id, {
+    maxTasks: 10,
+    retryBlocked: true,
+  });
+  assert.equal(attempts, 2);
+  const checkpoint = await store.get('case-task', sku.id);
+  assert.equal(checkpoint.status, 'blocked');
+  assert.equal(checkpoint.attempts, 2);
+  assert.equal(checkpoint.runs, 3);
+});
+
+async function leaseWorker(t, directory, workflowId) {
+  const workerPath = join(directory, `lease-worker-${randomUUID()}.mjs`);
+  const moduleUrl = new URL('../src/case-workflow-lock.js', import.meta.url)
+    .href;
+  await writeFile(
+    workerPath,
+    `
+import { acquireCaseLease } from ${JSON.stringify(moduleUrl)};
+try {
+  const release = await acquireCaseLease({store:{directory:process.argv[2]}},process.argv[3]);
+  console.log('LEASE');
+  process.stdin.once('data', async () => { await release(); process.exit(0); });
+  process.stdin.resume();
+} catch (error) {
+  console.log(error.code || error.message);
+  process.exit(error.code === 'WORKFLOW_BUSY' ? 0 : 1);
+}
+`
+  );
+  // Node is installed before every CI runtime; the independently held lease
+  // must belong to a distinct process, including under Bun and Deno runners.
+  const child = spawn('node', [workerPath, directory, workflowId], {
+    stdio: ['pipe', 'pipe', 'pipe'],
+  });
+  const exited = new Promise((resolve, reject) => {
+    child.once('error', reject);
+    child.once('exit', (code, signal) => resolve({ code, signal }));
+  });
+  t.after(async () => {
+    if (child.exitCode === null && child.signalCode === null) {
+      child.kill();
+    }
+    await exited;
+  });
+  const message = await new Promise((resolve, reject) => {
+    let output = '';
+    child.once('error', reject);
+    child.stdout.on('data', (bytes) => {
+      output += bytes;
+      if (output.includes('\n')) {
+        resolve(output.split('\n')[0].trim());
+      }
+    });
+    child.once('exit', (code) => {
+      if (!output.includes('\n')) {
+        reject(new Error(`Lease worker exited without a checkpoint: ${code}`));
+      }
+    });
+  });
+  return { child, exited, message };
+}
+
+test('case lease rejects an independent live worker and malformed orphan metadata without deleting it', async (t) => {
+  const { app, store } = await fixture(t);
+  const workflowId = 'lease-independent';
+  const worker = await leaseWorker(t, store.directory, workflowId);
+  assert.equal(worker.message, 'LEASE');
+  await assert.rejects(
+    acquireCaseLease(app, workflowId),
+    (error) => error.code === 'WORKFLOW_BUSY'
+  );
+  worker.child.stdin.end('release\n');
+  assert.equal((await worker.exited).code, 0);
+  const release = await acquireCaseLease(app, workflowId);
+  await release();
+  const orphan = join(
+    store.directory,
+    '.case-workflow-locks',
+    sha256(workflowId)
+  );
+  await mkdir(orphan);
+  await writeFile(join(orphan, 'owner.json'), '{malformed');
+  await assert.rejects(
+    acquireCaseLease(app, workflowId),
+    (error) => error.code === 'WORKFLOW_BUSY'
+  );
+  assert.equal(
+    await readFile(join(orphan, 'owner.json'), 'utf8'),
+    '{malformed'
+  );
+});
+
+test('case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner', async (t) => {
+  const { app, store } = await fixture(t);
+  const workflowId = 'lease-dead-recovery';
+  const abandoned = await leaseWorker(t, store.directory, workflowId);
+  assert.equal(abandoned.message, 'LEASE');
+  abandoned.child.kill();
+  await abandoned.exited;
+  const contenders = await Promise.all([
+    leaseWorker(t, store.directory, workflowId),
+    leaseWorker(t, store.directory, workflowId),
+  ]);
+  assert.deepEqual(contenders.map((worker) => worker.message).sort(), [
+    'LEASE',
+    'WORKFLOW_BUSY',
+  ]);
+  await assert.rejects(
+    acquireCaseLease(app, workflowId),
+    (error) => error.code === 'WORKFLOW_BUSY'
+  );
+  const winner = contenders.find((worker) => worker.message === 'LEASE');
+  winner.child.stdin.end('release\n');
+  await winner.exited;
+  const release = await acquireCaseLease(app, workflowId);
+  const ownerPath = join(
+    store.directory,
+    '.case-workflow-locks',
+    sha256(workflowId),
+    'owner.json'
+  );
+  const replacement = {
+    nonce: randomUUID(),
+    pid: process.pid,
+    acquiredAt: new Date().toISOString(),
+  };
+  await writeFile(ownerPath, JSON.stringify(replacement));
+  await release();
+  assert.deepEqual(JSON.parse(await readFile(ownerPath, 'utf8')), replacement);
+});
+
+async function inventoryOriginal(app, store, at, payload) {
+  const blob = await store.putBlob(JSON.stringify(payload));
+  const evidenceId = `inventory-original:${blob.sha256}`;
+  await store.put('evidence', {
+    id: evidenceId,
+    url: 'https://www.lazada.vn/inventory/export',
+    role: 'inventory',
+    observedAt: at,
+    blob,
+  });
+  return {
+    evidenceId,
+    sourceSha256: blob.sha256,
+    scope: (await caseCoverageStatus(app)).scope,
+    reviewedBy: 'Exact original export reviewer',
+    mapping: {
+      rowsPointer: '/rows',
+      urlPointer: '/url',
+      skuPointer: '/sku',
+      reportedTotalPointer: '/total',
+      terminalPointer: '/next',
+      terminalValue: null,
+    },
+  };
+}
+
+test('case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals', async (t) => {
+  const { app, store, at } = await fixture(t);
+  const rows = ['100', '101', '102'].map((item) => ({
+    url: `https://www.lazada.vn/products/pdp-i${item}.html`,
+    sku: `${item}_VNAMZ-11`,
+  }));
+  const input = await inventoryOriginal(app, store, at, {
+    rows,
+    total: 3,
+    next: null,
+  });
+  const manifest = await importCaseInventoryManifest(app, input);
+  await store.put('offer', {
+    id: 'priced',
+    ...rows[0],
+    currency: 'VND',
+    price: 100000,
+    variantConfirmed: true,
+    observedAt: at,
+  });
+  const removed =
+    '<html><head><title>Xin lỗi! Sản phẩm này không còn tồn tại</title></head><body>Xin lỗi! Sản phẩm này không còn tồn tại</body></html>';
+  const capture = {
+    id: 'original-removed-101',
+    url: rows[1].url,
+    finalUrl: rows[1].url,
+    status: 'unavailable',
+    fetchedAt: Date.now(),
+    html: await store.putBlob(removed),
+  };
+  assert.ok(await recordListingUnavailable(store, capture, rows[1].url));
+  let verified = await verifyCaseInventory(app, { inventoryId: manifest.id });
+  assert.deepEqual(verified.missing, [rows[2]]);
+  assert.deepEqual(verified.unavailable, [rows[1]]);
+  assert.equal(verified.scopedPricesComplete, false);
+  await store.put('offer', {
+    id: 'now-priced',
+    ...rows[2],
+    currency: 'VND',
+    price: 80000,
+    variantConfirmed: true,
+    observedAt: at,
+  });
+  verified = await verifyCaseInventory(app, { inventoryId: manifest.id });
+  assert.equal(verified.scopedPricesComplete, true);
+  assert.equal(verified.allMarketCoverageProven, false);
+  await store.put('invalidation', {
+    id: 'withdraw-original-export',
+    evidenceIds: [input.evidenceId],
+    invalidatedAt: new Date().toISOString(),
+  });
+  await assert.rejects(
+    verifyCaseInventory(app, { inventoryId: manifest.id }),
+    /recollection/u
+  );
+});
+
+test('case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports', async (t) => {
+  const { app, store, at } = await fixture(t);
+  const row = {
+    url: 'https://www.lazada.vn/products/pdp-i100.html',
+    sku: '100_VNAMZ-11',
+  };
+  for (const payload of [
+    {
+      rows: [{ ...row, url: 'https://www.lazada.vn/products/pdp-i1000.html' }],
+      total: 1,
+      next: null,
+    },
+    { rows: [{ ...row, url: `${row.url}?skuId=12` }], total: 1, next: null },
+    { rows: [row, row], total: 2, next: null },
+    { rows: [row], total: 2, next: null },
+    { rows: [row], total: 1, next: 'another-page' },
+  ]) {
+    const input = await inventoryOriginal(app, store, at, payload);
+    await assert.rejects(
+      importCaseInventoryManifest(app, input),
+      /disagree|duplicate|total\/terminal/u
+    );
+  }
+  assert.equal((await store.list('case-inventory')).length, 0);
+});
+
+test('case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory', async (t) => {
+  const { app, store, at } = await fixture(t);
+  const { discovery, proof } = await unknownCard(store, at);
+  const coverage = await caseCoverageStatus(app);
+  const review = await recordCaseManualReview(
+    app,
+    reviewInput(
+      coverage,
+      [proof],
+      [
+        {
+          recordId: discovery.id,
+          recordFingerprint: sha256(JSON.stringify(discovery)),
+          decision: 'excluded',
+          reason: 'Original accessory is outside both target categories',
+          evidence: [proof],
+        },
+      ]
+    )
+  );
+  assert.ok(
+    (await caseCoverageStatus(app, { manualReviewId: review.id })).manualReview
+  );
+  await store.put('case-manual-review', {
+    ...review,
+    reviewedBy: 'Changed approval without matching immutable ID',
+  });
+  assert.equal(
+    (await caseCoverageStatus(app, { manualReviewId: review.id })).manualReview,
+    null
+  );
+  await store.put('case-manual-review', review);
+  const manifestInput = await inventoryOriginal(app, store, at, {
+    rows: [
+      {
+        url: 'https://www.lazada.vn/products/pdp-i100.html',
+        sku: '100_VNAMZ-11',
+      },
+    ],
+    total: 1,
+    next: null,
+  });
+  await importCaseInventoryManifest(app, manifestInput);
+  assert.equal(
+    (await caseCoverageStatus(app, { manualReviewId: review.id })).manualReview,
+    null
+  );
+});
+
+test('case old-product recollection stays deferred until every initial exact-SKU price is captured', async (t) => {
+  const { app, store, at } = await fixture(t);
+  await pendingSku(store, at);
+  const product = {
+    id: 'old-product',
+    url: 'https://www.lazada.vn/products/pdp-i500.html',
+    title: 'Chocolate whey protein',
+    category: 'whey',
+    selectedVariant: [{ text: 'Chocolate' }],
+    claims: [],
+    evidenceIds: [],
+    specificationsInvalidated: true,
+    observedAt: at,
+  };
+  await store.put('product', product);
+  await store.put('offer', {
+    id: 'old-offer',
+    productId: product.id,
+    url: product.url,
+    sku: '500_VNAMZ-51',
+    price: 100000,
+    currency: 'VND',
+    variantConfirmed: true,
+    observedAt: at,
+  });
+  await store.put('sku-inventory', {
+    id: product.url,
+    url: product.url,
+    inventoryObserved: true,
+    skus: [{ sku: '500_VNAMZ-51', options: [{ value: 'Chocolate' }] }],
+  });
+  let planned = await planCaseWorkflow(app, {
+    ...simplePlan,
+    recollectAfterInitialPass: true,
+  });
+  assert.ok(!planned.tasks.some((task) => task.stage === 'recollection'));
+  await store.put('offer', {
+    id: 'new-priced-offer',
+    productId: 'new-product',
+    url: 'https://www.lazada.vn/products/pdp-i999.html',
+    sku: '999_VNAMZ-91',
+    price: 80000,
+    currency: 'VND',
+    variantConfirmed: true,
+    observedAt: at,
+  });
+  planned = await planCaseWorkflow(app, {
+    ...simplePlan,
+    recollectAfterInitialPass: true,
+  });
+  assert.ok(
+    planned.tasks.some(
+      (task) =>
+        task.stage === 'recollection' && task.input.productId === product.id
+    )
+  );
+});
+
+test('case failed discovery counts its attempted task and retains the barrier before any exact-SKU work', async (t) => {
+  const { app, store, calls, at } = await fixture(t);
+  await pendingSku(store, at);
+  const [crawl] = await store.list('crawl');
+  await store.put('crawl', {
+    ...crawl,
+    scopes: [{ query: 'whey protein', terminalConfirmed: false }],
+  });
+  app.crawl = async () => ({ id: crawl.id, discoveryComplete: false });
+  const planned = await planCaseWorkflow(app, simplePlan);
+  const result = await runCaseWorkflow(app, planned.workflow.id, {
+    maxTasks: 10,
+  });
+  assert.equal(result.executed, 1);
+  assert.deepEqual(calls, []);
+  assert.ok(
+    result.tasks.some(
+      (task) =>
+        task.stage === 'discovery' &&
+        task.status === 'blocked' &&
+        task.attempts === 1
+    )
+  );
+  assert.ok(!result.tasks.some((task) => task.stage === 'sku'));
 });

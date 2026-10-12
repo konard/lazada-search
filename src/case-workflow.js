@@ -438,11 +438,12 @@ export async function runCaseWorkflow(application, workflowId, options = {}) {
           CASE_TASK_ORDER.indexOf(a.stage) - CASE_TASK_ORDER.indexOf(b.stage)
       );
     for (const task of tasks) {
-      if (executed >= (options.maxTasks ?? 25) || options.signal?.aborted) {
+      if (executed >= maxTasks || options.signal?.aborted) {
         break;
       }
       if (
         ['succeeded', 'unavailable', 'superseded'].includes(task.status) ||
+        (task.status === 'running' && options.recoverInterrupted !== true) ||
         (task.status === 'blocked' && options.retryBlocked !== true) ||
         task.attempts >= record.definition.maxAttempts
       ) {
@@ -460,6 +461,7 @@ export async function runCaseWorkflow(application, workflowId, options = {}) {
         runs: (task.runs || 0) + 1,
         startedAt: new Date().toISOString(),
       });
+      executed += 1;
       try {
         const result = await actions[task.stage](task);
         task.status = result.pendingWork
@@ -498,7 +500,6 @@ export async function runCaseWorkflow(application, workflowId, options = {}) {
           break;
         }
       }
-      executed += 1;
     }
     await refreshCaseWorklist(application, record);
     const report = await saveShoppingReport(

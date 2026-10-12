@@ -49,3 +49,19 @@ test('the independent audit rejects an omitted metric, wrong carton arithmetic o
     /massG/u
   );
 });
+
+test('Windows CRLF report text preserves all denominator and arithmetic assertions', () => {
+  const crlf = markdown.replace(/\r?\n/gu, '\r\n');
+  assert.deepEqual(
+    auditIceUnitCompleteness(report, crlf),
+    auditIceUnitCompleteness(report, markdown)
+  );
+  assert.throws(
+    () =>
+      auditIceUnitCompleteness(
+        report,
+        crlf.replaceAll('VND/ml before delivery', 'Volume price hidden')
+      ),
+    /missing VND\/ml/u
+  );
+});

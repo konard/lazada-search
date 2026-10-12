@@ -14,12 +14,26 @@ import {
   prepareManufacturerWorkflowReview,
   reviewManufacturerWorkflow,
 } from '../src/manufacturer-workflow-review.js';
-import { runManufacturerWorkflow } from '../src/manufacturer-workflow.js';
+import {
+  planManufacturerWorkflow,
+  runManufacturerWorkflow,
+} from '../src/manufacturer-workflow.js';
 import { createManufacturerSearchProvider } from '../src/manufacturer-workflow-search.js';
 import { verifyOriginalBoundOcr } from '../src/ocr-evidence.js';
-import { parseTsv } from '../src/ocr.js';
+import { parseTsv, TesseractOcr } from '../src/ocr.js';
+import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { AssociativeStore } from '../src/store.js';
+import { stopForChallenge } from '../src/page-challenge.js';
+import sharp from 'sharp';
+import { parseHTML } from 'linkedom';
+import { extractPage } from '../src/browser.js';
+import { parseProduct } from '../src/products.js';
+import { resolveProductReviews } from '../src/catalog-products.js';
+import { ManufacturerSourceCache } from '../src/manufacturer-source-cache.js';
 
-// Draft tests are intentionally not executed during this drafting pass.
+// Offline synthetic originals isolate approval and cache invariants from sites.
 class MemoryStore {
   constructor() {
     this.records = new Map();
@@ -259,6 +273,114 @@ async function fixture() {
   };
 }
 
+test('offline planning and resumable runner retain source-bound quantity/nutrition drafts from a cached primary JSON original', async () => {
+  const f = await fixture();
+  f.store.records.delete(`manufacturer-source:${f.source.id}`);
+  const bytes = Buffer.from(
+    JSON.stringify({
+      identity,
+      quantities: {
+        netMassG: {
+          value: 2000,
+          unit: 'g',
+          basis: 'one-inner-food-package',
+          originalLabelExcerpt: 'Net weight 2000 g',
+          valueExcerpt: '2000 g',
+        },
+      },
+      nutrition: {
+        proteinPer100g: {
+          value: 80,
+          unit: 'g/100g',
+          basis: 'per-100g',
+          originalLabelExcerpt: 'Protein 80 g per 100g',
+          valueExcerpt: '80 g',
+          basisExcerpt: 'per 100g',
+        },
+      },
+    })
+  );
+  const sources = new ManufacturerSourceCache({
+    store: f.store,
+    offline: true,
+    registry: [{ brand: 'Factory', domains: ['factory.example'] }],
+  });
+  const source = await sources.importOriginal(
+    {
+      brand: 'Factory',
+      url: registry[0].url,
+      contentType: 'application/json',
+      observedAt: f.source.observedAt,
+      sourceSha256: sha256(bytes),
+    },
+    bytes
+  );
+  f.application.cache.fetch = () => {
+    throw new Error('Offline pipeline cannot fetch');
+  };
+  const plan = await planManufacturerWorkflow(f.application, {
+    id: 'workflow:offline-pipeline',
+    productIds: [f.product.id],
+  });
+  assert.equal(plan.items.length, 1);
+  assert.ok(plan.tasks.some((task) => task.kind === 'discover-sources'));
+  const completed = await runManufacturerWorkflow(f.application, plan.id, {
+    allowNetwork: false,
+    maxTasks: 100,
+  });
+  assert.equal(completed.lastRun.cache.downloads, 0);
+  assert.equal(completed.lastRun.automaticApprovals, 0);
+  assert.equal(completed.marketCompletenessGuaranteed, false);
+  const drafts = (await f.store.list('manufacturer-review-draft')).filter(
+    (draft) => completed.tasks.some((task) => task.reviewDraftId === draft.id)
+  );
+  const nutrition = drafts.find(
+    (draft) =>
+      draft.kind === 'nutrition' &&
+      draft.candidates.some(
+        (candidate) =>
+          candidate.sourceId === source.id &&
+          candidate.field === 'proteinPer100g'
+      )
+  );
+  const quantity = drafts.find(
+    (draft) =>
+      draft.kind === 'quantity' &&
+      draft.candidates.some(
+        (candidate) =>
+          candidate.sourceId === source.id && candidate.field === 'netMassG'
+      )
+  );
+  assert.ok(nutrition);
+  assert.ok(quantity);
+  for (const draft of [nutrition, quantity]) {
+    assert.equal(draft.automaticApprovalAllowed, false);
+    assert.ok(
+      draft.candidates.every(
+        (candidate) =>
+          candidate.requiresReview &&
+          !candidate.identityMatched &&
+          candidate.sourceSha256 === source.blob.sha256
+      )
+    );
+  }
+  assert.equal(
+    (await f.store.get('product', f.product.id)).proteinPer100g,
+    undefined
+  );
+  assert.equal((await f.store.list('manufacturer-research-review')).length, 0);
+  const reused = await planManufacturerWorkflow(f.application, {
+    id: plan.id,
+    productIds: [f.product.id],
+  });
+  const replay = await runManufacturerWorkflow(f.application, reused.id, {
+    allowNetwork: false,
+    maxTasks: 100,
+  });
+  assert.equal(replay.lastRun.executedTasks, 0);
+  assert.equal(replay.lastRun.cache.downloads, 0);
+});
+
 test('source invalidation by evidence/cache IDs removes reuse even without a URL', () => {
   const source = {
     id: 'evidence:label',
@@ -449,6 +571,266 @@ test('bridge rejects changed source bytes and evidence-ID invalidations before w
   assert.equal(g.store.writes.length, 0);
 });
 
+for (const [name, mutate] of [
+  [
+    'numeric value absent from original',
+    (candidate) => ({ ...candidate, value: 9000 }),
+  ],
+  [
+    'unit conversion absent from original',
+    (candidate) => ({ ...candidate, sourceUnit: 'kg' }),
+  ],
+  [
+    'excerpt absent from original',
+    (candidate) => ({
+      ...candidate,
+      excerpt: 'Net weight 9000 g',
+      valueExcerpt: '9000 g',
+      value: 9000,
+    }),
+  ],
+]) {
+  test(`quantity bridge rejects ${name} before attaching sources`, async () => {
+    const f = await fixture();
+    const candidate = mutate(f.mass);
+    const draft = {
+      ...f.draft,
+      id: 'review-draft:quantity',
+      kind: 'quantity',
+      candidates: [candidate],
+    };
+    await f.store.put('manufacturer-fact-candidate', candidate);
+    await f.store.put('manufacturer-review-draft', draft);
+    f.store.writes = [];
+    await assert.rejects(
+      reviewManufacturerWorkflow(f.application, {
+        ...f.packet,
+        reviewDraftId: draft.id,
+        candidateIds: [candidate.id],
+        factoryQuantityCandidateIds: [],
+      }),
+      /original|conversion/u
+    );
+    assert.equal(f.store.writes.length, 0);
+    assert.equal((await f.store.list('package-quantity-review')).length, 0);
+  });
+}
+
+for (const [field, value] of [
+  ['flavour', 'vanilla'],
+  ['formulaRevision', 'another-formula'],
+]) {
+  test(`reviewed packet cannot override original structured ${field}`, async () => {
+    const f = await fixture();
+    const original = JSON.parse(
+      (await f.store.blob(f.source.blob.sha256)).toString()
+    );
+    original.identity[field] = value;
+    const blob = await f.store.putBlob(Buffer.from(JSON.stringify(original)));
+    await f.store.put('manufacturer-source', { ...f.source, blob });
+    for (const candidate of [f.protein, f.mass]) {
+      const saved = { ...candidate, sourceSha256: blob.sha256 };
+      await f.store.put('manufacturer-fact-candidate', saved);
+      const draftId =
+        candidate.field === 'netMassG' ? 'review-draft:quantity' : f.draft.id;
+      const draft = await f.store.get('manufacturer-review-draft', draftId);
+      await f.store.put('manufacturer-review-draft', {
+        ...draft,
+        candidates: [saved],
+      });
+    }
+    f.store.writes = [];
+    await assert.rejects(
+      reviewManufacturerWorkflow(f.application, f.packet),
+      /Original structured source identity conflicts/u
+    );
+    assert.equal(f.store.writes.length, 0);
+  });
+}
+
+test('approved primary-source review survives associative restart and stays private over shared originals', async (t) => {
+  const f = await fixture();
+  const directory = await mkdtemp(
+    join(tmpdir(), 'manufacturer-workflow-private-')
+  );
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const shared = new AssociativeStore({ directory: join(directory, 'public') });
+  const privateStore = new AssociativeStore({
+    directory: join(directory, 'private'),
+    visibility: 'private',
+    fallback: shared,
+  });
+  for (const bytes of f.store.blobs.values()) {
+    await shared.putBlob(bytes);
+  }
+  for (const [key, record] of f.store.records) {
+    const kind = key.slice(0, key.indexOf(':'));
+    await (kind === 'manufacturer-source' ? privateStore : shared).put(
+      kind,
+      record
+    );
+  }
+  const application = {
+    ...f.application,
+    store: privateStore,
+    cache: new EvidenceCache({ store: privateStore, offline: true }),
+  };
+  await reviewManufacturerWorkflow(application, f.packet);
+  const restarted = new AssociativeStore({
+    directory: privateStore.directory,
+    visibility: 'private',
+    fallback: shared,
+  });
+  const approved = await restarted.get('product', f.product.id);
+  assert.equal(approved.proteinPer100g, 80);
+  assert.equal(approved.visibility, 'private');
+  assert.equal(
+    (await shared.get('product', f.product.id)).proteinPer100g,
+    undefined
+  );
+  const attachments = (await restarted.list('evidence')).filter(
+    (row) => row.sourceId === f.source.id
+  );
+  assert.equal(attachments.length, 1);
+  assert.equal(attachments[0].visibility, 'private');
+  assert.deepEqual(
+    await restarted.blob(attachments[0].blob.sha256),
+    await shared.blob(f.source.blob.sha256)
+  );
+  assert.equal(
+    (await shared.list('evidence')).some((row) => row.sourceId === f.source.id),
+    false
+  );
+  assert.deepEqual(
+    await restarted.get('offer', 'offer:fixture'),
+    await shared.get('offer', 'offer:fixture')
+  );
+  assert.equal(
+    (await restarted.list('manufacturer-workflow-review')).length,
+    1
+  );
+});
+
+test('quantity workflow establishes grams and millilitres independently from the selected original without approving nutrition', async () => {
+  const f = await fixture();
+  const html = Buffer.from(
+    '<html><body><h1 class="pdp-mod-product-badge-title">Factory kem chocolate 500ml</h1><button data-sku-option data-sku-id="2" aria-checked="true">Chocolate 500ml</button></body></html>'
+  );
+  const listing = await f.store.putBlob(html);
+  const snapshot = extractPage({
+    document: parseHTML(html.toString()).document,
+    url: f.product.url,
+  });
+  const product = parseProduct(snapshot, {
+    evidenceId: f.packet.listingEvidenceId,
+    originalHtmlSha256: listing.sha256,
+    observedAt: f.product.observedAt,
+  }).product;
+  const exactIdentity = {
+    ...identity,
+    name: 'Chocolate ice cream',
+    category: 'ice-cream',
+    coreFlavour: 'chocolate',
+    packageType: 'tub',
+    netMassG: 250,
+    netVolumeMl: 500,
+  };
+  const blob = await f.store.putBlob(
+    Buffer.from(
+      JSON.stringify({
+        identity: exactIdentity,
+        label: 'Net weight 250 g; Net volume 500 ml',
+      })
+    )
+  );
+  const source = { ...f.source, blob };
+  await f.store.put('manufacturer-source', source);
+  await f.store.put('evidence', {
+    id: f.packet.listingEvidenceId,
+    role: 'listing',
+    url: product.url,
+    observedAt: product.observedAt,
+    html: listing,
+  });
+  await f.store.put('product', product);
+  const offer = {
+    ...(await f.store.get('offer', 'offer:fixture')),
+    productId: product.id,
+    sku: product.sku,
+  };
+  await f.store.put('offer', offer);
+  const mass = {
+    ...f.mass,
+    productId: product.id,
+    identity: exactIdentity,
+    sourceSha256: blob.sha256,
+    value: 250,
+    excerpt: 'Net weight 250 g',
+    valueExcerpt: '250 g',
+  };
+  const volume = {
+    ...mass,
+    id: 'candidate:volume',
+    field: 'netVolumeMl',
+    value: 500,
+    unit: 'ml',
+    excerpt: 'Net volume 500 ml',
+    valueExcerpt: '500 ml',
+  };
+  for (const candidate of [mass, volume]) {
+    await f.store.put('manufacturer-fact-candidate', candidate);
+  }
+  const fingerprint = workflowProductFingerprint(product);
+  const draft = {
+    ...f.draft,
+    id: 'review-draft:quantity',
+    kind: 'quantity',
+    productId: product.id,
+    productFingerprint: fingerprint,
+    candidates: [mass, volume],
+  };
+  await f.store.put('manufacturer-review-draft', draft);
+  await f.store.put('manufacturer-workflow', {
+    id: f.packet.workflowId,
+    items: [
+      {
+        ...f.item,
+        productId: product.id,
+        productFingerprint: fingerprint,
+        identity: exactIdentity,
+      },
+    ],
+    tasks: [{ reviewDraftId: draft.id }],
+  });
+  const receipt = await reviewManufacturerWorkflow(f.application, {
+    ...f.packet,
+    reviewDraftId: draft.id,
+    productFingerprint: fingerprint,
+    listingSha256: listing.sha256,
+    listingIdentity: exactIdentity,
+    manufacturerIdentity: exactIdentity,
+    sourceIdentities: { [source.id]: exactIdentity },
+    candidateIds: [mass.id, volume.id],
+    factoryQuantityCandidateIds: [],
+  });
+  assert.deepEqual(receipt.appliedFields.sort(), ['netMassG', 'netVolumeMl']);
+  const reviewed = await resolveProductReviews(
+    f.store,
+    await f.store.get('product', product.id)
+  );
+  assert.equal(reviewed.netMassG, 250);
+  assert.equal(reviewed.netVolumeMl, 500);
+  assert.equal(reviewed.proteinPer100g, undefined);
+  assert.equal(reviewed.manufacturerVerification, undefined);
+  const packageReview = await f.store.get(
+    'package-quantity-review',
+    product.id
+  );
+  assert.equal(packageReview.nutritionApproved, false);
+  assert.equal(packageReview.factoryIdentityApproved, false);
+  assert.deepEqual(await f.store.get('offer', offer.id), offer);
+});
+
 test('asynchronous approval withdraws when a newer selected capture arrives during validation', async () => {
   const f = await fixture();
   const get = f.store.get.bind(f.store);
@@ -546,6 +928,230 @@ test('cached-only provider cannot issue a request and rejects embedded tokens', 
     /plaintext tokens/u
   );
   assert.equal(f.store.writes.length, 0);
+});
+
+test('provider identity preserves cached-only reuse but isolates actual bounds and response mappings', async () => {
+  const f = await fixture();
+  const config = {
+    origin: 'https://search.example',
+    endpoint: 'https://search.example/query',
+  };
+  const live = createManufacturerSearchProvider(f.application, config);
+  const cached = createManufacturerSearchProvider(f.application, {
+    ...config,
+    cacheOnly: true,
+  });
+  const larger = createManufacturerSearchProvider(f.application, {
+    ...config,
+    maxResults: 300,
+  });
+  const mapped = createManufacturerSearchProvider(f.application, {
+    ...config,
+    rowsPath: '/data/items',
+  });
+  assert.equal(live.configurationSha256, cached.configurationSha256);
+  assert.notEqual(live.configurationSha256, larger.configurationSha256);
+  assert.notEqual(live.configurationSha256, mapped.configurationSha256);
+});
+
+function searchRequest() {
+  return {
+    queries: ['site:factory.example chocolate'],
+    domains: ['factory.example'],
+    maxResults: 8,
+  };
+}
+
+async function withMockSearch(action, respond, config = {}) {
+  const f = await fixture();
+  f.application.cache.offline = false;
+  const calls = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, options });
+    return respond(url, options);
+  };
+  try {
+    const provider = createManufacturerSearchProvider(f.application, {
+      origin: 'https://search.example',
+      endpoint: 'https://search.example/query',
+      ...config,
+    });
+    return await action({ ...f, provider, calls });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+}
+
+test('HTTP JSON provider sends bounded POST and omits token echoes from returned candidates', async () => {
+  const name = 'LAZADA_MANUFACTURER_FIXTURE_SEARCH_TOKEN';
+  const previous = process.env[name];
+  const secret = 'fixture-secret-never-persisted';
+  process.env[name] = secret;
+  try {
+    await withMockSearch(
+      async ({ provider, calls, store }) => {
+        const rows = await provider.search(searchRequest());
+        assert.deepEqual(rows, [
+          {
+            url: 'https://factory.example/chocolate',
+            title: 'Original factory page',
+          },
+        ]);
+        assert.equal(calls.length, 1);
+        assert.equal(calls[0].options.method, 'POST');
+        assert.equal(calls[0].options.redirect, 'manual');
+        assert.equal(calls[0].options.credentials, 'omit');
+        assert.equal(
+          calls[0].options.headers.Authorization,
+          `Bearer ${secret}`
+        );
+        assert.equal(JSON.parse(calls[0].options.body).maxResults, 8);
+        assert.equal(
+          JSON.stringify(await store.list('manufacturer-search')).includes(
+            secret
+          ),
+          false
+        );
+      },
+      () =>
+        new globalThis.Response(
+          JSON.stringify({
+            results: [
+              {
+                url: 'https://factory.example/chocolate',
+                title: 'Original factory page',
+              },
+              { url: 'https://factory.example/chocolate', title: secret },
+              {
+                url: `https://factory.example/${secret}`,
+                title: 'Secret echo',
+              },
+            ],
+          }),
+          { headers: { 'content-type': 'application/json' } }
+        ),
+      { tokenEnv: name }
+    );
+  } finally {
+    if (previous === undefined) {
+      delete process.env[name];
+    } else {
+      process.env[name] = previous;
+    }
+  }
+});
+
+test('active global CAPTCHA stop prevents even the first configured search request', async () => {
+  await withMockSearch(
+    async ({ provider, calls, store }) => {
+      await stopForChallenge(store, {
+        url: 'https://factory.example/captcha',
+        signals: ['fixture-widget'],
+      });
+      await assert.rejects(
+        provider.search(searchRequest()),
+        (error) => error.code === 'COLLECTION_STOPPED'
+      );
+      assert.equal(calls.length, 0);
+      assert.equal(
+        (await store.get('collection-stop', 'browser-collection')).active,
+        true
+      );
+    },
+    () => {
+      throw new Error('No request is allowed after CAPTCHA');
+    }
+  );
+});
+
+test('a search challenge persists the global stop and prevents subsequent requests', async () => {
+  await withMockSearch(
+    async ({ provider, calls, store }) => {
+      await assert.rejects(
+        provider.search(searchRequest()),
+        (error) => error.code === 'COLLECTION_STOPPED'
+      );
+      await assert.rejects(
+        provider.search(searchRequest()),
+        (error) => error.code === 'COLLECTION_STOPPED'
+      );
+      assert.equal(calls.length, 1);
+      assert.equal(
+        (await store.get('collection-stop', 'browser-collection')).active,
+        true
+      );
+    },
+    () =>
+      new globalThis.Response(
+        '<html><title>Security verification</title><body>Verify you are human</body></html>',
+        { headers: { 'content-type': 'text/html' } }
+      )
+  );
+});
+
+for (const [name, response, expected] of [
+  [
+    'oversized streamed response',
+    () =>
+      new globalThis.Response('x'.repeat(2048), {
+        headers: { 'content-type': 'application/json' },
+      }),
+    /byte limit/u,
+  ],
+  [
+    'redirect response',
+    () =>
+      new globalThis.Response('', {
+        status: 302,
+        headers: {
+          location: 'https://other.example/search',
+          'content-type': 'application/json',
+        },
+      }),
+    /redirects are prohibited/u,
+  ],
+  [
+    'invalid JSON response',
+    () =>
+      new globalThis.Response('not json', {
+        headers: { 'content-type': 'application/json' },
+      }),
+    /invalid JSON/u,
+  ],
+]) {
+  test(`search provider rejects ${name} with no cache publication`, async () => {
+    await withMockSearch(
+      async ({ provider, calls, store }) => {
+        store.writes = [];
+        await assert.rejects(provider.search(searchRequest()), expected);
+        assert.equal(calls.length, 1);
+        assert.equal(store.writes.length, 0);
+      },
+      response,
+      { maxResponseBytes: 1024 }
+    );
+  });
+}
+
+test('request byte and result bounds are enforced before any fetch', async () => {
+  await withMockSearch(
+    async ({ provider, calls }) => {
+      await assert.rejects(
+        provider.search({ ...searchRequest(), queries: ['x'.repeat(1000)] }),
+        /byte limit/u
+      );
+      await assert.rejects(
+        provider.search({ ...searchRequest(), maxResults: 501 }),
+        /integer between/u
+      );
+      assert.equal(calls.length, 0);
+    },
+    () => {
+      throw new Error('Invalid request cannot fetch');
+    },
+    { maxBodyBytes: 256 }
+  );
 });
 
 test('search cache separates result bounds so a narrow discovery cannot satisfy a broader request', async () => {
@@ -715,6 +1321,63 @@ test('private storage metadata does not replace the source-bound physical OCR pr
   await f.store.put('ocr', { ...f.ocr, visibility: 'private' });
   const proof = await verifyOriginalBoundOcr(f.store, f.original, f.ocr);
   assert.equal(proof.physicalImageSha256, f.derived.sha256);
+});
+
+test('real lossless image transform and fixture-native OCR receipts verify after private associative restart', async (t) => {
+  const directory = await mkdtemp(
+    join(tmpdir(), 'manufacturer-transform-proof-')
+  );
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const store = new AssociativeStore({
+    directory: join(directory, 'private'),
+    visibility: 'private',
+  });
+  const modelDirectory = join(directory, 'models');
+  await mkdir(modelDirectory);
+  await writeFile(
+    join(modelDirectory, 'eng.traineddata'),
+    'fixture engine model bytes'
+  );
+  const original = await store.putBlob(
+    await sharp({
+      create: { width: 40, height: 30, channels: 3, background: '#ffffff' },
+    })
+      .png()
+      .toBuffer()
+  );
+  const tsv =
+    'level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n5\t1\t1\t1\t1\t1\t0\t0\t10\t10\t99\t4.5\n';
+  const ocr = new TesseractOcr({
+    store,
+    tessdataDir: modelDirectory,
+    execute: async (_command, args) => ({
+      stdout: args[0] === '--version' ? 'fixture engine\n' : tsv,
+    }),
+  });
+  const baseline = await ocr.recognize(original);
+  const derived = await ocr.recognize(original, {
+    psm: 7,
+    sourceOcrId: baseline.id,
+    transform: {
+      crop: { left: 10, top: 5, width: 15, height: 10 },
+      resize: { width: 30, height: 20, kernel: 'nearest' },
+      grayscale: true,
+    },
+  });
+  const restarted = new AssociativeStore({
+    directory: store.directory,
+    visibility: 'private',
+  });
+  const proof = await verifyOriginalBoundOcr(restarted, original, derived);
+  assert.equal(proof.text, '4.5');
+  assert.equal(proof.originalImageSha256, original.sha256);
+  assert.equal(proof.physicalImageSha256, derived.imageHash);
+  assert.notEqual(proof.physicalImageSha256, original.sha256);
+  assert.equal(
+    (await sharp(await restarted.blob(derived.imageHash)).metadata()).width,
+    30
+  );
+  assert.equal((await restarted.get('ocr', derived.id)).visibility, 'private');
 });
 
 for (const [name, mutate] of [

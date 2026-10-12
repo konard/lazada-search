@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12T06:55:58.977644+00:00",
+  "baseDraftCommit": "dc997a9822110567a531714774e9acc146caef53",
+  "draftBranch": "draft/remaining-requirements",
+  "requirements": 49,
+  "githubIssuesInReviewedSnapshot": 40,
+  "localValidation": {
+    "node": {
+      "version": "22.23.0",
+      "passed": 1436,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 208060.835625
+    },
+    "bun": {
+      "version": "1.4.3",
+      "passed": 1436,
+      "failed": 0,
+      "durationSeconds": 570.51
+    },
+    "deno": {
+      "version": "2.9.7",
+      "passed": 1281,
+      "steps": 16,
+      "failed": 0,
+      "dependencyResolution": "frozen, cached-only, manually installed integrity-locked node_modules",
+      "networkPermission": "127.0.0.1,localhost only"
+    },
+    "deterministicE2e": {
+      "existingManifestPassed": 67,
+      "newPreparedCheckoutChromiumPassed": 1,
+      "uniquePassed": 68,
+      "failed": 0,
+      "skipped": 0,
+      "nativeRustClink": "1.0.0",
+      "browserCommander": "0.31.1"
+    },
+    "englishVietnameseNativePipelinePassed": true,
+    "publicTypesPassed": true,
+    "agentManufacturerTargetedEachRuntime": 112,
+    "agentCaseCheckoutEachRuntime": 45,
+    "agentExistingCaseCheckoutNodeRegressions": 143
+  },
+  "denoRuntimeDownload": {
+    "url": "https://github.com/denoland/deno/releases/download/v2.9.7/deno-aarch64-apple-darwin.zip",
+    "officialSha256": "5cd46d6268f6f78f5d88bdc7159d20bd44cdaa4b3303474839f87ec6fe7ae25c",
+    "sha256Verified": true,
+    "systemInstallationModified": false
+  },
+  "postSuiteChanges": "Current acceptance metadata and CI type-guard conditions were updated after full-suite runs; current source metadata, type policy and CLI/HTTP/Telegram/Chromium paths passed final focused checks. GitHub runs full manifests on the published head.",
+  "validationScope": "Local synthetic/private/public original-cache fixtures, real Chromium, native OCR/models, native binary store, CLI/HTTP/Telegram, archive and workflow assertions; no live marketplace/manufacturer requests.",
+  "sourceHashes": {
+    ".github/workflows/release.yml": "cf6b46e71b2461c6bc5011463c30f0184adff2bfec975b0f4191a692d5b12d3c",
+    "scripts/audit-ice-unit-completeness.mjs": "822fcd958849995f3c99953148c9ecf68819a714a961feb8d862fd49305b4b38",
+    "src/browser-pacing.js": "f04f5c7e726f31716a9d4cf98cb2101ca88e6f5c54f5a7ca4b9363ce6c3283a7",
+    "src/case-coverage.js": "7af88068e79a91378cb256a99db9539e479dfcc520558a36d64dd64c25374b9f",
+    "src/case-workflow-lock.js": "8ec995215e81a874258ec555b64c2ac7d0346d862152a7309b9ba1f86b8122de",
+    "src/case-workflow.js": "b0e35c292c9d46738ad41414ddd3f72abe0bc7db5f40f476070430bf08f60857",
+    "src/case-worklist.js": "27f4f56944d90745b92a19d7d7dd000ec152321c51c567c085de974905d202ce",
+    "src/lazada-checkout-actions.js": "7d7be721eef17a97475b6a506749d3bcb0b95bac3e4c35a154b8abe02629d5a0",
+    "src/lazada-checkout-adapter.js": "d3105e08d6f69ef1197fcec509168ac88cb7bbfac986aeb0d50bfb16784dc86b",
+    "src/manufacturer-research.js": "41871e7bf999e5fac8ead5bf0630ab5cf7ce9980f505c5414cc71525c245bf13",
+    "src/manufacturer-workflow-review.js": "c6cd48553c969226c3e68f702a95a074c700e3a216fcfcbee18b19a1d327466a",
+    "src/ocr-evidence.js": "026b98e5028a63c95d07a8821c6b867980e645a17b44637409e09426813db437",
+    "src/ocr-models.js": "a48dd939fdf19a6b9ae79ba9523414af2f88691af7b4127d3e48103ca44f1e55",
+    "src/persistent-browser.js": "afff076cefc5174814279d4931cb33a10e4d7cd0aa310a1ea50da7b0e20f6e47",
+    "src/requirement-draft-review.js": "7f1b7940fecd60a0046e1cb9e6340cbe36213178d0df9c1f9eaaec86129c4100",
+    "src/requirement-registry.js": "85488d6b1068f2f52575468671f7bf58301ce222877d484b7b0a1946b717e724",
+    "src/shopping-report.js": "ccfcf862863a1cb82e557b73c0f77a5d758086c7b14bafd1c1235e44a21042bc",
+    "tests/browser-pacing.test.js": "1749655565950bc7de78b51d7320d1cea8f1ad4211040024cdc0f3dff596bf50",
+    "tests/case-workflow-draft.test.js": "fcfe409526944bf194bae11418d0327835feb8dbd6a10230e3da3e77732c4250",
+    "tests/e2e/draft-workflow-interfaces.test.js": "852f74eec803c88f01d1ce5449b60a5d108deb8072e5aa4015a5f73cf10e6a6d",
+    "tests/e2e/prepared-checkout-adapter.test.js": "84a3189fd2ab59afc0228b98dfa5aa70c1d8f2220e45ede8691e4d9f8c068378",
+    "tests/fixtures/public-api-types.ts": "6c507982efc5804a37093a80cb96388e00e3a9666c074dfc920f48b1c34cbfe1",
+    "tests/handpicked-links.test.js": "bac79a059a1a123063df9310cf68b9e38ed4bf7a496569b77607bc791b8ab19e",
+    "tests/ice-unit-completeness.test.js": "5950163600a2191f68368f55acb464f31aec131614d5c91a23e79d57a357f929",
+    "tests/lazada-checkout-draft.test.js": "a41bb3cdd57e4e04c0d0b94626b4222aaa311d43d20a944ce5114faa47fe5153",
+    "tests/manufacturer-package-basis.test.js": "bc283e4c5f9791c343366c14424825447d81859fde081ac9a2803107f0be0c64",
+    "tests/manufacturer-research.test.js": "2715d1372508f3aa4f6fa0ee92db35f76b265b7fab615dc6e83dba0717559d88",
+    "tests/manufacturer-workflow-draft.test.js": "49f42e521fb29c4032a6c4c7fbbf0b01884046aca90fcb2c85bcc3b2f09bae49",
+    "tests/public-api-typecheck.test.js": "08a1536327e55798389038801f4cb491007734459e414bff4fbc788e34817d72",
+    "tests/requirement-coverage.test.js": "1593638fe19fc3eb7673e1213650a48e1b99fd34b35c4996d2898cae1cdfd1b4",
+    "tests/tsconfig.public-api.json": "b71d09a63311fda20064f1b43224dd366f02aa5aac1a20fc62eee3f54a411ebb"
+  },
+  "logs": {
+    "node-full": {
+      "path": "docs/acceptance/draft-workflow-testing/root/node-full.log.gz",
+      "sha256": "7e108a4af8ab668efd25d153b2c526aff1c9f40767067d956c7bd4e5c1b1e24e",
+      "bytes": 66720,
+      "uncompressedBytes": 354854,
+      "expectedPassedTests": 1436
+    },
+    "bun-full": {
+      "path": "docs/acceptance/draft-workflow-testing/root/bun-full.log.gz",
+      "sha256": "399225fd988978537e558e80f1568973892ccb7623a7fc7319b411d4722377d7",
+      "bytes": 46702,
+      "uncompressedBytes": 163418,
+      "expectedPassedTests": 1436
+    },
+    "deno-full": {
+      "path": "docs/acceptance/draft-workflow-testing/root/deno-full.log.gz",
+      "sha256": "74800b0625f97af5bd81501679aaba85b0a479bfcf6570757a129ae6198b0dd2",
+      "bytes": 42665,
+      "uncompressedBytes": 181107,
+      "expectedPassedTests": 1281
+    },
+    "e2e-full": {
+      "path": "docs/acceptance/draft-workflow-testing/root/e2e-full.log.gz",
+      "sha256": "c3adecafb6bafaab65a52837afa5031218bb63bbc3490e6938935da3dfa3d812",
+      "bytes": 3940,
+      "uncompressedBytes": 17007,
+      "expectedPassedTests": 67
+    },
+    "prepared-checkout-browser": {
+      "path": "docs/acceptance/draft-workflow-testing/root/prepared-checkout-browser.log.gz",
+      "sha256": "cfec09cb29def553abd69d897f38d84eb20a5edb23db9392ae23c2f2077486b0",
+      "bytes": 246,
+      "uncompressedBytes": 426,
+      "expectedPassedTests": 1
+    },
+    "vietnamese-ocr-pipeline": {
+      "path": "docs/acceptance/draft-workflow-testing/root/vietnamese-ocr-pipeline.log.gz",
+      "sha256": "1658e4b733a96043dfe680f3c476b5a73ead7aede47bba2e25fe7f0cbcca7902",
+      "bytes": 215,
+      "uncompressedBytes": 349,
+      "expectedPassedTests": 1
+    },
+    "type-check": {
+      "path": "docs/acceptance/draft-workflow-testing/root/type-check.log.gz",
+      "sha256": "df209e4ae4cfa0f084af6860512ac6b155b1528ba7a7dfe9fe6fc5f088feb10f",
+      "bytes": 92,
+      "uncompressedBytes": 77,
+      "expectedPassedTests": null
+    },
+    "strict-lint": {
+      "path": "docs/acceptance/draft-workflow-testing/root/strict-lint.log.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "bytes": 20,
+      "uncompressedBytes": 0,
+      "expectedPassedTests": null
+    },
+    "repository-lint": {
+      "path": "docs/acceptance/draft-workflow-testing/root/repository-lint.log.gz",
+      "sha256": "0f8f81183509e95ad371bd55e098318eafa1ce4245c65ba3b2e575c4e05780ea",
+      "bytes": 154,
+      "uncompressedBytes": 156,
+      "expectedPassedTests": null
+    },
+    "final-interface-and-checkout": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-interface-and-checkout.log.gz",
+      "sha256": "42894de4378e60dc1c010900de3b488cad8a1929b885962bf202d5baad342974",
+      "bytes": 476,
+      "uncompressedBytes": 1234,
+      "expectedPassedTests": 4
+    },
+    "final-ci-policy": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-ci-policy.log.gz",
+      "sha256": "bfbdd298a79ba8bf6cc211256c3c72010a2f00eb30da607827b9ce0b414033d1",
+      "bytes": 462,
+      "uncompressedBytes": 1229,
+      "expectedPassedTests": 4
+    },
+    "format": {
+      "path": "docs/acceptance/draft-workflow-testing/root/format.log.gz",
+      "sha256": "9d0bd46c00e2aab00356952b0f369146ebb63661c960016491491ee5714dcba2",
+      "bytes": 642,
+      "uncompressedBytes": 2322,
+      "expectedPassedTests": null
+    },
+    "duplication": {
+      "path": "docs/acceptance/draft-workflow-testing/root/duplication.log.gz",
+      "sha256": "844b106c1b04ac5596117d23789520c4ceff30fb6eaf6a0df9c6ddac66da0e4c",
+      "bytes": 17015,
+      "uncompressedBytes": 134020,
+      "expectedPassedTests": null
+    },
+    "zizmor": {
+      "path": "docs/acceptance/draft-workflow-testing/root/zizmor.log.gz",
+      "sha256": "7b934898b1418012cc4583a1f726f873e1536369242a4cdc9b5edc1fd3785a34",
+      "bytes": 336,
+      "uncompressedBytes": 844,
+      "expectedPassedTests": null
+    },
+    "traceability": {
+      "path": "docs/acceptance/draft-workflow-testing/root/traceability.log.gz",
+      "sha256": "d42fc037df1a81acfad9ad12d619a868b7851d21b83913472c6dbd4c783c01c2",
+      "bytes": 678,
+      "uncompressedBytes": 2056,
+      "expectedPassedTests": 7
+    },
+    "node-initial-ocr-fixture-failure": {
+      "path": "docs/acceptance/draft-workflow-testing/root/node-initial-ocr-fixture-failure.log.gz",
+      "sha256": "8fea957a7f985596afbddfbb21f9987ba61d89374a1af19dfa25d6919c9d9fee",
+      "bytes": 65411,
+      "uncompressedBytes": 346513,
+      "expectedPassedTests": null
+    },
+    "node-concurrent-runtime-failure": {
+      "path": "docs/acceptance/draft-workflow-testing/root/node-concurrent-runtime-failure.log.gz",
+      "sha256": "da493c5bc345e2024a9d504358005c1c3ce07281237eaa0aaed850661d52cca0",
+      "bytes": 67243,
+      "uncompressedBytes": 355952,
+      "expectedPassedTests": null
+    },
+    "bun-initial-ocr-fixture-failure": {
+      "path": "docs/acceptance/draft-workflow-testing/root/bun-initial-ocr-fixture-failure.log.gz",
+      "sha256": "02c22277ffb79a01c0c60d68d5a69ac85fe3972e466fd05e9ce6a4848551e00e",
+      "bytes": 45988,
+      "uncompressedBytes": 161681,
+      "expectedPassedTests": null
+    },
+    "deno-old-runtime-failure": {
+      "path": "docs/acceptance/draft-workflow-testing/root/deno-old-runtime-failure.log.gz",
+      "sha256": "e81211a0ab55e2367009d53346bc40cc9f2265f28f486e5eaf4579f69c271bc9",
+      "bytes": 41333,
+      "uncompressedBytes": 176993,
+      "expectedPassedTests": null
+    },
+    "release-child-focused": {
+      "path": "docs/acceptance/draft-workflow-testing/root/release-child-focused.log.gz",
+      "sha256": "ae642abe5f000d4192546c22f48702eb06ba3183c909b152e8f3a50a3a93ae4a",
+      "bytes": 690,
+      "uncompressedBytes": 2487,
+      "expectedPassedTests": 8
+    }
+  },
+  "historicalFailures": [
+    {
+      "log": "node-initial-ocr-fixture-failure",
+      "reason": "Package-basis test imported an incomplete OCR receipt; repaired using the complete preserved original and parseTsv equality assertions, without editing buying data or weakening provenance."
+    },
+    {
+      "log": "node-concurrent-runtime-failure",
+      "reason": "One existing owned-grandchild liveness precondition failed while three complete runtime manifests shared the host. Unchanged focused 8/8 and complete Node 1436/1436 pass when other runtime manifests finish; failure retained, assertions unchanged."
+    },
+    {
+      "log": "deno-old-runtime-failure",
+      "reason": "System Deno 2.4.5 lacks Node TestContext.signal/mock APIs used by existing CI tests. Isolated official Deno 2.9.7 matching CI passes the full frozen manifest; narrower 112 and 45-case suites also pass on 2.4.5."
+    }
+  ],
+  "ciBaseline": "docs/acceptance/draft-workflow-testing/root/ci-baseline.json",
+  "ciOnThisCheckpoint": "pending-pull-request-validation",
+  "remainingLiveGates": [
+    "Original Optimum Nutrition CAPTCHA clearance and guarded explicit resume",
+    "Current inventory/all exact target SKU prices and manufacturer/formula/nutrient/manual/English evidence",
+    "Exact bulk/frozen Nha Trang delivery and current eligible promotions",
+    "Actual configured provider and allowlisted live Telegram deployment",
+    "npm package-owner trusted publisher configuration: latest main preflight returned OIDC exchange 404 (issue 32)"
+  ],
+  "collectionStopCleared": false,
+  "liveCollectionRequests": 0,
+  "realCaseOrBuyingReportsChanged": false,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false
+}

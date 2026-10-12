@@ -369,7 +369,8 @@ function checkoutRows(observations, quantity) {
         entry.metrics &&
         entry.quote.lines.length === 1 &&
         entry.quote.lines[0].quantity === quantity &&
-        entry.lines?.length === 1
+        entry.lines?.length === 1 &&
+        strictObservation(entry.lines[0])
     )
     .map((entry) => {
       const line = entry.lines[0];

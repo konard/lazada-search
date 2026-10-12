@@ -3,8 +3,8 @@ import { mkdir, readFile, rm, writeFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
-import { atomicWrite } from './util.js';
 import { connectPersistentBrowser } from './browser-connection.js';
+import { pacePersistentHost } from './browser-pacing.js';
 
 export const BROWSER_IDLE_MS = 30 * 60 * 1000;
 
@@ -144,21 +144,8 @@ export async function acquireBrowserWindow(directory, options = {}) {
     });
     runtime.persistent = true;
     runtime.touch = () => request(state, 'touch');
-    runtime.pace = async (url, intervalMs) => {
-      const file = join(directory, 'browser-request-times.json');
-      const times = JSON.parse(await readFile(file, 'utf8').catch(() => '{}'));
-      const host = new URL(url).hostname;
-      const waitMs = Math.max(
-        0,
-        (times[host] ?? -Infinity) + intervalMs - Date.now()
-      );
-      if (waitMs) {
-        await delay(waitMs);
-      }
-      times[host] = Date.now();
-      await atomicWrite(file, JSON.stringify(times));
-      await runtime.touch();
-    };
+    runtime.pace = (url, intervalMs) =>
+      pacePersistentHost(directory, url, intervalMs, { touch: runtime.touch });
     const disconnect = runtime.browser.close.bind(runtime.browser);
     runtime.release = async () => {
       await disconnect();
