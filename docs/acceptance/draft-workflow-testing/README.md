@@ -28,3 +28,5 @@ Local commands use `npm test`, `bun test --parallel=2 --no-orphans --timeout 450
 The actual main CI baseline had Windows ice audit failures caused by CRLF parsing, a persistent-window pacing failure, and a refused npm OIDC preflight. The first two causes have guarded regression fixes. npm trusted publishing remains an owner configuration requirement under issue 32; no credential/release guard was bypassed. [Original CI outcomes](root/ci-baseline.json) and masked logs are retained.
 
 The saved manufacturer CAPTCHA stop remains active. No Lazada, manufacturer or image/CDN collection occurred, no actual account/profile or public buying archive was changed, and old buying reports were not refreshed. Complete live source/provider/layout/English/freight/promotion/bot acceptance remains in [the acceptance plan](../../drafts/acceptance-plan.md). Production/purchase/all-market/all-requirements flags remain false.
+
+The [fixture-helper follow-up](root/manufacturer-helper-followup.json) removes the architecture warning without changing production code. All 40 manufacturer workflow cases pass again on Node/Bun/current frozen Deno after the move.
