@@ -993,6 +993,7 @@ export const REQUIREMENT_GITHUB_ISSUES = [
       'src/store.js',
       'tests/store-projection.test.js',
       'tests/catalog-tables.test.js',
+      'tests/windows-ocr-install.test.js',
       '.github/workflows/release.yml',
     ],
     acceptanceRemaining:
@@ -1049,13 +1050,15 @@ export const REQUIREMENT_GITHUB_ISSUES = [
       'Bound mass extraction on adversarial numeric input and verify the separate CodeQL PR gate',
     url: 'https://github.com/konard/lazada-search/issues/43',
     requirementIds: ['R011', 'R016', 'R023', 'R037', 'R048'],
-    draftStatus: 'linear-mass-parser-in-draft-pr',
+    draftStatus: 'bounded-nutrition-parsers-in-draft-pr',
     sourceFiles: [
       'src/nutrition.js',
       'tests/mass-evidence-performance.test.js',
+      'tests/nutrition-parsing-performance.test.js',
+      'tests/manufacturer-source-validity.test.js',
     ],
     acceptanceRemaining:
-      'Accept the bounded adversarial and literal-declaration controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
+      'Accept bounded mass, volume and nutrition readers, exact source excerpts, malformed-token and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
   },
 ];
 

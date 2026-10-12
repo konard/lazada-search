@@ -136,7 +136,11 @@ test('every OS provisions native OCR before tests and Windows uses an exact appr
     windows.run,
     /choco install tesseract --version=5\.5\.3\.20260724 --yes --no-progress/u
   );
-  assert.ok(windows.run.includes('$LASTEXITCODE -ne 0'));
+  assert.ok(windows.run.includes('$ocrInstallExit = $LASTEXITCODE'));
+  assert.ok(windows.run.includes('$ocrInstallExit -ne 0'));
+  assert.ok(windows.run.includes('$ocrAttempt -le 3'));
+  assert.ok(windows.run.includes('$ocrInstallExit -eq 0) { break }'));
+  assert.ok(windows.run.includes('Start-Sleep -Seconds (10 * $ocrAttempt)'));
   assert.ok(windows.run.includes('tesseract.exe'));
   assert.ok(windows.run.includes('$env:GITHUB_PATH'));
   const gate = named('Verify native OCR executable and English model');

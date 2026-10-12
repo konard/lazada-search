@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T17:47:15.421061+00:00",
+  "checkedAt": "2026-10-12T18:09:45.478652+00:00",
   "branch": "draft/remaining-requirements",
-  "sourceCommit": "604f6f291bd2439b5cfb37c30349a09681824273",
+  "sourceCommit": "8db2585d7d48dac60f2eae11003946e1cbfc3e81",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
   "scope": "Retained original CAPTCHA target, truthful handoff, atomic supervisor publication, bounded Windows lock-owner reads and linear package-mass scanning; no live product collection or user-browser opening.",
   "browserCommander": {
@@ -13,21 +13,22 @@
     "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
   },
   "latestDependencyCheck": "browser-latest-final.json",
-  "sourceManifest": "source-604f6f2-manifest.json",
+  "sourceManifest": "source-8db2585-manifest.json",
   "local": {
     "nodeFull": {
-      "passed": 1477,
+      "passed": 1483,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 342649.912708
+      "durationMs": 245182.427708,
+      "threadPoolSize": 16
     },
     "fullE2E": {
       "passed": 84,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 573580.229833
+      "durationMs": 564673.332041
     },
     "nativeRetention": {
       "passed": 13,
@@ -35,13 +36,13 @@
     },
     "strictTypes": "passed",
     "lintFormattingDuplication": "passed",
-    "duplicationPercent": 6.17
+    "duplicationPercent": 6.16
   },
   "ci": {
     "accepted": false,
-    "sourceCommit": "604f6f291bd2439b5cfb37c30349a09681824273",
-    "checksRunId": 38283991684,
-    "e2eRunId": 38283991673,
+    "sourceCommit": "8db2585d7d48dac60f2eae11003946e1cbfc3e81",
+    "checksRunId": 38287049345,
+    "e2eRunId": 38287049235,
     "runtimeJobsPassed": 8,
     "runtimeJobsFailed": 1,
     "runtimeJobsCancelled": 0,
@@ -54,8 +55,8 @@
     },
     "workflowsPassed": 5,
     "workflowsFailed": 1,
-    "receipt": "ci-source-604f6f2-review.json",
-    "failure": "Windows Node full catalog import exceeded the unchanged 450-second test deadline; all complete records and writes remain in the fixture."
+    "receipt": "ci-source-8db2585-review.json",
+    "failure": "Windows Bun native OCR setup returned Chocolatey HTTP504 before any tests; eight complete runtime suites and all84native cases passed. Separate CodeQL reported six findings."
   },
   "tracking": {
     "requirements": 49,
@@ -71,7 +72,10 @@
     "source08236BeforeSecurityGate": "source-08236-security-pending-review.json",
     "source08236CI": "ci-source-08236-review.json",
     "source44b5729CI": "ci-source-44b5729-review.json",
-    "source604Local": "local-source-604f6f2-review.json"
+    "source604Local": "local-source-604f6f2-review.json",
+    "source604": "source-604f6f2-review.json",
+    "source604CI": "ci-source-604f6f2-review.json",
+    "source8dbLocal": "local-source-8db2585-review.json"
   },
   "savedCollectionStatus": "saved-stop-status.json",
   "allRequirementsDelivered": false,
@@ -81,31 +85,19 @@
   "marketCollectionRequests": 0,
   "userBrowserInteraction": false,
   "logs": {
-    "node-source-604f6f2-full.tap.gz": {
-      "rawSha256": "43ccccbc1c8c73ecbfc5cb7d9fc36603f70f94cdb280e73ad5ac717cd72e7b4a",
-      "rawBytes": 365447
+    "node-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0fc6476ec70042352b27831bf4a74cb3ee1fb1baa298dba7c6b996392d6d898",
+      "rawBytes": 366983
     },
-    "native-source-604f6f2-full.tap.gz": {
-      "rawSha256": "efd3f4a9a88af1e25ab7e95255890b9234cd792f32893abcf0a1967171bfffd9",
-      "rawBytes": 22622
-    },
-    "checks-source-604f6f2.log.gz": {
-      "rawSha256": "cdc2befe13f1b4d1ffe6b324912204512b4644cb3a6a57c18e4e774cb6886f7f",
-      "rawBytes": 142841
-    },
-    "types-source-604f6f2.log.gz": {
-      "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
-      "rawBytes": 77
-    },
-    "mass-linear-final-focused.tap.gz": {
-      "rawSha256": "deb183e1bf1da0ca458fada04b6c642b2a7530e199f96ec9620cb5701c374770",
-      "rawBytes": 6998
+    "native-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0803603b92657457606d75f29001c95cf3c5e7fdc5a38fdc4e35ea7d92e8aa3",
+      "rawBytes": 22637
     }
   },
   "sourceWorkflowAcceptance": false,
   "sourceAccepted": false,
-  "pullRequestSecurityAccepted": true,
-  "followUpIssue": "https://github.com/konard/lazada-search/issues/36",
+  "pullRequestSecurityAccepted": false,
+  "followUpIssue": "https://github.com/konard/lazada-search/issues/43",
   "codeqlFailure": {
     "headCommit": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
     "checkRunId": 114918061515,
@@ -115,11 +107,16 @@
     "annotations": "codeql-source-44b5729-annotations.json",
     "fixAcceptance": "passed-source-604f6f2-separate-CodeQL"
   },
-  "localSourceQualification": "The full local runs began before the final lint-only correction of an internal comment in src/nutrition.js. Executable code, tests, dependencies and CI configuration were unchanged; the complete CI runs validate committed source 604f6f2.",
   "separateCodeQL": {
-    "checkRunId": 114928138376,
-    "conclusion": "success",
-    "annotations": 0,
-    "receipt": "codeql-source-604f6f2-success.json"
+    "conclusion": "failure",
+    "checkRunId": 114938178394,
+    "annotations": 6,
+    "receipt": "codeql-source-8db2585-failure.json",
+    "annotationReceipt": "codeql-source-8db2585-annotations.json"
+  },
+  "currentDraftControls": {
+    "boundedNutrition": "nutrition-security-controls.json",
+    "boundedPinnedOCRRetry": "tests/windows-ocr-install.test.js",
+    "fullSourceAcceptance": "pending"
   }
 }

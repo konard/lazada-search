@@ -270,10 +270,10 @@ test('an unrelated granular claim cannot waive a legacy manufacturer cross-check
   });
   const inputs = await comparisonInputs(f.store);
   assert.equal(inputs.products[0].specificationsInvalidated, true);
+  const handledUrls = inputs.products[0].manufacturerSourceValidityHandledUrls;
+  assert.ok(Array.isArray(handledUrls));
   assert.equal(
-    inputs.products[0].manufacturerSourceValidityHandledUrls.includes(
-      legacyUrl
-    ),
+    handledUrls.some((url) => url === legacyUrl),
     false
   );
   const row = calculateOffer(inputs.products[0], inputs.offers[0], {

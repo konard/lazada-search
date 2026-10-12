@@ -15,3 +15,5 @@ Retry transient Windows lock-owner reads during concurrent writer cleanup withou
 Extract package mass through a single numeric-token pass and anchored unit checks, preserving exact abbreviations, quantities and source positions while bounding malformed-input work. Add adversarial subprocess controls and verify the separate CodeQL PR gate alongside workflow tests.
 
 Commit independent binary and digest projections concurrently after canonical durability, drain both writes before returning or releasing the writer lock, and match bounded Node I/O capacity without changing complete fixtures, sync writes or deadlines.
+
+Use bounded token readers for volume, nutrient and serving declarations, retain exact bilingual source excerpts and conflicting-column holds, and assert complete URL membership on an explicit array. Retry pinned Windows OCR installation at most three times while retaining executable/model and failure gates.

@@ -1,0 +1,74 @@
+[
+  {
+    "path": "src/nutrition.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/src/nutrition.js",
+    "start_line": 68,
+    "start_column": 134,
+    "end_line": 68,
+    "end_column": 137,
+    "annotation_level": "failure",
+    "title": "Inefficient regular expression",
+    "message": "This part of the regular expression may cause exponential backtracking on strings starting with 'netwt,oz' and containing many repetitions of '\\t,oz'.",
+    "raw_details": null
+  },
+  {
+    "path": "src/nutrition.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/src/nutrition.js",
+    "start_line": 193,
+    "start_column": null,
+    "end_line": 195,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Polynomial regular expression used on uncontrolled data",
+    "message": "This [regular expression](1) that depends on [library input](2) may run slow on strings with many repetitions of '0'.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings with many repetitions of '0'.\nThis [regular expression](1) that depends on [library input](4) may run slow on strings with many repetitions of '0'.",
+    "raw_details": null
+  },
+  {
+    "path": "src/nutrition.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/src/nutrition.js",
+    "start_line": 306,
+    "start_column": null,
+    "end_line": 308,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Polynomial regular expression used on uncontrolled data",
+    "message": "This [regular expression](1) that depends on [library input](2) may run slow on strings starting with 'kh\\u1ea9u ph\\u1ea7n' and with many repetitions of ' '.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings starting with 'kh\\u1ea9u ph\\u1ea7n' and with many repetitions of ' '.",
+    "raw_details": null
+  },
+  {
+    "path": "src/nutrition.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/src/nutrition.js",
+    "start_line": 355,
+    "start_column": null,
+    "end_line": 357,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Polynomial regular expression used on uncontrolled data",
+    "message": "This [regular expression](1) that depends on [library input](2) may run slow on strings starting with 'net mass' and with many repetitions of '\\t'.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings starting with 'net mass' and with many repetitions of '\\t'.",
+    "raw_details": null
+  },
+  {
+    "path": "src/nutrition.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/src/nutrition.js",
+    "start_line": 362,
+    "start_column": null,
+    "end_line": 364,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Polynomial regular expression used on uncontrolled data",
+    "message": "This [regular expression](1) that depends on [library input](2) may run slow on strings starting with 'dung t\\u00edch' and with many repetitions of '\\t'.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings starting with 'dung t\\u00edch' and with many repetitions of '\\t'.",
+    "raw_details": null
+  },
+  {
+    "path": "tests/manufacturer-source-validity.test.js",
+    "blob_href": "https://github.com/konard/lazada-search/blob/8db2585d7d48dac60f2eae11003946e1cbfc3e81/tests/manufacturer-source-validity.test.js",
+    "start_line": 274,
+    "start_column": null,
+    "end_line": 276,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Incomplete URL substring sanitization",
+    "message": "'[https://factory.example/legacy-nutrition](1)' can be anywhere in the URL, and arbitrary hosts may come before or after it.",
+    "raw_details": null
+  }
+]

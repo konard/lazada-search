@@ -379,8 +379,17 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          choco install tesseract --version=5.5.3.20260724 --yes --no-progress
-          if ($LASTEXITCODE -ne 0) { throw "Tesseract installation failed with exit $LASTEXITCODE" }
+          $ocrInstallExit = 1
+          for ($ocrAttempt = 1; $ocrAttempt -le 3; $ocrAttempt++) {
+            choco install tesseract --version=5.5.3.20260724 --yes --no-progress
+            $ocrInstallExit = $LASTEXITCODE
+            if ($ocrInstallExit -eq 0) { break }
+            if ($ocrAttempt -lt 3) {
+              Write-Host "Pinned OCR installation attempt $ocrAttempt failed with exit $ocrInstallExit; retrying."
+              Start-Sleep -Seconds (10 * $ocrAttempt)
+            }
+          }
+          if ($ocrInstallExit -ne 0) { throw "Tesseract installation failed with exit $ocrInstallExit" }
           $ocrDirectory = Join-Path $env:ProgramFiles 'Tesseract-OCR'
           if (-not (Test-Path (Join-Path $ocrDirectory 'tesseract.exe'))) { throw 'Installed Tesseract executable is missing' }
           $ocrDirectory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
