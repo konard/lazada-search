@@ -8,6 +8,10 @@ import {
   runManufacturerWorkflow,
   manufacturerWorkflowStatus,
 } from './manufacturer-workflow.js';
+import {
+  prepareManufacturerWorkflowReview,
+  reviewManufacturerWorkflow,
+} from './manufacturer-workflow-review.js';
 import { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
 import { buildLabelWorklist } from './label-worklist.js';
 import {
@@ -44,6 +48,8 @@ export const WORKFLOW_OPERATION_NAMES = [
   'plan-manufacturer-workflow',
   'run-manufacturer-workflow',
   'manufacturer-workflow-status',
+  'prepare-manufacturer-workflow-review',
+  'review-manufacturer-workflow',
   'label-worklist',
   'import-lazada-checkout',
   'capture-lazada-checkout',
@@ -107,6 +113,16 @@ export function executeWorkflowOperation(
       }),
     'manufacturer-workflow-status': () =>
       manufacturerWorkflowStatus(application, workflowId(input)),
+    'prepare-manufacturer-workflow-review': () =>
+      prepareManufacturerWorkflowReview(
+        application,
+        object(input.request, 'Manufacturer review packet request')
+      ),
+    'review-manufacturer-workflow': () =>
+      reviewManufacturerWorkflow(
+        application,
+        object(input.review, 'Human manufacturer source review')
+      ),
     'label-worklist': () => buildLabelWorklist(application, options),
     'import-lazada-checkout': () =>
       importLazadaCheckoutSnapshot(

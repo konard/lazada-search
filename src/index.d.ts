@@ -5,6 +5,7 @@ import type {
   CaseWorkflowStatus,
   ManufacturerWorkflowOptions,
   ManufacturerWorkflowRunOptions,
+  ManufacturerWorkflowReviewInput,
   ManufacturerSearchProvider,
   ManufacturerSearchConfiguration,
   CheckoutIdentityBinding,
@@ -1345,6 +1346,13 @@ export declare class LazadaSearch {
     options?: ManufacturerWorkflowRunOptions
   ): Promise<DraftRecord>;
   manufacturerWorkflowStatus(id: string): Promise<DraftRecord>;
+  prepareManufacturerWorkflowReview(input: {
+    workflowId: string;
+    reviewDraftId: string;
+  }): Promise<DraftRecord>;
+  reviewManufacturerWorkflow(
+    input: ManufacturerWorkflowReviewInput
+  ): Promise<DraftRecord>;
   labelWorklist(options?: ManufacturerWorkflowOptions): Promise<DraftRecord>;
   shoppingReport(options?: ShoppingReportOptions): Promise<ShoppingReport>;
   caseReadiness(options?: DraftRecord): Promise<DraftRecord>;

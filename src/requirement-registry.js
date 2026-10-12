@@ -1,3 +1,5 @@
+import { REQUIREMENT_DRAFT_REVIEW } from './requirement-draft-review.js';
+
 // Static coverage is separate from historical acceptance and real data.
 const requirementDefinitions = [
   [
@@ -609,7 +611,13 @@ export const REQUIREMENT_REGISTRY = requirementDefinitions.map(
     requirement,
     codeStatus,
     sourceFiles: files(sourceFiles),
-    draftSourceFiles: files(draftSourceFiles),
+    draftSourceFiles: [
+      ...new Set([
+        ...files(draftSourceFiles),
+        ...REQUIREMENT_DRAFT_REVIEW[id].additionalDraftSourceFiles,
+      ]),
+    ],
+    ...REQUIREMENT_DRAFT_REVIEW[id],
     implementedBehavior,
     priorAcceptance,
     priorAcceptanceEvidence: files(priorAcceptanceEvidence),
@@ -1019,12 +1027,18 @@ export const REQUIREMENT_GITHUB_ISSUES = [
 
 export function requirementDraftStatus() {
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     requirements: REQUIREMENT_REGISTRY,
     githubIssues: REQUIREMENT_GITHUB_ISSUES,
     mappedRequirements: REQUIREMENT_REGISTRY.length,
     mappedGithubIssues: REQUIREMENT_GITHUB_ISSUES.length,
-    githubIssueSnapshot: 'docs/drafts/github-issues.json',
+    githubIssueSnapshot: 'docs/drafts/github-issues-review.json',
+    draftReview: 'docs/drafts/draft-review.json',
+    draftCoverageComplete: REQUIREMENT_REGISTRY.every(
+      (row) =>
+        row.draftReviewStatus === 'statically-reviewed-draft' &&
+        (row.testDraftFiles.length > 0 || row.operatorSteps.length > 0)
+    ),
     testsExecuted: false,
     codeValidation: 'draft-untested',
     allRequirementsDelivered: false,

@@ -2,7 +2,7 @@ import { fold, sha256 } from './util.js';
 import { ManufacturerSourceCache } from './manufacturer-source-cache.js';
 import { parseHTML } from 'linkedom';
 import { splitIngredients } from './nutrition.js';
-import { parseTsv } from './ocr.js';
+import { verifyOriginalBoundOcr } from './ocr-evidence.js';
 import { productFlavour } from './flavour-scope.js';
 
 const IDENTITY_FIELDS = ['brand', 'name', 'flavour', 'market', 'packageType'];
@@ -165,19 +165,7 @@ async function claimText(store, source, claim, bytes) {
     return originalText(source, bytes);
   }
   const ocr = await store.get('ocr', claim.ocrId);
-  if (!ocr || ocr.imageHash !== source.blob.sha256 || !ocr.rawTsv?.sha256) {
-    throw new Error(
-      'A label claim requires OCR bound to the original image SHA-256'
-    );
-  }
-  const tsv = await store.blob(ocr.rawTsv.sha256);
-  if (!tsv || sha256(tsv) !== ocr.rawTsv.sha256) {
-    throw new Error('Original label OCR bytes are missing or corrupt');
-  }
-  if (fold(parseTsv(tsv.toString('utf8')).text) !== fold(ocr.text)) {
-    throw new Error('Label OCR transcription differs from its original TSV');
-  }
-  return ocr.text;
+  return (await verifyOriginalBoundOcr(store, source.blob, ocr)).text;
 }
 
 function supportedValue(field, claim) {

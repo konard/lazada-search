@@ -1,6 +1,6 @@
 # Saved partial results and resume checklist
 
-The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
+The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
 
 The user requested the saved checkpoint on 2026-10-12 (Vietnam time), then resumed requirement delivery. Ice-cream quantities and both gram/ml rates are now shown together, with source-bound package reviews shared across the library, CLI, HTTP and Telegram. [Current correction and evidence](acceptance/ice-unit-completeness/) retain the implementation and remaining label gaps. All reports are recalculated from the existing public cache with zero website downloads while the saved manufacturer challenge remains active. Prices, stock and shipping retain their original observation dates; report regeneration does not refresh them.
 

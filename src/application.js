@@ -54,6 +54,10 @@ import {
   manufacturerWorkflowStatus,
 } from './manufacturer-workflow.js';
 import { buildLabelWorklist } from './label-worklist.js';
+import {
+  prepareManufacturerWorkflowReview,
+  reviewManufacturerWorkflow,
+} from './manufacturer-workflow-review.js';
 import { caseReadiness } from './case-readiness.js';
 import { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
 
@@ -211,6 +215,13 @@ export class LazadaSearch {
   manufacturerWorkflowStatus(id) {
     return manufacturerWorkflowStatus(this, id);
   }
+  prepareManufacturerWorkflowReview(input) {
+    return prepareManufacturerWorkflowReview(this, input);
+  }
+  reviewManufacturerWorkflow(input) {
+    return reviewManufacturerWorkflow(this, input);
+  }
+
   labelWorklist(options) {
     return buildLabelWorklist(this, options);
   }

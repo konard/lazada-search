@@ -154,3 +154,21 @@ applyBasketComparisonTranslations(
   await application.compareBaskets(),
   application.translator
 );
+
+// Draft API contracts: compiler execution remains deferred.
+const caseDraft = await application.planCaseWorkflow({ quantities: [1, 10] });
+await application.runCaseWorkflow(String(caseDraft.workflow.id), {
+  maxTasks: 25,
+  manualReviewId: 'review',
+  ocrPasses: [{ psm: 6, transform: { grayscale: true } }],
+});
+const shoppingDraft = await application.shoppingReport({
+  quantities: [1],
+  limit: 10,
+});
+const draftBaskets: Record<string, unknown>[] = shoppingDraft.baskets;
+await application.prepareManufacturerWorkflowReview({
+  workflowId: 'workflow',
+  reviewDraftId: 'review',
+});
+void draftBaskets;

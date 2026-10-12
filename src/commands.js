@@ -26,6 +26,8 @@ Draft workflows (not yet tested):
   plan-manufacturer-workflow <plan.json> Queue trusted sources, OCR and separate fact reviews
   run-manufacturer-workflow <id> [options.json] Resume cached source research
   manufacturer-workflow-status <id>      Inspect source/review tasks
+  prepare-manufacturer-workflow-review <request.json> Prepare original-bound human review packet
+  review-manufacturer-workflow <review.json> Apply an explicitly reviewed exact source packet
   label-worklist                        List missing exact grams/ml/nutrients
   import-lazada-checkout <capture.json>  Read an original private prepared checkout
   capture-lazada-checkout <layout.json>  Read the already-open prepared checkout only

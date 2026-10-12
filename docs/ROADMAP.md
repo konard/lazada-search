@@ -1,6 +1,6 @@
 # Remaining work and recorded defects
 
-The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
+The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
 
 The complete [requirement tracker](REQUIREMENTS.md) records every requested capability and its current evidence/status. [Partial buying report](tables/top-10-partial.md) · [Full captured catalog](tables/README.md) · [Defect register](acceptance/issue-reports.json).
 

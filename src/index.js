@@ -12,6 +12,10 @@ export {
   manufacturerWorkflowStatus,
 } from './manufacturer-workflow.js';
 export { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
+export {
+  prepareManufacturerWorkflowReview,
+  reviewManufacturerWorkflow,
+} from './manufacturer-workflow-review.js';
 export { buildLabelWorklist } from './label-worklist.js';
 export {
   discoverLazadaCheckoutSnapshot,
@@ -34,6 +38,7 @@ export {
   handpickedLinkStatus,
 } from './handpicked-links.js';
 export {
+  applyCaseCategoryDecisions,
   importCaseInventoryManifest,
   recordCaseManualReview,
   verifyCaseInventory,

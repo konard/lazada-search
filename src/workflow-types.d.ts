@@ -4,6 +4,7 @@ import type {
   Offer,
   BasketSourceMapping,
   FoodComponent,
+  OcrImageTransform,
 } from './index.js';
 
 /** Draft contracts: implementation and genuine-source acceptance are deferred. */
@@ -119,15 +120,61 @@ export interface ManufacturerWorkflowRunOptions {
   signal?: AbortSignal;
   retryBlocked?: boolean;
   recoverInterrupted?: boolean;
-  ocrPasses?: number;
+  ocrPasses?: Array<{
+    psm?: number;
+    transform?: OcrImageTransform;
+    sourceOcrId?: string;
+  }>;
 }
 export interface CaseWorkflowRunOptions extends ManufacturerWorkflowRunOptions {
+  manualReviewId?: string;
   manufacturerBatchSize?: number;
   translationBatchSize?: number;
   preparedCheckouts?: Record<string, PreparedCheckoutInput>;
   /** Trusted local library/CLI configuration; rejected in HTTP/Telegram JSON. */
   searchConfiguration?: ManufacturerSearchConfiguration;
 }
+export interface ManufacturerWorkflowIdentity extends DraftRecord {
+  brand: string;
+  name: string;
+  flavour: string;
+  market: string;
+  packageType: string;
+  formulaRevision: string;
+  currentFormula: true;
+  gtin?: string;
+  variantCode?: string;
+  netMassG?: number;
+  netVolumeMl?: number;
+}
+export interface ManufacturerWorkflowReviewInput {
+  workflowId: string;
+  reviewDraftId: string;
+  reviewedBy: string;
+  reason: string;
+  productFingerprint: string;
+  listingEvidenceId: string;
+  listingSha256: string;
+  listingIdentity: ManufacturerWorkflowIdentity;
+  manufacturerIdentity: ManufacturerWorkflowIdentity;
+  sourceIdentities: Record<string, ManufacturerWorkflowIdentity>;
+  candidateIds: string[];
+  factoryQuantityCandidateIds?: string[];
+  reviewedAt?: string;
+  maxSourceAgeMs?: number;
+}
+export declare function prepareManufacturerWorkflowReview(
+  application: LazadaSearch,
+  input: { workflowId: string; reviewDraftId: string }
+): Promise<DraftRecord>;
+export declare function reviewManufacturerWorkflow(
+  application: LazadaSearch,
+  input: ManufacturerWorkflowReviewInput
+): Promise<DraftRecord>;
+export declare function applyCaseCategoryDecisions(
+  application: LazadaSearch,
+  audit: DraftRecord
+): Promise<DraftRecord>;
 export interface CheckoutAttributeField {
   selector: string;
   attribute: string;
@@ -276,6 +323,14 @@ export interface CaseInventoryInput {
   reviewedBy: string;
   mapping: CaseInventoryMapping;
 }
+export interface CaseCategoryDecision {
+  recordId: string;
+  recordFingerprint: string;
+  decision: 'included' | 'excluded';
+  category?: 'whey' | 'protein-powder' | 'chocolate-ice-cream';
+  reason: string;
+  evidence: Array<{ evidenceId: string; sourceSha256: string }>;
+}
 export interface CaseManualReviewInput {
   reviewedBy: string;
   reason: string;
@@ -284,6 +339,7 @@ export interface CaseManualReviewInput {
   evidence: Array<{ evidenceId: string; sourceSha256: string }>;
   exactPriceExtractionReviewed?: boolean;
   quantityExtractionReviewed?: boolean;
+  categoryDecisions?: CaseCategoryDecision[];
   classificationReviewed?: boolean;
   listPaginationReviewed?: boolean;
 }

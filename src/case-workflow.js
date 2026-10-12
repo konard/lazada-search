@@ -22,6 +22,7 @@ import {
   registerHandpickedLinks,
   resolveHandpickedLinks,
 } from './handpicked-links.js';
+import { caseCoverageStatus } from './case-coverage.js';
 
 function caseDefinition(application, input) {
   if (application.market !== 'vn' || application.currency !== 'VND') {
@@ -170,8 +171,10 @@ async function collectTask(application, task) {
   });
   if (
     task.input.sku &&
-    String(result.offer?.sku).split('_VNAMZ-').at(-1) !==
-      String(task.input.sku).split('_VNAMZ-').at(-1)
+    (/^\d+_VNAMZ-\d+$/u.test(String(task.input.sku))
+      ? result.offer?.sku !== task.input.sku
+      : String(result.offer?.sku).split('_VNAMZ-').at(-1) !==
+        String(task.input.sku))
   ) {
     throw new Error('Collected selection differs from requested exact SKU');
   }
@@ -356,10 +359,29 @@ function handlers(application, record, options) {
     },
     delivery: (task) => deliveryTask(application, task, record),
     checkout: (task) => checkoutTask(application, task, record, options),
-    'manual-review': () => {
-      throw new Error(
-        'Source-bound manual category/completeness review required'
-      );
+    'manual-review': async () => {
+      const coverage = await caseCoverageStatus(application, {
+        manualReviewId: options.manualReviewId,
+      });
+      const review = coverage.manualReview;
+      if (
+        !review ||
+        coverage.audit.categoryReview.length ||
+        coverage.audit.categoryReviewProducts.length ||
+        !review.classificationReviewed ||
+        !review.listPaginationReviewed ||
+        !review.exactPriceExtractionReviewed ||
+        !review.quantityExtractionReviewed
+      ) {
+        throw new Error(
+          'Current source-bound manual review and individually resolved category records are required'
+        );
+      }
+      return {
+        manualReviewId: review.id,
+        scopeFingerprint: coverage.scopeFingerprint,
+        needsReview: false,
+      };
     },
     report: async () =>
       saveShoppingReport(

@@ -2,8 +2,16 @@ import { latestCrawl } from './crawl.js';
 import { catalogProducts } from './catalog-products.js';
 import { scopeAccountAudit, categorySourceKey } from './collection-scope.js';
 import { persistScopeDecisions } from './scope-decisions.js';
-import { canonicalUrl, sha256 } from './util.js';
+import { canonicalUrl, sha256, listingKey } from './util.js';
 import { positive } from './values.js';
+import { specificationProblems } from './verification.js';
+import { productFlavour, isShakerBundle } from './flavour-scope.js';
+import {
+  applyCaseCategoryDecisions,
+  caseCoverageStatus,
+} from './case-coverage.js';
+import { validatedHandpickedLinks } from './handpicked-links.js';
+import { shoppingCategory } from './shopping-report.js';
 
 export const CASE_WORKFLOW_VERSION = 'case-workflow-draft-v1';
 export const CASE_TASK_ORDER = [
@@ -29,12 +37,15 @@ export const caseTaskId = (workflowId, stage, input) =>
 export async function scopedCaseAudit(application, definition) {
   const crawl = latestCrawl(await application.store.list('crawl'));
   const discoveries = await application.store.list('discovery');
-  const audit = scopeAccountAudit(await application.audit(), {
-    flavourScope: definition.flavourScope,
-    crawl,
-    discoveries,
-    activeSourcesOnly: false,
-  });
+  const audit = await applyCaseCategoryDecisions(
+    application,
+    scopeAccountAudit(await application.audit(), {
+      flavourScope: definition.flavourScope,
+      crawl,
+      discoveries,
+      activeSourcesOnly: false,
+    })
+  );
   await persistScopeDecisions(application.store, audit, {
     flavourScope: definition.flavourScope,
   });
@@ -76,7 +87,20 @@ function sourceFingerprint(product, offer) {
 }
 
 function isTarget(product) {
-  return ['whey', 'chocolate-ice-cream'].includes(product.category);
+  if (isShakerBundle(product)) {
+    return false;
+  }
+  if (['soy', 'mixed-protein'].includes(shoppingCategory(product))) {
+    return false;
+  }
+  const flavour = productFlavour(product);
+  if (product.category === 'chocolate-ice-cream') {
+    return flavour === 'chocolate';
+  }
+  return (
+    ['whey', 'protein-powder'].includes(product.category) &&
+    ['chocolate', 'unflavoured'].includes(flavour)
+  );
 }
 
 function deliveryTask(offer, product, quantity, definition, quotes) {
@@ -139,6 +163,7 @@ function productTasks(product, offers, definition, quotes) {
     },
   ];
   if (
+    specificationProblems(product).length > 0 ||
     !product.manufacturerVerification?.identityMatched ||
     product.pendingSpecificationReview?.length ||
     (product.category === 'chocolate-ice-cream' &&
@@ -238,7 +263,10 @@ function recollectionTasks(products, offers, audit, definition) {
 
 export async function refreshCaseWorklist(application, workflow) {
   const audit = await scopedCaseAudit(application, workflow.definition);
-  const products = (await catalogProducts(application.store)).filter(isTarget);
+  const excluded = new Set(audit.reviewedExcludedListings || []);
+  const products = (await catalogProducts(application.store)).filter(
+    (product) => isTarget(product) && !excluded.has(listingKey(product.url))
+  );
   const offers = await application.store.list('offer');
   const quotes = (
     await application.compareBaskets({
@@ -260,7 +288,9 @@ export async function refreshCaseWorklist(application, workflow) {
         },
       ];
   if (audit.discoveryComplete) {
-    for (const link of await application.store.list('handpicked-link')) {
+    for (const link of await validatedHandpickedLinks(application, {
+      offers,
+    })) {
       if (
         !workflow.definition.handpicked.some(
           (entry) =>
@@ -278,12 +308,7 @@ export async function refreshCaseWorklist(application, workflow) {
           reason:
             'Resolve this submitted link from original cached or paced page evidence',
         });
-      } else if (
-        !offers.some(
-          (offer) =>
-            offer.sku === link.sku && offer.price > 0 && offer.variantConfirmed
-        )
-      ) {
+      } else if (link.status !== 'captured') {
         const url = new URL(link.resolvedUrl);
         if (link.sku) {
           url.searchParams.set('skuId', link.sku.split('_VNAMZ-').at(-1));
@@ -303,17 +328,16 @@ export async function refreshCaseWorklist(application, workflow) {
     tasks.push(
       ...recollectionTasks(products, offers, audit, workflow.definition)
     );
-    if (audit.categoryReview.length) {
-      tasks.push({
-        stage: 'manual-review',
-        input: {
-          type: 'category-review',
-          fingerprint: digest(audit.categoryReview.map((entry) => entry.id)),
-        },
-        reason:
-          'Unknown cards and mixed categories require exact observed option review',
-      });
-    }
+    const coverage = await caseCoverageStatus(application);
+    tasks.push({
+      stage: 'manual-review',
+      input: {
+        type: 'classification-and-extraction-review',
+        fingerprint: coverage.scopeFingerprint,
+      },
+      reason:
+        'Individually classify uncertain cards, then supply the current source-bound dataset review',
+    });
   }
   tasks.push({
     stage: 'report',

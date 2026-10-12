@@ -120,3 +120,7 @@ The saved snapshot records **37 closed issues** and **three open issues: #3, #14
 After drafting, execute the new source-bound tasks with configured providers and reviewed layouts, export actual public originals and generated JSON/.lino/binary evidence, and perform the deferred interface/E2E/native checks. Complete the missing exact SKU prices and factory/formula labels, independent ice grams/ml/protein, quantity-specific Nha Trang basket freight, frozen eligibility, promotion combinations and semantic English before claiming a complete buying decision. Manual price/quantity/classification/pagination records must bind to original evidence; they cannot be created simply to clear a readiness flag.
 
 Publication of these drafts and subsequent tests belongs in its own checkpoint. Historical closed defects, passed tests, manufacturer family candidates or unchanged source cache hits must not be presented as acceptance of newly drafted code or fresh market data.
+
+## Source-inspected draft recheck
+
+[The detailed recheck](draft-review.md) examines all 49 behaviors, repairs 17 concrete code/test gaps and records every implementation, regression/E2E test draft or operator step. The [JSON registry](requirements.json) now includes this draft evidence. All functional tests remain deferred; current market/factory/discount/freight acceptance remains open. The [refreshed issue snapshot](github-issues-review.json) confirms unchanged titles, bodies and states for all 40 issues, with 3, 14 and 32 still open.

@@ -1,6 +1,6 @@
 # Lazada buying-system requirements
 
-The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
+The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
 
 Recorded from the full user conversation, including the urgent partial report, subsequent exhaustive collection request with at most two subagents, and the explicit instruction to stop on CAPTCHA. Status is evidence based; **partial** means the requirement is still open. [Current buying report](tables/top-10-partial.md) · [Acceptance evidence](acceptance/validation.json) · [Open coverage issue](https://github.com/konard/lazada-search/issues/3).
 

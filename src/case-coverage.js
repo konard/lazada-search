@@ -11,9 +11,14 @@ function caseScope(application) {
 async function scopeFingerprint(application) {
   const groups = await Promise.all([
     catalogProducts(application.store),
-    ...['offer', 'discovery', 'sku-inventory', 'crawl', 'invalidation'].map(
-      (kind) => application.store.list(kind)
-    ),
+    ...[
+      'offer',
+      'discovery',
+      'sku-inventory',
+      'crawl',
+      'invalidation',
+      'case-category-review',
+    ].map((kind) => application.store.list(kind)),
   ]);
   return sha256(
     JSON.stringify(
@@ -46,7 +51,9 @@ function pointer(value, path) {
 }
 
 async function original(application, evidenceId, sourceSha256) {
-  const evidence = await application.store.get('evidence', evidenceId);
+  const evidence =
+    (await application.store.get('evidence', evidenceId)) ||
+    (await application.store.get('cache', evidenceId));
   const descriptor = [evidence?.blob, evidence?.html].find(
     (entry) => entry?.sha256 === sourceSha256
   );
@@ -68,14 +75,291 @@ async function original(application, evidenceId, sourceSha256) {
   if (
     invalidations.some(
       (entry) =>
-        entry.active !== false &&
-        !entry.resolvedAt &&
-        (entry.url === evidence.url || entry.evidenceIds?.includes(evidenceId))
+        (entry.url === (evidence.url || evidence.sourceUrl) ||
+          entry.evidenceIds?.includes(evidenceId) ||
+          entry.cacheIds?.includes(evidenceId)) &&
+        (entry.invalidated === true ||
+          !Number.isFinite(Date.parse(entry.invalidatedAt)) ||
+          Date.parse(entry.invalidatedAt) >=
+            (typeof evidence.fetchedAt === 'number'
+              ? evidence.fetchedAt
+              : Date.parse(evidence.observedAt)))
     )
   ) {
     throw new Error('Inventory/review original requires recollection');
   }
   return { evidence, bytes };
+}
+
+const categoryDefinition = (record) =>
+  Object.fromEntries(
+    [
+      'scope',
+      'recordId',
+      'recordFingerprint',
+      'decision',
+      'category',
+      'reason',
+      'evidence',
+      'reviewedBy',
+    ].map((field) => [field, record[field]])
+  );
+
+async function categoryOriginals(application, record, discovery) {
+  if (
+    !Array.isArray(record.evidence) ||
+    !record.evidence.length ||
+    record.evidence.length > 100
+  ) {
+    throw new Error(
+      'Each category decision needs bounded attached original evidence'
+    );
+  }
+  for (const binding of record.evidence) {
+    const { evidence } = await original(
+      application,
+      binding.evidenceId,
+      binding.sourceSha256
+    );
+    const sameCardPage = discovery.cacheId === binding.evidenceId;
+    const sourceUrl = evidence.url || evidence.sourceUrl;
+    const sameItem =
+      evidence.role === 'listing' &&
+      listingKey(sourceUrl) === listingKey(discovery.url);
+    if (!sameCardPage && !sameItem) {
+      throw new Error(
+        'Category decision original does not belong to this search card or exact listing'
+      );
+    }
+  }
+}
+
+async function prepareCategoryDecision(application, decision, reviewedBy) {
+  const discovery = await application.store.get('discovery', decision.recordId);
+  if (
+    !discovery ||
+    decision.recordFingerprint !== sha256(JSON.stringify(discovery)) ||
+    !['included', 'excluded'].includes(decision.decision) ||
+    !decision.reason?.trim() ||
+    (decision.decision === 'included' &&
+      !['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
+        decision.category
+      ))
+  ) {
+    throw new Error(
+      'Category decision must bind this exact current card, explicit inclusion/exclusion and reviewed target category'
+    );
+  }
+  const definition = {
+    scope: caseScope(application),
+    recordId: discovery.id,
+    recordFingerprint: decision.recordFingerprint,
+    decision: decision.decision,
+    category: decision.decision === 'included' ? decision.category : 'unknown',
+    reason: decision.reason.trim(),
+    evidence: decision.evidence,
+    reviewedBy: reviewedBy.trim(),
+  };
+  await categoryOriginals(application, definition, discovery);
+  return {
+    ...definition,
+    id: `case-category-review:${sha256(JSON.stringify(categoryDefinition(definition)))}`,
+  };
+}
+
+async function detailedCategoryReviewed(application, product) {
+  const review = product.categoryReview;
+  if (
+    !review ||
+    product.category === 'unknown' ||
+    review.category !== product.category ||
+    !review.reviewedBy?.trim() ||
+    !review.reason?.trim() ||
+    !Number.isFinite(Date.parse(review.reviewedAt)) ||
+    Date.parse(review.reviewedAt) < Date.parse(product.observedAt) ||
+    !product.evidenceIds?.includes(review.evidenceId)
+  ) {
+    return false;
+  }
+  const evidence = await application.store.get('evidence', review.evidenceId);
+  const sourceSha256 = evidence?.html?.sha256;
+  if (
+    !sourceSha256 ||
+    evidence.role !== 'listing' ||
+    listingKey(evidence.url || evidence.sourceUrl) !== listingKey(product.url)
+  ) {
+    return false;
+  }
+  try {
+    await original(application, review.evidenceId, sourceSha256);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function detailedCategoryGaps(application, reviewed, products) {
+  const pending = new Map();
+  const byListing = new Map();
+  for (const product of products) {
+    const key = listingKey(product.url);
+    byListing.set(key, [...(byListing.get(key) || []), product]);
+  }
+  for (const inclusion of reviewed.filter(
+    (record) => record.decision === 'included'
+  )) {
+    for (const product of byListing.get(listingKey(inclusion.url)) || []) {
+      const powder = ['whey', 'protein-powder'];
+      const compatible =
+        product.category !== 'unknown' &&
+        (product.category === inclusion.category ||
+          (powder.includes(inclusion.category) &&
+            powder.includes(product.category)));
+      if (
+        compatible ||
+        (await detailedCategoryReviewed(application, product))
+      ) {
+        continue;
+      }
+      pending.set(product.id, {
+        productId: product.id,
+        url: product.url,
+        preliminaryCategory: inclusion.category,
+        detailedCategory: product.category || 'unknown',
+        evidenceIds: product.evidenceIds || [],
+        sourceFingerprint: sha256(JSON.stringify(product)),
+        reason:
+          'Collected category remains unknown or contradicts preliminary inclusion; exact listing-source review-category is required',
+      });
+    }
+  }
+  return [...pending.values()];
+}
+
+/** Per-card source decisions remain reusable while unrelated case facts change. */
+export async function applyCaseCategoryDecisions(application, audit) {
+  const records = await application.store.list('case-category-review');
+  const discovered = await application.store.list('discovery');
+  const reviewed = [],
+    unresolved = [];
+  for (const discovery of audit.categoryReview || []) {
+    const candidates = records
+      .filter(
+        (record) =>
+          record.scope === caseScope(application) &&
+          record.recordId === discovery.id &&
+          record.recordFingerprint === sha256(JSON.stringify(discovery)) &&
+          record.id ===
+            `case-category-review:${sha256(JSON.stringify(categoryDefinition(record)))}` &&
+          !record.invalidated &&
+          !record.invalidatedAt &&
+          Number.isFinite(Date.parse(record.reviewedAt))
+      )
+      .sort((a, b) => Date.parse(b.reviewedAt) - Date.parse(a.reviewedAt));
+    let active;
+    const candidate = candidates[0];
+    const tiedConflict =
+      candidate &&
+      candidates.some(
+        (entry) =>
+          entry.reviewedAt === candidate.reviewedAt &&
+          (entry.decision !== candidate.decision ||
+            entry.category !== candidate.category)
+      );
+    if (candidate && !tiedConflict) {
+      try {
+        await categoryOriginals(application, candidate, discovery);
+        active = candidate;
+      } catch {
+        /* A failed latest review cannot silently restore an older opposite decision. */
+      }
+    }
+    if (active) {
+      reviewed.push({ ...active, url: discovery.url });
+    } else {
+      unresolved.push(discovery);
+    }
+  }
+  const excludedKeys = new Set(
+    reviewed
+      .filter((record) => record.decision === 'excluded')
+      .map((record) => listingKey(record.url))
+  );
+  for (const key of [...excludedKeys]) {
+    if (
+      discovered.some(
+        (record) =>
+          listingKey(record.url) === key &&
+          !reviewed.some(
+            (review) =>
+              review.recordId === record.id && review.decision === 'excluded'
+          )
+      )
+    ) {
+      excludedKeys.delete(key);
+    }
+  }
+  const products = await application.store.list('product');
+  const categoryReviewProducts = await detailedCategoryGaps(
+    application,
+    reviewed,
+    products
+  );
+  const includedMissing = reviewed
+    .filter(
+      (record) =>
+        record.decision === 'included' &&
+        !products.some(
+          (product) => listingKey(product.url) === listingKey(record.url)
+        )
+    )
+    .map((record) => record.url);
+  const result = {
+    ...audit,
+    categoryReview: unresolved,
+    categoryReviewProducts,
+    retainedCategoryDecisions: reviewed,
+    reviewedExcludedListings: [...excludedKeys],
+    unknownListingBacklog: unresolved.map((record) => ({
+      id: record.id,
+      url: record.url,
+      cacheId: record.cacheId,
+    })),
+    missingListings: [
+      ...new Set([...(audit.missingListings || []), ...includedMissing]),
+    ].filter((url) => !excludedKeys.has(listingKey(url))),
+  };
+  for (const field of [
+    'missingSkuPrices',
+    'missingPrices',
+    'unknownSkuInventories',
+    'specifications',
+  ]) {
+    result[field] = (audit[field] || []).filter(
+      (record) =>
+        !excludedKeys.has(
+          listingKey(
+            typeof record === 'string'
+              ? record
+              : record.listingUrl || record.url
+          )
+        )
+    );
+  }
+  result.visibleSearchComplete =
+    result.sourceListsComplete &&
+    categoryReviewProducts.length === 0 &&
+    [
+      'missingListings',
+      'missingSkuPrices',
+      'missingPrices',
+      'unknownSkuInventories',
+      'categoryReview',
+    ].every((field) => result[field].length === 0);
+  result.scopedDatasetReady =
+    result.visibleSearchComplete &&
+    result.specifications.every((record) => record.problems.length === 0);
+  return result;
 }
 
 function exactManifestRows(application, source, mapping) {
@@ -177,16 +461,59 @@ export async function recordCaseManualReview(application, input) {
   for (const binding of input.evidence) {
     await original(application, binding.evidenceId, binding.sourceSha256);
   }
+  const decisions = input.categoryDecisions || [];
+  if (
+    !Array.isArray(decisions) ||
+    decisions.length > 10000 ||
+    new Set(decisions.map((decision) => decision.recordId)).size !==
+      decisions.length
+  ) {
+    throw new Error(
+      'Manual category decisions require unique bounded current records'
+    );
+  }
+  const prepared = [];
+  for (const decision of decisions) {
+    prepared.push(
+      await prepareCategoryDecision(application, decision, input.reviewedBy)
+    );
+  }
+  for (const decision of prepared) {
+    if (!(await application.store.get('case-category-review', decision.id))) {
+      await application.store.put('case-category-review', {
+        ...decision,
+        reviewedAt: new Date().toISOString(),
+      });
+    }
+  }
+  const categoryAudit = await applyCaseCategoryDecisions(
+    application,
+    scopeAccountAudit(await application.audit(), {
+      crawl: latestCrawl(await application.store.list('crawl')),
+      discoveries: await application.store.list('discovery'),
+      flavourScope: 'chocolate-or-unflavoured',
+    })
+  );
+  if (
+    input.classificationReviewed === true &&
+    (categoryAudit.categoryReview.length ||
+      categoryAudit.categoryReviewProducts.length)
+  ) {
+    throw new Error(
+      'Resolve each unknown search record and pending detailed product category with source-bound decisions before accepting classification'
+    );
+  }
   const definition = {
     reviewedBy: input.reviewedBy,
     reason: input.reason,
     evidence: input.evidence,
     scope: input.scope,
-    scopeFingerprint: input.scopeFingerprint,
+    scopeFingerprint: await scopeFingerprint(application),
     exactPriceExtractionReviewed: input.exactPriceExtractionReviewed === true,
     quantityExtractionReviewed: input.quantityExtractionReviewed === true,
     classificationReviewed: input.classificationReviewed === true,
     listPaginationReviewed: input.listPaginationReviewed === true,
+    categoryReviewIds: prepared.map((record) => record.id),
   };
   const id = `case-manual-review:${sha256(JSON.stringify(definition))}`;
   return (
@@ -261,11 +588,14 @@ export async function verifyCaseInventory(application, input = {}) {
 
 export async function caseCoverageStatus(application, input = {}) {
   const crawl = latestCrawl(await application.store.list('crawl'));
-  const audit = scopeAccountAudit(await application.audit(), {
-    crawl,
-    discoveries: await application.store.list('discovery'),
-    flavourScope: 'chocolate-or-unflavoured',
-  });
+  const audit = await applyCaseCategoryDecisions(
+    application,
+    scopeAccountAudit(await application.audit(), {
+      crawl,
+      discoveries: await application.store.list('discovery'),
+      flavourScope: 'chocolate-or-unflavoured',
+    })
+  );
   const manifest = input.inventoryId
     ? await verifyCaseInventory(application, input)
     : null;

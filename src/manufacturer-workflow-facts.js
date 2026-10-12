@@ -2,7 +2,7 @@ import { parseHTML } from 'linkedom';
 import { fold, sha256 } from './util.js';
 import { massEvidence, splitIngredients } from './nutrition.js';
 import { manufacturerIdentityGaps } from './manufacturer-research.js';
-import { parseTsv } from './ocr.js';
+import { verifyOriginalBoundOcr } from './ocr-evidence.js';
 
 const NUTRIENTS = {
   protein: /\bprotein\b|\bdam\b|단백질/iu,
@@ -46,23 +46,7 @@ export function workflowSourceText(source, bytes) {
 }
 
 export async function boundWorkflowOcrText(store, source, ocr) {
-  if (
-    ocr.imageHash !== source.blob.sha256 &&
-    ocr.originalImageHash !== source.blob.sha256
-  ) {
-    throw new Error('Workflow OCR is not bound to the original image');
-  }
-  const tsv = ocr.rawTsv?.sha256
-    ? await store.blob(ocr.rawTsv.sha256)
-    : undefined;
-  if (!tsv || sha256(tsv) !== ocr.rawTsv.sha256) {
-    throw new Error('Workflow OCR original TSV is missing or corrupt');
-  }
-  const parsed = parseTsv(tsv.toString('utf8'));
-  if (parsed.text !== ocr.text) {
-    throw new Error('Workflow OCR transcription differs from original TSV');
-  }
-  return parsed.text;
+  return (await verifyOriginalBoundOcr(store, source.blob, ocr)).text;
 }
 
 function amountCandidates(text) {
@@ -73,6 +57,8 @@ function amountCandidates(text) {
       value: candidate.value,
       unit: 'g',
       sourceUnit: candidate.unit,
+      sourceValue:
+        candidate.value / (/^(?:kg|kilogram)/u.test(candidate.unit) ? 1000 : 1),
       valueExcerpt: candidate.excerpt,
       excerpt: text.slice(
         Math.max(0, candidate.index - 60),
@@ -171,6 +157,121 @@ export function extractWorkflowFactCandidates({ text }) {
     });
   }
   return { candidates, identity: null, currentFormulaConfirmed: false };
+}
+
+function originalIdentity(input) {
+  const fields = [
+    'brand',
+    'name',
+    'flavour',
+    'market',
+    'packageType',
+    'formulaRevision',
+  ];
+  if (
+    !input ||
+    fields.some(
+      (field) => typeof input[field] !== 'string' || !input[field].trim()
+    ) ||
+    input.currentFormula !== true ||
+    !['gtin', 'variantCode'].some(
+      (field) => typeof input[field] === 'string' && input[field].trim()
+    )
+  ) {
+    return null;
+  }
+  return Object.fromEntries(
+    [
+      ...fields,
+      'currentFormula',
+      'gtin',
+      'variantCode',
+      'category',
+      'coreFlavour',
+      'netMassG',
+      'netVolumeMl',
+      'innerPackCount',
+    ]
+      .filter((field) => input[field] !== undefined)
+      .map((field) => [field, input[field]])
+  );
+}
+
+export function extractStructuredWorkflowCandidates({ text, source }) {
+  if (!/json/iu.test(source.contentType || '')) {
+    return extractWorkflowFactCandidates({ text });
+  }
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return {
+      candidates: [],
+      identity: null,
+      blockers: ['invalid-structured-source-json'],
+    };
+  }
+  const identity = originalIdentity(data.identity || data.productIdentity);
+  if (!identity) {
+    return {
+      candidates: [],
+      identity: null,
+      currentFormulaConfirmed: false,
+      blockers: ['structured-revision-currentness-or-exact-identity-absent'],
+    };
+  }
+  const candidates = [];
+  for (const field of ['netMassG', 'netVolumeMl']) {
+    const quantity = data.quantities?.[field];
+    if (
+      quantity?.value > 0 &&
+      quantity.unit === FACT_UNITS[field] &&
+      quantity.basis === 'one-inner-food-package' &&
+      identity[field] === quantity.value &&
+      quantity.originalLabelExcerpt?.trim() &&
+      quantity.valueExcerpt?.trim()
+    ) {
+      candidates.push({
+        field,
+        ...quantity,
+        excerpt: quantity.originalLabelExcerpt,
+        structuredJsonPointer: `/quantities/${field}`,
+        structuredOriginalSha256: source.blob.sha256,
+      });
+    }
+  }
+  for (const [field, fact] of Object.entries(data.nutrition || {})) {
+    const supportedValue =
+      field === 'ingredients'
+        ? Array.isArray(fact.value) &&
+          fact.value.length > 0 &&
+          fact.value.every((entry) => typeof entry === 'string' && entry.trim())
+        : Number.isFinite(fact.value) && fact.value >= 0;
+    if (
+      allowedFact({ field, ...fact }) &&
+      supportedValue &&
+      typeof fact.originalLabelExcerpt === 'string' &&
+      fact.originalLabelExcerpt.trim()
+    ) {
+      // Numeric JSON keys do not establish a nutrition label's unit/basis.
+      // The exact label excerpt remains subject to source-bound human review.
+      candidates.push({
+        field,
+        ...fact,
+        excerpt: fact.originalLabelExcerpt,
+        structuredJsonPointer: `/nutrition/${field}`,
+        structuredOriginalSha256: source.blob.sha256,
+      });
+    }
+  }
+  return {
+    candidates,
+    identity,
+    currentFormulaConfirmed: identity?.currentFormula === true,
+    blockers: identity
+      ? []
+      : ['structured-revision-currentness-or-exact-identity-absent'],
+  };
 }
 
 function allowedFact(candidate) {

@@ -204,6 +204,7 @@ export function workflowSourceInvalidated(source, cacheRecords, invalidations) {
   const cache = cacheRecords.filter(
     (record) =>
       record.id === source.id ||
+      record.id === source.cacheId ||
       (record.requestFingerprint &&
         record.requestFingerprint === source.requestFingerprint) ||
       urls.has(record.url)
@@ -211,7 +212,16 @@ export function workflowSourceInvalidated(source, cacheRecords, invalidations) {
   const date = Date.parse(source.observedAt);
   return [
     ...cache,
-    ...invalidations.filter((record) => urls.has(record.url)),
+    ...invalidations.filter(
+      (record) =>
+        urls.has(record.url) ||
+        record.evidenceIds?.includes(source.id) ||
+        record.sourceIds?.includes(source.id) ||
+        record.cacheIds?.some(
+          (id) =>
+            id === source.cacheId || cache.some((entry) => entry.id === id)
+        )
+    ),
   ].some(
     (record) =>
       record.active !== false &&

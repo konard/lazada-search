@@ -20,7 +20,7 @@ import {
   readWorkflowOriginal,
   workflowSourceText,
   boundWorkflowOcrText,
-  extractWorkflowFactCandidates,
+  extractStructuredWorkflowCandidates,
   prepareWorkflowFacts,
   workflowReviewDraft,
 } from './manufacturer-workflow-facts.js';
@@ -301,6 +301,7 @@ async function discoverWithProvider(context, candidate, request) {
         options.searchProvider.configurationSha256 || null,
       queries: request.queries,
       domains: request.domains,
+      maxResults: request.maxResults,
     })
   );
   const cache = context.research.sources.cache;
@@ -581,7 +582,7 @@ async function reuseSource(context, task) {
   return attachSourceTasks(context, task, { ...source, cacheHit: true });
 }
 
-async function originalForTask(context, task) {
+export async function workflowOriginalForTask(context, task) {
   if (task.input.sourceRecordKind === 'evidence') {
     return cachedEvidenceForTask(context, task);
   }
@@ -591,6 +592,9 @@ async function originalForTask(context, task) {
   );
   if (
     !source ||
+    source.status !== 'captured' ||
+    source.authority !== 'manufacturer' ||
+    source.challenge?.detected ||
     source.blob?.sha256 !== task.input.sourceSha256 ||
     workflowSourceInvalidated(source, context.caches, context.invalidations)
   ) {
@@ -629,6 +633,8 @@ async function originalForTask(context, task) {
   const bytes = await readWorkflowOriginal(context.application.store, source);
   return { source, bytes };
 }
+
+const originalForTask = workflowOriginalForTask;
 
 async function cachedEvidenceForTask(context, task) {
   const evidence = await context.application.store.get(
@@ -765,7 +771,7 @@ async function extractSource(context, task) {
     ? await boundWorkflowOcrText(store, source, ocr)
     : workflowSourceText(source, bytes);
   const extractor =
-    context.options.factExtractor || extractWorkflowFactCandidates;
+    context.options.factExtractor || extractStructuredWorkflowCandidates;
   let saved = 0;
   for (const id of task.itemIds) {
     const item = itemFor(context, id);

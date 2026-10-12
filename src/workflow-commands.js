@@ -25,6 +25,8 @@ export async function executeWorkflowCommand(
   const fileInputs = {
     'plan-case-workflow': 'plan',
     'plan-manufacturer-workflow': 'plan',
+    'prepare-manufacturer-workflow-review': 'request',
+    'review-manufacturer-workflow': 'review',
     'import-lazada-checkout': 'capture',
     'capture-lazada-checkout': 'capture',
     'prepare-lazada-checkout-scenario': 'scenario',

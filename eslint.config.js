@@ -150,8 +150,10 @@ export default [
       'src/lazada-checkout-fields.js',
       'src/lazada-checkout-gifts.js',
       'src/manufacturer-workflow-facts.js',
+      'src/manufacturer-workflow-review.js',
       'src/manufacturer-workflow-search.js',
       'src/manufacturer-workflow.js',
+      'src/ocr-evidence.js',
     ],
     rules: {
       complexity: ['warn', 40],

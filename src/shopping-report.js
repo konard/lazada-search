@@ -1,8 +1,9 @@
 import { fold, listingKey } from './text.js';
 import { targetCategoryExclusion } from './target-category.js';
-import { productFlavour, isShakerBundle } from './flavour-scope.js';
+import { productFlavour, matchesFlavourScope } from './flavour-scope.js';
 import { sha256 } from './util.js';
 import { positive } from './values.js';
+import { applyCaseCategoryDecisions } from './case-coverage.js';
 import {
   validatedHandpickedLinks,
   handpickedIdentityFromUrl,
@@ -58,6 +59,32 @@ export function shoppingCategory(product) {
   return product.category === 'whey' ? 'whey' : 'other-protein';
 }
 
+function strictObservation(row) {
+  return (
+    row.offer.variantConfirmed === true &&
+    /^\d+_VNAMZ-\d+$/u.test(row.offer.sku || '') &&
+    Number.isFinite(row.offer.price) &&
+    row.offer.price > 0 &&
+    !row.offer.priceInvalidated &&
+    row.offer.available !== false &&
+    matchesFlavourScope(row.product, 'chocolate-or-unflavoured') &&
+    ['whey', 'soy', 'mixed-protein', 'chocolate-ice-cream'].includes(
+      shoppingCategory(row.product)
+    )
+  );
+}
+
+function reviewedTitle(product) {
+  const translated = product.presentation?.title;
+  return translated?.status === 'reviewed' &&
+    translated.originalText === product.title &&
+    translated.sourceSha256 === sha256(Buffer.from(product.title, 'utf8')) &&
+    typeof translated.text === 'string' &&
+    translated.text.trim()
+    ? translated.text
+    : product.title;
+}
+
 function reportRow(row) {
   const { product, offer, metrics } = row;
   const countHeld =
@@ -95,7 +122,14 @@ function reportRow(row) {
     productId: product.id,
     sku: offer.sku,
     url: offer.url,
-    title: product.title,
+    title: reviewedTitle(product),
+    originalTitle: product.title,
+    description: product.description || null,
+    specifications: product.specifications || null,
+    presentation: product.presentation || null,
+    commercialPresentation: offer.presentation || null,
+    manufacturerVerification: product.manufacturerVerification || null,
+    crossChecks: product.crossChecks || [],
     category: shoppingCategory(product),
     flavour: productFlavour(product),
     selectedOptions: product.selectedVariant || [],
@@ -398,6 +432,13 @@ export async function buildShoppingReport(application, options = {}) {
   ) {
     throw new Error('Bounded explicit report quantities required');
   }
+  const coverage = await applyCaseCategoryDecisions(
+    application,
+    await application.audit()
+  );
+  const excludedListings = new Set(coverage.reviewedExcludedListings || []);
+  const included = (row) =>
+    strictObservation(row) && !excludedListings.has(listingKey(row.offer.url));
   const aliases = await validatedHandpickedLinks(application);
   const supplied = options.handpicked || [];
   if (!Array.isArray(supplied) || supplied.length > 1000) {
@@ -428,21 +469,14 @@ export async function buildShoppingReport(application, options = {}) {
       flavourScope: 'chocolate-or-unflavoured',
       allowStale: options.allowStale === true,
     });
-    const accepted = (row) =>
-      row.offer.variantConfirmed === true &&
-      /^\d+_VNAMZ-\d+$/u.test(row.offer.sku || '') &&
-      Number.isFinite(row.offer.price) &&
-      row.offer.price > 0 &&
-      !row.offer.priceInvalidated &&
-      row.offer.available !== false &&
-      !isShakerBundle(row.product) &&
-      productFlavour(row.product) !== 'other';
     const rows = [
-      ...comparison.comparisons.filter(accepted).map(reportRow),
-      ...checkoutRows(basketComparison.observations, quantity),
+      ...comparison.comparisons.filter(included).map(reportRow),
+      ...checkoutRows(basketComparison.observations, quantity).filter(
+        (row) => !excludedListings.has(listingKey(row.url))
+      ),
     ];
     const pendingRows = comparison.comparisons
-      .filter((row) => !accepted(row))
+      .filter((row) => !included(row))
       .map(reportRow);
     const groups = {};
     for (const category of [
@@ -481,7 +515,7 @@ export async function buildShoppingReport(application, options = {}) {
     reports,
     baskets: basketComparison.observations.map(basketReport),
     basketCoverage: basketComparison.assumptions,
-    coverage: await application.audit(),
+    coverage,
     codeValidation: 'draft-untested',
     allTargetProductsCollected: false,
     allRequirementsDelivered: false,
@@ -533,6 +567,38 @@ function basketReportLines(baskets) {
   return lines;
 }
 
+function rankingReportLines(category, quantity, metric, qualification, rows) {
+  const lines = [
+    `## ${category} / quantity ${quantity} / ${metric} / ${qualification}`,
+    '',
+    '| Rank | Product | Original title | Captured UTC | Food g | ml | Protein g | VND before | VND after | VND/g before | VND/g after | VND/ml before | VND/ml after | VND/protein g before | VND/protein g after | Factory matched |',
+    '| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |',
+  ];
+  rows.forEach((row, index) =>
+    lines.push(
+      `| ${[
+        index + 1,
+        `[${cell(row.title)}](${row.url})`,
+        cell(row.originalTitle || row.title),
+        row.observedAt,
+        number(row.quantities.foodG),
+        number(row.quantities.ml),
+        number(row.quantities.proteinG),
+        ...Object.values(row.metrics).map(number),
+        row.manufacturerVerified ? 'Yes' : 'Pending',
+      ].join(' | ')} |`
+    )
+  );
+  if (!rows.length) {
+    lines.push(
+      '',
+      'No captured option satisfies this qualification and metric.'
+    );
+  }
+  lines.push('');
+  return lines;
+}
+
 export function shoppingReportMarkdown(report) {
   const lines = [
     '# Cached shopping comparisons',
@@ -547,29 +613,24 @@ export function shoppingReportMarkdown(report) {
   for (const set of report.reports) {
     for (const [category, rankings] of Object.entries(set.rankings)) {
       for (const [metric, ranking] of Object.entries(rankings)) {
-        lines.push(
-          `## ${category} / quantity ${set.quantity} / ${metric}`,
-          '',
-          '| Rank | Product | Captured UTC | Food g | ml | Protein g | VND before | VND after | VND/g before | VND/g after | VND/ml before | VND/ml after | VND/protein g before | VND/protein g after | Factory matched |',
-          '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |'
-        );
-        ranking.top.forEach((row, index) =>
+        for (const [qualification, key] of [
+          ['Captured observations', 'top'],
+          ['Manufacturer-verified observations', 'verifiedTop'],
+          ['Qualified buying options', 'buyableTop'],
+        ]) {
           lines.push(
-            `| ${[
-              index + 1,
-              `[${cell(row.title)}](${row.url})`,
-              row.observedAt,
-              number(row.quantities.foodG),
-              number(row.quantities.ml),
-              number(row.quantities.proteinG),
-              ...Object.values(row.metrics).map(number),
-              row.manufacturerVerified ? 'Yes' : 'Pending',
-            ].join(' | ')} |`
-          )
-        );
+            ...rankingReportLines(
+              category,
+              set.quantity,
+              metric,
+              qualification,
+              ranking[key]
+            )
+          );
+        }
         lines.push(
           '',
-          `${ranking.rankedCount} sortable captured observations; ${ranking.missing.length} require this denominator.`,
+          `${ranking.rankedCount} distinct sortable SKUs; ${ranking.missing.length} observations require this denominator.`,
           ''
         );
       }

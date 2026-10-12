@@ -15,6 +15,10 @@ import {
   assertPageNotChallenged,
   stopForChallenge,
 } from './page-challenge.js';
+import { resolveProductReviews } from './catalog-products.js';
+import { matchesFlavourScope } from './flavour-scope.js';
+import { shoppingCategory } from './shopping-report.js';
+import { animateScroll } from './page-scroll.js';
 
 function reviewedActions(input) {
   const layout = input.layout;
@@ -188,9 +192,32 @@ async function verifiedControl(page, action) {
   return control;
 }
 
-async function verifySelectedRows(page, layout, scenario) {
+async function verifySelectedRows(application, page, layout, scenario) {
   const { document } = parseHTML(await page.content());
   for (const line of scenario.definition.lines) {
+    const offer = await application.store.get('offer', line.offerId);
+    const stored =
+      offer && (await application.store.get('product', offer.productId));
+    if (
+      !stored ||
+      offer.sku !== line.sku ||
+      offer.available === false ||
+      offer.priceInvalidated ||
+      offer.supersededBy
+    ) {
+      throw new Error(
+        'Scenario preparation requires a current exact available stored selected product'
+      );
+    }
+    const product = await resolveProductReviews(application.store, stored);
+    if (
+      !matchesFlavourScope(product, 'chocolate-or-unflavoured') ||
+      !['whey', 'chocolate-ice-cream'].includes(shoppingCategory(product))
+    ) {
+      throw new Error(
+        'Scenario preparation excludes soy, unrelated foods, other flavours and selected shaker combinations'
+      );
+    }
     const source = layout.lines.find(
       (row) => row.offerId === line.offerId && row.sku === line.sku
     );
@@ -221,6 +248,30 @@ async function verifySelectedRows(page, layout, scenario) {
       );
     }
   }
+}
+
+async function animateControlIntoView(page, selector) {
+  const target = await page.locator(selector).evaluate((element) => {
+    const rect = element.getBoundingClientRect();
+    const viewport = globalThis.innerHeight;
+    if (rect.left < 0 || rect.right > globalThis.innerWidth) {
+      throw new Error(
+        'Reviewed checkout control is outside the horizontal viewport'
+      );
+    }
+    if (rect.top >= viewport * 0.2 && rect.bottom <= viewport * 0.8) {
+      return globalThis.scrollY;
+    }
+    const maximum = Math.max(
+      0,
+      globalThis.document.documentElement.scrollHeight - viewport
+    );
+    return Math.min(
+      maximum,
+      Math.max(0, globalThis.scrollY + rect.top - viewport * 0.25)
+    );
+  });
+  await page.evaluate(animateScroll, { target, durationMs: 650 });
 }
 
 async function paceMutation(application, page, sourceUrl, intervalMs) {
@@ -276,7 +327,7 @@ async function prepareCurrentScenario(application, input) {
     );
   }
   await waitPreparedCheckoutStable(application, page, { sourceUrl });
-  await verifySelectedRows(page, layout, scenario);
+  await verifySelectedRows(application, page, layout, scenario);
   // Validate every target control before the first change, avoiding partial
   // preparation because a later binding is unknown or points at submission.
   for (const action of actions) {
@@ -286,7 +337,9 @@ async function prepareCurrentScenario(application, input) {
   for (const action of actions) {
     await paceMutation(application, page, sourceUrl, intervalMs);
     await waitPreparedCheckoutStable(application, page, { sourceUrl });
-    await verifySelectedRows(page, layout, scenario);
+    await verifySelectedRows(application, page, layout, scenario);
+    await animateControlIntoView(page, action.selector);
+    await waitPreparedCheckoutStable(application, page, { sourceUrl });
     const changed = await applyAction(
       await verifiedControl(page, action),
       action
