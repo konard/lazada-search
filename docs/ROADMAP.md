@@ -1,5 +1,7 @@
 # Remaining work and recorded defects
 
+The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
+
 The complete [requirement tracker](REQUIREMENTS.md) records every requested capability and its current evidence/status. [Partial buying report](tables/top-10-partial.md) · [Full captured catalog](tables/README.md) · [Defect register](acceptance/issue-reports.json).
 
 The user resumed requirement delivery after the 2026-10-12 (Vietnam time) saved checkpoint. [Saved state and remaining work](RESUME.md) retains the original collection handoff. Current ice-unit work shows both grams/ml and unit prices together and shares source-bound quantity reviews across interfaces; [acceptance and remaining label gaps](acceptance/ice-unit-completeness/) preserve the evidence. The original observation dates and active manufacturer CAPTCHA stop remain in effect.

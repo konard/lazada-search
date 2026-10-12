@@ -42,6 +42,20 @@ import {
   ListingUnavailableError,
   recordListingUnavailable,
 } from './availability.js';
+import {
+  planCaseWorkflow,
+  runCaseWorkflow,
+  caseWorkflowStatus,
+} from './case-workflow.js';
+import { buildShoppingReport } from './shopping-report.js';
+import {
+  planManufacturerWorkflow,
+  runManufacturerWorkflow,
+  manufacturerWorkflowStatus,
+} from './manufacturer-workflow.js';
+import { buildLabelWorklist } from './label-worklist.js';
+import { caseReadiness } from './case-readiness.js';
+import { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
 
 export const MARKETS = {
   vn: {
@@ -97,6 +111,8 @@ export class LazadaSearch {
     translationProvider,
     translationProviderId,
     translationProviderVersion,
+    manufacturerSearchProvider,
+    manufacturerSearchConfiguration,
   } = {}) {
     if (!MARKETS[market]) {
       throw new Error('Unsupported Lazada market');
@@ -123,6 +139,14 @@ export class LazadaSearch {
     this.flavourScope = flavourScope;
     this.maxImages = maxImages;
     this.manufacturerRegistry = manufacturerRegistry;
+    this.manufacturerSearchProvider =
+      manufacturerSearchProvider ||
+      (manufacturerSearchConfiguration
+        ? createManufacturerSearchProvider(
+            this,
+            manufacturerSearchConfiguration
+          )
+        : undefined);
     this.translator = new CachedTranslator({
       store,
       provider: translationProvider,
@@ -167,6 +191,34 @@ export class LazadaSearch {
 
   translationStatus(options) {
     return translationStatus(this, options);
+  }
+
+  planCaseWorkflow(input) {
+    return planCaseWorkflow(this, input);
+  }
+  runCaseWorkflow(id, options) {
+    return runCaseWorkflow(this, id, options);
+  }
+  caseWorkflowStatus(id) {
+    return caseWorkflowStatus(this, id);
+  }
+  planManufacturerWorkflow(options) {
+    return planManufacturerWorkflow(this, options);
+  }
+  runManufacturerWorkflow(id, options) {
+    return runManufacturerWorkflow(this, id, options);
+  }
+  manufacturerWorkflowStatus(id) {
+    return manufacturerWorkflowStatus(this, id);
+  }
+  labelWorklist(options) {
+    return buildLabelWorklist(this, options);
+  }
+  shoppingReport(options) {
+    return buildShoppingReport(this, options);
+  }
+  caseReadiness(options) {
+    return caseReadiness(this, options);
   }
 
   assertMarket(url) {

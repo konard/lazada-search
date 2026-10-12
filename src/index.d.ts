@@ -1,4 +1,19 @@
 import type { Bot } from 'grammy';
+import type {
+  CaseWorkflowPlan,
+  CaseWorkflowRunOptions,
+  CaseWorkflowStatus,
+  ManufacturerWorkflowOptions,
+  ManufacturerWorkflowRunOptions,
+  ManufacturerSearchProvider,
+  ManufacturerSearchConfiguration,
+  CheckoutIdentityBinding,
+  CheckoutMappedLine,
+  ShoppingReportOptions,
+  ShoppingReport,
+  DraftRecord,
+} from './workflow-types.js';
+export * from './workflow-types.js';
 import type { Server } from 'node:http';
 export type Category =
   | 'whey'
@@ -311,6 +326,9 @@ export interface ReviewedFoodSource {
   invalidated?: boolean;
 }
 export interface FoodFact extends ReviewedFoodSource {
+  checkoutIdentityBinding?: CheckoutIdentityBinding;
+  checkoutContextSelector?: string;
+  checkoutValuePointer?: string;
   value: number;
   unit: 'g' | 'ml' | 'g/100g' | 'g/100ml' | 'g/package' | 'count';
   basis:
@@ -475,22 +493,13 @@ export interface BasketSourceMapping {
     coldChain?: string;
   };
   coldChainText?: string;
-  lines: Array<{
-    offerId: string;
-    sku: string;
-    quantity: number;
-    selectors: {
-      sku: string;
-      quantity: string;
-      unitPrice: string;
-      subtotal: string;
-    };
-  }>;
+  lines: CheckoutMappedLine[];
   appliedDiscounts?: Array<{
     id: string;
     scope: 'merchandise' | 'shipping';
     selector: string;
     identitySelector?: string;
+    amountSign?: 'negative-reduction';
   }>;
   checkoutConditions?: {
     paymentMethod: { selector: string; text: string };
@@ -1322,6 +1331,23 @@ export declare function executeOperation(
   }
 ): Promise<unknown>;
 export declare class LazadaSearch {
+  planCaseWorkflow(input?: CaseWorkflowPlan): Promise<CaseWorkflowStatus>;
+  runCaseWorkflow(
+    id: string,
+    options?: CaseWorkflowRunOptions
+  ): Promise<CaseWorkflowStatus & { executed: number; reportId: string }>;
+  caseWorkflowStatus(id: string): Promise<CaseWorkflowStatus>;
+  planManufacturerWorkflow(
+    options?: ManufacturerWorkflowOptions
+  ): Promise<DraftRecord>;
+  runManufacturerWorkflow(
+    id: string,
+    options?: ManufacturerWorkflowRunOptions
+  ): Promise<DraftRecord>;
+  manufacturerWorkflowStatus(id: string): Promise<DraftRecord>;
+  labelWorklist(options?: ManufacturerWorkflowOptions): Promise<DraftRecord>;
+  shoppingReport(options?: ShoppingReportOptions): Promise<ShoppingReport>;
+  caseReadiness(options?: DraftRecord): Promise<DraftRecord>;
   manufacturerResearch(
     plan: Record<string, unknown>
   ): Promise<Record<string, unknown>>;
@@ -1338,6 +1364,8 @@ export declare class LazadaSearch {
     browserOptions?: Record<string, unknown>;
     scheduler?: DomainScheduler;
     manufacturerRegistry?: Manufacturer[];
+    manufacturerSearchProvider?: ManufacturerSearchProvider;
+    manufacturerSearchConfiguration?: ManufacturerSearchConfiguration;
     translationProvider?:
       | TranslationProvider
       | TranslationProvider['translate'];
@@ -1350,6 +1378,7 @@ export declare class LazadaSearch {
   market: string;
   deliveryArea: string;
   translator: CachedTranslator;
+  manufacturerSearchProvider?: ManufacturerSearchProvider;
   translate(
     text: string,
     options?: TranslationOptions

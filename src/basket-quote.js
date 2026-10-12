@@ -11,6 +11,12 @@ import {
 import { resolvePageDialogs } from './page-dialogs.js';
 import { waitForPageReady } from './page-readiness.js';
 import { deliveryAreaForDestination } from './delivery-context.js';
+import {
+  extractCheckoutLineBinding,
+  extractCheckoutQuantityBinding,
+  assertCheckoutPriceRow,
+  assertLiveCheckoutBindings,
+} from './lazada-checkout-line-bindings.js';
 
 const observedTime = (value) => {
   const time = Date.parse(value);
@@ -98,8 +104,17 @@ function money(document, selector) {
 }
 
 function sourceLine(document, line) {
-  const sku = sourceText(document, line.selectors.sku);
-  const quantityText = sourceText(document, line.selectors.quantity);
+  const identity = extractCheckoutLineBinding(document, line);
+  const sku = identity?.sku ?? sourceText(document, line.selectors.sku);
+  const boundQuantity = extractCheckoutQuantityBinding(
+    document,
+    line,
+    identity
+  );
+  const quantityText =
+    boundQuantity === undefined
+      ? sourceText(document, line.selectors.quantity)
+      : String(boundQuantity);
   if (
     sku !== line.sku ||
     !/^\d+$/u.test(quantityText) ||
@@ -109,6 +124,7 @@ function sourceLine(document, line) {
       'Basket selected SKU or quantity does not match its source'
     );
   }
+  assertCheckoutPriceRow(document, identity, line.selectors);
   const unitPrice = money(document, line.selectors.unitPrice);
   const subtotal = money(document, line.selectors.subtotal);
   if (unitPrice * line.quantity !== subtotal) {
@@ -122,6 +138,14 @@ function sourceLine(document, line) {
     quantity: line.quantity,
     unitPrice,
     subtotal,
+    ...(identity
+      ? {
+          sourceIdentity: {
+            kind: identity.kind,
+            rowSelector: line.identityBinding.rowSelector,
+          },
+        }
+      : {}),
   };
 }
 
@@ -143,7 +167,7 @@ function sourceDiscounts(document, input) {
     return {
       id: discount.id,
       scope: discount.scope,
-      amount: money(document, discount.selector),
+      amount: discountAmount(document, discount),
       eligibility: 'applied-in-captured-basket',
       ...(discount.identitySelector
         ? { identityValidation: 'source-text' }
@@ -162,6 +186,24 @@ function sourceDiscounts(document, input) {
     throw new Error('The same applied voucher cannot reduce a basket twice');
   }
   return appliedDiscounts;
+}
+
+function discountAmount(document, discount) {
+  if (discount.amountSign === undefined) {
+    return money(document, discount.selector);
+  }
+  if (discount.amountSign !== 'negative-reduction') {
+    throw new Error('Unsupported original checkout discount sign binding');
+  }
+  const text = sourceText(document, discount.selector);
+  if (!/^[-−]\s*[\d.,\s]+\s*(?:VND|₫|đ)$/iu.test(text)) {
+    throw new Error(
+      'Reviewed negative discount field must contain one explicit VND reduction'
+    );
+  }
+  return positive(parsePrice(text), 'applied discount reduction', {
+    zero: true,
+  });
 }
 
 function sourceConditions(document, input) {
@@ -243,6 +285,14 @@ export function extractBasketQuote(html, input) {
     );
   }
   const lines = input.lines.map((line) => sourceLine(document, line));
+  const boundRows = input.lines
+    .filter((line) => line.identityBinding)
+    .map((line) => document.querySelector(line.identityBinding.rowSelector));
+  if (new Set(boundRows).size !== boundRows.length) {
+    throw new Error(
+      'One selected checkout source row cannot be quoted as repeated paid lines'
+    );
+  }
   const identity = basketIdentity(lines);
   const shipping = money(document, selectors.shipping);
   const appliedDiscounts = sourceDiscounts(document, input);
@@ -355,6 +405,15 @@ async function readCurrentFields(page, input, sourceUrl) {
     ...(input.lines || []).flatMap((line) =>
       Object.values(line.selectors || {})
     ),
+    ...(input.lines || [])
+      .flatMap((line) => [
+        line.identityBinding?.rowSelector,
+        line.identityBinding?.selection?.selector,
+        line.identityBinding?.itemId?.selector,
+        line.identityBinding?.skuId?.selector,
+        line.quantityBinding?.selector,
+      ])
+      .filter(Boolean),
     ...(input.appliedDiscounts || []).map((item) => item.selector),
     ...(input.appliedDiscounts || [])
       .map((item) => item.identitySelector)
@@ -369,6 +428,7 @@ async function readCurrentFields(page, input, sourceUrl) {
       );
     }
   }
+  await assertLiveCheckoutBindings(page, input.lines);
   const html = Buffer.from(await page.content());
   if (page.url() !== sourceUrl) {
     throw new Error('Checkout URL changed during source capture');

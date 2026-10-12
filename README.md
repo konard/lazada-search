@@ -1,5 +1,7 @@
 # Lazada search
 
+[The remaining automation draft](docs/drafts/README.md) contains the case/manufacturer workflows, prepared checkout adapters, unified reports and complete requirements map. This branch is untested; existing buying tables preserve their captured source dates.
+
 An evidence-backed product research library, CLI, Telegram bot and online calculator for whey protein and chocolate ice cream. Defaults are Lazada Vietnam, VND and **Nha Trang** delivery.
 
 [The urgent top10 partial report](docs/tables/top-10-partial.md) shows captured whey prices, factory-reviewed protein costs and ten ice-cream observations/leads. [All requirements and remaining gaps](docs/REQUIREMENTS.md) and the [roadmap with recorded bugs](docs/ROADMAP.md) are tracked explicitly.

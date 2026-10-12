@@ -62,6 +62,9 @@ export async function runCli(
         flavourScope: options.flavourScope,
         maxImages: options.maxImages,
         offline: options.offline,
+        manufacturerSearchConfiguration: options.manufacturerSearchConfig
+          ? JSON.parse(readFileSync(options.manufacturerSearchConfig, 'utf8'))
+          : undefined,
         translationProviderId: options.translationProvider,
         translationProviderVersion: options.translationVersion,
         translationProvider: options.translationEndpoint

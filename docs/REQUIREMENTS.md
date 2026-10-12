@@ -1,5 +1,7 @@
 # Lazada buying-system requirements
 
+The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. New workflows, checkout adapters and reports are unexecuted and untested as requested; real-data acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
+
 Recorded from the full user conversation, including the urgent partial report, subsequent exhaustive collection request with at most two subagents, and the explicit instruction to stop on CAPTCHA. Status is evidence based; **partial** means the requirement is still open. [Current buying report](tables/top-10-partial.md) · [Acceptance evidence](acceptance/validation.json) · [Open coverage issue](https://github.com/konard/lazada-search/issues/3).
 
 Current CI at [source `ad1be26`](acceptance/ocr-model-identity/ci-ad1be26-review.json) accepts **all nine full runtime jobs** across Node, Bun and Deno on Ubuntu, macOS and Windows, plus **48/48 native/browser E2E tests**, with zero failures, cancellations or skips. Node and Bun each pass 1,321 tests on Ubuntu/macOS; Windows Node passes 1,280 and Windows Bun 1,284. Deno passes 1,166 tests and 16 steps on every platform. Offline publication passes **446 local-link checks** with zero errors; the receipt retains every runtime-specific count, complete catalog phase and original log. The separate release preflight remains blocked by package-owner npm publisher configuration under issue 32.

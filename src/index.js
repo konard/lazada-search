@@ -1,5 +1,58 @@
 export { LazadaSearch, MARKETS } from './application.js';
 export {
+  planCaseWorkflow,
+  runCaseWorkflow,
+  caseWorkflowStatus,
+} from './case-workflow.js';
+export { scopedCaseAudit, refreshCaseWorklist } from './case-worklist.js';
+export { scopeAccountAudit } from './collection-scope.js';
+export {
+  planManufacturerWorkflow,
+  runManufacturerWorkflow,
+  manufacturerWorkflowStatus,
+} from './manufacturer-workflow.js';
+export { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
+export { buildLabelWorklist } from './label-worklist.js';
+export {
+  discoverLazadaCheckoutSnapshot,
+  importLazadaCheckoutSnapshot,
+  lazadaCheckoutAdapterStatus,
+} from './lazada-checkout-adapter.js';
+export { capturePreparedLazadaCheckout } from './lazada-checkout-capture.js';
+export {
+  prepareLazadaCheckoutScenario,
+  runPreparedLazadaCheckoutScenarios,
+} from './lazada-checkout-actions.js';
+export {
+  discoverLazadaCheckoutFoodGifts,
+  importLazadaCheckoutFoodGiftDiscovery,
+  acquireLazadaCheckoutFoodGifts,
+} from './lazada-checkout-gifts.js';
+export {
+  registerHandpickedLinks,
+  resolveHandpickedLinks,
+  handpickedLinkStatus,
+} from './handpicked-links.js';
+export {
+  importCaseInventoryManifest,
+  recordCaseManualReview,
+  verifyCaseInventory,
+  caseCoverageStatus,
+} from './case-coverage.js';
+export {
+  buildShoppingReport,
+  saveShoppingReport,
+  shoppingReportMarkdown,
+  shoppingCategory,
+  SHOPPING_METRICS,
+} from './shopping-report.js';
+export {
+  REQUIREMENT_REGISTRY,
+  REQUIREMENT_GITHUB_ISSUES,
+  requirementDraftStatus,
+} from './requirement-registry.js';
+export { caseReadiness } from './case-readiness.js';
+export {
   CachedTranslator,
   createHttpTranslationProvider,
 } from './translation.js';
