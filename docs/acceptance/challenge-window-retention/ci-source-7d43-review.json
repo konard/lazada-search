@@ -1,0 +1,350 @@
+{
+  "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+  "runAttempt": 1,
+  "checksRunId": 38275751679,
+  "e2eRunId": 38275751611,
+  "accepted": false,
+  "summary": {
+    "matrixSucceeded": 8,
+    "matrixFailed": 1,
+    "nativeE2ePassed": 84,
+    "nativeE2eFailed": 0,
+    "workflowSucceeded": 5,
+    "workflowFailed": 1
+  },
+  "workflowRuns": [
+    {
+      "conclusion": "success",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751607",
+      "id": 38275751607,
+      "name": "Workflows",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751608",
+      "id": 38275751608,
+      "name": "Broken Link Checker",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751606",
+      "id": 38275751606,
+      "name": "Example app",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751664",
+      "id": 38275751664,
+      "name": "Security",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751611",
+      "id": 38275751611,
+      "name": "Lazada E2E",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38275751679",
+      "id": 38275751679,
+      "name": "Checks and release",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "logEncoding": "UTF-8; initial BOM removed; CRLF normalized to LF; final newline retained; SHA256 applies to saved files",
+  "matrix": [
+    {
+      "jobId": 114902003006,
+      "name": "Test (node on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1471,
+        "passed": 1471,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "suiteWrapperSeconds": 114,
+      "durationMs": 112795.172777,
+      "catalogPhaseMs": {
+        "load": 260,
+        "import": 27173,
+        "audit": 20940,
+        "compare": 1048,
+        "close": 0,
+        "cleanup": 1988
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003006.log.gz",
+        "sha256": "d122156c85bce8e254889f0ca2dbc4b788171b0999357790e2faa8143f01d93e",
+        "bytes": 240085
+      }
+    },
+    {
+      "jobId": 114902003072,
+      "name": "Test (bun on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1434,
+        "passed": 1434,
+        "failed": 0,
+        "files": 173
+      },
+      "suiteWrapperSeconds": 523,
+      "durationMs": 522460.00000000006,
+      "catalogPhaseMs": {
+        "load": 106,
+        "import": 385428,
+        "audit": 13614,
+        "compare": 911,
+        "close": 0,
+        "cleanup": 23991
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003072.log.gz",
+        "sha256": "8831cb9aeef33f897f5a4cbac372e6e47609ec306e13b9beb7e1889472a8b07c",
+        "bytes": 268463
+      }
+    },
+    {
+      "jobId": 114902003092,
+      "name": "Test (deno on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1316,
+        "passed": 1316,
+        "failed": 0,
+        "steps": 16
+      },
+      "suiteWrapperSeconds": 190,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 162,
+        "import": 147121,
+        "audit": 18561,
+        "compare": 873,
+        "close": 0,
+        "cleanup": 6610
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003092.log.gz",
+        "sha256": "8e96af324134fc0ab966a598c3fcb8a85eb56950cce7523e35e8b812896d3118",
+        "bytes": 338000
+      }
+    },
+    {
+      "jobId": 114902003233,
+      "name": "Test (bun on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1471,
+        "passed": 1471,
+        "failed": 0,
+        "files": 173
+      },
+      "suiteWrapperSeconds": 107,
+      "durationMs": 106180,
+      "catalogPhaseMs": {
+        "load": 156,
+        "import": 13217,
+        "audit": 8207,
+        "compare": 557,
+        "close": 0,
+        "cleanup": 4740
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003233.log.gz",
+        "sha256": "c30ecfb10e9118655165cbe34c0f30f5f6baf1b5d7bd118a50a4226746b98d4d",
+        "bytes": 297765
+      }
+    },
+    {
+      "jobId": 114902003248,
+      "name": "Test (deno on windows-2025)",
+      "status": "completed",
+      "conclusion": "failure",
+      "counts": {
+        "total": 1316,
+        "passed": 1315,
+        "failed": 1,
+        "steps": 16
+      },
+      "suiteWrapperSeconds": 398,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 142,
+        "import": 347314,
+        "audit": 12261,
+        "compare": 559,
+        "close": 0,
+        "cleanup": 8029
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003248.log.gz",
+        "sha256": "b06db1ed0098b4c558c6b5d4f8569a14648bd9f2450ed76795ee6e9a1a2d4b6a",
+        "bytes": 335842
+      },
+      "failure": {
+        "test": "associative storage preserves Unicode, nested values, inverse links and repairs a corrupt binary projection",
+        "location": "tests/lazada.test.js:36",
+        "code": "EPERM",
+        "operation": "open .write-lock/owner"
+      }
+    },
+    {
+      "jobId": 114902003300,
+      "name": "Test (deno on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1316,
+        "passed": 1316,
+        "failed": 0,
+        "steps": 16
+      },
+      "suiteWrapperSeconds": 78,
+      "durationMs": null,
+      "catalogPhaseMs": {
+        "load": 168,
+        "import": 22804,
+        "audit": 22567,
+        "compare": 692,
+        "close": 0,
+        "cleanup": 5555
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003300.log.gz",
+        "sha256": "2db6e66f4743c46a0a0382df14659ae579a0760af1d634fd087071423d66e0f3",
+        "bytes": 338064
+      }
+    },
+    {
+      "jobId": 114902003347,
+      "name": "Test (node on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1430,
+        "passed": 1430,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "suiteWrapperSeconds": 382,
+      "durationMs": 380300.7148,
+      "catalogPhaseMs": {
+        "load": 267,
+        "import": 314019,
+        "audit": 14647,
+        "compare": 774,
+        "close": 0,
+        "cleanup": 18329
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003347.log.gz",
+        "sha256": "9952380f973fc8c595f4f9beef0f140b31b77b52450fd15547ecfd6e6c6d0f4b",
+        "bytes": 231345
+      }
+    },
+    {
+      "jobId": 114902003370,
+      "name": "Test (node on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1471,
+        "passed": 1471,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "suiteWrapperSeconds": 199,
+      "durationMs": 197753.899625,
+      "catalogPhaseMs": {
+        "load": 179,
+        "import": 86153,
+        "audit": 22735,
+        "compare": 1260,
+        "close": 3,
+        "cleanup": 5128
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003370.log.gz",
+        "sha256": "4677d9739950c53d76c5db973816e856bdb72b532bf104d32da3750d4a9ce248",
+        "bytes": 239085
+      }
+    },
+    {
+      "jobId": 114902003453,
+      "name": "Test (bun on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1471,
+        "passed": 1471,
+        "failed": 0,
+        "files": 173
+      },
+      "suiteWrapperSeconds": 92,
+      "durationMs": 91830,
+      "catalogPhaseMs": {
+        "load": 136,
+        "import": 11745,
+        "audit": 7768,
+        "compare": 469,
+        "close": 0,
+        "cleanup": 2860
+      },
+      "log": {
+        "path": "ci-source-7d43/114902003453.log.gz",
+        "sha256": "0b4751a23ab95a9357bdd6755427949e99ac0b3a8f061b032196f8cce3900cd2",
+        "bytes": 294288
+      }
+    }
+  ],
+  "e2e": {
+    "jobId": 114900680622,
+    "name": "Browser, OCR, CLI, Telegram and binary store",
+    "status": "completed",
+    "conclusion": "success",
+    "counts": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "suiteWrapperSeconds": null,
+    "durationMs": 512172.762085,
+    "catalogPhaseMs": {},
+    "log": {
+      "path": "ci-source-7d43/114900680622.log.gz",
+      "sha256": "3befd6b791c41286a13609de0ac8c7e6d964cfb3ff0b537fb263a818b4657686",
+      "bytes": 105589
+    }
+  },
+  "marketCollectionRequests": 0,
+  "userBrowserInteraction": false,
+  "repositoryDataModified": false
+}

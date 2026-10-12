@@ -5,7 +5,10 @@ import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
 import { RepositoryArchive } from './archive.js';
 import { storedBlobReference } from './blob-reference.js';
-import { createStoreLockDirectory } from './store-lock-directory.js';
+import {
+  createStoreLockDirectory,
+  readStoreLockOwner,
+} from './store-lock-directory.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
 
 const validKind = (kind) => {
@@ -116,7 +119,7 @@ export class AssociativeStore {
         if (error.code !== 'EEXIST') {
           throw error;
         }
-        const owner = Number(await readOptional(join(lock, 'owner'), 'utf8'));
+        const owner = Number(await readStoreLockOwner(join(lock, 'owner')));
         let dead = false;
         if (Number.isSafeInteger(owner) && owner > 0) {
           try {

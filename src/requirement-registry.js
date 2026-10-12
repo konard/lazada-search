@@ -981,12 +981,15 @@ export const REQUIREMENT_GITHUB_ISSUES = [
   },
   {
     number: 36,
-    state: 'CLOSED',
+    state: 'OPEN',
     title:
       'Preserve original source bytes on Windows checkout and bound transient cache lock recreation',
     url: 'https://github.com/konard/lazada-search/issues/36',
     requirementIds: ['R019', 'R020', 'R022', 'R037'],
-    draftStatus: 'closed-in-saved-github-snapshot',
+    draftStatus: 'owner-read-follow-up-in-draft-pr',
+    sourceFiles: ['src/store-lock-directory.js', 'src/store.js'],
+    acceptanceRemaining:
+      'Track fresh complete Windows/runtime acceptance and the pending PR merge; inaccessible locks must never be treated as missing or dead.',
   },
   {
     number: 37,

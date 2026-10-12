@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T16:09:59.478386+00:00",
+  "checkedAt": "2026-10-12T16:33:31.508467+00:00",
   "branch": "draft/remaining-requirements",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
   "scope": "Detected-page retention and truthful handoff status; no live collection or user-browser opening.",
@@ -13,11 +13,12 @@
   },
   "local": {
     "nodeFull": {
-      "passed": 1470,
+      "passed": 1471,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "qualification": "Before the final additional close-guard control; final full source revalidation remains required."
+      "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "log": "node-source-7d43-full.tap.gz"
     },
     "finalFocusedNode": {
       "passed": 113,
@@ -36,13 +37,15 @@
       "failed": 0
     },
     "nativeRetention": {
-      "passed": 12,
+      "passed": 13,
       "failed": 0,
       "cancelled": 0,
-      "skipped": 0
+      "skipped": 0,
+      "includedInFullE2E": true,
+      "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b"
     },
     "strictTypes": "passed",
-    "finalFullSourceAcceptance": "pending-atomic-publication-correction",
+    "finalFullSourceAcceptance": "previous-source-local-passed-windows-owner-read-follow-up-pending",
     "atomicPublicationRegression": {
       "passed": 1,
       "failed": 0,
@@ -54,6 +57,36 @@
       "failed": 0,
       "cancelled": 0,
       "skipped": 0
+    },
+    "priorNodeFullBeforeFinalCloseGuard": {
+      "passed": 1470,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "qualification": "Before the final additional close-guard control; final full source revalidation remains required."
+    },
+    "ciBudgetAndPolicyControls": {
+      "passed": 23,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "sandboxAttempt": {
+      "passed": 1448,
+      "failed": 23,
+      "cancelled": 0,
+      "skipped": 0,
+      "reason": "Restricted loopback fixture servers and ps inspection. Complete suite subsequently passed with its required local test access.",
+      "log": "node-atomic-sandbox-denials.tap.gz"
+    },
+    "fullE2E": {
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 638629.747833,
+      "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+      "log": "native-source-7d43-full.tap.gz"
     }
   },
   "sourceSha256": {
@@ -262,6 +295,46 @@
     "ci-source-6280-windows-deno-pass.log.gz": {
       "rawSha256": "b7e978f4c3a614facf55a47efeabd4d1a6306cbcfb589e9ec46e80766eb120c8",
       "rawBytes": 337376
+    },
+    "node-source-7d43-full.tap.gz": {
+      "rawSha256": "063d466f0321c98940ed6c016fca8b8c7d08b3b197555c7b95be0ff6a3a61ea5",
+      "rawBytes": 363969
+    },
+    "node-atomic-sandbox-denials.tap.gz": {
+      "rawSha256": "ec1c398331204ffddf1fd8fe986cc74666a57664b84603a23de6cbd10d6fc9f5",
+      "rawBytes": 377715
+    },
+    "node-atomic-ci-budget-controls.tap.gz": {
+      "rawSha256": "4646f6fa329b002dac4266a3b47364a439c42d2af4af3b1db57b51793fa9b077",
+      "rawBytes": 5351
+    },
+    "atomic-types.log.gz": {
+      "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
+      "rawBytes": 77
+    },
+    "atomic-checks.log.gz": {
+      "rawSha256": "8641e768e044c6c1128d7508fa7efcba44ab671fd86495cb64a79e7ee397ec92",
+      "rawBytes": 141519
+    },
+    "native-source-7d43-full.tap.gz": {
+      "rawSha256": "a4c0161f481aed4fc232070643dc93755888a6dcaf7b4b8c4c6931166164430c",
+      "rawBytes": 22650
+    },
+    "node-owner-follow-up-controls.tap.gz": {
+      "rawSha256": "2b6760c1d4d2a254237ab5086fb5aae217c98b241c26a99c36b2eddfd4e590ac",
+      "rawBytes": 12577
+    },
+    "node-owner-lock-controls.log.gz": {
+      "rawSha256": "f3ec87cce7227622c01e19af21cd31d63f0f38237bce68404a4f45ba6ac85af2",
+      "rawBytes": 1543
+    },
+    "bun-owner-lock-controls.log.gz": {
+      "rawSha256": "5abad1ca15313024ea4ec89926024ec818340968eedcb72602c20e78401be6f7",
+      "rawBytes": 723
+    },
+    "deno-owner-lock-controls.log.gz": {
+      "rawSha256": "d605baec953561fb83322cfd88282c6280376364a914e0414c2ecf3d1b0080a1",
+      "rawBytes": 678
     }
   },
   "github": {
@@ -281,5 +354,23 @@
   "productionReady": false,
   "purchaseReady": false,
   "source6280Review": "source-6280-review.json",
-  "ci": "pending-new-source-run"
+  "ci": {
+    "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+    "accepted": false,
+    "matrixPassed": 8,
+    "matrixFailed": 1,
+    "e2ePassed": 84,
+    "e2eFailed": 0,
+    "receipt": "ci-source-7d43-review.json"
+  },
+  "sourceCommit": "7d43fb7a9536cf7168f10428c4c06761f5fb484b",
+  "sourceManifest": "source-7d43-manifest.json",
+  "windowsOwnerReadFollowUp": {
+    "issue": "https://github.com/konard/lazada-search/issues/36#issuecomment-6128356537",
+    "focusedNode": 49,
+    "lockControlsNode": 6,
+    "lockControlsBun": 6,
+    "lockControlsDeno": 6,
+    "fullSourceAcceptance": "pending"
+  }
 }
