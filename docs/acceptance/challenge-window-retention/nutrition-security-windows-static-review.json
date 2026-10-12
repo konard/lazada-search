@@ -1,0 +1,32 @@
+{
+  "kind": "read-only static review",
+  "reviewedAt": "2026-10-12T18:16:18.754837+00:00",
+  "executedPowerShell": false,
+  "limitations": [
+    "No local PowerShell executable; Windows CI provides executable acceptance.",
+    "The mock runs powershell.exe (5.1); the workflow runs pwsh (7)."
+  ],
+  "sourceSha256": {
+    "src/nutrition.js": "86cd607492b4edbc512eb3f61755cd3d4cef0bf2502ecc5e72073ef92d0ab345",
+    "tests/windows-ocr-install.test.js": "d5215738a54eb9fd54868fe9f94ce0e6cff0054b642e0e892e791faf62ccf198",
+    ".github/workflows/release.yml": "fcf60f490a5d22ae807dc3d26a453106510f8b256b5c390e81c6652558dc8eb5"
+  },
+  "blockingFindings": [],
+  "checks": [
+    "Simple choco function stores undeclared argument tokens through $args; unary comma retains each call as one nested array.",
+    "$global:LASTEXITCODE propagates the mocked native exit through the child scriptblock; the real workflow copies it immediately.",
+    "Functions shadow cmdlets; Start-Sleep, Test-Path and Out-File adapters do not perform actual sleeps, path probing or path writes.",
+    "The final PSCustomObject retains explicit array properties, including empty and singleton arrays; ConvertTo-Json depth 5 is sufficient.",
+    "Expected scenarios are immediate success; retry then success after delays 10,20; exhaustion after 3 calls; missing executable after a successful installation exit.",
+    "The pinned package/version is identical on each retry, final nonzero status throws and no missing executable is accepted.",
+    "New numeric token grammar separates digit groups with delimiters; it has no overlapping alternatives or repeated ambiguous whitespace.",
+    "Unit regexes operate on constant-size slices; label gaps and numeric tokens use forward scans; net mass scope uses the existing bounded context."
+  ],
+  "references": [
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence",
+    "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators"
+  ]
+}

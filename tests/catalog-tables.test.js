@@ -9,7 +9,7 @@ import {
   symlink,
   rm,
 } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
@@ -178,6 +178,9 @@ test('committed catalog imports offline with the same offers and explicit covera
       rm(directory, { recursive: true, force: true })
     );
   });
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    assert.equal(resolve(tmpdir()), resolve(process.env.RUNNER_TEMP));
+  }
   const catalog = await phase('load', async () =>
     JSON.parse(
       await readFile(new URL('../docs/tables/catalog.json', import.meta.url))

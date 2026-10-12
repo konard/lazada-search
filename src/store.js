@@ -44,7 +44,7 @@ function prepareGroups(store, kind, inputs) {
   return [...groups.values()];
 }
 
-async function processGroups(groups, process) {
+async function processGroups(groups, process, limit = 8) {
   const results = [];
   let cursor = 0,
     failed = false,
@@ -69,7 +69,9 @@ async function processGroups(groups, process) {
   };
   // A failure drains every in-flight operation before returning or releasing a
   // writer lock. Ordered results preserve deterministic duplicate precedence.
-  await Promise.all(Array.from({ length: Math.min(8, groups.length) }, worker));
+  await Promise.all(
+    Array.from({ length: Math.min(limit, groups.length) }, worker)
+  );
   if (failed) {
     throw failure;
   }
@@ -178,17 +180,22 @@ export class AssociativeStore {
     }
     return await this.locked(async () => {
       await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
-      return processGroups(groups, async (entry) => {
-        const current = await this.get(kind, entry.record.id);
-        const currentObserved = Date.parse(current?.observedAt);
-        if (
-          Number.isFinite(currentObserved) &&
-          (!Number.isFinite(entry.observed) || currentObserved > entry.observed)
-        ) {
-          return current;
-        }
-        return this.writeRecord(kind, { ...entry, directoryPrepared: true });
-      });
+      return processGroups(
+        groups,
+        async (entry) => {
+          const current = await this.get(kind, entry.record.id);
+          const currentObserved = Date.parse(current?.observedAt);
+          if (
+            Number.isFinite(currentObserved) &&
+            (!Number.isFinite(entry.observed) ||
+              currentObserved > entry.observed)
+          ) {
+            return current;
+          }
+          return this.writeRecord(kind, { ...entry, directoryPrepared: true });
+        },
+        16
+      );
     });
   }
 
@@ -199,8 +206,11 @@ export class AssociativeStore {
     }
     return await this.locked(async () => {
       await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
-      return processGroups(groups, (entry) =>
-        this.writeRecord(kind, { ...entry, directoryPrepared: true })
+      return processGroups(
+        groups,
+        (entry) =>
+          this.writeRecord(kind, { ...entry, directoryPrepared: true }),
+        16
       );
     });
   }

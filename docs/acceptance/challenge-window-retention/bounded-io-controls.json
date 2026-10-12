@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-12T18:38:43.468548+00:00",
+  "scope": "Sixteen independent record writers, eight canonical readers, at most32concurrent projections after canonical durability. Node CI starts32I/O threads; all runtimes use actual runner temporary directories. Complete fixture, syncs, duplicate order, failure drains and600/450 deadlines unchanged.",
+  "controlsPassed": {
+    "node": 46,
+    "bun": 46,
+    "frozenCachedOnlyDeno": 46
+  },
+  "initialDraftFailure": "A broad shared worker increase failed the chronological write-bound control; corrected write-specific limits preserve all eight-reader controls.",
+  "sourceSha256": {
+    "src/store.js": "362765c6ba15f802a7a35a201dd4895e02c7fef5cd0ce5d36b780ddac9f7a7ff",
+    "tests/store-batch.test.js": "fab551b50a06456406bbaad26e8bfb60115ab4d7ab35401bcba5a3f294da3412",
+    "tests/catalog-tables.test.js": "a5d9fe978e0521602f52bf5b7ab9f49676dc352aa4b32ec6e6b9e8fcb7010059",
+    ".github/workflows/release.yml": "12348d6399c929b7eda588fee04a865fae8d23009be83c361ee0996aee446448",
+    "tests/runtime-workflow.test.js": "6e0d9c1908d3e1b4e18984c2602ad2fc2b1fd21fe3446c51f04039bc6cfc23dd"
+  },
+  "fullSourceAcceptance": "pending",
+  "logs": {
+    "bounded-io-node.tap.gz": {
+      "rawSha256": "d4272b6011ab0b106d9d52f7d119166a8a96ca9aad039c7adb3ee2763fc6e9a1",
+      "rawBytes": 12033
+    },
+    "bounded-io-bun.log.gz": {
+      "rawSha256": "e00a86cd88635b1694a82087e8c0f6c3a86bbc6d3aa2477c62039d387bb94f87",
+      "rawBytes": 5369
+    },
+    "bounded-io-deno.log.gz": {
+      "rawSha256": "7f673b9553d4d594b292bbfc35bc94aa021a05da8c31345ee8e86d0c37e04ccb",
+      "rawBytes": 5732
+    },
+    "bounded-io-initial-node-failure.tap.gz": {
+      "rawSha256": "7ceb5bfbe3a7388ac194890b88c7644b820a41dc24dc1c0dc5389509e4dd93d8",
+      "rawBytes": 11555
+    }
+  }
+}

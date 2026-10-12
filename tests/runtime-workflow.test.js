@@ -111,12 +111,21 @@ test('large cached fixture deadlines stay bounded by the matrix job backstop', (
 test('Node configures projection I/O at startup without changing fixtures or deadlines', () => {
   const step = named('Run tests (Node.js)');
   assert.equal(step.if, "matrix.runtime == 'node'");
-  assert.equal(step.env.UV_THREADPOOL_SIZE, '16');
+  assert.equal(step.env.UV_THREADPOOL_SIZE, '32');
   assert.equal(step.shell, 'bash');
   assert.equal(
     step.run,
     'bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test'
   );
+});
+
+test('complete runtime fixtures use the runner temporary directory on every OS', () => {
+  for (const runtime of ['Node.js', 'Bun', 'Deno']) {
+    const step = named(`Run tests (${runtime})`);
+    for (const key of ['TMPDIR', 'TMP', 'TEMP']) {
+      assert.equal(step.env[key], '${{ runner.temp }}');
+    }
+  }
 });
 
 test('every OS provisions native OCR before tests and Windows uses an exact approved version', () => {

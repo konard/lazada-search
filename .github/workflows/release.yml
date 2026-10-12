@@ -407,11 +407,14 @@ jobs:
 
       - name: Run tests (Node.js)
         if: matrix.runtime == 'node'
-        # Eight record workers can each commit two independent projections.
-        # Configure their sixteen bounded I/O slots before Node starts.
+        # Sixteen record workers each commit two independent projections.
+        # Configure their thirty-two bounded I/O slots before Node starts.
         # Preserve complete fixtures, per-file/suite budgets and fsync writes.
         env:
-          UV_THREADPOOL_SIZE: '16'
+          UV_THREADPOOL_SIZE: '32'
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         shell: bash
         run: bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test
 
@@ -424,6 +427,10 @@ jobs:
       - name: Run tests (Bun)
         if: matrix.runtime == 'bun'
         shell: bash
+        env:
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         # The committed source/catalog fixtures need the same 450-second cap
         # as Node. This is a per-test bound and does not bound the suite; the
         # explicit suite budget stays below the job backstop. Two isolated
@@ -443,6 +450,9 @@ jobs:
         shell: bash
         env:
           DENO_JOBS: '4'
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         # Manual node_modules uses npm ci's integrity-checked graph instead of
         # resolving fresh semver ranges or the obsolete template deno.lock.
         # No minimum-dependency-age override and no remote dependency fetches.

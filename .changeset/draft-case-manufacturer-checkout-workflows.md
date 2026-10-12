@@ -17,3 +17,5 @@ Extract package mass through a single numeric-token pass and anchored unit check
 Commit independent binary and digest projections concurrently after canonical durability, drain both writes before returning or releasing the writer lock, and match bounded Node I/O capacity without changing complete fixtures, sync writes or deadlines.
 
 Use bounded token readers for volume, nutrient and serving declarations, retain exact bilingual source excerpts and conflicting-column holds, and assert complete URL membership on an explicit array. Retry pinned Windows OCR installation at most three times while retaining executable/model and failure gates.
+
+Bound independent record writers at sixteen and canonical readers at eight, configure thirty-two Node projection I/O slots at startup, and run complete fixtures in the intended runner temporary directory without weakening data, durability or deadlines.
