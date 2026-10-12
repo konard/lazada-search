@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T19:29:03.846660+00:00",
+  "checkedAt": "2026-10-12T19:55:33.546216+00:00",
   "branch": "draft/remaining-requirements",
-  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+  "sourceCommit": "171b25030d993421eeb2a0ed9e0265937963756f",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
-  "scope": "Original CAPTCHA target retention, atomic supervisor publication, bounded storage scheduling, literal source parsing and report cell escaping; no live collection or user-browser interaction.",
+  "scope": "Original CAPTCHA target retention, atomic supervisor publication, bounded durable storage and publish-once immutable blobs, literal source parsing and promotion table escaping; no live collection or user-browser interaction.",
   "browserCommander": {
     "installedVersion": "0.31.2",
     "latestRegistryVersion": "0.31.2",
@@ -12,20 +12,20 @@
     "releaseUrl": "https://github.com/link-foundation/browser-commander/releases/tag/v0.31.2",
     "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
   },
-  "latestDependencyCheck": "browser-latest-source-security.json",
-  "sourceManifest": "source-2bcb766-manifest.json",
+  "latestDependencyCheck": "browser-latest-final-acceptance.json",
+  "sourceManifest": "source-171b250-manifest.json",
   "local": {
     "nativeRetention": {
       "passed": 13,
       "includedInFullE2E": true
     },
-    "duplicationPercent": 6.13,
+    "duplicationPercent": 6.12,
     "nodeFull": {
-      "passed": 1501,
+      "passed": 1517,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 235968.23525,
+      "durationMs": 239648.553125,
       "threadPoolSize": 32
     },
     "fullE2E": {
@@ -33,16 +33,16 @@
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 540569.869375
+      "durationMs": 540695.256416
     },
     "strictTypes": "passed",
     "lintFormattingDuplication": "passed"
   },
   "ci": {
-    "accepted": false,
-    "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
-    "runtimeJobsPassed": 8,
-    "runtimeJobsFailed": 1,
+    "accepted": true,
+    "sourceCommit": "171b25030d993421eeb2a0ed9e0265937963756f",
+    "runtimeJobsPassed": 9,
+    "runtimeJobsFailed": 0,
     "runtimeJobsCancelled": 0,
     "nativeE2E": {
       "total": 84,
@@ -51,12 +51,11 @@
       "cancelled": 0,
       "skipped": 0
     },
-    "workflowsPassed": 5,
-    "workflowsFailed": 1,
-    "receipt": "ci-source-2bcb766-review.json",
-    "checksRunId": 38296274987,
-    "e2eRunId": 38296274985,
-    "failure": "Windows Bun IMAGE_SOURCE_FAILED from competing same-digest blob publication: EPERM rename; catalog, OCR, all other eight runtimes and 84 CI E2E cases pass."
+    "workflowsPassed": 6,
+    "workflowsFailed": 0,
+    "receipt": "ci-source-171b250-review.json",
+    "checksRunId": 38299133477,
+    "e2eRunId": 38299134241
   },
   "tracking": {
     "requirements": 49,
@@ -82,7 +81,8 @@
     "source0eeLocal": "local-source-0ee45dc-review.json",
     "source0eeCI": "ci-source-0ee45dc-review.json",
     "source0eeBeforeFinalSecurity": "local-source-0ee45dc-review.json",
-    "source0ee": "source-0ee45dc-review.json"
+    "source0ee": "source-0ee45dc-review.json",
+    "source2bcb": "source-2bcb766-review.json"
   },
   "savedCollectionStatus": "saved-stop-status.json",
   "allRequirementsDelivered": false,
@@ -92,25 +92,25 @@
   "marketCollectionRequests": 0,
   "userBrowserInteraction": false,
   "logs": {
-    "node-source-2bcb766-full.tap.gz": {
-      "rawSha256": "477c2549f617aa5d5a51eabd2b9ee427472d5e38d9e11cec589b1712fb419257",
-      "rawBytes": 371622
+    "node-source-171b250-full.tap.gz": {
+      "rawSha256": "41de319899d6d5a2ad70666040869a02118c3ad1c45462b24fdc0f6900478f9e",
+      "rawBytes": 375893
     },
-    "native-source-2bcb766-full.tap.gz": {
-      "rawSha256": "6ef48772cf81810f4c6c4c3f305e9793161f44b2ee232bd94ee986c0ef993716",
-      "rawBytes": 22625
+    "native-source-171b250-full.tap.gz": {
+      "rawSha256": "cb6684be07d95741c5cc17543e241edddea533be7fd36cb687b7bec13361961d",
+      "rawBytes": 22612
     },
-    "checks-source-2bcb766.log.gz": {
-      "rawSha256": "89e90c480131084730046f2ed4cfd915f43750db774ece8bbacfaafd5ce9c951",
-      "rawBytes": 143323
+    "checks-source-171b250.log.gz": {
+      "rawSha256": "30b40041667848d1bcbd20af7c2541896097e554ca371dd5696e5d9c4a90defa",
+      "rawBytes": 144029
     },
-    "types-source-2bcb766.log.gz": {
+    "types-source-171b250.log.gz": {
       "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
       "rawBytes": 77
     }
   },
-  "sourceWorkflowAcceptance": false,
-  "sourceAccepted": false,
+  "sourceWorkflowAcceptance": true,
+  "sourceAccepted": true,
   "pullRequestSecurityAccepted": true,
   "followUpIssue": "https://github.com/konard/lazada-search/issues/36",
   "codeqlFailure": {
@@ -124,17 +124,19 @@
   },
   "separateCodeQL": {
     "conclusion": "success",
-    "checkRunId": 114968418567,
-    "receipt": "codeql-check-source-2bcb766.json",
+    "checkRunId": 114977850659,
+    "receipt": "codeql-check-source-171b250.json",
     "annotations": 0
   },
   "currentDraftControls": {
     "boundedNutrition": "passed-source9237b9c",
     "boundedPinnedOCRRetry": "passed-on-all-three-Windows-runtimes",
-    "boundedDiskScheduling": "passed-all-nine-source0ee45dc-runtime-suites",
+    "boundedDiskScheduling": "passed-all-nine-source171b250-runtime-suites",
     "sourceTextAndReportEscaping": "passed-complete-local-source-and-CodeQL",
     "controlsReceipt": "source-security-controls.json",
-    "fullSourceAcceptance": "pending",
-    "immutableBlobPublication": "pending-concurrent-blob-Windows-EPERM-fix"
-  }
+    "fullSourceAcceptance": "passed",
+    "immutableBlobPublication": "passed-all-nine-runtimes-including-16-regressions-and-original-redirect-case"
+  },
+  "testedMergeCommit": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+  "testedMergeSourceProof": "tested-merge-source-171b250.json"
 }

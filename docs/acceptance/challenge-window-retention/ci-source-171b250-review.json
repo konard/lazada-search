@@ -1,0 +1,1581 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "171b25030d993421eeb2a0ed9e0265937963756f",
+  "observedAt": "2026-10-12 19:54:47 UTC",
+  "runtimeAcceptance": true,
+  "automatedAcceptance": true,
+  "pullRequestAutomatedChecksAccepted": true,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "summary": {
+    "matrixJobs": 9,
+    "matrixSuccessful": 9,
+    "matrixFailed": 0,
+    "workflows": 6,
+    "workflowsSuccessful": 6,
+    "workflowsFailed": 0,
+    "nativeE2ePassed": 84,
+    "nativeE2eFailed": 0,
+    "separateCodeQl": "success",
+    "separateCodeQlAnnotations": 0,
+    "windowsOcrControlRuntimesPassed": 3,
+    "actualTempDirectoryAssertionRuntimesPassed": 9,
+    "windowsAll16BlobControlRuntimesPassed": 3,
+    "windowsOpposingRedirectControlRuntimesPassed": 3,
+    "openExecutableSourceAlerts": 0,
+    "newHelperOpenAlerts": 0,
+    "trackedExecutableSourceAlertsFixed": 4
+  },
+  "workflows": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:53Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299134211",
+      "id": 38299134211,
+      "name": "Example app",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:41:49Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:53Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299133903",
+      "id": 38299133903,
+      "name": "Broken Link Checker",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:40:47Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:53Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299134241",
+      "id": 38299134241,
+      "name": "Lazada E2E",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:50:27Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:52Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299133497",
+      "id": 38299133497,
+      "name": "Security",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:42:53Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:52Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299133510",
+      "id": 38299133510,
+      "name": "Workflows",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:40:56Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:39:52Z",
+      "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38299133477",
+      "id": 38299133477,
+      "name": "Checks and release",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:52:08Z"
+    }
+  ],
+  "matrix": [
+    {
+      "jobId": 114978703074,
+      "name": "Test (bun on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1516,
+        "passed": 1516,
+        "failed": 0,
+        "files": 180
+      },
+      "footerLines": [
+        "1516 pass",
+        "0 fail",
+        "Ran 1516 tests across 180 files. [101.13s]",
+        "Bun test suite finished in 101s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 101,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 101130,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 97,
+        "import": 10494,
+        "audit": 6142,
+        "compare": 433,
+        "close": 0,
+        "cleanup": 4712
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "(pass) blob publication syncs and closes complete staging bytes before exclusive linking and directory sync [5.65ms]"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "(pass) same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner [3.45ms]"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "(pass) matching existing blobs retain their mtime and need no staging, links or directory writes [2.15ms]"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "(pass) a genuine publication permission failure without a matching winner propagates and cleans staging [5.36ms]"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EEXIST competing corrupt blob is refused without replacing its bytes [6.91ms]"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EPERM competing corrupt blob is refused without replacing its bytes [7.47ms]"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "(pass) unrelated publication IO failure is not hidden by a concurrently matching canonical blob [3.53ms]"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob [2.88ms]"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob [1.13ms]"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob [2.22ms]"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "(pass) directory sync failures propagate after immutable publication and leave complete canonical bytes without staging [5.85ms]"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "(pass) a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync [3.07ms]"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "(pass) putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup [2.22ms]"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "(pass) same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks [18.75ms]"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "(pass) putBlob snapshots mutable inputs and reuses exact private fallback originals without copying [4.26ms]"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "(pass) separate real processes concurrently publish the same digest without replacing original bytes [484.40ms]"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "(pass) opposing cross-host chains release each initial host before requesting the other host [76.97ms]"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703074.log.gz",
+        "sha256": "c5775e229b1ad8e7c950d4c5a9c031f6c348f4a4442c9430174e4748c6bcbf5b",
+        "bytes": 299915
+      }
+    },
+    {
+      "jobId": 114978703087,
+      "name": "Test (deno on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1361,
+        "passed": 1361,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1361 passed (16 steps) | 0 failed (2m53s)",
+        "Deno test suite finished in 175s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 175,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 168,
+        "import": 128640,
+        "audit": 23936,
+        "compare": 769,
+        "close": 0,
+        "cleanup": 4675
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => blob publication syncs and closes complete staging bytes before exclusive linking and directory sync ... ok (19ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner ... ok (9ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => matching existing blobs retain their mtime and need no staging, links or directory writes ... ok (7ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a genuine publication permission failure without a matching winner propagates and cleans staging ... ok (4ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EEXIST competing corrupt blob is refused without replacing its bytes ... ok (4ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EPERM competing corrupt blob is refused without replacing its bytes ... ok (4ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => unrelated publication IO failure is not hidden by a concurrently matching canonical blob ... ok (5ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (3ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (2ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (3ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => directory sync failures propagate after immutable publication and leave complete canonical bytes without staging ... ok (14ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync ... ok (21ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup ... ok (3ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks ... ok (173ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob snapshots mutable inputs and reuses exact private fallback originals without copying ... ok (6ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => separate real processes concurrently publish the same digest without replacing original bytes ... ok (737ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "./tests/image-redirect-pacing.test.js => opposing cross-host chains release each initial host before requesting the other host ... ok (159ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703087.log.gz",
+        "sha256": "198beb6fdf9e68fbf6d834c549ceb143785e6da77d52645039b740b8beb99382",
+        "bytes": 347714
+      }
+    },
+    {
+      "jobId": 114978703095,
+      "name": "Test (node on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1517,
+        "passed": 1517,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1517",
+        "\u2139 pass 1517",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 125329.19645",
+        "Node.js test suite finished in 127s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 127,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 125329.19645,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 239,
+        "import": 23546,
+        "audit": 21442,
+        "compare": 1230,
+        "close": 0,
+        "cleanup": 2261
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "\u2714 blob publication syncs and closes complete staging bytes before exclusive linking and directory sync (59.222866ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "\u2714 same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner (23.030635ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "\u2714 matching existing blobs retain their mtime and need no staging, links or directory writes (7.647544ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "\u2714 a genuine publication permission failure without a matching winner propagates and cleans staging (4.979404ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EEXIST competing corrupt blob is refused without replacing its bytes (10.583866ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EPERM competing corrupt blob is refused without replacing its bytes (8.858788ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 unrelated publication IO failure is not hidden by a concurrently matching canonical blob (7.106413ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob (4.505146ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob (5.900136ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob (5.394978ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "\u2714 directory sync failures propagate after immutable publication and leave complete canonical bytes without staging (7.959137ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "\u2714 a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync (10.221648ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "\u2714 putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup (3.980054ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "\u2714 same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks (37.941475ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "\u2714 putBlob snapshots mutable inputs and reuses exact private fallback originals without copying (8.186924ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "\u2714 separate real processes concurrently publish the same digest without replacing original bytes (640.973607ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "\u2714 opposing cross-host chains release each initial host before requesting the other host (117.905024ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703095.log.gz",
+        "sha256": "dc59df6041695f1d8e528c2d701cdabdc872fe82365fefefad2d25dd339625a3",
+        "bytes": 247006
+      }
+    },
+    {
+      "jobId": 114978703132,
+      "name": "Test (node on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1476,
+        "passed": 1476,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1476",
+        "\u2139 pass 1476",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 212898.9725",
+        "Node.js test suite finished in 214s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 214,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 212898.9725,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 363,
+        "import": 116203,
+        "audit": 28383,
+        "compare": 1453,
+        "close": 0,
+        "cleanup": 4649
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "\u2714 the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable (2741.6045ms)"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "\u2714 blob publication syncs and closes complete staging bytes before exclusive linking and directory sync (44.4333ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "\u2714 same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner (16.7299ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "\u2714 matching existing blobs retain their mtime and need no staging, links or directory writes (21.5988ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "\u2714 a genuine publication permission failure without a matching winner propagates and cleans staging (9.4666ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EEXIST competing corrupt blob is refused without replacing its bytes (18.7018ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EPERM competing corrupt blob is refused without replacing its bytes (11.385ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 unrelated publication IO failure is not hidden by a concurrently matching canonical blob (16.1253ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob (9.6289ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob (9.6895ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob (8.3101ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "\u2714 directory sync failures propagate after immutable publication and leave complete canonical bytes without staging (17.0491ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "\u2714 a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync (17.8222ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "\u2714 putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup (18.4094ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "\u2714 same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks (262.2358ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "\u2714 putBlob snapshots mutable inputs and reuses exact private fallback originals without copying (14.1023ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "\u2714 separate real processes concurrently publish the same digest without replacing original bytes (1083.3424ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "\u2714 opposing cross-host chains release each initial host before requesting the other host (591.7885ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703132.log.gz",
+        "sha256": "61cb8cb1e99783d84258d3ecb744aeea5f106e514646abf9d0947574c28a3b8f",
+        "bytes": 238551
+      }
+    },
+    {
+      "jobId": 114978703138,
+      "name": "Test (deno on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1362,
+        "passed": 1362,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1362 passed (16 steps) | 0 failed (3m20s)",
+        "Deno test suite finished in 202s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 202,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 296,
+        "import": 149763,
+        "audit": 28230,
+        "compare": 1072,
+        "close": 0,
+        "cleanup": 3417
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "./tests/windows-ocr-install.test.js => the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable ... ok (4s)"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => blob publication syncs and closes complete staging bytes before exclusive linking and directory sync ... ok (41ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner ... ok (77ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => matching existing blobs retain their mtime and need no staging, links or directory writes ... ok (7ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a genuine publication permission failure without a matching winner propagates and cleans staging ... ok (23ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EEXIST competing corrupt blob is refused without replacing its bytes ... ok (45ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EPERM competing corrupt blob is refused without replacing its bytes ... ok (37ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => unrelated publication IO failure is not hidden by a concurrently matching canonical blob ... ok (10ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (6ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (7ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (5ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => directory sync failures propagate after immutable publication and leave complete canonical bytes without staging ... ok (5ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync ... ok (14ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup ... ok (5ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks ... ok (204ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob snapshots mutable inputs and reuses exact private fallback originals without copying ... ok (27ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => separate real processes concurrently publish the same digest without replacing original bytes ... ok (819ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "./tests/image-redirect-pacing.test.js => opposing cross-host chains release each initial host before requesting the other host ... ok (631ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703138.log.gz",
+        "sha256": "8f84fb69a5fa0bdd64d7835e03beb1edd60d802b7923f44cdf1282ef2577502c",
+        "bytes": 349197
+      }
+    },
+    {
+      "jobId": 114978703213,
+      "name": "Test (deno on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1361,
+        "passed": 1361,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1361 passed (16 steps) | 0 failed (2m15s)",
+        "Deno test suite finished in 137s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 137,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 357,
+        "import": 31037,
+        "audit": 46552,
+        "compare": 1481,
+        "close": 0,
+        "cleanup": 4699
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => blob publication syncs and closes complete staging bytes before exclusive linking and directory sync ... ok (76ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner ... ok (15ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => matching existing blobs retain their mtime and need no staging, links or directory writes ... ok (7ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a genuine publication permission failure without a matching winner propagates and cleans staging ... ok (6ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EEXIST competing corrupt blob is refused without replacing its bytes ... ok (5ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a EPERM competing corrupt blob is refused without replacing its bytes ... ok (6ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => unrelated publication IO failure is not hidden by a concurrently matching canonical blob ... ok (5ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (2ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (2ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob ... ok (5ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => directory sync failures propagate after immutable publication and leave complete canonical bytes without staging ... ok (3ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync ... ok (8ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup ... ok (3ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks ... ok (64ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => putBlob snapshots mutable inputs and reuses exact private fallback originals without copying ... ok (29ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "./tests/blob-publication.test.js => separate real processes concurrently publish the same digest without replacing original bytes ... ok (909ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "./tests/image-redirect-pacing.test.js => opposing cross-host chains release each initial host before requesting the other host ... ok (120ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703213.log.gz",
+        "sha256": "ea14d9e8e3136583c7ef4aadcddb17ab1b7604ab446454efeeac8cf093245a22",
+        "bytes": 349815
+      }
+    },
+    {
+      "jobId": 114978703314,
+      "name": "Test (node on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1517,
+        "passed": 1517,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1517",
+        "\u2139 pass 1517",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 169697.535667",
+        "Node.js test suite finished in 171s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 171,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 169697.535667,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 280,
+        "import": 62027,
+        "audit": 19152,
+        "compare": 1280,
+        "close": 0,
+        "cleanup": 4788
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "\u2714 blob publication syncs and closes complete staging bytes before exclusive linking and directory sync (28.474916ms)"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "\u2714 same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner (10.476041ms)"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "\u2714 matching existing blobs retain their mtime and need no staging, links or directory writes (45.764416ms)"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "\u2714 a genuine publication permission failure without a matching winner propagates and cleans staging (28.360583ms)"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EEXIST competing corrupt blob is refused without replacing its bytes (13.473167ms)"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "\u2714 a EPERM competing corrupt blob is refused without replacing its bytes (6.910583ms)"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 unrelated publication IO failure is not hidden by a concurrently matching canonical blob (10.116958ms)"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob (4.890792ms)"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob (4.583958ms)"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "\u2714 a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob (5.650583ms)"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "\u2714 directory sync failures propagate after immutable publication and leave complete canonical bytes without staging (6.817459ms)"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "\u2714 a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync (11.411166ms)"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "\u2714 putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup (4.36625ms)"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "\u2714 same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks (65.742041ms)"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "\u2714 putBlob snapshots mutable inputs and reuses exact private fallback originals without copying (12.149417ms)"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "\u2714 separate real processes concurrently publish the same digest without replacing original bytes (727.760834ms)"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "\u2714 opposing cross-host chains release each initial host before requesting the other host (561.329125ms)"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703314.log.gz",
+        "sha256": "55be760c2f65dd8b9539b5e6354e1b2869d4ee4c27845d8acc0d3c4363b6cf95",
+        "bytes": 246290
+      }
+    },
+    {
+      "jobId": 114978703341,
+      "name": "Test (bun on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1516,
+        "passed": 1516,
+        "failed": 0,
+        "files": 180
+      },
+      "footerLines": [
+        "1516 pass",
+        "0 fail",
+        "Ran 1516 tests across 180 files. [87.29s]",
+        "Bun test suite finished in 88s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 88,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 87290,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 110,
+        "import": 9520,
+        "audit": 7707,
+        "compare": 431,
+        "close": 0,
+        "cleanup": 3615
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "(pass) blob publication syncs and closes complete staging bytes before exclusive linking and directory sync [5.87ms]"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "(pass) same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner [2.29ms]"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "(pass) matching existing blobs retain their mtime and need no staging, links or directory writes [1.82ms]"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "(pass) a genuine publication permission failure without a matching winner propagates and cleans staging [1.69ms]"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EEXIST competing corrupt blob is refused without replacing its bytes [1.65ms]"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EPERM competing corrupt blob is refused without replacing its bytes [1.19ms]"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "(pass) unrelated publication IO failure is not hidden by a concurrently matching canonical blob [1.48ms]"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob [1.00ms]"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob [0.73ms]"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob [1.11ms]"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "(pass) directory sync failures propagate after immutable publication and leave complete canonical bytes without staging [1.99ms]"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "(pass) a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync [2.88ms]"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "(pass) putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup [0.82ms]"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "(pass) same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks [8.96ms]"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "(pass) putBlob snapshots mutable inputs and reuses exact private fallback originals without copying [2.24ms]"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "(pass) separate real processes concurrently publish the same digest without replacing original bytes [238.80ms]"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "(pass) opposing cross-host chains release each initial host before requesting the other host [72.99ms]"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703341.log.gz",
+        "sha256": "736170ac26fde4bb3676aa3421ca37c64ad7a9af00f774783923ed7a8288a27d",
+        "bytes": 302246
+      }
+    },
+    {
+      "jobId": 114978703358,
+      "name": "Test (bun on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1480,
+        "passed": 1480,
+        "failed": 0,
+        "files": 180
+      },
+      "footerLines": [
+        "1480 pass",
+        "0 fail",
+        "Ran 1480 tests across 180 files. [254.87s]",
+        "Bun test suite finished in 256s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 256,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 254870,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 140,
+        "import": 150847,
+        "audit": 11790,
+        "compare": 866,
+        "close": 0,
+        "cleanup": 3619
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "(pass) the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable [2429.23ms]"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "blobPublicationControls": {
+        "expected": 16,
+        "passed": 16,
+        "cases": [
+          {
+            "name": "blob publication syncs and closes complete staging bytes before exclusive linking and directory sync",
+            "passed": true,
+            "passingLine": "(pass) blob publication syncs and closes complete staging bytes before exclusive linking and directory sync [15.93ms]"
+          },
+          {
+            "name": "same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner",
+            "passed": true,
+            "passingLine": "(pass) same-digest competing publishers accept a simulated Windows EPERM only after verifying the complete winner [28.67ms]"
+          },
+          {
+            "name": "matching existing blobs retain their mtime and need no staging, links or directory writes",
+            "passed": true,
+            "passingLine": "(pass) matching existing blobs retain their mtime and need no staging, links or directory writes [12.25ms]"
+          },
+          {
+            "name": "a genuine publication permission failure without a matching winner propagates and cleans staging",
+            "passed": true,
+            "passingLine": "(pass) a genuine publication permission failure without a matching winner propagates and cleans staging [4.80ms]"
+          },
+          {
+            "name": "a EEXIST competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EEXIST competing corrupt blob is refused without replacing its bytes [5.48ms]"
+          },
+          {
+            "name": "a EPERM competing corrupt blob is refused without replacing its bytes",
+            "passed": true,
+            "passingLine": "(pass) a EPERM competing corrupt blob is refused without replacing its bytes [2.73ms]"
+          },
+          {
+            "name": "unrelated publication IO failure is not hidden by a concurrently matching canonical blob",
+            "passed": true,
+            "passingLine": "(pass) unrelated publication IO failure is not hidden by a concurrently matching canonical blob [3.65ms]"
+          },
+          {
+            "name": "a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging writeFile failure closes the handle, cleans its temporary file and leaves no canonical blob [2.54ms]"
+          },
+          {
+            "name": "a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging sync failure closes the handle, cleans its temporary file and leaves no canonical blob [2.30ms]"
+          },
+          {
+            "name": "a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob",
+            "passed": true,
+            "passingLine": "(pass) a staging close failure closes the handle, cleans its temporary file and leaves no canonical blob [4.68ms]"
+          },
+          {
+            "name": "directory sync failures propagate after immutable publication and leave complete canonical bytes without staging",
+            "passed": true,
+            "passingLine": "(pass) directory sync failures propagate after immutable publication and leave complete canonical bytes without staging [3.33ms]"
+          },
+          {
+            "name": "a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync",
+            "passed": true,
+            "passingLine": "(pass) a staged matching contender flushes its own directory before returning while the first publisher later fails its held sync [5.41ms]"
+          },
+          {
+            "name": "putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup",
+            "passed": true,
+            "passingLine": "(pass) putBlob revalidates a corrupt canonical file appearing immediately after its initial verified lookup [1.97ms]"
+          },
+          {
+            "name": "same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks",
+            "passed": true,
+            "passingLine": "(pass) same-digest writes across real store instances preserve original bytes, references and empty blobs without record locks [140.09ms]"
+          },
+          {
+            "name": "putBlob snapshots mutable inputs and reuses exact private fallback originals without copying",
+            "passed": true,
+            "passingLine": "(pass) putBlob snapshots mutable inputs and reuses exact private fallback originals without copying [3.56ms]"
+          },
+          {
+            "name": "separate real processes concurrently publish the same digest without replacing original bytes",
+            "passed": true,
+            "passingLine": "(pass) separate real processes concurrently publish the same digest without replacing original bytes [512.30ms]"
+          }
+        ]
+      },
+      "opposingRedirectControl": {
+        "passed": true,
+        "passingLine": "(pass) opposing cross-host chains release each initial host before requesting the other host [397.27ms]"
+      },
+      "installerTransientFailureLines": [],
+      "log": {
+        "path": "ci-source-171b250/job-114978703358.log.gz",
+        "sha256": "1519cb07e2eac2d128b8a44a47a72466e9e3496ed263d33706e7e2aec9305b0b",
+        "bytes": 277250
+      }
+    }
+  ],
+  "nativeE2e": {
+    "jobId": 114977463098,
+    "name": "Browser, OCR, CLI, Telegram and binary store",
+    "status": "completed",
+    "conclusion": "success",
+    "counts": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "footerLines": [
+      "# tests 84",
+      "# pass 84",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0",
+      "# duration_ms 515317.93963"
+    ],
+    "suiteWrapperSeconds": null,
+    "suiteBudgetSeconds": null,
+    "testDeadlineMs": 120000,
+    "uvThreadPoolSize": null,
+    "durationMs": 515317.93963,
+    "catalogFixture": null,
+    "catalogPhaseMs": {},
+    "tempEnv": {},
+    "actualTempDirectoryAssertionPassed": null,
+    "windowsOcrControl": null,
+    "blobPublicationControls": null,
+    "opposingRedirectControl": null,
+    "installerTransientFailureLines": [],
+    "log": {
+      "path": "ci-source-171b250/job-114977463098.log.gz",
+      "sha256": "98a13f73d45cc66c441528317b0bb9f3c1fdcf1fb155020b12f812c69a8e51d5",
+      "bytes": 105807
+    }
+  },
+  "codeQl": {
+    "completed_at": "2026-10-12T19:40:58Z",
+    "conclusion": "success",
+    "details_url": "https://github.com/konard/lazada-search/runs/114977850659",
+    "head_sha": "171b25030d993421eeb2a0ed9e0265937963756f",
+    "id": 114977850659,
+    "name": "CodeQL",
+    "output": {
+      "annotations_count": 0,
+      "annotations_url": "https://api.github.com/repos/konard/lazada-search/check-runs/114977850659/annotations",
+      "summary": "[View all branch alerts](/konard/lazada-search/security/code-scanning?query=pr%3A41+tool%3ACodeQL+is%3Aopen).",
+      "text": null,
+      "title": "No new alerts in code changed by this pull request"
+    },
+    "status": "completed",
+    "verifiedAfterSecurityAt": "2026-10-12 19:45:19 UTC",
+    "finalVerifiedAfterAllRuntimeJobsAt": "2026-10-12 19:53:07 UTC",
+    "metadataPath": "/private/tmp/lazada-ci-171b250-codeql-check.json",
+    "annotationPath": "/private/tmp/lazada-ci-171b250-codeql-annotations.json"
+  },
+  "sourceAlertAudit": {
+    "path": "source-alerts-source-171b250.json",
+    "ref": "refs/pull/41/merge",
+    "trackedExecutableNumbers": [2, 9, 32, 35],
+    "tracked": [
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 52,
+          "end_line": 106,
+          "path": "src/translation-quality.js",
+          "start_column": 19,
+          "start_line": 106
+        },
+        "number": 35,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 13,
+          "end_line": 13,
+          "path": "scripts/promotion-report.mjs",
+          "start_column": 3,
+          "start_line": 12
+        },
+        "number": 32,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/incomplete-sanitization",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 40,
+          "end_line": 307,
+          "path": "src/products.js",
+          "start_column": 5,
+          "start_line": 306
+        },
+        "number": 9,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 4,
+          "end_line": 293,
+          "path": "src/browser.js",
+          "start_column": 23,
+          "start_line": 291
+        },
+        "number": 2,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      }
+    ],
+    "allAlertRecordCount": 34,
+    "openExecutableSourceAlerts": [],
+    "newHelper": {
+      "path": "src/blob-publication.js",
+      "matchingAlerts": [],
+      "openAlerts": []
+    },
+    "noDismissals": true,
+    "noExclusions": true,
+    "historicalRawHtmlRetained": true
+  },
+  "budgets": {
+    "suiteSeconds": 600,
+    "nodeAndBunPerTestMs": 450000,
+    "fixtureDiscoveryRecords": 10237,
+    "unchanged": true,
+    "writeRecordWorkers": 16,
+    "canonicalReadWorkers": 8,
+    "nodeUvThreadPoolSize": 32
+  },
+  "artifactNormalization": "Full decoded GitHub job logs retained with initial UTF-8 BOM removed, CRLF normalized to LF and one final newline; SHA256 and byte counts refer to saved complete files.",
+  "scope": "Complete exact-source offline/runtime regression and deterministic native browser/OCR/interface E2E plus all workflows and separate Advanced Security CodeQL. Automated source checks accepted; live market completeness, factory/specification/price/freight/frozen delivery, live bot and owner release acceptance remain separate and are not claimed.",
+  "preservedReceipts": [
+    "/private/tmp/lazada-ci-2bcb766-acceptance.json",
+    "/private/tmp/lazada-ci-0ee45dc-acceptance.json",
+    "/private/tmp/lazada-ci-9237b9c-acceptance.json",
+    "/private/tmp/lazada-ci-8db2585-acceptance.json",
+    "/private/tmp/lazada-ci-604f6f2-acceptance.json"
+  ]
+}
