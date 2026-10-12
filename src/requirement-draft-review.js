@@ -268,6 +268,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'New workflow/review records use the existing canonical .lino, binary associative links and content-addressed blob store, retaining semantic evidence/source relationships.',
     testDraftFiles: [
+      'tests/blob-publication.test.js',
       'tests/archive.test.js',
       'tests/links-workflow.test.js',
       'tests/e2e/native-store.test.js',
@@ -281,6 +282,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Source/evidence/cache-ID invalidations prevent reuse; search result limits participate in cache keys. Missing work is distinct from deferred recollection and volatile offer revalidation.',
     testDraftFiles: [
+      'tests/blob-publication.test.js',
       'tests/manufacturer-source-validity.test.js',
       'tests/handpicked-links.test.js',
       'tests/manufacturer-workflow-draft.test.js',

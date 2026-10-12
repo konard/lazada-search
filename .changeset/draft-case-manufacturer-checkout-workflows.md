@@ -21,3 +21,5 @@ Use bounded token readers for volume, nutrient and serving declarations, retain 
 Bound independent record writers at sixteen and canonical readers at eight, configure thirty-two Node projection I/O slots at startup, and run complete fixtures in the intended runner temporary directory without weakening data, durability or deadlines.
 
 Bound result-count, displayed-discount, protected URL and decimal suffix parsing while retaining valid extraction behavior and cache-only revalidation. Escape literal report backslashes and pipes after truncation to preserve Markdown columns; add hostile-source subprocess and actual rendered-report regressions.
+
+Publish immutable original blobs once from synced staging files, verify exact competing bytes and retain corruption/permission failures. Avoid competing Windows rename-overwrites while preserving complete-file durability, cache/fallback reuse and process-safe concurrency.

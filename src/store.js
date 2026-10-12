@@ -5,6 +5,7 @@ import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
 import { RepositoryArchive } from './archive.js';
 import { storedBlobReference } from './blob-reference.js';
+import { publishContentAddressedBlob } from './blob-publication.js';
 import {
   createStoreLockDirectory,
   readStoreLockOwner,
@@ -339,13 +340,15 @@ export class AssociativeStore {
   async putBlob(contents) {
     const bytes = Buffer.from(contents);
     const id = sha256(bytes);
-    if (await this.blob(id)) {
+    const existing = await this.blob(id);
+    if (existing) {
+      if (!Buffer.from(existing).equals(bytes)) {
+        throw new Error('Corrupt evidence blob');
+      }
       return storedBlobReference(id, bytes.length);
     }
     const path = join(this.directory, 'blobs', id.slice(0, 2), id);
-    if (!(await readOptional(path))) {
-      await atomicWrite(path, bytes);
-    }
+    await publishContentAddressedBlob(path, bytes);
     return storedBlobReference(id, bytes.length);
   }
 

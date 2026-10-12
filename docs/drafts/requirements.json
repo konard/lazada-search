@@ -714,6 +714,7 @@
       "codeStatus": "draft-extension",
       "sourceFiles": [
         "src/store.js",
+        "src/blob-publication.js",
         "src/archive.js",
         "src/native-store.js",
         "src/doublets.js"
@@ -726,6 +727,7 @@
       ],
       "reviewedDraftBehavior": "New workflow/review records use the existing canonical .lino, binary associative links and content-addressed blob store, retaining semantic evidence/source relationships.",
       "testDraftFiles": [
+        "tests/blob-publication.test.js",
         "tests/archive.test.js",
         "tests/links-workflow.test.js",
         "tests/e2e/native-store.test.js"
@@ -751,6 +753,7 @@
       "sourceFiles": [
         "src/cache.js",
         "src/store.js",
+        "src/blob-publication.js",
         "src/historical-capture-replay.js",
         "src/collection-source-replay.js",
         "src/publication-cache.js"
@@ -766,6 +769,7 @@
       ],
       "reviewedDraftBehavior": "Source/evidence/cache-ID invalidations prevent reuse; search result limits participate in cache keys. Missing work is distinct from deferred recollection and volatile offer revalidation.",
       "testDraftFiles": [
+        "tests/blob-publication.test.js",
         "tests/manufacturer-source-validity.test.js",
         "tests/handpicked-links.test.js",
         "tests/manufacturer-workflow-draft.test.js",
@@ -2058,17 +2062,19 @@
       "title": "Preserve original source bytes on Windows checkout and bound transient cache lock recreation",
       "url": "https://github.com/konard/lazada-search/issues/36",
       "requirementIds": ["R019", "R020", "R022", "R037"],
-      "draftStatus": "owner-read-and-projection-follow-up-in-draft-pr",
+      "draftStatus": "owner-read-projection-and-immutable-blob-follow-up-in-draft-pr",
       "sourceFiles": [
         "src/store-lock-directory.js",
         "src/store-projection.js",
+        "src/blob-publication.js",
         "src/store.js",
+        "tests/blob-publication.test.js",
         "tests/store-projection.test.js",
         "tests/catalog-tables.test.js",
         "tests/windows-ocr-install.test.js",
         ".github/workflows/release.yml"
       ],
-      "acceptanceRemaining": "Track fresh complete Windows/runtime acceptance under unchanged fixtures, sync writes and deadlines, then PR merge; inaccessible locks must never be treated as missing or dead and failed projections must drain before unlock."
+      "acceptanceRemaining": "Track fresh complete Windows/runtime acceptance under unchanged fixtures, sync writes and deadlines, then PR merge; inaccessible locks must never be treated as missing or dead; failed projections must drain before unlock, and concurrent immutable blob publication must verify exact winning bytes without overwrite or permission/corruption suppression."
     },
     {
       "number": 37,
@@ -2135,5 +2141,5 @@
   "draftReview": "docs/drafts/draft-review.json",
   "draftCoverageComplete": true,
   "validationEvidence": "docs/acceptance/challenge-window-retention/validation.json",
-  "refreshedAt": "2026-10-12T19:07:39.780Z"
+  "refreshedAt": "2026-10-12T19:35:29.706Z"
 }

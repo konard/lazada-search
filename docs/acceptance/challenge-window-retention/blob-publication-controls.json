@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-10-12T19:38:09.429317+00:00",
+  "tests": {
+    "new": 16,
+    "focusedNode": 55,
+    "focusedBun": 55,
+    "frozenCachedOnlyDeno": 55
+  },
+  "lint": "strict zero warnings/errors",
+  "format": "passed",
+  "sourceSha256": {
+    "src/blob-publication.js": "1f5affc59bb9c5b97ec0cc3c787b07fac58ab26ecf1f0b97bf8b4dbb9372dc83",
+    "src/store.js": "d9bf45cf31116e326a67683984dc20f6eff4e00547124bc17aada2ef1525d613",
+    "tests/blob-publication.test.js": "fad90925e40eea28d03c247735d81157aa301d4962960672d0032095e5ad1a03"
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/lazada-blob-publication-final-node.tap",
+      "sha256": "547d88c72d6d79abad3c15dd1a4d65e6fbea0364e42e2a38eb05f8c6b8f14e5c"
+    },
+    "bun": {
+      "path": "/private/tmp/lazada-blob-publication-final-bun.log",
+      "sha256": "18640a8a7154d93d5843aebc66e6c89c27c481eeea3088a587ad5865d0422402"
+    },
+    "deno": {
+      "path": "/private/tmp/lazada-blob-publication-final-deno.log",
+      "sha256": "e3d1143ae0e3c7ddf94268465c4fd135c9f271c7faa3730902439c8682eb971d"
+    },
+    "lint": {
+      "path": "/private/tmp/lazada-blob-publication-final-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format": {
+      "path": "/private/tmp/lazada-blob-publication-final-format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    }
+  },
+  "focusedFiles": [
+    "tests/blob-publication.test.js",
+    "tests/image-redirect-pacing.test.js",
+    "tests/archive-provenance.test.js",
+    "tests/account-cache.test.js",
+    "tests/atomic-write.test.js"
+  ],
+  "semantics": "Synced complete closed staging bytes are exclusively hard-linked to immutable digest path. Only EEXIST/EPERM with exact complete byte+digest validation can accept a competing winner. Every staged POSIX successful contender independently syncs its directory after cleanup; verified-existing lookup remains zero-write. Nonwinning genuine permissions, corrupt canonical or unrelated IO failures propagate; no record lock used.",
+  "verification": "Deterministic filesystem adapter models Windows EPERM and held/failing winner sync; real24same-digest writes across4instances and4processes; byte snapshot/empty/private+archive reuse and actual opposing redirect fixture preserved.",
+  "limits": "Mac local verification plus deterministic Windows error/protocol simulation; actual Windows/Bun acceptance remains the upcoming GitHub CI matrix. No live sites or user browsers/profiles used."
+}

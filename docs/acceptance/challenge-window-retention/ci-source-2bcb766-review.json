@@ -1,0 +1,761 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+  "observedAt": "2026-10-12 19:28:04 UTC",
+  "runtimeAcceptance": false,
+  "automatedAcceptance": false,
+  "pullRequestAccepted": false,
+  "summary": {
+    "matrixJobs": 9,
+    "matrixSuccessful": 8,
+    "matrixFailed": 1,
+    "workflows": 6,
+    "workflowsSuccessful": 5,
+    "workflowsFailed": 1,
+    "nativeE2ePassed": 84,
+    "nativeE2eFailed": 0,
+    "separateCodeQl": "success",
+    "separateCodeQlAnnotations": 0,
+    "windowsOcrControlRuntimesPassed": 3,
+    "actualTempDirectoryAssertionRuntimesPassed": 9,
+    "trackedExecutableSourceAlertsFixed": 4
+  },
+  "workflows": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274969",
+      "id": 38296274969,
+      "name": "Workflows",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:15:15Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274981",
+      "id": 38296274981,
+      "name": "Broken Link Checker",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:15:18Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274983",
+      "id": 38296274983,
+      "name": "Example app",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:16:13Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274991",
+      "id": 38296274991,
+      "name": "Security",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:17:00Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274985",
+      "id": 38296274985,
+      "name": "Lazada E2E",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:24:08Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-10-12T19:14:06Z",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38296274987",
+      "id": 38296274987,
+      "name": "Checks and release",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T19:24:30Z"
+    }
+  ],
+  "matrix": [
+    {
+      "jobId": 114969208098,
+      "name": "Test (node on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1501,
+        "passed": 1501,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1501",
+        "\u2139 pass 1501",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 117637.62004",
+        "Node.js test suite finished in 118s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 118,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 117637.62004,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 283,
+        "import": 23438,
+        "audit": 21159,
+        "compare": 1055,
+        "close": 0,
+        "cleanup": 2255
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208098.log.gz",
+        "sha256": "1adbcf3f676bed80ff3691f8e1daa5ac4a84684558528b8cb376d3c9b1fbdd3d",
+        "bytes": 244620
+      }
+    },
+    {
+      "jobId": 114969208117,
+      "name": "Test (node on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1460,
+        "passed": 1460,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1460",
+        "\u2139 pass 1460",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 208028.5671",
+        "Node.js test suite finished in 210s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 210,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 208028.5671,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 318,
+        "import": 124938,
+        "audit": 26310,
+        "compare": 1374,
+        "close": 0,
+        "cleanup": 4331
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "\u2714 the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable (2694.6175ms)"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208117.log.gz",
+        "sha256": "6cbc9253bce8400930327d4792a4d97fd78a5bfbe2b8dce78f9018cd9522c9bc",
+        "bytes": 236072
+      }
+    },
+    {
+      "jobId": 114969208157,
+      "name": "Test (deno on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1345,
+        "passed": 1345,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1345 passed (16 steps) | 0 failed (2m21s)",
+        "Deno test suite finished in 143s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 143,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 121,
+        "import": 110150,
+        "audit": 16730,
+        "compare": 592,
+        "close": 0,
+        "cleanup": 4589
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208157.log.gz",
+        "sha256": "3d04e1222d84154916e97f26cefd0023515b8782c00ae7b754cbcb21991c14c5",
+        "bytes": 343292
+      }
+    },
+    {
+      "jobId": 114969208190,
+      "name": "Test (deno on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1346,
+        "passed": 1346,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1346 passed (16 steps) | 0 failed (3m24s)",
+        "Deno test suite finished in 205s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 205,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 312,
+        "import": 151887,
+        "audit": 29643,
+        "compare": 951,
+        "close": 0,
+        "cleanup": 4475
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "./tests/windows-ocr-install.test.js => the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable ... ok (2s)"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208190.log.gz",
+        "sha256": "723416f66c51d850a4d1b069e10ef47ac0a2d1d6b7837df35e646ddea3a3a2fd",
+        "bytes": 345032
+      }
+    },
+    {
+      "jobId": 114969208220,
+      "name": "Test (bun on windows-2025)",
+      "status": "completed",
+      "conclusion": "failure",
+      "counts": {
+        "total": 1464,
+        "passed": 1463,
+        "failed": 1,
+        "files": 179
+      },
+      "footerLines": [
+        "1463 pass",
+        "1 fail",
+        "Ran 1464 tests across 179 files. [246.76s]",
+        "Bun test suite finished in 248s of its 600s budget (exit 1)."
+      ],
+      "suiteWrapperSeconds": 248,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 246760,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 112,
+        "import": 141291,
+        "audit": 13604,
+        "compare": 971,
+        "close": 0,
+        "cleanup": 4437
+      },
+      "tempEnv": {
+        "TMPDIR": "D:\\a\\_temp",
+        "TMP": "D:\\a\\_temp",
+        "TEMP": "D:\\a\\_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": {
+        "passed": true,
+        "passingLines": [
+          "(pass) the real Windows OCR setup retries the same pin, stops on success and fails after exhaustion or a missing executable [4145.32ms]"
+        ],
+        "actualWorkflowBody": true,
+        "scenarioCount": 4
+      },
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208220.log.gz",
+        "sha256": "3306533873c5248b965c3ca27b07c0304305b8fa53952effbb22861c2378b25b",
+        "bytes": 275751
+      }
+    },
+    {
+      "jobId": 114969208264,
+      "name": "Test (bun on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1500,
+        "passed": 1500,
+        "failed": 0,
+        "files": 179
+      },
+      "footerLines": [
+        "1500 pass",
+        "0 fail",
+        "Ran 1500 tests across 179 files. [77.06s]",
+        "Bun test suite finished in 78s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 78,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 77060,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 105,
+        "import": 8797,
+        "audit": 6464,
+        "compare": 322,
+        "close": 0,
+        "cleanup": 4399
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208264.log.gz",
+        "sha256": "7e5b901b10571a58f13b92f6e3f9960fe84d22fc60fbf167df8969d57903d067",
+        "bytes": 296211
+      }
+    },
+    {
+      "jobId": 114969208284,
+      "name": "Test (deno on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1345,
+        "passed": 1345,
+        "failed": 0,
+        "steps": 16
+      },
+      "footerLines": [
+        "ok | 1345 passed (16 steps) | 0 failed (1m45s)",
+        "Deno test suite finished in 107s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 107,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": null,
+      "uvThreadPoolSize": null,
+      "durationMs": null,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 395,
+        "import": 23823,
+        "audit": 34328,
+        "compare": 2561,
+        "close": 0,
+        "cleanup": 3828
+      },
+      "tempEnv": {
+        "TMPDIR": "/home/runner/work/_temp",
+        "TMP": "/home/runner/work/_temp",
+        "TEMP": "/home/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208284.log.gz",
+        "sha256": "cfadb72bdfc969acdb5d88ebc3bf97a07344ef9ac62082da73d1859408efca45",
+        "bytes": 345295
+      }
+    },
+    {
+      "jobId": 114969208325,
+      "name": "Test (node on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1501,
+        "passed": 1501,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "footerLines": [
+        "\u2139 tests 1501",
+        "\u2139 pass 1501",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 duration_ms 229834.462625",
+        "Node.js test suite finished in 231s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 231,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": 32,
+      "durationMs": 229834.462625,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 242,
+        "import": 93637,
+        "audit": 26297,
+        "compare": 1578,
+        "close": 0,
+        "cleanup": 8064
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208325.log.gz",
+        "sha256": "063e8cd932818242f1f77b778eee7981eb4cb237fc23a65f21c9f0681d30a937",
+        "bytes": 244535
+      }
+    },
+    {
+      "jobId": 114969208571,
+      "name": "Test (bun on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "counts": {
+        "total": 1500,
+        "passed": 1500,
+        "failed": 0,
+        "files": 179
+      },
+      "footerLines": [
+        "1500 pass",
+        "0 fail",
+        "Ran 1500 tests across 179 files. [73.20s]",
+        "Bun test suite finished in 74s of its 600s budget (exit 0)."
+      ],
+      "suiteWrapperSeconds": 74,
+      "suiteBudgetSeconds": 600,
+      "testDeadlineMs": 450000,
+      "uvThreadPoolSize": null,
+      "durationMs": 73200,
+      "catalogFixture": {
+        "products": 415,
+        "offers": 411,
+        "discoveries": 10237,
+        "skuInventories": 417,
+        "crawls": 17,
+        "availability": 5,
+        "invalidations": 0
+      },
+      "catalogPhaseMs": {
+        "load": 85,
+        "import": 8615,
+        "audit": 4768,
+        "compare": 261,
+        "close": 0,
+        "cleanup": 2888
+      },
+      "tempEnv": {
+        "TMPDIR": "/Users/runner/work/_temp",
+        "TMP": "/Users/runner/work/_temp",
+        "TEMP": "/Users/runner/work/_temp"
+      },
+      "actualTempDirectoryAssertionPassed": true,
+      "windowsOcrControl": null,
+      "log": {
+        "path": "ci-source-2bcb766/job-114969208571.log.gz",
+        "sha256": "813a1e64bdad8f3727f7a163b27a7224ba54148e064ad539fd3e242109e2a7df",
+        "bytes": 284582
+      }
+    }
+  ],
+  "nativeE2e": {
+    "jobId": 114968013335,
+    "name": "Browser, OCR, CLI, Telegram and binary store",
+    "status": "completed",
+    "conclusion": "success",
+    "counts": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "footerLines": [
+      "# tests 84",
+      "# pass 84",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0",
+      "# duration_ms 476847.907266"
+    ],
+    "suiteWrapperSeconds": null,
+    "suiteBudgetSeconds": null,
+    "testDeadlineMs": 120000,
+    "uvThreadPoolSize": null,
+    "durationMs": 476847.907266,
+    "catalogFixture": null,
+    "catalogPhaseMs": {},
+    "tempEnv": {},
+    "actualTempDirectoryAssertionPassed": null,
+    "windowsOcrControl": null,
+    "log": {
+      "path": "ci-source-2bcb766/job-114968013335.log.gz",
+      "sha256": "f9c621909466a30d7988e57390746f4487a35a830526947657643fb61108c122",
+      "bytes": 105677
+    }
+  },
+  "codeQl": {
+    "completed_at": "2026-10-12T19:15:17Z",
+    "conclusion": "success",
+    "details_url": "https://github.com/konard/lazada-search/runs/114968418567",
+    "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+    "id": 114968418567,
+    "name": "CodeQL",
+    "output": {
+      "annotations_count": 0,
+      "annotations_url": "https://api.github.com/repos/konard/lazada-search/check-runs/114968418567/annotations",
+      "summary": "[View all branch alerts](/konard/lazada-search/security/code-scanning?query=pr%3A41+tool%3ACodeQL+is%3Aopen).",
+      "text": null,
+      "title": "No new alerts in code changed by this pull request"
+    },
+    "status": "completed",
+    "verifiedAfterSecurityAt": "2026-10-12 19:17:29 UTC",
+    "finalVerifiedAfterAllRuntimeJobsAt": "2026-10-12 19:26:38 UTC",
+    "metadataPath": "/private/tmp/lazada-ci-2bcb766-codeql-check.json",
+    "annotationPath": "/private/tmp/lazada-ci-2bcb766-codeql-annotations.json",
+    "earlyNeutralPath": "/private/tmp/lazada-ci-2bcb766-codeql-early-neutral.json"
+  },
+  "sourceAlertAudit": {
+    "path": "/private/tmp/lazada-ci-2bcb766-source-alerts.json",
+    "ref": "refs/pull/41/merge",
+    "trackedExecutableNumbers": [2, 9, 32, 35],
+    "tracked": [
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 52,
+          "end_line": 106,
+          "path": "src/translation-quality.js",
+          "start_column": 19,
+          "start_line": 106
+        },
+        "number": 35,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 13,
+          "end_line": 13,
+          "path": "scripts/promotion-report.mjs",
+          "start_column": 3,
+          "start_line": 12
+        },
+        "number": 32,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/incomplete-sanitization",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 40,
+          "end_line": 307,
+          "path": "src/products.js",
+          "start_column": 5,
+          "start_line": 306
+        },
+        "number": 9,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 4,
+          "end_line": 293,
+          "path": "src/browser.js",
+          "start_column": 23,
+          "start_line": 291
+        },
+        "number": 2,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      }
+    ],
+    "allAlertRecordCount": 34,
+    "noDismissals": true,
+    "noExclusions": true,
+    "historicalRawHtmlRetained": true
+  },
+  "failure": {
+    "jobId": 114969208220,
+    "name": "Test (bun on windows-2025)",
+    "test": "opposing cross-host chains release each initial host before requesting the other host",
+    "path": "tests/image-redirect-pacing.test.js:204:33",
+    "testDurationMs": 422.42,
+    "errorCode": "IMAGE_SOURCE_FAILED",
+    "cause": "EPERM during concurrent atomic rename of identical content-addressed PNG blob from unique temporary path to shared canonical blob path",
+    "blobSha256": "431ced6916a2a21a156e38701afe55bbd7f88969fbbfc56d7fe099d47f265460",
+    "stack": [
+      "src/cache.js:44:21 failedImageError",
+      "src/cache.js:318:13 image",
+      "tests/image-redirect-pacing.test.js:204:33"
+    ],
+    "classification": "Real content-addressed publication concurrency/Windows filesystem failure, not a timeout or source/pacing assertion waiver. No rerun/cancellation performed."
+  },
+  "budgets": {
+    "suiteSeconds": 600,
+    "nodeAndBunPerTestMs": 450000,
+    "fixtureDiscoveryRecords": 10237,
+    "unchanged": true,
+    "writeRecordWorkers": 16,
+    "canonicalReadWorkers": 8,
+    "nodeUvThreadPoolSize": 32
+  },
+  "artifactNormalization": "Full decoded GitHub job logs retained with initial UTF-8 BOM removed, CRLF normalized to LF and one final newline; SHA256 and byte counts refer to saved complete files.",
+  "scope": "Complete offline committed-cache/runtime regression and deterministic native browser/OCR/interface E2E plus workflow/security gates. Windows Bun failure keeps full acceptance false despite passed CodeQL and E2E. No live market completeness, factory or delivery acceptance is claimed.",
+  "preservedReceipts": [
+    "/private/tmp/lazada-ci-0ee45dc-acceptance.json",
+    "/private/tmp/lazada-ci-9237b9c-acceptance.json",
+    "/private/tmp/lazada-ci-8db2585-acceptance.json",
+    "/private/tmp/lazada-ci-604f6f2-acceptance.json"
+  ]
+}

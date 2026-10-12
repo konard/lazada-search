@@ -26,7 +26,7 @@
   "compatibility": "source-security-compatibility.json",
   "attacks": "source-security-attack-comparison.json",
   "branchAudit": "codeql-branch-source-audit.json",
-  "fullSourceAcceptance": "pending",
+  "fullSourceAcceptance": "source-specific-focused-and-CodeQL-passed;overall-CI-blocked-by-concurrent-blob-publication",
   "logs": {
     "source-security-node.log.gz": {
       "rawSha256": "86252413ce9d8017541a12c5e956f8dbe633a45edc9fc761dac95cd2e225ab8f",
@@ -98,5 +98,6 @@
   "requirementsControls": {
     "tests": 4,
     "scope": "Real file paths, regression manifest membership, issue snapshot, published mapping alignment and false readiness gates."
-  }
+  },
+  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3"
 }

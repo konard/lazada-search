@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-12T19:01:33.893226+00:00",
+  "checkedAt": "2026-10-12T19:29:03.846660+00:00",
   "branch": "draft/remaining-requirements",
-  "sourceCommit": "0ee45dc7ea0f87930c5494b0271fb7d971467dc3",
+  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
   "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
   "scope": "Original CAPTCHA target retention, atomic supervisor publication, bounded storage scheduling, literal source parsing and report cell escaping; no live collection or user-browser interaction.",
   "browserCommander": {
@@ -13,19 +13,19 @@
     "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
   },
   "latestDependencyCheck": "browser-latest-source-security.json",
-  "sourceManifest": "source-0ee45dc-manifest.json",
+  "sourceManifest": "source-2bcb766-manifest.json",
   "local": {
     "nativeRetention": {
       "passed": 13,
       "includedInFullE2E": true
     },
-    "duplicationPercent": 6.15,
+    "duplicationPercent": 6.13,
     "nodeFull": {
-      "passed": 1490,
+      "passed": 1501,
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 228970.330458,
+      "durationMs": 235968.23525,
       "threadPoolSize": 32
     },
     "fullE2E": {
@@ -33,18 +33,16 @@
       "failed": 0,
       "cancelled": 0,
       "skipped": 0,
-      "durationMs": 541882.941417
+      "durationMs": 540569.869375
     },
     "strictTypes": "passed",
     "lintFormattingDuplication": "passed"
   },
   "ci": {
-    "accepted": true,
-    "sourceCommit": "0ee45dc7ea0f87930c5494b0271fb7d971467dc3",
-    "checksRunId": 38292448273,
-    "e2eRunId": 38292448284,
-    "runtimeJobsPassed": 9,
-    "runtimeJobsFailed": 0,
+    "accepted": false,
+    "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+    "runtimeJobsPassed": 8,
+    "runtimeJobsFailed": 1,
     "runtimeJobsCancelled": 0,
     "nativeE2E": {
       "total": 84,
@@ -53,9 +51,12 @@
       "cancelled": 0,
       "skipped": 0
     },
-    "workflowsPassed": 6,
-    "workflowsFailed": 0,
-    "receipt": "ci-source-0ee45dc-review.json"
+    "workflowsPassed": 5,
+    "workflowsFailed": 1,
+    "receipt": "ci-source-2bcb766-review.json",
+    "checksRunId": 38296274987,
+    "e2eRunId": 38296274985,
+    "failure": "Windows Bun IMAGE_SOURCE_FAILED from competing same-digest blob publication: EPERM rename; catalog, OCR, all other eight runtimes and 84 CI E2E cases pass."
   },
   "tracking": {
     "requirements": 49,
@@ -79,7 +80,9 @@
     "source8dbCI": "ci-source-8db2585-review.json",
     "source9237": "source-9237b9c-review.json",
     "source0eeLocal": "local-source-0ee45dc-review.json",
-    "source0eeCI": "ci-source-0ee45dc-review.json"
+    "source0eeCI": "ci-source-0ee45dc-review.json",
+    "source0eeBeforeFinalSecurity": "local-source-0ee45dc-review.json",
+    "source0ee": "source-0ee45dc-review.json"
   },
   "savedCollectionStatus": "saved-stop-status.json",
   "allRequirementsDelivered": false,
@@ -89,26 +92,26 @@
   "marketCollectionRequests": 0,
   "userBrowserInteraction": false,
   "logs": {
-    "node-source-0ee45dc-full.tap.gz": {
-      "rawSha256": "bddca30160e7cb3fcfe90d60f8e5f20ad7fd7e0e995af7b4e1aaa99147d16792",
-      "rawBytes": 368687
+    "node-source-2bcb766-full.tap.gz": {
+      "rawSha256": "477c2549f617aa5d5a51eabd2b9ee427472d5e38d9e11cec589b1712fb419257",
+      "rawBytes": 371622
     },
-    "native-source-0ee45dc-full.tap.gz": {
-      "rawSha256": "3081943b9e7f41750ad09ad1e710e4cce20306d42efe9f6a9ab2b5f9ee887aba",
-      "rawBytes": 22614
+    "native-source-2bcb766-full.tap.gz": {
+      "rawSha256": "6ef48772cf81810f4c6c4c3f305e9793161f44b2ee232bd94ee986c0ef993716",
+      "rawBytes": 22625
     },
-    "checks-source-0ee45dc.log.gz": {
-      "rawSha256": "c8c1b473ffb25fb1c0d36583cb75019d3f4fd789ea130d87f6b52c473219f5e8",
-      "rawBytes": 143178
+    "checks-source-2bcb766.log.gz": {
+      "rawSha256": "89e90c480131084730046f2ed4cfd915f43750db774ece8bbacfaafd5ce9c951",
+      "rawBytes": 143323
     },
-    "types-source-0ee45dc.log.gz": {
+    "types-source-2bcb766.log.gz": {
       "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
       "rawBytes": 77
     }
   },
-  "sourceWorkflowAcceptance": true,
+  "sourceWorkflowAcceptance": false,
   "sourceAccepted": false,
-  "pullRequestSecurityAccepted": false,
+  "pullRequestSecurityAccepted": true,
   "followUpIssue": "https://github.com/konard/lazada-search/issues/36",
   "codeqlFailure": {
     "headCommit": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
@@ -120,18 +123,18 @@
     "fixAcceptance": "passed-source-604f6f2-separate-CodeQL"
   },
   "separateCodeQL": {
-    "conclusion": "failure",
-    "checkRunId": 114955887374,
-    "annotations": 2,
-    "receipt": "codeql-source-0ee45dc-failure.json",
-    "annotationReceipt": "codeql-source-0ee45dc-annotations.json"
+    "conclusion": "success",
+    "checkRunId": 114968418567,
+    "receipt": "codeql-check-source-2bcb766.json",
+    "annotations": 0
   },
   "currentDraftControls": {
     "boundedNutrition": "passed-source9237b9c",
     "boundedPinnedOCRRetry": "passed-on-all-three-Windows-runtimes",
     "boundedDiskScheduling": "passed-all-nine-source0ee45dc-runtime-suites",
-    "sourceTextAndReportEscaping": "focused-passed-full-source-pending",
+    "sourceTextAndReportEscaping": "passed-complete-local-source-and-CodeQL",
     "controlsReceipt": "source-security-controls.json",
-    "fullSourceAcceptance": "pending"
+    "fullSourceAcceptance": "pending",
+    "immutableBlobPublication": "pending-concurrent-blob-Windows-EPERM-fix"
   }
 }

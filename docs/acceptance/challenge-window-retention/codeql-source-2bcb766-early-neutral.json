@@ -1,0 +1,22 @@
+{
+  "observedAt": "2026-10-12 19:16:07 UTC",
+  "scope": "Early observation before Security workflow completion; neutral is not accepted as success.",
+  "checks": [
+    {
+      "completed_at": "2026-10-12T19:15:17Z",
+      "conclusion": "neutral",
+      "details_url": "https://github.com/konard/lazada-search/runs/114968418567",
+      "head_sha": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+      "id": 114968418567,
+      "name": "CodeQL",
+      "output": {
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/konard/lazada-search/check-runs/114968418567/annotations",
+        "summary": "**Warning**: Code scanning cannot determine the alerts introduced by this pull request, because 1 configuration present on `refs/heads/main` was not found:\n\n### Actions workflow (`security.yml`)\n\n* :hourglass:&nbsp;&nbsp;`.github/workflows/security.yml:codeql/language:javascript-typescript`\n\n\n[View all branch alerts](/konard/lazada-search/security/code-scanning?query=pr%3A41+tool%3ACodeQL+is%3Aopen).",
+        "text": null,
+        "title": "1 configuration not found"
+      },
+      "status": "completed"
+    }
+  ]
+}
