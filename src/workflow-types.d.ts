@@ -130,7 +130,10 @@ export interface CaseWorkflowRunOptions extends ManufacturerWorkflowRunOptions {
   manualReviewId?: string;
   manufacturerBatchSize?: number;
   translationBatchSize?: number;
-  preparedCheckouts?: Record<string, PreparedCheckoutInput>;
+  preparedCheckouts?: Record<
+    string,
+    PreparedCheckoutInput | CheckoutSnapshotInput
+  >;
   /** Trusted local library/CLI configuration; rejected in HTTP/Telegram JSON. */
   searchConfiguration?: ManufacturerSearchConfiguration;
 }
@@ -507,5 +510,5 @@ export declare const REQUIREMENT_REGISTRY: readonly DraftRecord[];
 export declare function requirementDraftStatus(): DraftRecord;
 export declare function caseReadiness(
   application: LazadaSearch,
-  options?: CaseCoverageOptions & { quantity?: number }
+  options?: CaseCoverageOptions & { quantity?: number; maxPriceAgeMs?: number }
 ): Promise<DraftRecord>;

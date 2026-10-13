@@ -16,6 +16,7 @@ import {
   runManufacturerWorkflow,
 } from './manufacturer-workflow.js';
 import { capturePreparedLazadaCheckout } from './lazada-checkout-capture.js';
+import { importLazadaCheckoutSnapshot } from './lazada-checkout-adapter.js';
 import { buildShoppingReport, saveShoppingReport } from './shopping-report.js';
 import { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
 import {
@@ -233,18 +234,24 @@ function matchesCheckoutTask(row, task, deliveryArea) {
   );
 }
 
+function currentCheckoutTask(row, task, context) {
+  const age = Date.now() - Date.parse(row.quote.observedAt);
+  return (
+    matchesCheckoutTask(row, task, context.deliveryArea) &&
+    Number.isFinite(age) &&
+    age >= 0 &&
+    age <= context.maxPriceAgeMs
+  );
+}
+
 async function checkoutTask(application, task, record, options) {
   const context = {
     deliveryArea: record.definition.deliveryArea,
     flavourScope: 'chocolate-or-unflavoured',
+    maxPriceAgeMs: record.definition.maxPriceAgeMs,
   };
   const cached = (await application.compareBaskets(context)).observations
-    .filter(
-      (row) =>
-        matchesCheckoutTask(row, task, context.deliveryArea) &&
-        Date.now() - Date.parse(row.quote.observedAt) <=
-          record.definition.maxPriceAgeMs
-    )
+    .filter((row) => row.eligible && currentCheckoutTask(row, task, context))
     .sort(
       (a, b) => Date.parse(b.quote.observedAt) - Date.parse(a.quote.observedAt)
     )[0];
@@ -256,15 +263,29 @@ async function checkoutTask(application, task, record, options) {
     };
   }
   const input = options.preparedCheckouts?.[task.id];
-  if (options.allowNetwork !== true || !input) {
+  if (!input) {
     throw new Error(
-      'No current cached exact checkout; allowNetwork:true and a reviewed prepared private checkout are required'
+      'No current cached exact checkout; a reviewed saved original or a prepared private checkout is required'
     );
   }
-  const result = await capturePreparedLazadaCheckout(application, {
-    ...input,
-    deliveryArea: context.deliveryArea,
-  });
+  const storedOriginal = input.html !== undefined;
+  let result;
+  if (storedOriginal) {
+    if (input.metadata?.deliveryArea !== context.deliveryArea) {
+      throw new Error('Saved checkout destination differs from this case');
+    }
+    result = await importLazadaCheckoutSnapshot(application, input);
+  } else {
+    if (options.allowNetwork !== true) {
+      throw new Error(
+        'Live prepared checkout capture requires allowNetwork:true; cached-only runs import verified original HTML only'
+      );
+    }
+    result = await capturePreparedLazadaCheckout(application, {
+      ...input,
+      deliveryArea: context.deliveryArea,
+    });
+  }
   const quote = result.quoteId
     ? await application.store.get('basket-quote', result.quoteId)
     : null;
@@ -281,7 +302,13 @@ async function checkoutTask(application, task, record, options) {
   const row = (await application.compareBaskets(context)).observations.find(
     (entry) => entry.quote.id === quote.id
   );
-  return { ...result, needsReview: !row?.eligible };
+  return {
+    ...result,
+    sourceMode: storedOriginal
+      ? 'stored-original-import'
+      : 'prepared-private-page-capture',
+    needsReview: !row?.eligible || !currentCheckoutTask(row, task, context),
+  };
 }
 
 function handlers(application, record, options) {
@@ -486,14 +513,19 @@ export async function runCaseWorkflow(application, workflowId, options = {}) {
         );
         const status =
           error.code === 'PAGE_UNAVAILABLE' ? 'unavailable' : 'blocked';
+        const collectionStopped =
+          error.code === 'COLLECTION_STOPPED' ||
+          (options.allowNetwork === true && stop?.active);
         task.status = status;
         await checkpointTask(application, running, {
           status,
           attempts: task.attempts + 1,
-          reason: stop?.active ? 'Persistent collection stop' : error.message,
+          reason: collectionStopped
+            ? 'Persistent collection stop'
+            : error.message,
           errorCode: error.code || null,
         });
-        if (stop?.active || error.code === 'COLLECTION_STOPPED') {
+        if (collectionStopped) {
           break;
         }
         if (task.stage === 'discovery') {

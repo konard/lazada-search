@@ -1,0 +1,844 @@
+TAP version 13
+# Subtest: basket save and ranking refuse an original with evidence boolean flag
+ok 1 - basket save and ranking refuse an original with evidence boolean flag
+  ---
+  duration_ms: 663.796042
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with evidence timestamp flag
+ok 2 - basket save and ranking refuse an original with evidence timestamp flag
+  ---
+  duration_ms: 589.566958
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with linked cache boolean flag
+ok 3 - basket save and ranking refuse an original with linked cache boolean flag
+  ---
+  duration_ms: 591.987
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with linked cache timestamp flag
+ok 4 - basket save and ranking refuse an original with linked cache timestamp flag
+  ---
+  duration_ms: 680.321083
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate evidence ID binding
+ok 5 - basket original replay applies separate evidence ID binding
+  ---
+  duration_ms: 658.767625
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate cache ID binding
+ok 6 - basket original replay applies separate cache ID binding
+  ---
+  duration_ms: 610.883667
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate URL binding
+ok 7 - basket original replay applies separate URL binding
+  ---
+  duration_ms: 590.601208
+  type: 'test'
+  ...
+# Subtest: basket original replay applies URL record identity binding
+ok 8 - basket original replay applies URL record identity binding
+  ---
+  duration_ms: 576.940125
+  type: 'test'
+  ...
+# Subtest: basket original replay applies invalidated boolean without timestamp
+ok 9 - basket original replay applies invalidated boolean without timestamp
+  ---
+  duration_ms: 671.152625
+  type: 'test'
+  ...
+# Subtest: basket original replay applies malformed invalidation timestamp
+ok 10 - basket original replay applies malformed invalidation timestamp
+  ---
+  duration_ms: 643.690459
+  type: 'test'
+  ...
+# Subtest: basket original replay applies undated active invalidation
+ok 11 - basket original replay applies undated active invalidation
+  ---
+  duration_ms: 622.183458
+  type: 'test'
+  ...
+# Subtest: basket original replay applies malformed resolution timestamp
+ok 12 - basket original replay applies malformed resolution timestamp
+  ---
+  duration_ms: 556.053042
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an earlier dated invalidation
+ok 13 - basket replay retains its exact source despite an earlier dated invalidation
+  ---
+  duration_ms: 532.518875
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an inactive flag
+ok 14 - basket replay retains its exact source despite an inactive flag
+  ---
+  duration_ms: 557.535166
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite a resolved flag
+ok 15 - basket replay retains its exact source despite a resolved flag
+  ---
+  duration_ms: 578.010584
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an explicit cleared flag
+ok 16 - basket replay retains its exact source despite an explicit cleared flag
+  ---
+  duration_ms: 587.450708
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite a different exact source
+ok 17 - basket replay retains its exact source despite a different exact source
+  ---
+  duration_ms: 462.822
+  type: 'test'
+  ...
+# Subtest: basket source byte length metadata is checked independently from the original content digest
+ok 18 - basket source byte length metadata is checked independently from the original content digest
+  ---
+  duration_ms: 506.84925
+  type: 'test'
+  ...
+# Subtest: nonfinite evaluation time leaves the basket quote explicitly ineligible even with stale observations allowed
+ok 19 - nonfinite evaluation time leaves the basket quote explicitly ineligible even with stale observations allowed
+  ---
+  duration_ms: 460.444208
+  type: 'test'
+  ...
+# Subtest: offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+ok 20 - offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+  ---
+  duration_ms: 2452.029875
+  type: 'test'
+  ...
+# Subtest: an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+ok 21 - an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+  ---
+  duration_ms: 2269.513
+  type: 'test'
+  ...
+# Subtest: offline bulk task refuses live capture without touching the prepared browser page
+ok 22 - offline bulk task refuses live capture without touching the prepared browser page
+  ---
+  duration_ms: 1795.127458
+  type: 'test'
+  ...
+# Subtest: network-enabled workflow remains stopped before any saved or live checkout task
+ok 23 - network-enabled workflow remains stopped before any saved or live checkout task
+  ---
+  duration_ms: 904.00075
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with stale original
+ok 24 - offline bulk task cannot succeed with stale original
+  ---
+  duration_ms: 1999.550958
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with future original
+ok 25 - offline bulk task cannot succeed with future original
+  ---
+  duration_ms: 1870.508042
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with invalid original date
+ok 26 - offline bulk task cannot succeed with invalid original date
+  ---
+  duration_ms: 1296.092625
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong case destination
+ok 27 - offline bulk task cannot succeed with wrong case destination
+  ---
+  duration_ms: 1156.356334
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong original digest
+ok 28 - offline bulk task cannot succeed with wrong original digest
+  ---
+  duration_ms: 816.95375
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another SKU row
+ok 29 - offline bulk task cannot succeed with another SKU row
+  ---
+  duration_ms: 1033.9295
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another order quantity
+ok 30 - offline bulk task cannot succeed with another order quantity
+  ---
+  duration_ms: 1201.571333
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with unknown shipping
+ok 31 - offline bulk task cannot succeed with unknown shipping
+  ---
+  duration_ms: 1122.727583
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with challenged original
+ok 32 - offline bulk task cannot succeed with challenged original
+  ---
+  duration_ms: 1047.92025
+  type: 'test'
+  ...
+# Subtest: offline imported original is not promoted into a public store
+ok 33 - offline imported original is not promoted into a public store
+  ---
+  duration_ms: 881.997833
+  type: 'test'
+  ...
+# Subtest: workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+ok 34 - workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+  ---
+  duration_ms: 1215.170083
+  type: 'test'
+  ...
+# Subtest: an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+ok 35 - an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+  ---
+  duration_ms: 909.10275
+  type: 'test'
+  ...
+# Subtest: invalidated saved original cannot be rewritten or accepted by its case task
+ok 36 - invalidated saved original cannot be rewritten or accepted by its case task
+  ---
+  duration_ms: 912.092083
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded paid shaker
+ok 37 - a case cannot import a prepared checkout for a newly excluded paid shaker
+  ---
+  duration_ms: 981.278375
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded other flavour
+ok 38 - a case cannot import a prepared checkout for a newly excluded other flavour
+  ---
+  duration_ms: 1029.269125
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded soy isolate
+ok 39 - a case cannot import a prepared checkout for a newly excluded soy isolate
+  ---
+  duration_ms: 1011.293875
+  type: 'test'
+  ...
+# Subtest: case original inventory and aggregate review reuse unchanged bytes after valid resolution
+ok 40 - case original inventory and aggregate review reuse unchanged bytes after valid resolution
+  ---
+  duration_ms: 684.049666
+  type: 'test'
+  ...
+# Subtest: case original inventory and aggregate review reuse unchanged bytes after explicit inactive state
+ok 41 - case original inventory and aggregate review reuse unchanged bytes after explicit inactive state
+  ---
+  duration_ms: 627.645166
+  type: 'test'
+  ...
+# Subtest: case original inventory and aggregate review reuse unchanged bytes after explicit cleared flag
+ok 42 - case original inventory and aggregate review reuse unchanged bytes after explicit cleared flag
+  ---
+  duration_ms: 786.787417
+  type: 'test'
+  ...
+# Subtest: case inventory refuses sourceUrl binding with missing timestamp without altering its original
+ok 43 - case inventory refuses sourceUrl binding with missing timestamp without altering its original
+  ---
+  duration_ms: 469.749125
+  type: 'test'
+  ...
+# Subtest: case inventory refuses evidence binding with malformed timestamp without altering its original
+ok 44 - case inventory refuses evidence binding with malformed timestamp without altering its original
+  ---
+  duration_ms: 486.24375
+  type: 'test'
+  ...
+# Subtest: case inventory refuses cache binding with malformed resolution without altering its original
+ok 45 - case inventory refuses cache binding with malformed resolution without altering its original
+  ---
+  duration_ms: 484.695125
+  type: 'test'
+  ...
+# Subtest: swapping another retained evidence descriptor revokes an aggregate review even when its attached proof bytes are unchanged
+ok 46 - swapping another retained evidence descriptor revokes an aggregate review even when its attached proof bytes are unchanged
+  ---
+  duration_ms: 700.928459
+  type: 'test'
+  ...
+# Subtest: draft manual review cannot waive unknown cards and inclusion creates missing-listing work
+ok 47 - draft manual review cannot waive unknown cards and inclusion creates missing-listing work
+  ---
+  duration_ms: 742.543375
+  type: 'test'
+  ...
+# Subtest: draft retained category decisions withdraw when their source card or original is changed
+ok 48 - draft retained category decisions withdraw when their source card or original is changed
+  ---
+  duration_ms: 637.8245
+  type: 'test'
+  ...
+# Subtest: draft manual task consumes a valid current review and later data changes revoke it
+ok 49 - draft manual task consumes a valid current review and later data changes revoke it
+  ---
+  duration_ms: 1423.127583
+  type: 'test'
+  ...
+# Subtest: draft worklist schedules scoped plain/chocolate powders and strict chocolate ice while retaining unknown SKU backlog
+ok 50 - draft worklist schedules scoped plain/chocolate powders and strict chocolate ice while retaining unknown SKU backlog
+  ---
+  duration_ms: 1686.140416
+  type: 'test'
+  ...
+# Subtest: draft case runner honours the persisted global CAPTCHA before collector work
+ok 51 - draft case runner honours the persisted global CAPTCHA before collector work
+  ---
+  duration_ms: 431.564583
+  type: 'test'
+  ...
+# Subtest: draft exact SKU task rejects a different item even when its numeric SKU suffix matches
+ok 52 - draft exact SKU task rejects a different item even when its numeric SKU suffix matches
+  ---
+  duration_ms: 875.925833
+  type: 'test'
+  ...
+# Subtest: draft preliminary inclusion cannot hide unknown or contradictory detailed categories or waive them with a blanket review
+ok 53 - draft preliminary inclusion cannot hide unknown or contradictory detailed categories or waive them with a blanket review
+  ---
+  duration_ms: 1549.980959
+  type: 'test'
+  ...
+# Subtest: case terminal discovery barrier defers exact-SKU work until every configured list is complete
+ok 54 - case terminal discovery barrier defers exact-SKU work until every configured list is complete
+  ---
+  duration_ms: 880.897083
+  type: 'test'
+  ...
+# Subtest: case retries remain bounded and interrupted checkpoints require explicit recovery
+ok 55 - case retries remain bounded and interrupted checkpoints require explicit recovery
+  ---
+  duration_ms: 1433.810167
+  type: 'test'
+  ...
+# Subtest: case lease rejects an independent live worker and malformed orphan metadata without deleting it
+ok 56 - case lease rejects an independent live worker and malformed orphan metadata without deleting it
+  ---
+  duration_ms: 211.790916
+  type: 'test'
+  ...
+# Subtest: case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner
+ok 57 - case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner
+  ---
+  duration_ms: 297.950916
+  type: 'test'
+  ...
+# Subtest: case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals
+ok 58 - case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals
+  ---
+  duration_ms: 584.612041
+  type: 'test'
+  ...
+# Subtest: case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports
+ok 59 - case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports
+  ---
+  duration_ms: 489.549375
+  type: 'test'
+  ...
+# Subtest: case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory
+ok 60 - case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory
+  ---
+  duration_ms: 538.601209
+  type: 'test'
+  ...
+# Subtest: case old-product recollection stays deferred until every initial exact-SKU price is captured
+ok 61 - case old-product recollection stays deferred until every initial exact-SKU price is captured
+  ---
+  duration_ms: 1092.968792
+  type: 'test'
+  ...
+# Subtest: case failed discovery counts its attempted task and retains the barrier before any exact-SKU work
+ok 62 - case failed discovery counts its attempted task and retains the barrier before any exact-SKU work
+  ---
+  duration_ms: 550.389791
+  type: 'test'
+  ...
+# Subtest: late evidence-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+ok 63 - late evidence-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+  ---
+  duration_ms: 19.688292
+  type: 'test'
+  ...
+# Subtest: late source-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+ok 64 - late source-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+  ---
+  duration_ms: 6.852042
+  type: 'test'
+  ...
+# Subtest: late url invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+ok 65 - late url invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+  ---
+  duration_ms: 8.219791
+  type: 'test'
+  ...
+# Subtest: late cache-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+ok 66 - late cache-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices
+  ---
+  duration_ms: 4.773584
+  type: 'test'
+  ...
+# Subtest: catalog and exact product resolution withdraw approval after changed-source
+ok 67 - catalog and exact product resolution withdraw approval after changed-source
+  ---
+  duration_ms: 4.562791
+  type: 'test'
+  ...
+# Subtest: catalog and exact product resolution withdraw approval after missing-bytes
+ok 68 - catalog and exact product resolution withdraw approval after missing-bytes
+  ---
+  duration_ms: 4.95425
+  type: 'test'
+  ...
+# Subtest: catalog and exact product resolution withdraw approval after review-invalidated
+ok 69 - catalog and exact product resolution withdraw approval after review-invalidated
+  ---
+  duration_ms: 4.345083
+  type: 'test'
+  ...
+# Subtest: resolved or inactive invalidations do not withdraw unchanged source-approved facts
+ok 70 - resolved or inactive invalidations do not withdraw unchanged source-approved facts
+  ---
+  duration_ms: 3.554583
+  type: 'test'
+  ...
+# Subtest: an unrelated granular claim cannot waive a legacy manufacturer cross-check source hold
+ok 71 - an unrelated granular claim cannot waive a legacy manufacturer cross-check source hold
+  ---
+  duration_ms: 4.090833
+  type: 'test'
+  ...
+# Subtest: manufacturer source context is shared once per whole-catalog comparison and refreshed on the next operation
+ok 72 - manufacturer source context is shared once per whole-catalog comparison and refreshed on the next operation
+  ---
+  duration_ms: 6.565166
+  type: 'test'
+  ...
+# Subtest: manufacturer source context is shared once per selected-offer comparison and refreshed on the next operation
+ok 73 - manufacturer source context is shared once per selected-offer comparison and refreshed on the next operation
+  ---
+  duration_ms: 4.473292
+  type: 'test'
+  ...
+# Subtest: catalog with no approved manufacturer claim or legacy check does not scan source caches
+ok 74 - catalog with no approved manufacturer claim or legacy check does not scan source caches
+  ---
+  duration_ms: 0.246542
+  type: 'test'
+  ...
+# Subtest: whole-comparison with no approved manufacturer claim or legacy check does not scan source caches
+ok 75 - whole-comparison with no approved manufacturer claim or legacy check does not scan source caches
+  ---
+  duration_ms: 0.171167
+  type: 'test'
+  ...
+# Subtest: selected-comparison with no approved manufacturer claim or legacy check does not scan source caches
+ok 76 - selected-comparison with no approved manufacturer claim or legacy check does not scan source caches
+  ---
+  duration_ms: 0.158
+  type: 'test'
+  ...
+# Subtest: shared approved fallback facts trigger lazy source validation after merging a claim-free private observation
+ok 77 - shared approved fallback facts trigger lazy source validation after merging a claim-free private observation
+  ---
+  duration_ms: 4.112125
+  type: 'test'
+  ...
+# Subtest: concurrent eligible consumers initialize one lazy source context and preserve source corruption checks
+ok 78 - concurrent eligible consumers initialize one lazy source context and preserve source corruption checks
+  ---
+  duration_ms: 15.032541
+  type: 'test'
+  ...
+# Subtest: offline planning and resumable runner retain source-bound quantity/nutrition drafts from a cached primary JSON original
+ok 79 - offline planning and resumable runner retain source-bound quantity/nutrition drafts from a cached primary JSON original
+  ---
+  duration_ms: 16.560084
+  type: 'test'
+  ...
+# Subtest: source invalidation by evidence/cache IDs removes reuse even without a URL
+ok 80 - source invalidation by evidence/cache IDs removes reuse even without a URL
+  ---
+  duration_ms: 0.135958
+  type: 'test'
+  ...
+# Subtest: structured candidates require literal revision/currentness and remain unapproved
+ok 81 - structured candidates require literal revision/currentness and remain unapproved
+  ---
+  duration_ms: 0.444375
+  type: 'test'
+  ...
+# Subtest: human review attaches original primary sources and applies approved nutrition without replacing offer price
+ok 82 - human review attaches original primary sources and applies approved nutrition without replacing offer price
+  ---
+  duration_ms: 4.308042
+  type: 'test'
+  ...
+# Subtest: bridge rejects missing reviewer before attaching or approving sources
+ok 83 - bridge rejects missing reviewer before attaching or approving sources
+  ---
+  duration_ms: 0.345917
+  type: 'test'
+  ...
+# Subtest: bridge rejects automatic approval before attaching or approving sources
+ok 84 - bridge rejects automatic approval before attaching or approving sources
+  ---
+  duration_ms: 0.192416
+  type: 'test'
+  ...
+# Subtest: bridge rejects different flavour before attaching or approving sources
+ok 85 - bridge rejects different flavour before attaching or approving sources
+  ---
+  duration_ms: 0.438875
+  type: 'test'
+  ...
+# Subtest: bridge rejects missing formula revision before attaching or approving sources
+ok 86 - bridge rejects missing formula revision before attaching or approving sources
+  ---
+  duration_ms: 0.357292
+  type: 'test'
+  ...
+# Subtest: bridge rejects stale original before attaching or approving sources
+ok 87 - bridge rejects stale original before attaching or approving sources
+  ---
+  duration_ms: 1.430667
+  type: 'test'
+  ...
+# Subtest: bridge rejects changed listing digest before attaching or approving sources
+ok 88 - bridge rejects changed listing digest before attaching or approving sources
+  ---
+  duration_ms: 0.74725
+  type: 'test'
+  ...
+# Subtest: bridge rejects changed source bytes and evidence-ID invalidations before writes
+ok 89 - bridge rejects changed source bytes and evidence-ID invalidations before writes
+  ---
+  duration_ms: 0.923208
+  type: 'test'
+  ...
+# Subtest: quantity bridge rejects numeric value absent from original before attaching sources
+ok 90 - quantity bridge rejects numeric value absent from original before attaching sources
+  ---
+  duration_ms: 0.694292
+  type: 'test'
+  ...
+# Subtest: quantity bridge rejects unit conversion absent from original before attaching sources
+ok 91 - quantity bridge rejects unit conversion absent from original before attaching sources
+  ---
+  duration_ms: 1.019125
+  type: 'test'
+  ...
+# Subtest: quantity bridge rejects excerpt absent from original before attaching sources
+ok 92 - quantity bridge rejects excerpt absent from original before attaching sources
+  ---
+  duration_ms: 0.712792
+  type: 'test'
+  ...
+# Subtest: reviewed packet cannot override original structured flavour
+ok 93 - reviewed packet cannot override original structured flavour
+  ---
+  duration_ms: 0.807375
+  type: 'test'
+  ...
+# Subtest: reviewed packet cannot override original structured formulaRevision
+ok 94 - reviewed packet cannot override original structured formulaRevision
+  ---
+  duration_ms: 0.521208
+  type: 'test'
+  ...
+# Subtest: approved primary-source review survives associative restart and stays private over shared originals
+ok 95 - approved primary-source review survives associative restart and stays private over shared originals
+  ---
+  duration_ms: 1592.400292
+  type: 'test'
+  ...
+# Subtest: quantity workflow establishes grams and millilitres independently from the selected original without approving nutrition
+ok 96 - quantity workflow establishes grams and millilitres independently from the selected original without approving nutrition
+  ---
+  duration_ms: 15.545125
+  type: 'test'
+  ...
+# Subtest: asynchronous approval withdraws when a newer selected capture arrives during validation
+ok 97 - asynchronous approval withdraws when a newer selected capture arrives during validation
+  ---
+  duration_ms: 1.573167
+  type: 'test'
+  ...
+# Subtest: source invalidation created during asynchronous validation blocks staged publication
+ok 98 - source invalidation created during asynchronous validation blocks staged publication
+  ---
+  duration_ms: 3.235292
+  type: 'test'
+  ...
+# Subtest: chronological product writer retains a newer capture arriving after the final review read
+ok 99 - chronological product writer retains a newer capture arriving after the final review read
+  ---
+  duration_ms: 1.542208
+  type: 'test'
+  ...
+# Subtest: cached-only provider cannot issue a request and rejects embedded tokens
+ok 100 - cached-only provider cannot issue a request and rejects embedded tokens
+  ---
+  duration_ms: 0.674875
+  type: 'test'
+  ...
+# Subtest: provider identity preserves cached-only reuse but isolates actual bounds and response mappings
+ok 101 - provider identity preserves cached-only reuse but isolates actual bounds and response mappings
+  ---
+  duration_ms: 0.36025
+  type: 'test'
+  ...
+# Subtest: HTTP JSON provider sends bounded POST and omits token echoes from returned candidates
+ok 102 - HTTP JSON provider sends bounded POST and omits token echoes from returned candidates
+  ---
+  duration_ms: 3.022625
+  type: 'test'
+  ...
+# Subtest: active global CAPTCHA stop prevents even the first configured search request
+ok 103 - active global CAPTCHA stop prevents even the first configured search request
+  ---
+  duration_ms: 0.463292
+  type: 'test'
+  ...
+# Subtest: a search challenge persists the global stop and prevents subsequent requests
+ok 104 - a search challenge persists the global stop and prevents subsequent requests
+  ---
+  duration_ms: 1.682833
+  type: 'test'
+  ...
+# Subtest: search provider rejects oversized streamed response with no cache publication
+ok 105 - search provider rejects oversized streamed response with no cache publication
+  ---
+  duration_ms: 0.883416
+  type: 'test'
+  ...
+# Subtest: search provider rejects redirect response with no cache publication
+ok 106 - search provider rejects redirect response with no cache publication
+  ---
+  duration_ms: 0.390167
+  type: 'test'
+  ...
+# Subtest: search provider rejects invalid JSON response with no cache publication
+ok 107 - search provider rejects invalid JSON response with no cache publication
+  ---
+  duration_ms: 0.431709
+  type: 'test'
+  ...
+# Subtest: request byte and result bounds are enforced before any fetch
+ok 108 - request byte and result bounds are enforced before any fetch
+  ---
+  duration_ms: 0.264291
+  type: 'test'
+  ...
+# Subtest: search cache separates result bounds so a narrow discovery cannot satisfy a broader request
+ok 109 - search cache separates result bounds so a narrow discovery cannot satisfy a broader request
+  ---
+  duration_ms: 1.240625
+  type: 'test'
+  ...
+# Subtest: genuine stored transform provenance preserves original and derived identities without relabelling OCR
+ok 110 - genuine stored transform provenance preserves original and derived identities without relabelling OCR
+  ---
+  duration_ms: 0.84
+  type: 'test'
+  ...
+# Subtest: private storage metadata does not replace the source-bound physical OCR proof
+ok 111 - private storage metadata does not replace the source-bound physical OCR proof
+  ---
+  duration_ms: 0.279958
+  type: 'test'
+  ...
+# Subtest: real lossless image transform and fixture-native OCR receipts verify after private associative restart
+ok 112 - real lossless image transform and fixture-native OCR receipts verify after private associative restart
+  ---
+  duration_ms: 434.164
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects forged originalImageHash
+ok 113 - original-bound OCR rejects forged originalImageHash
+  ---
+  duration_ms: 0.541209
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects changed crop recipe
+ok 114 - original-bound OCR rejects changed crop recipe
+  ---
+  duration_ms: 0.288125
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects corrupted derived bytes
+ok 115 - original-bound OCR rejects corrupted derived bytes
+  ---
+  duration_ms: 0.203958
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects changed TSV transcription
+ok 116 - original-bound OCR rejects changed TSV transcription
+  ---
+  duration_ms: 0.220375
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects wrong native model fingerprint
+ok 117 - original-bound OCR rejects wrong native model fingerprint
+  ---
+  duration_ms: 0.169667
+  type: 'test'
+  ...
+# Subtest: original-bound OCR rejects lost source OCR binding
+ok 118 - original-bound OCR rejects lost source OCR binding
+  ---
+  duration_ms: 0.234125
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks missing timestamp
+ok 119 - a bound source invalidation blocks missing timestamp
+  ---
+  duration_ms: 0.934333
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks malformed timestamp
+ok 120 - a bound source invalidation blocks malformed timestamp
+  ---
+  duration_ms: 0.107375
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks empty timestamp
+ok 121 - a bound source invalidation blocks empty timestamp
+  ---
+  duration_ms: 0.043
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks numeric timestamp
+ok 122 - a bound source invalidation blocks numeric timestamp
+  ---
+  duration_ms: 0.051916
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks invalidated flag
+ok 123 - a bound source invalidation blocks invalidated flag
+  ---
+  duration_ms: 0.100584
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks malformed resolved timestamp
+ok 124 - a bound source invalidation blocks malformed resolved timestamp
+  ---
+  duration_ms: 0.045666
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks numeric resolved timestamp
+ok 125 - a bound source invalidation blocks numeric resolved timestamp
+  ---
+  duration_ms: 0.089417
+  type: 'test'
+  ...
+# Subtest: a bound source invalidation blocks concurrent timestamp
+ok 126 - a bound source invalidation blocks concurrent timestamp
+  ---
+  duration_ms: 0.039583
+  type: 'test'
+  ...
+# Subtest: unchanged source bytes can be replayed after explicit inactive state
+ok 127 - unchanged source bytes can be replayed after explicit inactive state
+  ---
+  duration_ms: 0.313709
+  type: 'test'
+  ...
+# Subtest: unchanged source bytes can be replayed after explicit cleared state
+ok 128 - unchanged source bytes can be replayed after explicit cleared state
+  ---
+  duration_ms: 0.284583
+  type: 'test'
+  ...
+# Subtest: unchanged source bytes can be replayed after valid resolved state
+ok 129 - unchanged source bytes can be replayed after valid resolved state
+  ---
+  duration_ms: 0.160083
+  type: 'test'
+  ...
+# Subtest: unchanged source bytes can be replayed after prior dated invalidation
+ok 130 - unchanged source bytes can be replayed after prior dated invalidation
+  ---
+  duration_ms: 0.049416
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through source URL on the original
+ok 131 - missing invalidation time fails closed through source URL on the original
+  ---
+  duration_ms: 0.0535
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through sourceUrl alias on invalidation
+ok 132 - missing invalidation time fails closed through sourceUrl alias on invalidation
+  ---
+  duration_ms: 0.026708
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through source URL as invalidation identity
+ok 133 - missing invalidation time fails closed through source URL as invalidation identity
+  ---
+  duration_ms: 0.02425
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through exact source ID
+ok 134 - missing invalidation time fails closed through exact source ID
+  ---
+  duration_ms: 0.030167
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through exact evidence ID
+ok 135 - missing invalidation time fails closed through exact evidence ID
+  ---
+  duration_ms: 0.02325
+  type: 'test'
+  ...
+# Subtest: missing invalidation time fails closed through exact linked cache ID
+ok 136 - missing invalidation time fails closed through exact linked cache ID
+  ---
+  duration_ms: 0.030834
+  type: 'test'
+  ...
+# Subtest: ordinary bound cache metadata has no implicit invalidation and unrelated undated records cannot bind absent URLs
+ok 137 - ordinary bound cache metadata has no implicit invalidation and unrelated undated records cannot bind absent URLs
+  ---
+  duration_ms: 0.420334
+  type: 'test'
+  ...
+# Subtest: malformed cache timestamps and resolution cannot restore a retained linked source
+ok 138 - malformed cache timestamps and resolution cannot restore a retained linked source
+  ---
+  duration_ms: 0.051042
+  type: 'test'
+  ...
+# Subtest: cache sourceUrl aliases bind cache-ID invalidations and numeric fetchedAt remains an observation time
+ok 139 - cache sourceUrl aliases bind cache-ID invalidations and numeric fetchedAt remains an observation time
+  ---
+  duration_ms: 0.061209
+  type: 'test'
+  ...
+1..139
+# tests 139
+# suites 0
+# pass 139
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26299.482292

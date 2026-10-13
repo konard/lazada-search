@@ -7,6 +7,7 @@ import {
   translationEntities,
   translationReviewAccepted,
 } from './translation-quality.js';
+import { workflowSourceInvalidated } from './source-invalidation.js';
 
 const schemaVersion = 2;
 const kinds = [
@@ -245,16 +246,56 @@ function htmlItems(hash, bytes, evidenceIds, scope) {
 }
 
 async function sourceTextItems(application, records, gaps, scope) {
+  const [caches, invalidations] = await Promise.all([
+    application.store.list('cache'),
+    application.store.list('invalidation'),
+  ]);
+  for (const record of records) {
+    if (
+      workflowSourceInvalidated(
+        { ...record, url: record.url || record.sourceUrl },
+        caches,
+        invalidations
+      )
+    ) {
+      gaps.push({ reason: 'source-invalidated', evidenceId: record.id });
+    }
+  }
   const hashes = new Set(
     records
-      .flatMap((record) => [record.html?.sha256, record.imageHash])
+      .flatMap((record) => [
+        record.html?.sha256,
+        record.image?.sha256,
+        record.blob?.sha256,
+        record.screenshot?.sha256,
+        record.imageHash,
+      ])
       .filter(Boolean)
   );
   const sources = htmlSources(records);
   const items = [];
+  const lengths = new Map();
+  for (const record of records) {
+    for (const descriptor of [
+      record.html,
+      record.image,
+      record.blob,
+      record.screenshot,
+    ].filter(Boolean)) {
+      const expected = lengths.get(descriptor.sha256) || new Set();
+      expected.add(descriptor.bytes);
+      lengths.set(descriptor.sha256, expected);
+    }
+  }
   for (const hash of hashes) {
     const bytes = await application.store.blob(hash);
-    if (!bytes || digest(bytes) !== hash) {
+    if (
+      !bytes ||
+      digest(bytes) !== hash ||
+      [...(lengths.get(hash) || [])].some(
+        (length) => !Number.isSafeInteger(length) || bytes.length !== length
+      )
+    ) {
       gaps.push({
         reason: 'source-bytes-not-cached-or-invalid',
         sourceEvidenceHash: hash,
@@ -623,7 +664,56 @@ export async function translateCatalog(application, options = {}) {
   );
 }
 
-export async function translationStatus(application, { jobId } = {}) {
+async function currentCatalogAcceptance(application, jobs) {
+  const plan = await planCatalogTranslation(application);
+  const job = jobs
+    .filter((candidate) =>
+      compatibleJob(candidate, plan, application.translator)
+    )
+    .sort(
+      (left, right) => Date.parse(right.updatedAt) - Date.parse(left.updatedAt)
+    )[0];
+  let translated = 0,
+    reviewed = 0;
+  if (job) {
+    for (let offset = 0; offset < plan.items.length; offset += 100) {
+      const states = await Promise.all(
+        plan.items
+          .slice(offset, offset + 100)
+          .map((item) => existingState(application, job, item, true))
+      );
+      translated += states.filter(
+        (item) => item.status === 'translated'
+      ).length;
+      reviewed += states.filter((item) => item.reviewAccepted).length;
+    }
+  }
+  const accepted = Boolean(
+    job &&
+    application.translator.providerId !== 'unconfigured' &&
+    plan.products > 0 &&
+    plan.items.length > 0 &&
+    plan.gaps.length === 0 &&
+    translated === plan.items.length &&
+    reviewed === plan.items.length
+  );
+  return {
+    fingerprint: plan.fingerprint,
+    jobId: job?.id || null,
+    products: plan.products,
+    total: plan.items.length,
+    translated,
+    reviewed,
+    sourceGaps: plan.gaps,
+    completeCachedCatalogEnglishAccepted: accepted,
+    acceptanceScope: 'current-cached-catalog-and-originals',
+  };
+}
+
+export async function translationStatus(
+  application,
+  { jobId, verifyCurrentCatalog = false } = {}
+) {
   if (jobId) {
     return (
       (await application.store.get('translation-job', jobId)) || {
@@ -636,6 +726,9 @@ export async function translationStatus(application, { jobId } = {}) {
   const jobs = await application.store.list('translation-job');
   return {
     jobs: jobs.sort((left, right) => left.id.localeCompare(right.id)),
+    ...(verifyCurrentCatalog
+      ? await currentCatalogAcceptance(application, jobs)
+      : { completeCachedCatalogEnglishAccepted: false }),
     completeCatalogEnglishAccepted: false,
     prerequisite:
       'Configure an exact provider identity/version and translate/review all current cached text and missing product sources.',

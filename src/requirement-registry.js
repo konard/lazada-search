@@ -440,7 +440,7 @@ const requirementDefinitions = [
     'draft-extension',
     'src/coverage.js src/verification.js',
     'src/case-readiness.js src/case-coverage.js src/case-workflow.js src/requirement-registry.js',
-    'Draft readiness combines exact inventory, source/manual review and external acceptance gates while returning false production/purchase/full-market flags.',
+    'Readiness evaluates current source-bound captured inventory, exact quantity/destination prices, original bytes, manufacturer specs, all unit rates and reviewed cached English; whole-market and production acceptance remain separate.',
     'missing',
     'docs/acceptance/validation.json docs/acceptance/collection-progress.json',
     'Complete inventory/factory/nutrition/English data, current real-layout acceptance, exact bulk/frozen quotes, live bot and owner release configuration; source171b250 automated acceptance is complete.',
@@ -1083,6 +1083,42 @@ export const REQUIREMENT_GITHUB_ISSUES = [
     ],
     acceptanceRemaining:
       'Validate exact-host non-product exclusions and recursive URL/field redaction, rebuild and verify all public case conversions offline, confirm unchanged product facts and reports, and merge the reviewed fix.',
+  },
+  {
+    number: 45,
+    state: 'OPEN',
+    title:
+      'Replay cached checkout originals safely and evaluate readiness from current evidence',
+    url: 'https://github.com/konard/lazada-search/issues/45',
+    requirementIds: [
+      'R009',
+      'R010',
+      'R011',
+      'R012',
+      'R017',
+      'R020',
+      'R022',
+      'R024',
+      'R037',
+    ],
+    draftStatus: 'offline-checkout-and-readiness-fix-under-validation',
+    sourceFiles: [
+      'src/case-workflow.js',
+      'src/case-worklist.js',
+      'src/basket-original.js',
+      'src/basket-quote.js',
+      'src/basket-comparison.js',
+      'src/case-readiness.js',
+      'src/case-evidence-gates.js',
+      'src/captured-offer-gates.js',
+      'src/translation-catalog.js',
+      'tests/case-checkout-replay.test.js',
+      'tests/basket-source-invalidations.test.js',
+      'tests/case-readiness-evidence.test.js',
+      'tests/translation-catalog.test.js',
+    ],
+    acceptanceRemaining:
+      'Validate all runtime/interface regressions, retain original CAPTCHA stop and private boundaries, verify offline original replay and dynamic acceptance, and merge the reviewed fix. Real catalog/factory/current freight evidence remains independently required.',
   },
 ];
 

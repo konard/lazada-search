@@ -1,3 +1,5 @@
+[Latest offline progress](acceptance/offline-completion-progress/README.md) records saved-checkout replay, source-bound readiness and translations, resolved-invalidation handling, two exact volume-label reviews, and all 20 remaining data/live outcomes. The current tracker maps 49 requirements and 44 GitHub issues, including [issue 45](https://github.com/konard/lazada-search/issues/45). Collection remains stopped; captured prices are historical.
+
 [The current requirement/result recheck](acceptance/result-recheck/README.md) maps all 49 requirements and 43 issues. Historical captured arithmetic is valid; 20 data/live outcomes remain incomplete. The offline public archive rebuild removes non-product telemetry while preserving product facts. Current local source passes 1,532 units and five changed archive/interface E2E cases; CI evidence belongs to its exact source commit.
 
 # Lazada buying-system requirements

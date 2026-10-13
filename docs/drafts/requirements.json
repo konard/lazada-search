@@ -8,8 +8,8 @@
   ],
   "githubIssueSnapshot": "docs/acceptance/challenge-window-retention/github-issues.json",
   "mappedRequirements": 49,
-  "mappedGithubIssues": 43,
-  "openGithubIssues": [3, 14, 32, 36, 42, 43, 44],
+  "mappedGithubIssues": 44,
+  "openGithubIssues": [3, 14, 32, 36, 42, 43, 44, 45],
   "closedGithubIssues": 36,
   "testsExecuted": true,
   "codeValidation": "automated-local-tests-passed",
@@ -463,16 +463,19 @@
       "draftSourceFiles": [
         "src/lazada-checkout-actions.js",
         "src/lazada-checkout-adapter.js",
-        "src/lazada-checkout-line-bindings.js"
+        "src/lazada-checkout-line-bindings.js",
+        "src/basket-original.js"
       ],
       "reviewedDraftBehavior": "Immutable scenario plans compare exact basket totals. Shipping and discounts are counted once; one-item bulk quotes enter delivered ranks and mixed-basket totals remain separate.",
       "testDraftFiles": [
         "tests/shopping-workflow-draft.test.js",
         "tests/lazada-checkout-draft.test.js",
         "tests/checkout-scenarios.test.js",
+        "tests/case-checkout-replay.test.js",
+        "tests/basket-source-invalidations.test.js",
         "tests/e2e/basket-quotes.test.js"
       ],
-      "additionalDraftSourceFiles": [],
+      "additionalDraftSourceFiles": ["src/basket-original.js"],
       "operatorSteps": [],
       "draftReviewStatus": "statically-reviewed-draft",
       "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
@@ -651,15 +654,20 @@
       "draftSourceFiles": [
         "src/case-workflow.js",
         "src/workflow-operations.js",
-        "src/shopping-report.js"
+        "src/shopping-report.js",
+        "src/translation-catalog.js"
       ],
       "reviewedDraftBehavior": "Translation work remains source-bound and cached. Shopping rows retain reviewed English and original Vietnamese for title, description/specifications and commercial fields; stale title bindings fall back to originals.",
       "testDraftFiles": [
         "tests/shopping-workflow-draft.test.js",
         "tests/translation-quality.test.js",
+        "tests/translation-catalog.test.js",
         "tests/e2e/translation-catalog.test.js"
       ],
-      "additionalDraftSourceFiles": ["src/shopping-report.js"],
+      "additionalDraftSourceFiles": [
+        "src/shopping-report.js",
+        "src/translation-catalog.js"
+      ],
       "operatorSteps": [],
       "draftReviewStatus": "statically-reviewed-draft",
       "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
@@ -1292,12 +1300,15 @@
         "src/requirement-registry.js",
         "docs/drafts/acceptance-plan.md",
         "scripts/requirement-audit-gates.mjs",
-        "scripts/audit-case-requirements.mjs"
+        "scripts/audit-case-requirements.mjs",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js"
       ],
       "reviewedDraftBehavior": "Readiness distinguishes accepted software mechanics from missing production and all-market data; current source-bound inventory/manual review and real-layout acceptance remain mandatory.",
       "testDraftFiles": [
         "tests/requirement-audit-gates.test.js",
         "tests/requirement-coverage.test.js",
+        "tests/case-readiness-evidence.test.js",
         "tests/e2e/draft-workflow-interfaces.test.js",
         "tests/case-workflow-draft.test.js",
         "tests/e2e/verified-case.test.js"
@@ -1305,14 +1316,16 @@
       "additionalDraftSourceFiles": [
         "docs/drafts/acceptance-plan.md",
         "scripts/requirement-audit-gates.mjs",
-        "scripts/audit-case-requirements.mjs"
+        "scripts/audit-case-requirements.mjs",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js"
       ],
       "operatorSteps": [
         "Preserve completed source171b250 automated acceptance; complete current original-layout/inventory/specs/English/discounts/exact freight and live bot acceptance. Package owner configures npm trusted publishing for issue 32 before release."
       ],
       "draftReviewStatus": "statically-reviewed-draft",
       "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
-      "implementedBehavior": "Draft readiness combines exact inventory, source/manual review and external acceptance gates while returning false production/purchase/full-market flags.",
+      "implementedBehavior": "Readiness evaluates current source-bound captured inventory, exact quantity/destination prices, original bytes, manufacturer specs, all unit rates and reviewed cached English; whole-market and production acceptance remain separate.",
       "priorAcceptance": "missing",
       "priorAcceptanceEvidence": [
         "docs/acceptance/validation.json",
@@ -2157,10 +2170,45 @@
         "tests/archive-telemetry-redaction.test.js"
       ],
       "acceptanceRemaining": "Validate exact-host non-product exclusions and recursive URL/field redaction, rebuild and verify all public case conversions offline, confirm unchanged product facts and reports, and merge the reviewed fix."
+    },
+    {
+      "number": 45,
+      "state": "OPEN",
+      "title": "Replay cached checkout originals safely and evaluate readiness from current evidence",
+      "url": "https://github.com/konard/lazada-search/issues/45",
+      "requirementIds": [
+        "R009",
+        "R010",
+        "R011",
+        "R012",
+        "R017",
+        "R020",
+        "R022",
+        "R024",
+        "R037"
+      ],
+      "draftStatus": "offline-checkout-and-readiness-fix-under-validation",
+      "sourceFiles": [
+        "src/case-workflow.js",
+        "src/case-worklist.js",
+        "src/basket-original.js",
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "src/case-readiness.js",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js",
+        "src/translation-catalog.js",
+        "tests/case-checkout-replay.test.js",
+        "tests/basket-source-invalidations.test.js",
+        "tests/case-readiness-evidence.test.js",
+        "tests/translation-catalog.test.js"
+      ],
+      "acceptanceRemaining": "Validate all runtime/interface regressions, retain original CAPTCHA stop and private boundaries, verify offline original replay and dynamic acceptance, and merge the reviewed fix. Real catalog/factory/current freight evidence remains independently required."
     }
   ],
   "draftReview": "docs/drafts/draft-review.json",
   "draftCoverageComplete": true,
   "validationEvidence": "docs/acceptance/challenge-window-retention/validation.json",
-  "refreshedAt": "2026-10-13T05:47:52.938Z"
+  "refreshedAt": "2026-10-13T05:47:52.938Z",
+  "updatedAt": "2026-10-13T08:23:44.361Z"
 }

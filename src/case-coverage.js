@@ -3,6 +3,7 @@ import { sha256, listingKey } from './util.js';
 import { scopeAccountAudit } from './collection-scope.js';
 import { currentUnavailableListings } from './availability.js';
 import { catalogProducts } from './catalog-products.js';
+import { workflowSourceInvalidated } from './source-invalidation.js';
 
 function caseScope(application) {
   return `vn:chocolate-or-unflavoured-whey+strict-chocolate-ice-cream:${application.deliveryArea}`;
@@ -13,6 +14,7 @@ async function scopeFingerprint(application) {
     catalogProducts(application.store),
     ...[
       'offer',
+      'evidence',
       'discovery',
       'sku-inventory',
       'crawl',
@@ -20,6 +22,7 @@ async function scopeFingerprint(application) {
       'case-category-review',
       'case-inventory',
       'listing-availability',
+      'basket-quote',
     ].map((kind) => application.store.list(kind)),
   ]);
   return sha256(
@@ -65,28 +68,19 @@ async function original(application, evidenceId, sourceSha256) {
   if (
     !bytes ||
     sha256(bytes) !== sourceSha256 ||
-    descriptor.bytes !== bytes.length ||
-    evidence.invalidated ||
-    evidence.invalidatedAt
+    descriptor.bytes !== bytes.length
   ) {
     throw new Error(
       'Inventory/review original is missing, changed or invalidated'
     );
   }
   const invalidations = await application.store.list('invalidation');
+  const cache = await application.store.get(
+    'cache',
+    evidence.cacheId || evidenceId
+  );
   if (
-    invalidations.some(
-      (entry) =>
-        (entry.url === (evidence.url || evidence.sourceUrl) ||
-          entry.evidenceIds?.includes(evidenceId) ||
-          entry.cacheIds?.includes(evidenceId)) &&
-        (entry.invalidated === true ||
-          !Number.isFinite(Date.parse(entry.invalidatedAt)) ||
-          Date.parse(entry.invalidatedAt) >=
-            (typeof evidence.fetchedAt === 'number'
-              ? evidence.fetchedAt
-              : Date.parse(evidence.observedAt)))
-    )
+    workflowSourceInvalidated(evidence, cache ? [cache] : [], invalidations)
   ) {
     throw new Error('Inventory/review original requires recollection');
   }

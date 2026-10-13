@@ -4,7 +4,11 @@
   "case": {
     "market": "vn",
     "currency": "VND",
-    "deliveryArea": "Nha Trang"
+    "deliveryArea": "Nha Trang",
+    "categories": ["whey", "protein-powder", "chocolate-ice-cream"],
+    "purpose": "Compare captured selected SKU prices, manufacturer specifications and freight using reusable public evidence",
+    "captureMode": "public pages and redacted authenticated product captures",
+    "coverage": "incomplete; see docs/tables/README.md"
   },
   "kinds": {
     "availability-publication": {
@@ -59,27 +63,27 @@
     },
     "cache": {
       "records": 7151,
-      "sourceSha256": "0d24c4e90024915330fc61055d715ef0dfc3bb937f1903a16a328d9784744b75",
+      "sourceSha256": "1d892ac122c5b51d11e9d9b399e618df11317905130f74e1f8fa1d73ad7b987c",
       "json": {
-        "path": "records/cache.0d24c4e90024915330fc61055d715ef0dfc3bb937f1903a16a328d9784744b75.json.gz",
-        "sha256": "3ee8726c00cf0394f99dbd242ad334aa4aacdcf898781de6c941448b796fbe6a",
-        "contentSha256": "0d24c4e90024915330fc61055d715ef0dfc3bb937f1903a16a328d9784744b75",
+        "path": "records/cache.1d892ac122c5b51d11e9d9b399e618df11317905130f74e1f8fa1d73ad7b987c.json.gz",
+        "sha256": "934f2d50925b56cac28552ae7c3c38c00bab4f875f7a1556662ac39512690e35",
+        "contentSha256": "1d892ac122c5b51d11e9d9b399e618df11317905130f74e1f8fa1d73ad7b987c",
         "bytes": 46354543,
-        "compressedBytes": 8294025
+        "compressedBytes": 8294024
       },
       "lino": {
-        "path": "links/cache.e3c9eca761dc57467c6f6869cffca6b5d463b684b8f9d1832818b95b391c42cf.lino.gz",
-        "sha256": "9b11ad62d1b8c222327c1dca9a937843faba4be75e87c30cf85b2bd6a4122df9",
-        "contentSha256": "e3c9eca761dc57467c6f6869cffca6b5d463b684b8f9d1832818b95b391c42cf",
+        "path": "links/cache.a9245311eb7fa613deddccba96b30d5668d7d2d76c016baf6e78a0fd07fe6b6d.lino.gz",
+        "sha256": "cd4180e68a0223f2e084dc23153a2aec39aabc613bfbd09378cbe6b7fb8a93fe",
+        "contentSha256": "a9245311eb7fa613deddccba96b30d5668d7d2d76c016baf6e78a0fd07fe6b6d",
         "bytes": 53186887,
-        "compressedBytes": 8832786
+        "compressedBytes": 8832776
       },
       "binary": {
-        "path": "links/cache.62d68fcdd31ece43917dc2fd423d283b16b1c15416bdacfab50051f7f2c59d08.links.gz",
-        "sha256": "819e418f59055b90992d96314c708e141fbfccd9326833a8c7ae5114f2bb8f00",
-        "contentSha256": "62d68fcdd31ece43917dc2fd423d283b16b1c15416bdacfab50051f7f2c59d08",
+        "path": "links/cache.e2d580b031625e95e54769f9d492f2cb15fca9885f5acf9972d10dce1c84ae41.links.gz",
+        "sha256": "f34d3f824669a9b801ddbe68806d811f859e370d8076838dfeab2ea36782c7de",
+        "contentSha256": "e2d580b031625e95e54769f9d492f2cb15fca9885f5acf9972d10dce1c84ae41",
         "bytes": 91152028,
-        "compressedBytes": 21863786
+        "compressedBytes": 21863783
       }
     },
     "category-review": {
@@ -333,28 +337,28 @@
       }
     },
     "evidence": {
-      "records": 2750,
-      "sourceSha256": "45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530",
+      "records": 2752,
+      "sourceSha256": "35dcbb55b047a9ca57aaf487f76e156f47c503e9dab0065f18e5d53bb3a5cee0",
       "json": {
-        "path": "records/evidence.45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530.json.gz",
-        "sha256": "453377daf44cebd3d2893caa8c7a06a43e6192b11b0619ef4429c6d5ffac9828",
-        "contentSha256": "45658003f84154ad2e53cb8dab72bb518f0dbfe12835158674955fdbed495530",
-        "bytes": 2265288,
-        "compressedBytes": 387182
+        "path": "records/evidence.35dcbb55b047a9ca57aaf487f76e156f47c503e9dab0065f18e5d53bb3a5cee0.json.gz",
+        "sha256": "5d5138d6b7ad90cb7b6f8af764fba2b81774bbf2674a56ae1ac32e8fa790c83e",
+        "contentSha256": "35dcbb55b047a9ca57aaf487f76e156f47c503e9dab0065f18e5d53bb3a5cee0",
+        "bytes": 2266872,
+        "compressedBytes": 387640
       },
       "lino": {
-        "path": "links/evidence.2b60174dd514c6f7db4862cd198b163dd08fd78a19a03bff37daed7ed83ed590.lino.gz",
-        "sha256": "7006fc638541d3b3b575dcc0e8ceb598107fee82ebf47c3daad8f1e18a553e98",
-        "contentSha256": "2b60174dd514c6f7db4862cd198b163dd08fd78a19a03bff37daed7ed83ed590",
-        "bytes": 2452543,
-        "compressedBytes": 394048
+        "path": "links/evidence.b0a3a28c47673446cf43e8e3440150e7296ccbcfc546eb836442991f4f2b79ea.lino.gz",
+        "sha256": "231c6b83133746952c688ebc8e81d5f294f828d5eedb109072d994d17da5d734",
+        "contentSha256": "b0a3a28c47673446cf43e8e3440150e7296ccbcfc546eb836442991f4f2b79ea",
+        "bytes": 2454219,
+        "compressedBytes": 394510
       },
       "binary": {
-        "path": "links/evidence.76ce51b7bc6d697b56746784574ba8bcd5b504c402d1e71a66941920bf9e240e.links.gz",
-        "sha256": "f4ba8e9de2d4372263e9b71629cb950893f321a67cbaa951fcc9c5b9d42d5c78",
-        "contentSha256": "76ce51b7bc6d697b56746784574ba8bcd5b504c402d1e71a66941920bf9e240e",
-        "bytes": 5221197,
-        "compressedBytes": 637728
+        "path": "links/evidence.7bac42e0dd420a4fd58a5479725395452ffa72d89f164550501dd836a2a96e02.links.gz",
+        "sha256": "c318bf20178d561e6ab38a77f7eee30b0d092310a700efff2d1bef1d9f34e9ee",
+        "contentSha256": "7bac42e0dd420a4fd58a5479725395452ffa72d89f164550501dd836a2a96e02",
+        "bytes": 5225497,
+        "compressedBytes": 638388
       }
     },
     "extraction-audit": {
@@ -683,53 +687,53 @@
       }
     },
     "package-quantity-review": {
-      "records": 2,
-      "sourceSha256": "761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed",
+      "records": 4,
+      "sourceSha256": "1f80be94c5a1fd9530078f4419b647239cdf69d54edb2a8b98e0e042b5c61352",
       "json": {
-        "path": "records/package-quantity-review.761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed.json.gz",
-        "sha256": "4ad890d189b2648d3d3a20c1d512b4c7c2fc1f82c6fb51b3a237624a61229145",
-        "contentSha256": "761b7204e0bdcc0ab07c84ee1f402bf640fa0e4adb033220b38a80f6f26a01ed",
-        "bytes": 3096,
-        "compressedBytes": 1103
+        "path": "records/package-quantity-review.1f80be94c5a1fd9530078f4419b647239cdf69d54edb2a8b98e0e042b5c61352.json.gz",
+        "sha256": "0060ff3bfe062ef51d7c809c94e7d53ed6aa59fc9182debc2ac83aabb973ec34",
+        "contentSha256": "1f80be94c5a1fd9530078f4419b647239cdf69d54edb2a8b98e0e042b5c61352",
+        "bytes": 6130,
+        "compressedBytes": 1926
       },
       "lino": {
-        "path": "links/package-quantity-review.834b1efaa44cc9b665bf4f186688ff44f4a350c74009aea38003e6e47f7c9d43.lino.gz",
-        "sha256": "f8597dc67e2ad2fb8aa8f0ac9a52a6639aa6fd3a402ea3bf074c7ab3c2ffbeeb",
-        "contentSha256": "834b1efaa44cc9b665bf4f186688ff44f4a350c74009aea38003e6e47f7c9d43",
-        "bytes": 3333,
-        "compressedBytes": 1106
+        "path": "links/package-quantity-review.7058eb49a5b70e32128adaf06bdcb0b184f51fc70cf0e8e2e4eb4c799c0fb92e.lino.gz",
+        "sha256": "510652cfafab7cf8438bf07015b6d59ed7d736239449b2f783efc6824606a70f",
+        "contentSha256": "7058eb49a5b70e32128adaf06bdcb0b184f51fc70cf0e8e2e4eb4c799c0fb92e",
+        "bytes": 6627,
+        "compressedBytes": 1924
       },
       "binary": {
-        "path": "links/package-quantity-review.dd982bc9438c79bdbca980c86f1be6fffd9c4989bec09ca4b5a394c213d535d8.links.gz",
-        "sha256": "42628feebb9ddf6a91bd54d4be966b8adbc52e6e26f73062b90fc1020d913f86",
-        "contentSha256": "dd982bc9438c79bdbca980c86f1be6fffd9c4989bec09ca4b5a394c213d535d8",
-        "bytes": 6806,
-        "compressedBytes": 1690
+        "path": "links/package-quantity-review.eca5ac3b4a1bde121f35e9bceeeeb8676ea623e8ef9695b384cdf25ba385dff7.links.gz",
+        "sha256": "02542828340a30efcd8f570731e81215688d21f8d58c6dbc27d0c7d7237be31c",
+        "contentSha256": "eca5ac3b4a1bde121f35e9bceeeeb8676ea623e8ef9695b384cdf25ba385dff7",
+        "bytes": 13702,
+        "compressedBytes": 2841
       }
     },
     "product": {
       "records": 415,
-      "sourceSha256": "1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec",
+      "sourceSha256": "176248506c7689bb6247f9a04ec75c094bdb33e7cebce4982960cca93ec6bae7",
       "json": {
-        "path": "records/product.1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec.json.gz",
-        "sha256": "b21379763975577788edffdd1be10accff5ecdd1189e7c57aa4066009d64e81b",
-        "contentSha256": "1c63b48fabe89fd920ccc4666945ad1d2c3ec4f2d56a7870e52b6fd30b2f32ec",
-        "bytes": 6461227,
-        "compressedBytes": 548476
+        "path": "records/product.176248506c7689bb6247f9a04ec75c094bdb33e7cebce4982960cca93ec6bae7.json.gz",
+        "sha256": "6f6fbc490a6a73091cedfa6c61aae913dd0291a25cc0ddcec3478919c30ef240",
+        "contentSha256": "176248506c7689bb6247f9a04ec75c094bdb33e7cebce4982960cca93ec6bae7",
+        "bytes": 6461535,
+        "compressedBytes": 548593
       },
       "lino": {
-        "path": "links/product.008a6f41e98bd998ad887d14d55c1e003412d1f8f135a0a869502ad27db60953.lino.gz",
-        "sha256": "09a78997acc3f24fd25fdf75f5ba13ad8ce9873cbcf43f1f10c717839050025f",
-        "contentSha256": "008a6f41e98bd998ad887d14d55c1e003412d1f8f135a0a869502ad27db60953",
-        "bytes": 7765100,
-        "compressedBytes": 580186
+        "path": "links/product.02a0265601a0ec93f0aa616f9f1d0f89bf09af366c8bdba938aefcef43cbc1b2.lino.gz",
+        "sha256": "2cb2aa16edf486bbd19a5fb759507eece010f2fb87d20a793f1a131979d152d0",
+        "contentSha256": "02a0265601a0ec93f0aa616f9f1d0f89bf09af366c8bdba938aefcef43cbc1b2",
+        "bytes": 7765420,
+        "compressedBytes": 580301
       },
       "binary": {
-        "path": "links/product.7400f9b574cc771aa77b5a3a197acf3f718721ff051ca31f9dc686dc9b626b30.links.gz",
-        "sha256": "b15903f5e11efc6c67b263254c82dc545b8bb80f112b47056e03ed133525ef8d",
-        "contentSha256": "7400f9b574cc771aa77b5a3a197acf3f718721ff051ca31f9dc686dc9b626b30",
-        "bytes": 13943246,
-        "compressedBytes": 3166680
+        "path": "links/product.9ffa5d0f6efcbf08af62955d76ba9b239cc0bbc5e9492c9e29d63beb025e7575.links.gz",
+        "sha256": "94348222ee1766400970ada901aba0885279239590fa36e31b867d5c9968e676",
+        "contentSha256": "9ffa5d0f6efcbf08af62955d76ba9b239cc0bbc5e9492c9e29d63beb025e7575",
+        "bytes": 13944105,
+        "compressedBytes": 3167348
       }
     },
     "promotion-code-source": {
@@ -759,27 +763,27 @@
     },
     "promotion-page": {
       "records": 21,
-      "sourceSha256": "8951c9ceaf00a1caafceb4dbe05f1f6ad1f725e66cdb37a07d6b657d1beba320",
+      "sourceSha256": "c947b8f718e74480251443df5d0bcceda8ae249e5d99c25ea9395bb69347694f",
       "json": {
-        "path": "records/promotion-page.8951c9ceaf00a1caafceb4dbe05f1f6ad1f725e66cdb37a07d6b657d1beba320.json.gz",
-        "sha256": "5bcc04f7e419e15ab4693e1367dac699fa64b6aab2427265066c0a2e7306bdc0",
-        "contentSha256": "8951c9ceaf00a1caafceb4dbe05f1f6ad1f725e66cdb37a07d6b657d1beba320",
+        "path": "records/promotion-page.c947b8f718e74480251443df5d0bcceda8ae249e5d99c25ea9395bb69347694f.json.gz",
+        "sha256": "c56b644ecc00da726f8aeb21be67e86ef1784fcfef0f190a4363d3d9ef70c3c9",
+        "contentSha256": "c947b8f718e74480251443df5d0bcceda8ae249e5d99c25ea9395bb69347694f",
         "bytes": 16989717,
-        "compressedBytes": 1071649
+        "compressedBytes": 1071644
       },
       "lino": {
-        "path": "links/promotion-page.0ae4ac1b3378b7d6947679651b775ada5796c13eaacc0777372eca7a4acc9e31.lino.gz",
-        "sha256": "c586889720c12ec0634c0338b8dca29500875588fc8dc82af3d0ca24352554ad",
-        "contentSha256": "0ae4ac1b3378b7d6947679651b775ada5796c13eaacc0777372eca7a4acc9e31",
+        "path": "links/promotion-page.b54b72d7240b01aa862c6ee3844180ec710be77151875b45b8ba2e95839782cd.lino.gz",
+        "sha256": "bd8c33b10d04ae5cea95516ffa981d9aa74d1ce099146415162d08d9fbafc635",
+        "contentSha256": "b54b72d7240b01aa862c6ee3844180ec710be77151875b45b8ba2e95839782cd",
         "bytes": 18441947,
-        "compressedBytes": 1091983
+        "compressedBytes": 1091987
       },
       "binary": {
-        "path": "links/promotion-page.1ccbcb9b05c19f8f21dbbcb8693cc70dd723b8806bd70731fe79db3c041cadcd.links.gz",
-        "sha256": "a7c382832e8e4a0525c309d5d040732f1152dc683f48e4a1739d28750032771e",
-        "contentSha256": "1ccbcb9b05c19f8f21dbbcb8693cc70dd723b8806bd70731fe79db3c041cadcd",
+        "path": "links/promotion-page.d0fa0ac7ed5a4074c7b2bcff089dedc830ef5e272a8e6ad3a25496583908314e.links.gz",
+        "sha256": "e53ad235d900cf3b2a51e8e73d0779eb88de1c13a120cc08a1944be6212ad447",
+        "contentSha256": "d0fa0ac7ed5a4074c7b2bcff089dedc830ef5e272a8e6ad3a25496583908314e",
         "bytes": 22367623,
-        "compressedBytes": 3182405
+        "compressedBytes": 3182401
       }
     },
     "publication": {
@@ -1905,12 +1909,12 @@
       "bytes": 689146,
       "compressedBytes": 666422
     },
-    "1a5157b1c1dd342f7edb1719e1d75447daed74e40d2e5a58f5929a52b5d39033": {
-      "path": "blobs/1a/1a5157b1c1dd342f7edb1719e1d75447daed74e40d2e5a58f5929a52b5d39033.gz",
-      "sha256": "2c725bb22ec2fd2fc704c692c621b9b4ac5ce4ee9c1612c1bad5fbf5599e3cef",
-      "contentSha256": "1a5157b1c1dd342f7edb1719e1d75447daed74e40d2e5a58f5929a52b5d39033",
-      "bytes": 301063,
-      "compressedBytes": 76753
+    "41593d0c5cd845d234025c9b9c4671e880f8ca9c3925ea3da7d38c9a7145153c": {
+      "path": "blobs/41/41593d0c5cd845d234025c9b9c4671e880f8ca9c3925ea3da7d38c9a7145153c.gz",
+      "sha256": "00dfd5818b585b378d6659d2f96dc76873be55b3da1269925d486df0406269bd",
+      "contentSha256": "41593d0c5cd845d234025c9b9c4671e880f8ca9c3925ea3da7d38c9a7145153c",
+      "bytes": 301003,
+      "compressedBytes": 76754
     },
     "9c99786ddd7bddfd0f0cb1cf994d9d797d41947efa7b774caf61a085db88fca4": {
       "path": "blobs/9c/9c99786ddd7bddfd0f0cb1cf994d9d797d41947efa7b774caf61a085db88fca4.gz",
@@ -1919,12 +1923,12 @@
       "bytes": 793035,
       "compressedBytes": 769702
     },
-    "e54db83740b82c65c71cfa69cd9e1b2e382f97dda804b316bdf3f243d4315138": {
-      "path": "blobs/e5/e54db83740b82c65c71cfa69cd9e1b2e382f97dda804b316bdf3f243d4315138.gz",
-      "sha256": "47e0954da56a38290cf164bdcd75a19efaec5188d6c1a275644215ea2d97ff60",
-      "contentSha256": "e54db83740b82c65c71cfa69cd9e1b2e382f97dda804b316bdf3f243d4315138",
-      "bytes": 294662,
-      "compressedBytes": 74544
+    "143a7fd89c6d482f99922d248a650819886a64c3114607116ee5c59474f20c79": {
+      "path": "blobs/14/143a7fd89c6d482f99922d248a650819886a64c3114607116ee5c59474f20c79.gz",
+      "sha256": "753d3bce1fe7a967a97b79e91c044496a53a3465331cb4d9c92f2d4d0ba9e822",
+      "contentSha256": "143a7fd89c6d482f99922d248a650819886a64c3114607116ee5c59474f20c79",
+      "bytes": 294592,
+      "compressedBytes": 74543
     },
     "d7022b6cdf39087ab430cfb98e43a29642ded5b32ff187cc28114ec7202a0804": {
       "path": "blobs/d7/d7022b6cdf39087ab430cfb98e43a29642ded5b32ff187cc28114ec7202a0804.gz",
@@ -43681,12 +43685,12 @@
       "bytes": 346663,
       "compressedBytes": 81267
     },
-    "008325b8ad9841a6505edddfdb0dc5dd84e7046739bce537c09296080cc58588": {
-      "path": "blobs/00/008325b8ad9841a6505edddfdb0dc5dd84e7046739bce537c09296080cc58588.gz",
-      "sha256": "48d63ccb6969d9e7860f44c9a4c5ba6ccf3f5a5847ac23834d918b442ac97066",
-      "contentSha256": "008325b8ad9841a6505edddfdb0dc5dd84e7046739bce537c09296080cc58588",
-      "bytes": 214559,
-      "compressedBytes": 52648
+    "a35da6a8fcb4913d88972d7255e19fdf52e96c9eb22ab906a7b93179adc444ef": {
+      "path": "blobs/a3/a35da6a8fcb4913d88972d7255e19fdf52e96c9eb22ab906a7b93179adc444ef.gz",
+      "sha256": "3b3cdac5bbda0781b5d361eb5a1c568ba003805850d573802319445e7fd0b02a",
+      "contentSha256": "a35da6a8fcb4913d88972d7255e19fdf52e96c9eb22ab906a7b93179adc444ef",
+      "bytes": 214487,
+      "compressedBytes": 52637
     },
     "ec5b72d4bae29920d77cad099743105bf5926a7ef698803c46740ff090463afb": {
       "path": "blobs/ec/ec5b72d4bae29920d77cad099743105bf5926a7ef698803c46740ff090463afb.gz",
@@ -43835,12 +43839,12 @@
       "bytes": 305276,
       "compressedBytes": 79239
     },
-    "5c83ebe0f410b37b3246a20168390af128b55ac6833fed560fa8cef79a90b153": {
-      "path": "blobs/5c/5c83ebe0f410b37b3246a20168390af128b55ac6833fed560fa8cef79a90b153.gz",
-      "sha256": "79b5636fa96e745a0a2ef5df4a35314c4ebe19cde52352055ddbf49359d56539",
-      "contentSha256": "5c83ebe0f410b37b3246a20168390af128b55ac6833fed560fa8cef79a90b153",
-      "bytes": 281468,
-      "compressedBytes": 73536
+    "ca31c1140c8e9c9935ef3d37e5b15b094180ccfea967a57cad1e0548c331eeef": {
+      "path": "blobs/ca/ca31c1140c8e9c9935ef3d37e5b15b094180ccfea967a57cad1e0548c331eeef.gz",
+      "sha256": "643d9d34830956c56c501b06b2e1e7b73129fc2add764b9fc52badb0c71d8ca1",
+      "contentSha256": "ca31c1140c8e9c9935ef3d37e5b15b094180ccfea967a57cad1e0548c331eeef",
+      "bytes": 281396,
+      "compressedBytes": 73525
     },
     "e94a6578ef738b2f5360f0b8ad5b5aaf7449b7d4dafac884e94cb443ff7d9bbd": {
       "path": "blobs/e9/e94a6578ef738b2f5360f0b8ad5b5aaf7449b7d4dafac884e94cb443ff7d9bbd.gz",
@@ -44962,11 +44966,11 @@
       "bytes": 339970,
       "compressedBytes": 77669
     },
-    "0b9fe08ff585d5fe93e0647129a6aa35ed8f57a2678fba3157254bac93bab21a": {
-      "path": "blobs/0b/0b9fe08ff585d5fe93e0647129a6aa35ed8f57a2678fba3157254bac93bab21a.gz",
-      "sha256": "b18e48a233623c1e7df7f015895cc4df0347309cd75ef188d654dd043d6281eb",
-      "contentSha256": "0b9fe08ff585d5fe93e0647129a6aa35ed8f57a2678fba3157254bac93bab21a",
-      "bytes": 282919,
+    "67dca07039a7b96d42389963d4126be822766b4bdd38beb28a7fd090d0fe11ef": {
+      "path": "blobs/67/67dca07039a7b96d42389963d4126be822766b4bdd38beb28a7fd090d0fe11ef.gz",
+      "sha256": "2457917ffda56084889eb16bdee3b15c34a389df45461e3df9e8c543ceaf5f59",
+      "contentSha256": "67dca07039a7b96d42389963d4126be822766b4bdd38beb28a7fd090d0fe11ef",
+      "bytes": 282859,
       "compressedBytes": 73268
     },
     "23477522070b3d85002ae801e9988888bfba89025c86cbe053ec769c11b00b68": {
@@ -45067,12 +45071,12 @@
       "bytes": 938788,
       "compressedBytes": 906052
     },
-    "57940db2ea775cd080f9477040bfba144245cdf5bda3368851c1876c98ccc3bd": {
-      "path": "blobs/57/57940db2ea775cd080f9477040bfba144245cdf5bda3368851c1876c98ccc3bd.gz",
-      "sha256": "24034c8f2904ffd17a2e803d083897c6c3bdd7155c1f69d6d8a4c2c8decdbf33",
-      "contentSha256": "57940db2ea775cd080f9477040bfba144245cdf5bda3368851c1876c98ccc3bd",
-      "bytes": 285649,
-      "compressedBytes": 73259
+    "a8a2a4b0b7c714b34146888ecfbf9fee488b896be5f5b443695c841de2e54563": {
+      "path": "blobs/a8/a8a2a4b0b7c714b34146888ecfbf9fee488b896be5f5b443695c841de2e54563.gz",
+      "sha256": "10dd65bfbfde2a67c2dab80eedfbfb2c12f29698ad05084c2e741783f6b3119c",
+      "contentSha256": "a8a2a4b0b7c714b34146888ecfbf9fee488b896be5f5b443695c841de2e54563",
+      "bytes": 285579,
+      "compressedBytes": 73258
     },
     "985509b825f7705084037a4f242dd47aac2f23b73af1d5c4f4e6ec375286498c": {
       "path": "blobs/98/985509b825f7705084037a4f242dd47aac2f23b73af1d5c4f4e6ec375286498c.gz",
@@ -45620,12 +45624,12 @@
       "bytes": 1541026,
       "compressedBytes": 1510287
     },
-    "9684890924e46b36a38766ae85e945b761611f1bbe47b976a973926ea9686e42": {
-      "path": "blobs/96/9684890924e46b36a38766ae85e945b761611f1bbe47b976a973926ea9686e42.gz",
-      "sha256": "5e2ec3a4418d899a108a962f51c3500190d02207183098b99e72dcba3562a7db",
-      "contentSha256": "9684890924e46b36a38766ae85e945b761611f1bbe47b976a973926ea9686e42",
-      "bytes": 911859,
-      "compressedBytes": 115190
+    "1e694eb435f6a47172800770127f81aea439339f32878a9b2345697ed17947f1": {
+      "path": "blobs/1e/1e694eb435f6a47172800770127f81aea439339f32878a9b2345697ed17947f1.gz",
+      "sha256": "f0d7aa2c5d432a9c8a838ea283fdcf3c8f59aaa557344b756544d8fe691590ac",
+      "contentSha256": "1e694eb435f6a47172800770127f81aea439339f32878a9b2345697ed17947f1",
+      "bytes": 911795,
+      "compressedBytes": 115191
     },
     "f55010d9eaa8573daeb84d8bc4e1272494f680d685605ce9892060d99437f291": {
       "path": "blobs/f5/f55010d9eaa8573daeb84d8bc4e1272494f680d685605ce9892060d99437f291.gz",
@@ -45781,12 +45785,12 @@
       "bytes": 904247,
       "compressedBytes": 869335
     },
-    "48f0b71f8a8382928007f706c9eca5627f0f980db192334d359760116fee5e1f": {
-      "path": "blobs/48/48f0b71f8a8382928007f706c9eca5627f0f980db192334d359760116fee5e1f.gz",
-      "sha256": "8cead9e97bdb8079a31896e153268b459396bb93a165d885ed54252c7911c429",
-      "contentSha256": "48f0b71f8a8382928007f706c9eca5627f0f980db192334d359760116fee5e1f",
-      "bytes": 1878457,
-      "compressedBytes": 125143
+    "b90be6c74d9e50ff4e70d47de0dac809cf2cd8b3f80d7abd7aa0ed0a2aa8baa7": {
+      "path": "blobs/b9/b90be6c74d9e50ff4e70d47de0dac809cf2cd8b3f80d7abd7aa0ed0a2aa8baa7.gz",
+      "sha256": "e383ef718151f921aeef04a2ea934dc7bfa36804ec8f1d277d2eb2b9e3fe6584",
+      "contentSha256": "b90be6c74d9e50ff4e70d47de0dac809cf2cd8b3f80d7abd7aa0ed0a2aa8baa7",
+      "bytes": 1877911,
+      "compressedBytes": 125136
     },
     "86c38f60c79b1a12148355afd8e1e6675c531fa96cee5d6c74177e56233f7114": {
       "path": "blobs/86/86c38f60c79b1a12148355afd8e1e6675c531fa96cee5d6c74177e56233f7114.gz",
@@ -45802,12 +45806,12 @@
       "bytes": 3377,
       "compressedBytes": 1316
     },
-    "cdf81893606363edb3c960b097d791f12800891c9279ea9abfdd83e3ff3aabce": {
-      "path": "blobs/cd/cdf81893606363edb3c960b097d791f12800891c9279ea9abfdd83e3ff3aabce.gz",
-      "sha256": "ba37a8fa52d3398044a4f2cdddefc48eb840050d87af08a68cf90b7cab322d1f",
-      "contentSha256": "cdf81893606363edb3c960b097d791f12800891c9279ea9abfdd83e3ff3aabce",
-      "bytes": 608367,
-      "compressedBytes": 101296
+    "29648efd79ab15cc50d9e715859dffc7a4767a9b591dfc7efdafd04b584a41c7": {
+      "path": "blobs/29/29648efd79ab15cc50d9e715859dffc7a4767a9b591dfc7efdafd04b584a41c7.gz",
+      "sha256": "21264bec7f77bb266b92f58dd64d205d2a4988a7424043c8f9bf013b64203ee4",
+      "contentSha256": "29648efd79ab15cc50d9e715859dffc7a4767a9b591dfc7efdafd04b584a41c7",
+      "bytes": 608339,
+      "compressedBytes": 101297
     },
     "95c31e968fd8266a456b1f220ef0252dfa17c7a150a30973676e8ab24ab4ac32": {
       "path": "blobs/95/95c31e968fd8266a456b1f220ef0252dfa17c7a150a30973676e8ab24ab4ac32.gz",
@@ -49701,12 +49705,12 @@
       "bytes": 254102,
       "compressedBytes": 14399
     },
-    "84c431f147a9888a0f61811c48e4804c049a9aad48a121ab45ffde021842a02b": {
-      "path": "blobs/84/84c431f147a9888a0f61811c48e4804c049a9aad48a121ab45ffde021842a02b.gz",
-      "sha256": "13cb2505e0fdab10c880ad633286fbbf2ad8e435a4438345f17ea88c2d89ad27",
-      "contentSha256": "84c431f147a9888a0f61811c48e4804c049a9aad48a121ab45ffde021842a02b",
-      "bytes": 113459,
-      "compressedBytes": 15550
+    "6dc5f772881d9b04edc6be1442395d8410f0e6ac0a669f8cdbd529cf66d7d4fc": {
+      "path": "blobs/6d/6dc5f772881d9b04edc6be1442395d8410f0e6ac0a669f8cdbd529cf66d7d4fc.gz",
+      "sha256": "302f93b98be0596f688d1347a66de67bb9652f3d0c73bcecbce44da34104c625",
+      "contentSha256": "6dc5f772881d9b04edc6be1442395d8410f0e6ac0a669f8cdbd529cf66d7d4fc",
+      "bytes": 113449,
+      "compressedBytes": 15531
     },
     "b9a50fbb1c020074fb662a28f118d97259a9a5bcabd9e774c7bdf1ece7419559": {
       "path": "blobs/b9/b9a50fbb1c020074fb662a28f118d97259a9a5bcabd9e774c7bdf1ece7419559.gz",
@@ -49764,12 +49768,12 @@
       "bytes": 29156,
       "compressedBytes": 5792
     },
-    "9092a4a9d18aa54069c747c75244b1ed2c7ae54b49c138c541beb33344fe5d84": {
-      "path": "blobs/90/9092a4a9d18aa54069c747c75244b1ed2c7ae54b49c138c541beb33344fe5d84.gz",
-      "sha256": "ac7c84f9f4395d4b17c884bbcece802341c48eeb3d4771f56bb912ba479b1cfb",
-      "contentSha256": "9092a4a9d18aa54069c747c75244b1ed2c7ae54b49c138c541beb33344fe5d84",
-      "bytes": 360020,
-      "compressedBytes": 46146
+    "f8bfec852b4bcab3a35dac76af5f56f01cd6bab135a0fb5d4976af6ea93f138c": {
+      "path": "blobs/f8/f8bfec852b4bcab3a35dac76af5f56f01cd6bab135a0fb5d4976af6ea93f138c.gz",
+      "sha256": "086e34bd9ff96f3e3a00c6fc473e28684e83f17a150ccd4b04ab56389de75385",
+      "contentSha256": "f8bfec852b4bcab3a35dac76af5f56f01cd6bab135a0fb5d4976af6ea93f138c",
+      "bytes": 360000,
+      "compressedBytes": 46148
     },
     "22036b52128032de7dea0a2a8ef5d746fda97452ad76d94732dd647d2c9ff1b5": {
       "path": "blobs/22/22036b52128032de7dea0a2a8ef5d746fda97452ad76d94732dd647d2c9ff1b5.gz",
@@ -50093,12 +50097,12 @@
       "bytes": 176639,
       "compressedBytes": 11508
     },
-    "d5736b66a1c795e3ad7183e09be94770235a59ca3c6df05165a4ff404d292a4d": {
-      "path": "blobs/d5/d5736b66a1c795e3ad7183e09be94770235a59ca3c6df05165a4ff404d292a4d.gz",
-      "sha256": "13b1ed5ac0212463b7d88dc2589a540a876ff8ea51fd5da01620038e46a5a970",
-      "contentSha256": "d5736b66a1c795e3ad7183e09be94770235a59ca3c6df05165a4ff404d292a4d",
-      "bytes": 359123,
-      "compressedBytes": 46538
+    "2cc7cdc1130189d6b216c02e71a8a87b21b66c0f8c5657aeadfd72057cada0f9": {
+      "path": "blobs/2c/2cc7cdc1130189d6b216c02e71a8a87b21b66c0f8c5657aeadfd72057cada0f9.gz",
+      "sha256": "0b276c5a062dc9b078aa0755274a69bbb18787b3cd7b2b219a207d05afecfb3e",
+      "contentSha256": "2cc7cdc1130189d6b216c02e71a8a87b21b66c0f8c5657aeadfd72057cada0f9",
+      "bytes": 359103,
+      "compressedBytes": 46541
     },
     "2e94e17ecb93789c16ade508ffc92ffc0713c984c0a6d08a9a4db069b5937b3e": {
       "path": "blobs/2e/2e94e17ecb93789c16ade508ffc92ffc0713c984c0a6d08a9a4db069b5937b3e.gz",
@@ -50114,12 +50118,12 @@
       "bytes": 282057,
       "compressedBytes": 23390
     },
-    "643e00e8bd2b46896b3e1e327bc01df3e2154c2dd408a83c9897a82550845148": {
-      "path": "blobs/64/643e00e8bd2b46896b3e1e327bc01df3e2154c2dd408a83c9897a82550845148.gz",
-      "sha256": "a1d9085f356ed7c12c996d325a42bf018f74f9252902a52ff0f1c05b6dc9567d",
-      "contentSha256": "643e00e8bd2b46896b3e1e327bc01df3e2154c2dd408a83c9897a82550845148",
-      "bytes": 358625,
-      "compressedBytes": 46129
+    "9d869d40ce633e43f36929a08c35935da9095661e9e928edd3014afc9fd60327": {
+      "path": "blobs/9d/9d869d40ce633e43f36929a08c35935da9095661e9e928edd3014afc9fd60327.gz",
+      "sha256": "abc1c970970e8473e51d8109461b21b8e08e4689bde3c1f061c6072b5d9ce6cf",
+      "contentSha256": "9d869d40ce633e43f36929a08c35935da9095661e9e928edd3014afc9fd60327",
+      "bytes": 358605,
+      "compressedBytes": 46131
     },
     "516c97f4c88d35a8aa501bf1e4e082c6ef54b5e530984030b0eca833fdfcdee9": {
       "path": "blobs/51/516c97f4c88d35a8aa501bf1e4e082c6ef54b5e530984030b0eca833fdfcdee9.gz",
@@ -50292,6 +50296,11 @@
   },
   "sourceRewrites": [
     {
+      "originalSha256": "008325b8ad9841a6505edddfdb0dc5dd84e7046739bce537c09296080cc58588",
+      "archivedSha256": "a35da6a8fcb4913d88972d7255e19fdf52e96c9eb22ab906a7b93179adc444ef",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
       "originalSha256": "00908a5867389c79c6443af826e1e8be6f06d14fe6e25b7f94b000341f15c9b3",
       "archivedSha256": "35fc5bb8d4d30123279e1102e846c171eb0c3727150017ef47b379105d3a69ce",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50329,6 +50338,11 @@
     {
       "originalSha256": "09c8bd7a00d9813db9b493b9873cdfd19aeb39ab44c8b17db29c13caef4c636c",
       "archivedSha256": "97319ad8e36caf6295055ea63fe6dca9d89c5e354f364a19ac76b4c383e9984c",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "0b9fe08ff585d5fe93e0647129a6aa35ed8f57a2678fba3157254bac93bab21a",
+      "archivedSha256": "67dca07039a7b96d42389963d4126be822766b4bdd38beb28a7fd090d0fe11ef",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50402,8 +50416,8 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "1aca457fdebf72e8c5dd188b0e95c92aab926976343941668be53ffb7d96e969",
-      "archivedSha256": "e54db83740b82c65c71cfa69cd9e1b2e382f97dda804b316bdf3f243d4315138",
+      "originalSha256": "1a5157b1c1dd342f7edb1719e1d75447daed74e40d2e5a58f5929a52b5d39033",
+      "archivedSha256": "41593d0c5cd845d234025c9b9c4671e880f8ca9c3925ea3da7d38c9a7145153c",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50492,11 +50506,6 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "3301719ed570d780d8840dbeadfbe39f24b93d7b6aa7647caa62c8bd0d8a35c9",
-      "archivedSha256": "643e00e8bd2b46896b3e1e327bc01df3e2154c2dd408a83c9897a82550845148",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "34901ab05d5f77e3e927eaaf5c2a79f2851cd279815afba60fa4acc6fd6f5efd",
       "archivedSha256": "cda74a851b304a8829a81251c908576526f5ab9dc40e11a522a98af32f95ed9c",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50537,11 +50546,6 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "3dccd8bcde77bc53d43c07557bd2294ac3cafd4377b8d45c69a7ae2ae5272b84",
-      "archivedSha256": "d5736b66a1c795e3ad7183e09be94770235a59ca3c6df05165a4ff404d292a4d",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "3df6c1010e67c78802fc31ecc8f15fa56316b9225fddaf29d6eda6e5f5a9212a",
       "archivedSha256": "5b1be37483064c4a2feddaef9c108e764fd39e50d8f6b3bc42c8ed39b2c48b43",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50564,6 +50568,11 @@
     {
       "originalSha256": "4711eca14e653811ae84adb8a98490586dadd53970e6161114e02958a385d613",
       "archivedSha256": "49b24f274660545ea8b1f1e43c305af49da5871c4866c74e973418ab2932c052",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "48f0b71f8a8382928007f706c9eca5627f0f980db192334d359760116fee5e1f",
+      "archivedSha256": "b90be6c74d9e50ff4e70d47de0dac809cf2cd8b3f80d7abd7aa0ed0a2aa8baa7",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50617,6 +50626,11 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
+      "originalSha256": "57940db2ea775cd080f9477040bfba144245cdf5bda3368851c1876c98ccc3bd",
+      "archivedSha256": "a8a2a4b0b7c714b34146888ecfbf9fee488b896be5f5b443695c841de2e54563",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
       "originalSha256": "59d8c05601d9735c1cdbbdbb2138f850dce82a2f048ef4c1284fbe16eb090950",
       "archivedSha256": "5fb22f7002274f322a68c9f8f2192f08720dab355407b3f10619be4753d0a31e",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50637,13 +50651,13 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "5ccd75c3b7fe54674f38ae38acd0b56afb601c343af1da479b2004e36b58bad3",
-      "archivedSha256": "34d41ed0c498587e85f0d0437b9806dbb282ff020fa81363657d36041168ed09",
+      "originalSha256": "5c83ebe0f410b37b3246a20168390af128b55ac6833fed560fa8cef79a90b153",
+      "archivedSha256": "ca31c1140c8e9c9935ef3d37e5b15b094180ccfea967a57cad1e0548c331eeef",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "5e363b93c30202f8f8a9452432793f5fa3aa357e6cecd70210eef1e9b76a6cdd",
-      "archivedSha256": "008325b8ad9841a6505edddfdb0dc5dd84e7046739bce537c09296080cc58588",
+      "originalSha256": "5ccd75c3b7fe54674f38ae38acd0b56afb601c343af1da479b2004e36b58bad3",
+      "archivedSha256": "34d41ed0c498587e85f0d0437b9806dbb282ff020fa81363657d36041168ed09",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50657,13 +50671,13 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
-      "archivedSha256": "38b7b78fcb8cc47d263b211e8a9c9ccfebe6022f1dcd7ba7590b2903646c970b",
+      "originalSha256": "643e00e8bd2b46896b3e1e327bc01df3e2154c2dd408a83c9897a82550845148",
+      "archivedSha256": "9d869d40ce633e43f36929a08c35935da9095661e9e928edd3014afc9fd60327",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "680f2a3292bcff93f40e8e9821339e688f43a725159d08d70b666f99c570d352",
-      "archivedSha256": "9092a4a9d18aa54069c747c75244b1ed2c7ae54b49c138c541beb33344fe5d84",
+      "originalSha256": "65c101df5bc60b97dc31c3e0228c79c11472fa8337b8a54031b6a82f41493b0a",
+      "archivedSha256": "38b7b78fcb8cc47d263b211e8a9c9ccfebe6022f1dcd7ba7590b2903646c970b",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50782,11 +50796,6 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "822203b8c717a50bf1c7fe0492bf3d8a15931c902e3e82229f7d50a235b98d2e",
-      "archivedSha256": "5c83ebe0f410b37b3246a20168390af128b55ac6833fed560fa8cef79a90b153",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "822e1f1aaebc29ad07d08cd887b0e8c9c9dfe6b3cdf9cb7c2acfdd783c4bd0e7",
       "archivedSha256": "e4dab21c150809e4c1b036161d2ff34ba77ad7a336096badd82c9bb88453b0e8",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50799,6 +50808,11 @@
     {
       "originalSha256": "849f9c87fa209128834b92af651597462be78bb81a297fa3b62fdad0005be275",
       "archivedSha256": "55b0a7a48c586a51c7be8c7d6f0cd0cb132cdcfad3e6e241577a5773ef9aee90",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "84c431f147a9888a0f61811c48e4804c049a9aad48a121ab45ffde021842a02b",
+      "archivedSha256": "6dc5f772881d9b04edc6be1442395d8410f0e6ac0a669f8cdbd529cf66d7d4fc",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50852,6 +50866,11 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
+      "originalSha256": "9092a4a9d18aa54069c747c75244b1ed2c7ae54b49c138c541beb33344fe5d84",
+      "archivedSha256": "f8bfec852b4bcab3a35dac76af5f56f01cd6bab135a0fb5d4976af6ea93f138c",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
       "originalSha256": "9268bcb7503e1ccd268a34c58030e8a0bc89adff1f1a0b7af675fdfcaa9f85bc",
       "archivedSha256": "93a3a52a388d8b505146eda4047d565cf7a13b4f1115ce66e28f0b3a1395f2d6",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50887,6 +50906,11 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
+      "originalSha256": "9684890924e46b36a38766ae85e945b761611f1bbe47b976a973926ea9686e42",
+      "archivedSha256": "1e694eb435f6a47172800770127f81aea439339f32878a9b2345697ed17947f1",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
       "originalSha256": "97d1ddfe28c9d68f2ed67f4becfd73167a3d6828d3eada62c1a3e1bfbcd5b962",
       "archivedSha256": "06f0ea680a40ab115bca153c16a329f2cbb5631ddad6316b4bdbe4de6671ad26",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -50899,11 +50923,6 @@
     {
       "originalSha256": "99764ed1a7cf88fb5dcad7e80c0eec81f87f6f91bb09257fb77ac7be4a6e929d",
       "archivedSha256": "1ecbb68ee83965550d2b3261b50064d44ab41a232107be5030926c59a51482e9",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
-      "originalSha256": "9ae80a57d4fc5c70275a6857cd26cd6a87938080244ca2c88600c52220a87e6c",
-      "archivedSha256": "0b9fe08ff585d5fe93e0647129a6aa35ed8f57a2678fba3157254bac93bab21a",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -50992,11 +51011,6 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "ad488c896f2d215c052c23d9c40ef93b918840e80c02af35802a1dfd9055fb91",
-      "archivedSha256": "48f0b71f8a8382928007f706c9eca5627f0f980db192334d359760116fee5e1f",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "adb8a3650299fc4e3f93d4b601e576bdc2d54dee6e1ee48e2a35d11610d14d43",
       "archivedSha256": "b4471aa1fc71469aff9ea0292ab00eea84815b6e882153ee46f86cd49ef93cb3",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -51009,11 +51023,6 @@
     {
       "originalSha256": "aee3fbbcb10bb2166a5be82b693839673e195e91e7f4a554beaf1dc37d5e3bf3",
       "archivedSha256": "9c5a61090472795d2e4d24ca82751e441cad978142dc00ec0f95278e07ddf668",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
-      "originalSha256": "b093ec091e17fd6ef2f1276efcb81ccc167a75604da336a4ffe7fefc2127b6ee",
-      "archivedSha256": "84c431f147a9888a0f61811c48e4804c049a9aad48a121ab45ffde021842a02b",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -51137,18 +51146,8 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "c80d2ed8f1b33e136f43767bfdb517e18e1ef7a15cc0aa4f10047abde1925991",
-      "archivedSha256": "9684890924e46b36a38766ae85e945b761611f1bbe47b976a973926ea9686e42",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "c87076f86b915d3cd42b300b7dd13013540ad6edf2f34e8d12ee125d8c56a1b9",
       "archivedSha256": "994b787359b0c51d3bad194cb94b6a5652935db47946055302a5a80ca47d7e17",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
-      "originalSha256": "c9ec3209baaf769f1db1ea972b608ee515670cebc0d334280fcfe926394f2eed",
-      "archivedSha256": "57940db2ea775cd080f9477040bfba144245cdf5bda3368851c1876c98ccc3bd",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -51159,6 +51158,11 @@
     {
       "originalSha256": "ccefa7691538286980daf112f2412406db65ddc2a31d43a4cec7afe3b7da0dae",
       "archivedSha256": "6eb925a93611dac024e1c6bfb6b8d3aca356da02f2db8f7023c3bfea1780e7c1",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "cdf81893606363edb3c960b097d791f12800891c9279ea9abfdd83e3ff3aabce",
+      "archivedSha256": "29648efd79ab15cc50d9e715859dffc7a4767a9b591dfc7efdafd04b584a41c7",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -51184,6 +51188,11 @@
     {
       "originalSha256": "d3110338a350cc0ae90bba3f83cc6de7456707f48b6d6d362d3a8f55804c66f3",
       "archivedSha256": "961604f556d9a6b9446dc9733bba3fe1139a9e7b6e329e3e2a597cd6f025c852",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "d5736b66a1c795e3ad7183e09be94770235a59ca3c6df05165a4ff404d292a4d",
+      "archivedSha256": "2cc7cdc1130189d6b216c02e71a8a87b21b66c0f8c5657aeadfd72057cada0f9",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -51227,11 +51236,6 @@
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
-      "originalSha256": "de2360386c6a2d2d3362b288e0ec9d5a7ee682fc6405816a1e8f5a23bbc0f5dc",
-      "archivedSha256": "1a5157b1c1dd342f7edb1719e1d75447daed74e40d2e5a58f5929a52b5d39033",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
       "originalSha256": "e12381cf941474f5a94b0c8b81cfb4d29f5a4f7f48e29ff48030177811fd9594",
       "archivedSha256": "4b565d32924fa88c8010a83edb9ad9e87787bdb9892caeaa7e311401a021de60",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
@@ -51249,6 +51253,11 @@
     {
       "originalSha256": "e4477c90463da52e22abad7329edf6d7390207274d66f36816f89eb10f0ae42e",
       "archivedSha256": "1b88fd7f61bf4446a7452ea92595b3df0b90a99c05c3554cf65e94a2fe14a092",
+      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
+    },
+    {
+      "originalSha256": "e54db83740b82c65c71cfa69cd9e1b2e382f97dda804b316bdf3f243d4315138",
+      "archivedSha256": "143a7fd89c6d482f99922d248a650819886a64c3114607116ee5c59474f20c79",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {
@@ -51314,11 +51323,6 @@
     {
       "originalSha256": "f1f3c0955f418990526b09af3e934986f4cb21fc873fbd05f0d062c87eb1ce24",
       "archivedSha256": "d85849791cd9ea1ac0e815500864a8a339b162c6d1a211daf811e35621844e3f",
-      "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
-    },
-    {
-      "originalSha256": "f2c03007e0703b43dda9294aeb170a03f0a268769e9f9c55c1f58fb2d480dee1",
-      "archivedSha256": "cdf81893606363edb3c960b097d791f12800891c9279ea9abfdd83e3ff3aabce",
       "reason": "Remove private account/session fields and tracking/security URL parameters; remove executable HTML scripts while retaining product DOM and structured SKU data"
     },
     {

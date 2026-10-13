@@ -104,18 +104,21 @@ function isTarget(product) {
 }
 
 function deliveryTask(offer, product, quantity, definition, quotes) {
-  const currentCheckout = quotes.some(
-    (entry) =>
+  const currentCheckout = quotes.some((entry) => {
+    const age = Date.now() - Date.parse(entry.quote.observedAt);
+    return (
       entry.metrics &&
       entry.quote.lines.length === 1 &&
       entry.quote.deliveryArea === definition.deliveryArea &&
       entry.quote.lines[0].sku === offer.sku &&
       entry.quote.lines[0].quantity === quantity &&
-      Date.now() - Date.parse(entry.quote.observedAt) <=
-        definition.maxPriceAgeMs &&
+      Number.isFinite(age) &&
+      age >= 0 &&
+      age <= definition.maxPriceAgeMs &&
       (product.category !== 'chocolate-ice-cream' ||
         entry.quote.coldChainConfirmed === true)
-  );
+    );
+  });
   if (currentCheckout) {
     return [];
   }

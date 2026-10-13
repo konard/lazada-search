@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-13T08:42:00.071551+00:00",
+  "scope": "Offline synthetic retained evidence/cache/inventory/manufacturer/basket replay. No browser, websites, profile/account data, network or collection-stop clearing. No claim of actual product-market purchase acceptance.",
+  "files": {
+    "src/source-invalidation.js": "add1696c4d8d6ae6908258532fb2c2cac45212cf720d62272b2bb5f971a54f99",
+    "src/case-coverage.js": "b8129742e47e223676f8d0aec19311fbbf5d3f6c91718a778f2cca1e583c0f25",
+    "src/basket-original.js": "ff5d40923e2c6349f9be48fc2c3116bd8f6e41788d7080f2ac0f62e42381d4df",
+    "tests/source-invalidation.test.js": "59fbfe1b46cff51c2fad35812d6d186e75f392c60da3061054cce03c7997b4e8",
+    "tests/case-original-invalidation.test.js": "49263276d8e2e841fc25262ee53f8e053befcf63f13f017b19c75603d1c89956"
+  },
+  "tests": {
+    "newPredicateCases": 21,
+    "newCaseOriginalCases": 7,
+    "affectedEachRuntime": 139,
+    "node": {
+      "passed": 139,
+      "failed": 0
+    },
+    "bun": {
+      "passed": 139,
+      "failed": 0
+    },
+    "deno": {
+      "passed": 139,
+      "failed": 0,
+      "cachedOnly": true,
+      "frozen": true
+    }
+  },
+  "commands": {
+    "node": "node --test --test-concurrency=4 tests/source-invalidation.test.js tests/case-original-invalidation.test.js tests/basket-source-invalidations.test.js tests/case-workflow-draft.test.js tests/manufacturer-source-validity.test.js tests/manufacturer-workflow-draft.test.js tests/case-checkout-replay.test.js",
+    "bun": "bun test tests/source-invalidation.test.js tests/case-original-invalidation.test.js tests/basket-source-invalidations.test.js tests/case-workflow-draft.test.js tests/manufacturer-source-validity.test.js tests/manufacturer-workflow-draft.test.js tests/case-checkout-replay.test.js",
+    "deno": "deno test --allow-all --no-check --cached-only --frozen tests/source-invalidation.test.js tests/case-original-invalidation.test.js tests/basket-source-invalidations.test.js tests/case-workflow-draft.test.js tests/manufacturer-source-validity.test.js tests/manufacturer-workflow-draft.test.js tests/case-checkout-replay.test.js"
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/lazada-shared-invalidation-node-final.tap",
+      "sha256": "cd2b12014df9e8b5f9039fb835cc716809d0fb70c3a1c4abdad8f284f4c02c69"
+    },
+    "bun": {
+      "path": "/private/tmp/lazada-shared-invalidation-bun-final.log",
+      "sha256": "be36e8ebd7ea442d2d0854fb60b21934b174ef0eee333e2f2935bdf41544286b"
+    },
+    "deno": {
+      "path": "/private/tmp/lazada-shared-invalidation-deno-final.log",
+      "sha256": "f3ee0a1f07051d90ff75e0b0be1fe6ecc2fde56abfb14e212c2bb78588c0636f"
+    },
+    "lint": {
+      "path": "/private/tmp/lazada-shared-invalidation-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format": {
+      "path": "/private/tmp/lazada-shared-invalidation-format-final.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    }
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "format": "passed",
+  "semantics": [
+    "Explicit inactive/cleared and valid resolved invalidations allow unchanged exact original replay",
+    "Bound missing/malformed active invalidation or malformed resolution times fail closed",
+    "Ordinary cache metadata without invalidation fields remains valid",
+    "Original/sourceUrl/finalUrl and exact evidence/cache/source-ID bindings share one predicate",
+    "Case inventory original keeps byte/SHA verification; valid resolution no longer permanently blocks imports/reviews",
+    "Aggregate case fingerprint includes retained evidence descriptor hashes; another descriptor swap revokes prior manual review",
+    "Basket invalidation uses the same shared predicate; no original/quote auto-removal or collection resume"
+  ]
+}

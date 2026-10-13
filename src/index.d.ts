@@ -1337,7 +1337,7 @@ export declare function translateCatalog(
 ): Promise<CatalogTranslationJob>;
 export declare function translationStatus(
   application: LazadaSearch,
-  options?: { jobId?: string }
+  options?: { jobId?: string; verifyCurrentCatalog?: boolean }
 ): Promise<Record<string, unknown>>;
 export declare const OPERATION_NAMES: string[];
 export declare function executeOperation(
@@ -1418,6 +1418,7 @@ export declare class LazadaSearch {
   ): Promise<CatalogTranslationJob>;
   translationStatus(options?: {
     jobId?: string;
+    verifyCurrentCatalog?: boolean;
   }): Promise<Record<string, unknown>>;
   importRecords(records: {
     products?: Product[];

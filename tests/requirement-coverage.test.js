@@ -67,7 +67,7 @@ test('GitHub issue coverage retains every recorded issue, current source paths a
     registry.githubIssues
       .filter((row) => row.state === 'OPEN')
       .map((row) => row.number),
-    [3, 14, 32, 36, 42, 43, 44]
+    [3, 14, 32, 36, 42, 43, 44, 45]
   );
 });
 

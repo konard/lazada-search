@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-13T08:56:48.439956+00:00",
+  "scope": "Final local software/interface and offline public-case acceptance; no live market or owner publication acceptance",
+  "local": {
+    "unit": {
+      "passed": 1609,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "e2e": {
+      "fullRunPassed": 84,
+      "fullRunSkippedNativeBinaryUnconfigured": 1,
+      "nativeConfiguredRerunPassed": 1,
+      "combinedDistinctPassed": 85,
+      "failed": 0,
+      "unresolvedSkips": 0
+    },
+    "readinessGates": {
+      "Node": 30,
+      "Bun": 30,
+      "Deno": 30
+    },
+    "checkoutAndInvalidationAffectedSuites": {
+      "Node": 139,
+      "Bun": 139,
+      "Deno": 139
+    },
+    "strictTypesPassed": true,
+    "lintFormatDuplicationPassed": true,
+    "duplicationPercent": 6.19
+  },
+  "publicArchive": {
+    "records": 32873,
+    "blobs": 7040,
+    "verified": true,
+    "repeatedRebuiltArtifacts": 0,
+    "repeatedReusedArtifacts": 7160,
+    "sourceDownloads": 0
+  },
+  "browserCommander": {
+    "installed": "0.31.2",
+    "latestRegistryVersion": "0.31.2"
+  },
+  "newRegressionCases": 77,
+  "currentRequirementMapping": {
+    "requirements": 49,
+    "githubIssues": 44,
+    "incompleteDataOrLiveOutcomes": 20
+  },
+  "exactExistingVolumeReviewsAdded": 2,
+  "newMissingDenominatorsProven": 0,
+  "sourceCollectionStopCleared": false,
+  "allRequirementsDelivered": false,
+  "artifacts": [
+    {
+      "path": "docs/acceptance/offline-completion-progress/full-unit-final.tap",
+      "sha256": "45b50131f05eb76780ae0caa2a230cf2fcbe3e7628af9b693c4a6706d7959419",
+      "bytes": 397075
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/full-e2e-final.tap",
+      "sha256": "9874df895de2600a3fae3a85b0dc8dfdf45758d625beba1a17a3750a10e38db9",
+      "bytes": 22797
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/native-store-final.tap",
+      "sha256": "dbfd6c1deb1232fbe38ffdf06597cba84d1408a5512fb9f291cf2465a65a33c4",
+      "bytes": 380
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/readiness-node-final.tap",
+      "sha256": "84a43cb7ec2ed4f512aecefedd2ddf0b8f9a0346e4b9355bcdcad4c4ff31f5b8",
+      "bytes": 7766
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/readiness-bun-final.log",
+      "sha256": "f1d1a29afff85154ddb3c859538e7bc53d6b7e96649f0c63f084bc323890a4f7",
+      "bytes": 3512
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/readiness-deno-final.log",
+      "sha256": "c2b1c2860e9b49a9ae36894bea858e67f36d93f9c76076abef038e5f8b2b2d86",
+      "bytes": 4053
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/quality-final.log",
+      "sha256": "b07dfb12d4f1ce6072be680cba7036bd7626f5775e2f45dacd5cc210495c1a91",
+      "bytes": 150698
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/quality-initial-failure.log",
+      "sha256": "abab8231ef5e827b299cc1425acde06eded4022cfcbc292ab5726d8dfed9889b",
+      "bytes": 498
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/public-types-final.log",
+      "sha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
+      "bytes": 77
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/archive-rebuild.log",
+      "sha256": "8c228dba3f20706dad62580bba9ac29e9a3aca8ab37f938d557baeb85ca90b97",
+      "bytes": 163
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/archive-repeat.log",
+      "sha256": "641add3fbbf81bf8a9873f7205cce6e51bba06e7acfeed587948adb2e5dc9ac2",
+      "bytes": 162
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/archive-verify.log",
+      "sha256": "d12fa4ccf36ba261a9e4297e18ba131ede45f75c3bb3ae6fcbc72f4f3d590103",
+      "bytes": 75
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/volume-replay-final.log",
+      "sha256": "3b45040e1a4bafe22a1cefc48e0e5e22a34a61140e67a81ce0d265d6ee2d2206",
+      "bytes": 811
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/whey-independent-audit.json",
+      "sha256": "f0fedaa81beb7f6c8d98c080853d05c3475d8d393004b9c5419c1c7e91c3cb61",
+      "bytes": 51514
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/latest-requirement-audit.log",
+      "sha256": "97a13a2a331a709ca1788f122f4bd8b4f4d45d0525e62a831274b8856820a0c6",
+      "bytes": 436
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/tested-source-manifest.json",
+      "sha256": "b86dea7f5b19a7d78bd68798f40aa2f837f4b2ea68860f71d56659940e6527de",
+      "bytes": 111284
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/requirement-progress.json",
+      "sha256": "ec70dd91961691a6b5c4c57bf3729b4e81b50d8c89bba8a30f42bdd5b7c283e5",
+      "bytes": 9202
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/captured-readiness.json",
+      "sha256": "6f0c14b9f0a990c2d9058bc015e1f50358fe487aef7233b3b3524449d61714d8",
+      "bytes": 8440024
+    }
+  ]
+}

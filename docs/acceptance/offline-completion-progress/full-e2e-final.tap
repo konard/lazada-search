@@ -1,0 +1,525 @@
+TAP version 13
+# Subtest: phone sign-in requests one code, saves session cookies, and merges private CLI data after restart
+ok 1 - phone sign-in requests one code, saves session cookies, and merges private CLI data after restart
+  ---
+  duration_ms: 15358.495709
+  type: 'test'
+  ...
+# Subtest: hidden logout templates never prove a session, and verification challenges stop phone requests
+ok 2 - hidden logout templates never prove a session, and verification challenges stop phone requests
+  ---
+  duration_ms: 7043.312666
+  type: 'test'
+  ...
+# Subtest: SMS sign-in uses its own channel and preserves leading zeros in verification codes
+ok 3 - SMS sign-in uses its own channel and preserves leading zeros in verification codes
+  ---
+  duration_ms: 7451.274458
+  type: 'test'
+  ...
+# Subtest: real public evidence survives repository export and fresh library, CLI and HTTP replay without downloads
+ok 4 - real public evidence survives repository export and fresh library, CLI and HTTP replay without downloads
+  ---
+  duration_ms: 4630.741708
+  type: 'test'
+  ...
+# Subtest: library, CLI, HTTP and Telegram use the same source-bound basket quote and preserve original offer prices
+ok 5 - library, CLI, HTTP and Telegram use the same source-bound basket quote and preserve original offer prices
+  ---
+  duration_ms: 1876.137292
+  type: 'test'
+  ...
+# Subtest: a real browser reads stable checkout totals without navigating or clicking and CAPTCHA stops the capture
+ok 6 - a real browser reads stable checkout totals without navigating or clicking and CAPTCHA stops the capture
+  ---
+  duration_ms: 11362.624625
+  type: 'test'
+  ...
+# Subtest: CAPTCHA persists a hard stop across library, CLI, HTTP, Telegram and collector restarts
+ok 7 - CAPTCHA persists a hard stop across library, CLI, HTTP, Telegram and collector restarts
+  ---
+  duration_ms: 8430.925959
+  type: 'test'
+  ...
+# Subtest: a challenge appearing during loading stops before SKU selection or scrolling
+ok 8 - a challenge appearing during loading stops before SKU selection or scrolling
+  ---
+  duration_ms: 7581.473875
+  type: 'test'
+  ...
+# Subtest: a late browser challenge stops an image or manufacturer download before its loader starts
+ok 9 - a late browser challenge stops an image or manufacturer download before its loader starts
+  ---
+  duration_ms: 10763.783709
+  type: 'test'
+  ...
+# Subtest: a clear marketplace page cannot resume a different manufacturer origin challenge
+ok 10 - a clear marketplace page cannot resume a different manufacturer origin challenge
+  ---
+  duration_ms: 1138.790916
+  type: 'test'
+  ...
+# Subtest: a stalled browser navigation is cancelled and cannot poison the next capture
+ok 11 - a stalled browser navigation is cancelled and cannot poison the next capture
+  ---
+  duration_ms: 10995.167709
+  type: 'test'
+  ...
+# Subtest: real browser, offline CLI and Telegram retain price-sorted category pagination, every package size, and redirect protection
+ok 12 - real browser, offline CLI and Telegram retain price-sorted category pagination, every package size, and redirect protection
+  ---
+  duration_ms: 71080.32775
+  type: 'test'
+  ...
+# Subtest: native challenge target survives close, independent client restart and idle; resume selects it behind another tab without navigation
+ok 13 - native challenge target survives close, independent client restart and idle; resume selects it behind another tab without navigation
+  ---
+  duration_ms: 11888.801125
+  type: 'test'
+  ...
+# Subtest: manual closure of the challenge target makes resume fail without creating any page or window and preserves the active stop
+ok 14 - manual closure of the challenge target makes resume fail without creating any page or window and preserves the active stop
+  ---
+  duration_ms: 3599.573417
+  type: 'test'
+  ...
+# Subtest: attached collector retains its own challenged tab when closing the client and leaves the owned browser untouched
+ok 15 - attached collector retains its own challenged tab when closing the client and leaves the owned browser untouched
+  ---
+  duration_ms: 2658.868375
+  type: 'test'
+  ...
+# Subtest: capture timeout detecting an actual native challenge preserves that same target and browser beyond idle
+ok 16 - capture timeout detecting an actual native challenge preserves that same target and browser beyond idle
+  ---
+  duration_ms: 5936.9815
+  type: 'test'
+  ...
+# Subtest: startup publication readers retain the exact challenge target while metadata writes are held partially complete
+ok 17 - startup publication readers retain the exact challenge target while metadata writes are held partially complete
+  ---
+  duration_ms: 3746.92675
+  type: 'test'
+  ...
+# Subtest: active native challenge survives supervisor SIGKILL and resume replaces only that supervisor while retaining the exact foreground-independent target
+ok 18 - active native challenge survives supervisor SIGKILL and resume replaces only that supervisor while retaining the exact foreground-independent target
+  ---
+  duration_ms: 6474.320917
+  type: 'test'
+  ...
+# Subtest: active native challenge survives supervisor SIGTERM and resume replaces only that supervisor while retaining the exact foreground-independent target
+ok 19 - active native challenge survives supervisor SIGTERM and resume replaces only that supervisor while retaining the exact foreground-independent target
+  ---
+  duration_ms: 7995.038209
+  type: 'test'
+  ...
+# Subtest: active native challenge survives supervisor SIGINT and resume replaces only that supervisor while retaining the exact foreground-independent target
+ok 20 - active native challenge survives supervisor SIGINT and resume replaces only that supervisor while retaining the exact foreground-independent target
+  ---
+  duration_ms: 6859.595166
+  type: 'test'
+  ...
+# Subtest: a pre-started collector on another clear same-origin target cannot resume the original challenge or change any targets/navigation
+ok 21 - a pre-started collector on another clear same-origin target cannot resume the original challenge or change any targets/navigation
+  ---
+  duration_ms: 2557.852625
+  type: 'test'
+  ...
+# Subtest: a second registered same-origin challenged tab cannot replace the saved original target through phone-login retention
+ok 22 - a second registered same-origin challenged tab cannot replace the saved original target through phone-login retention
+  ---
+  duration_ms: 2373.31175
+  type: 'test'
+  ...
+# Subtest: real Chrome missing default persistentWindow retains a challenge on close and permits normal close only after explicit fixture resume
+ok 23 - real Chrome missing default persistentWindow retains a challenge on close and permits normal close only after explicit fixture resume
+  ---
+  duration_ms: 7572.138917
+  type: 'test'
+  ...
+# Subtest: real Chrome explicit false persistentWindow retains a challenge on close and permits normal close only after explicit fixture resume
+ok 24 - real Chrome explicit false persistentWindow retains a challenge on close and permits normal close only after explicit fixture resume
+  ---
+  duration_ms: 5292.2195
+  type: 'test'
+  ...
+# Subtest: explicit persistentWindow false closes an unchallenged real Chrome supervisor and browser normally
+ok 25 - explicit persistentWindow false closes an unchallenged real Chrome supervisor and browser normally
+  ---
+  duration_ms: 1727.029917
+  type: 'test'
+  ...
+# Subtest: real CLI, local HTTP and mock Telegram share durable prepared scenario validation and offline replay without marketplace calls
+ok 26 - real CLI, local HTTP and mock Telegram share durable prepared scenario validation and offline replay without marketplace calls
+  ---
+  duration_ms: 1109.082834
+  type: 'test'
+  ...
+# Subtest: Browser Commander selects Nha Trang, caches the exact one-package estimate and records delivery restrictions
+ok 27 - Browser Commander selects Nha Trang, caches the exact one-package estimate and records delivery restrictions
+  ---
+  duration_ms: 38514.074209
+  type: 'test'
+  ...
+# Subtest: product-learning notice resolves before selecting the exact SKU; unknown dialogs block extraction
+ok 28 - product-learning notice resolves before selecting the exact SKU; unknown dialogs block extraction
+  ---
+  duration_ms: 17677.694833
+  type: 'test'
+  ...
+# Subtest: readiness gates are identical in the library, CLI, HTTP and Telegram while a challenge prevents requests
+ok 29 - readiness gates are identical in the library, CLI, HTTP and Telegram while a challenge prevents requests
+  ---
+  duration_ms: 664.014917
+  type: 'test'
+  ...
+# Subtest: library, executable CLI, HTTP and Telegram preserve identical target prices/units with zero website requests
+ok 30 - library, executable CLI, HTTP and Telegram preserve identical target prices/units with zero website requests
+  ---
+  duration_ms: 650.046
+  type: 'test'
+  ...
+# Subtest: case plan, persisted status and requirement registry are shared across every interface
+ok 31 - case plan, persisted status and requirement registry are shared across every interface
+  ---
+  duration_ms: 812.705667
+  type: 'test'
+  ...
+# Subtest: structured interfaces reject credential destination overrides and persistent CAPTCHA blocks online runs
+ok 32 - structured interfaces reject credential destination overrides and persistent CAPTCHA blocks online runs
+  ---
+  duration_ms: 375.74725
+  type: 'test'
+  ...
+# Subtest: cached case batches resume across library, CLI, HTTP and Telegram with exact inventory and manual-review originals
+ok 33 - cached case batches resume across library, CLI, HTTP and Telegram with exact inventory and manual-review originals
+  ---
+  duration_ms: 2760.428458
+  type: 'test'
+  ...
+# Subtest: strict SKU flavours survive offline associative storage, CLI, HTTP and Telegram without admitting cheaper other flavours
+ok 34 - strict SKU flavours survive offline associative storage, CLI, HTTP and Telegram without admitting cheaper other flavours
+  ---
+  duration_ms: 642.213291
+  type: 'test'
+  ...
+# Subtest: genuine quantity-only review survives library, actual CLI, HTTP, Telegram and restart without inventing nutrition or Nha Trang freight
+ok 35 - genuine quantity-only review survives library, actual CLI, HTTP, Telegram and restart without inventing nutrition or Nha Trang freight
+  ---
+  duration_ms: 1185.602333
+  type: 'test'
+  ...
+# Subtest: quantity review rejects unsupported nutrients, wrong immutable digests and unattached originals before writing
+    # Subtest: unsupported nutrient
+    ok 1 - unsupported nutrient
+      ---
+      duration_ms: 4.537292
+      type: 'test'
+      ...
+    # Subtest: wrong label digest
+    ok 2 - wrong label digest
+      ---
+      duration_ms: 34.054292
+      type: 'test'
+      ...
+    # Subtest: wrong listing digest
+    ok 3 - wrong listing digest
+      ---
+      duration_ms: 4.786792
+      type: 'test'
+      ...
+    # Subtest: unattached label
+    ok 4 - unattached label
+      ---
+      duration_ms: 36.18425
+      type: 'test'
+      ...
+    # Subtest: nonpositive food amount
+    ok 5 - nonpositive food amount
+      ---
+      duration_ms: 2.108917
+      type: 'test'
+      ...
+    # Subtest: wrong mass unit
+    ok 6 - wrong mass unit
+      ---
+      duration_ms: 2.41125
+      type: 'test'
+      ...
+    1..6
+ok 36 - quantity review rejects unsupported nutrients, wrong immutable digests and unattached originals before writing
+  ---
+  duration_ms: 550.558208
+  type: 'test'
+  ...
+# Subtest: changed or invalidated original label bytes withhold reviewed mass while independent marketplace volume survives
+    # Subtest: corrupt bytes
+    ok 1 - corrupt bytes
+      ---
+      duration_ms: 1064.779625
+      type: 'test'
+      ...
+    # Subtest: missing bytes
+    ok 2 - missing bytes
+      ---
+      duration_ms: 1225.724042
+      type: 'test'
+      ...
+    # Subtest: source invalidation
+    ok 3 - source invalidation
+      ---
+      duration_ms: 1177.274583
+      type: 'test'
+      ...
+    1..3
+ok 37 - changed or invalidated original label bytes withhold reviewed mass while independent marketplace volume survives
+  ---
+  duration_ms: 3468.524083
+  type: 'test'
+  ...
+# Subtest: a new selected capture identity or observation cannot inherit an older quantity review
+    # Subtest: new observation
+    ok 1 - new observation
+      ---
+      duration_ms: 1149.612459
+      type: 'test'
+      ...
+    # Subtest: new listing digest
+    ok 2 - new listing digest
+      ---
+      duration_ms: 1323.59575
+      type: 'test'
+      ...
+    # Subtest: different SKU
+    ok 3 - different SKU
+      ---
+      duration_ms: 970.273417
+      type: 'test'
+      ...
+    1..3
+ok 38 - a new selected capture identity or observation cannot inherit an older quantity review
+  ---
+  duration_ms: 3444.156417
+  type: 'test'
+  ...
+# Subtest: carton arithmetic and strict core filtering survive library, real CLI, HTTP and local Telegram comparisons offline
+ok 39 - carton arithmetic and strict core filtering survive library, real CLI, HTTP and local Telegram comparisons offline
+  ---
+  duration_ms: 1136.759833
+  type: 'test'
+  ...
+# Subtest: actual saved 24-bottle page replays without downloads and retains its unavailable Nha Trang delivery
+ok 40 - actual saved 24-bottle page replays without downloads and retains its unavailable Nha Trang delivery
+  ---
+  duration_ms: 909.510667
+  type: 'test'
+  ...
+# Subtest: package and per100ml protein ranks agree across library, CLI, HTTP and Telegram without invented mass
+ok 41 - package and per100ml protein ranks agree across library, CLI, HTTP and Telegram without invented mass
+  ---
+  duration_ms: 519.8165
+  type: 'test'
+  ...
+# Subtest: Aice manual white-core quarantine survives recapture while all SKU prices and official source proof remain stored
+ok 42 - Aice manual white-core quarantine survives recapture while all SKU prices and official source proof remain stored
+  ---
+  duration_ms: 1577.402959
+  type: 'test'
+  ...
+# Subtest: closing the real collector drains an in-flight routed image before returning and admits no late response writers
+ok 43 - closing the real collector drains an in-flight routed image before returning and admits no late response writers
+  ---
+  duration_ms: 1574.224167
+  type: 'test'
+  ...
+# Subtest: real Browser Commander image routes manually fetch, pace and retain exact redirects; cached browser fulfillment preserves original source identity
+ok 44 - real Browser Commander image routes manually fetch, pace and retain exact redirects; cached browser fulfillment preserves original source identity
+  ---
+  duration_ms: 9419.518625
+  type: 'test'
+  ...
+# Subtest: real Browser Commander rejects an intermediate redirect challenge before requesting the final image and persists its exact original
+ok 45 - real Browser Commander rejects an intermediate redirect challenge before requesting the final image and persists its exact original
+  ---
+  duration_ms: 7055.609959
+  type: 'test'
+  ...
+# Subtest: real link-cli native doublets preserve the graph, cache verified shards and repair corruption
+ok 46 - real link-cli native doublets preserve the graph, cache verified shards and repair corruption # SKIP
+  ---
+  duration_ms: 0.404959
+  type: 'test'
+  ...
+# Subtest: delayed product and detail loaders settle before recording price, promotions and specifications
+ok 47 - delayed product and detail loaders settle before recording price, promotions and specifications
+  ---
+  duration_ms: 9749.165
+  type: 'test'
+  ...
+# Subtest: a removed product is cached as unavailable and the next product still loads
+ok 48 - a removed product is cached as unavailable and the next product still loads
+  ---
+  duration_ms: 16055.5535
+  type: 'test'
+  ...
+# Subtest: animated search scrolling keeps the final products and pager visible above the footer
+ok 49 - animated search scrolling keeps the final products and pager visible above the footer
+  ---
+  duration_ms: 40418.407375
+  type: 'test'
+  ...
+# Subtest: nonsemantic Lazada footer classes stop scrolling before clipped footer text while retaining the final product row and pager
+ok 50 - nonsemantic Lazada footer classes stop scrolling before clipped footer text while retaining the final product row and pager
+  ---
+  duration_ms: 21928.36775
+  type: 'test'
+  ...
+# Subtest: an orphaned supervisor is replaced while retaining its browser and page
+ok 51 - an orphaned supervisor is replaced while retaining its browser and page
+  ---
+  duration_ms: 7834.404708
+  type: 'test'
+  ...
+# Subtest: one browser and tab survive client restarts, reject concurrent use, and close after inactivity
+ok 52 - one browser and tab survive client restarts, reject concurrent use, and close after inactivity
+  ---
+  duration_ms: 8745.541333
+  type: 'test'
+  ...
+# Subtest: collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calculator
+ok 53 - collect -> OCR -> verify -> quote -> restart -> CLI -> Telegram -> calculator
+  ---
+  duration_ms: 43014.824042
+  type: 'test'
+  ...
+# Subtest: generic Scitec-style listing replaces the wrong default with Socola/Không Bình, waits for SKU/price and reuses the corrected capture
+ok 54 - generic Scitec-style listing replaces the wrong default with Socola/Không Bình, waits for SKU/price and reuses the corrected capture
+  ---
+  duration_ms: 14335.176292
+  type: 'test'
+  ...
+# Subtest: actual Chromium prepared checkout binds original quantities and stops on changed live controls, dialogs and CAPTCHA
+ok 55 - actual Chromium prepared checkout binds original quantities and stops on changed live controls, dialogs and CAPTCHA
+  ---
+  duration_ms: 5438.303709
+  type: 'test'
+  ...
+# (node:68510) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual intercepted Chromium quantity, voucher and payment events produce a reconciled validated original without submitting
+ok 56 - actual intercepted Chromium quantity, voucher and payment events produce a reconciled validated original without submitting
+  ---
+  duration_ms: 5314.526
+  type: 'test'
+  ...
+# Subtest: keyword redirect to a tag page waits for delayed cards before certifying its visible terminal page
+ok 57 - keyword redirect to a tag page waits for delayed cards before certifying its visible terminal page
+  ---
+  duration_ms: 12648.444542
+  type: 'test'
+  ...
+# Subtest: Telegram delivers every comparison row, refuses incomplete audits and isolates unauthorized chats
+ok 58 - Telegram delivers every comparison row, refuses incomplete audits and isolates unauthorized chats
+  ---
+  duration_ms: 642.246333
+  type: 'test'
+  ...
+# Subtest: exact historical originals replay through library, CLI, HTTP and authorized Telegram while the CAPTCHA stop remains active
+ok 59 - exact historical originals replay through library, CLI, HTTP and authorized Telegram while the CAPTCHA stop remains active
+  ---
+  duration_ms: 1217.34875
+  type: 'test'
+  ...
+# Subtest: bounded catalog jobs resume through library, real CLI, HTTP and Telegram and replay offline
+ok 60 - bounded catalog jobs resume through library, real CLI, HTTP and Telegram and replay offline
+  ---
+  duration_ms: 1076.945458
+  type: 'test'
+  ...
+# Subtest: same-origin HTTP operation handling rejects remote origins, filesystem commands and oversized bodies
+ok 61 - same-origin HTTP operation handling rejects remote origins, filesystem commands and oversized bodies
+  ---
+  duration_ms: 35.826708
+  type: 'test'
+  ...
+# Subtest: HTTP and Telegram structured operations preserve import sources and quote validation
+ok 62 - HTTP and Telegram structured operations preserve import sources and quote validation
+  ---
+  duration_ms: 218.729167
+  type: 'test'
+  ...
+# Subtest: manufacturer research cannot replace configured authority through library, CLI, HTTP or Telegram
+ok 63 - manufacturer research cannot replace configured authority through library, CLI, HTTP or Telegram
+  ---
+  duration_ms: 243.287834
+  type: 'test'
+  ...
+# Subtest: real CLI opts into local HTTP, reuses cache and replays without credentials or an endpoint
+ok 64 - real CLI opts into local HTTP, reuses cache and replays without credentials or an endpoint
+  ---
+  duration_ms: 1247.505666
+  type: 'test'
+  ...
+# Subtest: HTTP provider obeys pacing and persistent CAPTCHA stop before making any new call
+ok 65 - HTTP provider obeys pacing and persistent CAPTCHA stop before making any new call
+  ---
+  duration_ms: 116.187542
+  type: 'test'
+  ...
+# Subtest: real HTTP rate-limit response checkpoints a stop and blocks subsequent translations
+ok 66 - real HTTP rate-limit response checkpoints a stop and blocks subsequent translations
+  ---
+  duration_ms: 71.1385
+  type: 'test'
+  ...
+# Subtest: real Telegram commands deliver original and cached English, pending failures, and reject unauthorized actors
+ok 67 - real Telegram commands deliver original and cached English, pending failures, and reject unauthorized actors
+  ---
+  duration_ms: 122.52225
+  type: 'test'
+  ...
+# Subtest: real CLI refuses corrupted quantity translations and preserves the source-bound candidate
+ok 68 - real CLI refuses corrupted quantity translations and preserves the source-bound candidate
+  ---
+  duration_ms: 523.620125
+  type: 'test'
+  ...
+# Subtest: library, real CLI, HTTP and Telegram use reviewed cached English without changing originals or unit costs
+ok 69 - library, real CLI, HTTP and Telegram use reviewed cached English without changing originals or unit costs
+  ---
+  duration_ms: 479.401791
+  type: 'test'
+  ...
+# Subtest: served web calculator consumes reviewed English with original Vietnamese visible, using a local DOM fixture
+ok 70 - served web calculator consumes reviewed English with original Vietnamese visible, using a local DOM fixture
+  ---
+  duration_ms: 366.232417
+  type: 'test'
+  ...
+# Subtest: reviewed catalog chunks and commercial text replay through library, real CLI, HTTP and Telegram while collection stays stopped
+ok 71 - reviewed catalog chunks and commercial text replay through library, real CLI, HTTP and Telegram while collection stays stopped
+  ---
+  duration_ms: 767.124459
+  type: 'test'
+  ...
+# Subtest: account comparisons reuse exact published Soy Chocolate reviews over older private captures
+ok 72 - account comparisons reuse exact published Soy Chocolate reviews over older private captures
+  ---
+  duration_ms: 6159.562959
+  type: 'test'
+  ...
+# Subtest: verified public case keeps factory corrections and prices across library, CLI, HTTP and Telegram offline
+ok 73 - verified public case keeps factory corrections and prices across library, CLI, HTTP and Telegram offline
+  ---
+  duration_ms: 5257.81875
+  type: 'test'
+  ...
+1..73
+# tests 85
+# suites 0
+# pass 84
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 536716.874875

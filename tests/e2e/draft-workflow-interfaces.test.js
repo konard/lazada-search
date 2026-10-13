@@ -122,6 +122,47 @@ function prices(report) {
   }));
 }
 
+test('readiness gates are identical in the library, CLI, HTTP and Telegram while a challenge prevents requests', async (t) => {
+  const { app, store, directory } = await draftWorkflowFixture(t);
+  const stop = {
+    id: COLLECTION_STOP_ID,
+    active: true,
+    reason: 'challenge',
+    origin: 'https://manufacturer.example',
+    detectedAt: new Date().toISOString(),
+  };
+  await store.put('collection-stop', stop);
+  const input = { quantity: 3, maxPriceAgeMs: 86400000 };
+  const optionsPath = join(directory, 'readiness-options.json');
+  await writeFile(optionsPath, JSON.stringify(input));
+  const library = await app.caseReadiness(input);
+  const command = await cli(directory, 'case-readiness', [optionsPath]);
+  const post = await http(t, app);
+  const web = await post({ operation: 'case-readiness', input });
+  assert.equal(web.status, 200);
+  const send = await telegram(t, app);
+  const replies = await send({ operation: 'case-readiness', input });
+  const bot = JSON.parse(replies.map((message) => message.text).join(''));
+  for (const result of [command, web.body, bot]) {
+    assert.deepEqual(result.evidenceGates, library.evidenceGates);
+    assert.equal(result.quantity, 3);
+    assert.equal(
+      result.purchaseReadinessScope,
+      'explicitly-reviewed-captured-inventory'
+    );
+    assert.equal(result.purchaseReady, false);
+    assert.equal(result.wholeMarketBestPriceProven, false);
+    assert.equal(result.productionReady, false);
+    assert.equal(result.allRequirementsDelivered, false);
+    assert.equal(result.collectionStop.active, true);
+  }
+  assert.deepEqual(
+    await store.get('collection-stop', COLLECTION_STOP_ID),
+    stop
+  );
+  assert.equal(app.cache.stats.downloads, 0);
+});
+
 // Every source request is disabled; the interfaces use retained originals.
 test('library, executable CLI, HTTP and Telegram preserve identical target prices/units with zero website requests', async (t) => {
   const { app, store, directory } = await draftWorkflowFixture(t);

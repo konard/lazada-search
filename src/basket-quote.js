@@ -11,6 +11,7 @@ import {
 import { resolvePageDialogs } from './page-dialogs.js';
 import { waitForPageReady } from './page-readiness.js';
 import { deliveryAreaForDestination } from './delivery-context.js';
+import { readBasketOriginal } from './basket-original.js';
 import {
   extractCheckoutLineBinding,
   extractCheckoutQuantityBinding,
@@ -352,42 +353,8 @@ export function extractBasketQuote(html, input) {
 }
 
 export async function saveBasketQuote(application, input) {
-  const evidence = await application.store.get('evidence', input.evidenceId);
-  if (
-    !evidence?.html ||
-    evidence.invalidatedAt ||
-    evidence.html.sha256 !== input.sourceSha256 ||
-    (application.store.visibility === 'public' &&
-      evidence.visibility === 'private')
-  ) {
-    throw new Error(
-      'Basket quote needs accessible non-invalidated original HTML evidence'
-    );
-  }
-  if (
-    evidence.sourceUrl !== input.sourceUrl ||
-    evidence.observedAt !== observedTime(input.observedAt)
-  ) {
-    throw new Error(
-      'Basket URL and observation date must match original evidence'
-    );
-  }
-  const invalidation = await application.store.get(
-    'invalidation',
-    input.sourceUrl
-  );
-  if (
-    invalidation &&
-    Date.parse(invalidation.invalidatedAt) >= Date.parse(input.observedAt)
-  ) {
-    throw new Error(
-      'Invalidated basket source needs a new captured observation'
-    );
-  }
-  const quote = extractBasketQuote(
-    await application.store.blob(input.sourceSha256),
-    input
-  );
+  const { bytes } = await readBasketOriginal(application.store, input);
+  const quote = extractBasketQuote(bytes, input);
   for (const line of quote.lines) {
     const offer = await application.store.get('offer', line.offerId);
     if (!offer || offer.sku !== line.sku || offer.currency !== quote.currency) {

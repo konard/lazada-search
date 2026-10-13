@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-13T07:56:53.774Z",
+  "directory": "/var/folders/cl/831lqjgd58v5mb_m74cfdfcw0000gn/T/lazada-offline-label-proposals-JTCc8S",
+  "archiveDirectory": "/Users/konard/Code/Archive/konard/lazada-search/data/cases/vietnam-nha-trang",
+  "archiveManifestSha256": "3bc128c9bd927780ab28b9f10bbb77f24cadfa7ece078509408ed9a2263c3f56",
+  "scope": "Offline original-source volume corroboration in isolated temp overlay, two existing Happy volumes; no shared writes or requests.",
+  "originalReviewInputSha256": "2f9eac3a447b06a3ee7ba04d5c6df8adfd179a35afe0c25478b53a8ee03d30e8",
+  "durableReviewsAccepted": 2,
+  "originalLabelHashesChecked": 2,
+  "newNumericAmountsApproved": 0,
+  "newMissingGramOrProteinDenominatorsResolved": 0,
+  "factoryIdentityApprovals": 0,
+  "nutritionApprovals": 0,
+  "frozenQuotesApproved": 0,
+  "sourceCollectionStopUnchanged": true,
+  "publicArchiveUnchanged": true,
+  "sourceObservationDatesUnchanged": true,
+  "originalOffersUnchanged": true,
+  "sourceDownloads": 0,
+  "browserActions": 0,
+  "sharedStoreWrites": 0,
+  "outcomes": [
+    {
+      "sku": "1880785864_VNAMZ-8527716007",
+      "productId": "product:91e46228656e59bc0581bf1c6d226b669e7c55a35af9a797a94b014be6a37fe2",
+      "fact": "netVolumeMl",
+      "value": 475,
+      "sourceSha256": "6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2",
+      "sourceEvidenceId": "package-label:6583224988823985367b40e065aa6617fcbf984e30e3b2b5b9f0994d75a77ec2:product:91e46228656e59bc0581bf1c6d226b669e7c55a35af9a797a94b014be6a37fe2",
+      "packetPath": "/private/tmp/lazada-offline-data-progress/1880785864_VNAMZ-8527716007.review-packet.json",
+      "reviewPath": "/private/tmp/lazada-offline-data-progress/1880785864_VNAMZ-8527716007.review-input.json",
+      "durableReviewSha256": "f0754ad49416e1bac34f72c43f4f520b6bd30390ecac6878d6907e31751e79a2",
+      "idempotent": true,
+      "calculationsUnchanged": true,
+      "offersChecked": [
+        {
+          "offerId": "offer:caf653eed70417a6e740470cdb19940f53e4bf51e95559e5fcdd7600b5943da2",
+          "observedAt": "2026-10-09T11:34:33.009Z",
+          "price": 150000,
+          "quantity": 2,
+          "totalVolumeMl": 950,
+          "costPerMlBeforeDelivery": 315.7894736842105,
+          "costPerMlAfterDelivery": null,
+          "eligible": false,
+          "problems": [
+            "Unknown net mass",
+            "Frozen delivery needs confirmation",
+            "Delivery price not confirmed for this area",
+            "Unknown protein density"
+          ]
+        }
+      ],
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    },
+    {
+      "sku": "1880785864_VNAMZ-8527716006",
+      "productId": "product:cb58522f8cee6c87fa86ad0cb50af8e3cc68e60a59820b5d9e216da08f87c998",
+      "fact": "netVolumeMl",
+      "value": 125,
+      "sourceSha256": "74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6",
+      "sourceEvidenceId": "package-label:74475122b45d0440381f91586bb697cf021f84c9dd87cf88e85866f58cd36bb6:product:cb58522f8cee6c87fa86ad0cb50af8e3cc68e60a59820b5d9e216da08f87c998",
+      "packetPath": "/private/tmp/lazada-offline-data-progress/1880785864_VNAMZ-8527716006.review-packet.json",
+      "reviewPath": "/private/tmp/lazada-offline-data-progress/1880785864_VNAMZ-8527716006.review-input.json",
+      "durableReviewSha256": "be8f0563dcd867d1811e5cd78da3a8effb50d102aeaa620b1b6c0e4b39be44f0",
+      "idempotent": true,
+      "calculationsUnchanged": true,
+      "offersChecked": [
+        {
+          "offerId": "offer:2d9411252b0d41e7b9f8b999d5c4792eba295f7d06faf3d4f487979ab22d3d7f",
+          "observedAt": "2026-10-10T04:01:15.211Z",
+          "price": 45000,
+          "quantity": 2,
+          "totalVolumeMl": 250,
+          "costPerMlBeforeDelivery": 360,
+          "costPerMlAfterDelivery": null,
+          "eligible": false,
+          "problems": [
+            "Unknown net mass",
+            "Frozen delivery needs confirmation",
+            "Delivery price not confirmed for this area",
+            "Unknown protein density"
+          ]
+        }
+      ],
+      "factoryIdentityApproved": false,
+      "nutritionApproved": false
+    }
+  ],
+  "api": {
+    "attachEvidence": "await app.store.put(\"evidence\", packet.evidence)",
+    "attachToExactProduct": "const product = await app.store.get(\"product\", packet.productId); await app.store.put(\"product\", { ...product, evidenceIds: [...new Set([...product.evidenceIds, packet.evidence.id])] })",
+    "review": "await reviewPackageQuantities(app, packet.productId, packet.reviewInput)",
+    "guards": "Offline app; original image/listing bytes and SHA verified, exact SKU/selection/observation matched; no expiry/factory/quantity transfer."
+  },
+  "initialHarnessFailure": {
+    "error": "A positive assertion caught undefined!==950 because the harness read calculateOffer.totalVolumeMl instead of calculateOffer.metrics.totalVolumeMl. The harness now asserts all9 metric fields are defined and unchanged, then explicitly950/250 ml. No product code or acceptance guard was weakened."
+  }
+}
