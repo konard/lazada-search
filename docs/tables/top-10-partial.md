@@ -1,6 +1,6 @@
 # Partial cached buying report: 10.10 observations
 
-Recalculated offline **2026-10-13T13:54:27.240Z**. Vietnam / Nha Trang, **VND**. Prices and stock retain their original capture dates and require rechecking when collection resumes. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
+Recalculated offline **2026-10-13T14:18:18.164Z**. Vietnam / Nha Trang, **VND**. Prices and stock retain their original capture dates and require rechecking when collection resumes. Powder selections are chocolate or unflavoured; **whey and soy are separate categories**. Paid shaker selections are excluded. Advertised free gifts do not add food mass. This is a captured-market comparison, with timestamps; it does not establish exhaustive market coverage or seller authenticity.
 
 **Factory-specification-matched captured whey lead: [IT'S JUST unflavoured 2268 g](https://www.lazada.vn/products/pdp-i3300919067.html?skuId=16058119853)**: 2,952,300 VND + 80,200 VND one-package freight = **3,032,500 VND; 1,470.79 VND/g protein delivered**. Captured quantity cap: three.
 
