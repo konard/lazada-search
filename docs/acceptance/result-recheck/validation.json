@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-10-13T06:50:06.540286+00:00",
+  "scope": "Current requirement audit, public telemetry redaction, offline archive rebuild and historical source/arithmetic recheck; no live collection/browser actions.",
+  "localFullUnit": {
+    "passed": 1532,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 247005.207375
+  },
+  "localChangedE2E": {
+    "passed": 5,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "finalFocusedAudit": {
+    "passed": 18,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "telemetryFocusedRuntimeTests": {
+    "Node": 26,
+    "Bun": 26,
+    "Deno": 26
+  },
+  "strictTypes": "passed",
+  "qualityCheck": "passed lint, formatting and duplication (6.17%)",
+  "newCI": "pending-source-publication",
+  "independentWheyHandpickedErrors": 0,
+  "checkedReportRows": 54,
+  "iceArithmeticChecks": 84,
+  "archiveVerification": {
+    "valid": true,
+    "records": 32869,
+    "blobs": 7040,
+    "downloads": 0
+  },
+  "archiveRebuild": "archive-rebuild-review.json",
+  "sourceHashes": {
+    "scripts/audit-case-requirements.mjs": "767c1deb81d82f0e520f1018a5d785c65ac8c2eaef8013c0fa73d1a6fb9137f4",
+    "scripts/requirement-audit-gates.mjs": "0d6523a2293dd97da82e434f87e4eec0d3d1e9ddc7f91830e84b659d2ff660b0",
+    "scripts/audit-whey-handpicked.py": "c238fef72b46be6abad9ddf08ee4621dcf000444801909cdf9d54f740707cb6e",
+    "src/archive.js": "554ad77413924c49ca140be0e5f79ef72d1f7e51d1e61dc753de4169c8e6046e",
+    "src/case-readiness.js": "8a8e90905c27ee0f7847164853b9f5bd44aff0e0a001226f40cde8fe2802467d",
+    "src/requirement-registry.js": "6ca0d649fb918ec0012aa084f8a1119ab321ed3d50a2c2e2db93b06b22735a74",
+    "src/requirement-draft-review.js": "4c5482aefb6c1160c046171f1e03e359b6d81e0cb529bf69303e0a272db4c0bc",
+    "tests/archive-telemetry-redaction.test.js": "329ef069786284b2c366bec49d37c6d4409167864af0591915614c487e0739f1",
+    "tests/requirement-audit-gates.test.js": "6b455e4c1b2d3159090cb0a3432780d65f5a9e269004c0fe7a1d076281bb35ad",
+    "tests/requirement-coverage.test.js": "08a40f1414d849d0336950d0b034fc23b90aca9bb29d28755ad9e5625798093e"
+  },
+  "logs": {
+    "full-unit-20261013.tap.gz": {
+      "sha256": "c8b259d075e3d6629de4907ce40d9a45205514cbec16573fba1eb370d74770db",
+      "bytes": 379829
+    },
+    "full-check-20261013.log.gz": {
+      "sha256": "1aedf8c9d3d2adf5b3d1f0dfadf861fc019a2687c21b4772fc41a7926654b04e",
+      "bytes": 492
+    },
+    "local-e2e-20261013.tap.gz": {
+      "sha256": "4419d89072637fc7342760bce29828a341bc58769e94391d9f158cee79975a13",
+      "bytes": 1517
+    },
+    "focused-final-20261013.tap.gz": {
+      "sha256": "2502a76b409a3cb8010a36b85e36cdcc5646fcb431204d98c1f3e2ff6f6b4535",
+      "bytes": 4701
+    },
+    "whey-final-20261013.log.gz": {
+      "sha256": "77da0533b7dbb3bdf55e409f7941702f3ce70e16951adcc981a51013a7a04821",
+      "bytes": 375
+    },
+    "requirements-after44-20261013.log.gz": {
+      "sha256": "1d8ef6e147547e411e6010908ca70431eade7cd3462db5ec6ff30717af11acf7",
+      "bytes": 436
+    },
+    "unit-costs-final-20261013.log.gz": {
+      "sha256": "00738d07a01f3ff6d52e288a79c3b78ed80d4c87937fc256699777df59cdcd54",
+      "bytes": 33
+    },
+    "full-check-final-20261013.log.gz": {
+      "sha256": "66e1c1f78fb24fe515c87a99212d50a4ab2ac9a5c8e1986efa5576aeb0ffb1e7",
+      "bytes": 147380
+    },
+    "final-strict-lint-20261013.log.gz": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "strictChangedLint": "passed, zero warnings"
+}

@@ -22,9 +22,21 @@ const codecVersion = JSON.parse(
   )
 ).version;
 const PRIVATE_KEY =
-  /^(?:cookies?|authorization|password|access[_-]?token|refresh[_-]?token|session[_-]?(?:id|token)|csrf[_-]?token|user(?:id|name|info)|customer(?:id|info)|email|phone|address|seedCookies)$/iu;
+  /^(?:cookies?|authorization|password|access[_-]?token|refresh[_-]?token|session[_-]?(?:id|token)|csrf[_-]?token|user(?:id|name|info)|customer(?:id|info)|email|phone|address|seedCookies|cna|ckx|asid)$/iu;
 const PRIVATE_QUERY =
-  /^(?:.*(?:token|cookie|x5sec|x5step|signature|csrf).*|__cf_chl_.*|sign|uuid|uid|userId|session|spm|scm|laz_trackid|clickTrackInfo)$/iu;
+  /^(?:.*(?:token|cookie|x5sec|x5step|signature|csrf).*|__cf_chl_.*|sign|uuid|uid|userId|session|spm|scm|laz_trackid|clickTrackInfo|cna|ckx|asid)$/iu;
+
+function isTelemetryUrl(value) {
+  try {
+    const url = new URL(value);
+    return (
+      ['http:', 'https:'].includes(url.protocol) &&
+      ['gm.mmstat.com', 'sg.mmstat.com'].includes(url.hostname)
+    );
+  } catch {
+    return false;
+  }
+}
 
 export function redactPublicSecrets(text) {
   return text.replace(
@@ -50,6 +62,13 @@ export function sanitizePublicData(value) {
       (text) => {
         try {
           const url = new URL(text);
+          if (isTelemetryUrl(url)) {
+            // Encoded event payloads also carry identifiers. These two known
+            // tracking hosts contain no product query or fragment evidence.
+            url.search = '';
+            url.hash = '';
+            return url.href;
+          }
           for (const key of [...url.searchParams.keys()]) {
             if (PRIVATE_QUERY.test(key.replace(/^amp;/u, ''))) {
               url.searchParams.delete(key);
@@ -414,18 +433,43 @@ function discardFailedPageData(record) {
   };
 }
 
+function excludeCacheRecord(kind, record, excluded) {
+  if (kind !== 'cache') {
+    return false;
+  }
+  if (
+    record.blob?.bytes === 0 &&
+    record.status !== 'failed' &&
+    record.status !== 'challenge' &&
+    record.challenge?.detected !== true
+  ) {
+    excluded.emptyTrackingResponses++;
+    return true;
+  }
+  if (
+    isTelemetryUrl(record.url) &&
+    (!record.status || record.status === 'ok') &&
+    record.challenge?.detected !== true
+  ) {
+    excluded.nonProductTelemetryResponses++;
+    return true;
+  }
+  return false;
+}
+
 function newArchiveManifest(caseMetadata) {
   return {
     version: ARCHIVE_VERSION,
-    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), redactPublicSecrets.toString(), sanitizeImportedSource.toString(), isStoredBlobReference.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
+    conversion: `lino-objects-codec@${codecVersion};LZLINK01;LZARCH01;${sha256([encode.toString(), DoubletGraph.prototype.addRecord.toString(), DoubletGraph.prototype.toBinary.toString(), sanitizePublicHtml.toString(), sanitizePublicData.toString(), redactPublicSecrets.toString(), sanitizeImportedSource.toString(), isTelemetryUrl.toString(), excludeCacheRecord.toString(), isStoredBlobReference.toString(), bundleGraphs.toString(), PRIVATE_KEY.toString(), PRIVATE_QUERY.toString()].join('\n'))}`,
     case: sanitizePublicData(caseMetadata),
     kinds: {},
     blobs: {},
     sourceRewrites: [],
     excluded: {
       emptyTrackingResponses: 0,
+      nonProductTelemetryResponses: 0,
       reason:
-        'Empty tracking-pixel responses contain no product evidence; browser profiles, session caches and executables are not part of the public case.',
+        'Empty tracking-pixel responses and successful gm.mmstat.com/sg.mmstat.com telemetry responses contain no product evidence; browser profiles, session caches and executables are not part of the public case.',
     },
   };
 }
@@ -486,7 +530,7 @@ export async function exportRepositoryArchive({
       format === 'html'
         ? Buffer.from(sanitizePublicHtml(original.toString()))
         : format === 'public-text'
-          ? Buffer.from(redactPublicSecrets(original.toString('utf8')))
+          ? Buffer.from(sanitizePublicData(original.toString('utf8')))
           : ['json', 'yaml', 'lino'].includes(format)
             ? sanitizeImportedSource(original, format)
             : original;
@@ -580,12 +624,7 @@ export async function exportRepositoryArchive({
           'Private account records cannot be published in a public archive'
         );
       }
-      if (
-        kind === 'cache' &&
-        input.blob?.bytes === 0 &&
-        input.status !== 'failed'
-      ) {
-        manifest.excluded.emptyTrackingResponses++;
+      if (excludeCacheRecord(kind, input, manifest.excluded)) {
         continue;
       }
       const record = sanitizePublicData(input);
@@ -691,6 +730,10 @@ export async function exportRepositoryArchive({
     manifest.excluded.emptyTrackingResponses = Math.max(
       manifest.excluded.emptyTrackingResponses,
       inherited.excluded?.emptyTrackingResponses || 0
+    );
+    manifest.excluded.nonProductTelemetryResponses = Math.max(
+      manifest.excluded.nonProductTelemetryResponses,
+      inherited.excluded?.nonProductTelemetryResponses || 0
     );
   }
   manifest.sourceRewrites.sort((left, right) =>

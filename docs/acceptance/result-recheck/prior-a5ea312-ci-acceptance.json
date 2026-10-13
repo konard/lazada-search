@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "headCommit": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+  "sourceCommit": "171b25030d993421eeb2a0ed9e0265937963756f",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "acceptedSource": {
+    "commit": "171b25030d993421eeb2a0ed9e0265937963756f",
+    "receipt": "/private/tmp/lazada-ci-171b250-acceptance.json",
+    "committedReceipt": "docs/acceptance/challenge-window-retention/ci-source-171b250-review.json",
+    "testedMergeCommit": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+    "sourceFilesCompared": 604,
+    "matrixSuccessful": 9,
+    "nativeE2ePassed": 84,
+    "executableDiffToFinalHeadEmpty": true,
+    "unchangedSourceScope": "src/tests/scripts/bin/examples/.github/package.json/package-lock.json/bun.lock/deno.lock",
+    "ownSourceAlertsFixed": [2, 9, 32, 35]
+  },
+  "matrix": [],
+  "matrixGate": {
+    "jobId": 114988025398,
+    "name": "Test (${{ matrix.runtime }} on ${{ matrix.os }})",
+    "status": "completed",
+    "conclusion": "skipped",
+    "reason": "Final checkpoint is docs-only: js-changed=false, docs-changed=true, any-code-changed=false; release.yml positive code-change gate skips all nine combinations.",
+    "detectChangesLog": "/private/tmp/lazada-ci-a5ea312-detect-changes.log"
+  },
+  "scope": "Read-only final docs-head acceptance. Source/test/workflow/package bytes match the committed full nine-runtime source acceptance. No market requests, user browser, workflow rerun, cancellation, repository mutation, or security dismissals.",
+  "budgets": {
+    "suiteSeconds": 600,
+    "testSeconds": 450,
+    "jobBackstopMinutes": 20
+  },
+  "artifactNormalization": "Full raw job text preserved after BOM removal, CRLF to LF normalization and one trailing newline; SHA256 refers to saved bytes.",
+  "cleanTreeObserved": true,
+  "observedAt": "2026-10-12 20:15:25 UTC",
+  "finalHeadAutomatedChecksAccepted": true,
+  "summary": {
+    "matrixJobs": 0,
+    "matrixSuccessful": 0,
+    "matrixSkippedDocsOnly": true,
+    "acceptedSourceMatrixJobs": 9,
+    "acceptedSourceMatrixSuccessful": 9,
+    "workflows": 6,
+    "workflowsSuccessful": 6,
+    "workflowsFailed": 0,
+    "nativeE2ePassed": 84,
+    "nativeE2eFailed": 0,
+    "separateCodeQl": "success",
+    "separateCodeQlAnnotations": 0,
+    "openExecutableSourceAlerts": 0,
+    "trackedExecutableSourceAlertsFixed": 4
+  },
+  "workflows": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821109",
+      "id": 38301821109,
+      "name": "Workflows",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:05:24Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821111",
+      "id": 38301821111,
+      "name": "Example app",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:06:28Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821239",
+      "id": 38301821239,
+      "name": "Security",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:06:50Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821100",
+      "id": 38301821100,
+      "name": "Broken Link Checker",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:08:44Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821139",
+      "id": 38301821139,
+      "name": "Checks and release",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:09:38Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-12T20:04:25Z",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "html_url": "https://github.com/konard/lazada-search/actions/runs/38301821112",
+      "id": 38301821112,
+      "name": "Lazada E2E",
+      "run_attempt": 1,
+      "status": "completed",
+      "updated_at": "2026-10-12T20:15:04Z"
+    }
+  ],
+  "nativeE2e": {
+    "jobId": 114986304470,
+    "name": "Browser, OCR, CLI, Telegram and binary store",
+    "status": "completed",
+    "conclusion": "success",
+    "counts": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "durationMs": 513939.573911,
+    "footerLines": [
+      "# tests 84",
+      "# pass 84",
+      "# fail 0",
+      "# cancelled 0",
+      "# skipped 0",
+      "# duration_ms 513939.573911"
+    ],
+    "log": {
+      "path": "/private/tmp/lazada-ci-a5ea312-114986304470.log",
+      "sha256": "3c300e299ffca1c86a8ddf071bb191457fbdc5a2e1e3d46e8a26a6b843850b49",
+      "bytes": 105815
+    }
+  },
+  "codeQl": {
+    "check": {
+      "completed_at": "2026-10-12T20:05:29Z",
+      "conclusion": "success",
+      "details_url": "https://github.com/konard/lazada-search/runs/114986671358",
+      "head_sha": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+      "id": 114986671358,
+      "name": "CodeQL",
+      "output": {
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/konard/lazada-search/check-runs/114986671358/annotations",
+        "summary": "[View all branch alerts](/konard/lazada-search/security/code-scanning?query=pr%3A41+tool%3ACodeQL+is%3Aopen).",
+        "text": null,
+        "title": "No new alerts in code changed by this pull request"
+      },
+      "status": "completed"
+    },
+    "annotations": [],
+    "postSecurityVerifiedAt": "2026-10-12 20:08:06 UTC",
+    "postAllWorkflowsVerifiedAt": "2026-10-12 20:15:25 UTC",
+    "checkPath": "/private/tmp/lazada-ci-a5ea312-codeql-check.json",
+    "annotationsPath": "/private/tmp/lazada-ci-a5ea312-codeql-annotations.json"
+  },
+  "sourceAlertAudit": {
+    "count": 34,
+    "tracked": [
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 52,
+          "end_line": 106,
+          "path": "src/translation-quality.js",
+          "start_column": 19,
+          "start_line": 106
+        },
+        "number": 35,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 13,
+          "end_line": 13,
+          "path": "scripts/promotion-report.mjs",
+          "start_column": 3,
+          "start_line": 12
+        },
+        "number": 32,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/incomplete-sanitization",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 40,
+          "end_line": 307,
+          "path": "src/products.js",
+          "start_column": 5,
+          "start_line": 306
+        },
+        "number": 9,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      },
+      {
+        "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+        "dismissed_reason": null,
+        "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+        "instance_state": "fixed",
+        "location": {
+          "end_column": 4,
+          "end_line": 293,
+          "path": "src/browser.js",
+          "start_column": 23,
+          "start_line": 291
+        },
+        "number": 2,
+        "ref": "refs/pull/41/merge",
+        "rule_id": "js/polynomial-redos",
+        "severity": "high",
+        "state": "fixed"
+      }
+    ],
+    "openExecutableSource": [],
+    "newBlobHelperAlerts": [],
+    "rawPath": "/private/tmp/lazada-ci-a5ea312-source-alerts.json",
+    "lastDetectionCommitNote": "Fixed alerts' most_recent_instance.commit_sha identifies their last detection, not the current tested merge. Exact final head security acceptance is the successful CodeQL check."
+  },
+  "preservedReceipts": [
+    "/private/tmp/lazada-ci-171b250-acceptance.json",
+    "/private/tmp/lazada-ci-2bcb766-acceptance.json",
+    "/private/tmp/lazada-ci-0ee45dc-acceptance.json",
+    "/private/tmp/lazada-ci-9237b9c-acceptance.json",
+    "/private/tmp/lazada-ci-8db2585-acceptance.json",
+    "/private/tmp/lazada-ci-604f6f2-acceptance.json"
+  ]
+}

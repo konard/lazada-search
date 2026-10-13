@@ -318,6 +318,7 @@ export const REQUIREMENT_DRAFT_REVIEW = {
     reviewedDraftBehavior:
       'Public source bytes, records, notation and binary archives remain reproducible; new synthetic test data is separate from real buying evidence. Private originals are never wholesale published.',
     testDraftFiles: [
+      'tests/archive-telemetry-redaction.test.js',
       'tests/archive-provenance.test.js',
       'tests/public-cache.test.js',
       'tests/e2e/archive.test.js',
@@ -525,16 +526,21 @@ export const REQUIREMENT_DRAFT_REVIEW = {
   },
   R037: {
     reviewedDraftBehavior:
-      'Readiness distinguishes drafted coverage from accepted production and all-market data; source-bound inventory/manual review and the full deferred runtime/live acceptance checklist remain mandatory.',
+      'Readiness distinguishes accepted software mechanics from missing production and all-market data; current source-bound inventory/manual review and real-layout acceptance remain mandatory.',
     testDraftFiles: [
+      'tests/requirement-audit-gates.test.js',
       'tests/requirement-coverage.test.js',
       'tests/e2e/draft-workflow-interfaces.test.js',
       'tests/case-workflow-draft.test.js',
       'tests/e2e/verified-case.test.js',
     ],
-    additionalDraftSourceFiles: ['docs/drafts/acceptance-plan.md'],
+    additionalDraftSourceFiles: [
+      'docs/drafts/acceptance-plan.md',
+      'scripts/requirement-audit-gates.mjs',
+      'scripts/audit-case-requirements.mjs',
+    ],
     operatorSteps: [
-      'Run deferred functional/native/interface suites and original-layout/source acceptance; complete current inventory/specs/English/discounts/exact freight and live bot. Package owner configures npm trusted publishing for issue 32 before release.',
+      'Preserve completed source171b250 automated acceptance; complete current original-layout/inventory/specs/English/discounts/exact freight and live bot acceptance. Package owner configures npm trusted publishing for issue 32 before release.',
     ],
     draftReviewStatus: 'statically-reviewed-draft',
     functionalAcceptance: 'local-regressions-passed-live-acceptance-pending',

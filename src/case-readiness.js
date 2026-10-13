@@ -36,7 +36,7 @@ export async function caseReadiness(application, options = {}) {
       'Configured translation provider and whole-catalog semantic acceptance',
       'Current authenticated session and allowlisted live Telegram acceptance',
       'Package owner npm trusted-publisher configuration (issue32)',
-      'Test and real-layout acceptance of this unexecuted draft',
+      'Current real marketplace layout and configured provider acceptance',
     ],
     productionReady: false,
     purchaseReady: false,

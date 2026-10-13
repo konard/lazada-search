@@ -8,8 +8,8 @@
   ],
   "githubIssueSnapshot": "docs/acceptance/challenge-window-retention/github-issues.json",
   "mappedRequirements": 49,
-  "mappedGithubIssues": 42,
-  "openGithubIssues": [3, 14, 32, 36, 42, 43],
+  "mappedGithubIssues": 43,
+  "openGithubIssues": [3, 14, 32, 36, 42, 43, 44],
   "closedGithubIssues": 36,
   "testsExecuted": true,
   "codeValidation": "automated-local-tests-passed",
@@ -828,7 +828,7 @@
         "docs/acceptance/requirements-audit/implementation-review.json"
       ],
       "externalAcceptanceRequired": "Accept the new workflow/checkout adapters against public/private source overlays and real account originals.",
-      "githubIssues": [1, 12, 20, 34],
+      "githubIssues": [1, 12, 20, 34, 44],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
     {
@@ -843,6 +843,7 @@
       ],
       "reviewedDraftBehavior": "Public source bytes, records, notation and binary archives remain reproducible; new synthetic test data is separate from real buying evidence. Private originals are never wholesale published.",
       "testDraftFiles": [
+        "tests/archive-telemetry-redaction.test.js",
         "tests/archive-provenance.test.js",
         "tests/public-cache.test.js",
         "tests/e2e/archive.test.js"
@@ -860,7 +861,7 @@
         "docs/acceptance/requirements-audit/implementation-review.json"
       ],
       "externalAcceptanceRequired": "Collect absent products first; private credentials and unredacted account captures remain local.",
-      "githubIssues": [1, 5, 12, 22, 28, 31, 34, 36],
+      "githubIssues": [1, 5, 12, 22, 28, 31, 34, 36, 44],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
     {
@@ -903,7 +904,7 @@
         "docs/acceptance/ice-unit-completeness/validation.json",
         "docs/acceptance/requirements-audit/implementation-review.json"
       ],
-      "externalAcceptanceRequired": "Execute full interface acceptance for new draft commands/operations and actual configured providers/layouts.",
+      "externalAcceptanceRequired": "Accept actual configured providers and marketplace layouts; automated library/CLI/HTTP/Telegram interface E2E acceptance passed at source171b250.",
       "githubIssues": [29, 30, 35],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -929,7 +930,7 @@
         "docs/acceptance/ice-unit-completeness/validation.json",
         "docs/acceptance/requirements-audit/implementation-review.json"
       ],
-      "externalAcceptanceRequired": "Execute new operation E2E tests and accept an owner-configured allowlisted live bot deployment.",
+      "externalAcceptanceRequired": "Accept an owner-configured allowlisted live bot deployment; operation E2E tests passed at source171b250.",
       "githubIssues": [29],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -1267,7 +1268,7 @@
       ],
       "draftReviewStatus": "statically-reviewed-draft",
       "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
-      "implementedBehavior": "Prior accepted source and public evidence were committed/pushed; draft files require their own publication checkpoint after this drafting pass.",
+      "implementedBehavior": "Source, tests, public evidence and roadmap are committed/pushed in PR41; immutable source acceptance preserves all local and CI logs.",
       "priorAcceptance": "implemented",
       "priorAcceptanceEvidence": [
         "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
@@ -1275,7 +1276,7 @@
         "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
         "docs/acceptance/ocr-model-identity/validation.json"
       ],
-      "externalAcceptanceRequired": "Commit/push this draft and its roadmap; tests are intentionally deferred and cannot be represented as newly accepted.",
+      "externalAcceptanceRequired": "Continue committing/pushing subsequent changes and preserve their exact validation evidence; published source171b250 passed all local and CI suites.",
       "githubIssues": [12, 18, 32],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -1289,18 +1290,25 @@
         "src/case-coverage.js",
         "src/case-workflow.js",
         "src/requirement-registry.js",
-        "docs/drafts/acceptance-plan.md"
+        "docs/drafts/acceptance-plan.md",
+        "scripts/requirement-audit-gates.mjs",
+        "scripts/audit-case-requirements.mjs"
       ],
-      "reviewedDraftBehavior": "Readiness distinguishes drafted coverage from accepted production and all-market data; source-bound inventory/manual review and the full deferred runtime/live acceptance checklist remain mandatory.",
+      "reviewedDraftBehavior": "Readiness distinguishes accepted software mechanics from missing production and all-market data; current source-bound inventory/manual review and real-layout acceptance remain mandatory.",
       "testDraftFiles": [
+        "tests/requirement-audit-gates.test.js",
         "tests/requirement-coverage.test.js",
         "tests/e2e/draft-workflow-interfaces.test.js",
         "tests/case-workflow-draft.test.js",
         "tests/e2e/verified-case.test.js"
       ],
-      "additionalDraftSourceFiles": ["docs/drafts/acceptance-plan.md"],
+      "additionalDraftSourceFiles": [
+        "docs/drafts/acceptance-plan.md",
+        "scripts/requirement-audit-gates.mjs",
+        "scripts/audit-case-requirements.mjs"
+      ],
       "operatorSteps": [
-        "Run deferred functional/native/interface suites and original-layout/source acceptance; complete current inventory/specs/English/discounts/exact freight and live bot. Package owner configures npm trusted publishing for issue 32 before release."
+        "Preserve completed source171b250 automated acceptance; complete current original-layout/inventory/specs/English/discounts/exact freight and live bot acceptance. Package owner configures npm trusted publishing for issue 32 before release."
       ],
       "draftReviewStatus": "statically-reviewed-draft",
       "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
@@ -1310,7 +1318,7 @@
         "docs/acceptance/validation.json",
         "docs/acceptance/collection-progress.json"
       ],
-      "externalAcceptanceRequired": "Execute draft tests, complete inventory/factory/nutrition/English data, exact bulk/frozen quotes, live bot and owner release configuration.",
+      "externalAcceptanceRequired": "Complete inventory/factory/nutrition/English data, current real-layout acceptance, exact bulk/frozen quotes, live bot and owner release configuration; source171b250 automated acceptance is complete.",
       "githubIssues": [3, 29, 30, 32, 33, 34, 35, 36],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -1481,7 +1489,7 @@
       "priorAcceptanceEvidence": [
         "docs/acceptance/requirements-audit/implementation-review.json"
       ],
-      "externalAcceptanceRequired": "Execute and accept new task lease/recovery/order semantics; task exhaustion is not market completeness.",
+      "externalAcceptanceRequired": "Complete the real pending collection queue; task lease/recovery/order regressions passed at source171b250 and task exhaustion is not market completeness.",
       "githubIssues": [18],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -1699,7 +1707,7 @@
         "https://github.com/konard/lazada-search/issues/38",
         "docs/acceptance/ocr-decimal-portability/README.md"
       ],
-      "externalAcceptanceRequired": "Accept the new orchestration against the existing engine/cache contract; historical full-matrix acceptance does not validate new drafts.",
+      "externalAcceptanceRequired": "Collect and review the missing actual label originals; orchestration, native model-byte/cache contracts and full matrix acceptance passed at source171b250.",
       "githubIssues": [11, 33, 37, 38],
       "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
     },
@@ -1785,7 +1793,7 @@
         "src/case-readiness.js",
         "src/requirement-registry.js"
       ],
-      "acceptanceRemaining": "New acquisition/orchestration is unexecuted; complete real inventory/factory/bulk/frozen acceptance remains open."
+      "acceptanceRemaining": "Acquisition/orchestration automated regressions passed at source171b250; complete real inventory/factory/bulk/frozen acceptance remains open."
     },
     {
       "number": 4,
@@ -2136,10 +2144,23 @@
         "tests/promotion-report-escaping.test.js"
       ],
       "acceptanceRemaining": "Accept bounded mass, volume, nutrition, count, discount and protected-translation readers, exact source excerpts, table escaping and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it."
+    },
+    {
+      "number": 44,
+      "state": "OPEN",
+      "title": "Exclude nonempty telemetry pixels and pseudonymous tracking identifiers from public case exports",
+      "url": "https://github.com/konard/lazada-search/issues/44",
+      "requirementIds": ["R019", "R021", "R022", "R036"],
+      "draftStatus": "telemetry-redaction-fix-under-validation",
+      "sourceFiles": [
+        "src/archive.js",
+        "tests/archive-telemetry-redaction.test.js"
+      ],
+      "acceptanceRemaining": "Validate exact-host non-product exclusions and recursive URL/field redaction, rebuild and verify all public case conversions offline, confirm unchanged product facts and reports, and merge the reviewed fix."
     }
   ],
   "draftReview": "docs/drafts/draft-review.json",
   "draftCoverageComplete": true,
   "validationEvidence": "docs/acceptance/challenge-window-retention/validation.json",
-  "refreshedAt": "2026-10-12T19:35:29.706Z"
+  "refreshedAt": "2026-10-13T05:47:52.938Z"
 }

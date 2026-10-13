@@ -252,7 +252,7 @@ const requirementDefinitions = [
     'implemented',
     'docs/acceptance/ice-unit-completeness/validation.json docs/acceptance/requirements-audit/implementation-review.json',
     'Accept the new workflow/checkout adapters against public/private source overlays and real account originals.',
-    [1, 12, 20, 34],
+    [1, 12, 20, 34, 44],
   ],
   [
     'R022',
@@ -264,7 +264,7 @@ const requirementDefinitions = [
     'partial',
     'docs/acceptance/ice-unit-completeness/validation.json docs/acceptance/requirements-audit/implementation-review.json',
     'Collect absent products first; private credentials and unredacted account captures remain local.',
-    [1, 5, 12, 22, 28, 31, 34, 36],
+    [1, 5, 12, 22, 28, 31, 34, 36, 44],
   ],
   [
     'R023',
@@ -275,7 +275,7 @@ const requirementDefinitions = [
     'Structured collect/review/quote/research/translation operations already have library/CLI/HTTP parity; drafts add case, manufacturer, checkout, handpicked and report operations.',
     'implemented',
     'docs/acceptance/ice-unit-completeness/validation.json docs/acceptance/requirements-audit/implementation-review.json',
-    'Execute full interface acceptance for new draft commands/operations and actual configured providers/layouts.',
+    'Accept actual configured providers and marketplace layouts; automated library/CLI/HTTP/Telegram interface E2E acceptance passed at source171b250.',
     [29, 30, 35],
   ],
   [
@@ -287,7 +287,7 @@ const requirementDefinitions = [
     'Authorized private-chat structured Telegram operations already have local mock E2E acceptance; draft operations extend that shared dispatcher.',
     'implemented',
     'docs/acceptance/ice-unit-completeness/validation.json docs/acceptance/requirements-audit/implementation-review.json',
-    'Execute new operation E2E tests and accept an owner-configured allowlisted live bot deployment.',
+    'Accept an owner-configured allowlisted live bot deployment; operation E2E tests passed at source171b250.',
     [29],
   ],
   [
@@ -428,10 +428,10 @@ const requirementDefinitions = [
     'draft-extension',
     'src/archive.js scripts/publish-collection-checkpoint.mjs scripts/publish-retry.mjs',
     'src/requirement-registry.js',
-    'Prior accepted source and public evidence were committed/pushed; draft files require their own publication checkpoint after this drafting pass.',
+    'Source, tests, public evidence and roadmap are committed/pushed in PR41; immutable source acceptance preserves all local and CI logs.',
     'implemented',
     'docs/acceptance/ocr-model-identity/ci-ad1be26-review.json https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json docs/acceptance/ocr-model-identity/validation.json',
-    'Commit/push this draft and its roadmap; tests are intentionally deferred and cannot be represented as newly accepted.',
+    'Continue committing/pushing subsequent changes and preserve their exact validation evidence; published source171b250 passed all local and CI suites.',
     [12, 18, 32],
   ],
   [
@@ -443,7 +443,7 @@ const requirementDefinitions = [
     'Draft readiness combines exact inventory, source/manual review and external acceptance gates while returning false production/purchase/full-market flags.',
     'missing',
     'docs/acceptance/validation.json docs/acceptance/collection-progress.json',
-    'Execute draft tests, complete inventory/factory/nutrition/English data, exact bulk/frozen quotes, live bot and owner release configuration.',
+    'Complete inventory/factory/nutrition/English data, current real-layout acceptance, exact bulk/frozen quotes, live bot and owner release configuration; source171b250 automated acceptance is complete.',
     [3, 29, 30, 32, 33, 34, 35, 36],
   ],
   [
@@ -503,7 +503,7 @@ const requirementDefinitions = [
     'Existing attempt/reuse mechanics are extended into bounded durable case tasks; uncollected work precedes optional recollection and interrupted tasks are recoverable.',
     'implemented',
     'docs/acceptance/requirements-audit/implementation-review.json',
-    'Execute and accept new task lease/recovery/order semantics; task exhaustion is not market completeness.',
+    'Complete the real pending collection queue; task lease/recovery/order regressions passed at source171b250 and task exhaustion is not market completeness.',
     [18],
   ],
   [
@@ -575,7 +575,7 @@ const requirementDefinitions = [
     'Original pixels, actual trained-model bytes, transformation provenance and TSV replay already bind native OCR; draft scheduling composes that accepted engine.',
     'implemented',
     'docs/acceptance/ocr-model-identity/ci-ad1be26-review.json https://github.com/konard/lazada-search/issues/37 https://github.com/konard/lazada-search/issues/38 docs/acceptance/ocr-decimal-portability/README.md',
-    'Accept the new orchestration against the existing engine/cache contract; historical full-matrix acceptance does not validate new drafts.',
+    'Collect and review the missing actual label originals; orchestration, native model-byte/cache contracts and full matrix acceptance passed at source171b250.',
     [11, 33, 37, 38],
   ],
   [
@@ -678,7 +678,7 @@ export const REQUIREMENT_GITHUB_ISSUES = [
       'src/requirement-registry.js',
     ],
     acceptanceRemaining:
-      'New acquisition/orchestration is unexecuted; complete real inventory/factory/bulk/frozen acceptance remains open.',
+      'Acquisition/orchestration automated regressions passed at source171b250; complete real inventory/factory/bulk/frozen acceptance remains open.',
   },
   {
     number: 4,
@@ -1068,6 +1068,21 @@ export const REQUIREMENT_GITHUB_ISSUES = [
     ],
     acceptanceRemaining:
       'Accept bounded mass, volume, nutrition, count, discount and protected-translation readers, exact source excerpts, table escaping and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it.',
+  },
+  {
+    number: 44,
+    state: 'OPEN',
+    title:
+      'Exclude nonempty telemetry pixels and pseudonymous tracking identifiers from public case exports',
+    url: 'https://github.com/konard/lazada-search/issues/44',
+    requirementIds: ['R019', 'R021', 'R022', 'R036'],
+    draftStatus: 'telemetry-redaction-fix-under-validation',
+    sourceFiles: [
+      'src/archive.js',
+      'tests/archive-telemetry-redaction.test.js',
+    ],
+    acceptanceRemaining:
+      'Validate exact-host non-product exclusions and recursive URL/field redaction, rebuild and verify all public case conversions offline, confirm unchanged product facts and reports, and merge the reviewed fix.',
   },
 ];
 

@@ -1,0 +1,2860 @@
+{
+  "schemaVersion": 1,
+  "head": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+  "checkedAt": "2026-10-13T05:30:28.847927+00:00",
+  "scope": "Independent read-only committed-head requirement and ice evidence/arithmetic audit. No app imports, tests, collection, live websites, user browser or repository mutations.",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "sourceAcceptance": {
+    "source": "171b25030d993421eeb2a0ed9e0265937963756f",
+    "finalHead": "a5ea31256bb031a2f215d145f9d49eeeaab2c085",
+    "sourceRuntimeMatrixPasses": 9,
+    "sourceNativePasses": 84,
+    "finalHeadReceipt": "/private/tmp/lazada-ci-a5ea312-acceptance.json"
+  },
+  "requirements": {
+    "registryCount": 49,
+    "jsonCount": 49,
+    "registryJsonDefinitionDrift": [],
+    "issueCount": 42,
+    "openIssues": [3, 14, 32, 36, 42, 43],
+    "fulfilledMechanicsOrProcedureAtCheckpoint": 29,
+    "realDataOrLiveOutcomeIncomplete": 20,
+    "classifications": [
+      {
+        "id": "R001",
+        "requirement": "Vietnam, VND, delivery to Nha Trang",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/application.js",
+          "src/case-workflow.js",
+          "src/compare.js",
+          "src/delivery-context.js",
+          "src/delivery.js",
+          "src/lazada-checkout-adapter.js",
+          "tests/delivery-context.test.js",
+          "tests/e2e/delivery.test.js",
+          "tests/lazada-checkout-draft.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Vietnam/VND and destination guards work; accepted current destination/quantity shipping for all target offers is absent.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R002",
+        "requirement": "Plain/unflavoured or chocolate protein powder only",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/case-worklist.js",
+          "src/config.js",
+          "src/flavour-scope.js",
+          "src/label-worklist.js",
+          "src/lazada-checkout-actions.js",
+          "src/shopping-report.js",
+          "src/variant-policy.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/preferred-variant.test.js",
+          "tests/shopping-workflow-draft.test.js",
+          "tests/variant-policy.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R003",
+        "requirement": "Strict chocolate ice-cream core, no other flavours",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/case-coverage.js",
+          "src/flavour-scope.js",
+          "src/label-worklist.js",
+          "src/shopping-report.js",
+          "src/target-category.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/human-food-scope.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Strict rejection mechanics work; only 2 of 14 ice SKUs have manufacturer chocolate identity, with unknown candidates retained as conditional references.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R004",
+        "requirement": "Never select protein plus shaker; buyer already owns one",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/browser-variant.js",
+          "src/case-workflow.js",
+          "src/flavour-scope.js",
+          "src/label-worklist.js",
+          "src/lazada-checkout-actions.js",
+          "src/shopping-report.js",
+          "src/variant-policy.js",
+          "tests/e2e/preferred-variant.test.js",
+          "tests/shopping-workflow-draft.test.js",
+          "tests/variant-policy.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R005",
+        "requirement": "List discovery before individual product collection",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/case-workflow.js",
+          "src/case-worklist.js",
+          "src/crawl.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/category-discovery.test.js",
+          "tests/e2e/category-discovery.test.js",
+          "tests/e2e/tag-search-readiness.test.js",
+          "tests/page-readiness-tag.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R006",
+        "requirement": "Relevant category filters and price sorting",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/application.js",
+          "src/case-coverage.js",
+          "src/case-workflow.js",
+          "src/crawl.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/category-coverage.test.js",
+          "tests/category-discovery.test.js"
+        ],
+        "dataOrLiveGap": "Relevant discovery/sort mechanics work; obsolete protein category redirect and authoritative whole-market inventory remain unresolved.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R007",
+        "requirement": "No maximum/minimum package-price filter",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/case-workflow.js",
+          "src/config.js",
+          "src/crawl.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/category-discovery.test.js",
+          "tests/e2e/tag-search-readiness.test.js",
+          "tests/page-readiness-tag.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R008",
+        "requirement": "Every product and every selling option captured",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/browser-variant.js",
+          "src/case-coverage.js",
+          "src/case-workflow.js",
+          "src/case-worklist.js",
+          "src/coverage.js",
+          "src/crawl.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/category-coverage.test.js"
+        ],
+        "dataOrLiveGap": "Dated active scope retains 1298 missing target listings, 373 unpriced relevant SKU options and 6403 category reviews; public search cannot establish global inventory.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R009",
+        "requirement": "Verify exact selected SKU price and availability",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/browser.js",
+          "src/capture-import.js",
+          "src/case-workflow.js",
+          "src/lazada-checkout-line-bindings.js",
+          "src/page-readiness.js",
+          "src/variant-policy.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/page-loading.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/lazada-checkout-draft.test.js"
+        ],
+        "dataOrLiveGap": "Captured selected-price/source guards work; all 14 ice prices retain October 9–10 timestamps and are not present stock/price acceptance.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R010",
+        "requirement": "Extract every discount and its eligibility",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/basket-quote.js",
+          "src/checkout-scenarios.js",
+          "src/lazada-checkout-actions.js",
+          "src/lazada-checkout-adapter.js",
+          "src/promotions.js",
+          "src/shopping-report.js",
+          "tests/e2e/checkout-scenarios.test.js",
+          "tests/lazada-checkout-draft.test.js",
+          "tests/promotions.test.js"
+        ],
+        "dataOrLiveGap": "Promotion/eligibility extraction is implemented and tested; all current applicable voucher/payment/expiry/stacking combinations remain uncaptured.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R011",
+        "requirement": "Before/after shipping cost per g, ml and protein g",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/basket-comparison.js",
+          "src/compare.js",
+          "src/food-components.js",
+          "src/lazada-checkout-adapter.js",
+          "src/package-quantity-review.js",
+          "src/shopping-report.js",
+          "tests/basket-quotes.test.js",
+          "tests/e2e/ice-quantity-review.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "All existing ice arithmetic and known dual metrics match; all delivered rates are null because exact frozen freight is missing.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R012",
+        "requirement": "Exact bulk freight and best basket price",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/basket-comparison.js",
+          "src/basket-quote.js",
+          "src/checkout-scenarios.js",
+          "src/delivery.js",
+          "src/lazada-checkout-actions.js",
+          "src/lazada-checkout-adapter.js",
+          "src/lazada-checkout-line-bindings.js",
+          "tests/checkout-scenarios.test.js",
+          "tests/e2e/basket-quotes.test.js",
+          "tests/lazada-checkout-draft.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Exact basket/scenario mechanics work; no complete current quantity/address-specific bulk basket sweep has been accepted.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R013",
+        "requirement": "Frozen ice-cream delivery to Nha Trang",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/case-worklist.js",
+          "src/compare.js",
+          "src/delivery-context.js",
+          "src/lazada-checkout-adapter.js",
+          "src/shopping-report.js",
+          "tests/delivery-context.test.js",
+          "tests/e2e/delivery.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "No confirmed frozen delivery or exact cold-chain freight to Nha Trang for any of the 14 ice candidates.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R014",
+        "requirement": "Manufacturer page/specification for every product",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/label-worklist.js",
+          "src/manufacturer-research.js",
+          "src/manufacturer-review.js",
+          "src/manufacturer-source-cache.js",
+          "src/manufacturer-source-validity.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/manufacturer-workflow-search.js",
+          "src/manufacturer-workflow.js",
+          "src/manufacturers.js",
+          "src/ocr-evidence.js",
+          "src/source-invalidation.js",
+          "src/verification.js",
+          "tests/manufacturer-research.test.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Trusted-source discovery/review workflow works; exact current factory/market/package/formula evidence is missing for most products.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R015",
+        "requirement": "Manufacturer corrections override Lazada errors",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/catalog-products.js",
+          "src/manufacturer-review.js",
+          "src/manufacturer-source-validity.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/manufacturer-workflow.js",
+          "src/source-invalidation.js",
+          "src/verification.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Source precedence and correction mechanics work; every recorded marketplace discrepancy is not yet resolved by exact factory evidence.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R016",
+        "requirement": "OCR of original images and labels",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/label-worklist.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/manufacturer-workflow.js",
+          "src/ocr-evidence.js",
+          "src/ocr-models.js",
+          "src/ocr.js",
+          "src/package-image.js",
+          "tests/e2e/ice-quantity-review.test.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/ocr-crops.test.js"
+        ],
+        "dataOrLiveGap": "Original/model/TSV/transform provenance and OCR mechanics work; label coverage and uncertain readings still need exact-product review.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R017",
+        "requirement": "Parse all Vietnamese marketplace text and provide proper English",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/case-workflow.js",
+          "src/nutrition.js",
+          "src/shopping-report.js",
+          "src/text.js",
+          "src/translation-presentation-chunks.js",
+          "src/translation-presentation.js",
+          "src/translation-quality.js",
+          "src/translation.js",
+          "src/workflow-operations.js",
+          "tests/e2e/translation-catalog.test.js",
+          "tests/shopping-workflow-draft.test.js",
+          "tests/translation-quality.test.js"
+        ],
+        "dataOrLiveGap": "Cached original-bound translation and reviewed English interfaces work; complete actual-provider semantic English coverage is not accepted.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R018",
+        "requirement": "Manual extraction and completeness verification",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "scripts/audit-current-offer-sources.mjs",
+          "scripts/audit-ice-unit-completeness.mjs",
+          "src/case-coverage.js",
+          "src/case-workflow.js",
+          "src/case-worklist.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/requirement-coverage.test.js"
+        ],
+        "dataOrLiveGap": "Manual review records and extraction checks exist; all target pages/listings/options have not been reviewed.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R019",
+        "requirement": "Associative binary store and .lino links",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "README.md",
+          "docs/architecture.md",
+          "src/archive.js",
+          "src/blob-publication.js",
+          "src/case-workflow.js",
+          "src/doublets.js",
+          "src/manufacturer-workflow.js",
+          "src/native-store.js",
+          "src/store.js",
+          "tests/archive.test.js",
+          "tests/blob-publication.test.js",
+          "tests/e2e/native-store.test.js",
+          "tests/links-workflow.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R020",
+        "requirement": "Maximum cache reuse, reload only invalid/missing data",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/blob-publication.js",
+          "src/cache.js",
+          "src/case-worklist.js",
+          "src/collection-source-replay.js",
+          "src/historical-capture-replay.js",
+          "src/label-worklist.js",
+          "src/manufacturer-source-validity.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-search.js",
+          "src/manufacturer-workflow.js",
+          "src/publication-cache.js",
+          "src/source-invalidation.js",
+          "src/store.js",
+          "tests/blob-publication.test.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/handpicked-links.test.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/publication-cache.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R021",
+        "requirement": "Public/private collection shares correct data without duplication",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/catalog-products.js",
+          "src/config.js",
+          "src/lazada-checkout-line-bindings.js",
+          "src/manufacturer-workflow.js",
+          "src/public-captures.js",
+          "src/store.js",
+          "tests/account-cache.test.js",
+          "tests/e2e/archive.test.js",
+          "tests/lazada-checkout-draft.test.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R022",
+        "requirement": "Entire public case reproducible from repository",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "scripts/archive-case.mjs",
+          "src/archive.js",
+          "src/case-workflow.js",
+          "src/shopping-report.js",
+          "tests/archive-provenance.test.js",
+          "tests/e2e/archive.test.js",
+          "tests/fixtures/draft-workflows/products.json",
+          "tests/public-cache.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R023",
+        "requirement": "Library, CLI and HTTP interfaces",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/commands.js",
+          "src/http-operations.js",
+          "src/index.d.ts",
+          "src/index.js",
+          "src/manufacturer-workflow-review.js",
+          "src/operations.js",
+          "src/server.js",
+          "src/workflow-commands.js",
+          "src/workflow-operations.js",
+          "src/workflow-types.d.ts",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/fixtures/public-api-types.ts",
+          "tests/lazada-checkout-gifts.test.js",
+          "tests/public-api-typecheck.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R024",
+        "requirement": "Telegram interface with E2E tests",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/operations.js",
+          "src/telegram.js",
+          "src/workflow-operations.js",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/e2e/telegram.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": "R024: library/CLI/HTTP/Telegram interfaces and full offline/native E2E are delivered; a deployed live bot remains R037 operational acceptance.",
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R025",
+        "requirement": "Fully automated existing account / separate profile login",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/case-readiness.js",
+          "src/login.js",
+          "src/persistent-browser.js",
+          "src/session.js",
+          "tests/browser-connection.test.js",
+          "tests/e2e/account-login.test.js"
+        ],
+        "dataOrLiveGap": "Separate-profile/Zalo/SMS and handoff mechanics work; there is no acceptance of a current authenticated account session in this read-only audit.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R026",
+        "requirement": "Slow collection and stop on dialogs/challenges",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/browser.js",
+          "src/cache.js",
+          "src/case-workflow.js",
+          "src/lazada-checkout-actions.js",
+          "src/manufacturer-workflow-search.js",
+          "src/page-challenge.js",
+          "src/page-dialogs.js",
+          "src/page-readiness.js",
+          "tests/browser-pacing.test.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/dialog-variant.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/image-redirect-pacing.test.js",
+          "tests/lazada-checkout-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R027",
+        "requirement": "Educational disclosure default, not healthcare-worker claim",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": ["src/page-dialogs.js", "tests/e2e/dialog-variant.test.js"],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R028",
+        "requirement": "Persistent browser window across restarts,30-minute idle close",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/browser-challenge-handoff.js",
+          "src/browser-connection.js",
+          "src/persistent-browser-worker.js",
+          "src/persistent-browser.js",
+          "tests/browser-challenge-handoff.test.js",
+          "tests/browser-connection.test.js",
+          "tests/browser-pacing.test.js",
+          "tests/e2e/challenge-window-retention.test.js",
+          "tests/e2e/persistent-window-recovery.test.js",
+          "tests/e2e/persistent-window.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R029",
+        "requirement": "No restore/translation/promotional browser chrome obstruction",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/browser.js",
+          "src/persistent-browser-worker.js",
+          "tests/browser-connection.test.js",
+          "tests/e2e/persistent-window.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R030",
+        "requirement": "Fluid scrolling, products plus pager visible, avoid footer",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/lazada-checkout-actions.js",
+          "src/page-scroll.js",
+          "tests/e2e/page-scroll.test.js",
+          "tests/workflow-reliability.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R031",
+        "requirement": "Screenshots do not jump/resize the page",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/lazada-checkout-adapter.js",
+          "src/page-capture.js",
+          "tests/e2e/page-scroll.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/lazada-checkout-draft.test.js",
+          "tests/page-capture.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R032",
+        "requirement": "Report dependency and implementation defects upstream",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": false,
+        "operationalProcedure": true,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "docs/acceptance/issue-reports.json",
+          "docs/drafts/github-issues-review.json",
+          "docs/drafts/github-issues.json",
+          "src/requirement-registry.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R033",
+        "requirement": "Update Browser Commander when newer version available",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "deno.lock",
+          "package-lock.json",
+          "package.json",
+          "tests/package-metadata.test.js",
+          "tests/runtime-workflow.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": "R033: version0.31.2 is the latest verified at the dated checkpoint, not a new network assertion about today's release.",
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R034",
+        "requirement": "At most2 agents for continued work, root also works",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": false,
+        "operationalProcedure": true,
+        "fulfilledAtCheckpoint": true,
+        "evidence": ["docs/REQUIREMENTS.md", "src/requirement-registry.js"],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R035",
+        "requirement": "Publish top10 partial prices immediately",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "scripts/export-deadline-report.mjs",
+          "scripts/export-handpicked-report.mjs",
+          "scripts/export-ice-unit-report.mjs",
+          "src/shopping-report.js",
+          "src/workflow-operations.js",
+          "tests/deadline-report.test.js",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R036",
+        "requirement": "Commit/push code, tests and precached public evidence",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "scripts/publish-collection-checkpoint.mjs",
+          "scripts/publish-retry.mjs",
+          "src/archive.js",
+          "src/requirement-registry.js",
+          "tests/collection-checkpoint.test.js",
+          "tests/publish-retry.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": "R036: current source/tests/public precache/docs have been committed and pushed; registry's deferred-testing text is stale.",
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R037",
+        "requirement": "Production ready and exhaustive market winner",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "docs/drafts/acceptance-plan.md",
+          "src/case-coverage.js",
+          "src/case-readiness.js",
+          "src/case-workflow.js",
+          "src/coverage.js",
+          "src/requirement-registry.js",
+          "src/verification.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/e2e/verified-case.test.js",
+          "tests/requirement-coverage.test.js"
+        ],
+        "dataOrLiveGap": "Full source tests pass; inventory/factory/nutrition/English/bulk/frozen/live-bot/npm-owner acceptance prevents production and purchase readiness.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R038",
+        "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "scripts/export-ice-unit-report.mjs",
+          "scripts/ice-unit-rankings.mjs",
+          "src/compare.js",
+          "src/label-worklist.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/package-quantity-review.js",
+          "src/shopping-report.js",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/ice-unit-rankings.test.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "Both rates appear for both independently evidenced quantities; 12 of 14 ice SKUs lack at least one denominator and all lack exact frozen freight.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R039",
+        "requirement": "Separate whey and soy categories in buying tables",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "scripts/report-unit-costs.mjs",
+          "src/flavour-scope.js",
+          "src/label-worklist.js",
+          "src/nutrition.js",
+          "src/shopping-report.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/report-unit-costs.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R040",
+        "requirement": "All submitted short-link options and exact top10 membership tracked",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "docs/acceptance/top10-check/handpicked-links.json",
+          "scripts/export-handpicked-report.mjs",
+          "src/handpicked-links.js",
+          "src/shopping-report.js",
+          "src/workflow-operations.js",
+          "tests/handpicked-links.test.js",
+          "tests/handpicked-report.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": "All 6 submitted links resolve to and track exact captured SKUs; only 5 have supported gram amounts, so complete handpicked gram comparison is not fulfilled.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R041",
+        "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/browser-challenge-handoff.js",
+          "src/browser-image-cache.js",
+          "src/cache.js",
+          "src/case-workflow.js",
+          "src/lazada-checkout-capture.js",
+          "src/manufacturer-source-cache.js",
+          "src/manufacturer-workflow-search.js",
+          "src/manufacturer-workflow.js",
+          "src/page-challenge.js",
+          "tests/browser-challenge-handoff.test.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/captcha-stop.test.js",
+          "tests/e2e/challenge-window-retention.test.js",
+          "tests/e2e/draft-workflow-interfaces.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/handpicked-links.test.js",
+          "tests/lazada-checkout-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R042",
+        "requirement": "Uncollected backlog precedes old recollection, with resumable failures",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/availability.js",
+          "src/case-workflow-lock.js",
+          "src/case-workflow.js",
+          "src/case-worklist.js",
+          "src/collection-scope.js",
+          "tests/account-backlog-order.test.js",
+          "tests/account-collection-attempts.test.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/e2e/draft-workflow-interfaces.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R043",
+        "requirement": "Protein type, ingredients and disclosed nutritional components for healthy-buy comparison",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/case-worklist.js",
+          "src/compare.js",
+          "src/label-worklist.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/nutrition.js",
+          "src/shopping-report.js",
+          "src/verification.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/shopping-workflow-draft.test.js",
+          "tests/urgent-ingredients.test.js"
+        ],
+        "dataOrLiveGap": "Nutrition/type/ingredient mechanics work; exact current factory nutrition/ingredients and protein basis are not complete for all products.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R044",
+        "requirement": "Record every nonmatching search result and reuse evidence-backed exclusions",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/case-coverage.js",
+          "src/case-worklist.js",
+          "src/collection-scope.js",
+          "src/crawl.js",
+          "src/scope-decisions.js",
+          "src/shopping-report.js",
+          "src/target-category.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/scope-decisions.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R045",
+        "requirement": "Confirmed removed listings must not stop the queue or remain current buying offers",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/availability.js",
+          "src/case-workflow.js",
+          "src/case-worklist.js",
+          "src/coverage.js",
+          "src/page-readiness.js",
+          "src/public-captures.js",
+          "tests/availability.test.js",
+          "tests/case-workflow-draft.test.js",
+          "tests/removed-product.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R046",
+        "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/compare.js",
+          "src/food-offer-source-basis.js",
+          "src/label-worklist.js",
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow-review.js",
+          "src/ocr-evidence.js",
+          "src/ocr.js",
+          "src/package-artwork-consistency.js",
+          "src/package-image.js",
+          "src/package-mass-consistency.js",
+          "src/specification-holds.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/package-mass-quarantine.test.js",
+          "tests/shopping-workflow-draft.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R047",
+        "requirement": "Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders",
+        "classification": "mechanics-implemented-tested-real-data-or-live-acceptance-incomplete",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": false,
+        "evidence": [
+          "src/comparison-inputs.js",
+          "src/food-component-evidence.js",
+          "src/food-components.js",
+          "src/food-offer-discovery.js",
+          "src/lazada-checkout-actions.js",
+          "src/lazada-checkout-gifts.js",
+          "tests/bonus-paid-mass-hold.test.js",
+          "tests/e2e/prepared-checkout-adapter.test.js",
+          "tests/food-component-evidence.test.js",
+          "tests/food-component-persistence.test.js",
+          "tests/food-components.test.js",
+          "tests/lazada-checkout-gifts.test.js"
+        ],
+        "dataOrLiveGap": "Paid/bonus/accessory accounting mechanics work; issue14's real gift formula/mass/stock/order eligibility remains unresolved.",
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R048",
+        "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          "src/manufacturer-workflow-facts.js",
+          "src/manufacturer-workflow.js",
+          "src/ocr-evidence.js",
+          "src/ocr-models.js",
+          "src/ocr.js",
+          "tests/manufacturer-source-validity.test.js",
+          "tests/manufacturer-workflow-draft.test.js",
+          "tests/ocr-crops.test.js",
+          "tests/ocr-models.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      },
+      {
+        "id": "R049",
+        "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
+        "classification": "implemented-tested-or-operationally-complied-at-checkpoint",
+        "mechanicsAccepted": true,
+        "operationalProcedure": false,
+        "fulfilledAtCheckpoint": true,
+        "evidence": [
+          ".github/workflows/links.yml",
+          "scripts/recheck-broken-links.mjs",
+          "src/requirement-registry.js",
+          "tests/ci-workflow-policy.test.js",
+          "tests/recheck-broken-links.test.js"
+        ],
+        "dataOrLiveGap": null,
+        "sourceAcceptance": "171b250 full 9-runtime suites and 84 E2E; executable bytes unchanged at a5ea312",
+        "futureMaintenanceIsNotAnUnfinishedOneTimeCodeRequirement": true,
+        "scopeNote": null,
+        "missingMappedFiles": []
+      }
+    ],
+    "staleDocumentation": [
+      {
+        "path": "docs/REQUIREMENTS.md",
+        "line": 7,
+        "kind": "stale-current-issue-count",
+        "actualCurrentIssues": 42,
+        "text": "The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. The user subsequently authorized testing; [workflow acceptance](acceptance/draft-workflow-testing/README.md) records actual local unit, interface, browser and native OCR checks. Live data/release acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates."
+      },
+      {
+        "path": "docs/RESUME.md",
+        "line": 7,
+        "kind": "stale-current-issue-count",
+        "actualCurrentIssues": 42,
+        "text": "The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. The user subsequently authorized testing; [workflow acceptance](acceptance/draft-workflow-testing/README.md) records actual local unit, interface, browser and native OCR checks. Live data/release acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates."
+      },
+      {
+        "path": "docs/ROADMAP.md",
+        "line": 7,
+        "kind": "stale-current-issue-count",
+        "actualCurrentIssues": 42,
+        "text": "The [remaining automation draft](drafts/README.md) maps all 49 requirements and 40 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. The user subsequently authorized testing; [workflow acceptance](acceptance/draft-workflow-testing/README.md) records actual local unit, interface, browser and native OCR checks. Live data/release acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates."
+      },
+      {
+        "path": "src/requirement-registry.js",
+        "line": 434,
+        "kind": "stale-current-testing-status",
+        "text": "    'Commit/push this draft and its roadmap; tests are intentionally deferred and cannot be represented as newly accepted.',"
+      }
+    ],
+    "staleExecutionPrerequisiteTextInRequirements": [
+      "R023",
+      "R024",
+      "R036",
+      "R037",
+      "R042",
+      "R048"
+    ],
+    "datedAudit": {
+      "checkedAt": "2026-10-11T21:01:14.283Z",
+      "openRequirementsCount": 29,
+      "githubIssuesCount": 40,
+      "notCurrentRegistryTotals": true,
+      "activeScope": {
+        "missingListings": 1298,
+        "missingSkuPrices": 373,
+        "missingPrices": 0,
+        "unknownSkuInventories": 0,
+        "categoryReview": 6403,
+        "specifications": 345,
+        "verifiedProducts": 14,
+        "excludedCategoryListings": 371,
+        "excludedExactOptions": 598
+      },
+      "gates": {
+        "authoritativeCategoryInventory": false,
+        "visibleListsTerminal": true,
+        "allDiscoveredTargetListingsCaptured": false,
+        "allRelevantSkuPricesCaptured": false,
+        "allSkuInventoriesObserved": true,
+        "allCategoryReviewsResolved": false,
+        "allExactManufacturerSpecificationsVerified": false,
+        "iceMassVolumeAndProteinComplete": false,
+        "allCapturedTargetDeliveryQuotesExact": false,
+        "bulkDestinationQuotesCaptured": false,
+        "frozenNhaTrangDeliveryConfirmed": false,
+        "allRequirementsAccepted": false,
+        "allGithubIssuesClosed": false
+      }
+    }
+  },
+  "ice": {
+    "counts": {
+      "rows": 14,
+      "positiveExactCapturedPrices": 14,
+      "independentMassKnown": 6,
+      "independentVolumeKnown": 8,
+      "bothMassAndVolume": 2,
+      "proteinDenominatorKnown": 3,
+      "manufacturerVerifiedProteinDenominators": 0,
+      "manufacturerChocolateIdentity": 2,
+      "strictChocolateTrue": 3,
+      "strictChocolateRejected": 3,
+      "strictChocolateUnknown": 8,
+      "soldOut": 1,
+      "explicitlyDestinationUnavailable": 4,
+      "exactFrozenQuotes": 0,
+      "rankingCounts": {
+        "beforePerFoodGram": 5,
+        "beforePerMl": 7,
+        "beforePerProteinGram": 2,
+        "afterPerFoodGram": 0,
+        "afterPerMl": 0,
+        "afterPerProteinGram": 0
+      }
+    },
+    "rateChecks": 84,
+    "quantityChecks": [
+      {
+        "sku": "1561216831_VNAMZ-6599331044",
+        "field": "volumeMl",
+        "perPackage": 6000,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 6000,
+        "actual": 6000,
+        "valid": true
+      },
+      {
+        "sku": "2978009544_VNAMZ-14350953081",
+        "field": "massG",
+        "perPackage": 131,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 131,
+        "actual": 131,
+        "valid": true
+      },
+      {
+        "sku": "2978009544_VNAMZ-14350953081",
+        "field": "volumeMl",
+        "perPackage": 130,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 130,
+        "actual": 130,
+        "valid": true
+      },
+      {
+        "sku": "2978009544_VNAMZ-14350953081",
+        "field": "proteinG",
+        "perPackage": 1,
+        "packages": 1,
+        "expected": 1,
+        "actual": 1,
+        "valid": true
+      },
+      {
+        "sku": "3040048563_VNAMZ-14623760583",
+        "field": "massG",
+        "perPackage": 131,
+        "quantity": 1,
+        "packagesPerSellingUnit": 24,
+        "expected": 3144,
+        "actual": 3144,
+        "valid": true
+      },
+      {
+        "sku": "3040048563_VNAMZ-14623760583",
+        "field": "volumeMl",
+        "perPackage": 130,
+        "quantity": 1,
+        "packagesPerSellingUnit": 24,
+        "expected": 3120,
+        "actual": 3120,
+        "valid": true
+      },
+      {
+        "sku": "3040048563_VNAMZ-14623760583",
+        "field": "proteinG",
+        "perPackage": 1,
+        "packages": 24,
+        "expected": 24,
+        "actual": 24,
+        "valid": true
+      },
+      {
+        "sku": "3047790409_VNAMZ-14661118301",
+        "field": "volumeMl",
+        "perPackage": 175,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 175,
+        "actual": 175,
+        "valid": true
+      },
+      {
+        "sku": "3039951845_VNAMZ-14623703963",
+        "field": "volumeMl",
+        "perPackage": 160,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 160,
+        "actual": 160,
+        "valid": true
+      },
+      {
+        "sku": "3039951845_VNAMZ-14623703963",
+        "field": "proteinG",
+        "perPackage": 3.2,
+        "packages": 1,
+        "expected": 3.2,
+        "actual": 3.2,
+        "valid": true
+      },
+      {
+        "sku": "1880785864_VNAMZ-8527716007",
+        "field": "volumeMl",
+        "perPackage": 475,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 475,
+        "actual": 475,
+        "valid": true
+      },
+      {
+        "sku": "1880785864_VNAMZ-8527716006",
+        "field": "volumeMl",
+        "perPackage": 125,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 125,
+        "actual": 125,
+        "valid": true
+      },
+      {
+        "sku": "367656830_VNAMZ-116917756014",
+        "field": "massG",
+        "perPackage": 40,
+        "quantity": 1,
+        "packagesPerSellingUnit": 5,
+        "expected": 200,
+        "actual": 200,
+        "valid": true
+      },
+      {
+        "sku": "1561301337_VNAMZ-6599253417",
+        "field": "massG",
+        "perPackage": 40,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 40,
+        "actual": 40,
+        "valid": true
+      },
+      {
+        "sku": "367656830_VNAMZ-610790405",
+        "field": "massG",
+        "perPackage": 40,
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "expected": 40,
+        "actual": 40,
+        "valid": true
+      },
+      {
+        "sku": "497264871_VNAMZ-15825435034",
+        "field": "massG",
+        "perPackage": 60,
+        "quantity": 1,
+        "packagesPerSellingUnit": 5,
+        "expected": 300,
+        "actual": 300,
+        "valid": true
+      }
+    ],
+    "rateErrors": [],
+    "rankingChecks": [
+      {
+        "metric": "beforePerFoodGram",
+        "count": 5,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [
+          "367656830_VNAMZ-116917756014",
+          "1561301337_VNAMZ-6599253417",
+          "367656830_VNAMZ-610790405",
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583"
+        ],
+        "expectedSkus": [
+          "367656830_VNAMZ-116917756014",
+          "1561301337_VNAMZ-6599253417",
+          "367656830_VNAMZ-610790405",
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583"
+        ]
+      },
+      {
+        "metric": "beforePerMl",
+        "count": 7,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [
+          "1561216831_VNAMZ-6599331044",
+          "3047760589_VNAMZ-14661082727",
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583",
+          "3047790409_VNAMZ-14661118301",
+          "1880785864_VNAMZ-8527716007",
+          "1880785864_VNAMZ-8527716006"
+        ],
+        "expectedSkus": [
+          "1561216831_VNAMZ-6599331044",
+          "3047760589_VNAMZ-14661082727",
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583",
+          "3047790409_VNAMZ-14661118301",
+          "1880785864_VNAMZ-8527716007",
+          "1880785864_VNAMZ-8527716006"
+        ]
+      },
+      {
+        "metric": "beforePerProteinGram",
+        "count": 2,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583"
+        ],
+        "expectedSkus": [
+          "2978009544_VNAMZ-14350953081",
+          "3040048563_VNAMZ-14623760583"
+        ]
+      },
+      {
+        "metric": "afterPerFoodGram",
+        "count": 0,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [],
+        "expectedSkus": []
+      },
+      {
+        "metric": "afterPerMl",
+        "count": 0,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [],
+        "expectedSkus": []
+      },
+      {
+        "metric": "afterPerProteinGram",
+        "count": 0,
+        "validConditionalReferenceSort": true,
+        "actualSkus": [],
+        "expectedSkus": []
+      }
+    ],
+    "markdownChecks": 74,
+    "markdownErrors": [],
+    "directOriginalArtifactChecks": {
+      "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json": {
+        "storedInputSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+        "originalUncompressedSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+        "claimedSha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+        "valid": true
+      },
+      "docs/acceptance/ice-dual-units/2978009544-seller-5.webp": {
+        "storedInputSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+        "originalUncompressedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+        "claimedSha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+        "valid": true
+      },
+      "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png": {
+        "storedInputSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+        "originalUncompressedSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+        "claimedSha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+        "valid": true
+      },
+      "docs/acceptance/ice-dual-units/expanded-root-pongta-carton.html.gz": {
+        "storedInputSha256": "ca1d3cf841400ba5f7971bd2d14d3a62923db0a82aa26a8fcc4c39f4c25e045d",
+        "originalUncompressedSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+        "claimedSha256": "39f5a43f7e064f82736e983ae9e30c134490cd1061a6009bdc3378fa57f322e1",
+        "valid": true
+      },
+      "docs/acceptance/ice-dual-units/3047790409-seller-5.webp": {
+        "storedInputSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+        "originalUncompressedSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+        "claimedSha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+        "valid": true
+      },
+      "docs/acceptance/ice-dual-units/3039951845-seller-3.webp": {
+        "storedInputSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+        "originalUncompressedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+        "claimedSha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+        "valid": true
+      }
+    },
+    "errors": [],
+    "purchaseWinners": [],
+    "referenceCandidateCaveats": [
+      "Conditional reference ranks intentionally admit unknown strictChocolateEligible, not fully verified target winners.",
+      "Cremo6000ml and PowerCap24 carton are explicitly unavailable to Nha Trang and remain before-delivery references only.",
+      "All three available protein denominators are seller-panel references; one belongs to excluded World Cone, so only two rank.",
+      "No current manufacturer-verified protein denominator or confirmed frozen destination quote is available.",
+      "Both rates appear everywhere independently supported; no density conversion fills missing data."
+    ],
+    "manualImageReview": [
+      {
+        "path": "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png",
+        "readings": {
+          "massG": 131,
+          "volumeMl": 130
+        },
+        "limit": "Factory wrapper is hosted by a secondary importer; exact seller lot/GTIN/formula not established."
+      },
+      {
+        "path": "docs/acceptance/ice-dual-units/2978009544-seller-5.webp",
+        "readings": {
+          "volumeMl": 130,
+          "proteinG": 1,
+          "energyKcal": 135,
+          "fatG": 3,
+          "carbohydrateG": 26,
+          "sugarG": 25,
+          "sodiumMg": 80
+        },
+        "limit": "Seller promotional panel is not factory nutrition acceptance."
+      },
+      {
+        "path": "docs/acceptance/ice-dual-units/3039951845-seller-3.webp",
+        "readings": {
+          "volumeMl": 160,
+          "proteinG": 3.2,
+          "energyKcal": 296,
+          "fatG": 15,
+          "carbohydrateG": 37,
+          "sugarG": 29,
+          "sodiumMg": 80
+        },
+        "limit": "World Cone is rejected from target ranking; retained panel remains evidence."
+      }
+    ],
+    "rowGaps": [
+      {
+        "sku": "1561216831_VNAMZ-6599331044",
+        "name": "iBerri Thai chocolate tub 6L (seller description identity)",
+        "massG": null,
+        "volumeMl": 6000,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["grams", "protein"],
+        "researchGaps": [
+          "Seller title/specification 3kg conflicts with description 3–3.3kg depending on flavour; exact chocolate net mass unresolved",
+          "Manufacturer 6L/3kg Cremo family lacks iBerri exact export-product mapping, barcode and current formula",
+          "No full factory chocolate ingredient list; seller prose is generic and incomplete",
+          "No current nutrition label on any of four cached product images",
+          "No exact current chocolate-core factory label matched; promotional image is insufficient manufacturer identity evidence",
+          "Frozen Nha Trang service and bulk freight remain a separate acquisition requirement",
+          "Distributor title3kg conflicts with its own3–3.6kg flavour-dependent range; exact chocolate grams still absent",
+          "Distributor EAN8850387013085 not printed on available Lazada package photos",
+          "Government record identifies exact chocolate name but does not expose original declaration/label attachment",
+          "Distributor generic prose mentions vanilla despite cocoa/chocolate-specific ingredient list; prose cannot define selected flavour"
+        ]
+      },
+      {
+        "sku": "3047760589_VNAMZ-14661082727",
+        "name": "Cremo chocolate6000ml selected SKU",
+        "massG": null,
+        "volumeMl": 6000,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": true,
+        "missing": ["grams", "protein"],
+        "researchGaps": [
+          "Actual selected image is white plain tub, not manufacturer yellow6L/3kg ice-confection tub;3kg is explicitly withheld",
+          "Find exact factory net grams for GTIN8850387009361; generic yellow-confection matrix cannot resolve this selected white tub",
+          "No exact current nutrition/ingredients label for selected chocolate factory SKU",
+          "Frozen shipping and quantity-specific freight require parent collector verification"
+        ]
+      },
+      {
+        "sku": "2978009544_VNAMZ-14350953081",
+        "name": "Binggrae Power Cap Choco / Pongta chocolate",
+        "massG": 131,
+        "volumeMl": 130,
+        "proteinG": 1,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": true,
+        "manufacturerIdentityMatched": true,
+        "deliveryUnavailable": false,
+        "missing": [],
+        "researchGaps": [
+          "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+          "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+          "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+          "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
+        ]
+      },
+      {
+        "sku": "3040048563_VNAMZ-14623760583",
+        "name": "Binggrae PowerCap chocolate carton of24×130ml bottles",
+        "massG": 3144,
+        "volumeMl": 3120,
+        "proteinG": 24,
+        "packagesPerSellingUnit": 24,
+        "available": true,
+        "strictChocolateEligible": true,
+        "manufacturerIdentityMatched": true,
+        "deliveryUnavailable": true,
+        "missing": [],
+        "researchGaps": [
+          "Exact manufacturer product identity is matched, but its export Chocolate130ml nutrition response contains empty placeholder values; a readable factory back-panel with actual serving basis and nutrients is still required.",
+          "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+          "Original manufacturer back-panel or exact regulatory nutrition for the export chocolate130ml formula remains missing; do not promote the seller 1g protein panel to manufacturer verification."
+        ]
+      },
+      {
+        "sku": "3047790409_VNAMZ-14661118301",
+        "name": "Lotte Fanfare / 빵빠레 chocolate",
+        "massG": null,
+        "volumeMl": 175,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": true,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["grams", "protein"],
+        "researchGaps": [
+          "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+          "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+          "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+          "The cached 175 ml chocolate promotional nutrition table is blank (ellipsis for energy; other fields empty), so no protein/energy/macronutrient amounts are available from it.",
+          "The same GTIN8801118251313 is described as175ml by Vietnamese sellers and170ml by HMart Toronto. Published195ml data and Korean family-only175g registry rows cannot establish the selected175ml chocolate formula or mass.",
+          "Retrieved retailer galleries show front panels only. The selected seller nutrition image has blank quantities. No numeric nutrient or gram mass has been approved."
+        ]
+      },
+      {
+        "sku": "3039951845_VNAMZ-14623703963",
+        "name": "Lotte World Cone / 월드콘 chocolate; seller alias Crispy Crunch",
+        "massG": null,
+        "volumeMl": 160,
+        "proteinG": 3.2,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": false,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["grams"],
+        "researchGaps": [
+          "Exact manufacturer-backed ingredient list and complete nutrition panel for this export variant have not been matched.",
+          "Net grams are not printed in the reviewed gallery; no density or ml-to-g conversion is permitted.",
+          "Nutrition image is a seller promotional transcription rather than an original factory nutrition panel; preserve authority and do not approve manufacturer verification.",
+          "Peanut topping excludes this exact listing from the requested nut-free strict chocolate scope. Seller English name is not the Korean manufacturer family name."
+        ]
+      },
+      {
+        "sku": "1880785864_VNAMZ-8527716007",
+        "name": "Happy Gelato Belgian chocolate 475ml",
+        "massG": null,
+        "volumeMl": 475,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["grams", "protein"],
+        "researchGaps": [
+          "No exact current package net grams for this volume; density must not be inferred",
+          "No current chocolate formula or GTIN linking the 2021 tested sample to this selected SKU",
+          "No current package nutrition per 100g, per 100ml, or per package",
+          "No full current ingredient/allergen list or sugar/saturated-fat values",
+          "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
+          "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
+        ]
+      },
+      {
+        "sku": "1880785864_VNAMZ-8527716006",
+        "name": "Happy Gelato Belgian chocolate 125ml",
+        "massG": null,
+        "volumeMl": 125,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["grams", "protein"],
+        "researchGaps": [
+          "No exact current package net grams for this volume; density must not be inferred",
+          "No current chocolate formula or GTIN linking the 2021 tested sample to this selected SKU",
+          "No current package nutrition per 100g, per 100ml, or per package",
+          "No full current ingredient/allergen list or sugar/saturated-fat values",
+          "Official manufacturer domain resolution/TLS failures and public Facebook retrieval barrier",
+          "Frozen Nha Trang service and exact quantity-specific freight require separate verification"
+        ]
+      },
+      {
+        "sku": "367656830_VNAMZ-116917756014",
+        "name": "Merino chocolate cocoa-crisp ice-cream stick",
+        "massG": 200,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 5,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["millilitres", "protein"],
+        "researchGaps": [
+          "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+          "Volume declaration for this exact inner stick/cone",
+          "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+          "Complete ingredients and allergens for the same formula",
+          "Current lot/formula versus historical seller artwork",
+          "Exact Nha Trang delivery and selected-order shipping",
+          "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+        ]
+      },
+      {
+        "sku": "1561301337_VNAMZ-6599253417",
+        "name": "Merino chocolate cocoa-crisp ice-cream stick",
+        "massG": 40,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["millilitres", "protein"],
+        "researchGaps": [
+          "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+          "Volume declaration for this exact inner stick/cone",
+          "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+          "Complete ingredients and allergens for the same formula",
+          "Current lot/formula versus historical seller artwork",
+          "Exact Nha Trang delivery and selected-order shipping",
+          "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+        ]
+      },
+      {
+        "sku": "367656830_VNAMZ-610790405",
+        "name": "Merino chocolate cocoa-crisp ice-cream stick",
+        "massG": 40,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["millilitres", "protein"],
+        "researchGaps": [
+          "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+          "Volume declaration for this exact inner stick/cone",
+          "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+          "Complete ingredients and allergens for the same formula",
+          "Current lot/formula versus historical seller artwork",
+          "Exact Nha Trang delivery and selected-order shipping",
+          "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+        ]
+      },
+      {
+        "sku": "2042294681_VNAMZ-9532082441",
+        "name": "Aice chocolate mochi",
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": false,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": true,
+        "missing": ["grams", "millilitres", "protein"],
+        "researchGaps": [
+          "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+          "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+        ]
+      },
+      {
+        "sku": "2042258411_VNAMZ-9532010624",
+        "name": "Aice chocolate cone",
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 1,
+        "available": true,
+        "strictChocolateEligible": false,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": true,
+        "missing": ["grams", "millilitres", "protein"],
+        "researchGaps": [
+          "Official product illustration depicts white ice-cream together with chocolate; it does not establish an exclusively chocolate ice-cream core.",
+          "No exact readable back-label quantity or nutrition panel;20g marketplace cone attribute is unverified."
+        ]
+      },
+      {
+        "sku": "497264871_VNAMZ-15825435034",
+        "name": "Merino chocolate cone, five-cone pack",
+        "massG": 300,
+        "volumeMl": null,
+        "proteinG": null,
+        "packagesPerSellingUnit": 5,
+        "available": false,
+        "strictChocolateEligible": null,
+        "manufacturerIdentityMatched": false,
+        "deliveryUnavailable": false,
+        "missing": ["millilitres", "protein"],
+        "researchGaps": [
+          "Manufacturer or legible back panel for the exact chocolate formula/GTIN",
+          "Volume declaration for this exact inner stick/cone",
+          "Protein, carbohydrate, sugar, fat and energy with explicit gram or ml basis",
+          "Complete ingredients and allergens for the same formula",
+          "Current lot/formula versus historical seller artwork",
+          "Exact Nha Trang delivery and selected-order shipping",
+          "Exact seller barcode to current Lazada SKU and manufacturer formula crosswalk; front artwork alone cannot establish formula revision"
+        ]
+      }
+    ]
+  },
+  "handpicked": {
+    "counts": {
+      "submittedRows": 6,
+      "resolvedListingRows": 6,
+      "resolvedExactSkuRows": 6,
+      "capturedExactSkuRows": 6,
+      "supportedGramRows": 5,
+      "duplicateResolvedListingRows": 1,
+      "duplicateResolvedExactSkuRows": 0,
+      "memberships": {
+        "wheyFoodGram": {
+          "submittedListingMatches": 2,
+          "submittedExactSkuMatches": 1,
+          "uniqueListingMatches": 1,
+          "uniqueExactSkuMatches": 1
+        },
+        "wheyProteinGram": {
+          "submittedListingMatches": 1,
+          "submittedExactSkuMatches": 1,
+          "uniqueListingMatches": 1,
+          "uniqueExactSkuMatches": 1
+        },
+        "soyProteinGram": {
+          "submittedListingMatches": 0,
+          "submittedExactSkuMatches": 0,
+          "uniqueListingMatches": 0,
+          "uniqueExactSkuMatches": 0
+        }
+      }
+    },
+    "complete": false,
+    "generatedAt": "2026-10-11T21:02:12.548Z"
+  },
+  "collectionStop": {
+    "id": "browser-collection",
+    "active": true,
+    "reason": "challenge",
+    "detectedAt": "2026-10-11T10:23:22.482Z",
+    "origin": "https://www.optimumnutrition.com",
+    "signals": ["visible-cloudflare-interstitial"],
+    "handoff": {
+      "status": "no-browser-page",
+      "pageOpen": false
+    }
+  },
+  "inputs": {
+    "docs/drafts/requirements.json": {
+      "sha256": "9fefe034fc3268cb38e7a808f598f77fe7691ccde342d38d774b746c140c93d1",
+      "bytes": 104749
+    },
+    "docs/tables/ice-unit-rankings.json": {
+      "sha256": "1a433f0074f2d0a732d5acad84ed4033bcf0fd526f3cee27fcfa8c2bd4fbcb73",
+      "bytes": 193637
+    },
+    "docs/tables/catalog.json": {
+      "sha256": "1e1ba0d46d4c7cd511eab8facfd78dd532fab40bff974ad05119c965babaa81a",
+      "bytes": 35731857
+    },
+    "docs/tables/top-10-partial.json": {
+      "sha256": "c692810dd0f484166d591f102bccfed44bddcea988e4b4dbf51dc78c796da5eb",
+      "bytes": 30627
+    },
+    "docs/tables/handpicked.json": {
+      "sha256": "abc626d2a8df5cd6dbb2fa9a9ed5dcf793c73a128bf70f29076781b261697871",
+      "bytes": 20010
+    },
+    "docs/acceptance/requirements-audit/current.json": {
+      "sha256": "53be83ea47c4a42b77a6b9b05bf59b395fb04347ad87d2ae391edad3ae7fff9a",
+      "bytes": 35863
+    },
+    "docs/acceptance/challenge-window-retention/github-issues.json": {
+      "sha256": "c92b1bf2a923975532659a6394af509b51d14b141748f931ada1d476bc9b5fd3",
+      "bytes": 10430
+    },
+    "docs/acceptance/challenge-window-retention/ci-source-171b250-review.json": {
+      "sha256": "7bd77b2eac992ccc820726ef161a8e2b56c09a5c1cb724a4647f5fa8925a6af9",
+      "bytes": 74031
+    },
+    "src/requirement-registry.js": {
+      "sha256": "38c95f0e7cd2071ba9d391fc91daa88e742dedfd263b5fd8aacc03a3739ffddf",
+      "bytes": 49768
+    },
+    "docs/tables/ice-unit-rankings.md": {
+      "sha256": "a2593eab63d92d019fef9e729115abf692deb1afe061cc25ff5f26b79f5e6045",
+      "bytes": 21496
+    },
+    "docs/REQUIREMENTS.md": {
+      "sha256": "f93a912b1a3e4a68f72d16cc29a5ca6736d0d3fb7b81d2172a8fb018451efb2d",
+      "bytes": 44103
+    },
+    "docs/RESUME.md": {
+      "sha256": "48617c26ed710c226643e5a862d7e52e3d32267565eeb982f37a80027f66bf61",
+      "bytes": 7294
+    },
+    "docs/ROADMAP.md": {
+      "sha256": "98f48f07433612ce8f0c7620997a9f029ccd8a744ef0daeb3c48b253a6ecacd9",
+      "bytes": 34421
+    },
+    "docs/drafts/requirements.md": {
+      "sha256": "b0a78d630d65dd031bd15141a071780f2f251508b53966f8406b3bbce1e1fb0e",
+      "bytes": 127489
+    },
+    "scripts/ice-unit-rankings.mjs": {
+      "sha256": "3b7b8c091623672003341b2a0a77541bff122183e8d9c163f8705ed2b293ca48",
+      "bytes": 7441
+    },
+    "scripts/export-ice-unit-report.mjs": {
+      "sha256": "bc7b21198ef45d7694e9df7bf75fb38780c040fd8e05c891c98360ee28941d55",
+      "bytes": 10857
+    },
+    "src/application.js": {
+      "sha256": "1ffcd84d7695c2f0213079fc45a9ef3fcd2862d817194b4720a1ddafaef49a58",
+      "bytes": 30556
+    },
+    "src/case-workflow.js": {
+      "sha256": "b0e35c292c9d46738ad41414ddd3f72abe0bc7db5f40f476070430bf08f60857",
+      "bytes": 17215
+    },
+    "src/compare.js": {
+      "sha256": "c664cb5932b8abf20f4af174302800d84dffb65a8b1fc5f45fcb8bd114962af9",
+      "bytes": 15932
+    },
+    "src/delivery-context.js": {
+      "sha256": "09d82a735db59619ea4e36c04de386ee7c78349515c64f0e6ac10498c33b31bb",
+      "bytes": 1060
+    },
+    "src/delivery.js": {
+      "sha256": "e2aacf96d16311ef7a1ef10e691394a956e35e9af01a731be9bfb538ccdfacfd",
+      "bytes": 7727
+    },
+    "src/lazada-checkout-adapter.js": {
+      "sha256": "d3105e08d6f69ef1197fcec509168ac88cb7bbfac986aeb0d50bfb16784dc86b",
+      "bytes": 16951
+    },
+    "tests/delivery-context.test.js": {
+      "sha256": "06b66d50a6ed30f754a57fb5c76a4d291c526effc93525c841cd2101655e9833",
+      "bytes": 11956
+    },
+    "tests/e2e/delivery.test.js": {
+      "sha256": "f1879392040902a195bc44b351713ffdf808d6942f86ea54341743a36069d2de",
+      "bytes": 4450
+    },
+    "tests/lazada-checkout-draft.test.js": {
+      "sha256": "a41bb3cdd57e4e04c0d0b94626b4222aaa311d43d20a944ce5114faa47fe5153",
+      "bytes": 27307
+    },
+    "tests/shopping-workflow-draft.test.js": {
+      "sha256": "39040f6c8d4a7aa712ea452691e30511e7982c3f6ef03e9b3641337f2b996990",
+      "bytes": 7994
+    },
+    "src/case-worklist.js": {
+      "sha256": "27f4f56944d90745b92a19d7d7dd000ec152321c51c567c085de974905d202ce",
+      "bytes": 13026
+    },
+    "src/config.js": {
+      "sha256": "ef0632f9965176574fd987e157f96cd0f557551c80cd57bec3ff42ca05ac8ea9",
+      "bytes": 11024
+    },
+    "src/flavour-scope.js": {
+      "sha256": "df28fcc51f1a91df3082e41b204acbb9834cb321913a186c8c360aee1bf3c475",
+      "bytes": 3866
+    },
+    "src/label-worklist.js": {
+      "sha256": "d72c88eee58f7bf6aaf8d157f10cb85206edcfab85aee237ec1e6580de314acc",
+      "bytes": 6501
+    },
+    "src/lazada-checkout-actions.js": {
+      "sha256": "7d7be721eef17a97475b6a506749d3bcb0b95bac3e4c35a154b8abe02629d5a0",
+      "bytes": 16143
+    },
+    "src/shopping-report.js": {
+      "sha256": "ccfcf862863a1cb82e557b73c0f77a5d758086c7b14bafd1c1235e44a21042bc",
+      "bytes": 24294
+    },
+    "src/variant-policy.js": {
+      "sha256": "be300c736dfc719967cf78a0a1afd32f8e02ab32b6a0e420723978a610263be5",
+      "bytes": 2790
+    },
+    "tests/case-workflow-draft.test.js": {
+      "sha256": "fcfe409526944bf194bae11418d0327835feb8dbd6a10230e3da3e77732c4250",
+      "bytes": 29938
+    },
+    "tests/e2e/preferred-variant.test.js": {
+      "sha256": "bd7f003f7012e3af6432219b5f5068ba1d26a4ca1a2482918bd10c7daf2bd071",
+      "bytes": 5545
+    },
+    "tests/variant-policy.test.js": {
+      "sha256": "cdce31509ee159f8bbf5877cb56d57d6bc03ac14eac7535b0e17df9d4a541b95",
+      "bytes": 5104
+    },
+    "src/case-coverage.js": {
+      "sha256": "7af88068e79a91378cb256a99db9539e479dfcc520558a36d64dd64c25374b9f",
+      "bytes": 21432
+    },
+    "src/target-category.js": {
+      "sha256": "94bdd58cf547ca68252b2126321c7a5c6fb5e1b135e15e3ee9009454c7fefda6",
+      "bytes": 1760
+    },
+    "tests/human-food-scope.test.js": {
+      "sha256": "6067b4482f564162483265d68e423d7d59ba0355176a855e0b93577fbd176611",
+      "bytes": 2373
+    },
+    "src/browser-variant.js": {
+      "sha256": "7e0ef11f3d898e7ba887e715699245c84fa904044c62a5affbbf4c855835e27f",
+      "bytes": 2736
+    },
+    "src/crawl.js": {
+      "sha256": "9ab6ccc8fbd77b8adfd861b2dfda174fc3455cee714a047a675c9fc992c34fef",
+      "bytes": 10689
+    },
+    "tests/category-discovery.test.js": {
+      "sha256": "9fd527661f6632897a5e639b159193843a778d95342761ba9d4f100694bec5d1",
+      "bytes": 6831
+    },
+    "tests/e2e/category-discovery.test.js": {
+      "sha256": "6d45ec708c72c566802799109f618adb5beb0029c546a40bb2e6b8b79b4523ba",
+      "bytes": 10677
+    },
+    "tests/e2e/tag-search-readiness.test.js": {
+      "sha256": "79f57d9305c825a05789cd7a3e1859c344848818a4aeaa799109c2b9ed9e8803",
+      "bytes": 2845
+    },
+    "tests/page-readiness-tag.test.js": {
+      "sha256": "281d539459310bea06f204afd8f7a646ba379b812a7d03bb79696724b8a15acc",
+      "bytes": 901
+    },
+    "tests/category-coverage.test.js": {
+      "sha256": "66bce6f215c82025015538b368f4d7a436b6d08da08a38e1aed58e2a80042b20",
+      "bytes": 4281
+    },
+    "src/coverage.js": {
+      "sha256": "90914a2245029c2d3223c03a4ef05f642a2b1dc889230d8da304026052541f7e",
+      "bytes": 6338
+    },
+    "src/browser.js": {
+      "sha256": "929ea628b355e36bb6da6591bae203908d5553ad0719bdbd6708018878a8b6bc",
+      "bytes": 37098
+    },
+    "src/capture-import.js": {
+      "sha256": "f7ad092ade5c152a52168555626f9e1ceac32217b292213cae78dc9ba9acb440",
+      "bytes": 4101
+    },
+    "src/lazada-checkout-line-bindings.js": {
+      "sha256": "60e5d328d90d73ebdde7ffc5fc49a6bddbaaab12f1ab3c47a087e02cc80b4260",
+      "bytes": 7022
+    },
+    "src/page-readiness.js": {
+      "sha256": "f8356d47dc474402a199a7cf3bbf58cb2c21eb39ca0e218da5898f73c39dad92",
+      "bytes": 4101
+    },
+    "tests/e2e/page-loading.test.js": {
+      "sha256": "33cc778e26c1a4aa8831a1a60db13c0c1a094b9f9de0dc3bb5cd59a377f5666a",
+      "bytes": 3909
+    },
+    "tests/e2e/prepared-checkout-adapter.test.js": {
+      "sha256": "b0eed38ad85c1c98cf76ab36bb755a3bd4e7552b34413f086e4ace402ee08d01",
+      "bytes": 13581
+    },
+    "src/basket-quote.js": {
+      "sha256": "2cd53528573fe88a0ed70a6d779270a1477974f217df38ecf6c578800cc6c321",
+      "bytes": 17381
+    },
+    "src/checkout-scenarios.js": {
+      "sha256": "f6752251b1d857e132d4f5b83f93ce9016ce4dde1cc6ac5e1bb5dd39c2a26b97",
+      "bytes": 16235
+    },
+    "src/promotions.js": {
+      "sha256": "138f089ed12258e6795edf9be39583c13c5568df7bd833e36ed379b51c6eec11",
+      "bytes": 15854
+    },
+    "tests/e2e/checkout-scenarios.test.js": {
+      "sha256": "0e080824b3c4829dfb15a8547ad9a883b0584e99390aaba77a27cf23afa61564",
+      "bytes": 4759
+    },
+    "tests/promotions.test.js": {
+      "sha256": "e5edb66afe93d85a0157fa22bab18c7f915fda0f00ded6ff64ad09f6fa97ad9b",
+      "bytes": 4220
+    },
+    "src/basket-comparison.js": {
+      "sha256": "5eb20335d653243b130d6d160988ffc017ad7f8dea59b0b2bfe06ffefd7c2b60",
+      "bytes": 9481
+    },
+    "src/food-components.js": {
+      "sha256": "1ae83113baba46792d4269400f5f4cd3542c19fc45a5f88b8f6ab1040e0ac370",
+      "bytes": 15412
+    },
+    "src/package-quantity-review.js": {
+      "sha256": "8dc46c7d04d1616b22f4551a9546db0d430bf291c3fec95b97d92c2f0fb594ad",
+      "bytes": 4515
+    },
+    "tests/basket-quotes.test.js": {
+      "sha256": "dd477f583a5071632e094f838b23ced1be31f3c79dffd3bede75b45aeae872c8",
+      "bytes": 10608
+    },
+    "tests/e2e/ice-quantity-review.test.js": {
+      "sha256": "8e9828444ce7cd071d2319fa735daa197e99a666948b6ce4c5a59fc0b0d0c21d",
+      "bytes": 15406
+    },
+    "tests/checkout-scenarios.test.js": {
+      "sha256": "56125250dc47bb3f08292573252fcf6722b8f6ea2ae5f91f70eed016cb1dee24",
+      "bytes": 12608
+    },
+    "tests/e2e/basket-quotes.test.js": {
+      "sha256": "e0d897f89f67c3431c5cc0efc3b7fe7cfa664fad2bf542df8f7b6b81f263afce",
+      "bytes": 10776
+    },
+    "src/manufacturer-research.js": {
+      "sha256": "41871e7bf999e5fac8ead5bf0630ab5cf7ce9980f505c5414cc71525c245bf13",
+      "bytes": 16468
+    },
+    "src/manufacturer-review.js": {
+      "sha256": "183fcd0c703a653e23077f2ae9db4371356283e4015e4c26216a6a47aa7bf24c",
+      "bytes": 7676
+    },
+    "src/manufacturer-source-cache.js": {
+      "sha256": "a2460dded34fd934679b11a0d5671c00be78a4a363b97d0729a6e2b8b1550d2c",
+      "bytes": 16105
+    },
+    "src/manufacturer-source-validity.js": {
+      "sha256": "22615ff5c67c1abe5ccf45b940874b751492c32aea019727a36b7ace827a4870",
+      "bytes": 9783
+    },
+    "src/manufacturer-workflow-facts.js": {
+      "sha256": "8b56157235867bdd515a0c71f69b449ef67c9d76633d45f46087b6b250f785b1",
+      "bytes": 12400
+    },
+    "src/manufacturer-workflow-review.js": {
+      "sha256": "c6cd48553c969226c3e68f702a95a074c700e3a216fcfcbee18b19a1d327466a",
+      "bytes": 26336
+    },
+    "src/manufacturer-workflow-search.js": {
+      "sha256": "0c961d4199f00f674ff4291f98eacf97c8c898dcd1d16849e7b3353a04a3dfce",
+      "bytes": 11391
+    },
+    "src/manufacturer-workflow.js": {
+      "sha256": "26e439ddf046122ebc96388ed368ee52671ac730ce8258ca575fc419f5b3584f",
+      "bytes": 30634
+    },
+    "src/manufacturers.js": {
+      "sha256": "80625cd6a05eb267fde56013aafb9b0e1d16e1f7498deca08bddb525de5200bd",
+      "bytes": 8583
+    },
+    "src/ocr-evidence.js": {
+      "sha256": "026b98e5028a63c95d07a8821c6b867980e645a17b44637409e09426813db437",
+      "bytes": 7603
+    },
+    "src/source-invalidation.js": {
+      "sha256": "13a60e19194db21cc1d93d5ac3883bc6676791c6c71eafc1c753124e17efb62f",
+      "bytes": 1161
+    },
+    "src/verification.js": {
+      "sha256": "915382164f3485b9e3f79b38aac0ad2d58fc6ba0799ee1c88668d9032b63aa65",
+      "bytes": 3371
+    },
+    "tests/manufacturer-research.test.js": {
+      "sha256": "2715d1372508f3aa4f6fa0ee92db35f76b265b7fab615dc6e83dba0717559d88",
+      "bytes": 27059
+    },
+    "tests/manufacturer-source-validity.test.js": {
+      "sha256": "8d237a7acd333f4b789e5cc18364c6ad2548e6381dc64b01f955b9640b22c45c",
+      "bytes": 14907
+    },
+    "tests/manufacturer-workflow-draft.test.js": {
+      "sha256": "51e1f095f408481384e43eda2f5f778a16930d6a810b3107c360d551c752f629",
+      "bytes": 36718
+    },
+    "src/catalog-products.js": {
+      "sha256": "d0da604484106df246681e77c9915bd62792c8b1ac5f874521341f86cbd649ff",
+      "bytes": 5575
+    },
+    "src/ocr-models.js": {
+      "sha256": "a48dd939fdf19a6b9ae79ba9523414af2f88691af7b4127d3e48103ca44f1e55",
+      "bytes": 5367
+    },
+    "src/ocr.js": {
+      "sha256": "fc3efbd54f36cff29b499a757b7fc82b9760ae1a1966eabe6677fa367c144b78",
+      "bytes": 12934
+    },
+    "src/package-image.js": {
+      "sha256": "82a79a5a54f56df792add005dfa06a54372de9aa2970fd991e2c34b3c73fbf7f",
+      "bytes": 4384
+    },
+    "tests/ocr-crops.test.js": {
+      "sha256": "3803bfe2dd38f89f6d232ba3f6d517bc93eea3d8ae8f9d263c0eed9c6a9bcae3",
+      "bytes": 13198
+    },
+    "src/nutrition.js": {
+      "sha256": "86cd607492b4edbc512eb3f61755cd3d4cef0bf2502ecc5e72073ef92d0ab345",
+      "bytes": 17709
+    },
+    "src/text.js": {
+      "sha256": "fe52267abfb42991ae7d646cb5da777277c94d244670937a50fb64891e647274",
+      "bytes": 1474
+    },
+    "src/translation-presentation-chunks.js": {
+      "sha256": "679390832275abcd714e43d17682aa94615f5c34569498ba589ba622f1e7ac16",
+      "bytes": 7420
+    },
+    "src/translation-presentation.js": {
+      "sha256": "05cea12d164dbac6f4feea041d2dd318abb3b95e4a919673ae49a4b0b700207d",
+      "bytes": 8187
+    },
+    "src/translation-quality.js": {
+      "sha256": "391044d12ab9521621e969353c8882f55d5e01e69097fbf0dc01a7d61a58b136",
+      "bytes": 8223
+    },
+    "src/translation.js": {
+      "sha256": "ae71bcb193f8f0f095c5fef69d2860b06d2b1c53ccf288637cb51f54ce3cc810",
+      "bytes": 16647
+    },
+    "src/workflow-operations.js": {
+      "sha256": "24ee1fb502dbe7a397aa579eae39482fa854e481cde47d5b11b43d8734677644",
+      "bytes": 6270
+    },
+    "tests/e2e/translation-catalog.test.js": {
+      "sha256": "ac244711f6c19b75197f646aa73b29e6031ef5517021e1cfdc126dcb6a5b743c",
+      "bytes": 14460
+    },
+    "tests/translation-quality.test.js": {
+      "sha256": "9dcb47ef8c9af085cdb867b0f27797b00d546d9c9a252b96fa01906df4e468e0",
+      "bytes": 12466
+    },
+    "scripts/audit-current-offer-sources.mjs": {
+      "sha256": "dc64bd33c970e03fb3d5a55a32dbb5aa42a1fcb39c77bc4fa2e06478fe5a400c",
+      "bytes": 2461
+    },
+    "scripts/audit-ice-unit-completeness.mjs": {
+      "sha256": "822fcd958849995f3c99953148c9ecf68819a714a961feb8d862fd49305b4b38",
+      "bytes": 3771
+    },
+    "tests/requirement-coverage.test.js": {
+      "sha256": "337926e749b9bd50550462fad25d67022213189b7a458c678410655840726c5b",
+      "bytes": 4630
+    },
+    "README.md": {
+      "sha256": "db22ff9571ab0680059306b32b02f3ca8f868729ee2564bd2713138fde2319c0",
+      "bytes": 35095
+    },
+    "docs/architecture.md": {
+      "sha256": "5d7bbf6b8e440699471b464cbad7efae0b46c56dfc8a2dd759bdd47982832b7b",
+      "bytes": 3849
+    },
+    "src/archive.js": {
+      "sha256": "8899d133707a20e34b71d8e296a967421b29ce2d3a1aa9fbccb73b24949a91fe",
+      "bytes": 24028
+    },
+    "src/blob-publication.js": {
+      "sha256": "1f5affc59bb9c5b97ec0cc3c787b07fac58ab26ecf1f0b97bf8b4dbb9372dc83",
+      "bytes": 2153
+    },
+    "src/doublets.js": {
+      "sha256": "90778ec86cc34b3f360835eac416f8dc97a2cad6dc8516a0b683f2d53c6cb6b4",
+      "bytes": 4886
+    },
+    "src/native-store.js": {
+      "sha256": "65415b1faaeeed386f5326851ef46bb08cb9f48a382ccaf7b0eb9156c528970e",
+      "bytes": 5830
+    },
+    "src/store.js": {
+      "sha256": "d9bf45cf31116e326a67683984dc20f6eff4e00547124bc17aada2ef1525d613",
+      "bytes": 11896
+    },
+    "tests/archive.test.js": {
+      "sha256": "7a9ae12eb7fc86791e837afe7433bf225b348434dceac8e8ff05f37e5e1a86e8",
+      "bytes": 16647
+    },
+    "tests/blob-publication.test.js": {
+      "sha256": "fad90925e40eea28d03c247735d81157aa301d4962960672d0032095e5ad1a03",
+      "bytes": 16548
+    },
+    "tests/e2e/native-store.test.js": {
+      "sha256": "da5a197a9c0a1932cb2e0f4a0713c9fb5a8d45e51e285667608e232e7fe1f262",
+      "bytes": 2541
+    },
+    "tests/links-workflow.test.js": {
+      "sha256": "eb655f26bc00eebfad3c149ead23961a3876c3fdfd2f63fbe8e0262b3fac773c",
+      "bytes": 2483
+    },
+    "src/cache.js": {
+      "sha256": "2ee3c5eafcea8239db419229220ec32440e14dd512d48163e3699cbc935bfdd0",
+      "bytes": 13989
+    },
+    "src/collection-source-replay.js": {
+      "sha256": "076a63a7217ec91c91628af0350a12c4b473c198a35a40ff0556cf2724685c49",
+      "bytes": 4032
+    },
+    "src/historical-capture-replay.js": {
+      "sha256": "a6be4eb3fe5958da664f46aaeca37cf3ff763429102949d62b6b280e2fa614fa",
+      "bytes": 10016
+    },
+    "src/publication-cache.js": {
+      "sha256": "33d2c827ec3640f78a1955b66760597535d45db53385d5318e5a7afb5da0037a",
+      "bytes": 10227
+    },
+    "tests/handpicked-links.test.js": {
+      "sha256": "bac79a059a1a123063df9310cf68b9e38ed4bf7a496569b77607bc791b8ab19e",
+      "bytes": 4764
+    },
+    "tests/publication-cache.test.js": {
+      "sha256": "0e6b448cc5e1e424b5923fa745442431ec6e2148ac12e740e1d52dd4e3a321ce",
+      "bytes": 13304
+    },
+    "src/public-captures.js": {
+      "sha256": "e168166427788307fc491aa24876045324c69e93b3fb9e8f4a591d1c6bae5c51",
+      "bytes": 8298
+    },
+    "tests/account-cache.test.js": {
+      "sha256": "47308522670c98dd695c42e568e0509414416942bc72124430d768164e0e71a7",
+      "bytes": 8699
+    },
+    "tests/e2e/archive.test.js": {
+      "sha256": "88883c1067ec73e0fd5b69538a197b343da69539fca38beddfa860a70bb697a6",
+      "bytes": 4498
+    },
+    "scripts/archive-case.mjs": {
+      "sha256": "d72f0ac793eddd6abbb9cae126cd517e625931f0312911b174ebaed7fd9285c2",
+      "bytes": 1273
+    },
+    "tests/archive-provenance.test.js": {
+      "sha256": "00f5b3a45e412a97c6f6acaa6204e6dd9469688cb9bd521063560487cacde85b",
+      "bytes": 9758
+    },
+    "tests/fixtures/draft-workflows/products.json": {
+      "sha256": "3c4c17af2bb1ee7afc2ec27393c595c1ef4a8001b2b52979d4415833b19adda8",
+      "bytes": 9384
+    },
+    "tests/public-cache.test.js": {
+      "sha256": "90fe796d22abb8cea2fa02464dc157fec7e45801cbc62aab08b6058ccab292b7",
+      "bytes": 4288
+    },
+    "src/commands.js": {
+      "sha256": "668a8459fb2400bbce45a1a523dc3d0fbc3194eebc947d0b179834d26fe4432c",
+      "bytes": 19373
+    },
+    "src/http-operations.js": {
+      "sha256": "7586049a7cae9515bb4ddae84b7a6c590b7d61494c8fa8fa57aa420353a7dd38",
+      "bytes": 1972
+    },
+    "src/index.d.ts": {
+      "sha256": "6dc267b5408d224938da79e21db4284598f455daa47123891347b10f3050faea",
+      "bytes": 53522
+    },
+    "src/index.js": {
+      "sha256": "ccf3b059db0a7e89e5df5ffca5a5f19401b54235f1b032062b247258240fbad3",
+      "bytes": 5363
+    },
+    "src/operations.js": {
+      "sha256": "01f9e9d6a22d7429b7869ea17868eed95da746c453ee4febfe955d2c116ae0d1",
+      "bytes": 6783
+    },
+    "src/server.js": {
+      "sha256": "953cde3d85c290e83bcececd6b71822466572242c87663ff7915f5375b155a4e",
+      "bytes": 5220
+    },
+    "src/workflow-commands.js": {
+      "sha256": "71c3a7eeaac15cffad1ad4e2a0bc3e6c7d89281a5a60d7d81158c1ddc0fbe8a5",
+      "bytes": 2337
+    },
+    "src/workflow-types.d.ts": {
+      "sha256": "831b09866e516034fedd4dbed9e190fb671366816f8fb2da109d358d49244902",
+      "bytes": 14931
+    },
+    "tests/e2e/draft-workflow-interfaces.test.js": {
+      "sha256": "23a4d594dabcde31add82985ed8972096bdad2c366f1e8569c2d2180b4352b15",
+      "bytes": 14561
+    },
+    "tests/fixtures/public-api-types.ts": {
+      "sha256": "43834efeec71bc09b37cb7ff588c49f169201c369c3fcccc1f7ce7fb733712fd",
+      "bytes": 6075
+    },
+    "tests/lazada-checkout-gifts.test.js": {
+      "sha256": "48d244cace0e1002b325a624140394a6461ef65ebb8241e6ec0f582f331d1201",
+      "bytes": 15199
+    },
+    "tests/public-api-typecheck.test.js": {
+      "sha256": "08a1536327e55798389038801f4cb491007734459e414bff4fbc788e34817d72",
+      "bytes": 1655
+    },
+    "src/telegram.js": {
+      "sha256": "5012df6723eebbe3cd577bd220a838d06cc035bea21e580fd9988daf311aa88d",
+      "bytes": 9331
+    },
+    "tests/e2e/telegram.test.js": {
+      "sha256": "19ee1d2e4de36d8ea84a686026550abdfcdd24dc9ddafc3f4f77cfd6446da835",
+      "bytes": 4410
+    },
+    "src/case-readiness.js": {
+      "sha256": "a9f827ee1a6ada77950400471b6e5b1e4c52e7a319602611be53a028e609075e",
+      "bytes": 1794
+    },
+    "src/login.js": {
+      "sha256": "b5ddb342b5a25c07634e9b853145a8daba84957c029f8755b3004157229bc926",
+      "bytes": 6367
+    },
+    "src/persistent-browser.js": {
+      "sha256": "a1a5b6b952f7191cb5b6a20a330e43736c81d85dfb4704015dd3b303337925ca",
+      "bytes": 7198
+    },
+    "src/session.js": {
+      "sha256": "7f2f70ba3de12f74a89b83d4c0200d916463152f7e9e74e3784e42cd5673ee21",
+      "bytes": 1989
+    },
+    "tests/browser-connection.test.js": {
+      "sha256": "3ad5db014baf37345d15606cfca1b65cb8b3f99bac479f598ac76f1745880875",
+      "bytes": 3223
+    },
+    "tests/e2e/account-login.test.js": {
+      "sha256": "85856340ae9dbe1f86566bea6afb736a5df02c5505a0306de4f71f22b2cd04d9",
+      "bytes": 6035
+    },
+    "src/page-challenge.js": {
+      "sha256": "f1893a6a9d660e07469441cbace2983e5212f687c9ff21f8bad24b9ea019a5db",
+      "bytes": 6442
+    },
+    "src/page-dialogs.js": {
+      "sha256": "1bb2abc065c60b19b080646a676ae8d7b036c6c68789aa07f4b4e9b12d4913e4",
+      "bytes": 1691
+    },
+    "tests/browser-pacing.test.js": {
+      "sha256": "1749655565950bc7de78b51d7320d1cea8f1ad4211040024cdc0f3dff596bf50",
+      "bytes": 2805
+    },
+    "tests/e2e/dialog-variant.test.js": {
+      "sha256": "318d4ed326e616f30c58379d48dda88c2e38722a85c3118a7600ed7f24e81a47",
+      "bytes": 3650
+    },
+    "tests/image-redirect-pacing.test.js": {
+      "sha256": "cd9d9846fecad0a318faa7554fdee932673dca321ebfcbf958bd521a4f70faff",
+      "bytes": 25390
+    },
+    "src/browser-challenge-handoff.js": {
+      "sha256": "24b4ee308b7a6e62e8bc0306c20397785b68232852295424ea0e853aedf1c430",
+      "bytes": 3063
+    },
+    "src/browser-connection.js": {
+      "sha256": "cf8064be68f78cbae15dd181b37cf0d2aa0fc7c7ac0c00bda393c2df66f80295",
+      "bytes": 1313
+    },
+    "src/persistent-browser-worker.js": {
+      "sha256": "74ba12c2b68cc39ecc01b2906b330813d9b11dba32f1f78dc823c3ee75a0fbb1",
+      "bytes": 10041
+    },
+    "tests/browser-challenge-handoff.test.js": {
+      "sha256": "0f118d638de8fc9c3f15f8ee064d91dac31afebb7cdb2a079aeb1ff419f1e2f2",
+      "bytes": 9406
+    },
+    "tests/e2e/challenge-window-retention.test.js": {
+      "sha256": "96f778c624391ed3998a567f6a731820948224d5ed3d711a2393d7d2f3ea9cd1",
+      "bytes": 31058
+    },
+    "tests/e2e/persistent-window-recovery.test.js": {
+      "sha256": "fedb824de7b5f345c01787003d4d12d621f79f29102a6ed762f7e7ea066bb75e",
+      "bytes": 2926
+    },
+    "tests/e2e/persistent-window.test.js": {
+      "sha256": "b0d35a43c8f36c1cd1a3df1a99dcafe44dca824857a51514ceaa19ae3b21cef6",
+      "bytes": 3903
+    },
+    "src/page-scroll.js": {
+      "sha256": "2d668fc63a452ccdda2c808027889a2e48e59664a5975603f368176e2912eaae",
+      "bytes": 4913
+    },
+    "tests/e2e/page-scroll.test.js": {
+      "sha256": "4197cf5f124ef8c3eac585ed39b6c2071ac900b0f987fdae53f3d05a69a1e412",
+      "bytes": 11527
+    },
+    "tests/workflow-reliability.test.js": {
+      "sha256": "65a6c86566f42a1f91eb994e02e244596b9f0cc6ca1544b25916cd209df7ffdb",
+      "bytes": 24856
+    },
+    "src/page-capture.js": {
+      "sha256": "fb52b1e66342c92518b2d7f7b8d128f305daf83027ad8f5eb5fb9c1fcf4fe8b3",
+      "bytes": 1807
+    },
+    "tests/page-capture.test.js": {
+      "sha256": "db02aa8c1766a7bcf475d1dd1156e496ce0d6a435cedfc8343433c4bf399440b",
+      "bytes": 2363
+    },
+    "docs/acceptance/issue-reports.json": {
+      "sha256": "d0517ec023798df1886785203528e9f7181b0868fdc351291badc028f7b7b2d6",
+      "bytes": 6579
+    },
+    "docs/drafts/github-issues-review.json": {
+      "sha256": "db9a5e0a41d886cae39939222f1e883c60125c85aca5058c8f8b51c5541a5dc1",
+      "bytes": 58451
+    },
+    "docs/drafts/github-issues.json": {
+      "sha256": "0017836fa018923d375a0c91f3b50b1ee3c6fff5933ea3a06d3d8883bf043192",
+      "bytes": 56673
+    },
+    "deno.lock": {
+      "sha256": "b82263a5abcceaec083b0dcafefb1d4a96a17dbbc78dfabd4ccc7cd5667279fa",
+      "bytes": 37417
+    },
+    "package-lock.json": {
+      "sha256": "27ee9afca7c9debfa008fb5b4e82c6f11fe737ddb6c73dfd3b5d7d2d8b63d0a0",
+      "bytes": 158800
+    },
+    "package.json": {
+      "sha256": "cafb28c897cc55873641a07172ef4b815c2e7eb2ccb2de1a738859e23a6ca4ee",
+      "bytes": 3483
+    },
+    "tests/package-metadata.test.js": {
+      "sha256": "c8ae6fa644cf9fd74a2ef935f3be616e78c3245b2fff00ad369783cb269760e4",
+      "bytes": 2930
+    },
+    "tests/runtime-workflow.test.js": {
+      "sha256": "6e0d9c1908d3e1b4e18984c2602ad2fc2b1fd21fe3446c51f04039bc6cfc23dd",
+      "bytes": 6573
+    },
+    "scripts/export-deadline-report.mjs": {
+      "sha256": "62b9ed196fe2d4a523594631479923f398e38dc573106769cf4ed3dd39e1c75b",
+      "bytes": 13522
+    },
+    "scripts/export-handpicked-report.mjs": {
+      "sha256": "5476aed49c2b39cf68e3d0d0ca95ddb53f7b42ae99c41403ed29320a6c6d5926",
+      "bytes": 11589
+    },
+    "tests/deadline-report.test.js": {
+      "sha256": "edb624a0986c38f652f07e500272d6144832d2dca97c0a80e0528d7b8e299771",
+      "bytes": 7029
+    },
+    "scripts/publish-collection-checkpoint.mjs": {
+      "sha256": "8ea17e17125be2ea0d38ae5f043bdc1c4a0eba34598e78e9e9f13cc5f8fa5825",
+      "bytes": 266
+    },
+    "scripts/publish-retry.mjs": {
+      "sha256": "6d0eaf5129ba724a14f0125aad99b319c7a2f0b725c7457908cf2457bd1949e2",
+      "bytes": 7207
+    },
+    "tests/collection-checkpoint.test.js": {
+      "sha256": "8dfa204eb4d52fcb3c043c89d50ab00375f30bbbc0af7391293d2c28976fa6e3",
+      "bytes": 4337
+    },
+    "tests/publish-retry.test.js": {
+      "sha256": "de275a9ec69ced178818c296b8fe2f1d9f00d5490c3cd63f994a2c18240f6a27",
+      "bytes": 8308
+    },
+    "docs/drafts/acceptance-plan.md": {
+      "sha256": "2e9413df2c6ab959afc770c71e18b1bb2dacb02e14a5f759ac592f5184193fcb",
+      "bytes": 10012
+    },
+    "tests/e2e/verified-case.test.js": {
+      "sha256": "8fd5250e23dc0a2edb11beddbc080babc06da138c4a8b3104a855c8d33cb3fe3",
+      "bytes": 7734
+    },
+    "tests/ice-unit-rankings.test.js": {
+      "sha256": "091e2d8afdc3621ce93b50c02e5bd4317d7612f4cbd4850feab7f10a456ce2ec",
+      "bytes": 7681
+    },
+    "scripts/report-unit-costs.mjs": {
+      "sha256": "91031f3d2a0cef2ae5df92cbea52184ad72d372c0e5a4f8678646e50f3db83a2",
+      "bytes": 3293
+    },
+    "tests/report-unit-costs.test.js": {
+      "sha256": "fb82842ad0ca2606c59ab749e385baf431eb5aac7e0717f76804e829a34e1650",
+      "bytes": 4622
+    },
+    "docs/acceptance/top10-check/handpicked-links.json": {
+      "sha256": "6fb41ba4ba7b399b13e5e988d77710c469fa9781c0e3e7bba40199380f1377e6",
+      "bytes": 24259
+    },
+    "src/handpicked-links.js": {
+      "sha256": "e3b1c79eb816f5a278cd4b9235ba61e7b017a68af08361c69ebec482e141acd5",
+      "bytes": 13039
+    },
+    "tests/handpicked-report.test.js": {
+      "sha256": "3dadf967352bffe77db2f080af1a4cb946f85d66fb4594147fa436e14e852f05",
+      "bytes": 2791
+    },
+    "src/browser-image-cache.js": {
+      "sha256": "7f048754e0b6ac00e46ccbc14f82578d420c6dc61fdccd5a9e6698e50138ed3a",
+      "bytes": 5412
+    },
+    "src/lazada-checkout-capture.js": {
+      "sha256": "87546fdd2e48722f407b255d250bb613e3e5344e195d9685835752c1ac79f7a7",
+      "bytes": 6924
+    },
+    "tests/e2e/captcha-stop.test.js": {
+      "sha256": "c8f7786f070ac3de390ea1959b99a3d1c2055e38b58b6902f4235b8575bf5a43",
+      "bytes": 10219
+    },
+    "src/availability.js": {
+      "sha256": "11516915654bbe03cd806f622ae33a1f18ce2ec364fb2d429d10f6c16a9c838c",
+      "bytes": 3894
+    },
+    "src/case-workflow-lock.js": {
+      "sha256": "8ec995215e81a874258ec555b64c2ac7d0346d862152a7309b9ba1f86b8122de",
+      "bytes": 2815
+    },
+    "src/collection-scope.js": {
+      "sha256": "5ce9fda43bc299f20d8e8c9bfde93f45f96bb3035d16a2da100a7cf109277dcc",
+      "bytes": 5674
+    },
+    "tests/account-backlog-order.test.js": {
+      "sha256": "0698c8c42ab814b559aff8ad478ca8fa6bef6d00d542956d5de04f5210162506",
+      "bytes": 8013
+    },
+    "tests/account-collection-attempts.test.js": {
+      "sha256": "0fd8ffe9ffd72aef61864a78372aa015c96c9794d85a0d65056a084e30ec133e",
+      "bytes": 1572
+    },
+    "tests/urgent-ingredients.test.js": {
+      "sha256": "2d31b499a28d84a04e80f5ec703ac8a442dbc324a25365575f8b5eb6f49263dd",
+      "bytes": 2393
+    },
+    "src/scope-decisions.js": {
+      "sha256": "d2e80678a6630d6dee2bd5d5008e47aca17137eb1cd0c59f6732bf94741c7b63",
+      "bytes": 3649
+    },
+    "tests/scope-decisions.test.js": {
+      "sha256": "806df9ce88cb2e3f0e55e2e8c088964ebaf3dfd9fd7a555795d3a8bea5abcd98",
+      "bytes": 3151
+    },
+    "tests/availability.test.js": {
+      "sha256": "22ff060937ebd3decf31f18530e5bdfd856530c89b5b40092a84239e20346140",
+      "bytes": 9630
+    },
+    "tests/removed-product.test.js": {
+      "sha256": "ef39b5cb6453f703c7a76e3c80881024b77e0c439575997023458bf282cdcc05",
+      "bytes": 2016
+    },
+    "src/food-offer-source-basis.js": {
+      "sha256": "bac02659415805a014a4872f122f5d7f547f590c36b49ce30c50fc3a8379dc8e",
+      "bytes": 14682
+    },
+    "src/package-artwork-consistency.js": {
+      "sha256": "18355800574f0400bd563a4e396de54c59348ba67379da0d3472dd79657fcbd6",
+      "bytes": 3058
+    },
+    "src/package-mass-consistency.js": {
+      "sha256": "fec753271c9e3f82ffa98099d213f70cb432a31d21c2fb10bb6bb5d2a8a067ac",
+      "bytes": 3022
+    },
+    "src/specification-holds.js": {
+      "sha256": "b13853a1da1a8d0ba2bf79a9049b5925e7de5cdb39bea84f7508f9c18a3d48f0",
+      "bytes": 1261
+    },
+    "tests/package-mass-quarantine.test.js": {
+      "sha256": "58c0541d18f89a79a8a243bd6bd035422ef6980dfbe9a0e05691b98a650d7a11",
+      "bytes": 7480
+    },
+    "src/comparison-inputs.js": {
+      "sha256": "279a2cbb18878137fa67c96a5ce46ce7722280d6a9b39c77ea01c840a58f273c",
+      "bytes": 2412
+    },
+    "src/food-component-evidence.js": {
+      "sha256": "a222e26664f85e3dc83ac20aa2c6203860bf937f0fdb331616e0cb92f9f13f77",
+      "bytes": 24447
+    },
+    "src/food-offer-discovery.js": {
+      "sha256": "ef94fde4e8cf4458c4c00349d049d2ad332a10cc8eea348ad3811edd94951765",
+      "bytes": 2089
+    },
+    "src/lazada-checkout-gifts.js": {
+      "sha256": "38c6a66abbb79745662b485e2876da03f02b9aabd991fb04515e5c8852f91060",
+      "bytes": 11241
+    },
+    "tests/bonus-paid-mass-hold.test.js": {
+      "sha256": "17015541aecdfcda28c24e24de52464f29c58ae27cb1afc67869ca3f8287630c",
+      "bytes": 3118
+    },
+    "tests/food-component-evidence.test.js": {
+      "sha256": "2c80ed86894efd685dc1851550e6226a0ed6c20dc1795bf88cee1e0024a5fa65",
+      "bytes": 26954
+    },
+    "tests/food-component-persistence.test.js": {
+      "sha256": "cec5bdaa2c714393cdffa261ac05fdfc19dcb1695919f3f4f554e6a3a7186062",
+      "bytes": 11304
+    },
+    "tests/food-components.test.js": {
+      "sha256": "2bde629d536dc50b67723d12e271fa46ba04b308d93d07cf5e94728d6fe0987c",
+      "bytes": 17075
+    },
+    "tests/ocr-models.test.js": {
+      "sha256": "9d866f422f6f922f6f2264cca540043bc5d9f145597cae6c2ae9a60f3b94309a",
+      "bytes": 12740
+    },
+    ".github/workflows/links.yml": {
+      "sha256": "0bcb8d5d19ca99205b62669a327a5fad6346f49ca3b2e0ce4ffc1de5b71147fd",
+      "bytes": 5453
+    },
+    "scripts/recheck-broken-links.mjs": {
+      "sha256": "0b9f5f792b634a4f9a3f179d7ea477ff6dcdf50d84ee0c0bcb24ec9ad3bac5d1",
+      "bytes": 13101
+    },
+    "tests/ci-workflow-policy.test.js": {
+      "sha256": "0108241191e12dfd7f25db1832a4a726eae82cda4759b7cc463847714049bbea",
+      "bytes": 1947
+    },
+    "tests/recheck-broken-links.test.js": {
+      "sha256": "70a3cc36f67f307c975d84392db75633f142f107a83282274e5afd1c01115984",
+      "bytes": 14364
+    },
+    "docs/acceptance/ice-dual-units/bing-powercap-chocolate-volumes.json": {
+      "sha256": "a0b425d5a1e777b116bd958c84c7ad04fb4f2075b1fd4ead0349b542d9359737",
+      "bytes": 286
+    },
+    "docs/acceptance/ice-dual-units/2978009544-seller-5.webp": {
+      "sha256": "8802499321b5bbe0b9ca6bb6372aa96ae4ad7a8ea4df99832e6b82b1c59c6267",
+      "bytes": 31354
+    },
+    "docs/acceptance/ice-dual-units/expanded-powercap-abc-front.png": {
+      "sha256": "36b92b0233b8325abaee53fbb563ea92ab4a3383125ce403988f2a8901541819",
+      "bytes": 183551
+    },
+    "docs/acceptance/ice-dual-units/expanded-root-pongta-carton.html.gz": {
+      "sha256": "ca1d3cf841400ba5f7971bd2d14d3a62923db0a82aa26a8fcc4c39f4c25e045d",
+      "bytes": 76504
+    },
+    "docs/acceptance/ice-dual-units/3047790409-seller-5.webp": {
+      "sha256": "5c3cf3a506420bcc41e8a9b70ec550392d57d12ca15ff0f756622fc4596145e9",
+      "bytes": 21432
+    },
+    "docs/acceptance/ice-dual-units/3039951845-seller-3.webp": {
+      "sha256": "cfad2a40e4684131a189515d0ee88c1d3c957797599f15cc804ecb893a7d893e",
+      "bytes": 23926
+    },
+    "docs/acceptance/ice-dual-units/merino-review.json": {
+      "sha256": "678a0ea88177a534b8765b6fc55c1f55cf060d11601a8da554bc9406bb535f70",
+      "bytes": 51722
+    },
+    "docs/acceptance/ice-dual-units/korean-review.json": {
+      "sha256": "b3254f27c37dad7d9e8045b1c3e48189308e0626ff97aba171d0a188f32583a7",
+      "bytes": 45842
+    },
+    "docs/acceptance/ice-dual-units/gelato-thai-review.json": {
+      "sha256": "28cf9e149bce91f2dee7328fa526e72539837be2479195d1ef2293fb60ea5240",
+      "bytes": 21901
+    },
+    "docs/acceptance/ice-dual-units/merino-expanded-review.json": {
+      "sha256": "cf4a42b2facad35939502894c22693576cc3c69377350123d32530c7d233900d",
+      "bytes": 79813
+    },
+    "docs/acceptance/ice-dual-units/korean-expanded-review.json": {
+      "sha256": "1eed07ba2f3cf8d5fd13ec2f7bab1a4efa8688ccfeae427074d540b9e024a745",
+      "bytes": 37116
+    },
+    "docs/acceptance/ice-dual-units/gelato-thai-expanded-review.json": {
+      "sha256": "22de56966c9a802b4ab71774998dafd6059ef0497cc207bb3f029a553c1c7cb0",
+      "bytes": 59350
+    },
+    "docs/acceptance/ice-dual-units/root-expanded-review.json": {
+      "sha256": "c4830260fe2f0fa320baafdd37e546366f0147b960f6742fdaa2311bf884410e",
+      "bytes": 24280
+    }
+  }
+}
