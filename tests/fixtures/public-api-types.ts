@@ -10,9 +10,11 @@ import {
   compareBaskets,
   extractBasketQuote,
   reviewPackageQuantities,
+  publishAccountCaptures,
   translationReviewAccepted,
   validateFoodComponentEvidence,
   type BasketSourceMapping,
+  type AssociativeStore,
   type CheckoutScenarioPlanInput,
   type FoodComponent,
   type Offer,
@@ -26,6 +28,12 @@ declare const source: BasketSourceMapping;
 declare const originalHtml: Uint8Array;
 declare const manufacturerSources: ManufacturerSourceCache;
 declare const nativeOcr: TesseractOcr;
+declare const accountStore: AssociativeStore;
+const publicCaptures = await publishAccountCaptures(application, accountStore);
+const publishedOcrArtifacts: number = publicCaptures.ocrPublication.artifacts;
+const rejectedOcrId: string | undefined =
+  publicCaptures.ocrPublication.rejected[0]?.ocrId;
+void [publishedOcrArtifacts, rejectedOcrId];
 const challengeStatus = await application.collector.collectionStatus();
 const challengePageOpen: boolean | undefined =
   challengeStatus.handoff?.pageOpen;

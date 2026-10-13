@@ -10,6 +10,7 @@ import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
 import { collectionStatus } from './browser-challenge-handoff.js';
+import { reviewNonBrowserCollectionStop } from './collection-stop-review.js';
 import { replayHistoricalCaptures } from './historical-capture-replay.js';
 import { reviewPackageQuantities } from './package-quantity-review.js';
 import {
@@ -58,6 +59,7 @@ Commands:
   translation-status [job-id]    Read translation checkpoints and pending totals
   collection-status             Show the persistent CAPTCHA stop checkpoint
   resume-collection             Resume only after the current challenge is cleared
+  review-collection-stop <review.json> Record an explicit decision about a non-browser HTTP stop
   import-capture <capture.json>  Import HTML/screenshot from an existing browser
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
@@ -204,6 +206,16 @@ export async function executeCommand(application, command, args, options = {}) {
       return collectionStatus(application.store, application.collector);
     case 'resume-collection':
       return application.collector.resumeCollection();
+    case 'review-collection-stop':
+      return reviewNonBrowserCollectionStop(
+        application.store,
+        JSON.parse(
+          await readFile(
+            required(args[0], 'Operator stop review JSON file'),
+            'utf8'
+          )
+        )
+      );
     case 'review-category':
       return reviewListingCategory(
         application,

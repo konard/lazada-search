@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "checkedAt": "2026-10-13T08:51:41.273Z",
-  "catalogObservedAt": "2026-10-11T20:54:52.701Z",
+  "checkedAt": "2026-10-13T12:44:33.484Z",
+  "catalogObservedAt": "2026-10-13T12:42:11.221Z",
   "allRequirementsDelivered": false,
   "allTargetProductsCollected": false,
   "productionReady": false,
@@ -21,40 +21,40 @@
     "allCapturedTargetDeliveryQuotesExact": false,
     "bulkDestinationQuotesCaptured": false,
     "frozenNhaTrangDeliveryConfirmed": false,
-    "collectionStopCleared": false,
+    "collectionStopCleared": true,
     "allRequirementsAccepted": false,
     "allGithubIssuesClosed": false
   },
   "activeScope": {
-    "missingListings": 1298,
-    "missingSkuPrices": 373,
+    "missingListings": 1287,
+    "missingSkuPrices": 369,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 6403,
-    "specifications": 345,
-    "verifiedProducts": 14,
+    "specifications": 203,
+    "verifiedProducts": 11,
     "excludedCategoryListings": 371,
-    "excludedExactOptions": 598
+    "excludedExactOptions": 790
   },
   "broaderArchive": {
-    "missingListings": 1449,
-    "missingSkuPrices": 1011,
+    "missingListings": 1438,
+    "missingSkuPrices": 1046,
     "missingPrices": 0,
     "unknownSkuInventories": 0,
     "categoryReview": 7107,
-    "specifications": 357,
+    "specifications": 368,
     "verifiedProducts": 16
   },
   "wheyCoverage": {
-    "capturedPowderSkus": 334,
-    "strictWheySkus": 102,
+    "capturedPowderSkus": 345,
+    "strictWheySkus": 111,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 94,
-    "discoveryTasks": 6068,
-    "pendingSkuTasks": 378,
-    "excludedSkuOptions": 601,
-    "originalSourcePointers": 2051,
+    "missingFactoryMatches": 103,
+    "discoveryTasks": 6057,
+    "pendingSkuTasks": 374,
+    "excludedSkuOptions": 640,
+    "originalSourcePointers": 2071,
     "unresolvedEvidencePointers": 0
   },
   "iceCoverage": {
@@ -5632,12 +5632,15 @@
   },
   "collectionStop": {
     "id": "browser-collection",
-    "active": true,
+    "active": false,
     "reason": "challenge",
     "detectedAt": "2026-10-11T10:23:22.482Z",
     "origin": "https://www.optimumnutrition.com",
     "signals": ["visible-cloudflare-interstitial"],
-    "handoff": { "status": "no-browser-page", "pageOpen": false }
+    "resumedAt": "2026-10-13T11:12:37.681Z",
+    "operatorReviewId": "collection-stop-review:50de695d8a98a02b11c303c9b8b496d5ecf5d381c4ddbe083bb04210776224f4",
+    "resumeDecision": "operator-dismissed-non-browser-stop",
+    "challengedSourceRecoveryConfirmed": false
   },
   "githubIssues": [
     {
@@ -5908,9 +5911,9 @@
   "snapshots": [
     {
       "path": "docs/tables/catalog.json",
-      "sha256": "1e1ba0d46d4c7cd511eab8facfd78dd532fab40bff974ad05119c965babaa81a",
-      "bytes": 35731857,
-      "observedAt": "2026-10-11T20:54:52.701Z"
+      "sha256": "910e9388443faf9b7bdf764aa8dabd2637f46dc7f4e5b5046addeb6981587235",
+      "bytes": 37050071,
+      "observedAt": "2026-10-13T12:42:11.221Z"
     },
     {
       "path": "docs/acceptance/requirements-audit/implementation-review.json",
@@ -5962,15 +5965,15 @@
     },
     {
       "path": "docs/tables/ice-unit-rankings.json",
-      "sha256": "1a433f0074f2d0a732d5acad84ed4033bcf0fd526f3cee27fcfa8c2bd4fbcb73",
+      "sha256": "5b017e485cbb9835020d72345f9107f63a369f8fa299c4b0ecbb4488ee1c92ac",
       "bytes": 193637,
-      "observedAt": "2026-10-11T20:55:08.271Z"
+      "observedAt": "2026-10-13T12:27:29.521Z"
     },
     {
       "path": "docs/acceptance/whey-verification/worklist.json",
-      "sha256": "51cd77b23372f54203f0db0c937d215b6cae2e7cdc83edc2b45e575fd18316e7",
-      "bytes": 12247232,
-      "observedAt": "2026-10-11T13:54:37.890Z"
+      "sha256": "91d87ad6d5f1296b9b1124ce7d8b397dfd624abd0460fcc776abe8792fe3a377",
+      "bytes": 12331187,
+      "observedAt": "2026-10-13T12:43:46.847Z"
     }
   ],
   "downloads": 0,

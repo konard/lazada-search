@@ -41,9 +41,11 @@ const coverage = await json(`${directory}/coverage-review.json`);
 const registry = requirementDraftStatus();
 const issues = await json(registry.githubIssueSnapshot);
 const sourceAcceptance = await json(registry.validationEvidence);
-const stop = await json(
+const historicalStop = await json(
   'docs/acceptance/challenge-window-retention/saved-stop-status.json'
 );
+// The catalog's current checkpoint supersedes the dated handoff receipt.
+const stop = catalog.collectionStop ?? historicalStop;
 const independent = await json(
   'docs/acceptance/result-recheck/independent-ice-requirements.json'
 );

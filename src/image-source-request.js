@@ -169,44 +169,56 @@ async function notModified(cache, cached, options) {
 
 async function requestHop(cache, url, cached, options, redirects) {
   await options.requestGuard?.(url);
-  return await cache.scheduler.run(url, async () => {
-    await assertCollectionRunning(cache.store);
-    await cache.beforeDownload?.();
-    await assertCollectionRunning(cache.store);
-    const response = await options.fetchImage(url, {
-      headers: redirects.length ? {} : options.headers,
-      credentials: 'omit',
-      redirect: 'manual',
-      signal: AbortSignal.timeout(30000),
-    });
-    if (response.status === 304) {
-      if (redirects.length) {
-        throw new Error('304 after an unconditional image redirect request');
+  const scheduler =
+    cache.staticImageScheduler &&
+    /(?:^|\.)(?:lazcdn\.com|slatic\.net)$/u.test(new URL(url).hostname)
+      ? cache.staticImageScheduler
+      : cache.scheduler;
+  return await scheduler.run(
+    url,
+    async () => {
+      await assertCollectionRunning(cache.store);
+      await cache.beforeDownload?.();
+      await assertCollectionRunning(cache.store);
+      // A capture can end while this request waits behind another host action.
+      // Recheck both cancellation and the page-host guard after pacing.
+      await options.requestGuard?.(url);
+      const response = await options.fetchImage(url, {
+        headers: redirects.length ? {} : options.headers,
+        credentials: 'omit',
+        redirect: 'manual',
+        signal: AbortSignal.timeout(30000),
+      });
+      if (response.status === 304) {
+        if (redirects.length) {
+          throw new Error('304 after an unconditional image redirect request');
+        }
+        return { source: await notModified(cache, cached, options) };
       }
-      return { source: await notModified(cache, cached, options) };
-    }
-    const source = await responseSource(
-      cache,
-      response,
-      url,
-      options,
-      redirects
-    );
-    const location = response.headers.get('location');
-    if (REDIRECTS.has(source.httpStatus) && !source.redirectChainUnverified) {
-      const hop = {
-        ...source,
-        id: `image-hop:${sha256(`${options.initialUrl}:${url}:${source.observedAt}:${source.httpStatus}:${source.blob.sha256}:${redirects.length}`)}`,
-        initialUrl: options.initialUrl,
-        status: 'redirect',
-        locationSha256: sha256(location || ''),
-      };
-      delete hop.redirects;
-      await cache.store.put('image-source-hop', hop);
-      return { source: hop, location };
-    }
-    return { source };
-  });
+      const source = await responseSource(
+        cache,
+        response,
+        url,
+        options,
+        redirects
+      );
+      const location = response.headers.get('location');
+      if (REDIRECTS.has(source.httpStatus) && !source.redirectChainUnverified) {
+        const hop = {
+          ...source,
+          id: `image-hop:${sha256(`${options.initialUrl}:${url}:${source.observedAt}:${source.httpStatus}:${source.blob.sha256}:${redirects.length}`)}`,
+          initialUrl: options.initialUrl,
+          status: 'redirect',
+          locationSha256: sha256(location || ''),
+        };
+        delete hop.redirects;
+        await cache.store.put('image-source-hop', hop);
+        return { source: hop, location };
+      }
+      return { source };
+    },
+    { beforePace: () => options.requestGuard?.(url) }
+  );
 }
 
 export async function requestImageSource(cache, initialUrl, cached, options) {

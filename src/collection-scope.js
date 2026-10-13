@@ -23,26 +23,86 @@ function filterFlavourTasks(audit, flavourScope) {
   if (flavourScope !== 'chocolate-or-unflavoured') {
     throw new Error('Unsupported flavour scope');
   }
-  const excludedFlavourTasks = [...(audit.excludedFlavourTasks || [])];
-  const missingSkuPrices = (audit.missingSkuPrices || []).filter((entry) => {
-    const selectedVariant = Array.isArray(entry.options)
-      ? entry.options.map((option) => ({ text: option.value }))
-      : [];
-    const flavour = productFlavour({ selectedVariant, title: '' });
-    const shaker = isShakerBundle({ selectedVariant });
-    if (flavour !== 'other' && !shaker) {
-      return true;
+  const excluded = new Map(
+    (audit.excludedFlavourTasks || [])
+      .map((entry) => [exactSkuKey(entry), entry])
+      .filter(([key]) => key)
+  );
+  const observations = [
+    ...(audit.missingSkuPrices || []),
+    ...(audit.capturedSkuObservations || []),
+  ].sort((left, right) => observationTime(left) - observationTime(right));
+  for (const entry of observations) {
+    const key = exactSkuKey(entry);
+    if (!key) {
+      continue;
     }
-    excludedFlavourTasks.push({
-      ...entry,
-      extractedFlavour: flavour,
-      reason: shaker
-        ? 'Selected SKU includes a shaker; the buyer already owns one'
-        : 'Selected SKU flavour is outside chocolate-or-unflavoured scope',
-    });
-    return false;
+    const rejection = flavourRejection(entry);
+    if (!rejection) {
+      excluded.delete(key);
+      continue;
+    }
+    excluded.set(key, rejection);
+  }
+  const productIds = new Set(
+    [...excluded.values()].map((entry) => entry.productId).filter(Boolean)
+  );
+  const specifications = (audit.specifications || []).filter(
+    (entry) => !productIds.has(entry.productId)
+  );
+  return {
+    ...audit,
+    missingSkuPrices: (audit.missingSkuPrices || []).filter(
+      (entry) => !excluded.has(exactSkuKey(entry))
+    ),
+    missingPrices: (audit.missingPrices || []).filter(
+      (entry) => !excluded.has(exactSkuKey(entry))
+    ),
+    specifications,
+    verifiedProducts: specifications.filter(
+      (entry) => entry.problems.length === 0
+    ).length,
+    excludedFlavourTasks: [...excluded.values()],
+  };
+}
+
+function flavourRejection(entry) {
+  const captured = entry.observationKind === 'captured-selected-sku';
+  const selectedVariant = captured
+    ? entry.selectedVariant || []
+    : (Array.isArray(entry.options) ? entry.options : []).map((option) => ({
+        text: option.value,
+      }));
+  const flavour = productFlavour({
+    selectedVariant,
+    title: captured ? entry.title : '',
+    category: entry.category,
+    manufacturerVerification: captured
+      ? entry.manufacturerVerification
+      : undefined,
   });
-  return { ...audit, missingSkuPrices, excludedFlavourTasks };
+  const shaker = isShakerBundle({ selectedVariant });
+  return flavour === 'other' || shaker
+    ? {
+        ...entry,
+        extractedFlavour: flavour,
+        reason: shaker
+          ? 'Selected SKU includes a shaker; the buyer already owns one'
+          : 'Selected SKU flavour is outside chocolate-or-unflavoured scope',
+      }
+    : undefined;
+}
+
+function exactSkuKey(entry) {
+  const [key] = recordListingKeys(entry);
+  return key && entry.sku
+    ? `${key}:${String(entry.sku).split('_VNAMZ-').at(-1)}`
+    : null;
+}
+
+function observationTime(entry) {
+  const time = Date.parse(entry.observedAt);
+  return Number.isFinite(time) ? time : 0;
 }
 
 function filterTargetCategoryTasks(audit, discoveries, flavourScope) {
@@ -102,6 +162,8 @@ function filterTargetCategoryTasks(audit, discoveries, flavourScope) {
     'unknownSkuInventories',
     'categoryReview',
     'specifications',
+    'capturedSkuObservations',
+    'excludedFlavourTasks',
   ]) {
     result[field] = (audit[field] || []).filter(
       (record) => !recordListingKeys(record).some((key) => exclusions.has(key))
@@ -172,6 +234,8 @@ export function scopeAccountAudit(
     'unknownSkuInventories',
     'categoryReview',
     'specifications',
+    'capturedSkuObservations',
+    'excludedFlavourTasks',
   ]) {
     filtered[field] = (audit[field] || []).filter(inScope);
   }

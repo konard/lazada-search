@@ -766,7 +766,13 @@ export declare class DomainScheduler {
     intervalMs?: number;
     sleep?: (ms: number) => Promise<unknown>;
   });
-  run<T>(url: string, action: () => Promise<T>): Promise<T>;
+  run<T>(
+    url: string,
+    action: () => Promise<T>,
+    options?: {
+      beforePace?: () => unknown | Promise<unknown>;
+    }
+  ): Promise<T>;
   pace(url: string): Promise<void>;
 }
 export interface Capture {
@@ -777,6 +783,11 @@ export interface Capture {
   html?: BlobReference;
   screenshot?: BlobReference;
   screenshotMode?: 'viewport';
+  imageAcquisition?: {
+    admitted: number;
+    assetPhaseCompleted: boolean;
+    deferredUrls: string[];
+  };
   screenshots?: Array<{
     role: 'before-scroll' | 'after-scroll' | 'delivery';
     blob: BlobReference;
@@ -864,6 +875,7 @@ export declare class EvidenceCache {
   constructor(options: {
     store: AssociativeStore;
     scheduler?: DomainScheduler;
+    staticImageScheduler?: DomainScheduler;
     now?: () => number;
     offline?: boolean;
   });
@@ -906,6 +918,7 @@ export declare class BrowserCollector {
     settleMs?: number;
     maxScrolls?: number;
     captureTimeoutMs?: number;
+    assetSettleTimeoutMs?: number;
     flavourScope?: ComparisonOptions['flavourScope'];
   });
   start(options?: { existingOnly?: boolean; targetId?: string }): Promise<void>;
@@ -937,6 +950,10 @@ export interface CollectionStopState {
   reason?: 'challenge';
   detectedAt?: string;
   resumedAt?: string;
+  operatorReviewId?: string;
+  resumeDecision?: 'operator-dismissed-non-browser-stop';
+  challengedSourceRecoveryConfirmed?: false;
+  precedingOperatorReviewId?: string;
   origin?: string | null;
   signals?: string[];
   browser?: {
@@ -958,6 +975,16 @@ export interface CollectionStopState {
   };
 }
 export declare const COLLECTION_STOP_ID: string;
+export interface NonBrowserCollectionStopReview {
+  decision: 'dismiss-non-browser-stop';
+  reason: string;
+  expectedStop: CollectionStopState;
+  observedPageUrl?: string;
+}
+export declare function reviewNonBrowserCollectionStop(
+  store: AssociativeStore,
+  input: NonBrowserCollectionStopReview
+): Promise<CollectionStopState>;
 export declare class CollectionStoppedError extends Error {
   code: 'COLLECTION_STOPPED';
   reason: 'challenge';
@@ -979,6 +1006,13 @@ export declare function publishAccountCaptures(
   published: Array<Record<string, unknown>>;
   historicalPublished: Array<Record<string, unknown>>;
   allPublished: Array<Record<string, unknown>>;
+  ocrPublication: {
+    published: number;
+    reused: number;
+    transforms: number;
+    artifacts: number;
+    rejected: Array<{ ocrId: string; reason: string }>;
+  };
   rejected: Array<{ url: string; reason: string }>;
   reused: number;
   downloads: number;
@@ -1389,6 +1423,7 @@ export declare class LazadaSearch {
     offline?: boolean;
     browserOptions?: Record<string, unknown>;
     scheduler?: DomainScheduler;
+    staticImageScheduler?: DomainScheduler;
     manufacturerRegistry?: Manufacturer[];
     manufacturerSearchProvider?: ManufacturerSearchProvider;
     manufacturerSearchConfiguration?: ManufacturerSearchConfiguration;

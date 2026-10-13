@@ -1,6 +1,10 @@
 import { assertPageNotChallenged } from './page-challenge.js';
 
-export async function resolvePageDialogs(page) {
+export async function resolvePageDialogs(
+  page,
+  { assertActive = () => {} } = {}
+) {
+  assertActive();
   await assertPageNotChallenged(page);
   const confirm = page.getByText('Xác nhận', { exact: true });
   if (await confirm.isVisible()) {
@@ -32,9 +36,11 @@ export async function resolvePageDialogs(page) {
       (await checkbox.count()) === 1 &&
       /Không hỏi lại/u.test(await dialog.innerText())
     ) {
+      assertActive();
       await checkbox.check();
     }
     await assertPageNotChallenged(page);
+    assertActive();
     await confirm.click();
     await dialog.waitFor({ state: 'hidden', timeout: 5000 });
     await assertPageNotChallenged(page);

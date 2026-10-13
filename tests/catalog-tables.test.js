@@ -112,6 +112,14 @@ test('Markdown export retains a newly collected product without a pre-existing m
     ocr: false,
   });
   await app.importRecords({ products: [product], offers: [offer] });
+  const collectionStop = {
+    id: 'browser-collection',
+    active: false,
+    origin: 'https://factory.example',
+    operatorReviewId: 'collection-stop-review:fixture',
+    challengedSourceRecoveryConfirmed: false,
+  };
+  await app.store.put('collection-stop', collectionStop);
   await app.close();
   // The repository export CLI uses Node and an installed npm graph. A Deno
   // child started inside this copied fixture would resolve fresh dependencies.
@@ -135,6 +143,7 @@ test('Markdown export retains a newly collected product without a pre-existing m
   const catalog = JSON.parse(
     await readFile(join(directory, 'docs/tables/catalog.json'))
   );
+  assert.deepEqual(catalog.collectionStop, collectionStop);
   assert.equal(catalog.products[0].id, product.id);
   assert.equal(catalog.comparisons[0].manufacturerVerified, false);
   assert.match(

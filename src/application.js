@@ -1,5 +1,5 @@
 import { AssociativeStore } from './store.js';
-import { EvidenceCache, evidenceId } from './cache.js';
+import { EvidenceCache, DomainScheduler, evidenceId } from './cache.js';
 import { BrowserCollector } from './browser.js';
 import { TesseractOcr } from './ocr.js';
 import {
@@ -111,6 +111,9 @@ export class LazadaSearch {
     offline = false,
     browserOptions,
     scheduler,
+    staticImageScheduler = new DomainScheduler({
+      intervalMs: Math.min(1000, scheduler?.intervalMs ?? 1000),
+    }),
     manufacturerRegistry = MANUFACTURERS,
     translationProvider,
     translationProviderId,
@@ -126,7 +129,9 @@ export class LazadaSearch {
     }
     positive(maxImages, 'maxImages', { zero: true, integer: true });
     this.store = store;
-    this.cache = cache || new EvidenceCache({ store, offline, scheduler });
+    this.cache =
+      cache ||
+      new EvidenceCache({ store, offline, scheduler, staticImageScheduler });
     this.collector =
       collector ||
       new BrowserCollector({

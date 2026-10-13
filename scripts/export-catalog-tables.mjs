@@ -584,6 +584,7 @@ const snapshot = {
   market: options.market,
   deliveryArea: options.deliveryArea,
   provisional: true,
+  collectionStop: await app.store.get('collection-stop', 'browser-collection'),
   audit,
   products,
   offers,

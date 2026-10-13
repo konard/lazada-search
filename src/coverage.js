@@ -2,11 +2,73 @@ import { specificationProblems } from './verification.js';
 import { listingKey } from './util.js';
 import { categorySourceKey } from './text.js';
 import { currentUnavailableListings } from './availability.js';
+import { workflowSourceInvalidated } from './source-invalidation.js';
 
 const skuNumber = (value) =>
   String(value || '')
     .split('_VNAMZ-')
     .at(-1);
+
+function capturedSkuObservations(products, offers, invalidations) {
+  const byId = new Map(products.map((product) => [product.id, product]));
+  const observations = new Map();
+  for (const offer of offers) {
+    const product = byId.get(offer.productId);
+    const observed = Date.parse(offer.observedAt);
+    if (
+      !product ||
+      !product.sku ||
+      !offer.sku ||
+      offer.variantConfirmed !== true ||
+      !offer.evidenceId ||
+      !product.evidenceIds?.includes(offer.evidenceId) ||
+      !Number.isFinite(observed) ||
+      observed !== Date.parse(product.observedAt) ||
+      skuNumber(product.sku) !== skuNumber(offer.sku) ||
+      listingKey(product.url) !== listingKey(offer.url) ||
+      !['whey', 'protein-powder', 'chocolate-ice-cream'].includes(
+        product.category
+      )
+    ) {
+      continue;
+    }
+    const source = {
+      ...offer,
+      id: offer.evidenceId,
+      url: offer.url,
+      observedAt: offer.observedAt,
+    };
+    if (workflowSourceInvalidated(source, [], invalidations)) {
+      continue;
+    }
+    const selectedVariant = product.selectedVariant || [];
+    observations.set(`${listingKey(offer.url)}:${skuNumber(offer.sku)}`, {
+      listingUrl: product.url,
+      url: offer.url,
+      sku: offer.sku,
+      title: product.title,
+      category: product.category,
+      selectedVariant,
+      options: selectedVariant.map((option) => ({
+        name: option.name || option.dimension || '',
+        value: option.text || '',
+      })),
+      productId: product.id,
+      offerId: offer.id,
+      observedAt: offer.observedAt,
+      available: offer.available,
+      sourceRecordIds: [product.id, offer.id],
+      sourceEvidenceIds: [offer.evidenceId],
+      sourceAuthority: 'marketplace',
+      sourceUrl: offer.url,
+      observationKind: 'captured-selected-sku',
+      ...(product.manufacturerVerification
+        ? { manufacturerVerification: product.manufacturerVerification }
+        : {}),
+    });
+  }
+  return [...observations.values()];
+}
 
 function matchesConfiguredScope(scope, { query, categoryUrl }) {
   if (scope.query === query) {
@@ -119,6 +181,10 @@ export function auditCoverage({
           url: sku.url,
           options: sku.options,
           available: sku.available,
+          observedAt: inventory.observedAt,
+          sourceRecordIds: [inventory.id, inventory.cacheId].filter(Boolean),
+          sourceAuthority: 'marketplace',
+          observationKind: 'inventory-option',
         });
       }
     }
@@ -181,6 +247,11 @@ export function auditCoverage({
     unfinishedSearches,
     missingListings,
     missingSkuPrices,
+    capturedSkuObservations: capturedSkuObservations(
+      products,
+      active,
+      invalidations
+    ),
     categoryReview,
     missingPrices,
     unknownSkuInventories,

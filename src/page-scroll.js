@@ -113,12 +113,13 @@ export async function animateScroll({ target, durationMs }) {
 
 export async function scrollProductContent(
   page,
-  { maxSteps = 20, durationMs = 650 } = {}
+  { maxSteps = 20, durationMs = 650, assertActive = () => {} } = {}
 ) {
   let boundary;
   let steps = 0;
   for (; steps < maxSteps; steps += 1) {
-    await resolvePageDialogs(page);
+    assertActive();
+    await resolvePageDialogs(page, { assertActive });
     boundary = await page.evaluate(inspectScrollBoundary);
     if (!boundary.known || Math.abs(boundary.target - boundary.position) < 2) {
       break;
@@ -127,8 +128,9 @@ export async function scrollProductContent(
     const target =
       boundary.position +
       Math.sign(distance) * Math.min(Math.abs(distance), boundary.step);
+    assertActive();
     await page.evaluate(animateScroll, { target, durationMs });
-    await waitForPageReady(page);
+    await waitForPageReady(page, { assertActive });
   }
   boundary = await page.evaluate(inspectScrollBoundary);
   return {

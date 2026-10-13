@@ -148,6 +148,9 @@ export function stopForChallenge(store, challenge) {
           detectedAt: new Date().toISOString(),
           origin,
           signals: challenge.signals || [],
+          ...(previous?.operatorReviewId
+            ? { precedingOperatorReviewId: previous.operatorReviewId }
+            : {}),
         }
   );
 }

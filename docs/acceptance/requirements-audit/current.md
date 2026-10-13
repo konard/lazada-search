@@ -2,9 +2,9 @@
 
 **All requirements delivered: false. All target products collected: false. Production ready: false.**
 
-Recalculated offline at 2026-10-13T08:51:41.273Z, from the published catalog observed at 2026-10-11T20:54:52.701Z. No marketplace requests are made by this audit.
+Recalculated offline at 2026-10-13T12:44:33.484Z, from the published catalog observed at 2026-10-13T12:42:11.221Z. No marketplace requests are made by this audit.
 
-The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollected listings**, **373 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
+The active chocolate/plain whey and chocolate ice-cream case has **1287 uncollected listings**, **369 unpriced SKU options**, and **6403 unresolved category observations**. 371 clearly identified hardware, animal-feed, non-frozen protein-bar or plant-only listings are excluded with their original titles, reasons and source pointers retained. Unknown and other-flavour listing titles remain pending because they can contain relevant sibling options.
 
 | Acceptance gate                            | Result |
 | ------------------------------------------ | ------ |
@@ -22,7 +22,7 @@ The active chocolate/plain whey and chocolate ice-cream case has **1298 uncollec
 | allCapturedTargetDeliveryQuotesExact       | Open   |
 | bulkDestinationQuotesCaptured              | Open   |
 | frozenNhaTrangDeliveryConfirmed            | Open   |
-| collectionStopCleared                      | Open   |
+| collectionStopCleared                      | Passed |
 | allRequirementsAccepted                    | Open   |
 | allGithubIssuesClosed                      | Open   |
 

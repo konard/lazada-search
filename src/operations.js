@@ -2,6 +2,7 @@ import { executeCommand } from './commands.js';
 import { reviewListingCategory } from './category-review.js';
 import { sha256 } from './util.js';
 import { reviewPackageQuantities } from './package-quantity-review.js';
+import { reviewNonBrowserCollectionStop } from './collection-stop-review.js';
 import {
   WORKFLOW_OPERATION_NAMES,
   executeWorkflowOperation,
@@ -16,6 +17,7 @@ export const OPERATION_NAMES = [
   'replay-captures',
   'collection-status',
   'resume-collection',
+  'review-collection-stop',
   'delivery',
   'compare',
   'inspect',
@@ -154,6 +156,12 @@ export async function executeOperation(application, request) {
   }
   if (operation === 'import-capture') {
     return application.importCapture(object(input.capture, 'Browser capture'));
+  }
+  if (operation === 'review-collection-stop') {
+    return reviewNonBrowserCollectionStop(
+      application.store,
+      object(input.review, 'Operator stop review')
+    );
   }
   const packageReviewHandlers = {
     'review-package-quantities': () =>

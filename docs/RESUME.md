@@ -1,48 +1,46 @@
-[Latest offline progress](acceptance/offline-completion-progress/README.md) records saved-checkout replay, source-bound readiness and translations, resolved-invalidation handling, two exact volume-label reviews, and all 20 remaining data/live outcomes. The current tracker maps 49 requirements and 44 GitHub issues, including [issue 45](https://github.com/konard/lazada-search/issues/45). Collection remains stopped; captured prices are historical.
+# Saved results and continuing collection
 
-[The current requirement/result recheck](acceptance/result-recheck/README.md) maps all 49 requirements and 43 issues. Historical captured arithmetic is valid; 20 data/live outcomes remain incomplete. The offline public archive rebuild removes non-product telemetry while preserving product facts. Current local source passes 1,532 units and five changed archive/interface E2E cases; CI evidence belongs to its exact source commit.
-
-# Saved partial results and resume checklist
-
-[CAPTCHA lifecycle correction](acceptance/challenge-window-retention/README.md) retains an already detected browser page without opening or reopening a window. The current requirement registry maps 49 requirements and [42 GitHub issues](acceptance/challenge-window-retention/github-issues.json), including [issue 42](https://github.com/konard/lazada-search/issues/42). The saved Optimum Nutrition stop came from curl and offline import, so its accurate handoff state is `no-browser-page`. It remains an active global stop; it is not waiting for the user in a visible browser.
-
-Source `171b250` passes 1,517 local unit and 84 local E2E tests, all nine complete Node/Bun/Deno CI runtime suites, all six workflows and all 84 CI E2E cases. The separate CodeQL gate passes after completed Security/matrix analysis; no executable source alerts remain. Every Windows runtime passes all sixteen immutable-blob regressions and the formerly failing redirected-image case. [Current acceptance](acceptance/challenge-window-retention/README.md) preserves exact source/merge hashes, all original logs and earlier failures. Source acceptance is complete for these implemented workflows. Issues 36, 42 and 43 retain tested draft fixes until merge; all-requirements/all-products/production/purchase readiness remain false because live collection, exact manufacturer/nutrition/English, bulk/frozen shipping, bot and owner publishing acceptance remain unfinished.
-
-The [remaining automation draft](drafts/README.md) maps all 49 requirements and 43 GitHub issues to existing or newly drafted code. The [source-inspected recheck](drafts/draft-review.md) repairs 17 draft gaps and adds five meaningful unrun unit/E2E suites with a synthetic fixture. The user subsequently authorized testing; [workflow acceptance](acceptance/draft-workflow-testing/README.md) records actual local unit, interface, browser and native OCR checks. Live data/release acceptance and the saved CAPTCHA stop remain outstanding. Existing comparison tables retain their original observation dates.
-
-The user requested the saved checkpoint on 2026-10-12 (Vietnam time), then resumed requirement delivery. Ice-cream quantities and both gram/ml rates are now shown together, with source-bound package reviews shared across the library, CLI, HTTP and Telegram. [Current correction and evidence](acceptance/ice-unit-completeness/) retain the implementation and remaining label gaps. All reports are recalculated from the existing public cache with zero website downloads while the saved manufacturer challenge remains active. Prices, stock and shipping retain their original observation dates; report regeneration does not refresh them.
+Collection resumed on 2026-10-13 after the user explicitly reviewed and dismissed the old non-browser HTTP/imported manufacturer checkpoint. The existing Lazada window was shown without a visible CAPTCHA. [Operator decision, fixes and validation](acceptance/operator-collection-resume/README.md) retain the original failed manufacturer evidence and current inactive checkpoint. New actual browser challenges preserve their existing visible target for the user. The collector profile currently supports public browsing; authentication in another browser has not been confirmed or transferred.
 
 ## Published comparisons
 
-- [Chocolate/plain whey top tens](tables/top-10-partial.md): separate ascending prices per gram of powder and per gram of specification-verified protein. Soy has its own reference category; paid shaker selections are excluded.
-- [Chocolate ice-cream rankings](tables/ice-unit-rankings.md): independent ascending gram, millilitre and protein-reference rankings, with exact stock, quantity and source qualifications.
-- [Six handpicked links](tables/handpicked.md): ascending supported gram prices, unresolved denominators last, exact-SKU and listing-level top-ten membership reported separately.
-- [Source and arithmetic audit](acceptance/top10-check/unit-cost-audit.md): 54 report rows independently checked against original cached HTML and source digests.
-- [Publication receipt](acceptance/partial-report-checkpoint/review.json): original logs, report hashes and focused test results for this checkpoint.
-- [Dual-unit correction and independent review](acceptance/ice-unit-completeness/): source-bound package reviews, interface checks and regenerated report checks for the resumed work.
+- [Chocolate/plain whey top tens](tables/top-10-partial.md): separate ascending prices per gram of powder and per gram of verified protein. Soy has its own category; paid shaker selections are excluded.
+- [Chocolate ice cream](tables/ice-unit-rankings.md): independent gram, millilitre and protein-reference rankings, with both gram/ml rates shown whenever both original quantities are supported.
+- [Six handpicked links](tables/handpicked.md): supported gram prices sorted ascending, exact-SKU and listing-level top-ten membership reported separately.
+- [Eleven fresh captures](acceptance/operator-collection-resume/captures.md): observed selected SKUs, prices, source pointers and OCR coverage from 2026-10-13.
+- [Source-price audit](acceptance/current-offer-source-audit.json) and [independent arithmetic audit](acceptance/top10-check/unit-cost-audit.md).
 
-Both whey rankings contain ten rows. Ice cream has fourteen captured selected prices, with five eligible gram rows, seven millilitre rows and two protein-reference rows. Only two ice selling units have both supported grams and millilitres; no exact Nha Trang frozen-delivery quote is captured. The handpicked list has six captured SKUs and five supported gram denominators. These remain partial results.
+Both whey rankings contain ten rows. Ice cream retains fourteen captured candidates, five eligible gram rows, seven millilitre rows and two eligible protein-reference rows. Two ice selling units have both supported grams and millilitres. Actual frozen delivery to Nha Trang remains unconfirmed. Six handpicked SKUs are captured; five have supported gram denominators. Rankings retain each price's original observation date and do not establish a current market-wide or delivered-price winner.
 
-## Current unfinished work
+## Current work
 
-The [current requirements audit](acceptance/requirements-audit/current.md) now maps all 49 requirements and 43 issues; the historical review retained 29 open findings, including 1,298 uncollected listings, 373 unpriced selling options, exact manufacturer/formula verification, discounts and bulk/frozen freight. [Requirements](REQUIREMENTS.md) and [roadmap](ROADMAP.md) retain the complete scope. GitHub issues [3](https://github.com/konard/lazada-search/issues/3), [14](https://github.com/konard/lazada-search/issues/14), [32](https://github.com/konard/lazada-search/issues/32), [36](https://github.com/konard/lazada-search/issues/36) and [42](https://github.com/konard/lazada-search/issues/42) remain open; issues 36 and 42 have the lock-owner and retained-page corrections in draft PR 41. Genuine prepared-checkout layout acquisition, whole-catalog English/provider configuration and live allowlisted Telegram acceptance also remain outstanding.
+The active-source audit has **1,287 uncollected listings, 369 unpriced target-scope options and 6,403 unresolved category observations**. The [current requirement audit](acceptance/requirements-audit/current.md) maps all 49 requirements and 44 GitHub issues. Twenty data/live outcomes remain incomplete; no old collection stop is a reason to leave them unfinished. [Requirements](REQUIREMENTS.md) and [roadmap](ROADMAP.md) preserve the complete scope.
 
-The [persisted manufacturer challenge](acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json) remains active for the saved Optimum Nutrition origin. No original browser challenge page was retained for that HTTP receipt, and status/resume do not create one. For a later actual browser challenge, clear its retained original page manually and use the guarded explicit resume described in [collection operations](COLLECTION.md). A clear Lazada page cannot clear the manufacturer stop. The current authenticated session remains unconfirmed.
+Continue from cached terminal lists and pending exact-SKU work. Retain original search cards and exact evidence-backed exclusions. Confirm chocolate or unflavoured/no-paid-shaker options, resolve dialogs, and wait for stable SKU, price and stock before capture. Complete missing collection before revisiting earlier observations. Verify exact manufacturer flavour, market, package and formula before approving corrections or OCR facts. Capture actual destination/quantity-specific discounts and bulk/frozen freight before declaring a delivered winner.
 
-Continue from cached terminal lists and pending exact-SKU work. Save every original search card and evidence-backed exclusion; complete missing collection before revisiting older captures. Select the complete chocolate or unflavoured/no-shaker option, resolve dialogs and wait for stable SKU, price and stock before capture. Verify exact factory flavour, market, package and formula before promoting corrections or OCR facts. Acquire actual quantity/address-specific checkout discounts and freight, including frozen delivery, before naming a bulk-buy winner. Recheck captured price and stock freshness before an order.
+```sh
+node scripts/collect-account-case.mjs --account default --exhaustive \
+  --flavour-scope chocolate-or-unflavoured --interval-ms 60000 \
+  --batch-size 25 --max-images 40 --ocr-languages eng+vie \
+  --ocr-data-dir .lazada-search/tessdata --commit-checkpoints
+```
+
+[Collection operations](COLLECTION.md) describe caching, persistent-window reuse, retained challenge pages and explicit operator review. Private profiles, credentials, OTPs and account viewport screenshots remain in the local overlay. Verified public product-image OCR originals and raw TSV can be published with their exact pixels, model hashes and reproducible transformations; they do not approve inferred nutrition.
 
 ## Offline reproduction
 
-Run these in order from the repository root. They use the shared public cache and perform no website requests:
-
 ```sh
+node scripts/export-catalog-tables.mjs --offline --no-ocr
 node scripts/export-deadline-report.mjs --configuration data/cases/vietnam-nha-trang/preferences.lenv --offline --no-ocr
 node scripts/export-ice-unit-report.mjs
 node scripts/export-handpicked-report.mjs --configuration data/cases/vietnam-nha-trang/preferences.lenv --offline --no-ocr
 node scripts/audit-deadline-unit-costs.mjs
+node scripts/audit-current-offer-sources.mjs --strict
 node scripts/audit-ice-unit-completeness.mjs
 node scripts/audit-case-requirements.mjs
 node bin/lazada-search.js archive-verify --offline --no-ocr
 ```
 
-The original public case, HTML/JSON sources, Links Notation and binary conversions are committed under [data/cases/vietnam-nha-trang](../data/cases/vietnam-nha-trang/). Preserve historical failed controls and validation receipts. Private credentials, OTPs, profiles and account checkout sources stay in the local overlay.
+The [repository case](../data/cases/vietnam-nha-trang/) stores reusable public HTML/JSON, images, Links Notation and binary conversions. Invalidated sources require selective refresh; unchanged correct sources and transformations are reused. Strict requirement acceptance deliberately fails while real evidence is missing.
+
+Historical receipts remain under [offline progress](acceptance/offline-completion-progress/README.md), [result recheck](acceptance/result-recheck/README.md), [workflow tests](acceptance/draft-workflow-testing/README.md), [challenge retention](acceptance/challenge-window-retention/README.md), and [source integrity](acceptance/source-integrity/README.md). Their stop states, prices and CI counts belong to their recorded dates and source commits.

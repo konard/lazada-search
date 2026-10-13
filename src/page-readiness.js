@@ -88,15 +88,23 @@ export function inspectPageReadiness(context) {
 
 export async function waitForPageReady(
   page,
-  { timeoutMs = 30000, intervalMs = 500, stableMs = 1000, now = Date.now } = {}
+  {
+    timeoutMs = 30000,
+    intervalMs = 500,
+    stableMs = 1000,
+    now = Date.now,
+    assertActive = () => {},
+  } = {}
 ) {
   const deadline = now() + timeoutMs;
   let previous;
   let stableSince;
   let readiness;
   do {
-    await resolvePageDialogs(page);
+    assertActive();
+    await resolvePageDialogs(page, { assertActive });
     readiness = await page.evaluate(inspectPageReadiness);
+    assertActive();
     if (readiness.ready && readiness.fingerprint === previous) {
       if (now() - stableSince >= stableMs) {
         return readiness;

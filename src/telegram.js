@@ -193,13 +193,16 @@ export function createTelegramBot({
       await operation;
     }
   );
-  bot.command('operation', async (ctx) => {
+  bot.command(['operation', 'review_collection_stop'], async (ctx) => {
     const run = async () => {
       try {
-        const result = await executeOperation(
-          application,
-          JSON.parse(ctx.match || '{}')
-        );
+        const input = JSON.parse(ctx.match || '{}');
+        const request = /^\/review_collection_stop(?:\s|@|$)/u.test(
+          ctx.message.text
+        )
+          ? { operation: 'review-collection-stop', input: { review: input } }
+          : input;
+        const result = await executeOperation(application, request);
         const text = JSON.stringify(result ?? null, null, 2);
         for (let offset = 0; offset < text.length; offset += 3500) {
           await ctx.reply(text.slice(offset, offset + 3500));
