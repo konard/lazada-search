@@ -53,12 +53,19 @@
   "allTargetProductsCollected": false,
   "productionReady": false,
   "purchaseReady": false,
-  "ciForThisCheckpoint": "pending push",
+  "ciForThisCheckpoint": "pushed; CI acceptance pending",
   "originalFailuresPreserved": [
     "unit.tap: child npm used Node20 until PATH corrected",
     "e2e-full.tap: image redirect fixture cancelled before passive image routing was restored",
     "unit-complete.tap: two catalog/publication snapshots differed before synchronized export"
   ],
   "logs": "log-manifest.json",
-  "source": "source-manifest.json"
+  "source": "source-manifest.json",
+  "sourceCommit": "ac89ac415f8614fca5af1bb149bdc1f43e3e55c1",
+  "gitLargeFileWarning": {
+    "path": "data/cases/vietnam-nha-trang/links/discovery-publication-source.24d5819f8a7d7420f5f7e32a601af76be04d121ba81c7e7a98ff1054a0552321.links.gz",
+    "bytes": 104204484,
+    "pushSucceeded": true,
+    "followup": "Bound large Links Notation archive shards while retaining all original records and exact projections."
+  }
 }
