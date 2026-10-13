@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "checkedAt": "2026-10-13T08:56:48.439956+00:00",
-  "scope": "Final local software/interface and offline public-case acceptance; no live market or owner publication acceptance",
+  "scope": "Immutable local acceptance baseline at sourceCommit; artifact bytes and source manifest refer to that commit. Later corrections have separate source-specific receipts.",
   "local": {
     "unit": {
       "passed": 1609,
@@ -144,5 +144,7 @@
       "sha256": "6f0c14b9f0a990c2d9058bc015e1f50358fe487aef7233b3b3524449d61714d8",
       "bytes": 8440024
     }
-  ]
+  ],
+  "sourceCommit": "c0b863033b4612c7b5cccaa4fb7c74410523021b",
+  "followupEvidence": "publication-fix-validation.json"
 }

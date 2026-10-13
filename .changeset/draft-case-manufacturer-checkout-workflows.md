@@ -23,3 +23,5 @@ Bound independent record writers at sixteen and canonical readers at eight, conf
 Bound result-count, displayed-discount, protected URL and decimal suffix parsing while retaining valid extraction behavior and cache-only revalidation. Escape literal report backslashes and pipes after truncation to preserve Markdown columns; add hostile-source subprocess and actual rendered-report regressions.
 
 Publish immutable original blobs once from synced staging files, verify exact competing bytes and retain corruption/permission failures. Avoid competing Windows rename-overwrites while preserving complete-file durability, cache/fallback reuse and process-safe concurrency.
+
+Replay saved exact checkout originals offline, validate source invalidation and explicit resolution consistently, and calculate captured-inventory readiness from reviewed original hashes, re-extracted SKU/price/availability, exact freight, all unit rates, affirmative chocolate-core identity and approved cached English. Preserve zero-priced fully discounted comparisons and count qualified cached checkout rows in readiness.

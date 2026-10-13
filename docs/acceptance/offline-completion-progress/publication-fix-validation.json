@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-13T09:55:54.990065+00:00",
+  "baselineCommit": "c0b863033b4612c7b5cccaa4fb7c74410523021b",
+  "baselineFullUnitTests": 1609,
+  "baselineDistinctE2e": 85,
+  "changedSourceFiles": [
+    {
+      "path": "src/case-readiness.js",
+      "beforeSha256": "94f372e5da5934843f11fe0b1e9e7df25dfd53f0e2fa2edb4a2f550d8183a570",
+      "afterSha256": "3935e8e2a48e95d0526c27546fba4dbcefdd9744ffd5f01c6becd43cc460b6bf"
+    },
+    {
+      "path": "tests/case-checkout-replay.test.js",
+      "beforeSha256": "fd9e73267990951e3d0eff34876f731746e599088c9bf1217d759a2b86032507",
+      "afterSha256": "9ac62d63c3dc69f42b6569084a9f250781b9713a25c72780bcd61d75386a30b3"
+    }
+  ],
+  "unchangedBaselineSourceFiles": 618,
+  "changes": "Count actual qualified one-line checkout replacements, consolidate into the existing single PR changeset, format the copied independent audit JSON. Original CI failures retained.",
+  "validation": {
+    "Node": {
+      "passed": 41,
+      "failed": 0
+    },
+    "Bun": {
+      "passed": 41,
+      "failed": 0
+    },
+    "Deno": {
+      "passed": 41,
+      "failed": 0
+    },
+    "strictTypesPassed": true,
+    "lintFormatDuplicationPassed": true,
+    "ciAcceptancePending": true
+  },
+  "artifacts": [
+    {
+      "path": "docs/acceptance/offline-completion-progress/ci-initial-changeset-failure.log",
+      "sha256": "e2318ca0544db3308af51312a4beb728ae60bbd9e3658ec7e1f8857cd251cb3d",
+      "bytes": 23513
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/ci-initial-lint-failure.log",
+      "sha256": "4bffd64081b8c5cd961dc61549925e2d2f9fedf7b43b309c9c37976c30c9fbc4",
+      "bytes": 31404
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/publication-fix-node.log",
+      "sha256": "82f91e1953c445ec7baf1d93ce92713afdc77ab39371e65203b353a823ea56e6",
+      "bytes": 9927
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/publication-fix-bun.log",
+      "sha256": "4f6092b5940e9549a09dc031ac30a40c9813557d6fa1554037b21b98fe0ee539",
+      "bytes": 4360
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/publication-fix-deno.log",
+      "sha256": "e9d42ba88e4fe327110d7f626e2b18ac14a34775b55e288aec71f42d4d6982e7",
+      "bytes": 5071
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/publication-fix-quality.log",
+      "sha256": "041281031849241105e9bae9d8d146199b35544a972a891c1b51c3241fe6b827",
+      "bytes": 150698
+    },
+    {
+      "path": "docs/acceptance/offline-completion-progress/publication-fix-types.log",
+      "sha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
+      "bytes": 77
+    }
+  ]
+}

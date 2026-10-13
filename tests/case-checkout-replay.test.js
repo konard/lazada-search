@@ -221,6 +221,11 @@ test('offline bulk task imports a private original and uses shared manufacturer 
   assert.equal(task.status, 'succeeded');
   assert.equal(task.result.sourceMode, 'stored-original-import');
   const report = await context.app.compareBaskets();
+  assert.equal((await context.app.compare({ quantity: 3 })).ranked.length, 0);
+  const readiness = await context.app.caseReadiness({ quantity: 3 });
+  assert.equal(readiness.qualifiedOffers, 1);
+  assert.equal(readiness.unverifiedOrUnpricedOffers, 0);
+  assert.equal(readiness.purchaseReady, false);
   assert.equal(report.ranked.length, 1);
   const row = report.ranked[0];
   assert.equal(row.quote.lines[0].quantity, 3);

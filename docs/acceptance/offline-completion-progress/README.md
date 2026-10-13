@@ -8,7 +8,7 @@ Saved checkout HTML now replays offline across public/private caches. Current re
 
 [Current captured readiness](captured-readiness.json) is for quantity three. Its evidence gates identify the current failures; cached inventory readiness can advance only when every required original check passes. It never asserts the lowest price across the entire market.
 
-The final local acceptance passes **1,609 unit tests** and **85 distinct E2E cases** (84 in the full run plus the single configured native-store rerun), with no failures or unresolved skips. The changed readiness suites pass 30 cases each on Node, Bun and cached Deno; checkout/source suites pass 139 each. Types, lint, formatting and duplication checks pass. [Validation and exact artifact hashes](validation.json) distinguish these results from missing live product evidence.
+The local source `c0b8630` passes **1,609 unit tests** and **85 distinct E2E cases** (84 in the full run plus the single configured native-store rerun), with no failures or unresolved skips. The changed readiness suites pass 30 cases each on Node, Bun and cached Deno; checkout/source suites pass 139 each. Types, lint, formatting and duplication checks pass. [Validation and exact artifact hashes](validation.json) distinguish these results from missing live product evidence.
 
 ## Buying reports
 
@@ -50,3 +50,5 @@ node bin/lazada-search.js archive-verify --offline --no-ocr --archive-dir data/c
 The dedicated public-review overlay keeps source-SHA bindings separate from private originals. Negative-control invalidations in acceptance fixtures are never imported into the case. Repeated export reuses all 7,160 artifacts with zero rebuilds/downloads.
 
 [Defect #45](https://github.com/konard/lazada-search/issues/45) records the new replay/readiness/source problems. [Independent readiness review](readiness-independent-review.json) records defects and the ruled-out currency concern. Runtime, interface, archive and exact final-source test evidence is saved beside this report.
+
+The publication follow-up corrects the PR’s extra changeset and a copied JSON format error, and counts qualified cached checkout rows in readiness. Its two changed source/test files pass all 41 affected cases on Node, Bun and Deno, plus types and quality checks. [Separate follow-up receipt](publication-fix-validation.json) preserves the immutable full-suite baseline and initial CI failures. Exact-head CI is still pending.

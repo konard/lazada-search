@@ -1,0 +1,287 @@
+﻿2026-10-13T09:15:31.5714280Z Current runner version: '2.337.0'
+2026-10-13T09:15:31.5739142Z ##[group]Runner Image Provisioner
+2026-10-13T09:15:31.5739972Z Hosted Compute Agent
+2026-10-13T09:15:31.5740693Z Version: 20261002.596
+2026-10-13T09:15:31.5741320Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-13T09:15:31.5742098Z Build Date: 2026-10-02T22:28:27Z
+2026-10-13T09:15:31.5742820Z Worker ID: {1e227e0c-9de6-4000-995a-857b778e807c}
+2026-10-13T09:15:31.5743512Z Region: westus
+2026-10-13T09:15:31.5744115Z Cloud: Azure
+2026-10-13T09:15:31.5744645Z ##[endgroup]
+2026-10-13T09:15:31.5746357Z ##[group]Operating System
+2026-10-13T09:15:31.5747076Z Ubuntu
+2026-10-13T09:15:31.5747593Z 24.04.5
+2026-10-13T09:15:31.5748146Z LTS
+2026-10-13T09:15:31.5748689Z ##[endgroup]
+2026-10-13T09:15:31.5749271Z ##[group]Runner Image
+2026-10-13T09:15:31.5749924Z Image: ubuntu-24.04
+2026-10-13T09:15:31.5750487Z Version: 20261004.327.1
+2026-10-13T09:15:31.5751785Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-13T09:15:31.5753424Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-13T09:15:31.5754429Z ##[endgroup]
+2026-10-13T09:15:31.5755574Z ##[group]GITHUB_TOKEN Permissions
+2026-10-13T09:15:31.5757597Z Contents: read
+2026-10-13T09:15:31.5758271Z Metadata: read
+2026-10-13T09:15:31.5758969Z ##[endgroup]
+2026-10-13T09:15:31.5761012Z Secret source: Actions
+2026-10-13T09:15:31.5762047Z Cache mode: write
+2026-10-13T09:15:31.5762728Z Prepare workflow directory
+2026-10-13T09:15:31.6211241Z Prepare all required actions
+2026-10-13T09:15:31.6260769Z Getting action download info
+2026-10-13T09:15:31.9843006Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-10-13T09:15:32.0943772Z Download action repository 'actions/setup-node@v6' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
+2026-10-13T09:15:32.2714166Z Complete job name: Check for Changesets
+2026-10-13T09:15:32.3484601Z ##[group]Run actions/checkout@v6
+2026-10-13T09:15:32.3485562Z with:
+2026-10-13T09:15:32.3486345Z   fetch-depth: 0
+2026-10-13T09:15:32.3486829Z   persist-credentials: false
+2026-10-13T09:15:32.3487369Z   repository: konard/lazada-search
+2026-10-13T09:15:32.3491049Z   token: ***
+2026-10-13T09:15:32.3491489Z   ssh-strict: true
+2026-10-13T09:15:32.3491936Z   ssh-user: git
+2026-10-13T09:15:32.3492368Z   clean: true
+2026-10-13T09:15:32.3492815Z   sparse-checkout-cone-mode: true
+2026-10-13T09:15:32.3493339Z   fetch-tags: false
+2026-10-13T09:15:32.3493778Z   show-progress: true
+2026-10-13T09:15:32.3494230Z   lfs: false
+2026-10-13T09:15:32.3494646Z   submodules: false
+2026-10-13T09:15:32.3495096Z   set-safe-directory: true
+2026-10-13T09:15:32.3495605Z   allow-unsafe-pr-checkout: false
+2026-10-13T09:15:32.3496581Z env:
+2026-10-13T09:15:32.3497004Z   GIT_CONFIG_COUNT: 1
+2026-10-13T09:15:32.3497488Z   GIT_CONFIG_KEY_0: init.defaultBranch
+2026-10-13T09:15:32.3498078Z   GIT_CONFIG_VALUE_0: main
+2026-10-13T09:15:32.3498554Z ##[endgroup]
+2026-10-13T09:15:32.4505784Z Syncing repository: konard/lazada-search
+2026-10-13T09:15:32.4508802Z ##[group]Getting Git version info
+2026-10-13T09:15:32.4510190Z Working directory is '/home/runner/work/lazada-search/lazada-search'
+2026-10-13T09:15:32.4511955Z [command]/usr/bin/git version
+2026-10-13T09:15:32.4566662Z git version 2.55.0
+2026-10-13T09:15:32.4592622Z ##[endgroup]
+2026-10-13T09:15:32.4609689Z Temporarily overriding HOME='/home/runner/work/_temp/88d49a7e-7a70-408e-99ec-1f168f5bb1a1' before making global git config changes
+2026-10-13T09:15:32.4611512Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T09:15:32.4615513Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lazada-search/lazada-search
+2026-10-13T09:15:32.4676685Z Deleting the contents of '/home/runner/work/lazada-search/lazada-search'
+2026-10-13T09:15:32.4681084Z ##[group]Determining repository object format
+2026-10-13T09:15:32.4684643Z ##[endgroup]
+2026-10-13T09:15:32.4686410Z ##[group]Initializing the repository
+2026-10-13T09:15:32.4690736Z [command]/usr/bin/git init /home/runner/work/lazada-search/lazada-search
+2026-10-13T09:15:32.4796382Z Initialized empty Git repository in /home/runner/work/lazada-search/lazada-search/.git/
+2026-10-13T09:15:32.4807047Z [command]/usr/bin/git remote add origin https://github.com/konard/lazada-search
+2026-10-13T09:15:32.4856524Z ##[endgroup]
+2026-10-13T09:15:32.4857427Z ##[group]Disabling automatic garbage collection
+2026-10-13T09:15:32.4860380Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-13T09:15:32.4894241Z ##[endgroup]
+2026-10-13T09:15:32.4895524Z ##[group]Setting up auth
+2026-10-13T09:15:32.4896621Z Removing SSH command configuration
+2026-10-13T09:15:32.4904236Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T09:15:32.4942840Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T09:15:32.5335161Z Removing HTTP extra header
+2026-10-13T09:15:32.5343695Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T09:15:32.5387551Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T09:15:32.5647570Z Removing includeIf entries pointing to credentials config files
+2026-10-13T09:15:32.5649584Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T09:15:32.5687124Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T09:15:32.5919287Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-13T09:15:32.5958390Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/lazada-search/lazada-search/.git.path /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:15:32.5993966Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/lazada-search/lazada-search/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:15:32.6037139Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:15:32.6069896Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:15:32.6100149Z ##[endgroup]
+2026-10-13T09:15:32.6100927Z ##[group]Fetching the repository
+2026-10-13T09:15:32.6108789Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +7650012972783b05a42006e70c19fbe8ab546285:refs/remotes/pull/41/merge
+2026-10-13T09:16:01.9814252Z From https://github.com/konard/lazada-search
+2026-10-13T09:16:01.9815323Z  * [new branch]      draft/remaining-requirements             -> origin/draft/remaining-requirements
+2026-10-13T09:16:01.9816498Z  * [new branch]      main                                     -> origin/main
+2026-10-13T09:16:01.9817360Z  * [new ref]         7650012972783b05a42006e70c19fbe8ab546285 -> pull/41/merge
+2026-10-13T09:16:01.9821041Z ##[endgroup]
+2026-10-13T09:16:01.9822006Z ##[group]Determining the checkout info
+2026-10-13T09:16:01.9823399Z ##[endgroup]
+2026-10-13T09:16:01.9830146Z [command]/usr/bin/git sparse-checkout disable
+2026-10-13T09:16:01.9888088Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-13T09:16:01.9919059Z ##[group]Checking out the ref
+2026-10-13T09:16:01.9922751Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/41/merge
+2026-10-13T09:16:03.3430599Z Updating files:  69% (7137/10245)
+2026-10-13T09:16:03.5344383Z Updating files:  70% (7172/10245)
+2026-10-13T09:16:03.5478142Z Updating files:  71% (7274/10245)
+2026-10-13T09:16:03.5900121Z Updating files:  72% (7377/10245)
+2026-10-13T09:16:03.5967025Z Updating files:  73% (7479/10245)
+2026-10-13T09:16:03.6356411Z Updating files:  74% (7582/10245)
+2026-10-13T09:16:03.6434928Z Updating files:  75% (7684/10245)
+2026-10-13T09:16:03.6594335Z Updating files:  76% (7787/10245)
+2026-10-13T09:16:03.6845081Z Updating files:  77% (7889/10245)
+2026-10-13T09:16:03.7438204Z Updating files:  78% (7992/10245)
+2026-10-13T09:16:03.7582033Z Updating files:  79% (8094/10245)
+2026-10-13T09:16:03.8569752Z Updating files:  80% (8196/10245)
+2026-10-13T09:16:03.8633276Z Updating files:  81% (8299/10245)
+2026-10-13T09:16:03.8775698Z Updating files:  82% (8401/10245)
+2026-10-13T09:16:03.8844942Z Updating files:  83% (8504/10245)
+2026-10-13T09:16:04.0234753Z Updating files:  84% (8606/10245)
+2026-10-13T09:16:04.0257699Z Updating files:  84% (8692/10245)
+2026-10-13T09:16:04.0699871Z Updating files:  85% (8709/10245)
+2026-10-13T09:16:04.0756139Z Updating files:  86% (8811/10245)
+2026-10-13T09:16:04.1449708Z Updating files:  87% (8914/10245)
+2026-10-13T09:16:04.1901145Z Updating files:  88% (9016/10245)
+2026-10-13T09:16:04.2387857Z Updating files:  89% (9119/10245)
+2026-10-13T09:16:04.2994082Z Updating files:  90% (9221/10245)
+2026-10-13T09:16:04.3117913Z Updating files:  91% (9323/10245)
+2026-10-13T09:16:04.3226139Z Updating files:  92% (9426/10245)
+2026-10-13T09:16:04.4750509Z Updating files:  93% (9528/10245)
+2026-10-13T09:16:04.4811954Z Updating files:  94% (9631/10245)
+2026-10-13T09:16:04.4884774Z Updating files:  95% (9733/10245)
+2026-10-13T09:16:04.4965726Z Updating files:  96% (9836/10245)
+2026-10-13T09:16:04.5033355Z Updating files:  97% (9938/10245)
+2026-10-13T09:16:04.5099386Z Updating files:  98% (10041/10245)
+2026-10-13T09:16:04.5165648Z Updating files:  99% (10143/10245)
+2026-10-13T09:16:04.5166501Z Updating files: 100% (10245/10245)
+2026-10-13T09:16:04.5167008Z Updating files: 100% (10245/10245), done.
+2026-10-13T09:16:04.5278713Z Note: switching to 'refs/remotes/pull/41/merge'.
+2026-10-13T09:16:04.5279296Z 
+2026-10-13T09:16:04.5279699Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-13T09:16:04.5280535Z changes and commit them, and you can discard any commits you make in this
+2026-10-13T09:16:04.5281393Z state without impacting any branches by switching back to a branch.
+2026-10-13T09:16:04.5281892Z 
+2026-10-13T09:16:04.5282216Z If you want to create a new branch to retain commits you create, you may
+2026-10-13T09:16:04.5282957Z do so (now or later) by using -c with the switch command. Example:
+2026-10-13T09:16:04.5283433Z 
+2026-10-13T09:16:04.5283674Z   git switch -c <new-branch-name>
+2026-10-13T09:16:04.5283995Z 
+2026-10-13T09:16:04.5284201Z Or undo this operation with:
+2026-10-13T09:16:04.5284503Z 
+2026-10-13T09:16:04.5284655Z   git switch -
+2026-10-13T09:16:04.5284885Z 
+2026-10-13T09:16:04.5285269Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-13T09:16:04.5285809Z 
+2026-10-13T09:16:04.5286680Z HEAD is now at 7650012 Merge c0b863033b4612c7b5cccaa4fb7c74410523021b into cec067aaaa1cacabeb2d57d04bb753fdde83731b
+2026-10-13T09:16:04.5420981Z ##[endgroup]
+2026-10-13T09:16:04.5466840Z [command]/usr/bin/git log -1 --format=%H
+2026-10-13T09:16:04.5494384Z 7650012972783b05a42006e70c19fbe8ab546285
+2026-10-13T09:16:04.5509908Z ##[group]Removing auth
+2026-10-13T09:16:04.5510310Z Removing SSH command configuration
+2026-10-13T09:16:04.5517100Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T09:16:04.5550044Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T09:16:04.5796544Z Removing HTTP extra header
+2026-10-13T09:16:04.5797714Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T09:16:04.5834704Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T09:16:04.6071074Z Removing includeIf entries pointing to credentials config files
+2026-10-13T09:16:04.6074914Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T09:16:04.6101892Z includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git.path
+2026-10-13T09:16:04.6102776Z includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git/worktrees/*.path
+2026-10-13T09:16:04.6103320Z includeif.gitdir:/github/workspace/.git.path
+2026-10-13T09:16:04.6103810Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T09:16:04.6112286Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git.path
+2026-10-13T09:16:04.6137597Z /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6147953Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git.path /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6188408Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git/worktrees/*.path
+2026-10-13T09:16:04.6214233Z /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6225050Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/lazada-search/lazada-search/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6284376Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-13T09:16:04.6325334Z /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6327816Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6367865Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-13T09:16:04.6397527Z /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6405578Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config
+2026-10-13T09:16:04.6447450Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T09:16:04.6698138Z Removing credentials config '/home/runner/work/_temp/git-credentials-a977444c-d17a-4e65-86e9-6fb02bf3b537.config'
+2026-10-13T09:16:04.6707397Z ##[endgroup]
+2026-10-13T09:16:04.7029248Z ##[group]Run actions/setup-node@v6
+2026-10-13T09:16:04.7029565Z with:
+2026-10-13T09:16:04.7029768Z   node-version: 24.x
+2026-10-13T09:16:04.7029994Z   check-latest: false
+2026-10-13T09:16:04.7032361Z   token: ***
+2026-10-13T09:16:04.7032582Z   package-manager-cache: true
+2026-10-13T09:16:04.7032825Z env:
+2026-10-13T09:16:04.7033013Z   GIT_CONFIG_COUNT: 1
+2026-10-13T09:16:04.7033240Z   GIT_CONFIG_KEY_0: init.defaultBranch
+2026-10-13T09:16:04.7033511Z   GIT_CONFIG_VALUE_0: main
+2026-10-13T09:16:04.7033735Z ##[endgroup]
+2026-10-13T09:16:04.8408756Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-10-13T09:16:04.8412373Z ##[group]Environment details
+2026-10-13T09:16:05.2230441Z node: v24.21.0
+2026-10-13T09:16:05.2230867Z npm: 11.19.0
+2026-10-13T09:16:05.2231410Z yarn: 1.22.22
+2026-10-13T09:16:05.2232982Z ##[endgroup]
+2026-10-13T09:16:05.2237555Z Detected npm as the package manager from package.json's packageManager field. Auto caching has been enabled for npm. If you want to disable it, set package-manager-cache input to false
+2026-10-13T09:16:05.2264295Z [command]/opt/hostedtoolcache/node/24.21.0/x64/bin/npm config get cache
+2026-10-13T09:16:05.3530086Z /home/runner/.npm
+2026-10-13T09:16:05.6249798Z Cache hit for: node-cache-Linux-x64-npm-577092d3ac3fa4f2c4847c3075405fd2468086164f5514c8a848063a417157c8
+2026-10-13T09:16:06.1694669Z Received 4167 of 4167 (100.0%), 0.0 MBs/sec
+2026-10-13T09:16:06.1695271Z Cache Size: ~0 MB (4167 B)
+2026-10-13T09:16:06.1724173Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5ecf5b0e-61e7-4a00-9464-c0de74819092/cache.tzst -P -C /home/runner/work/lazada-search/lazada-search --use-compress-program unzstd
+2026-10-13T09:16:06.1790221Z Cache restored successfully
+2026-10-13T09:16:06.1794641Z Cache restored from key: node-cache-Linux-x64-npm-577092d3ac3fa4f2c4847c3075405fd2468086164f5514c8a848063a417157c8
+2026-10-13T09:16:06.1931921Z ##[group]Run npm install
+2026-10-13T09:16:06.1932260Z [36;1mnpm install[0m
+2026-10-13T09:16:06.2197249Z shell: /usr/bin/bash -e {0}
+2026-10-13T09:16:06.2197589Z env:
+2026-10-13T09:16:06.2197849Z   GIT_CONFIG_COUNT: 1
+2026-10-13T09:16:06.2198162Z   GIT_CONFIG_KEY_0: init.defaultBranch
+2026-10-13T09:16:06.2198525Z   GIT_CONFIG_VALUE_0: main
+2026-10-13T09:16:06.2198825Z ##[endgroup]
+2026-10-13T09:16:19.3317646Z 
+2026-10-13T09:16:19.3324485Z > lazada-search@0.11.31 postinstall
+2026-10-13T09:16:19.3325146Z > node scripts/patch-lino-large-documents.mjs
+2026-10-13T09:16:19.3325485Z 
+2026-10-13T09:16:19.3738670Z {"version":"0.9.0","status":"source-hash-gated-large-document-patch","patchVersion":2,"pristineSha256":"48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604","patchedSha256":"37e3b9e0fbe7250ee7fe6103decc42f1eb21d2ab21686cbccbcf2648fa8c3122","sourceSha256":"48da62594f5125ce23110802a24d98996408bb516c4ff7a79933ff285396a604","applied":true,"globalMonkeyPatch":false}
+2026-10-13T09:16:19.3790624Z 
+2026-10-13T09:16:19.3791126Z > lazada-search@0.11.31 prepare
+2026-10-13T09:16:19.3791909Z > node scripts/install-git-hooks.mjs
+2026-10-13T09:16:19.3792374Z 
+2026-10-13T09:16:19.4537350Z 
+2026-10-13T09:16:19.4538274Z added 292 packages, and audited 293 packages in 13s
+2026-10-13T09:16:19.4538850Z 
+2026-10-13T09:16:19.4539106Z 97 packages are looking for funding
+2026-10-13T09:16:19.4540088Z   run `npm fund` for details
+2026-10-13T09:16:19.4551466Z 
+2026-10-13T09:16:19.4551894Z found 0 vulnerabilities
+2026-10-13T09:16:19.4564380Z npm warn install-scripts 2 packages have install scripts not yet covered by allowScripts:
+2026-10-13T09:16:19.4565472Z npm warn install-scripts   better-sqlite3@13.0.3 (install: node-gyp rebuild)
+2026-10-13T09:16:19.4566961Z npm warn install-scripts   node-pty@1.1.0 (install: node scripts/prebuild.js || node-gyp rebuild; postinstall: node scripts/post-install.js)
+2026-10-13T09:16:19.4567813Z npm warn install-scripts
+2026-10-13T09:16:19.4568671Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+2026-10-13T09:16:19.5125240Z ##[group]Run # Run changeset validation script
+2026-10-13T09:16:19.5125651Z [36;1m# Run changeset validation script[0m
+2026-10-13T09:16:19.5126502Z [36;1m# This validates that exactly ONE changeset was ADDED by this PR[0m
+2026-10-13T09:16:19.5127002Z [36;1m# Pre-existing changesets from other merged PRs are ignored[0m
+2026-10-13T09:16:19.5127405Z [36;1mnode scripts/validate-changeset.mjs[0m
+2026-10-13T09:16:19.5194909Z shell: /usr/bin/bash -e {0}
+2026-10-13T09:16:19.5195172Z env:
+2026-10-13T09:16:19.5195375Z   GIT_CONFIG_COUNT: 1
+2026-10-13T09:16:19.5195619Z   GIT_CONFIG_KEY_0: init.defaultBranch
+2026-10-13T09:16:19.5196053Z   GIT_CONFIG_VALUE_0: main
+2026-10-13T09:16:19.5196312Z   GITHUB_BASE_REF: main
+2026-10-13T09:16:19.5196611Z   GITHUB_BASE_SHA: cec067aaaa1cacabeb2d57d04bb753fdde83731b
+2026-10-13T09:16:19.5196990Z   GITHUB_HEAD_REF: draft/remaining-requirements
+2026-10-13T09:16:19.5197576Z   GITHUB_HEAD_SHA: c0b863033b4612c7b5cccaa4fb7c74410523021b
+2026-10-13T09:16:19.5197944Z   RELEASE_PR_ACTOR: 
+2026-10-13T09:16:19.5198162Z ##[endgroup]
+2026-10-13T09:16:19.5649233Z Validating changesets added by this PR...
+2026-10-13T09:16:19.5652371Z Detected single-language repository (package.json in root)
+2026-10-13T09:16:19.5654934Z Package: lazada-search
+2026-10-13T09:16:19.5837365Z Found 2 changeset file(s) added by this PR
+2026-10-13T09:16:19.5838047Z Added changesets:
+2026-10-13T09:16:19.5838520Z   - cached-case-readiness.md
+2026-10-13T09:16:19.5839167Z   - draft-case-manufacturer-checkout-workflows.md
+2026-10-13T09:16:19.5863392Z ##[error]Multiple changesets found in this PR (2). Each PR should add exactly ONE changeset.
+2026-10-13T09:16:19.5883910Z ##[error]Found changeset files added by this PR:
+2026-10-13T09:16:19.5885119Z   cached-case-readiness.md
+2026-10-13T09:16:19.5885746Z   draft-case-manufacturer-checkout-workflows.md
+2026-10-13T09:16:19.5886399Z 
+2026-10-13T09:16:19.5887715Z ##[error]Please combine these into a single changeset or remove the extras.
+2026-10-13T09:16:19.5892050Z ##[error]Process completed with exit code 1.
+2026-10-13T09:16:19.6043436Z Post job cleanup.
+2026-10-13T09:16:19.6920440Z [command]/usr/bin/git version
+2026-10-13T09:16:19.6965112Z git version 2.55.0
+2026-10-13T09:16:19.7010296Z Temporarily overriding HOME='/home/runner/work/_temp/c1018c59-1baa-4dfc-948a-f4753950a21a' before making global git config changes
+2026-10-13T09:16:19.7012365Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-13T09:16:19.7017004Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/lazada-search/lazada-search
+2026-10-13T09:16:19.7051076Z Removing SSH command configuration
+2026-10-13T09:16:19.7059555Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-13T09:16:19.7100000Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-13T09:16:19.7366785Z Removing HTTP extra header
+2026-10-13T09:16:19.7371672Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-13T09:16:19.7409204Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-13T09:16:19.7679294Z Removing includeIf entries pointing to credentials config files
+2026-10-13T09:16:19.7687146Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-13T09:16:19.7737832Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-13T09:16:19.8163989Z Cleaning up orphan processes

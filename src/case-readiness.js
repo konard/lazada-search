@@ -70,8 +70,9 @@ export async function caseReadiness(application, options = {}) {
     checkedAt: new Date().toISOString(),
     coverage,
     collectionStop: stop || { active: false },
-    qualifiedOffers: comparison.ranked.length,
-    unverifiedOrUnpricedOffers: comparison.excluded.length,
+    qualifiedOffers: targetRows.filter((row) => row.eligible).length,
+    unverifiedOrUnpricedOffers: targetRows.filter((row) => !row.eligible)
+      .length,
     translation,
     quantity,
     maxPriceAgeMs,
