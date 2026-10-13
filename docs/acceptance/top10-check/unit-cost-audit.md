@@ -1,6 +1,6 @@
 # Top-ten unit cost audit
 
-Updated 2026-10-13T17:00:07.898Z. **54 report rows recomputed offline**, covering both ten-row whey rankings, all selected ice rows in both reports, and all six handpicked options. Every price and exact SKU was independently re-extracted from original cached HTML with its SHA256 verified. Gram, millilitre and protein arithmetic, missing-field propagation and published sorting were checked.
+Updated 2026-10-13T17:30:14.789Z. **54 report rows recomputed offline**, covering both ten-row whey rankings, all selected ice rows in both reports, and all six handpicked options. Every price and exact SKU was independently re-extracted from original cached HTML with its SHA256 verified. Gram, millilitre and protein arithmetic, missing-field propagation and published sorting were checked.
 
 Hydropure uses the selected seller's **2040 g**, giving **490.19 VND/g before delivery**; the unmatched factory2050g/protein profile remains a separate conditional reference. ProSupps uses printed **907 g**. Merino selling packs are **5 × 40 g = 200 g** and **5 × 60 g = 300 g**; the latter is sold out. Thai ice cream declares **6000 ml**; its conflicting seller3kg claim stays withheld.
 
