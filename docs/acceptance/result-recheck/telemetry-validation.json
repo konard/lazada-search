@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-13T05:58:19.419112+00:00",
+  "sourceFiles": {
+    "src/archive.js": {
+      "sha256": "554ad77413924c49ca140be0e5f79ef72d1f7e51d1e61dc753de4169c8e6046e",
+      "bytes": 25366
+    },
+    "tests/archive-telemetry-redaction.test.js": {
+      "sha256": "329ef069786284b2c366bec49d37c6d4409167864af0591915614c487e0739f1",
+      "bytes": 11275
+    }
+  },
+  "tests": [
+    "tests/archive-telemetry-redaction.test.js",
+    "tests/archive.test.js",
+    "tests/archive-provenance.test.js",
+    "tests/challenge-source-archive.test.js"
+  ],
+  "results": {
+    "node22": {
+      "passed": 26,
+      "failed": 0,
+      "durationMs": 69430.127458
+    },
+    "bun": {
+      "passed": 26,
+      "failed": 0,
+      "durationSeconds": 42.34,
+      "timeoutMs": 450000
+    },
+    "frozenCachedOnlyDeno": {
+      "passed": 26,
+      "failed": 0,
+      "externalNetworkPermission": "denied"
+    },
+    "strictLint": "passed",
+    "format": "passed"
+  },
+  "logs": {
+    "final-node.tap": {
+      "path": "telemetry-archive-final-node.tap.gz",
+      "sha256": "15df09a728c694e901a44e3f308eb2218c8dd2302a529bf521f679534c2569a0",
+      "bytes": 6997,
+      "footer": [
+        "  duration_ms: 1038.702334",
+        "  type: 'test'",
+        "  ...",
+        "1..26",
+        "# tests 26",
+        "# suites 0",
+        "# pass 26",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 69430.127458"
+      ]
+    },
+    "final-bun.log": {
+      "path": "telemetry-archive-final-bun.log.gz",
+      "sha256": "3a95440aa97a1a7e20033bde3a3faf68808b45cc383503b8a7e7139dff1370ea",
+      "bytes": 3193,
+      "footer": [
+        "",
+        "tests/archive-telemetry-redaction.test.js:",
+        "(pass) public privacy filtering removes telemetry identities recursively while preserving exact product queries [0.54ms]",
+        "(pass) HTML publication retains product facts and SKU data while removing telemetry identities from retained links [1.42ms]",
+        "(pass) nonempty known telemetry pixels are excluded without losing legitimate cache references or product and manufacturer images [142.15ms]",
+        "(pass) unreferenced telemetry bodies disappear and exclusion counts survive idempotent and archive-only re-export [58.92ms]",
+        "(pass) telemetry origin filtering never discards failed or challenged outcomes or clears a collection stop [32.90ms]",
+        "(pass) plain-source telemetry URL redaction retains original SHA provenance across archive-only replay [23.82ms]",
+        "",
+        " 26 pass",
+        " 0 fail",
+        "Ran 26 tests across 4 files. [42.34s]"
+      ]
+    },
+    "final-deno.log": {
+      "path": "telemetry-archive-final-deno.log.gz",
+      "sha256": "ad36158037076d4d78420f3414cd6f2e159f9e01fc9e6e371f6684629634b0de",
+      "bytes": 3997,
+      "footer": [
+        "./tests/archive-provenance.test.js => corrupt stored evidence and malformed explicit references cannot be mistaken for metadata ... ok (296ms)",
+        "./tests/archive.test.js => a corrected local URL alias overrides its older committed capture regardless of sort order ... ok (321ms)",
+        "./tests/archive.test.js => archived expired sources cause no navigation; explicit refresh and invalidation reload them ... ok (282ms)",
+        "./tests/archive.test.js => changed HTML hash reparses cached data even with the same extractor version ... ok (109ms)",
+        "./tests/archive.test.js => public HTML retains complete SKU JSON and removes session scripts and account fields ... ok (1ms)",
+        "./tests/archive.test.js => archive sanitization strips security/cookie parameters including nested URLs and imported source credentials ... ok (138ms)",
+        "./tests/archive.test.js => JSON and YAML import retain source bytes and replace corrected records and conversions ... ok (406ms)",
+        "'every committed HTML capture preserves its selected price, options and complete SKU inventory on re-extraction' has been running for over (1m0s)",
+        "./tests/archive.test.js => every committed HTML capture preserves its selected price, options and complete SKU inventory on re-extraction ... ok (1m18s)",
+        "",
+        "ok | 26 passed | 0 failed (1m22s)",
+        ""
+      ]
+    },
+    "lint.log": {
+      "path": "telemetry-archive-lint.log.gz",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "footer": []
+    },
+    "format.log": {
+      "path": "telemetry-archive-format.log.gz",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "bytes": 66,
+      "footer": [
+        "Checking formatting...",
+        "All matched files use Prettier code style!"
+      ]
+    },
+    "bun-default-timeout.log": {
+      "path": "telemetry-archive-bun-default-timeout.log.gz",
+      "sha256": "ead4b5a6ba53b9118ed26180326945b09a1cdef93f105ff083e605f0b0b90af4",
+      "bytes": 3681,
+      "footer": [
+        "(pass) nonempty known telemetry pixels are excluded without losing legitimate cache references or product and manufacturer images [1662.35ms]",
+        "(pass) unreferenced telemetry bodies disappear and exclusion counts survive idempotent and archive-only re-export [1366.47ms]",
+        "(pass) telemetry origin filtering never discards failed or challenged outcomes or clears a collection stop [1237.63ms]",
+        "(pass) plain-source telemetry URL redaction retains original SHA provenance across archive-only replay [1798.52ms]",
+        "",
+        "1 tests failed:",
+        "(fail) every committed HTML capture preserves its selected price, options and complete SKU inventory on re-extraction [5005.70ms]",
+        "  ^ this test timed out after 5000ms, before its done callback was called. If a done callback was not intended, remove the last parameter from the test callback function",
+        "",
+        " 25 pass",
+        " 1 fail",
+        "Ran 26 tests across 4 files. [13.77s]"
+      ]
+    }
+  },
+  "preservedInitialInvocationFailure": {
+    "path": "telemetry-bun-default-timeout.log.gz",
+    "reason": "Initial Bun invocation omitted the actual CI --timeout450000 flag and its implicit5000ms timeout interrupted the unchanged complete captured-HTML re-extraction. All6 new telemetry cases passed even in that invocation. Proper unchanged450000ms run passes26/26."
+  },
+  "audit": "/private/tmp/lazada-telemetry-redaction-review.json",
+  "committedArchivesRegeneratedByAgent": false,
+  "networkRequests": 0,
+  "userBrowserActions": 0,
+  "gitMutations": 0,
+  "newRegressionCases": 6,
+  "scope": "Onlysrc/archive.js and newfocusedtest changed; no skip/assertion/data/durability/deadline relaxation."
+}

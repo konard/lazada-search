@@ -9,7 +9,7 @@ import {
   symlink,
   rm,
 } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
@@ -112,6 +112,14 @@ test('Markdown export retains a newly collected product without a pre-existing m
     ocr: false,
   });
   await app.importRecords({ products: [product], offers: [offer] });
+  const collectionStop = {
+    id: 'browser-collection',
+    active: false,
+    origin: 'https://factory.example',
+    operatorReviewId: 'collection-stop-review:fixture',
+    challengedSourceRecoveryConfirmed: false,
+  };
+  await app.store.put('collection-stop', collectionStop);
   await app.close();
   // The repository export CLI uses Node and an installed npm graph. A Deno
   // child started inside this copied fixture would resolve fresh dependencies.
@@ -135,6 +143,7 @@ test('Markdown export retains a newly collected product without a pre-existing m
   const catalog = JSON.parse(
     await readFile(join(directory, 'docs/tables/catalog.json'))
   );
+  assert.deepEqual(catalog.collectionStop, collectionStop);
   assert.equal(catalog.products[0].id, product.id);
   assert.equal(catalog.comparisons[0].manufacturerVerified, false);
   assert.match(
@@ -178,6 +187,9 @@ test('committed catalog imports offline with the same offers and explicit covera
       rm(directory, { recursive: true, force: true })
     );
   });
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    assert.equal(resolve(tmpdir()), resolve(process.env.RUNNER_TEMP));
+  }
   const catalog = await phase('load', async () =>
     JSON.parse(
       await readFile(new URL('../docs/tables/catalog.json', import.meta.url))

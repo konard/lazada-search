@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-12T07:44:36.145677+00:00",
+  "caseInterfaceE2E": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "newComposedCase": 1,
+    "assertions": [
+      "original exact inventory import via executable CLI",
+      "HTTP inventory completeness and source-bound manual review",
+      "bounded case resume through library, CLI, HTTP and allowlisted Telegram",
+      "retained report and gram/ml/protein metrics before and after shipping",
+      "invalidated inventory original revokes review and prevents reuse"
+    ]
+  },
+  "giftFollowup": {
+    "bunPassed": 7,
+    "denoPassed": 7,
+    "failed": 0,
+    "nodeAcceptance": "docs/acceptance/draft-workflow-testing/checkout-followup/receipt.json"
+  },
+  "sourceHashes": {
+    "tests/e2e/draft-workflow-interfaces.test.js": "23a4d594dabcde31add82985ed8972096bdad2c366f1e8569c2d2180b4352b15",
+    "tests/lazada-checkout-gifts.test.js": "48d244cace0e1002b325a624140394a6461ef65ebb8241e6ec0f582f331d1201"
+  },
+  "logs": {
+    "case-interface-composed": {
+      "path": "docs/acceptance/draft-workflow-testing/root/case-interface-composed.log.gz",
+      "sha256": "cc0c54448ab941d89671cd791f6e375c810ad1a8b95a8ab92ea6c1a179df7b63"
+    },
+    "gifts-bun-followup": {
+      "path": "docs/acceptance/draft-workflow-testing/root/gifts-bun-followup.log.gz",
+      "sha256": "762d6ae3f6c4b776093128ab99df49a0358e0154e1f38ace5203585990b7fffe"
+    },
+    "gifts-deno-followup": {
+      "path": "docs/acceptance/draft-workflow-testing/root/gifts-deno-followup.log.gz",
+      "sha256": "f47bd0004183740bd5cca9bc516adce93197ab7e963fa23100b80c0cada8a201"
+    }
+  },
+  "liveCollectionRequests": 0,
+  "realAccountAccess": false,
+  "collectionStopCleared": false,
+  "marketAcceptanceImplied": false
+}

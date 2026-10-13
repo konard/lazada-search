@@ -1,0 +1,55 @@
+{
+  "sourceCommit": "9237b9cb3838cc0142e67fe9f56c9e347730a418",
+  "checkedAt": "2026-10-12T18:25:14.243130+00:00",
+  "sourceManifest": "source-9237b9c-manifest.json",
+  "nodeFull": {
+    "passed": 1489,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 249760.568375,
+    "threadPoolSize": 16
+  },
+  "fullE2E": {
+    "passed": 84,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 559859.862917
+  },
+  "strictTypes": "passed",
+  "lintFormattingDuplication": "passed",
+  "ciFullSourceAcceptance": "failed-Windows-Bun-catalog-cleanup-deadline",
+  "separateCodeQLAcceptance": "passed-after-security-and-matrix",
+  "sourceAccepted": false,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "liveMarketRequests": 0,
+  "userBrowserInteraction": false,
+  "logs": {
+    "node-source-9237b9c-full.tap.gz": {
+      "rawSha256": "eb5db576ec70851c4c56dc51759887550e3a3a17f5041d81883d3f6925a282be",
+      "rawBytes": 368482
+    },
+    "checks-source-9237b9c.log.gz": {
+      "rawSha256": "1d983c9b8179a46fc4c0f0a884bf78166c04496328f5e3e1a5e5a2acdd83f8da",
+      "rawBytes": 143178
+    },
+    "types-source-9237b9c.log.gz": {
+      "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
+      "rawBytes": 77
+    },
+    "native-source-9237b9c-full.tap.gz": {
+      "rawSha256": "a746c2b83ce27e78816bb0882717484caa784250578fab037a854b83ca450286",
+      "rawBytes": 22625
+    }
+  },
+  "nativeRetention": {
+    "passed": 13,
+    "includedInFullE2E": true
+  },
+  "duplicationPercent": 6.15,
+  "ciReceipt": "ci-source-9237b9c-review.json"
+}

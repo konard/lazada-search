@@ -1,0 +1,28 @@
+{
+  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3",
+  "checkedAt": "2026-10-12T19:30:31.119808+00:00",
+  "issue": "https://github.com/konard/lazada-search/issues/36",
+  "jobId": 114969208220,
+  "test": "tests/image-redirect-pacing.test.js:204",
+  "cause": "Concurrent identical image bodies miss the immutable blob then replace the same canonical digest via rename; Windows EPERM.",
+  "unitTests": {
+    "localPassed": 1501,
+    "windowsBunPassed": 1463,
+    "windowsBunFailed": 1
+  },
+  "nativeE2E": {
+    "localPassed": 84,
+    "ciPassed": 84
+  },
+  "catalog": {
+    "importMs": 141291,
+    "includingCleanupMs": 160419,
+    "fullFixtureUnchanged": true
+  },
+  "correction": "Synced staging with publish-once immutable blob and exact competing winner verification; meaningful filesystem/concurrent tests pending.",
+  "sourceAccepted": false,
+  "priorFailurePreserved": true,
+  "collectionStopActive": true,
+  "userBrowserInteraction": false,
+  "issueComment": "https://github.com/konard/lazada-search/issues/36#issuecomment-6131184461"
+}

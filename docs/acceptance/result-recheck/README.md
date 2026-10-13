@@ -1,0 +1,48 @@
+# Requirement and buying-result recheck
+
+**All requirements delivered: false. All products collected: false. Production ready: false. Purchase ready: false.** This audit reuses collected data and makes no Lazada/manufacturer/image requests. Auditing on 13 October does not refresh the 9–11 October prices, stock, shipping or promotion eligibility.
+
+The independent reviews cover all 49 requirements. At the tested software checkpoint, 29 mechanics/operator procedures were fulfilled and 20 data/live outcomes remained incomplete. The original independent tracker review covers 42 issues; the newly reproduced telemetry-export defect is recorded as [issue 44](https://github.com/konard/lazada-search/issues/44), bringing the current inventory to 43 issues. [Current complete acceptance](../requirements-audit/current.md) records all 49 mappings and the current issue states. Historical 29-open/40-issue aggregate outputs are preserved here as dated baselines.
+
+## Which results are valid
+
+| Evidence check                                                            | Result                                                                                                                       | Practical limit                                                                                                         |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Published report rows reparsed against cached original selected SKU/price | 54 checked, zero mismatches                                                                                                  | Source dates remain historical                                                                                          |
+| Independent whey and handpicked review                                    | 26 row calculations, 32 source blob hashes, 15 original shipping quotes, two top-ten memberships and 26 Markdown rows passed | Does not verify current inventory, every factory formula or bulk freight                                                |
+| Independent ice review                                                    | 84 rate calculations, 16 package-count checks, 74 Markdown values and six original-source hashes passed                      | Some quantities/nutrients remain seller-declared or disputed                                                            |
+| Ice dual-unit display                                                     | Both g/ml and both rates shown whenever independently supported                                                              | Only two SKUs currently support both measurements; no density assumptions                                               |
+| Handpicked gram sorting                                                   | Five supported denominators sorted; one held denominator excluded                                                            | Submitted vanilla/mixed-flavour/unavailable options are retained as submissions, not eligible chocolate/plain purchases |
+
+[Independent whey/handpicked receipt](independent-whey-handpicked.json) · [Independent49-requirement/ice receipt](independent-ice-requirements.json) · [Original-source arithmetic audit](../top10-check/unit-cost-audit.md) · [Ice display audit](../ice-unit-completeness/report-audit.json).
+
+## Captured rankings and their limits
+
+| Report                                                                                | Captured rows/ranks                                 | Missing buying evidence                                                                                                                                       |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Whey powder per food gram](../../tables/top-10-partial.md)                           | 10 ranks                                            | All ten cheapest source-declared powder rows lack an exact factory formula match; current availability/stock/freight must be rechecked                        |
+| [Specification-matched whey per protein gram](../../tables/top-10-partial.md)         | 10 ranks                                            | Historical one-package prices; no current exhaustive bulk winner                                                                                              |
+| [Chocolate ice cream per gram / ml / protein gram](../../tables/ice-unit-rankings.md) | 5 / 7 / 2 reference ranks from 14 captured SKU rows | 6 mass facts, 8 volume facts, 2 dual-unit facts, 3 protein denominators; zero manufacturer-verified protein panels and zero confirmed frozen Nha Trang quotes |
+| [Handpicked list](../../tables/handpicked.md)                                         | 6 submitted/exact captured options; 5 gram prices   | One unresolved package denominator; distinct short-link submissions and wrong-flavour/unavailable selections remain explicit                                  |
+
+The handpicked list matches two submitted listing rows and one exact SKU in the powder-gram top ten; it matches one submitted listing and one exact SKU in the factory-matched protein-gram top ten. Soy membership is zero. Listing membership does not substitute another submitted flavour’s price or package mass.
+
+**No current cheapest bulk purchase is established.** The factory-matched historical one-package whey lead is IT’S JUST unflavoured 2268 g: 2,952,300 VND + 80,200 captured freight =3,032,500 VND, or 1,470.79 VND/g protein. Its captured quantity cap is three. The cheaper Hydropure seller lead has an unresolved 2040 g / 2050 g factory revision conflict; the conditional factory calculation is not approved as a matched offer. Ice offers lack confirmed frozen delivery to Nha Trang, and four selected candidates explicitly cannot deliver there. Reference rankings retain that limitation.
+
+## Remaining requirements
+
+The current active scope contains 1,298 pending listing candidates, 373 unpriced selling options and 6,403 unresolved category observations. These are conservative pending tasks, not a count of confirmed target products. Entire-market authoritative inventory, complete exact SKU prices/stock, manufacturer formula/package/nutrients/ingredients, all discount eligibility, full English semantic reviews, actual bulk/frozen destination quotes, real account/live bot acceptance and owner npm publication configuration remain unresolved. Search pagination exhaustion cannot guarantee the whole marketplace.
+
+The saved manufacturer challenge remains globally active. [Fresh read-only status](actual-collection-stop.json) truthfully reports `no-browser-page`: the stop originated from HTTP/archive data and has no original browser window to keep open. No replacement browser was launched and no stop was cleared.
+
+## Corrections from this audit
+
+The aggregate requirement audit now uses all 49 registry entries and the current issue snapshot. Shipping acceptance rejects undefined/nonfinite totals, mismatched destination/quantity, unavailable stock, invalidated sources and absent quote provenance. Price freshness is checked independently; audited historical arithmetic cannot create a current-price claim. Regression controls also reject empty evidence and unknown chocolate identity while allowing supported zero-protein measurements and retained other-flavour exclusions.
+
+Issue 44 removes successful non-product mmstat telemetry/pixel responses from public exports and redacts tracking identifiers recursively. [Safe pre-fix investigation](telemetry-review-before-fix.json) contains parameter names/counts without values; no login credential leak was established. Product/manufacturer images remain separate from those exact telemetry hosts. [Offline rebuild review](archive-rebuild-review.json) records 1,388 unique archived removals, the processed-alias counter, ten public text derivatives and unchanged product projections. The offline archive rebuild and validation receipts below record the outcome without re-downloading sources.
+
+## Validation
+
+[Accepted prior source 171b250](../challenge-window-retention/validation.json) passed 1,517 local units, 84 local E2E, all nine runtime jobs, six workflows and the separate CodeQL check. Those results belong to that immutable source. This audit’s changes pass 1,532 complete local units, five changed archive/interface E2E cases, 18 audit regressions and all 26 telemetry tests on each local runtime. They have their own focused/full checks and source hashes in [validation.json](validation.json); earlier failures are retained alongside accepted logs. Public product tables retain their original observation dates and supported facts.
+
+Current source [fca98c2](https://github.com/konard/lazada-search/commit/fca98c2401bf0f3c811ddc0530f3668496f6b119) passes all **nine full runtime jobs**, **84/84 full browser/OCR/CLI/Telegram E2E cases**, all six workflows and the separate CodeQL check with zero annotations. [Exact-source CI receipt](ci-source-fca98c2.json) preserves original logs and matches all 608 source/script/test/workflow/package Git objects against the actual tested merge 5f02c34df95444b1cf83cd226b948c0346c84c5f. This software acceptance does not close the 20 missing data/live outcomes or refresh prices.

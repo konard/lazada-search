@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12T18:09:45.478652+00:00",
+  "branch": "draft/remaining-requirements",
+  "sourceCommit": "8db2585d7d48dac60f2eae11003946e1cbfc3e81",
+  "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
+  "scope": "Retained original CAPTCHA target, truthful handoff, atomic supervisor publication, bounded Windows lock-owner reads and linear package-mass scanning; no live product collection or user-browser opening.",
+  "browserCommander": {
+    "installedVersion": "0.31.2",
+    "latestRegistryVersion": "0.31.2",
+    "releasePublishedAt": "2026-10-12T07:01:35Z",
+    "releaseUrl": "https://github.com/link-foundation/browser-commander/releases/tag/v0.31.2",
+    "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
+  },
+  "latestDependencyCheck": "browser-latest-final.json",
+  "sourceManifest": "source-8db2585-manifest.json",
+  "local": {
+    "nodeFull": {
+      "passed": 1483,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 245182.427708,
+      "threadPoolSize": 16
+    },
+    "fullE2E": {
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 564673.332041
+    },
+    "nativeRetention": {
+      "passed": 13,
+      "includedInFullE2E": true
+    },
+    "strictTypes": "passed",
+    "lintFormattingDuplication": "passed",
+    "duplicationPercent": 6.16
+  },
+  "ci": {
+    "accepted": false,
+    "sourceCommit": "8db2585d7d48dac60f2eae11003946e1cbfc3e81",
+    "checksRunId": 38287049345,
+    "e2eRunId": 38287049235,
+    "runtimeJobsPassed": 8,
+    "runtimeJobsFailed": 1,
+    "runtimeJobsCancelled": 0,
+    "nativeE2E": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "workflowsPassed": 5,
+    "workflowsFailed": 1,
+    "receipt": "ci-source-8db2585-review.json",
+    "failure": "Windows Bun native OCR setup returned Chocolatey HTTP504 before any tests; eight complete runtime suites and all84native cases passed. Separate CodeQL reported six findings."
+  },
+  "tracking": {
+    "requirements": 49,
+    "githubIssues": 42,
+    "openIssues": [3, 14, 32, 36, 42, 43],
+    "githubIssueSnapshot": "github-issues.json",
+    "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
+  },
+  "historicalReviews": {
+    "source6280": "source-6280-review.json",
+    "source7d43Local": "local-source-7d43-review.json",
+    "source7d43CI": "ci-source-7d43-review.json",
+    "source08236BeforeSecurityGate": "source-08236-security-pending-review.json",
+    "source08236CI": "ci-source-08236-review.json",
+    "source44b5729CI": "ci-source-44b5729-review.json",
+    "source604Local": "local-source-604f6f2-review.json",
+    "source604": "source-604f6f2-review.json",
+    "source604CI": "ci-source-604f6f2-review.json",
+    "source8dbLocal": "local-source-8db2585-review.json"
+  },
+  "savedCollectionStatus": "saved-stop-status.json",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "marketCollectionRequests": 0,
+  "userBrowserInteraction": false,
+  "logs": {
+    "node-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0fc6476ec70042352b27831bf4a74cb3ee1fb1baa298dba7c6b996392d6d898",
+      "rawBytes": 366983
+    },
+    "native-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0803603b92657457606d75f29001c95cf3c5e7fdc5a38fdc4e35ea7d92e8aa3",
+      "rawBytes": 22637
+    }
+  },
+  "sourceWorkflowAcceptance": false,
+  "sourceAccepted": false,
+  "pullRequestSecurityAccepted": false,
+  "followUpIssue": "https://github.com/konard/lazada-search/issues/43",
+  "codeqlFailure": {
+    "headCommit": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+    "checkRunId": 114918061515,
+    "rule": "js/polynomial-redos",
+    "severity": "high",
+    "checkReceipt": "codeql-source-44b5729-failure.json",
+    "annotations": "codeql-source-44b5729-annotations.json",
+    "fixAcceptance": "passed-source-604f6f2-separate-CodeQL"
+  },
+  "separateCodeQL": {
+    "conclusion": "failure",
+    "checkRunId": 114938178394,
+    "annotations": 6,
+    "receipt": "codeql-source-8db2585-failure.json",
+    "annotationReceipt": "codeql-source-8db2585-annotations.json"
+  },
+  "currentDraftControls": {
+    "boundedNutrition": "nutrition-security-controls.json",
+    "boundedPinnedOCRRetry": "tests/windows-ocr-install.test.js",
+    "fullSourceAcceptance": "pending"
+  }
+}

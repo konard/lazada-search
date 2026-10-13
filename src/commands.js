@@ -9,11 +9,43 @@ import { parse as parseYaml } from 'yaml';
 import { sha256 } from './util.js';
 import { startPhoneLogin, phoneLoginState } from './login.js';
 import { reviewListingCategory } from './category-review.js';
-import { COLLECTION_STOP_ID } from './page-challenge.js';
+import { collectionStatus } from './browser-challenge-handoff.js';
+import { reviewNonBrowserCollectionStop } from './collection-stop-review.js';
 import { replayHistoricalCaptures } from './historical-capture-replay.js';
 import { reviewPackageQuantities } from './package-quantity-review.js';
+import {
+  WORKFLOW_OPERATION_NAMES,
+  executeWorkflowCommand,
+} from './workflow-commands.js';
 
 export const HELP = `Usage: lazada-search <command> [arguments] [options]
+
+Draft workflows (not yet tested):
+  plan-case-workflow <plan.json>          Queue lists, exact SKUs, specs, quotes and reports
+  run-case-workflow <id> [options.json]   Resume a bounded batch; network defaults disabled
+  case-workflow-status <id>              Inspect durable tasks and blockers
+  plan-manufacturer-workflow <plan.json> Queue trusted sources, OCR and separate fact reviews
+  run-manufacturer-workflow <id> [options.json] Resume cached source research
+  manufacturer-workflow-status <id>      Inspect source/review tasks
+  prepare-manufacturer-workflow-review <request.json> Prepare original-bound human review packet
+  review-manufacturer-workflow <review.json> Apply an explicitly reviewed exact source packet
+  label-worklist                        List missing exact grams/ml/nutrients
+  import-lazada-checkout <capture.json>  Read an original private prepared checkout
+  capture-lazada-checkout <layout.json>  Read the already-open prepared checkout only
+  prepare-lazada-checkout-scenario <scenario.json> Explicit guarded quantity/voucher/payment controls
+  run-lazada-checkout-scenarios <sweep.json> Capture a prepared scenario sweep without purchasing
+  lazada-checkout-status [input.json]    Inspect quote-layout gaps
+  discover-lazada-food-gifts <input.json> Preserve potential gifts separately from paid food
+  acquire-lazada-food-gifts <review.json> Validate exact original gift eligibility and identity
+  import-case-inventory <inventory.json> Bind a complete declared export to original bytes
+  record-case-manual-review <review.json> Preserve source-bound manual extraction/list review
+  case-coverage-status [input.json]      Report declared inventory and manual-review gaps
+  register-handpicked-links <links.json> Retain all submissions, including duplicates
+  resolve-handpicked-links [input.json]  Resolve cached/paced Vietnam short links
+  handpicked-link-status                Inspect alias, selected SKU and source provenance
+  shopping-report [input.json]          Both units, separate categories and handpicked membership
+  requirement-draft-status              Map every recorded requirement to implementation
+  case-readiness [input.json]            Data, configuration and draft validation gates
 
 Commands:
   discover                      Collect category search lists without opening product details
@@ -27,6 +59,7 @@ Commands:
   translation-status [job-id]    Read translation checkpoints and pending totals
   collection-status             Show the persistent CAPTCHA stop checkpoint
   resume-collection             Resume only after the current challenge is cleared
+  review-collection-stop <review.json> Record an explicit decision about a non-browser HTTP stop
   import-capture <capture.json>  Import HTML/screenshot from an existing browser
   delivery <lazada-url>          Cache the public shipping estimate for one package
   compare                       Recalculate cached offers and exclusions
@@ -57,6 +90,7 @@ Commands:
   mirror                        Build verified native link-cli binary shards
 
 Options:
+  --manufacturer-search-config FILE   Operator-owned source-search provider configuration
   --data-dir PATH --market vn --delivery-area "Nha Trang"
   --archive-dir PATH --no-archive  Select the committed case archive or disable reuse
   --province "Khánh Hòa" --locality "Phường Nha Trang"
@@ -93,6 +127,9 @@ Options:
 `;
 
 export async function executeCommand(application, command, args, options = {}) {
+  if (WORKFLOW_OPERATION_NAMES.includes(command)) {
+    return executeWorkflowCommand(application, command, args, options);
+  }
   switch (command) {
     case 'plan-checkout-scenarios':
     case 'run-checkout-scenarios': {
@@ -166,14 +203,19 @@ export async function executeCommand(application, command, args, options = {}) {
         : application.translateProduct(input, translationOptions);
     }
     case 'collection-status':
-      return (
-        (await application.store.get(
-          'collection-stop',
-          COLLECTION_STOP_ID
-        )) || { id: COLLECTION_STOP_ID, active: false }
-      );
+      return collectionStatus(application.store, application.collector);
     case 'resume-collection':
       return application.collector.resumeCollection();
+    case 'review-collection-stop':
+      return reviewNonBrowserCollectionStop(
+        application.store,
+        JSON.parse(
+          await readFile(
+            required(args[0], 'Operator stop review JSON file'),
+            'utf8'
+          )
+        )
+      );
     case 'review-category':
       return reviewListingCategory(
         application,

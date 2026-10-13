@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-13T07:59:24.192779+00:00",
+  "scope": "Offline synthetic original-source replay and task orchestration; no browser, website, network, actual account or collection-stop clearing. Does not prove real purchase acceptance.",
+  "files": {
+    "src/case-workflow.js": "b56eaf866b64df6aa96a80e6db7f25e072e7158171f32091aadc9b9f0ab7cfbb",
+    "src/case-worklist.js": "5ec797a62923d48f34b816e01ea0f1074dd749a80c7e007e155cc4dfa8b0d07a",
+    "tests/case-checkout-replay.test.js": "fd9e73267990951e3d0eff34876f731746e599088c9bf1217d759a2b86032507"
+  },
+  "tests": {
+    "newRegressionCases": 20,
+    "affectedCasesEachRuntime": 73,
+    "node": {
+      "passed": 73,
+      "failed": 0
+    },
+    "bun": {
+      "passed": 73,
+      "failed": 0
+    },
+    "deno": {
+      "passed": 73,
+      "failed": 0,
+      "cachedOnly": true,
+      "frozen": true
+    }
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/lazada-case-checkout-replay-node-stable.tap",
+      "sha256": "1cf24788ff2b2c9e98438bbcc778172f11480a4a2dc65a7b49f9d54c0dc2004e"
+    },
+    "bun": {
+      "path": "/private/tmp/lazada-case-checkout-replay-bun.log",
+      "sha256": "8464d4ca9ccfc1f62c4580fcde07562f83634178765f1024406e5b6c50ec1c75"
+    },
+    "deno": {
+      "path": "/private/tmp/lazada-case-checkout-replay-deno.log",
+      "sha256": "c12258d70cbb95ef635239d4fd7f5b20a1ee16d9e26bdcb14b76256e89529689"
+    },
+    "lint": {
+      "path": "/private/tmp/lazada-case-checkout-replay-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format": {
+      "path": "/private/tmp/lazada-case-checkout-replay-format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    }
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "format": "passed",
+  "advancedCapabilities": [
+    "Offline case bulk-checkout replay from verified private original HTML with exact SKU/quantity/destination/age/eligibility",
+    "Independent continuation of cached-only tasks under an unrelated unchanged CAPTCHA stop",
+    "Nonnegative finite age required before a checkout can suppress pending case work",
+    "Quantity-specific fixed voucher/shipping arithmetic and zero-fee proof without shaker mass/volume",
+    "Private account checkout originals never promoted into public fallback"
+  ],
+  "realDataPrerequisitesRemain": [
+    "Saved CAPTCHA still active",
+    "Current market product/manufacturer data still incomplete",
+    "Current actual authenticated bulk/frozen checkout layout, stock, destination and vouchers remain unverified"
+  ]
+}

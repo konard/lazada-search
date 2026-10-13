@@ -49,6 +49,13 @@ still limits contention, and the full catalog equality assertions remain enabled
 Neither replaces the overall suite budget. Many passing tests or files can
 still exhaust the job's deadline.
 
+Run 38269121235 measured a cold Windows Node setup of 357.57 seconds.
+The previous 15-minute job backstop cancelled its still-running 600-second
+suite before that explicit deadline could fire. The matrix backstop is now
+20 minutes; the 600-second suite and 450-second file/test deadlines stay fixed.
+The separate Windows Bun catalog timeout in that run remains a failed test,
+and its complete fixture and durable-write assertions remain enabled.
+
 ## The rule
 
 Every long step owns an explicit budget, and every budget expires before the
@@ -122,7 +129,7 @@ neither of which was involved in the original failure.
 
 | Job                     | Backstop | Step budgets                                      |
 | ----------------------- | -------- | ------------------------------------------------- |
-| `test`                  | 15 min   | 600s for each selected Node.js, Bun or Deno suite |
+| `test`                  | 20 min   | 600s for each selected Node.js, Bun or Deno suite |
 | `docker-build`          | 30 min   | image build 20 min                                |
 | `docker-publish-config` | 30 min   | npm availability wait 1100s                       |
 | `docker-publish-build`  | 30 min   | image build and push 20 min                       |

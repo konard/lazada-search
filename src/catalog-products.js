@@ -5,6 +5,10 @@ import { ingredientFlags, proteinTypeOf } from './nutrition.js';
 import { applySpecificationHolds } from './specification-holds.js';
 import { applyPackageMassConsistency } from './package-mass-consistency.js';
 import {
+  applyManufacturerSourceValidity,
+  createManufacturerSourceValidityLoader,
+} from './manufacturer-source-validity.js';
+import {
   applyPackageQuantityReview,
   loadPackageQuantityReviews,
 } from './package-quantity-review.js';
@@ -107,7 +111,7 @@ export function mergeSharedManufacturerReview(product, shared) {
   return updated;
 }
 
-export async function resolveProductReviews(store, product) {
+export async function resolveProductReviews(store, product, options = {}) {
   if (!product) {
     return product;
   }
@@ -120,15 +124,26 @@ export async function resolveProductReviews(store, product) {
     await applySpecificationHolds(
       store,
       refreshIngredientFields(
-        await applyListingCategoryReview(store, quantities)
+        await applyManufacturerSourceValidity(
+          store,
+          await applyListingCategoryReview(store, quantities),
+          options.manufacturerSources
+        )
       )
     )
   );
 }
 
-export async function catalogProducts(store) {
+export async function catalogProducts(store, options = {}) {
   const products = await store.list('product');
   const quantityReviews = await loadPackageQuantityReviews(store);
+  const manufacturerSources =
+    options.manufacturerSources ||
+    createManufacturerSourceValidityLoader(store, {
+      invalidations: quantityReviews.reviews.size
+        ? quantityReviews.invalidations
+        : undefined,
+    });
   const shared = new Map(
     ((await store.fallback?.list('product')) || []).map((product) => [
       product.id,
@@ -141,13 +156,17 @@ export async function catalogProducts(store) {
       await applySpecificationHolds(
         store,
         refreshIngredientFields(
-          await applyListingCategoryReview(
+          await applyManufacturerSourceValidity(
             store,
-            await applyPackageQuantityReview(
+            await applyListingCategoryReview(
               store,
-              mergeSharedManufacturerReview(product, shared.get(product.id)),
-              quantityReviews
-            )
+              await applyPackageQuantityReview(
+                store,
+                mergeSharedManufacturerReview(product, shared.get(product.id)),
+                quantityReviews
+              )
+            ),
+            manufacturerSources
           )
         )
       )

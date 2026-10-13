@@ -1,0 +1,141 @@
+{
+  "checkedAt": "2026-10-13T08:30:51.400226+00:00",
+  "mode": "read-only static source review; no runtime or network requests",
+  "inputs": [
+    {
+      "path": "src/case-readiness.js",
+      "sha256": "9dcff94dfe1da7ad27aab2030b7d80844dbb81975139a0ffcd548bb24bb29ea7",
+      "bytes": 3835
+    },
+    {
+      "path": "src/case-evidence-gates.js",
+      "sha256": "9b3f4e31a2c2571cdcdb7b6d8a78e7b829279cbf49aa51898004e3df798c4169",
+      "bytes": 6831
+    },
+    {
+      "path": "src/captured-offer-gates.js",
+      "sha256": "3b0bfa549497ad3322866f39590aecec7f99ffb2c532f463afc32453f2acf4d9",
+      "bytes": 2431
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "sha256": "5070afe82081e05dc5557cb1c2e1b345eae19a20c9e6bffa17453c60c93e4bca",
+      "bytes": 20393
+    },
+    {
+      "path": "src/case-coverage.js",
+      "sha256": "778a3cee802bd49d720df79819e33f9eb7c3b92426f4f4503f5ccbc18fc53595",
+      "bytes": 21454
+    },
+    {
+      "path": "src/basket-comparison.js",
+      "sha256": "32b9b632fc515d108c7abffc000b5e8ff8998f0646afdde935aea490962810a2",
+      "bytes": 9061
+    },
+    {
+      "path": "src/basket-quote.js",
+      "sha256": "d653637615abdd3a5bbbbe54029797c76fed0e99e76735cb255c2fedf29c7149",
+      "bytes": 16539
+    },
+    {
+      "path": "src/basket-original.js",
+      "sha256": "af3cde8bd0389a16a59d71e5015ae47e93063389ad2dc95bd61f60b0ae064b3c",
+      "bytes": 3273
+    },
+    {
+      "path": "src/application.js",
+      "sha256": "1ffcd84d7695c2f0213079fc45a9ef3fcd2862d817194b4720a1ddafaef49a58",
+      "bytes": 30556
+    },
+    {
+      "path": "src/products.js",
+      "sha256": "fb579eb88563d72378b9128d3f7347c843b556daf56fbab3317b4f8d4411d78e",
+      "bytes": 30105
+    },
+    {
+      "path": "src/manufacturer-review.js",
+      "sha256": "183fcd0c703a653e23077f2ae9db4371356283e4015e4c26216a6a47aa7bf24c",
+      "bytes": 7676
+    },
+    {
+      "path": "src/manufacturer-research.js",
+      "sha256": "41871e7bf999e5fac8ead5bf0630ab5cf7ce9980f505c5414cc71525c245bf13",
+      "bytes": 16468
+    },
+    {
+      "path": "src/verification.js",
+      "sha256": "915382164f3485b9e3f79b38aac0ad2d58fc6ba0799ee1c88668d9032b63aa65",
+      "bytes": 3371
+    },
+    {
+      "path": "src/source-invalidation.js",
+      "sha256": "13a60e19194db21cc1d93d5ac3883bc6676791c6c71eafc1c753124e17efb62f",
+      "bytes": 1161
+    },
+    {
+      "path": "tests/case-readiness-evidence.test.js",
+      "sha256": "d528e0d8091e315d167fa0bd09bf62fe8cb5fc6683509c6679bdb633a71f9438",
+      "bytes": 7625
+    },
+    {
+      "path": "tests/translation-catalog.test.js",
+      "sha256": "d117ae64f7e8faee2973351294afd6538b30563af54dccfb8bc63ed03b79df6e",
+      "bytes": 13004
+    }
+  ],
+  "findings": [
+    {
+      "id": "readiness-unbound-original",
+      "classification": "false-positive original acceptance",
+      "source": "src/case-evidence-gates.js:73-104,119-140",
+      "finding": "Original bytes verify only their own descriptor SHA/date. No ordinary offer expected original digest, listing/SKU binding or selected monetary/quote field re-extraction is checked. Ordinary parseProduct does not persist originalHtmlSha256 except food source discovery context. Valid replacement bytes at same observation date are not withdrawn by this helper.",
+      "regression": "Replace a saved price evidence descriptor with another valid retained blob, and substitute a wrong listing/SKU original at same observation time; require rejection. Bind selected monetary/stock/quote context to source extraction or independent source-bound manual review."
+    },
+    {
+      "id": "translation-invalidated-source",
+      "classification": "false-positive current-original English acceptance",
+      "source": "src/translation-catalog.js:247-265,270-324,626-668",
+      "finding": "Current plan/status performs no invalidation/current-source validity check. A reviewed translation can remain accepted after label/page invalidation while its bytes remain cached.",
+      "regression": "Approve current source text then invalidate associated evidence/cache/URL, verify current acceptance withdraws with zero provider requests; resolved invalidation/fresh source can recover."
+    },
+    {
+      "id": "translation-image-original",
+      "classification": "false-positive attached-image original integrity acceptance",
+      "source": "src/translation-catalog.js:247-251",
+      "finding": "Only html.sha256/imageHash are scanned. Evidence.image and evidence.blob descriptor originals without OCR imageHash are not verified; Happy manually reviewed package images have evidence.image shape.",
+      "regression": "Attach a legitimate image-only evidence record; remove/corrupt its blob after English review, verify missing-original gap without remotely OCRing under collection stop."
+    },
+    {
+      "id": "resolved-invalidation-permanent-hold",
+      "classification": "unnecessarily persistent rejection",
+      "source": "src/case-coverage.js:88-105",
+      "finding": "Inventory/manual review original validation rejects every bound invalidation with true invalidated or missing/late invalidatedAt regardless active:false, invalidated:false, or resolvedAt. This disagrees with shared workflowSourceInvalidated semantics.",
+      "regression": "Resolve or deactivate a previously blocking invalidation using established APIs; reject while active, allow valid originals after resolution. Retain corrupt-source rejection."
+    },
+    {
+      "id": "zero-total-basket",
+      "classification": "legitimate fully discounted order rejected",
+      "source": "src/captured-offer-gates.js:19-32",
+      "finding": "Before/after totals must be strictly positive although checkout source parser allows explicit zero totals and full scoped discounts, and unit-rate gates allow nonnegative zero. A fully discounted valid one-line checkout never becomes ready.",
+      "regression": "Captured merchandise discount equals subtotal and shipping discount equals shipping: positive original sale price, source-verified basket total zero, all correct denominators/rates zero; retain rejection for negative/nonfinite totals."
+    },
+    {
+      "id": "legacy-chocolate-core-proof",
+      "classification": "missing affirmative core acceptance",
+      "source": "src/case-evidence-gates.js:164-171,185-190;src/manufacturer-review.js:7;src/flavour-scope.js:66-89",
+      "finding": "Readiness does not require affirmative manufacturer chocolate-core identity; generic legacy manufacturer flavour Chocolate plus exact other spec claims can satisfy gates despite absent core proof. New research correctly requires coreFlavour on listing and manufacturer identities.",
+      "regression": "Legacy exact manufacturer review with generic Chocolate flavour and complete nutrients but no core identity must remain reference-only; exact reviewed chocolate core passes, white/coating-only rejects."
+    }
+  ],
+  "confirmedControls": [
+    "Actual basket originals require vn/VND source mapping and exact source re-extraction/equality, so the initially suspected foreign-currency replacement cannot occur through real compareBaskets.",
+    "Single-line basket merchandise discounts reduce goods subtotal once; shipping discounts determine net freight via after-minus-before; mixed baskets never allocate freight to SKU readiness.",
+    "Translation cached review rechecks original text/provider id/version, translated SHA and quality fingerprint; changed text/new partition creates a new plan fingerprint.",
+    "Active CAPTCHA stop can coexist with offline cached review/status; this is deliberate and does not itself permit collection or clear stop."
+  ],
+  "notClaimed": [
+    "No local/runtime repro was executed in this read-only review",
+    "No live market/browser/API action",
+    "No completeness or purchase readiness claimed"
+  ]
+}

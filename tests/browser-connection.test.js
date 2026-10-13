@@ -94,3 +94,22 @@ test('unrelated connection failures propagate without retrying or launching', as
     /Connection refused/u
   );
 });
+
+test('a missing original challenge target cannot invoke empty-window recovery', async () => {
+  await assert.rejects(
+    connectPersistentBrowser(
+      { targetId: 'original-challenge-target' },
+      {
+        connect: async () => {
+          throw Error(
+            'Protocol error (Browser.setDownloadBehavior): Browser context management is not supported.'
+          );
+        },
+        loadChromium: async () => {
+          throw Error('Recovery must not create a tab');
+        },
+      }
+    ),
+    /Browser context management/u
+  );
+});

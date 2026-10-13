@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+ok 1 - offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+  ---
+  duration_ms: 2162.2585
+  type: 'test'
+  ...
+# Subtest: an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+ok 2 - an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+  ---
+  duration_ms: 1198.973291
+  type: 'test'
+  ...
+# Subtest: offline bulk task refuses live capture without touching the prepared browser page
+ok 3 - offline bulk task refuses live capture without touching the prepared browser page
+  ---
+  duration_ms: 854.332166
+  type: 'test'
+  ...
+# Subtest: network-enabled workflow remains stopped before any saved or live checkout task
+ok 4 - network-enabled workflow remains stopped before any saved or live checkout task
+  ---
+  duration_ms: 481.155208
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with stale original
+ok 5 - offline bulk task cannot succeed with stale original
+  ---
+  duration_ms: 1156.976125
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with future original
+ok 6 - offline bulk task cannot succeed with future original
+  ---
+  duration_ms: 765.681833
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with invalid original date
+ok 7 - offline bulk task cannot succeed with invalid original date
+  ---
+  duration_ms: 502.986583
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong case destination
+ok 8 - offline bulk task cannot succeed with wrong case destination
+  ---
+  duration_ms: 539.006208
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong original digest
+ok 9 - offline bulk task cannot succeed with wrong original digest
+  ---
+  duration_ms: 517.891417
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another SKU row
+ok 10 - offline bulk task cannot succeed with another SKU row
+  ---
+  duration_ms: 647.371667
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another order quantity
+ok 11 - offline bulk task cannot succeed with another order quantity
+  ---
+  duration_ms: 634.151917
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with unknown shipping
+ok 12 - offline bulk task cannot succeed with unknown shipping
+  ---
+  duration_ms: 569.174208
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with challenged original
+ok 13 - offline bulk task cannot succeed with challenged original
+  ---
+  duration_ms: 581.913667
+  type: 'test'
+  ...
+# Subtest: offline imported original is not promoted into a public store
+ok 14 - offline imported original is not promoted into a public store
+  ---
+  duration_ms: 484.445667
+  type: 'test'
+  ...
+# Subtest: workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+ok 15 - workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+  ---
+  duration_ms: 691.604833
+  type: 'test'
+  ...
+# Subtest: an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+ok 16 - an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+  ---
+  duration_ms: 660.925834
+  type: 'test'
+  ...
+# Subtest: invalidated saved original cannot be rewritten or accepted by its case task
+ok 17 - invalidated saved original cannot be rewritten or accepted by its case task
+  ---
+  duration_ms: 595.778833
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded paid shaker
+ok 18 - a case cannot import a prepared checkout for a newly excluded paid shaker
+  ---
+  duration_ms: 577.289834
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded other flavour
+ok 19 - a case cannot import a prepared checkout for a newly excluded other flavour
+  ---
+  duration_ms: 564.57025
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded soy isolate
+ok 20 - a case cannot import a prepared checkout for a newly excluded soy isolate
+  ---
+  duration_ms: 568.464083
+  type: 'test'
+  ...
+# Subtest: captured readiness can advance only when every declared-inventory evidence gate passes
+ok 21 - captured readiness can advance only when every declared-inventory evidence gate passes
+  ---
+  duration_ms: 12.328
+  type: 'test'
+  ...
+# Subtest: readiness verifies actual saved originals under a collection stop and withdraws changed or invalidated evidence
+ok 22 - readiness verifies actual saved originals under a collection stop and withdraws changed or invalidated evidence
+  ---
+  duration_ms: 1099.2625
+  type: 'test'
+  ...
+# Subtest: missing, changed-date and corrupt source descriptors cannot establish current price originals
+ok 23 - missing, changed-date and corrupt source descriptors cannot establish current price originals
+  ---
+  duration_ms: 584.751833
+  type: 'test'
+  ...
+# Subtest: only an eligible exact one-line basket contributes net freight and one-time discounts to captured readiness
+ok 24 - only an eligible exact one-line basket contributes net freight and one-time discounts to captured readiness
+  ---
+  duration_ms: 0.350042
+  type: 'test'
+  ...
+# Subtest: readiness requires a positive finite integer quantity and a nonnegative freshness interval
+ok 25 - readiness requires a positive finite integer quantity and a nonnegative freshness interval
+  ---
+  duration_ms: 418.391458
+  type: 'test'
+  ...
+# Subtest: fully discounted source-qualified orders retain zero unit rates as valid comparisons
+ok 26 - fully discounted source-qualified orders retain zero unit rates as valid comparisons
+  ---
+  duration_ms: 0.450167
+  type: 'test'
+  ...
+# Subtest: all recorded requirements retain executable regression references or explicit external operator procedures
+ok 27 - all recorded requirements retain executable regression references or explicit external operator procedures
+  ---
+  duration_ms: 65.67775
+  type: 'test'
+  ...
+# Subtest: GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates
+ok 28 - GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates
+  ---
+  duration_ms: 1.278667
+  type: 'test'
+  ...
+# Subtest: passing synthetic arithmetic cannot certify real catalog coverage, shipping, OTP, translations or publisher access
+ok 29 - passing synthetic arithmetic cannot certify real catalog coverage, shipping, OTP, translations or publisher access
+  ---
+  duration_ms: 799.578292
+  type: 'test'
+  ...
+# Subtest: published requirement mapping stays synchronized with source and current issue evidence
+ok 30 - published requirement mapping stays synchronized with source and current issue evidence
+  ---
+  duration_ms: 2.725584
+  type: 'test'
+  ...
+# Subtest: catalog batch defaults to cache-only, resumes bounded text, deduplicates calls and replays without credentials
+ok 31 - catalog batch defaults to cache-only, resumes bounded text, deduplicates calls and replays without credentials
+  ---
+  duration_ms: 1557.478208
+  type: 'test'
+  ...
+# Subtest: changed source bytes make new tasks and regenerate only changed text
+ok 32 - changed source bytes make new tasks and regenerate only changed text
+  ---
+  duration_ms: 736.903959
+  type: 'test'
+  ...
+# Subtest: failed early translations do not starve later unprocessed catalog fields
+ok 33 - failed early translations do not starve later unprocessed catalog fields
+  ---
+  duration_ms: 634.885667
+  type: 'test'
+  ...
+# Subtest: snapshot/OCR texts retain whole-source hashes, offsets and exact Unicode across chunks
+ok 34 - snapshot/OCR texts retain whole-source hashes, offsets and exact Unicode across chunks
+  ---
+  duration_ms: 201.303125
+  type: 'test'
+  ...
+# Subtest: missing original evidence stays an acceptance gap and private body/account text is excluded
+ok 35 - missing original evidence stays an acceptance gap and private body/account text is excluded
+  ---
+  duration_ms: 274.005375
+  type: 'test'
+  ...
+# Subtest: CAPTCHA stops new batch requests immediately but all successful text can still replay
+ok 36 - CAPTCHA stops new batch requests immediately but all successful text can still replay
+  ---
+  duration_ms: 489.935708
+  type: 'test'
+  ...
+# Subtest: refresh catalog work resumes without re-translating completed refreshed chunks
+ok 37 - refresh catalog work resumes without re-translating completed refreshed chunks
+  ---
+  duration_ms: 622.403375
+  type: 'test'
+  ...
+# Subtest: current cached catalog acceptance rechecks each original translation and semantic approval without requests
+ok 38 - current cached catalog acceptance rechecks each original translation and semantic approval without requests
+  ---
+  duration_ms: 346.060333
+  type: 'test'
+  ...
+# Subtest: title-only or obsolete translation jobs cannot approve the current catalog and originals
+ok 39 - title-only or obsolete translation jobs cannot approve the current catalog and originals
+  ---
+  duration_ms: 442.445292
+  type: 'test'
+  ...
+# Subtest: empty catalog and missing original source bytes never receive translation acceptance
+ok 40 - empty catalog and missing original source bytes never receive translation acceptance
+  ---
+  duration_ms: 125.633333
+  type: 'test'
+  ...
+# Subtest: catalog original acceptance validates attached image bytes and withdraws invalidated source text
+ok 41 - catalog original acceptance validates attached image bytes and withdraws invalidated source text
+  ---
+  duration_ms: 431.306709
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15313.4715

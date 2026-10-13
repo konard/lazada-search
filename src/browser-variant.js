@@ -45,9 +45,11 @@ export async function selectVariantOptions({
   scheduler,
   runtime,
   settleMs,
+  assertActive = () => {},
 }) {
   for (const option of target.options) {
-    await resolvePageDialogs(page);
+    assertActive();
+    await resolvePageDialogs(page, { assertActive });
     const choice = await visibleChoice(page, option);
     if (
       await choice.evaluate(
@@ -60,7 +62,8 @@ export async function selectVariantOptions({
     }
     await scheduler.pace(url);
     await runtime.pace?.(url, scheduler.intervalMs);
-    await resolvePageDialogs(page);
+    assertActive();
+    await resolvePageDialogs(page, { assertActive });
     // Move the actual option into view with the same animation used for product
     // content, avoiding Playwright's abrupt automatic scroll before a click.
     const position = await choice.evaluate((element) => {
@@ -73,11 +76,13 @@ export async function selectVariantOptions({
         : undefined;
     });
     if (position !== undefined) {
+      assertActive();
       await page.evaluate(animateScroll, { target: position, durationMs: 650 });
     }
+    assertActive();
     await choice.click();
     await page.waitForTimeout(Math.max(500, settleMs));
-    await resolvePageDialogs(page);
-    await waitForPageReady(page);
+    await resolvePageDialogs(page, { assertActive });
+    await waitForPageReady(page, { assertActive });
   }
 }

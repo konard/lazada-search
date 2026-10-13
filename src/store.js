@@ -5,8 +5,13 @@ import { encode, decode } from 'lino-objects-codec';
 import { DoubletGraph } from './doublets.js';
 import { RepositoryArchive } from './archive.js';
 import { storedBlobReference } from './blob-reference.js';
-import { createStoreLockDirectory } from './store-lock-directory.js';
+import { publishContentAddressedBlob } from './blob-publication.js';
+import {
+  createStoreLockDirectory,
+  readStoreLockOwner,
+} from './store-lock-directory.js';
 import { atomicWrite, clone, readOptional, sha256, valueAt } from './util.js';
+import { writeStoreProjection } from './store-projection.js';
 
 const validKind = (kind) => {
   if (typeof kind !== 'string' || !/^[a-z][a-z-]*$/u.test(kind)) {
@@ -40,7 +45,7 @@ function prepareGroups(store, kind, inputs) {
   return [...groups.values()];
 }
 
-async function processGroups(groups, process) {
+async function processGroups(groups, process, limit = 8) {
   const results = [];
   let cursor = 0,
     failed = false,
@@ -65,7 +70,9 @@ async function processGroups(groups, process) {
   };
   // A failure drains every in-flight operation before returning or releasing a
   // writer lock. Ordered results preserve deterministic duplicate precedence.
-  await Promise.all(Array.from({ length: Math.min(8, groups.length) }, worker));
+  await Promise.all(
+    Array.from({ length: Math.min(limit, groups.length) }, worker)
+  );
   if (failed) {
     throw failure;
   }
@@ -116,7 +123,7 @@ export class AssociativeStore {
         if (error.code !== 'EEXIST') {
           throw error;
         }
-        const owner = Number(await readOptional(join(lock, 'owner'), 'utf8'));
+        const owner = Number(await readStoreLockOwner(join(lock, 'owner')));
         let dead = false;
         if (Number.isSafeInteger(owner) && owner > 0) {
           try {
@@ -174,17 +181,22 @@ export class AssociativeStore {
     }
     return await this.locked(async () => {
       await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
-      return processGroups(groups, async (entry) => {
-        const current = await this.get(kind, entry.record.id);
-        const currentObserved = Date.parse(current?.observedAt);
-        if (
-          Number.isFinite(currentObserved) &&
-          (!Number.isFinite(entry.observed) || currentObserved > entry.observed)
-        ) {
-          return current;
-        }
-        return this.writeRecord(kind, { ...entry, directoryPrepared: true });
-      });
+      return processGroups(
+        groups,
+        async (entry) => {
+          const current = await this.get(kind, entry.record.id);
+          const currentObserved = Date.parse(current?.observedAt);
+          if (
+            Number.isFinite(currentObserved) &&
+            (!Number.isFinite(entry.observed) ||
+              currentObserved > entry.observed)
+          ) {
+            return current;
+          }
+          return this.writeRecord(kind, { ...entry, directoryPrepared: true });
+        },
+        16
+      );
     });
   }
 
@@ -195,8 +207,11 @@ export class AssociativeStore {
     }
     return await this.locked(async () => {
       await mkdir(join(this.directory, kind), { recursive: true, mode: 0o700 });
-      return processGroups(groups, (entry) =>
-        this.writeRecord(kind, { ...entry, directoryPrepared: true })
+      return processGroups(
+        groups,
+        (entry) =>
+          this.writeRecord(kind, { ...entry, directoryPrepared: true }),
+        16
       );
     });
   }
@@ -236,14 +251,7 @@ export class AssociativeStore {
     const graph = new DoubletGraph();
     graph.addRecord(kind, record);
     const bytes = graph.toBinary();
-    await atomicWrite(path.replace(/\.lino$/u, '.links'), bytes, {
-      directoryPrepared,
-    });
-    await atomicWrite(
-      `${path}.sha256`,
-      `${sha256(notation)}:${sha256(bytes)}`,
-      { directoryPrepared }
-    );
+    await writeStoreProjection(path, notation, bytes, { directoryPrepared });
     return graph;
   }
 
@@ -332,13 +340,15 @@ export class AssociativeStore {
   async putBlob(contents) {
     const bytes = Buffer.from(contents);
     const id = sha256(bytes);
-    if (await this.blob(id)) {
+    const existing = await this.blob(id);
+    if (existing) {
+      if (!Buffer.from(existing).equals(bytes)) {
+        throw new Error('Corrupt evidence blob');
+      }
       return storedBlobReference(id, bytes.length);
     }
     const path = join(this.directory, 'blobs', id.slice(0, 2), id);
-    if (!(await readOptional(path))) {
-      await atomicWrite(path, bytes);
-    }
+    await publishContentAddressedBlob(path, bytes);
     return storedBlobReference(id, bytes.length);
   }
 

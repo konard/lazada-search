@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-12T08:13:27.324232+00:00",
+  "status": "targeted-local-tests-passed",
+  "scope": "Lazy per-operation source-validity initialization; historical source-validity/tag E2E receipt remains unchanged",
+  "platform": "macOS aarch64",
+  "results": [
+    {
+      "runtime": "Node.js",
+      "version": "22.23.0",
+      "passed": 84,
+      "failed": 0,
+      "skipped": 0,
+      "testFiles": 6,
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=2 tests/manufacturer-source-validity.test.js tests/package-quantity-review.test.js tests/catalog-products.test.js tests/manufacturer-workflow-draft.test.js tests/shopping-workflow-draft.test.js tests/collection-review-replay.test.js",
+      "log": {
+        "path": "node.tap.gz",
+        "sha256": "3d1e83341eed7142d4c95f1ca531b2535307b8bbdb8ef5fdffdb4a5ef2d91762",
+        "bytes": 20739,
+        "gzipSha256": "bbd9ba92439fba0175930efdcdeef718fbfb58e7741a522b50b570865d8b790c"
+      }
+    },
+    {
+      "runtime": "Bun",
+      "version": "1.4.3",
+      "passed": 84,
+      "failed": 0,
+      "testFiles": 6,
+      "exitCode": 0,
+      "command": "/Users/konard/.bun/bin/bun test --timeout 120000 tests/manufacturer-source-validity.test.js tests/package-quantity-review.test.js tests/catalog-products.test.js tests/manufacturer-workflow-draft.test.js tests/shopping-workflow-draft.test.js tests/collection-review-replay.test.js",
+      "log": {
+        "path": "bun.log.gz",
+        "sha256": "33f6b1f02e814fb16e133cce055207529c2c932a06861f3ebc77755d2392b45c",
+        "bytes": 9061,
+        "gzipSha256": "4cf4264392c2b7d82f600474ce4c101eafea045f06f1ece7559fa46c21549036"
+      }
+    },
+    {
+      "runtime": "Deno",
+      "version": "2.4.5",
+      "passed": 84,
+      "failed": 0,
+      "testFiles": 6,
+      "exitCode": 0,
+      "networkPermissions": [],
+      "command": "/opt/homebrew/bin/deno test --frozen --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi tests/manufacturer-source-validity.test.js tests/package-quantity-review.test.js tests/catalog-products.test.js tests/manufacturer-workflow-draft.test.js tests/shopping-workflow-draft.test.js tests/collection-review-replay.test.js",
+      "log": {
+        "path": "deno.log.gz",
+        "sha256": "e00a932bbd686548e7463fbc983c8bcac4f2bd00084ae05df8996c1a256e40d5",
+        "bytes": 12325,
+        "gzipSha256": "7d5b38c2990a68697f88a4d43a78b51ca322e4661e4e2e79a1c05a79d19ff735"
+      }
+    }
+  ],
+  "checks": {
+    "strictLint": {
+      "exitCode": 0,
+      "log": {
+        "path": "lint.log.gz",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+      }
+    },
+    "format": {
+      "exitCode": 0,
+      "log": {
+        "path": "format.log.gz",
+        "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+        "bytes": 66,
+        "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59"
+      }
+    }
+  },
+  "newRegressionControls": 5,
+  "manufacturerSourceValidityTests": 16,
+  "verifiedReadCounts": [
+    {
+      "scenario": "Claim-free and legacy-check-free standalone catalog",
+      "sourceCacheListings": 0
+    },
+    {
+      "scenario": "Claim-free and legacy-check-free whole comparison",
+      "sourceCacheListings": 0
+    },
+    {
+      "scenario": "Claim-free and legacy-check-free selected-offer comparison",
+      "sourceCacheListings": 0
+    },
+    {
+      "scenario": "Approved shared fallback facts merged into claim-free private observation",
+      "sourceCacheListings": 1
+    },
+    {
+      "scenario": "Five concurrent eligible consumers in one operation",
+      "sourceCacheListings": 1
+    },
+    {
+      "scenario": "Next operation after original blob corruption",
+      "sourceCacheListings": 1,
+      "affectedNutritionWithheld": true
+    }
+  ],
+  "wallClockSavings": "Not benchmarked; read-count assertions establish avoided scans rather than a claimed suite-time reduction",
+  "sourceWebsiteRequests": 0,
+  "apiRequests": 0,
+  "realProfilesOrArchivedDataModified": false,
+  "savedCaptchaResumed": false,
+  "historicalAcceptance": "../source-validity-regressions/validation.json",
+  "nativeE2eForNewHashes": "Not asserted by this follow-up; prior E2E evidence applies only to its recorded source checkpoint",
+  "testedFiles": [
+    {
+      "path": "src/manufacturer-source-validity.js",
+      "sha256": "22615ff5c67c1abe5ccf45b940874b751492c32aea019727a36b7ace827a4870",
+      "bytes": 9783
+    },
+    {
+      "path": "src/catalog-products.js",
+      "sha256": "d0da604484106df246681e77c9915bd62792c8b1ac5f874521341f86cbd649ff",
+      "bytes": 5575
+    },
+    {
+      "path": "src/comparison-inputs.js",
+      "sha256": "279a2cbb18878137fa67c96a5ce46ce7722280d6a9b39c77ea01c840a58f273c",
+      "bytes": 2412
+    },
+    {
+      "path": "tests/manufacturer-source-validity.test.js",
+      "sha256": "1d66dfa856ef60424c37a35258ba5b501f081207693b5a5312a04eb795d96501",
+      "bytes": 14830
+    }
+  ],
+  "limits": [
+    "Targeted local checks do not establish the final GitHub head CI matrix or Windows suite time",
+    "Legacy cross-check-only products still load validity metadata because their broad source holds must remain protected",
+    "Current manufacturer facts, stock, bulk/frozen delivery and exhaustive live inventory remain separate external acceptance"
+  ]
+}

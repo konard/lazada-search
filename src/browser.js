@@ -1,10 +1,25 @@
 import { join } from 'node:path';
 import { canonicalUrl } from './util.js';
 import { resolvePageDialogs } from './page-dialogs.js';
-import { acquireBrowserWindow } from './persistent-browser.js';
+import {
+  acquireBrowserWindow,
+  closeBrowserWindow,
+} from './persistent-browser.js';
+import {
+  collectionStatus,
+  pageTargetId,
+  retainChallengePage,
+} from './browser-challenge-handoff.js';
 import { waitForPageReady } from './page-readiness.js';
 import { scrollProductContent } from './page-scroll.js';
 import { storeViewport } from './page-capture.js';
+import {
+  imageCaptureContext,
+  imageCaptureGuard,
+  assertCaptureActive,
+  settleCaptureImages,
+  recoverPersistentCapture,
+} from './browser-capture-assets.js';
 import { selectVariantOptions } from './browser-variant.js';
 import {
   serveBrowserImage,
@@ -20,13 +35,13 @@ import {
   inspectPageChallenge,
   assertPageNotChallenged,
   assertCollectionRunning,
-  stopForChallenge,
   COLLECTION_STOP_ID,
   registerChallengeStore,
+  mutateCollectionStop,
   CollectionStoppedError,
 } from './page-challenge.js';
 
-export const EXTRACTOR_VERSION = 16;
+export const EXTRACTOR_VERSION = 17;
 
 async function boundedImageBody(response, timeoutMs = 30000) {
   let timer;
@@ -280,9 +295,45 @@ export function extractPage(context) {
   const bodyText = context?.document
     ? textBody?.textContent || ''
     : document.body?.innerText || textBody?.textContent || '';
-  const resultCount = bodyText.match(
-    /Tìm thấy\s+([\d.,]+)\s+sản phẩm|([\d.,]+)\s+(?:items|products)\s+found/iu
-  );
+  const resultCount = (() => {
+    for (const token of bodyText.matchAll(/[\d.,]+/gu)) {
+      if (!/^\d+(?:[.,]\d+)*$/u.test(token[0])) {
+        continue;
+      }
+      const tokenEnd = token.index + token[0].length;
+      let labelStart = tokenEnd;
+      while (labelStart < bodyText.length && /\s/u.test(bodyText[labelStart])) {
+        labelStart++;
+      }
+      if (labelStart === tokenEnd) {
+        continue;
+      }
+      let prefixEnd = token.index;
+      while (prefixEnd > 0 && /\s/u.test(bodyText[prefixEnd - 1])) {
+        prefixEnd--;
+      }
+      const vietnamese =
+        prefixEnd < token.index &&
+        bodyText.slice(Math.max(0, prefixEnd - 8), prefixEnd).toLowerCase() ===
+          'tìm thấy' &&
+        bodyText.slice(labelStart, labelStart + 8).toLowerCase() === 'sản phẩm';
+      const englishLabel = bodyText
+        .slice(labelStart, labelStart + 8)
+        .match(/^(?:items|products)/iu)?.[0];
+      let foundStart = labelStart + (englishLabel?.length || 0);
+      while (foundStart < bodyText.length && /\s/u.test(bodyText[foundStart])) {
+        foundStart++;
+      }
+      const english =
+        englishLabel &&
+        foundStart > labelStart + englishLabel.length &&
+        bodyText.slice(foundStart, foundStart + 5).toLowerCase() === 'found';
+      if (vietnamese || english) {
+        return token[0];
+      }
+    }
+    return undefined;
+  })();
   let skuCatalog = [];
   let skuCatalogObserved = false;
   for (const script of document.querySelectorAll('script:not([src])')) {
@@ -417,7 +468,7 @@ export function extractPage(context) {
       currentPage,
       lastPage: pageNumbers.length ? Math.max(...pageNumbers) : null,
       reportedTotal: resultCount
-        ? Number((resultCount[1] || resultCount[2]).replace(/[.,]/gu, ''))
+        ? Number(resultCount.replace(/[.,]/gu, ''))
         : null,
       terminalConfirmed: nextDisabled,
       nextAvailable: nextButton ? !nextDisabled : null,
@@ -478,6 +529,7 @@ export class BrowserCollector {
     settleMs = 1000,
     maxScrolls = 20,
     captureTimeoutMs = 240000,
+    assetSettleTimeoutMs = 10000,
     flavourScope = 'all',
   } = {}) {
     this.cache = cache;
@@ -493,14 +545,26 @@ export class BrowserCollector {
       throw new Error('captureTimeoutMs must be positive');
     }
     this.captureTimeoutMs = captureTimeoutMs;
+    if (!Number.isFinite(assetSettleTimeoutMs) || assetSettleTimeoutMs <= 0) {
+      throw new Error('assetSettleTimeoutMs must be positive');
+    }
+    this.assetSettleTimeoutMs = assetSettleTimeoutMs;
     this.tail = Promise.resolve();
     if (this.cache) {
       this.cache.beforeDownload = () => this.assertCollecting();
     }
   }
 
-  async start() {
+  async start({ existingOnly = false, targetId } = {}) {
     if (!this.runtime) {
+      if (
+        this.browserOptions.launch === 'engine' &&
+        this.browserOptions.headless === false
+      ) {
+        throw new Error(
+          'Interactive challenge retention requires an owned real browser or an existing CDP browser; headed engine mode is unsupported'
+        );
+      }
       const { launchBrowser, connectBrowser, makeBrowserCommander } =
         await import('browser-commander');
       this.attached = Boolean(this.browserOptions.cdpEndpoint);
@@ -526,26 +590,36 @@ export class BrowserCollector {
         ],
       };
       this.persistent =
-        !this.attached &&
-        (this.browserOptions.persistentWindow ??
-          (launchOptions.headless === false &&
-            launchOptions.launch !== 'engine'));
+        !this.attached && (existingOnly || launchOptions.launch !== 'engine');
+      if (existingOnly && !targetId) {
+        throw new Error(
+          'The original challenge tab was not retained; no window will be opened'
+        );
+      }
       this.runtime = this.attached
         ? await connectBrowser({
             engine: 'playwright',
             cdpEndpoint: this.browserOptions.cdpEndpoint,
             timeout: 30000,
             debug: this.browserOptions.debug ?? false,
+            ...(existingOnly ? { targetId, fallback: false } : {}),
           })
         : this.persistent
-          ? await acquireBrowserWindow(this.store.directory, launchOptions)
+          ? await acquireBrowserWindow(this.store.directory, {
+              ...launchOptions,
+              existingOnly,
+              targetId,
+            })
           : await launchBrowser(launchOptions);
-      if (this.attached) {
+      if (this.attached && !existingOnly) {
         this.runtime.page = await this.runtime.page.context().newPage();
       }
-      registerChallengeStore(this.runtime.page, this.store);
+      registerChallengeStore(this.runtime.page, this.store, (challenge) =>
+        this.retainChallenge(challenge)
+      );
       this.closing = false;
       this.imageTasks = new Set();
+      this.passiveImageCapture = imageCaptureContext();
       this.imageRoute = async (route) => {
         if (this.closing) {
           await route.abort().catch(() => {});
@@ -555,23 +629,36 @@ export class BrowserCollector {
           await route.continue();
           return;
         }
+        const context = this.activeImageCapture || this.passiveImageCapture;
+        if (!context?.accepting) {
+          await route.abort().catch(() => {});
+          return;
+        }
         const acquisition = serveBrowserImage({
           route,
           cache: this.cache,
           refresh: this.refreshImages,
           activePageUrl: this.activeImagePageUrl,
+          requestGuard: imageCaptureGuard(this, context),
         }).catch((error) => {
           if (error.code === 'COLLECTION_STOPPED') {
             this.imageStop = error;
           }
         });
         this.imageTasks.add(acquisition);
+        context.tasks.add(acquisition);
+        context.admitted++;
         acquisition.then(() => this.imageTasks.delete(acquisition));
+        acquisition.then(() => context.tasks.delete(acquisition));
         await acquisition;
       };
       await this.runtime.page.route('**/*', this.imageRoute);
       this.imageResponse = (response) => {
         if (this.closing || response.request().resourceType() !== 'image') {
+          return;
+        }
+        const context = this.activeImageCapture || this.passiveImageCapture;
+        if (!context) {
           return;
         }
         const capture = (async () => {
@@ -583,7 +670,9 @@ export class BrowserCollector {
           }
         });
         this.imageTasks.add(capture);
+        context.tasks.add(capture);
         capture.finally(() => this.imageTasks.delete(capture));
+        capture.finally(() => context.tasks.delete(capture));
       };
       this.runtime.page.on('response', this.imageResponse);
       this.commander = makeBrowserCommander({
@@ -711,16 +800,28 @@ export class BrowserCollector {
   }
 
   async captureWithBudget(url, options) {
+    if (this.captureRecovery?.settled === false) {
+      throw new Error(
+        'Previous page capture is still recovering; the existing tab remains open'
+      );
+    }
     let timer;
     let timedOut = false;
+    const context = imageCaptureContext();
+    const previousContext = this.activeImageCapture;
+    this.activeImageCapture = context;
     const previousImagePageUrl = this.activeImagePageUrl;
     this.activeImagePageUrl = url;
+    const pending = this.capture(url, { ...options, imageCapture: context });
     try {
       return await Promise.race([
-        this.capture(url, options),
+        pending,
         new Promise((_, reject) => {
           timer = setTimeout(() => {
             timedOut = true;
+            context.cancelled = true;
+            context.accepting = false;
+            context.controller.abort();
             reject(
               new Error(
                 `Page capture timed out after ${this.captureTimeoutMs} ms`
@@ -730,19 +831,33 @@ export class BrowserCollector {
         }),
       ]);
     } catch (error) {
+      context.cancelled = true;
+      context.accepting = false;
+      context.controller.abort();
       if (error.code === 'COLLECTION_STOPPED') {
-        await stopForChallenge(this.store, error.challenge || {});
+        await this.retainChallenge(error.challenge || {});
       }
       if (timedOut) {
+        // A timeout must not replace a challenge tab while the person needs it.
+        try {
+          await assertPageNotChallenged(this.runtime.page);
+        } catch (challengeError) {
+          if (challengeError.code === 'COLLECTION_STOPPED') {
+            throw challengeError;
+          }
+        }
+        if (this.persistent) {
+          this.captureRecovery = await recoverPersistentCapture(
+            this.runtime.page,
+            pending
+          );
+          await settleCaptureImages(context, this.assetSettleTimeoutMs);
+          throw error;
+        }
         // Close the collector-owned page so a late navigation cannot modify
         // the next capture. Existing attached-browser tabs stay untouched.
-        if (this.persistent) {
-          await this.runtime.page.context().newPage();
-        }
         await this.runtime?.page.close();
-        if (this.persistent) {
-          await this.runtime?.release();
-        } else if (!this.attached) {
+        if (!this.attached) {
           await this.runtime?.browser.close();
         }
         this.runtime = undefined;
@@ -750,6 +865,8 @@ export class BrowserCollector {
       }
       throw error;
     } finally {
+      context.accepting = false;
+      this.activeImageCapture = previousContext;
       this.activeImagePageUrl = previousImagePageUrl;
       clearTimeout(timer);
     }
@@ -757,25 +874,37 @@ export class BrowserCollector {
 
   async capture(
     url,
-    { refresh = false, flavourScope = this.flavourScope } = {}
+    {
+      refresh = false,
+      flavourScope = this.flavourScope,
+      imageCapture = imageCaptureContext(),
+    } = {}
   ) {
+    this.activeImageCapture = imageCapture;
+    const assertActive = () => assertCaptureActive(imageCapture);
     await assertCollectionRunning(this.store);
     await this.start();
+    assertCaptureActive(imageCapture);
     await this.runtime.touch?.();
     // A previous blocked dialog must be resolved before any new navigation.
-    await resolvePageDialogs(this.runtime.page);
+    await resolvePageDialogs(this.runtime.page, { assertActive });
+    assertCaptureActive(imageCapture);
     this.refreshImages = refresh;
     const page = this.runtime.page;
     await this.runtime.pace?.(url, this.cache.scheduler.intervalMs);
+    assertCaptureActive(imageCapture);
     await this.assertCollecting();
     await this.commander.goto({
       url,
       timeout: 30000,
       waitUntil: 'domcontentloaded',
       waitForNetworkIdle: false,
+      signal: imageCapture.controller.signal,
     });
+    assertCaptureActive(imageCapture);
     await page.waitForTimeout(this.settleMs);
-    await resolvePageDialogs(page);
+    await this.assertCollecting();
+    await resolvePageDialogs(page, { assertActive });
     let snapshot = await page.evaluate(extractPage);
     let status = classifyPage(snapshot);
     if (status === 'challenge') {
@@ -788,23 +917,29 @@ export class BrowserCollector {
     const screenshots = [];
     let variantSelection;
     if (status === 'ok') {
-      await waitForPageReady(page);
+      await waitForPageReady(page, { assertActive });
+      assertCaptureActive(imageCapture);
       snapshot = await page.evaluate(extractPage);
       variantSelection = await this.selectRequestedVariant(
         url,
         snapshot,
-        flavourScope
+        flavourScope,
+        assertActive
       );
+      assertCaptureActive(imageCapture);
       snapshot = await page.evaluate(extractPage);
       screenshots.push(await storeViewport(this.store, page, 'before-scroll'));
     }
     if (status === 'ok') {
       scrolling = await scrollProductContent(page, {
         maxSteps: this.maxScrolls,
+        assertActive,
       });
-      await waitForPageReady(page);
+      assertCaptureActive(imageCapture);
+      await waitForPageReady(page, { assertActive });
+      assertCaptureActive(imageCapture);
       snapshot = await page.evaluate(extractPage);
-      await resolvePageDialogs(page);
+      await resolvePageDialogs(page, { assertActive });
       status = classifyPage(snapshot);
       if (status === 'challenge') {
         throw new CollectionStoppedError({
@@ -819,7 +954,10 @@ export class BrowserCollector {
       snapshot.cards?.length ? screenshots.at(-1) : screenshots[0]
     ).blob;
     const finalUrl = canonicalUrl(snapshot.url);
-    await Promise.all([...this.imageTasks]);
+    const imageAcquisition = await settleCaptureImages(
+      imageCapture,
+      this.assetSettleTimeoutMs
+    );
     if (this.imageStop) {
       throw this.imageStop;
     }
@@ -838,13 +976,15 @@ export class BrowserCollector {
       variantSelection,
       extractorVersion: EXTRACTOR_VERSION,
       imagesRefreshed: refresh,
+      imageAcquisition,
     };
   }
 
   async selectRequestedVariant(
     url,
     snapshot,
-    flavourScope = this.flavourScope
+    flavourScope = this.flavourScope,
+    assertActive = () => {}
   ) {
     const explicit = requestedSku(url);
     const preferred = !explicit && preferredVariant(snapshot, flavourScope);
@@ -884,6 +1024,7 @@ export class BrowserCollector {
       scheduler: this.cache.scheduler,
       runtime: this.runtime,
       settleMs: this.settleMs,
+      assertActive,
     });
     const selected = await this.runtime.page.evaluate(extractPage);
     if (
@@ -905,35 +1046,75 @@ export class BrowserCollector {
         await assertPageNotChallenged(this.runtime.page);
       } catch (error) {
         if (error.code === 'COLLECTION_STOPPED') {
-          await stopForChallenge(this.store, error.challenge);
+          await this.retainChallenge(error.challenge);
         }
         throw error;
       }
     }
   }
 
+  async retainChallenge(challenge) {
+    await retainChallengePage(this, challenge);
+  }
+
+  collectionStatus() {
+    return collectionStatus(this.store, this);
+  }
+
   async resumeCollection() {
-    await this.start();
-    await assertPageNotChallenged(this.runtime.page);
     const previous = await this.store.get(
       'collection-stop',
       COLLECTION_STOP_ID
     );
+    if (!previous?.active) {
+      return previous || { id: COLLECTION_STOP_ID, active: false };
+    }
+    if (!this.runtime) {
+      try {
+        await this.start({
+          existingOnly: true,
+          targetId: previous.browser?.targetId,
+        });
+      } catch (cause) {
+        const error = new CollectionStoppedError(previous);
+        error.cause = cause;
+        error.message +=
+          ' The original challenge page is unavailable; no window or tab was opened.';
+        throw error;
+      }
+    }
+    if (this.runtime.page.isClosed()) {
+      throw new CollectionStoppedError(previous);
+    }
     if (
-      previous?.active &&
-      previous.origin &&
+      previous.browser?.targetId &&
+      (await pageTargetId(this.runtime.page).catch(() => null)) !==
+        previous.browser.targetId
+    ) {
+      throw new CollectionStoppedError(previous);
+    }
+    if (previous.browser?.targetId) {
+      this.challengePage = this.runtime.page;
+    }
+    await assertPageNotChallenged(this.runtime.page);
+    if (
+      !previous.origin ||
       new URL(this.runtime.page.url()).origin !== previous.origin
     ) {
       throw new CollectionStoppedError(previous);
     }
-    const state = {
-      ...(previous || {}),
-      id: COLLECTION_STOP_ID,
-      active: false,
-      resumedAt: new Date().toISOString(),
-    };
-    await this.store.put('collection-stop', state);
+    const state = await mutateCollectionStop(this.store, (current) => {
+      if (JSON.stringify(current) !== JSON.stringify(previous)) {
+        throw new CollectionStoppedError(current);
+      }
+      return {
+        ...current,
+        active: false,
+        resumedAt: new Date().toISOString(),
+      };
+    });
     this.imageStop = undefined;
+    this.challengePage = undefined;
     return state;
   }
 
@@ -942,6 +1123,10 @@ export class BrowserCollector {
     // Stop admitting image producers before draining their writes. Route
     // acquisitions and response retention both belong to this collector.
     this.closing = true;
+    if (this.passiveImageCapture) {
+      this.passiveImageCapture.cancelled = true;
+      this.passiveImageCapture.accepting = false;
+    }
     if (this.runtime && this.imageResponse) {
       this.runtime.page.off('response', this.imageResponse);
     }
@@ -955,11 +1140,28 @@ export class BrowserCollector {
           .catch(() => {});
         this.runtime.page.off('response', this.imageResponse);
       }
-      if (this.attached) {
+      const retained =
+        this.runtime &&
+        this.challengePage &&
+        !this.challengePage.isClosed() &&
+        (await this.store.get('collection-stop', COLLECTION_STOP_ID))?.active;
+      if (this.attached && !retained) {
         await this.runtime?.page.close();
       }
       if (this.persistent) {
+        const retainedWindow =
+          this.runtime && this.browserOptions.persistentWindow === false
+            ? (await this.collectionStatus()).handoff?.pageOpen === true
+            : false;
         await this.runtime?.release();
+        if (
+          this.runtime &&
+          this.browserOptions.persistentWindow === false &&
+          !retained &&
+          !retainedWindow
+        ) {
+          await closeBrowserWindow(this.store.directory);
+        }
       } else {
         await this.runtime?.browser.close();
       }

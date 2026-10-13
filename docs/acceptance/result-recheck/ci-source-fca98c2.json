@@ -1,0 +1,210 @@
+{
+  "checkedAt": "2026-10-13T07:08:31.693394+00:00",
+  "sourceCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119",
+  "testedMergeCommit": "5f02c34df95444b1cf83cd226b948c0346c84c5f",
+  "baseCommit": "cec067aaaa1cacabeb2d57d04bb753fdde83731b",
+  "sourceFilesVerified": 608,
+  "sourceManifest": "source-fca98c2-tested-tree-manifest.json",
+  "accepted": true,
+  "runtimeJobsSuccessful": 9,
+  "runtimeJobs": [
+    {
+      "id": 115169882209,
+      "name": "Test (node on ubuntu-24.04)",
+      "conclusion": "success",
+      "counts": {
+        "tests": 1532,
+        "pass": 1532,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "ci-fca98c2-test-node-on-ubuntu-24-04.log.gz",
+      "rawSha256": "5b97a834dee14dfc7e99b3010b6b8d61686e94f6a367ca5549e3485c52ab87f2",
+      "rawBytes": 361599,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882250,
+      "name": "Test (bun on macos-15)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1531,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-bun-on-macos-15.log.gz",
+      "rawSha256": "5522231b5a4f4eeab85fd860de58877dca31ea2874e52c7d3cfdfbd13ebe606d",
+      "rawBytes": 429208,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882252,
+      "name": "Test (deno on ubuntu-24.04)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1376,
+        "steps": 16,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-deno-on-ubuntu-24-04.log.gz",
+      "rawSha256": "2076c8809329d7734ff9c72b1cae2fa4bf67b27163e5b117dcd493ae18e1915d",
+      "rawBytes": 448190,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882339,
+      "name": "Test (deno on macos-15)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1376,
+        "steps": 16,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-deno-on-macos-15.log.gz",
+      "rawSha256": "982e3e34225d77721b10146594f49c05547e87b6b1dfa4c6ab973250f7645a46",
+      "rawBytes": 439835,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882355,
+      "name": "Test (node on macos-15)",
+      "conclusion": "success",
+      "counts": {
+        "tests": 1532,
+        "pass": 1532,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "ci-fca98c2-test-node-on-macos-15.log.gz",
+      "rawSha256": "952e60e32cc4042d3dfede16d64d70ccaf5c69d920fbd9bf1023432bd5a7fe86",
+      "rawBytes": 247834,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882356,
+      "name": "Test (bun on ubuntu-24.04)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1531,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-bun-on-ubuntu-24-04.log.gz",
+      "rawSha256": "d5bb3e08ba6f6cc1d1f3d35e8c7059c00e02aa9d3e8af2ae82795ccdf261bdd4",
+      "rawBytes": 448769,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882407,
+      "name": "Test (node on windows-2025)",
+      "conclusion": "success",
+      "counts": {
+        "tests": 1491,
+        "pass": 1491,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "log": "ci-fca98c2-test-node-on-windows-2025.log.gz",
+      "rawSha256": "f9810e9837164d2aeefa46175a86bce01cd423e559c7f105b7558c824efc06e2",
+      "rawBytes": 348519,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882440,
+      "name": "Test (bun on windows-2025)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1495,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-bun-on-windows-2025.log.gz",
+      "rawSha256": "9b8abae16967822adbe30a49d123789968fff220f204d1d9bbd2706ed43d9228",
+      "rawBytes": 410430,
+      "testedMergeConfirmed": true
+    },
+    {
+      "id": 115169882503,
+      "name": "Test (deno on windows-2025)",
+      "conclusion": "success",
+      "counts": {
+        "passed": 1377,
+        "steps": 16,
+        "failed": 0
+      },
+      "log": "ci-fca98c2-test-deno-on-windows-2025.log.gz",
+      "rawSha256": "8f3bc3b91c7aed76b1aec8c93c00bba7a9603880fd623e51223d53e49b2e663b",
+      "rawBytes": 446858,
+      "testedMergeConfirmed": true
+    }
+  ],
+  "nativeE2E": {
+    "counts": {
+      "tests": 84,
+      "pass": 84,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "durationMs": 516479.085253,
+    "log": "ci-fca98c2-e2e.log.gz",
+    "rawSha256": "ddec9d1a4c7af6ca97558b031da60c010c148130140c09b23dfb8fea441a62ce",
+    "rawBytes": 210507
+  },
+  "workflowSuccesses": [
+    {
+      "name": "Broken Link Checker",
+      "id": 38359128458,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128458",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    },
+    {
+      "name": "Workflows",
+      "id": 38359128424,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128424",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    },
+    {
+      "name": "Example app",
+      "id": 38359128421,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128421",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    },
+    {
+      "name": "Security",
+      "id": 38359128898,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128898",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    },
+    {
+      "name": "Checks and release",
+      "id": 38359128431,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128431",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    },
+    {
+      "name": "Lazada E2E",
+      "id": 38359128493,
+      "url": "https://github.com/konard/lazada-search/actions/runs/38359128493",
+      "conclusion": "success",
+      "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119"
+    }
+  ],
+  "separateCodeQL": {
+    "id": 115169197312,
+    "headCommit": "fca98c2401bf0f3c811ddc0530f3668496f6b119",
+    "conclusion": "success",
+    "annotations": 0
+  },
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "downloads": 0,
+  "userBrowserActions": 0
+}

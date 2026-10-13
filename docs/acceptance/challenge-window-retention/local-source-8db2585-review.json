@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "8db2585d7d48dac60f2eae11003946e1cbfc3e81",
+  "checkedAt": "2026-10-12T17:58:54.709357+00:00",
+  "nodeFull": {
+    "passed": 1483,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 245182.427708,
+    "threadPoolSize": 16
+  },
+  "sourceManifest": "source-8db2585-manifest.json",
+  "logs": {
+    "node-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0fc6476ec70042352b27831bf4a74cb3ee1fb1baa298dba7c6b996392d6d898",
+      "rawBytes": 366983
+    },
+    "native-source-8db2585-full.tap.gz": {
+      "rawSha256": "e0803603b92657457606d75f29001c95cf3c5e7fdc5a38fdc4e35ea7d92e8aa3",
+      "rawBytes": 22637
+    }
+  },
+  "fullE2E": {
+    "passed": 84,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 564673.332041
+  },
+  "ciFullSourceAcceptance": "failed-Windows-Bun-OCR-HTTP-504-and-separate-CodeQL",
+  "separateCodeQL": {
+    "conclusion": "failure",
+    "checkRunId": 114938178394,
+    "annotations": 6,
+    "receipt": "codeql-source-8db2585-failure.json",
+    "annotationReceipt": "codeql-source-8db2585-annotations.json"
+  },
+  "sourceAccepted": false,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "liveMarketRequests": 0,
+  "userBrowserInteraction": false,
+  "ciReceipt": "ci-source-8db2585-review.json"
+}

@@ -1,0 +1,2214 @@
+{
+  "schemaVersion": 4,
+  "scope": "Current source requirement and issue traceability. Automated evidence belongs to its exact source commit; complete live source/data/release acceptance remains separate.",
+  "requirementSources": [
+    "docs/acceptance/requirements-audit/implementation-review.json",
+    "docs/acceptance/requirements-audit/implementation-updates.json",
+    "docs/acceptance/requirements-audit/current.json"
+  ],
+  "githubIssueSnapshot": "docs/acceptance/challenge-window-retention/github-issues.json",
+  "mappedRequirements": 49,
+  "mappedGithubIssues": 44,
+  "openGithubIssues": [3, 14, 32, 36, 42, 43, 44, 45],
+  "closedGithubIssues": 36,
+  "testsExecuted": true,
+  "codeValidation": "automated-local-tests-passed",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "priorAcceptance": [
+    {
+      "path": "docs/acceptance/ice-unit-completeness/validation.json",
+      "publishedCommit": "cec067aaaa1cacabeb2d57d04bb753fdde83731b",
+      "checkedAt": "2026-10-11T21:19:45.815216+00:00",
+      "scope": "Prior dual-unit checkpoint, not these new draft files",
+      "unitTests": 1333,
+      "e2eTests": 64,
+      "archive": {
+        "valid": true,
+        "records": 34257,
+        "blobs": 7031,
+        "downloads": 0
+      }
+    },
+    {
+      "path": "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+      "publishedCommit": "ad1be2636c2c7b91b471e32b0d6842f98630e2a7",
+      "scope": "Historical complete runtime acceptance, not this unexecuted draft",
+      "fullRuntimeJobs": 9,
+      "nativeBrowserE2E": 48
+    }
+  ],
+  "savedDataSnapshot": {
+    "path": "docs/acceptance/requirements-audit/current.json",
+    "checkedAt": "2026-10-11T21:01:14.283Z",
+    "activeScope": {
+      "missingListings": 1298,
+      "missingSkuPrices": 373,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 6403,
+      "specifications": 345,
+      "verifiedProducts": 14,
+      "excludedCategoryListings": 371,
+      "excludedExactOptions": 598
+    },
+    "broaderArchive": {
+      "missingListings": 1449,
+      "missingSkuPrices": 1011,
+      "missingPrices": 0,
+      "unknownSkuInventories": 0,
+      "categoryReview": 7107,
+      "specifications": 357,
+      "verifiedProducts": 16
+    },
+    "wheyCoverage": {
+      "capturedPowderSkus": 334,
+      "strictWheySkus": 102,
+      "strictSoySkus": 1,
+      "verifiedStrictWheySkus": 11,
+      "missingFactoryMatches": 94,
+      "discoveryTasks": 6068,
+      "pendingSkuTasks": 378,
+      "excludedSkuOptions": 601,
+      "originalSourcePointers": 2051,
+      "unresolvedEvidencePointers": 0
+    },
+    "iceCoverage": {
+      "exactSelectedPrices": 14,
+      "bothMassAndVolume": 2,
+      "currentProteinDenominator": 3,
+      "manufacturerChocolateIdentity": 2
+    },
+    "freshlyCollectedDuringDraft": false,
+    "countsAreDatedNotLive": true
+  },
+  "collectionStop": {
+    "id": "browser-collection",
+    "active": true,
+    "reason": "challenge",
+    "detectedAt": "2026-10-11T10:23:22.482Z",
+    "origin": "https://www.optimumnutrition.com",
+    "signals": ["visible-cloudflare-interstitial"],
+    "handoff": {
+      "status": "no-browser-page",
+      "pageOpen": false
+    }
+  },
+  "missingMappedFiles": [],
+  "requirements": [
+    {
+      "id": "R001",
+      "requirement": "Vietnam, VND, delivery to Nha Trang",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/application.js",
+        "src/delivery-context.js",
+        "src/delivery.js",
+        "src/compare.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/lazada-checkout-adapter.js"
+      ],
+      "reviewedDraftBehavior": "Case definitions fix Vietnam/VND; destination and quantity are part of exact quote validation. A one-unit or other-city quote cannot price bulk Nha Trang delivery.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/delivery-context.test.js",
+        "tests/e2e/delivery.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Vietnam/VND and captured destination validation are implemented; draft checkout acquisition carries exact destination and ordered quantity.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accepted exact Nha Trang quotes for every target SKU and requested bulk quantity.",
+      "githubIssues": [16],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R002",
+      "requirement": "Plain/unflavoured or chocolate protein powder only",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/flavour-scope.js",
+        "src/variant-policy.js",
+        "src/config.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-worklist.js",
+        "src/label-worklist.js",
+        "src/shopping-report.js",
+        "src/lazada-checkout-actions.js"
+      ],
+      "reviewedDraftBehavior": "Detailed task and report gates use the selected plain/chocolate whey identity. Unknown options remain pending; vanilla, known soy and shaker options cannot enter target work or ranks.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/variant-policy.test.js",
+        "tests/e2e/preferred-variant.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/case-worklist.js",
+        "src/shopping-report.js",
+        "src/lazada-checkout-actions.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Fresh CLI and Telegram default to chocolate/unflavoured; draft worklists retain the exact selected flavour and exclude soy from whey.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "docs/acceptance/ocr-model-identity/validation.json"
+      ],
+      "externalAcceptanceRequired": "Exhaustive classification and exact selected price/factory verification for every target SKU.",
+      "githubIssues": [8, 16, 17, 39],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R003",
+      "requirement": "Strict chocolate ice-cream core, no other flavours",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/flavour-scope.js", "src/target-category.js"],
+      "draftSourceFiles": [
+        "src/label-worklist.js",
+        "src/shopping-report.js",
+        "src/case-coverage.js"
+      ],
+      "reviewedDraftBehavior": "Strict chocolate-core ice cream is checked independently of coatings, mixed flavours and non-frozen bars; conflicting details reopen category review.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/human-food-scope.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/case-coverage.js",
+        "src/shopping-report.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Chocolate-core, coating, mixed-flavour and other-flavour gates exist; manufacturer drafts require exact source identity before approval.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Exact chocolate-core formula/package identity for every ice SKU; family names or chocolate coatings alone are insufficient.",
+      "githubIssues": [6, 8],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R004",
+      "requirement": "Never select protein plus shaker; buyer already owns one",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/flavour-scope.js",
+        "src/variant-policy.js",
+        "src/browser-variant.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/label-worklist.js",
+        "src/lazada-checkout-actions.js",
+        "src/shopping-report.js"
+      ],
+      "reviewedDraftBehavior": "Selected paid-shaker options are excluded before detail work, mutation and ranking. Accessories never become food mass or volume.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/variant-policy.test.js",
+        "tests/e2e/preferred-variant.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/lazada-checkout-actions.js",
+        "src/shopping-report.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Complete chocolate/no-paid-shaker options are selected before capture; draft worklists apply the same exclusion.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "docs/acceptance/preferred-variant/live-check.json",
+        "docs/acceptance/ocr-model-identity/ci-3af0885-review.json",
+        "docs/acceptance/ocr-model-identity/ci-3821770-review.json"
+      ],
+      "externalAcceptanceRequired": "Review unspecified bundled options and accept the new workflow integration before production use.",
+      "githubIssues": [16, 39],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R005",
+      "requirement": "List discovery before individual product collection",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/crawl.js"],
+      "draftSourceFiles": ["src/case-workflow.js", "src/case-worklist.js"],
+      "reviewedDraftBehavior": "The durable task queue places uncompleted list scopes ahead of product detail work; configured terminal scopes must be accounted for first.",
+      "testDraftFiles": [
+        "tests/page-readiness-tag.test.js",
+        "tests/e2e/tag-search-readiness.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/category-discovery.test.js",
+        "tests/e2e/category-discovery.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "List-only discovery and terminal-page checks exist; draft case stages prioritize full configured discovery before detail tasks.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": ["docs/acceptance/collection-progress.json"],
+      "externalAcceptanceRequired": "Current authoritative category inventory, all terminal list scopes and every relevant exact SKU.",
+      "githubIssues": [3],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R006",
+      "requirement": "Relevant category filters and price sorting",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/crawl.js", "src/application.js"],
+      "draftSourceFiles": ["src/case-workflow.js", "src/case-coverage.js"],
+      "reviewedDraftBehavior": "Relevant category/query scopes and ascending price order are retained; category redirects and scope ambiguities remain explicit and cannot certify marketplace completeness.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/category-discovery.test.js",
+        "tests/category-coverage.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Category/query scope checks and ascending price sorting exist; draft scope manifests never equate public-search exhaustion with the whole market.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": ["docs/acceptance/issue-reports.json"],
+      "externalAcceptanceRequired": "Resolve the redirected protein category and prove the declared inventory scope; no whole-market guarantee follows from query exhaustion.",
+      "githubIssues": [3],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R007",
+      "requirement": "No maximum/minimum package-price filter",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/crawl.js", "src/config.js"],
+      "draftSourceFiles": ["src/case-workflow.js"],
+      "reviewedDraftBehavior": "Case definitions reject package-price cutoffs, preserving potentially cheaper large packages and bulk baskets.",
+      "testDraftFiles": [
+        "tests/page-readiness-tag.test.js",
+        "tests/e2e/tag-search-readiness.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/category-discovery.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "No package price bounds are applied; draft case definitions reject minimum/maximum price-cutoff fields.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept new case-definition guards and complete source discovery without price cutoffs.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R008",
+      "requirement": "Every product and every selling option captured",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/coverage.js",
+        "src/crawl.js",
+        "src/browser-variant.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-worklist.js",
+        "src/case-coverage.js",
+        "src/case-workflow.js"
+      ],
+      "reviewedDraftBehavior": "Listing and exact SKU inventory rows are durable and original-bound. A full composed item/SKU identifier is checked; unresolved inventory/classification blocks completeness.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/category-coverage.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/case-coverage.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Existing listing/SKU coverage audits are composed into finite tasks, exact inventories and manual coverage gates.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": ["docs/acceptance/collection-progress.json"],
+      "externalAcceptanceRequired": "Collect missing target listings/SKU prices and resolve category reviews against an authoritative current inventory.",
+      "githubIssues": [3, 6],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R009",
+      "requirement": "Verify exact selected SKU price and availability",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/browser.js",
+        "src/page-readiness.js",
+        "src/capture-import.js",
+        "src/variant-policy.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/lazada-checkout-line-bindings.js"
+      ],
+      "reviewedDraftBehavior": "Readiness and selected-SKU proof precede pricing; checkout row bindings preserve original item, SKU, quantity, stock and source SHA without rewriting HTML.",
+      "testDraftFiles": [
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/e2e/page-loading.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/lazada-checkout-line-bindings.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Selected SKU, stable loading, price, stock and original-source checks exist; draft line mappings preserve exact identities.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/current-offer-source-audit.json",
+        "docs/acceptance/preferred-variant/live-check.json"
+      ],
+      "externalAcceptanceRequired": "Recheck current selected prices/stock and capture every uncollected selling option.",
+      "githubIssues": [3, 7, 10, 16, 21],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R010",
+      "requirement": "Extract every discount and its eligibility",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/promotions.js",
+        "src/basket-quote.js",
+        "src/checkout-scenarios.js"
+      ],
+      "draftSourceFiles": [
+        "src/lazada-checkout-actions.js",
+        "src/lazada-checkout-adapter.js",
+        "src/shopping-report.js"
+      ],
+      "reviewedDraftBehavior": "Source-bound sale/list prices, thresholds, voucher/payment conditions and exact applied discounts are retained. Prepared scenario controls do not infer eligibility or submit purchases.",
+      "testDraftFiles": [
+        "tests/lazada-checkout-draft.test.js",
+        "tests/promotions.test.js",
+        "tests/e2e/checkout-scenarios.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Source-bound advertised and applied discounts exist; draft sweeps compose quantities, vouchers, payment conditions and exact basket totals.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept real layout extraction and all applicable current voucher/payment/threshold/expiry/stacking combinations.",
+      "githubIssues": [14],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R011",
+      "requirement": "Before/after shipping cost per g, ml and protein g",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/compare.js",
+        "src/basket-comparison.js",
+        "src/food-components.js",
+        "src/package-quantity-review.js"
+      ],
+      "draftSourceFiles": [
+        "src/shopping-report.js",
+        "src/lazada-checkout-adapter.js"
+      ],
+      "reviewedDraftBehavior": "Both independently supported grams and millilitres appear together. All six food/protein unit metrics use exact counts and matched destination/quantity freight; disputed inputs withhold affected rates.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/basket-quotes.test.js",
+        "tests/e2e/ice-quantity-review.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Shared comparator and exact basket arithmetic already support independent food grams, millilitres and protein grams before/after matched shipping; draft reports show every known metric.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
+      ],
+      "externalAcceptanceRequired": "Exact independent quantities/nutrition and current quantity-specific destination shipping for every ranked offer.",
+      "githubIssues": [4, 6, 9, 14, 15, 16, 19],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R012",
+      "requirement": "Exact bulk freight and best basket price",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "src/checkout-scenarios.js",
+        "src/delivery.js"
+      ],
+      "draftSourceFiles": [
+        "src/lazada-checkout-actions.js",
+        "src/lazada-checkout-adapter.js",
+        "src/lazada-checkout-line-bindings.js",
+        "src/basket-original.js"
+      ],
+      "reviewedDraftBehavior": "Immutable scenario plans compare exact basket totals. Shipping and discounts are counted once; one-item bulk quotes enter delivered ranks and mixed-basket totals remain separate.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/checkout-scenarios.test.js",
+        "tests/case-checkout-replay.test.js",
+        "tests/basket-source-invalidations.test.js",
+        "tests/e2e/basket-quotes.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/basket-original.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Exact basket quotes, one-time freight/voucher accounting and durable scenario plans exist; draft adapters acquire and bind actual prepared checkout layouts.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/source-integrity/checkout-scenarios.json"
+      ],
+      "externalAcceptanceRequired": "Source-bound live bulk basket totals and complete relevant quantity/voucher/payment coverage.",
+      "githubIssues": [3, 14],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R013",
+      "requirement": "Frozen ice-cream delivery to Nha Trang",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/compare.js", "src/delivery-context.js"],
+      "draftSourceFiles": [
+        "src/lazada-checkout-adapter.js",
+        "src/case-worklist.js",
+        "src/shopping-report.js"
+      ],
+      "reviewedDraftBehavior": "Frozen destination eligibility remains an independent acceptance gate. Ordinary parcel shipping and other-city ice offers cannot supply a Nha Trang delivered winner.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/delivery-context.test.js",
+        "tests/e2e/delivery.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Frozen-destination guards exist; draft checkout and report paths preserve cold-chain evidence separately from stock and ordinary shipping.",
+      "priorAcceptance": "missing",
+      "priorAcceptanceEvidence": ["docs/acceptance/collection-readiness.md"],
+      "externalAcceptanceRequired": "Actual available frozen Nha Trang delivery and current cold-chain freight for the requested quantities.",
+      "githubIssues": [3],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R014",
+      "requirement": "Manufacturer page/specification for every product",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/manufacturers.js",
+        "src/manufacturer-source-cache.js",
+        "src/manufacturer-research.js",
+        "src/manufacturer-review.js",
+        "src/verification.js"
+      ],
+      "draftSourceFiles": [
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-search.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/label-worklist.js",
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-review.js",
+        "src/ocr-evidence.js"
+      ],
+      "reviewedDraftBehavior": "Factory worklists discover trusted official originals and labels; structured facts require literal identity/revision/currentness. A preview and explicit human review can apply exact verified sources to the catalog.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/manufacturer-research.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-review.js",
+        "src/ocr-evidence.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Registered primary source capture, original SHA checks and exact identity review exist; draft provider discovery, source reuse, OCR and review graphs extend collection.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/manufacturer-research/replay.json",
+        "docs/acceptance/new-manufacturer-domains/sfd-domain-proof.json"
+      ],
+      "externalAcceptanceRequired": "Configure an approved search provider if needed, clear the original challenge explicitly and verify every exact current manufacturer package/formula.",
+      "githubIssues": [3, 13, 24],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R015",
+      "requirement": "Manufacturer corrections override Lazada errors",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/verification.js",
+        "src/manufacturer-review.js",
+        "src/catalog-products.js"
+      ],
+      "draftSourceFiles": [
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "reviewedDraftBehavior": "The review bridge stages original-bound identity/quantity/nutrition reconciliation before publishing corrected product fields, retains seller claims and leaves actual offer prices unchanged.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/manufacturer-workflow-draft.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Exact manufacturer review overrides conflicting seller fields while retaining original claims and corrections; drafts only propose source-bound facts.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Apply source-verified exact corrections to every conflicting listing without transferring another flavour or package.",
+      "githubIssues": [13],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R016",
+      "requirement": "OCR of original images and labels",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/ocr.js",
+        "src/ocr-models.js",
+        "src/package-image.js"
+      ],
+      "draftSourceFiles": [
+        "src/label-worklist.js",
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/ocr-evidence.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "reviewedDraftBehavior": "Persisted OCR, original/derived image bytes, transform recipe, TSV words/confidence and model provenance are checked together before any proposed fact is accepted.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/ocr-crops.test.js",
+        "tests/e2e/ice-quantity-review.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/ocr-evidence.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Native OCR, model fingerprints, raw TSV and source transforms exist; draft worklists schedule reused originals and bounded local passes.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Complete original label/image coverage and exact human/factory review of ambiguous or OCR-only proposals.",
+      "githubIssues": [4, 11, 21, 25, 26, 37, 38],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R017",
+      "requirement": "Parse all Vietnamese marketplace text and provide proper English",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/translation.js",
+        "src/translation-quality.js",
+        "src/translation-presentation.js",
+        "src/translation-presentation-chunks.js",
+        "src/text.js",
+        "src/nutrition.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/workflow-operations.js",
+        "src/shopping-report.js",
+        "src/translation-catalog.js"
+      ],
+      "reviewedDraftBehavior": "Translation work remains source-bound and cached. Shopping rows retain reviewed English and original Vietnamese for title, description/specifications and commercial fields; stale title bindings fall back to originals.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/translation-quality.test.js",
+        "tests/translation-catalog.test.js",
+        "tests/e2e/translation-catalog.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/shopping-report.js",
+        "src/translation-catalog.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Cached VI-to-EN translation, exact commercial token preservation, reviewed chunks and English interface overlays already exist; draft case orchestration schedules unresolved fields.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Configure provider access and accept semantic English for every retained product, description, discount, delivery condition and dialog.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R018",
+      "requirement": "Manual extraction and completeness verification",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "scripts/audit-current-offer-sources.mjs",
+        "scripts/audit-ice-unit-completeness.mjs"
+      ],
+      "draftSourceFiles": [
+        "src/case-coverage.js",
+        "src/case-worklist.js",
+        "src/case-workflow.js"
+      ],
+      "reviewedDraftBehavior": "Per-card manual decisions bind the current card fingerprint and original source SHA. Aggregate review flags cannot waive unknown/conflicting details; a current stored review is consumable by the runner.",
+      "testDraftFiles": [
+        "tests/requirement-coverage.test.js",
+        "tests/case-workflow-draft.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/case-coverage.js",
+        "src/case-workflow.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Original-source and visual audits exist; drafts persist explicit source-bound price, quantity, classification and pagination manual review records.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/top10-check/unit-cost-audit.md",
+        "docs/acceptance/whey-source-expansion/review.json",
+        "docs/acceptance/validation.json"
+      ],
+      "externalAcceptanceRequired": "Complete actual all-product/all-list manual review; records alone do not certify extraction correctness.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R019",
+      "requirement": "Associative binary store and .lino links",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/store.js",
+        "src/blob-publication.js",
+        "src/archive.js",
+        "src/native-store.js",
+        "src/doublets.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/manufacturer-workflow.js",
+        "docs/architecture.md",
+        "README.md"
+      ],
+      "reviewedDraftBehavior": "New workflow/review records use the existing canonical .lino, binary associative links and content-addressed blob store, retaining semantic evidence/source relationships.",
+      "testDraftFiles": [
+        "tests/blob-publication.test.js",
+        "tests/archive.test.js",
+        "tests/links-workflow.test.js",
+        "tests/e2e/native-store.test.js"
+      ],
+      "additionalDraftSourceFiles": ["docs/architecture.md", "README.md"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Durable .lino/associative binary and content-addressed original storage exist; new workflow kinds use that same store.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/validation.json"
+      ],
+      "externalAcceptanceRequired": "Export actual new collected workflow records and verify their JSON/.lino/binary/blob projections after execution.",
+      "githubIssues": [1, 5, 22, 28, 34, 36],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R020",
+      "requirement": "Maximum cache reuse, reload only invalid/missing data",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/cache.js",
+        "src/store.js",
+        "src/blob-publication.js",
+        "src/historical-capture-replay.js",
+        "src/collection-source-replay.js",
+        "src/publication-cache.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-worklist.js",
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-search.js",
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/label-worklist.js"
+      ],
+      "reviewedDraftBehavior": "Source/evidence/cache-ID invalidations prevent reuse; search result limits participate in cache keys. Missing work is distinct from deferred recollection and volatile offer revalidation.",
+      "testDraftFiles": [
+        "tests/blob-publication.test.js",
+        "tests/manufacturer-source-validity.test.js",
+        "tests/handpicked-links.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/publication-cache.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/manufacturer-source-validity.js",
+        "src/source-invalidation.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/label-worklist.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Invalidation-aware negative/source caches, chronological replay and verified publication proofs exist; draft workflows reuse them and expose bounded retries.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/offline-reprocessing.json"
+      ],
+      "externalAcceptanceRequired": "Accept draft retry/source-cache integration and separately revalidate volatile current prices.",
+      "githubIssues": [1, 10, 18, 20, 22, 24, 26, 27, 36, 38],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R021",
+      "requirement": "Public/private collection shares correct data without duplication",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/store.js",
+        "src/catalog-products.js",
+        "src/public-captures.js",
+        "src/config.js"
+      ],
+      "draftSourceFiles": [
+        "src/manufacturer-workflow.js",
+        "src/lazada-checkout-line-bindings.js"
+      ],
+      "reviewedDraftBehavior": "Public sources can feed private workflows through exact verified originals; private checkout visibility and credentials remain separate. OCR metadata does not replace physical source proof.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/account-cache.test.js",
+        "tests/e2e/archive.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Private overlays reuse exact public captures/reviews without copying private prices or credentials; draft source and line tasks retain these boundaries.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept the new workflow/checkout adapters against public/private source overlays and real account originals.",
+      "githubIssues": [1, 12, 20, 34, 44],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R022",
+      "requirement": "Entire public case reproducible from repository",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/archive.js", "scripts/archive-case.mjs"],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/shopping-report.js",
+        "tests/fixtures/draft-workflows/products.json"
+      ],
+      "reviewedDraftBehavior": "Public source bytes, records, notation and binary archives remain reproducible; new synthetic test data is separate from real buying evidence. Private originals are never wholesale published.",
+      "testDraftFiles": [
+        "tests/archive-telemetry-redaction.test.js",
+        "tests/archive-provenance.test.js",
+        "tests/public-cache.test.js",
+        "tests/e2e/archive.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "tests/fixtures/draft-workflows/products.json"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Collected public/redacted originals and JSON/.lino/binary projections replay from the repository; draft workflow/report records use the same archive.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Collect absent products first; private credentials and unredacted account captures remain local.",
+      "githubIssues": [1, 5, 12, 22, 28, 31, 34, 36, 44],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R023",
+      "requirement": "Library, CLI and HTTP interfaces",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/index.js",
+        "src/index.d.ts",
+        "src/commands.js",
+        "src/operations.js",
+        "src/http-operations.js",
+        "src/server.js"
+      ],
+      "draftSourceFiles": [
+        "src/workflow-commands.js",
+        "src/workflow-operations.js",
+        "src/manufacturer-workflow-review.js",
+        "src/index.d.ts",
+        "src/workflow-types.d.ts"
+      ],
+      "reviewedDraftBehavior": "New review preview/approval, case, checkout and report operations are wired through application methods, exports, declarations and the shared CLI/HTTP dispatcher.",
+      "testDraftFiles": [
+        "tests/lazada-checkout-gifts.test.js",
+        "tests/public-api-typecheck.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/fixtures/public-api-types.ts"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/manufacturer-workflow-review.js",
+        "src/index.d.ts",
+        "src/workflow-types.d.ts"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Structured collect/review/quote/research/translation operations already have library/CLI/HTTP parity; drafts add case, manufacturer, checkout, handpicked and report operations.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept actual configured providers and marketplace layouts; automated library/CLI/HTTP/Telegram interface E2E acceptance passed at source171b250.",
+      "githubIssues": [29, 30, 35],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R024",
+      "requirement": "Telegram interface with E2E tests",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/telegram.js", "src/operations.js"],
+      "draftSourceFiles": ["src/workflow-operations.js"],
+      "reviewedDraftBehavior": "Allowlisted private Telegram uses the same operation dispatcher; new E2E drafts compare report values and workflow status with library/CLI/HTTP and check chunking/authorization.",
+      "testDraftFiles": [
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/e2e/telegram.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Authorized private-chat structured Telegram operations already have local mock E2E acceptance; draft operations extend that shared dispatcher.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept an owner-configured allowlisted live bot deployment; operation E2E tests passed at source171b250.",
+      "githubIssues": [29],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R025",
+      "requirement": "Fully automated existing account / separate profile login",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/login.js",
+        "src/session.js",
+        "src/persistent-browser.js"
+      ],
+      "draftSourceFiles": ["src/case-readiness.js"],
+      "reviewedDraftBehavior": "Existing separate-profile login supports Zalo first and SMS alternatives, while user-held OTP and current authenticated state remain explicit operator inputs.",
+      "testDraftFiles": [
+        "tests/e2e/account-login.test.js",
+        "tests/browser-connection.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [
+        "Operator supplies current OTP if required; codes and profile credentials stay private."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Private persistent profile and Zalo/SMS OTP flows exist; readiness keeps current authentication and user-held OTP external.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": ["docs/acceptance/collection-readiness.md"],
+      "externalAcceptanceRequired": "User-held OTP/CAPTCHA and a current authenticated session in the owned separate profile.",
+      "githubIssues": [2],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R026",
+      "requirement": "Slow collection and stop on dialogs/challenges",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/cache.js",
+        "src/browser.js",
+        "src/page-challenge.js",
+        "src/page-dialogs.js",
+        "src/page-readiness.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/manufacturer-workflow-search.js",
+        "src/lazada-checkout-actions.js"
+      ],
+      "reviewedDraftBehavior": "Collectors and prepared checkout requests retain global challenge/dialog/loading gates and slow scheduling. Actions verify the current original control and selected SKU before each change.",
+      "testDraftFiles": [
+        "tests/browser-pacing.test.js",
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/image-redirect-pacing.test.js",
+        "tests/e2e/dialog-variant.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Default slow scheduling, readiness checks, dialog resolution and persisted security stops exist; draft requests preserve guards and search pacing is at least 60 seconds.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept new concrete search/checkout request paths with actual pacing, dialog and challenge guards.",
+      "githubIssues": [23, 24, 25, 26, 27, 35, 40],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R027",
+      "requirement": "Educational disclosure default, not healthcare-worker claim",
+      "codeStatus": "existing-implementation",
+      "sourceFiles": ["src/page-dialogs.js"],
+      "draftSourceFiles": [],
+      "reviewedDraftBehavior": "Known disclosure is interpreted as wishing to learn, which satisfies its second alternative without asserting healthcare-worker status; unknown dialogs stop for review.",
+      "testDraftFiles": ["tests/e2e/dialog-variant.test.js"],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Known disclosure confirmation selects the wish-to-learn alternative without claiming healthcare-worker status.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Unknown future disclosure wording requires review; do not blindly confirm different dialogs.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R028",
+      "requirement": "Persistent browser window across restarts,30-minute idle close",
+      "codeStatus": "existing-implementation",
+      "sourceFiles": [
+        "src/persistent-browser.js",
+        "src/persistent-browser-worker.js"
+      ],
+      "draftSourceFiles": [
+        "src/browser-challenge-handoff.js",
+        "src/browser-connection.js"
+      ],
+      "reviewedDraftBehavior": "Owned windows preserve the exact detected challenge target through cleanup, timeouts, idle and supervisor recovery. Read-only status never launches. Resume reconnects the original target only; ordinary 30-minute idle closure applies after explicit clearance.",
+      "testDraftFiles": [
+        "tests/browser-challenge-handoff.test.js",
+        "tests/browser-connection.test.js",
+        "tests/e2e/challenge-window-retention.test.js",
+        "tests/browser-pacing.test.js",
+        "tests/e2e/persistent-window.test.js",
+        "tests/e2e/persistent-window-recovery.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Owned windows reuse exact targets across restarts. Detected challenge pages survive cleanup and idle; ordinary 30-minute idle closure resumes after explicit clearance. Missing targets are never automatically reopened.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Current live session adoption/idle behavior when collection resumes; new code has not launched a browser.",
+      "githubIssues": [2, 42],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R029",
+      "requirement": "No restore/translation/promotional browser chrome obstruction",
+      "codeStatus": "existing-implementation",
+      "sourceFiles": ["src/browser.js", "src/persistent-browser-worker.js"],
+      "draftSourceFiles": [],
+      "reviewedDraftBehavior": "Dedicated-profile launch settings suppress restore/translation obstruction and preserve ownership boundaries for attached browsers. Upstream obstruction reports retain their receipts.",
+      "testDraftFiles": [
+        "tests/browser-connection.test.js",
+        "tests/e2e/persistent-window.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [
+        "Verify the visible owned-browser chrome during later live acceptance; report a reproduced unresolved obstruction upstream after checking existing issues."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Dedicated browser settings disable restore/translation obstructions; attached profiles retain ownership boundaries and upstream issue receipts.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": ["docs/acceptance/issue-reports.json"],
+      "externalAcceptanceRequired": "Observe current owned-browser chrome and report unresolved obstruction; attached profiles remain owned by their operator.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R030",
+      "requirement": "Fluid scrolling, products plus pager visible, avoid footer",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/page-scroll.js"],
+      "draftSourceFiles": ["src/lazada-checkout-actions.js"],
+      "reviewedDraftBehavior": "Catalog scroll geometry remains bounded to products/pager; checkout control positioning uses the existing animation helper with a 650 ms animation.",
+      "testDraftFiles": [
+        "tests/e2e/page-scroll.test.js",
+        "tests/workflow-reliability.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/lazada-checkout-actions.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Animated bounded scrolling keeps product/pager geometry visible; prepared checkout actions compose the existing stable viewport behavior.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept the draft real checkout layout/actions and future live catalog geometry.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R031",
+      "requirement": "Screenshots do not jump/resize the page",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/page-capture.js"],
+      "draftSourceFiles": ["src/lazada-checkout-adapter.js"],
+      "reviewedDraftBehavior": "Prepared capture uses existing viewport screenshot paths and stable page checks, avoiding full-page resizing and retaining capture geometry.",
+      "testDraftFiles": [
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/page-capture.test.js",
+        "tests/e2e/page-scroll.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Viewport screenshots preserve geometry without full-page resize; checkout drafts use the established capture path.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": ["docs/acceptance/issue-reports.json"],
+      "externalAcceptanceRequired": "Accept new real-layout captures and preserve the viewport/capture position.",
+      "githubIssues": [35],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R032",
+      "requirement": "Report dependency and implementation defects upstream",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "docs/acceptance/issue-reports.json",
+        "docs/drafts/github-issues.json"
+      ],
+      "draftSourceFiles": [
+        "src/requirement-registry.js",
+        "docs/drafts/github-issues-review.json",
+        "docs/acceptance/issue-reports.json"
+      ],
+      "reviewedDraftBehavior": "All 42 project GitHub issues are reconciled with the current snapshot. Browser Commander interruption ownership is reported upstream as issue174, with its consumer workaround and actual native regression evidence retained.",
+      "testDraftFiles": [],
+      "additionalDraftSourceFiles": [
+        "docs/drafts/github-issues-review.json",
+        "docs/acceptance/issue-reports.json"
+      ],
+      "operatorSteps": [
+        "Root or maintainer verifies a reproduced dependency defect in the respective upstream repository, checks for an existing report, then files or updates a source-backed report. Static-only drafting does not claim a new runtime defect was reproduced."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "operator-procedure-recorded-external-execution-pending",
+      "implementedBehavior": "Local defect/upstream reporting receipts exist; the draft registry records every issue and preserves open external/data acceptance.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/issue-reports.json",
+        "docs/acceptance/collection-readiness.md"
+      ],
+      "externalAcceptanceRequired": "Recheck and report new reproduced upstream defects when execution resumes; existing closed issue state comes from the saved snapshot.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R033",
+      "requirement": "Update Browser Commander when newer version available",
+      "codeStatus": "existing-implementation",
+      "sourceFiles": ["package.json", "package-lock.json", "deno.lock"],
+      "draftSourceFiles": [],
+      "reviewedDraftBehavior": "The official registry/release check found Browser Commander0.31.2, and npm/lock dependencies were updated. Focused and full runtime/native acceptance must use that exact reviewed graph.",
+      "testDraftFiles": [
+        "tests/runtime-workflow.test.js",
+        "tests/package-metadata.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [
+        "Root checks official releases before the next collection session; when newer, updates package/lock graphs and records new acceptance before release."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Official npm/release checks found Browser Commander0.31.2; package/lock graphs were updated and new runtime/native validation is recorded in the challenge-retention acceptance.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "docs/acceptance/browser-commander-031/README.md",
+        "docs/acceptance/browser-commander-031/review.json",
+        "docs/acceptance/ocr-model-identity/validation.json"
+      ],
+      "externalAcceptanceRequired": "An actual official latest-release check and new dependency acceptance before any future update.",
+      "githubIssues": [33],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R034",
+      "requirement": "At most2 agents for continued work, root also works",
+      "codeStatus": "operational-recorded",
+      "sourceFiles": ["docs/REQUIREMENTS.md"],
+      "draftSourceFiles": ["src/requirement-registry.js"],
+      "reviewedDraftBehavior": "This review used two delegated agents and root implementation work; the limit remains an operator constraint, not an application readiness claim.",
+      "testDraftFiles": [],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [
+        "Root keeps at most two delegated agents active and also performs implementation/review work."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "operator-procedure-recorded-external-execution-pending",
+      "implementedBehavior": "Operational requirement: at most two delegated agents and root implementation work remain recorded; no repository function certifies agent activity.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/bun-parallel-review/receipt.json.gz",
+        "docs/acceptance/ocr-model-identity/bun-parallel-validation.json"
+      ],
+      "externalAcceptanceRequired": "Continue operational compliance; no testing or market-data acceptance can be inferred from delegation.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R035",
+      "requirement": "Publish top10 partial prices immediately",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "scripts/export-deadline-report.mjs",
+        "scripts/export-ice-unit-report.mjs",
+        "scripts/export-handpicked-report.mjs"
+      ],
+      "draftSourceFiles": [
+        "src/shopping-report.js",
+        "src/workflow-operations.js"
+      ],
+      "reviewedDraftBehavior": "The report renderer publishes separate captured, manufacturer-verified and qualified ranks for every independent denominator; it exposes top-ten shortfalls explicitly.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/deadline-report.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/shopping-report.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Published partial whey/ice/handpicked tables already exist; draft report generation ranks independent metrics and reports shortfalls explicitly.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "A full top ten requires at least ten correctly sourced eligible rows for that denominator; complete current delivered winners remain unavailable.",
+      "githubIssues": [31],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R036",
+      "requirement": "Commit/push code, tests and precached public evidence",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/archive.js",
+        "scripts/publish-collection-checkpoint.mjs",
+        "scripts/publish-retry.mjs"
+      ],
+      "draftSourceFiles": ["src/requirement-registry.js"],
+      "reviewedDraftBehavior": "New code, meaningful test drafts, synthetic fixture, review receipts and roadmap are included in the draft branch publication; accepted public archives and historical tables remain retained.",
+      "testDraftFiles": [
+        "tests/collection-checkpoint.test.js",
+        "tests/publish-retry.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [
+        "Root commits and pushes this reviewed draft checkpoint, then verifies local and remote branch identity; do not merge unexecuted drafts into the accepted release."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Source, tests, public evidence and roadmap are committed/pushed in PR41; immutable source acceptance preserves all local and CI logs.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "https://github.com/konard/lazada-search/commit/99ffc7c006e385d3e38b4b0fc4db381b5d489dab",
+        "docs/acceptance/ocr-model-identity/ci-99ffc7c-review.json",
+        "docs/acceptance/ocr-model-identity/validation.json"
+      ],
+      "externalAcceptanceRequired": "Continue committing/pushing subsequent changes and preserve their exact validation evidence; published source171b250 passed all local and CI suites.",
+      "githubIssues": [12, 18, 32],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R037",
+      "requirement": "Production ready and exhaustive market winner",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/coverage.js", "src/verification.js"],
+      "draftSourceFiles": [
+        "src/case-readiness.js",
+        "src/case-coverage.js",
+        "src/case-workflow.js",
+        "src/requirement-registry.js",
+        "docs/drafts/acceptance-plan.md",
+        "scripts/requirement-audit-gates.mjs",
+        "scripts/audit-case-requirements.mjs",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js"
+      ],
+      "reviewedDraftBehavior": "Readiness distinguishes accepted software mechanics from missing production and all-market data; current source-bound inventory/manual review and real-layout acceptance remain mandatory.",
+      "testDraftFiles": [
+        "tests/requirement-audit-gates.test.js",
+        "tests/requirement-coverage.test.js",
+        "tests/case-readiness-evidence.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/e2e/verified-case.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "docs/drafts/acceptance-plan.md",
+        "scripts/requirement-audit-gates.mjs",
+        "scripts/audit-case-requirements.mjs",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js"
+      ],
+      "operatorSteps": [
+        "Preserve completed source171b250 automated acceptance; complete current original-layout/inventory/specs/English/discounts/exact freight and live bot acceptance. Package owner configures npm trusted publishing for issue 32 before release."
+      ],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Readiness evaluates current source-bound captured inventory, exact quantity/destination prices, original bytes, manufacturer specs, all unit rates and reviewed cached English; whole-market and production acceptance remain separate.",
+      "priorAcceptance": "missing",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/validation.json",
+        "docs/acceptance/collection-progress.json"
+      ],
+      "externalAcceptanceRequired": "Complete inventory/factory/nutrition/English data, current real-layout acceptance, exact bulk/frozen quotes, live bot and owner release configuration; source171b250 automated acceptance is complete.",
+      "githubIssues": [3, 29, 30, 32, 33, 34, 35, 36],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R038",
+      "requirement": "Independent ice grams/ml/protein rankings and dual-unit details",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/compare.js",
+        "src/package-quantity-review.js",
+        "scripts/ice-unit-rankings.mjs",
+        "scripts/export-ice-unit-report.mjs"
+      ],
+      "draftSourceFiles": [
+        "src/label-worklist.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/shopping-report.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "reviewedDraftBehavior": "Ice report rows keep independent grams/ml/protein quantities and all corresponding before/after rates, while label tasks seek missing units. No density is fabricated.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/ice-unit-rankings.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/manufacturer-workflow-review.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Shared dual-unit review and every published ice ranking already display known grams/ml and both rates; draft tasks independently seek missing labels/nutrients.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Collect independent exact grams/ml and protein/ingredient labels for missing ice rows; never guess density or use a disputed family quantity.",
+      "githubIssues": [6, 9],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R039",
+      "requirement": "Separate whey and soy categories in buying tables",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "scripts/report-unit-costs.mjs",
+        "src/nutrition.js",
+        "src/flavour-scope.js"
+      ],
+      "draftSourceFiles": ["src/shopping-report.js", "src/label-worklist.js"],
+      "reviewedDraftBehavior": "Whey, soy and mixed proteins have distinct ranking lanes; cheap soy and vanilla cannot displace plain/chocolate whey.",
+      "testDraftFiles": [
+        "tests/shopping-workflow-draft.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/report-unit-costs.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Report classification separates whey, soy, mixed and other proteins; draft library reports retain category-specific rankings.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Complete actual relevant inventory and exact category/flavour reviews; accepting report categories does not collect absent products.",
+      "githubIssues": [17, 39],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R040",
+      "requirement": "All submitted short-link options and exact top10 membership tracked",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "scripts/export-handpicked-report.mjs",
+        "docs/acceptance/top10-check/handpicked-links.json"
+      ],
+      "draftSourceFiles": [
+        "src/handpicked-links.js",
+        "src/shopping-report.js",
+        "src/workflow-operations.js"
+      ],
+      "reviewedDraftBehavior": "Submitted links are retained distinctly, resolved only against intact source bytes and displayed by gram cost; exact SKU and listing membership counts are separate.",
+      "testDraftFiles": [
+        "tests/handpicked-links.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/handpicked-report.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "All submitted links remain distinct submissions with exact SKU and listing membership; drafts add durable registration/resolution and gram-sorted comparison.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/top10-check/handpicked-manufacturer-review.json"
+      ],
+      "externalAcceptanceRequired": "Refresh exact submitted options and prices and accept the new resolver; wrong-flavour/unavailable or disputed-mass options stay outside qualified ranks.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R041",
+      "requirement": "New requests stop globally on persisted CAPTCHA until explicit resume",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/page-challenge.js",
+        "src/cache.js",
+        "src/manufacturer-source-cache.js",
+        "src/browser-image-cache.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-workflow.js",
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-search.js",
+        "src/lazada-checkout-capture.js",
+        "src/browser-challenge-handoff.js"
+      ],
+      "reviewedDraftBehavior": "A persisted global collection stop blocks all new website requests, including factory/images and prepared checkout. Offline reports and planning never clear that stop.",
+      "testDraftFiles": [
+        "tests/browser-challenge-handoff.test.js",
+        "tests/e2e/challenge-window-retention.test.js",
+        "tests/handpicked-links.test.js",
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/lazada-checkout-draft.test.js",
+        "tests/e2e/captcha-stop.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/browser-challenge-handoff.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Persisted CAPTCHA stops guard marketplace, image, manufacturer, login and delivery requests; draft execution never clears the stop implicitly.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/source-integrity/natural-chocolate-manufacturer/collection-stop.json",
+        "docs/acceptance/ocr-model-identity/validation.json"
+      ],
+      "externalAcceptanceRequired": "The saved Optimum Nutrition stop came from an HTTP original, with no retained browser page. Do not claim it awaits the user or open a window automatically. Actual browser challenges retain the exact page; resume requires explicit same-origin clearance.",
+      "githubIssues": [23, 25, 26, 27, 40, 42],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R042",
+      "requirement": "Uncollected backlog precedes old recollection, with resumable failures",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/collection-scope.js", "src/availability.js"],
+      "draftSourceFiles": [
+        "src/case-worklist.js",
+        "src/case-workflow.js",
+        "src/case-workflow-lock.js"
+      ],
+      "reviewedDraftBehavior": "Missing-first work remains durable and bounded; interrupted tasks/locks/failures are retained, old recollection is deferred, and a valid manual review can finish its task.",
+      "testDraftFiles": [
+        "tests/e2e/draft-workflow-interfaces.test.js",
+        "tests/case-workflow-draft.test.js",
+        "tests/account-backlog-order.test.js",
+        "tests/account-collection-attempts.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Existing attempt/reuse mechanics are extended into bounded durable case tasks; uncollected work precedes optional recollection and interrupted tasks are recoverable.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Complete the real pending collection queue; task lease/recovery/order regressions passed at source171b250 and task exhaustion is not market completeness.",
+      "githubIssues": [18],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R043",
+      "requirement": "Protein type, ingredients and disclosed nutritional components for healthy-buy comparison",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/nutrition.js",
+        "src/verification.js",
+        "src/compare.js"
+      ],
+      "draftSourceFiles": [
+        "src/manufacturer-workflow-facts.js",
+        "src/label-worklist.js",
+        "src/shopping-report.js",
+        "src/manufacturer-workflow-review.js",
+        "src/case-worklist.js"
+      ],
+      "reviewedDraftBehavior": "Factory facts include protein type, source ingredients, nutrient basis and identity; shopping rows expose these factual components. Partial correction leaves still-missing nutrition/ingredients scheduled.",
+      "testDraftFiles": [
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/urgent-ingredients.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/manufacturer-workflow-review.js",
+        "src/case-worklist.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Protein type, original ingredients, nutrients and ingredient flags exist; draft manufacturer candidates and reports preserve sourced factual comparisons.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Every product’s exact current manufacturer nutrition and ingredients; no unsupported universal health score is produced.",
+      "githubIssues": [],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R044",
+      "requirement": "Record every nonmatching search result and reuse evidence-backed exclusions",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/crawl.js",
+        "src/scope-decisions.js",
+        "src/target-category.js",
+        "src/collection-scope.js"
+      ],
+      "draftSourceFiles": [
+        "src/case-worklist.js",
+        "src/case-coverage.js",
+        "src/shopping-report.js"
+      ],
+      "reviewedDraftBehavior": "Every observed nonmatching result is retained with its original card/source. Reviewed exclusions affect both task planning and report ranks, and changed originals revoke them.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/scope-decisions.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/case-coverage.js",
+        "src/shopping-report.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Every observed search card and versioned negative decision is retained; contradictions reopen exclusions and drafts reuse the ledger.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept new case worklist integration and complete review of uncertain classifications.",
+      "githubIssues": [8, 17],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R045",
+      "requirement": "Confirmed removed listings must not stop the queue or remain current buying offers",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/availability.js",
+        "src/coverage.js",
+        "src/public-captures.js",
+        "src/page-readiness.js"
+      ],
+      "draftSourceFiles": ["src/case-workflow.js", "src/case-worklist.js"],
+      "reviewedDraftBehavior": "Confirmed source-bound removed listings remain per-item queue outcomes and cannot retain current ranks; later valid observations reopen work. Blank, login and challenge pages do not prove removal.",
+      "testDraftFiles": [
+        "tests/case-workflow-draft.test.js",
+        "tests/removed-product.test.js",
+        "tests/availability.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Original unavailable notices are per-listing outcomes; stale offers are excluded and later positive observations/invalidation reopen collection.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/requirements-audit/implementation-review.json"
+      ],
+      "externalAcceptanceRequired": "Accept new queue/manifest integration; blank/login/challenge pages must never establish deletion.",
+      "githubIssues": [7],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R046",
+      "requirement": "Disputed package quantities and ambiguous OCR must not produce unit-price rankings",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/specification-holds.js",
+        "src/package-image.js",
+        "src/package-mass-consistency.js",
+        "src/package-artwork-consistency.js",
+        "src/food-offer-source-basis.js",
+        "src/ocr.js",
+        "src/compare.js"
+      ],
+      "draftSourceFiles": [
+        "src/label-worklist.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/ocr-evidence.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "reviewedDraftBehavior": "Disputed mass, count, artwork and OCR identities withhold derived denominators. Factory review requires exact current flavour/package/formula and original-bound evidence before releasing holds.",
+      "testDraftFiles": [
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/shopping-workflow-draft.test.js",
+        "tests/package-mass-quarantine.test.js"
+      ],
+      "additionalDraftSourceFiles": [
+        "src/ocr-evidence.js",
+        "src/manufacturer-workflow-review.js"
+      ],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Quantity/serving/selected-artwork contradictions and ambiguous OCR withhold affected denominators; draft fact proposals keep the same review boundary.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ice-unit-completeness/validation.json",
+        "docs/acceptance/manufacturer-research/second-ocr-pass.json",
+        "docs/acceptance/decimal-ocr/replay.json",
+        "docs/acceptance/decimal-ocr/validation.json"
+      ],
+      "externalAcceptanceRequired": "Exact selected package/formula/source identity and supported measurements for held rows; no candidate becomes an approved ranking automatically.",
+      "githubIssues": [4, 9, 11, 15, 19, 20, 21, 37],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R047",
+      "requirement": "Count confirmed food gifts separately from paid multipacks and accessory gifts in exact bulk orders",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        "src/food-components.js",
+        "src/food-component-evidence.js",
+        "src/comparison-inputs.js",
+        "src/food-offer-discovery.js"
+      ],
+      "draftSourceFiles": [
+        "src/lazada-checkout-gifts.js",
+        "src/lazada-checkout-actions.js"
+      ],
+      "reviewedDraftBehavior": "Gift discovery produces review work; only confirmed exact food quantity/nutrition/allocation/eligibility changes denominators. Paid multipacks, bonuses and non-food gifts remain separate.",
+      "testDraftFiles": [
+        "tests/lazada-checkout-gifts.test.js",
+        "tests/e2e/prepared-checkout-adapter.test.js",
+        "tests/food-components.test.js",
+        "tests/food-component-evidence.test.js",
+        "tests/food-component-persistence.test.js",
+        "tests/bonus-paid-mass-hold.test.js"
+      ],
+      "additionalDraftSourceFiles": [],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Reviewed food-component accounting separates paid, bonus and accessory packages; draft checkout gift discovery/acquisition generates source-bound review work.",
+      "priorAcceptance": "partial",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/bonus-food-followup/review.json",
+        "docs/acceptance/bonus-food-followup/integration.json"
+      ],
+      "externalAcceptanceRequired": "Issue 14 remains open until exact real bonus identity, label, quantity, stock and order eligibility are reviewed and reflected in accepted checkout totals.",
+      "githubIssues": [14],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R048",
+      "requirement": "Native OCR model bytes and actual platform recipes bind cache provenance",
+      "codeStatus": "draft-extension",
+      "sourceFiles": ["src/ocr-models.js", "src/ocr.js"],
+      "draftSourceFiles": [
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/ocr-evidence.js"
+      ],
+      "reviewedDraftBehavior": "Native model provenance fingerprints actual model bytes; transformed OCR verifies persisted renderer/crop/source-pass/TSV proofs without relabelling derived pixels as original.",
+      "testDraftFiles": [
+        "tests/manufacturer-source-validity.test.js",
+        "tests/ocr-models.test.js",
+        "tests/manufacturer-workflow-draft.test.js",
+        "tests/ocr-crops.test.js"
+      ],
+      "additionalDraftSourceFiles": ["src/ocr-evidence.js"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Original pixels, actual trained-model bytes, transformation provenance and TSV replay already bind native OCR; draft scheduling composes that accepted engine.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "https://github.com/konard/lazada-search/issues/37",
+        "https://github.com/konard/lazada-search/issues/38",
+        "docs/acceptance/ocr-decimal-portability/README.md"
+      ],
+      "externalAcceptanceRequired": "Collect and review the missing actual label originals; orchestration, native model-byte/cache contracts and full matrix acceptance passed at source171b250.",
+      "githubIssues": [11, 33, 37, 38],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    },
+    {
+      "id": "R049",
+      "requirement": "Documentation publication and CI must not bypass collector CAPTCHA stops, pacing and caches",
+      "codeStatus": "draft-extension",
+      "sourceFiles": [
+        ".github/workflows/links.yml",
+        "scripts/recheck-broken-links.mjs"
+      ],
+      "draftSourceFiles": [
+        "src/requirement-registry.js",
+        ".github/workflows/links.yml"
+      ],
+      "reviewedDraftBehavior": "Documentation publication retains offline repository-link/source-digest checks; neither the audit nor CI probes source websites during the active challenge stop.",
+      "testDraftFiles": [
+        "tests/recheck-broken-links.test.js",
+        "tests/ci-workflow-policy.test.js"
+      ],
+      "additionalDraftSourceFiles": [".github/workflows/links.yml"],
+      "operatorSteps": [],
+      "draftReviewStatus": "statically-reviewed-draft",
+      "functionalAcceptance": "local-regressions-passed-live-acceptance-pending",
+      "implementedBehavior": "Documentation CI uses offline local-link validation and source digest checks; draft requirements do not initiate probes or bypass stops.",
+      "priorAcceptance": "implemented",
+      "priorAcceptanceEvidence": [
+        "docs/acceptance/ocr-model-identity/ci-ad1be26-review.json",
+        "https://github.com/konard/lazada-search/issues/40",
+        "docs/acceptance/ocr-model-identity/validation.json",
+        "docs/acceptance/ocr-model-identity/offline-link-contract.json"
+      ],
+      "externalAcceptanceRequired": "Accept any changed CI/publication integration without external probes; historical offline-link success is not current external URL liveness.",
+      "githubIssues": [40],
+      "currentDraftAcceptance": "local-regressions-passed-live-acceptance-pending"
+    }
+  ],
+  "githubIssues": [
+    {
+      "number": 1,
+      "state": "CLOSED",
+      "title": "Account workflow retains stale archive shards after re-export",
+      "url": "https://github.com/konard/lazada-search/issues/1",
+      "requirementIds": ["R019", "R020", "R021", "R022"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 2,
+      "state": "CLOSED",
+      "title": "Failed persistent browser reconnect deletes another live worker descriptor",
+      "url": "https://github.com/konard/lazada-search/issues/2",
+      "requirementIds": ["R025", "R028"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 3,
+      "state": "OPEN",
+      "title": "Protein category redirect and remaining SKU verification prevent complete bulk-buy coverage",
+      "url": "https://github.com/konard/lazada-search/issues/3",
+      "requirementIds": [
+        "R005",
+        "R006",
+        "R008",
+        "R009",
+        "R012",
+        "R013",
+        "R014",
+        "R037"
+      ],
+      "draftStatus": "draft-mapped-real-data-acceptance-open",
+      "sourceFiles": [
+        "src/case-workflow.js",
+        "src/case-worklist.js",
+        "src/case-coverage.js",
+        "src/lazada-checkout-line-bindings.js",
+        "src/lazada-checkout-actions.js",
+        "src/lazada-checkout-adapter.js",
+        "src/shopping-report.js",
+        "src/manufacturer-workflow.js",
+        "src/manufacturer-workflow-search.js",
+        "src/manufacturer-workflow-facts.js",
+        "src/label-worklist.js",
+        "src/case-readiness.js",
+        "src/requirement-registry.js"
+      ],
+      "acceptanceRemaining": "Acquisition/orchestration automated regressions passed at source171b250; complete real inventory/factory/bulk/frozen acceptance remains open."
+    },
+    {
+      "number": 4,
+      "state": "CLOSED",
+      "title": "Prefer selected metric selling-unit weights over imperial headline conversions",
+      "url": "https://github.com/konard/lazada-search/issues/4",
+      "requirementIds": ["R011", "R016", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 5,
+      "state": "CLOSED",
+      "title": "Distinguish capture provenance metadata from stored blob references during archive export",
+      "url": "https://github.com/konard/lazada-search/issues/5",
+      "requirementIds": ["R019", "R022"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 6,
+      "state": "CLOSED",
+      "title": "Recognize ice-cream carton category and exact selling-unit package count",
+      "url": "https://github.com/konard/lazada-search/issues/6",
+      "requirementIds": ["R003", "R008", "R011", "R038"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 7,
+      "state": "CLOSED",
+      "title": "Removed Vietnamese product notice incorrectly stops the collection queue as a loading timeout",
+      "url": "https://github.com/konard/lazada-search/issues/7",
+      "requirementIds": ["R009", "R045"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 8,
+      "state": "CLOSED",
+      "title": "Human food filtering admits animal feed and non-frozen protein bars; cache exclusions",
+      "url": "https://github.com/konard/lazada-search/issues/8",
+      "requirementIds": ["R002", "R003", "R044"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 9,
+      "state": "CLOSED",
+      "title": "Ice rankings reuse withheld package weights and create unsupported gram prices",
+      "url": "https://github.com/konard/lazada-search/issues/9",
+      "requirementIds": ["R011", "R038", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 10,
+      "state": "CLOSED",
+      "title": "Older cached observations overwrite newer SKU prices and package facts",
+      "url": "https://github.com/konard/lazada-search/issues/10",
+      "requirementIds": ["R009", "R020"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 11,
+      "state": "CLOSED",
+      "title": "Nutrition label OCR drops decimal points despite high confidence",
+      "url": "https://github.com/konard/lazada-search/issues/11",
+      "requirementIds": ["R016", "R046", "R048"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 12,
+      "state": "CLOSED",
+      "title": "Redact embedded manufacturer access tokens before committing original evidence",
+      "url": "https://github.com/konard/lazada-search/issues/12",
+      "requirementIds": ["R021", "R022", "R036"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 13,
+      "state": "CLOSED",
+      "title": "Selected SKU manufacturer conflicts are hidden by the parent listing brand",
+      "url": "https://github.com/konard/lazada-search/issues/13",
+      "requirementIds": ["R014", "R015"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 14,
+      "state": "OPEN",
+      "title": "Verify and count food gifts in bulk selling options separately from accessory gifts",
+      "url": "https://github.com/konard/lazada-search/issues/14",
+      "requirementIds": ["R010", "R011", "R012", "R047"],
+      "draftStatus": "draft-mapped-real-data-acceptance-open",
+      "sourceFiles": [
+        "src/lazada-checkout-actions.js",
+        "src/lazada-checkout-adapter.js",
+        "src/shopping-report.js",
+        "src/lazada-checkout-line-bindings.js",
+        "src/lazada-checkout-gifts.js"
+      ],
+      "acceptanceRemaining": "Real gift package identity, nutritional label, quantity, stock and exact order eligibility remain unverified."
+    },
+    {
+      "number": 15,
+      "state": "CLOSED",
+      "title": "Explicit container metric package mass loses to rounded pound headline",
+      "url": "https://github.com/konard/lazada-search/issues/15",
+      "requirementIds": ["R011", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 16,
+      "state": "CLOSED",
+      "title": "Select chocolate/no-shaker SKUs before capture and bind shipping to the actual destination",
+      "url": "https://github.com/konard/lazada-search/issues/16",
+      "requirementIds": ["R001", "R002", "R004", "R009", "R011"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 17,
+      "state": "CLOSED",
+      "title": "Whey Chocolate Ice Cream flavour overrides powder category during original replay",
+      "url": "https://github.com/konard/lazada-search/issues/17",
+      "requirementIds": ["R002", "R039", "R044"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 18,
+      "state": "CLOSED",
+      "title": "Defer automatic public checkpoints when unrelated changes are staged without stopping collection",
+      "url": "https://github.com/konard/lazada-search/issues/18",
+      "requirementIds": ["R020", "R036", "R042"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 19,
+      "state": "CLOSED",
+      "title": "Hold seller net mass when same-product protein and serving count contradict the package denominator",
+      "url": "https://github.com/konard/lazada-search/issues/19",
+      "requirementIds": ["R011", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 20,
+      "state": "CLOSED",
+      "title": "Preserve reviewed paid package mass when replaying the identical original source",
+      "url": "https://github.com/konard/lazada-search/issues/20",
+      "requirementIds": ["R020", "R021", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 21,
+      "state": "CLOSED",
+      "title": "Selected package label conflicts create wrong gram prices in two cheapest powder rows",
+      "url": "https://github.com/konard/lazada-search/issues/21",
+      "requirementIds": ["R009", "R016", "R046"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 22,
+      "state": "CLOSED",
+      "title": "Batch chronological catalog imports to avoid full-case replay timeout",
+      "url": "https://github.com/konard/lazada-search/issues/22",
+      "requirementIds": ["R019", "R020", "R022"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 23,
+      "state": "CLOSED",
+      "title": "Persist a collection stop for original manufacturer Cloudflare challenge responses",
+      "url": "https://github.com/konard/lazada-search/issues/23",
+      "requirementIds": ["R026", "R041"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 24,
+      "state": "CLOSED",
+      "title": "Bound reciprocal cross-host manufacturer redirect scheduling without deferred requests",
+      "url": "https://github.com/konard/lazada-search/issues/24",
+      "requirementIds": ["R014", "R020", "R026"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 25,
+      "state": "CLOSED",
+      "title": "Propagate collection stops from image and OCR workflows immediately",
+      "url": "https://github.com/konard/lazada-search/issues/25",
+      "requirementIds": ["R016", "R026", "R041"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 26,
+      "state": "CLOSED",
+      "title": "Detect and cache original image-endpoint challenges before OCR retries",
+      "url": "https://github.com/konard/lazada-search/issues/26",
+      "requirementIds": ["R016", "R020", "R026", "R041"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 27,
+      "state": "CLOSED",
+      "title": "Inspect and pace every image redirect hop before following it",
+      "url": "https://github.com/konard/lazada-search/issues/27",
+      "requirementIds": ["R020", "R026", "R041"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 28,
+      "state": "CLOSED",
+      "title": "Keep full associative archive decode working for the 144MB saved notation",
+      "url": "https://github.com/konard/lazada-search/issues/28",
+      "requirementIds": ["R019", "R022"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 29,
+      "state": "CLOSED",
+      "title": "Run sandboxed Chromium E2E on the Ubuntu 24.04 CI image",
+      "url": "https://github.com/konard/lazada-search/issues/29",
+      "requirementIds": ["R023", "R024", "R037"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 30,
+      "state": "CLOSED",
+      "title": "Build previews without requiring an unconfigured Pages deployment",
+      "url": "https://github.com/konard/lazada-search/issues/30",
+      "requirementIds": ["R023", "R037"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 31,
+      "state": "CLOSED",
+      "title": "Keep complete generated catalog Markdown within the architecture line limit",
+      "url": "https://github.com/konard/lazada-search/issues/31",
+      "requirementIds": ["R022", "R035"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 32,
+      "state": "OPEN",
+      "title": "Configure npm trusted publishing before enabling a successful release",
+      "url": "https://github.com/konard/lazada-search/issues/32",
+      "requirementIds": ["R036", "R037"],
+      "draftStatus": "owner-configuration-required",
+      "sourceFiles": [
+        ".github/workflows/release.yml",
+        "scripts/publish-to-npm.mjs"
+      ],
+      "acceptanceRemaining": "Package owner must configure npm trusted publishing; drafts do not replace this external configuration or justify bypassing release guards."
+    },
+    {
+      "number": 33,
+      "state": "CLOSED",
+      "title": "Run alternative-runtime CI against the reviewed locked dependency graph",
+      "url": "https://github.com/konard/lazada-search/issues/33",
+      "requirementIds": ["R033", "R037", "R048"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 34,
+      "state": "CLOSED",
+      "title": "Windows archive cleanup deletes live nested blobs; preserve CRLF preferences and cross-platform validation",
+      "url": "https://github.com/konard/lazada-search/issues/34",
+      "requirementIds": ["R019", "R021", "R022", "R037"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 35,
+      "state": "CLOSED",
+      "title": "Keep category E2E redirects local and drain every image producer before browser close",
+      "url": "https://github.com/konard/lazada-search/issues/35",
+      "requirementIds": ["R023", "R026", "R031", "R037"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 36,
+      "state": "OPEN",
+      "title": "Preserve original source bytes on Windows checkout and bound transient cache lock recreation",
+      "url": "https://github.com/konard/lazada-search/issues/36",
+      "requirementIds": ["R019", "R020", "R022", "R037"],
+      "draftStatus": "owner-read-projection-and-immutable-blob-follow-up-in-draft-pr",
+      "sourceFiles": [
+        "src/store-lock-directory.js",
+        "src/store-projection.js",
+        "src/blob-publication.js",
+        "src/store.js",
+        "tests/blob-publication.test.js",
+        "tests/store-projection.test.js",
+        "tests/catalog-tables.test.js",
+        "tests/windows-ocr-install.test.js",
+        ".github/workflows/release.yml"
+      ],
+      "acceptanceRemaining": "Track fresh complete Windows/runtime acceptance under unchanged fixtures, sync writes and deadlines, then PR merge; inaccessible locks must never be treated as missing or dead; failed projections must drain before unlock, and concurrent immutable blob publication must verify exact winning bytes without overwrite or permission/corruption suppression."
+    },
+    {
+      "number": 37,
+      "state": "CLOSED",
+      "title": "Preserve decimal pixels across native OCR engines and require actual matrix acceptance",
+      "url": "https://github.com/konard/lazada-search/issues/37",
+      "requirementIds": ["R016", "R046", "R048"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 38,
+      "state": "CLOSED",
+      "title": "Fingerprint trained-model bytes in OCR cache identity",
+      "url": "https://github.com/konard/lazada-search/issues/38",
+      "requirementIds": ["R016", "R020", "R048"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 39,
+      "state": "CLOSED",
+      "title": "Default fresh CLI case preferences to target flavours and no paid shaker",
+      "url": "https://github.com/konard/lazada-search/issues/39",
+      "requirementIds": ["R002", "R004", "R039"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 40,
+      "state": "CLOSED",
+      "title": "Documentation CI link probes bypass collection CAPTCHA stop and request pacing",
+      "url": "https://github.com/konard/lazada-search/issues/40",
+      "requirementIds": ["R026", "R041", "R049"],
+      "draftStatus": "closed-in-saved-github-snapshot"
+    },
+    {
+      "number": 42,
+      "state": "OPEN",
+      "title": "Retain the detected CAPTCHA tab and never reopen a window to claim human waiting",
+      "url": "https://github.com/konard/lazada-search/issues/42",
+      "requirementIds": ["R026", "R028", "R041"],
+      "draftStatus": "implemented-acceptance-in-progress"
+    },
+    {
+      "number": 43,
+      "state": "OPEN",
+      "title": "Bound mass extraction on adversarial numeric input and verify the separate CodeQL PR gate",
+      "url": "https://github.com/konard/lazada-search/issues/43",
+      "requirementIds": ["R011", "R016", "R023", "R037", "R048"],
+      "draftStatus": "bounded-nutrition-parsers-in-draft-pr",
+      "sourceFiles": [
+        "src/nutrition.js",
+        "tests/mass-evidence-performance.test.js",
+        "tests/nutrition-parsing-performance.test.js",
+        "tests/manufacturer-source-validity.test.js",
+        "src/browser.js",
+        "src/products.js",
+        "src/translation-quality.js",
+        "scripts/promotion-report.mjs",
+        "tests/source-text-parsing-performance.test.js",
+        "tests/promotion-report-escaping.test.js"
+      ],
+      "acceptanceRemaining": "Accept bounded mass, volume, nutrition, count, discount and protected-translation readers, exact source excerpts, table escaping and URL membership controls, complete runtime/native tests and the separate CodeQL PR check without disabling or dismissing it."
+    },
+    {
+      "number": 44,
+      "state": "OPEN",
+      "title": "Exclude nonempty telemetry pixels and pseudonymous tracking identifiers from public case exports",
+      "url": "https://github.com/konard/lazada-search/issues/44",
+      "requirementIds": ["R019", "R021", "R022", "R036"],
+      "draftStatus": "telemetry-redaction-fix-under-validation",
+      "sourceFiles": [
+        "src/archive.js",
+        "tests/archive-telemetry-redaction.test.js"
+      ],
+      "acceptanceRemaining": "Validate exact-host non-product exclusions and recursive URL/field redaction, rebuild and verify all public case conversions offline, confirm unchanged product facts and reports, and merge the reviewed fix."
+    },
+    {
+      "number": 45,
+      "state": "OPEN",
+      "title": "Replay cached checkout originals safely and evaluate readiness from current evidence",
+      "url": "https://github.com/konard/lazada-search/issues/45",
+      "requirementIds": [
+        "R009",
+        "R010",
+        "R011",
+        "R012",
+        "R017",
+        "R020",
+        "R022",
+        "R024",
+        "R037"
+      ],
+      "draftStatus": "offline-checkout-and-readiness-fix-under-validation",
+      "sourceFiles": [
+        "src/case-workflow.js",
+        "src/case-worklist.js",
+        "src/basket-original.js",
+        "src/basket-quote.js",
+        "src/basket-comparison.js",
+        "src/case-readiness.js",
+        "src/case-evidence-gates.js",
+        "src/captured-offer-gates.js",
+        "src/translation-catalog.js",
+        "tests/case-checkout-replay.test.js",
+        "tests/basket-source-invalidations.test.js",
+        "tests/case-readiness-evidence.test.js",
+        "tests/translation-catalog.test.js"
+      ],
+      "acceptanceRemaining": "Validate all runtime/interface regressions, retain original CAPTCHA stop and private boundaries, verify offline original replay and dynamic acceptance, and merge the reviewed fix. Real catalog/factory/current freight evidence remains independently required."
+    }
+  ],
+  "draftReview": "docs/drafts/draft-review.json",
+  "draftCoverageComplete": true,
+  "validationEvidence": "docs/acceptance/challenge-window-retention/validation.json",
+  "refreshedAt": "2026-10-13T05:47:52.938Z",
+  "updatedAt": "2026-10-13T08:23:44.361Z"
+}

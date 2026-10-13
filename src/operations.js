@@ -2,8 +2,14 @@ import { executeCommand } from './commands.js';
 import { reviewListingCategory } from './category-review.js';
 import { sha256 } from './util.js';
 import { reviewPackageQuantities } from './package-quantity-review.js';
+import { reviewNonBrowserCollectionStop } from './collection-stop-review.js';
+import {
+  WORKFLOW_OPERATION_NAMES,
+  executeWorkflowOperation,
+} from './workflow-operations.js';
 
 export const OPERATION_NAMES = [
+  ...WORKFLOW_OPERATION_NAMES,
   'discover',
   'crawl',
   'audit',
@@ -11,6 +17,7 @@ export const OPERATION_NAMES = [
   'replay-captures',
   'collection-status',
   'resume-collection',
+  'review-collection-stop',
   'delivery',
   'compare',
   'inspect',
@@ -113,6 +120,18 @@ export async function executeOperation(application, request) {
     request.options === undefined ? {} : object(request.options, 'Options');
   const input =
     request.input === undefined ? {} : object(request.input, 'Input');
+  if (WORKFLOW_OPERATION_NAMES.includes(operation)) {
+    if (
+      options.searchConfiguration !== undefined ||
+      options.searchProvider !== undefined ||
+      options.factExtractor !== undefined
+    ) {
+      throw new Error(
+        'Configure authenticated search providers and extractors at application startup; structured requests cannot choose credential destinations'
+      );
+    }
+    return executeWorkflowOperation(application, operation, input, options);
+  }
   if (operation === 'import') {
     const records = object(input.records, 'Import records');
     const result = await application.importRecords(records);
@@ -137,6 +156,12 @@ export async function executeOperation(application, request) {
   }
   if (operation === 'import-capture') {
     return application.importCapture(object(input.capture, 'Browser capture'));
+  }
+  if (operation === 'review-collection-stop') {
+    return reviewNonBrowserCollectionStop(
+      application.store,
+      object(input.review, 'Operator stop review')
+    );
   }
   const packageReviewHandlers = {
     'review-package-quantities': () =>

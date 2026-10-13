@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-12T17:50:40.418548+00:00",
+  "scope": "Parallel binary/digest projection writes follow canonical durability; all settled writes drain before unlock. Eight record workers, duplicate-ID order, file syncs, fixtures and deadlines are unchanged. Node CI starts sixteen I/O threads for at most sixteen active projections.",
+  "focused": {
+    "nodePassed": 51,
+    "bunPassed": 51,
+    "frozenCachedOnlyDenoPassed": 51,
+    "newFilesystemControls": 5,
+    "strictESLint": "passed",
+    "runtimeAndDeadlineControlsPassed": 20,
+    "registryAndRuntimeControlsPassed": 11
+  },
+  "sourceSha256": {
+    "src/store.js": "bf8d0fa7274b2d5506686553b09e8fe605a2bab9413e4f14762e0ed8ad5dd8ac",
+    "src/store-projection.js": "3c60c3ae58833257a76d2c4e3b190078c097504691e274bb33af73d37b1b127a",
+    "tests/store-projection.test.js": "ae1742e6f68f5e1bc177619daf6d2dcd71f22a828e0c55cc354ea6071641f1cb",
+    ".github/workflows/release.yml": "84d9d14b029dbd54d65c8248c639f8b7b2235c840baceff3f88630e267ef6b84",
+    "tests/runtime-workflow.test.js": "b91f08205330531acc0f91e815735f6fbaf60cd531ffa576848c26aa51272fc7",
+    "src/requirement-registry.js": "42ba3ea75c9a1d1c42c192a539efb6485589ff4d3515984d0a1f813a1a30957e"
+  },
+  "fullSourceAcceptance": "pending",
+  "reference": "https://nodejs.org/api/cli.html#uv_threadpool_sizesize",
+  "issue": "https://github.com/konard/lazada-search/issues/36#issuecomment-6129558174",
+  "logs": {
+    "projection-node-controls.log.gz": {
+      "rawSha256": "d7c8d3d78c84e50b68d62e15231b2af291814d7bf54013efdc8c0b3ebb851aa9",
+      "rawBytes": 13392
+    },
+    "projection-bun-controls.log.gz": {
+      "rawSha256": "099bd5c5f73e60ad67d7423050d6944bb874bd3416b71a7fe7ef1021f98f9f76",
+      "rawBytes": 5949
+    },
+    "projection-deno-controls.log.gz": {
+      "rawSha256": "9f2f494109b3878bcd5fb6ade584bbf44d4953e43338c1aaf2601b0836dfdedc",
+      "rawBytes": 7166
+    },
+    "projection-eslint-controls.log.gz": {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    "projection-workflow-controls.tap.gz": {
+      "rawSha256": "47eee5f020978edb803eb9e94865d45d0363032b5528f094dfd703af7ad4f8ea",
+      "rawBytes": 4820
+    },
+    "projection-registry-controls.tap.gz": {
+      "rawSha256": "066ba4bae4c21785334d4c57e651f42b6a1483141cae33939452b8eea9b6930e",
+      "rawBytes": 2817
+    }
+  }
+}

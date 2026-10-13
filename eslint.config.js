@@ -132,6 +132,34 @@ export default [
     },
   },
   {
+    // Source-bound workflows combine independent identity, quantity, freshness,
+    // privacy and challenge gates. Keep their validation branches together;
+    // the normal size, nesting and statement limits still apply.
+    files: [
+      'src/basket-quote.js',
+      'src/operations.js',
+      'src/case-coverage.js',
+      'src/case-workflow.js',
+      'src/case-worklist.js',
+      'src/label-worklist.js',
+      'src/handpicked-links.js',
+      'src/shopping-report.js',
+      'src/lazada-checkout-actions.js',
+      'src/lazada-checkout-adapter.js',
+      'src/lazada-checkout-capture.js',
+      'src/lazada-checkout-fields.js',
+      'src/lazada-checkout-gifts.js',
+      'src/manufacturer-workflow-facts.js',
+      'src/manufacturer-workflow-review.js',
+      'src/manufacturer-workflow-search.js',
+      'src/manufacturer-workflow.js',
+      'src/ocr-evidence.js',
+    ],
+    rules: {
+      complexity: ['warn', 40],
+    },
+  },
+  {
     // This acceptance test follows one real pipeline across all interfaces.
     files: ['tests/e2e/pipeline.test.js'],
     rules: {

@@ -17,6 +17,7 @@ import {
 } from '../src/manufacturer-research.js';
 import { sha256 } from '../src/util.js';
 import { LazadaSearch } from '../src/application.js';
+import { parseTsv } from '../src/ocr.js';
 
 const registry = [
   {
@@ -655,7 +656,10 @@ test('label facts require original-image-bound OCR and a matching raw TSV transc
     id: 'label-ocr',
     imageHash: source.blob.sha256,
     rawTsv,
-    text: '473ml; Protein 4g per 100ml',
+    engine: 'fixture-tesseract',
+    languages: 'eng',
+    psm: 6,
+    ...parseTsv(tsv),
   };
   await store.put('ocr', ocr);
   for (const fact of Object.values(input.facts)) {

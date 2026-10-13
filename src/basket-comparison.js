@@ -4,6 +4,10 @@ import { basketIdentity, extractBasketQuote } from './basket-quote.js';
 import { deliveryContextMatches } from './delivery-context.js';
 import { positive } from './values.js';
 import { applyBasketComparisonTranslations } from './translation-presentation.js';
+import {
+  loadBasketOriginalContext,
+  readBasketOriginal,
+} from './basket-original.js';
 
 const canonical = (value) =>
   Array.isArray(value)
@@ -38,39 +42,13 @@ const amount = (rows, field) =>
 const rate = (total, denominator) =>
   denominator > 0 ? total / denominator : null;
 
-async function originalQuote(application, saved, options) {
-  const evidence = await application.store.get('evidence', saved.evidenceId);
-  if (
-    !evidence?.html ||
-    evidence.invalidatedAt ||
-    evidence.html.sha256 !== saved.sourceSha256 ||
-    (application.store.visibility === 'public' &&
-      evidence.visibility === 'private')
-  ) {
-    throw new Error(
-      'Basket original source is missing, private or invalidated'
-    );
-  }
-  const invalidation = await application.store.get(
-    'invalidation',
-    saved.sourceUrl
+async function originalQuote(application, saved, options, originalContext) {
+  const { bytes } = await readBasketOriginal(
+    application.store,
+    saved,
+    originalContext
   );
-  if (
-    invalidation &&
-    Date.parse(invalidation.invalidatedAt) >= Date.parse(saved.observedAt)
-  ) {
-    throw new Error('Basket source was invalidated after its observation');
-  }
-  if (
-    evidence.sourceUrl !== saved.sourceUrl ||
-    evidence.observedAt !== saved.observedAt
-  ) {
-    throw new Error('Basket evidence URL or observation date mismatch');
-  }
-  const quote = extractBasketQuote(
-    await application.store.blob(saved.sourceSha256),
-    saved.sourceMapping
-  );
+  const quote = extractBasketQuote(bytes, saved.sourceMapping);
   const stored = Object.fromEntries(
     Object.entries(saved).filter(([key]) => key !== 'visibility')
   );
@@ -205,10 +183,10 @@ function basketMetrics(quote, lines, options) {
 }
 
 async function compareQuote(saved, context) {
-  const { application, options } = context;
+  const { application, options, originalContext } = context;
   let quote;
   try {
-    quote = await originalQuote(application, saved, options);
+    quote = await originalQuote(application, saved, options, originalContext);
   } catch (error) {
     return {
       quote: saved,
@@ -218,6 +196,14 @@ async function compareQuote(saved, context) {
     };
   }
   const age = (options.now ?? Date.now()) - Date.parse(quote.observedAt);
+  if (!Number.isFinite(age)) {
+    return {
+      quote,
+      eligible: false,
+      problems: ['Stale or invalid checkout quote'],
+      metrics: null,
+    };
+  }
   const problems =
     age < 0 ||
     (age > (options.maxPriceAgeMs ?? 86400000) && options.allowStale !== true)
@@ -270,6 +256,7 @@ export async function compareBaskets(application, options = {}) {
   const context = {
     application,
     options,
+    originalContext: await loadBasketOriginalContext(application.store),
     products: new Map(inputs.products.map((product) => [product.id, product])),
     offers: new Map(inputs.offers.map((offer) => [offer.id, offer])),
   };

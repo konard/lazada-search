@@ -10,9 +10,11 @@ import {
   compareBaskets,
   extractBasketQuote,
   reviewPackageQuantities,
+  publishAccountCaptures,
   translationReviewAccepted,
   validateFoodComponentEvidence,
   type BasketSourceMapping,
+  type AssociativeStore,
   type CheckoutScenarioPlanInput,
   type FoodComponent,
   type Offer,
@@ -26,6 +28,21 @@ declare const source: BasketSourceMapping;
 declare const originalHtml: Uint8Array;
 declare const manufacturerSources: ManufacturerSourceCache;
 declare const nativeOcr: TesseractOcr;
+declare const accountStore: AssociativeStore;
+const publicCaptures = await publishAccountCaptures(application, accountStore);
+const publishedOcrArtifacts: number = publicCaptures.ocrPublication.artifacts;
+const rejectedOcrId: string | undefined =
+  publicCaptures.ocrPublication.rejected[0]?.ocrId;
+void [publishedOcrArtifacts, rejectedOcrId];
+const challengeStatus = await application.collector.collectionStatus();
+const challengePageOpen: boolean | undefined =
+  challengeStatus.handoff?.pageOpen;
+const challengeTarget: string | undefined = challengeStatus.browser?.targetId;
+await application.collector.start({
+  existingOnly: true,
+  targetId: challengeTarget,
+});
+void challengePageOpen;
 const modelBoundOcr = await nativeOcr.recognize({
   type: 'stored-blob',
   sha256: 'b'.repeat(64),
@@ -154,3 +171,21 @@ applyBasketComparisonTranslations(
   await application.compareBaskets(),
   application.translator
 );
+
+// Workflow API contracts participate in the public declaration check.
+const caseDraft = await application.planCaseWorkflow({ quantities: [1, 10] });
+await application.runCaseWorkflow(String(caseDraft.workflow.id), {
+  maxTasks: 25,
+  manualReviewId: 'review',
+  ocrPasses: [{ psm: 6, transform: { grayscale: true } }],
+});
+const shoppingDraft = await application.shoppingReport({
+  quantities: [1],
+  limit: 10,
+});
+const draftBaskets: Record<string, unknown>[] = shoppingDraft.baskets;
+await application.prepareManufacturerWorkflowReview({
+  workflowId: 'workflow',
+  reviewDraftId: 'review',
+});
+void draftBaskets;

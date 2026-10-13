@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12T17:17:32.387655+00:00",
+  "branch": "draft/remaining-requirements",
+  "sourceCommit": "08236d87f1a5f28fd10eb184d0e903b8a281d4ce",
+  "baselineCommit": "925f2e6d1e03b5c1a82d9337846e661050df4d39",
+  "scope": "Retained original CAPTCHA target, truthful handoff, atomic supervisor publication and bounded Windows lock-owner reads; no live product collection or user-browser opening.",
+  "browserCommander": {
+    "installedVersion": "0.31.2",
+    "latestRegistryVersion": "0.31.2",
+    "releasePublishedAt": "2026-10-12T07:01:35Z",
+    "releaseUrl": "https://github.com/link-foundation/browser-commander/releases/tag/v0.31.2",
+    "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
+  },
+  "latestDependencyCheck": "browser-latest-final.json",
+  "sourceManifest": "source-08236-manifest.json",
+  "local": {
+    "nodeFull": {
+      "passed": 1474,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 328270.815834
+    },
+    "fullE2E": {
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 568025.342459
+    },
+    "nativeRetention": {
+      "passed": 13,
+      "includedInFullE2E": true
+    },
+    "lockControls": {
+      "node": 6,
+      "bun": 6,
+      "deno": 6,
+      "currentFrozenDeno": 6
+    },
+    "strictTypes": "passed",
+    "lintFormattingDuplication": "passed",
+    "duplicationPercent": 6.18,
+    "fullSourceAcceptance": "passed"
+  },
+  "ci": {
+    "accepted": true,
+    "sourceCommit": "08236d87f1a5f28fd10eb184d0e903b8a281d4ce",
+    "checksRunId": 38278378048,
+    "e2eRunId": 38278378504,
+    "runtimeJobsPassed": 9,
+    "runtimeJobsFailed": 0,
+    "runtimeJobsCancelled": 0,
+    "nativeE2E": {
+      "total": 84,
+      "passed": 84,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "workflowsPassed": 6,
+    "workflowsFailed": 0,
+    "receipt": "ci-source-08236-review.json"
+  },
+  "tracking": {
+    "requirements": 49,
+    "githubIssues": 42,
+    "openIssues": [3, 14, 32, 36, 42, 43],
+    "githubIssueSnapshot": "github-issues.json",
+    "upstreamFeatureIssue": "https://github.com/link-foundation/browser-commander/issues/174"
+  },
+  "historicalReviews": {
+    "source6280": "source-6280-review.json",
+    "source7d43Local": "local-source-7d43-review.json",
+    "source7d43CI": "ci-source-7d43-review.json"
+  },
+  "savedCollectionStatus": "saved-stop-status.json",
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false,
+  "marketCollectionRequests": 0,
+  "userBrowserInteraction": false,
+  "logs": {
+    "node-source-08236-full.tap.gz": {
+      "rawSha256": "0b7e6e5898622e34bf40d9d7d2eb21251c50e4c81590479cc7ca0d1cf5b92403",
+      "rawBytes": 364663
+    },
+    "native-source-08236-full.tap.gz": {
+      "rawSha256": "6b633d2b6400d95e35bacb2e19fdfa1d820b511c4f0191fc696d2b4afadb0854",
+      "rawBytes": 22617
+    },
+    "checks-source-08236.log.gz": {
+      "rawSha256": "d8c134d75564fa1642e3d99e0260c63e5bee1c98dfa9daaebe45bcfdd8a66675",
+      "rawBytes": 142623
+    },
+    "types-source-08236.log.gz": {
+      "rawSha256": "686d0ab147f6367a0aca292f6ddeb56413d8a825db82df33e7f580cc4205cd2f",
+      "rawBytes": 77
+    },
+    "deno-297-owner-lock-controls.log.gz": {
+      "rawSha256": "0c1d023430f9532e76e57fe844dee466e5ab57c95b5622329d8f6dbb198c4228",
+      "rawBytes": 681
+    }
+  },
+  "sourceWorkflowAcceptance": true,
+  "sourceAccepted": false,
+  "pullRequestSecurityAccepted": false,
+  "followUpIssue": "https://github.com/konard/lazada-search/issues/43",
+  "codeqlFailure": {
+    "headCommit": "44b5729ad6542bcd0c8f425c34e702cd5ff26a91",
+    "checkRunId": 114918061515,
+    "rule": "js/polynomial-redos",
+    "severity": "high",
+    "checkReceipt": "codeql-source-44b5729-failure.json",
+    "annotations": "codeql-source-44b5729-annotations.json",
+    "fixAcceptance": "pending-linear-parser"
+  }
+}

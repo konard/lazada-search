@@ -173,6 +173,10 @@ export function parseArguments(argv) {
           type: 'string',
           default: getenv('LAZADA_ACCOUNT', ''),
         })
+        .option('manufacturer-search-config', {
+          type: 'string',
+          default: getenv('LAZADA_MANUFACTURER_SEARCH_CONFIG', ''),
+        })
         .option('phone-env', { type: 'string', default: 'LAZADA_LOGIN_PHONE' })
         .option('auth-channel', {
           type: 'string',

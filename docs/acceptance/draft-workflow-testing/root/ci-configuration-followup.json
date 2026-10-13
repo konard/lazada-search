@@ -1,0 +1,192 @@
+{
+  "checkedAt": "2026-10-12T07:21:51.237253+00:00",
+  "testedHead": "a0f91318c231f054a8a4b673476885ff4672e188",
+  "pullRequest": "https://github.com/konard/lazada-search/pull/41",
+  "initialFailures": {
+    "changesets": "Three changesets added by this PR; consolidated into one minor changeset without weakening the exactly-one policy.",
+    "dependencyReview": "Dependency graph disabled at repository level; enabled dependency graph/Dependabot alerts using the documented repository vulnerability-alerts API, leaving the security workflow severity gate unchanged."
+  },
+  "securityConfiguration": {
+    "enabledBy": "PUT /repos/konard/lazada-search/vulnerability-alerts",
+    "verification": "GET returned HTTP 204; dependency-graph compare API now returns HTTP 200 with 24 dependency changes.",
+    "dependencyDiff": [
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "@types/node",
+        "version": "22.20.5"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "@types/node-fetch",
+        "version": "2.6.13"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "asynckit",
+        "version": "0.4.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "call-bind-apply-helpers",
+        "version": "1.0.2"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "combined-stream",
+        "version": "1.0.8"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "delayed-stream",
+        "version": "1.0.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "dunder-proto",
+        "version": "1.0.1"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "es-define-property",
+        "version": "1.0.1"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "es-errors",
+        "version": "1.3.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "es-object-atoms",
+        "version": "1.1.2"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "es-set-tostringtag",
+        "version": "2.1.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "form-data",
+        "version": "4.0.6"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "function-bind",
+        "version": "1.1.2"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "get-intrinsic",
+        "version": "1.3.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "get-proto",
+        "version": "1.0.1"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "gopd",
+        "version": "1.2.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "has-symbols",
+        "version": "1.1.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "has-tostringtag",
+        "version": "1.0.2"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "hasown",
+        "version": "2.0.4"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "math-intrinsics",
+        "version": "1.1.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "mime-db",
+        "version": "1.52.0"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "mime-types",
+        "version": "2.1.35"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "typescript",
+        "version": "5.9.2"
+      },
+      {
+        "change_type": "added",
+        "ecosystem": "npm",
+        "name": "undici-types",
+        "version": "6.21.0"
+      }
+    ],
+    "workflowPolicyChanged": false
+  },
+  "nativeE2e": {
+    "run": "https://github.com/konard/lazada-search/actions/runs/38215920288",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38215920288/job/114700502498",
+        "name": "Browser, OCR, CLI, Telegram and binary store",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "html_url": "https://github.com/konard/lazada-search/actions/runs/38215920288/job/114703037565",
+        "name": "Pipeline Status",
+        "status": "completed"
+      }
+    ]
+  },
+  "logs": {
+    "ci-pr-initial-checks": {
+      "path": "docs/acceptance/draft-workflow-testing/root/ci-pr-initial-checks.log.gz",
+      "sha256": "303851b2ba5cea076f09875869435cfab36ed615922f65cf007e0640c9c83f6e"
+    },
+    "ci-pr-initial-security": {
+      "path": "docs/acceptance/draft-workflow-testing/root/ci-pr-initial-security.log.gz",
+      "sha256": "72fe50b22adee46ea105dbd2ec53113c5cb02cb449954c33e8758dd91f640e6a"
+    }
+  },
+  "npmTrustedPublisherStillRequiresOwnerConfiguration": true,
+  "captchaStopCleared": false,
+  "liveCollectionRequests": 0,
+  "nextStep": "Push the consolidated changeset, then require successful checks for the new exact PR head."
+}

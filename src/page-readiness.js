@@ -32,7 +32,7 @@ export function inspectPageReadiness(context) {
     /\/products\//u.test(new URL(url).pathname);
   const searchPage =
     /lazada\./u.test(new URL(url).hostname) &&
-    /\/(?:catalog|protein|bach-hoa-online-kem-(?:cac-loai|daua))\//u.test(
+    /\/(?:catalog|tag|protein|bach-hoa-online-kem-(?:cac-loai|daua))\//u.test(
       new URL(url).pathname
     );
   const searchCards = [
@@ -88,15 +88,23 @@ export function inspectPageReadiness(context) {
 
 export async function waitForPageReady(
   page,
-  { timeoutMs = 30000, intervalMs = 500, stableMs = 1000, now = Date.now } = {}
+  {
+    timeoutMs = 30000,
+    intervalMs = 500,
+    stableMs = 1000,
+    now = Date.now,
+    assertActive = () => {},
+  } = {}
 ) {
   const deadline = now() + timeoutMs;
   let previous;
   let stableSince;
   let readiness;
   do {
-    await resolvePageDialogs(page);
+    assertActive();
+    await resolvePageDialogs(page, { assertActive });
     readiness = await page.evaluate(inspectPageReadiness);
+    assertActive();
     if (readiness.ready && readiness.fingerprint === previous) {
       if (now() - stableSince >= stableMs) {
         return readiness;

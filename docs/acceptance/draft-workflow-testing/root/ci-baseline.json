@@ -1,0 +1,159 @@
+{
+  "headSha": "cec067aaaa1cacabeb2d57d04bb753fdde83731b",
+  "url": "https://github.com/konard/lazada-search/actions/runs/38176023669",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "Release Preflight",
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578476407",
+      "failedSteps": ["Probe every release credential"]
+    },
+    {
+      "name": "Detect Changes",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578476568",
+      "failedSteps": []
+    },
+    {
+      "name": "Check for Manual Version Changes",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578477474",
+      "failedSteps": []
+    },
+    {
+      "name": "Test Compilation",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578650462",
+      "failedSteps": []
+    },
+    {
+      "name": "Check File Line Limits",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578650482",
+      "failedSteps": []
+    },
+    {
+      "name": "Validate Documentation",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578650510",
+      "failedSteps": []
+    },
+    {
+      "name": "Lint and Format Check",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578650537",
+      "failedSteps": []
+    },
+    {
+      "name": "Check for Changesets",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578651485",
+      "failedSteps": []
+    },
+    {
+      "name": "Docker Image Build Check",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114578651545",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (node on windows-2025)",
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167712",
+      "failedSteps": ["Run tests (Node.js)"]
+    },
+    {
+      "name": "Test (deno on macos-15)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167718",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (deno on windows-2025)",
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167730",
+      "failedSteps": ["Run tests (Deno)"]
+    },
+    {
+      "name": "Test (node on macos-15)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167755",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (bun on ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167762",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (bun on macos-15)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167810",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (deno on ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167850",
+      "failedSteps": []
+    },
+    {
+      "name": "Test (bun on windows-2025)",
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167869",
+      "failedSteps": ["Run tests (Bun)"]
+    },
+    {
+      "name": "Test (node on ubuntu-24.04)",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579167911",
+      "failedSteps": []
+    },
+    {
+      "name": "Create Changeset PR",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114579168971",
+      "failedSteps": []
+    },
+    {
+      "name": "Release",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763121",
+      "failedSteps": []
+    },
+    {
+      "name": "Pipeline Status",
+      "conclusion": "failure",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763367",
+      "failedSteps": [
+        "Fail the run when a required job was cancelled or failed"
+      ]
+    },
+    {
+      "name": "Instant Release",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763399",
+      "failedSteps": []
+    },
+    {
+      "name": "Configure Docker Hub Publish",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763432",
+      "failedSteps": []
+    },
+    {
+      "name": "Optional Docker Hub Publish",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763764",
+      "failedSteps": []
+    },
+    {
+      "name": "Build Docker Image (${{ matrix.platform }})",
+      "conclusion": "skipped",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38176023669/job/114581763827",
+      "failedSteps": []
+    }
+  ]
+}

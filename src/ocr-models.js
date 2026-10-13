@@ -63,7 +63,7 @@ async function inspectModel(path, maximum, destination) {
     const buffer = Buffer.allocUnsafe(64 * 1024);
     let bytes = 0;
     for (;;) {
-      const { bytesRead } = await input.read(buffer);
+      const { bytesRead } = await input.read(buffer, 0, buffer.length, null);
       if (!bytesRead) {
         break;
       }

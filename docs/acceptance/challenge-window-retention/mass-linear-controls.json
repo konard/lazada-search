@@ -1,0 +1,34 @@
+{
+  "issue": "https://github.com/konard/lazada-search/issues/43",
+  "status": "focused-passed-full-source-and-CodeQL-pending",
+  "nodeFocused": 38,
+  "nodeAdversarialAndLiterals": 3,
+  "bunAdversarialAndLiterals": 3,
+  "denoAdversarialAndLiterals": 3,
+  "sourceSha256": {
+    "src/nutrition.js": "9b3a60acc28ef9d487aa853060751ecc5f1658016eb8db2a0d91a2d7d0184f2c",
+    "tests/mass-evidence-performance.test.js": "98733a73f5c2a56c179b3b7b745cd8999bebda79062e89a9c2457c5f509abee7"
+  },
+  "logs": {
+    "mass-codeql-initial-focused.tap.gz": {
+      "rawSha256": "416de51e081fda6c4694b8a40643905395c294a0df11d370486b3dfef6a82e3f",
+      "rawBytes": 9766
+    },
+    "mass-linear-focused.tap.gz": {
+      "rawSha256": "64def6c3d1c8d39c4d919b8a9ef381699d91808c0c6c7f6da90844c9650cb6c4",
+      "rawBytes": 9770
+    },
+    "mass-linear-node.log.gz": {
+      "rawSha256": "8f86a16969b0f50e51ecb0d47d9a2001cc2ff1a1b24dedc880b3ff27022473a4",
+      "rawBytes": 900
+    },
+    "mass-linear-bun.log.gz": {
+      "rawSha256": "001f89456073ebd89a117b76ac243e923bb5060695cc9c3d3e0f2bf8ee77118d",
+      "rawBytes": 460
+    },
+    "mass-linear-deno.log.gz": {
+      "rawSha256": "4f13f054734c81e67d9ce821a2d1b7bf6ee3ec87179eb6dbaf6685b6322795c3",
+      "rawBytes": 426
+    }
+  }
+}

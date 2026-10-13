@@ -1,0 +1,158 @@
+bun test v1.4.3 (c6da4a4d3)
+
+tests/basket-source-invalidations.test.js:
+(pass) basket save and ranking refuse an original with evidence boolean flag [100.91ms]
+(pass) basket save and ranking refuse an original with evidence timestamp flag [213.32ms]
+(pass) basket save and ranking refuse an original with linked cache boolean flag [515.48ms]
+(pass) basket save and ranking refuse an original with linked cache timestamp flag [430.95ms]
+(pass) basket original replay applies separate evidence ID binding [444.98ms]
+(pass) basket original replay applies separate cache ID binding [537.54ms]
+(pass) basket original replay applies separate URL binding [454.91ms]
+(pass) basket original replay applies URL record identity binding [546.40ms]
+(pass) basket original replay applies invalidated boolean without timestamp [509.16ms]
+(pass) basket original replay applies malformed invalidation timestamp [509.99ms]
+(pass) basket original replay applies undated active invalidation [364.40ms]
+(pass) basket original replay applies malformed resolution timestamp [448.82ms]
+(pass) basket replay retains its exact source despite an earlier dated invalidation [578.38ms]
+(pass) basket replay retains its exact source despite an inactive flag [519.42ms]
+(pass) basket replay retains its exact source despite a resolved flag [533.00ms]
+(pass) basket replay retains its exact source despite an explicit cleared flag [498.14ms]
+(pass) basket replay retains its exact source despite a different exact source [404.40ms]
+(pass) basket source byte length metadata is checked independently from the original content digest [363.95ms]
+(pass) nonfinite evaluation time leaves the basket quote explicitly ineligible even with stale observations allowed [325.38ms]
+
+tests/case-original-invalidation.test.js:
+(pass) case original inventory and aggregate review reuse unchanged bytes after valid resolution [448.19ms]
+(pass) case original inventory and aggregate review reuse unchanged bytes after explicit inactive state [457.80ms]
+(pass) case original inventory and aggregate review reuse unchanged bytes after explicit cleared flag [469.62ms]
+(pass) case inventory refuses sourceUrl binding with missing timestamp without altering its original [234.75ms]
+(pass) case inventory refuses evidence binding with malformed timestamp without altering its original [258.22ms]
+(pass) case inventory refuses cache binding with malformed resolution without altering its original [233.07ms]
+(pass) swapping another retained evidence descriptor revokes an aggregate review even when its attached proof bytes are unchanged [421.73ms]
+
+tests/case-workflow-draft.test.js:
+(pass) draft manual review cannot waive unknown cards and inclusion creates missing-listing work [437.87ms]
+(pass) draft retained category decisions withdraw when their source card or original is changed [301.71ms]
+(pass) draft manual task consumes a valid current review and later data changes revoke it [678.59ms]
+(pass) draft worklist schedules scoped plain/chocolate powders and strict chocolate ice while retaining unknown SKU backlog [839.83ms]
+(pass) draft case runner honours the persisted global CAPTCHA before collector work [221.23ms]
+(pass) draft exact SKU task rejects a different item even when its numeric SKU suffix matches [314.90ms]
+(pass) draft preliminary inclusion cannot hide unknown or contradictory detailed categories or waive them with a blanket review [357.79ms]
+(pass) case terminal discovery barrier defers exact-SKU work until every configured list is complete [182.99ms]
+(pass) case retries remain bounded and interrupted checkpoints require explicit recovery [461.43ms]
+(pass) case lease rejects an independent live worker and malformed orphan metadata without deleting it [80.58ms]
+(pass) case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner [147.15ms]
+(pass) case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals [213.48ms]
+(pass) case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports [168.26ms]
+(pass) case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory [220.77ms]
+(pass) case old-product recollection stays deferred until every initial exact-SKU price is captured [421.94ms]
+(pass) case failed discovery counts its attempted task and retains the barrier before any exact-SKU work [301.32ms]
+
+tests/case-checkout-replay.test.js:
+(pass) offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop [694.60ms]
+(pass) an ordinary missing offline translation does not strand another valid checkout task behind the global stop [704.68ms]
+(pass) offline bulk task refuses live capture without touching the prepared browser page [489.18ms]
+(pass) network-enabled workflow remains stopped before any saved or live checkout task [301.34ms]
+(pass) offline bulk task cannot succeed with stale original [666.48ms]
+(pass) offline bulk task cannot succeed with future original [433.66ms]
+(pass) offline bulk task cannot succeed with invalid original date [576.22ms]
+(pass) offline bulk task cannot succeed with wrong case destination [538.50ms]
+(pass) offline bulk task cannot succeed with wrong original digest [540.54ms]
+(pass) offline bulk task cannot succeed with another SKU row [399.36ms]
+(pass) offline bulk task cannot succeed with another order quantity [229.84ms]
+(pass) offline bulk task cannot succeed with unknown shipping [445.81ms]
+(pass) offline bulk task cannot succeed with challenged original [530.95ms]
+(pass) offline imported original is not promoted into a public store [198.66ms]
+(pass) workflow quote freshness honors its explicit age bound and distinguishes the comparison default [600.43ms]
+(pass) an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams [558.95ms]
+(pass) invalidated saved original cannot be rewritten or accepted by its case task [637.02ms]
+(pass) a case cannot import a prepared checkout for a newly excluded paid shaker [560.02ms]
+(pass) a case cannot import a prepared checkout for a newly excluded other flavour [588.41ms]
+(pass) a case cannot import a prepared checkout for a newly excluded soy isolate [249.92ms]
+
+tests/manufacturer-source-validity.test.js:
+(pass) late evidence-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices [7.69ms]
+(pass) late source-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices [2.99ms]
+(pass) late url invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices [2.76ms]
+(pass) late cache-id invalidation withdraws source nutrition and reopens work without losing independently sourced grams or prices [2.97ms]
+(pass) catalog and exact product resolution withdraw approval after changed-source [2.63ms]
+(pass) catalog and exact product resolution withdraw approval after missing-bytes [2.17ms]
+(pass) catalog and exact product resolution withdraw approval after review-invalidated [2.58ms]
+(pass) resolved or inactive invalidations do not withdraw unchanged source-approved facts [2.36ms]
+(pass) an unrelated granular claim cannot waive a legacy manufacturer cross-check source hold [2.71ms]
+(pass) manufacturer source context is shared once per whole-catalog comparison and refreshed on the next operation [2.99ms]
+(pass) manufacturer source context is shared once per selected-offer comparison and refreshed on the next operation [2.60ms]
+(pass) catalog with no approved manufacturer claim or legacy check does not scan source caches [0.24ms]
+(pass) whole-comparison with no approved manufacturer claim or legacy check does not scan source caches [0.12ms]
+(pass) selected-comparison with no approved manufacturer claim or legacy check does not scan source caches [0.11ms]
+(pass) shared approved fallback facts trigger lazy source validation after merging a claim-free private observation [4.50ms]
+(pass) concurrent eligible consumers initialize one lazy source context and preserve source corruption checks [15.89ms]
+
+tests/manufacturer-workflow-draft.test.js:
+(pass) offline planning and resumable runner retain source-bound quantity/nutrition drafts from a cached primary JSON original [6.26ms]
+(pass) source invalidation by evidence/cache IDs removes reuse even without a URL [0.08ms]
+(pass) structured candidates require literal revision/currentness and remain unapproved [0.10ms]
+(pass) human review attaches original primary sources and applies approved nutrition without replacing offer price [1.32ms]
+(pass) bridge rejects missing reviewer before attaching or approving sources [0.24ms]
+(pass) bridge rejects automatic approval before attaching or approving sources [0.10ms]
+(pass) bridge rejects different flavour before attaching or approving sources [0.22ms]
+(pass) bridge rejects missing formula revision before attaching or approving sources [0.19ms]
+(pass) bridge rejects stale original before attaching or approving sources [0.41ms]
+(pass) bridge rejects changed listing digest before attaching or approving sources [0.20ms]
+(pass) bridge rejects changed source bytes and evidence-ID invalidations before writes [0.54ms]
+(pass) quantity bridge rejects numeric value absent from original before attaching sources [0.40ms]
+(pass) quantity bridge rejects unit conversion absent from original before attaching sources [0.26ms]
+(pass) quantity bridge rejects excerpt absent from original before attaching sources [0.23ms]
+(pass) reviewed packet cannot override original structured flavour [0.49ms]
+(pass) reviewed packet cannot override original structured formulaRevision [0.36ms]
+(pass) approved primary-source review survives associative restart and stays private over shared originals [130.16ms]
+(pass) quantity workflow establishes grams and millilitres independently from the selected original without approving nutrition [6.46ms]
+(pass) asynchronous approval withdraws when a newer selected capture arrives during validation [0.99ms]
+(pass) source invalidation created during asynchronous validation blocks staged publication [0.62ms]
+(pass) chronological product writer retains a newer capture arriving after the final review read [0.79ms]
+(pass) cached-only provider cannot issue a request and rejects embedded tokens [0.49ms]
+(pass) provider identity preserves cached-only reuse but isolates actual bounds and response mappings [0.26ms]
+(pass) HTTP JSON provider sends bounded POST and omits token echoes from returned candidates [1.56ms]
+(pass) active global CAPTCHA stop prevents even the first configured search request [0.34ms]
+(pass) a search challenge persists the global stop and prevents subsequent requests [0.61ms]
+(pass) search provider rejects oversized streamed response with no cache publication [0.39ms]
+(pass) search provider rejects redirect response with no cache publication [0.23ms]
+(pass) search provider rejects invalid JSON response with no cache publication [0.19ms]
+(pass) request byte and result bounds are enforced before any fetch [0.22ms]
+(pass) search cache separates result bounds so a narrow discovery cannot satisfy a broader request [1.23ms]
+(pass) genuine stored transform provenance preserves original and derived identities without relabelling OCR [0.68ms]
+(pass) private storage metadata does not replace the source-bound physical OCR proof [0.17ms]
+(pass) real lossless image transform and fixture-native OCR receipts verify after private associative restart [71.01ms]
+(pass) original-bound OCR rejects forged originalImageHash [0.32ms]
+(pass) original-bound OCR rejects changed crop recipe [0.40ms]
+(pass) original-bound OCR rejects corrupted derived bytes [0.30ms]
+(pass) original-bound OCR rejects changed TSV transcription [0.39ms]
+(pass) original-bound OCR rejects wrong native model fingerprint [0.24ms]
+(pass) original-bound OCR rejects lost source OCR binding [0.12ms]
+
+tests/source-invalidation.test.js:
+(pass) a bound source invalidation blocks missing timestamp [0.05ms]
+(pass) a bound source invalidation blocks malformed timestamp [0.02ms]
+(pass) a bound source invalidation blocks empty timestamp
+(pass) a bound source invalidation blocks numeric timestamp
+(pass) a bound source invalidation blocks invalidated flag
+(pass) a bound source invalidation blocks malformed resolved timestamp [0.01ms]
+(pass) a bound source invalidation blocks numeric resolved timestamp
+(pass) a bound source invalidation blocks concurrent timestamp
+(pass) unchanged source bytes can be replayed after explicit inactive state [0.03ms]
+(pass) unchanged source bytes can be replayed after explicit cleared state
+(pass) unchanged source bytes can be replayed after valid resolved state
+(pass) unchanged source bytes can be replayed after prior dated invalidation
+(pass) missing invalidation time fails closed through source URL on the original [0.03ms]
+(pass) missing invalidation time fails closed through sourceUrl alias on invalidation
+(pass) missing invalidation time fails closed through source URL as invalidation identity
+(pass) missing invalidation time fails closed through exact source ID
+(pass) missing invalidation time fails closed through exact evidence ID [0.02ms]
+(pass) missing invalidation time fails closed through exact linked cache ID
+(pass) ordinary bound cache metadata has no implicit invalidation and unrelated undated records cannot bind absent URLs [0.08ms]
+(pass) malformed cache timestamps and resolution cannot restore a retained linked source [0.05ms]
+(pass) cache sourceUrl aliases bind cache-ID invalidations and numeric fetchedAt remains an observation time [0.04ms]
+
+ 139 pass
+ 0 fail
+Ran 139 tests across 7 files. [26.84s]

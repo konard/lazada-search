@@ -55,7 +55,11 @@ function numericValue(raw, language) {
     return `unresolved:${raw}`;
   }
   const [whole, fraction = ''] = value.split('.');
-  const normalizedFraction = fraction.replace(/0+$/u, '');
+  let fractionEnd = fraction.length;
+  while (fractionEnd > 0 && fraction[fractionEnd - 1] === '0') {
+    fractionEnd--;
+  }
+  const normalizedFraction = fraction.slice(0, fractionEnd);
   return `${whole.replace(/^0+(?=\d)/u, '')}${normalizedFraction ? `.${normalizedFraction}` : ''}`;
 }
 
@@ -103,7 +107,11 @@ function textFacts(text, language) {
 function automaticEntities(text) {
   const entities = [];
   for (const match of text.matchAll(/https?:\/\/[^\s<>"']+/gu)) {
-    entities.push(match[0].replace(/[),.;]+$/u, ''));
+    let end = match[0].length;
+    while (end > 0 && /[),.;]/u.test(match[0][end - 1])) {
+      end--;
+    }
+    entities.push(match[0].slice(0, end));
   }
   for (const match of text.matchAll(
     /(?<![\p{L}\p{N}_])[A-Za-z\d][A-Za-z\d_-]{1,}(?![\p{L}\p{N}_])/gu

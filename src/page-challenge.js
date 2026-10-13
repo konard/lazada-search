@@ -1,8 +1,9 @@
 export const COLLECTION_STOP_ID = 'browser-collection';
 const challengeStores = new WeakMap();
+const stopQueues = new WeakMap();
 
-export function registerChallengeStore(page, store) {
-  challengeStores.set(page, store);
+export function registerChallengeStore(page, store, retainPage) {
+  challengeStores.set(page, { store, retainPage });
 }
 
 // Serialized into the page realm; also works against cached HTML in Node.
@@ -108,7 +109,7 @@ export function inspectPageChallenge(context) {
 export class CollectionStoppedError extends Error {
   constructor(challenge = {}) {
     super(
-      'Collection stopped: CAPTCHA or security challenge. Clear it manually, then explicitly resume collection.'
+      'Collection stopped: CAPTCHA or security challenge. Collection remains stopped until the challenged origin is clear and explicitly resumed.'
     );
     this.name = 'CollectionStoppedError';
     this.code = 'COLLECTION_STOPPED';
@@ -120,34 +121,70 @@ export class CollectionStoppedError extends Error {
 export async function assertPageNotChallenged(page) {
   const challenge = await page.evaluate(inspectPageChallenge);
   if (challenge.detected) {
-    const store = challengeStores.get(page);
-    if (store) {
-      await stopForChallenge(store, challenge);
+    const registration = challengeStores.get(page);
+    if (registration) {
+      await stopForChallenge(registration.store, challenge);
+      await registration.retainPage?.(challenge);
     }
     throw new CollectionStoppedError(challenge);
   }
   return challenge;
 }
 
-export async function stopForChallenge(store, challenge) {
-  const previous = await store.get('collection-stop', COLLECTION_STOP_ID);
-  if (previous?.active) {
-    return previous;
-  }
+export function stopForChallenge(store, challenge) {
   let origin = null;
   try {
     origin = new URL(challenge.url).origin;
   } catch {
     /* A blank page has no origin. */
   }
-  return store.put('collection-stop', {
-    id: COLLECTION_STOP_ID,
-    active: true,
-    reason: 'challenge',
-    detectedAt: new Date().toISOString(),
-    origin,
-    signals: challenge.signals || [],
-  });
+  return mutateCollectionStop(store, (previous) =>
+    previous?.active
+      ? previous
+      : {
+          id: COLLECTION_STOP_ID,
+          active: true,
+          reason: 'challenge',
+          detectedAt: new Date().toISOString(),
+          origin,
+          signals: challenge.signals || [],
+          ...(previous?.operatorReviewId
+            ? { precedingOperatorReviewId: previous.operatorReviewId }
+            : {}),
+        }
+  );
+}
+
+// The first challenge and its original target must win across concurrent pages.
+export function mutateCollectionStop(store, update) {
+  const atomic =
+    typeof store.locked === 'function' &&
+    typeof store.writeRecord === 'function';
+  const action = async () => {
+    const previous = await store.get('collection-stop', COLLECTION_STOP_ID);
+    const record = update(previous);
+    if (record === previous) {
+      return previous;
+    }
+    return atomic
+      ? store.writeRecord('collection-stop', {
+          record,
+          notation: encode({ obj: record }),
+          path: store.recordPath('collection-stop', COLLECTION_STOP_ID),
+        })
+      : store.put('collection-stop', record);
+  };
+  if (atomic) {
+    return store.locked(action);
+  }
+  // Compatible memory adapters share one queue; durable stores use their
+  // cross-process writer lock and native notation/binary projections above.
+  const result = (stopQueues.get(store) || Promise.resolve()).then(action);
+  stopQueues.set(
+    store,
+    result.catch(() => {})
+  );
+  return result;
 }
 
 export async function assertCollectionRunning(store) {
@@ -156,3 +193,4 @@ export async function assertCollectionRunning(store) {
     throw new CollectionStoppedError(state);
   }
 }
+import { encode } from 'lino-objects-codec';

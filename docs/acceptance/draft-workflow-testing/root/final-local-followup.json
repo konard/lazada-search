@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-12T08:21:04.757326+00:00",
+  "baseSuccessfulCI": "d197cc05285ff1195563b7354cbebcdcb9b9d66e",
+  "pullRequest": "https://github.com/konard/lazada-search/pull/41",
+  "sourceHashes": {
+    "src/catalog-products.js": "d0da604484106df246681e77c9915bd62792c8b1ac5f874521341f86cbd649ff",
+    "src/comparison-inputs.js": "279a2cbb18878137fa67c96a5ce46ce7722280d6a9b39c77ea01c840a58f273c",
+    "src/label-worklist.js": "d72c88eee58f7bf6aaf8d157f10cb85206edcfab85aee237ec1e6580de314acc",
+    "src/manufacturer-source-validity.js": "22615ff5c67c1abe5ccf45b940874b751492c32aea019727a36b7ace827a4870",
+    "src/page-readiness.js": "f8356d47dc474402a199a7cf3bbf58cb2c21eb39ca0e218da5898f73c39dad92",
+    "src/requirement-draft-review.js": "6b82691471a9cf19526451a2f832f74c170a0f3bda6c1ecca53135e8d7e06487",
+    "src/source-invalidation.js": "13a60e19194db21cc1d93d5ac3883bc6676791c6c71eafc1c753124e17efb62f",
+    "tests/changeset-config.test.js": "bfeb7f30e838f3fc78dc56e286bf02a446ec9fd950967cabe7714a534ddefaee",
+    "tests/e2e/draft-workflow-interfaces.test.js": "23a4d594dabcde31add82985ed8972096bdad2c366f1e8569c2d2180b4352b15",
+    "tests/e2e/prepared-checkout-adapter.test.js": "b0eed38ad85c1c98cf76ab36bb755a3bd4e7552b34413f086e4ace402ee08d01",
+    "tests/e2e/tag-search-readiness.test.js": "79f57d9305c825a05789cd7a3e1859c344848818a4aeaa799109c2b9ed9e8803",
+    "tests/lazada-checkout-gifts.test.js": "48d244cace0e1002b325a624140394a6461ef65ebb8241e6ec0f582f331d1201",
+    "tests/manufacturer-source-validity.test.js": "1d66dfa856ef60424c37a35258ba5b501f081207693b5a5312a04eb795d96501",
+    "tests/page-readiness-tag.test.js": "281d539459310bea06f204afd8f7a646ba379b812a7d03bb79696724b8a15acc"
+  },
+  "sourceGraphStableDuringCompleteNodeAndFinalConsumers": true,
+  "localValidation": {
+    "node": {
+      "version": "22.23.0",
+      "tests": 1460,
+      "passed": 1460,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 341951.086458
+    },
+    "completeNativeE2E": {
+      "tests": 71,
+      "passed": 71,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 447232.387667,
+      "sourceGraphChangedDuringRun": "Only the lazy initialization performance edit overlapped this run; exact-head CI and stable final consumers verify final source."
+    },
+    "finalStableNativeConsumers": {
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "resumed case, native bilingual OCR pipeline, verified catalog/library/CLI/HTTP/Telegram"
+    },
+    "sourceValidityPerformanceTargeted": {
+      "passedEachRuntime": 84,
+      "runtimes": ["Node22", "Bun1.4.3", "frozen cached-only Deno2.4.5"],
+      "receipt": "docs/acceptance/source-validity-performance/validation.json"
+    },
+    "currentDenoSourceControls": {
+      "version": "2.9.7",
+      "passed": 17,
+      "failed": 0,
+      "frozen": true,
+      "cachedOnly": true
+    },
+    "giftTargeted": {
+      "nodeCombinedPassed": 52,
+      "bunGiftPassed": 7,
+      "currentDenoGiftPassed": 7,
+      "chromiumCaptureActionsPassed": 2,
+      "receipt": "docs/acceptance/draft-workflow-testing/checkout-followup/receipt.json"
+    },
+    "releaseAtomicReadinessTrialsPassed": 20,
+    "strictLintPassed": true,
+    "publicTypesPassed": true,
+    "formatPassed": true,
+    "duplicationGatePassed": true
+  },
+  "initialFailure": "root/release-ready-marker-followup.json",
+  "logs": {
+    "node-final-stable": {
+      "path": "docs/acceptance/draft-workflow-testing/root/node-final-stable.log.gz",
+      "sha256": "a6934ca5253e20f965bc59f6482594afb52e032d68648c0bf13467ecf2909194",
+      "uncompressedBytes": 361379
+    },
+    "e2e-full-followup": {
+      "path": "docs/acceptance/draft-workflow-testing/root/e2e-full-followup.log.gz",
+      "sha256": "ad6f32e8073d524bc206a23165ff286459d448a956ff45cfe506c1a8d87cb729",
+      "uncompressedBytes": 18395
+    },
+    "e2e-stable-source-consumers": {
+      "path": "docs/acceptance/draft-workflow-testing/root/e2e-stable-source-consumers.log.gz",
+      "sha256": "e8ddf8d3f590b2d3ebc7e9044949f991267f86e2f982e9dd242428633bce614f",
+      "uncompressedBytes": 2001
+    },
+    "deno-source-validity-stable": {
+      "path": "docs/acceptance/draft-workflow-testing/root/deno-source-validity-stable.log.gz",
+      "sha256": "b8626434288037b30f20d410eccea6e0e2c3e8484eee35c8ba874598065f9660",
+      "uncompressedBytes": 2107
+    },
+    "final-stable-lint": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-stable-lint.log.gz",
+      "sha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837",
+      "uncompressedBytes": 0
+    },
+    "final-stable-types": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-stable-types.log.gz",
+      "sha256": "df209e4ae4cfa0f084af6860512ac6b155b1528ba7a7dfe9fe6fc5f088feb10f",
+      "uncompressedBytes": 77
+    },
+    "final-stable-format": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-stable-format.log.gz",
+      "sha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59",
+      "uncompressedBytes": 66
+    },
+    "final-stable-duplication": {
+      "path": "docs/acceptance/draft-workflow-testing/root/final-stable-duplication.log.gz",
+      "sha256": "ef4f117074985154f0d62b57a18dc0da412d5e179ebda84c362f369fe39edb3f",
+      "uncompressedBytes": 138323
+    }
+  },
+  "ciOnFinalCommit": "docs/acceptance/draft-workflow-testing/root/ci-141-review.json",
+  "liveCollectionRequests": 0,
+  "collectionStopCleared": false,
+  "realCaseOrBuyingReportsChanged": false,
+  "npmPublishingVerified": false,
+  "allRequirementsDelivered": false,
+  "allTargetProductsCollected": false,
+  "productionReady": false,
+  "purchaseReady": false
+}

@@ -1,4 +1,20 @@
 import type { Bot } from 'grammy';
+import type {
+  CaseWorkflowPlan,
+  CaseWorkflowRunOptions,
+  CaseWorkflowStatus,
+  ManufacturerWorkflowOptions,
+  ManufacturerWorkflowRunOptions,
+  ManufacturerWorkflowReviewInput,
+  ManufacturerSearchProvider,
+  ManufacturerSearchConfiguration,
+  CheckoutIdentityBinding,
+  CheckoutMappedLine,
+  ShoppingReportOptions,
+  ShoppingReport,
+  DraftRecord,
+} from './workflow-types.js';
+export * from './workflow-types.js';
 import type { Server } from 'node:http';
 export type Category =
   | 'whey'
@@ -311,6 +327,9 @@ export interface ReviewedFoodSource {
   invalidated?: boolean;
 }
 export interface FoodFact extends ReviewedFoodSource {
+  checkoutIdentityBinding?: CheckoutIdentityBinding;
+  checkoutContextSelector?: string;
+  checkoutValuePointer?: string;
   value: number;
   unit: 'g' | 'ml' | 'g/100g' | 'g/100ml' | 'g/package' | 'count';
   basis:
@@ -475,22 +494,13 @@ export interface BasketSourceMapping {
     coldChain?: string;
   };
   coldChainText?: string;
-  lines: Array<{
-    offerId: string;
-    sku: string;
-    quantity: number;
-    selectors: {
-      sku: string;
-      quantity: string;
-      unitPrice: string;
-      subtotal: string;
-    };
-  }>;
+  lines: CheckoutMappedLine[];
   appliedDiscounts?: Array<{
     id: string;
     scope: 'merchandise' | 'shipping';
     selector: string;
     identitySelector?: string;
+    amountSign?: 'negative-reduction';
   }>;
   checkoutConditions?: {
     paymentMethod: { selector: string; text: string };
@@ -756,7 +766,13 @@ export declare class DomainScheduler {
     intervalMs?: number;
     sleep?: (ms: number) => Promise<unknown>;
   });
-  run<T>(url: string, action: () => Promise<T>): Promise<T>;
+  run<T>(
+    url: string,
+    action: () => Promise<T>,
+    options?: {
+      beforePace?: () => unknown | Promise<unknown>;
+    }
+  ): Promise<T>;
   pace(url: string): Promise<void>;
 }
 export interface Capture {
@@ -767,6 +783,11 @@ export interface Capture {
   html?: BlobReference;
   screenshot?: BlobReference;
   screenshotMode?: 'viewport';
+  imageAcquisition?: {
+    admitted: number;
+    assetPhaseCompleted: boolean;
+    deferredUrls: string[];
+  };
   screenshots?: Array<{
     role: 'before-scroll' | 'after-scroll' | 'delivery';
     blob: BlobReference;
@@ -854,6 +875,7 @@ export declare class EvidenceCache {
   constructor(options: {
     store: AssociativeStore;
     scheduler?: DomainScheduler;
+    staticImageScheduler?: DomainScheduler;
     now?: () => number;
     offline?: boolean;
   });
@@ -896,10 +918,12 @@ export declare class BrowserCollector {
     settleMs?: number;
     maxScrolls?: number;
     captureTimeoutMs?: number;
+    assetSettleTimeoutMs?: number;
     flavourScope?: ComparisonOptions['flavourScope'];
   });
-  start(): Promise<void>;
+  start(options?: { existingOnly?: boolean; targetId?: string }): Promise<void>;
   assertCollecting(): Promise<void>;
+  collectionStatus(): Promise<CollectionStopState>;
   resumeCollection(): Promise<CollectionStopState>;
   page(
     url: string,
@@ -926,10 +950,41 @@ export interface CollectionStopState {
   reason?: 'challenge';
   detectedAt?: string;
   resumedAt?: string;
+  operatorReviewId?: string;
+  resumeDecision?: 'operator-dismissed-non-browser-stop';
+  challengedSourceRecoveryConfirmed?: false;
+  precedingOperatorReviewId?: string;
   origin?: string | null;
   signals?: string[];
+  browser?: {
+    targetId?: string;
+    mode: 'persistent' | 'attached' | 'ephemeral';
+    headless?: boolean;
+  };
+  handoff?: {
+    status:
+      | 'no-browser-page'
+      | 'window-unavailable'
+      | 'window-unreachable'
+      | 'window-closed'
+      | 'page-open'
+      | 'awaiting-user'
+      | 'headless-page'
+      | 'visibility-unconfirmed';
+    pageOpen: boolean;
+  };
 }
 export declare const COLLECTION_STOP_ID: string;
+export interface NonBrowserCollectionStopReview {
+  decision: 'dismiss-non-browser-stop';
+  reason: string;
+  expectedStop: CollectionStopState;
+  observedPageUrl?: string;
+}
+export declare function reviewNonBrowserCollectionStop(
+  store: AssociativeStore,
+  input: NonBrowserCollectionStopReview
+): Promise<CollectionStopState>;
 export declare class CollectionStoppedError extends Error {
   code: 'COLLECTION_STOPPED';
   reason: 'challenge';
@@ -951,6 +1006,13 @@ export declare function publishAccountCaptures(
   published: Array<Record<string, unknown>>;
   historicalPublished: Array<Record<string, unknown>>;
   allPublished: Array<Record<string, unknown>>;
+  ocrPublication: {
+    published: number;
+    reused: number;
+    transforms: number;
+    artifacts: number;
+    rejected: Array<{ ocrId: string; reason: string }>;
+  };
   rejected: Array<{ url: string; reason: string }>;
   reused: number;
   downloads: number;
@@ -1309,7 +1371,7 @@ export declare function translateCatalog(
 ): Promise<CatalogTranslationJob>;
 export declare function translationStatus(
   application: LazadaSearch,
-  options?: { jobId?: string }
+  options?: { jobId?: string; verifyCurrentCatalog?: boolean }
 ): Promise<Record<string, unknown>>;
 export declare const OPERATION_NAMES: string[];
 export declare function executeOperation(
@@ -1322,6 +1384,30 @@ export declare function executeOperation(
   }
 ): Promise<unknown>;
 export declare class LazadaSearch {
+  planCaseWorkflow(input?: CaseWorkflowPlan): Promise<CaseWorkflowStatus>;
+  runCaseWorkflow(
+    id: string,
+    options?: CaseWorkflowRunOptions
+  ): Promise<CaseWorkflowStatus & { executed: number; reportId: string }>;
+  caseWorkflowStatus(id: string): Promise<CaseWorkflowStatus>;
+  planManufacturerWorkflow(
+    options?: ManufacturerWorkflowOptions
+  ): Promise<DraftRecord>;
+  runManufacturerWorkflow(
+    id: string,
+    options?: ManufacturerWorkflowRunOptions
+  ): Promise<DraftRecord>;
+  manufacturerWorkflowStatus(id: string): Promise<DraftRecord>;
+  prepareManufacturerWorkflowReview(input: {
+    workflowId: string;
+    reviewDraftId: string;
+  }): Promise<DraftRecord>;
+  reviewManufacturerWorkflow(
+    input: ManufacturerWorkflowReviewInput
+  ): Promise<DraftRecord>;
+  labelWorklist(options?: ManufacturerWorkflowOptions): Promise<DraftRecord>;
+  shoppingReport(options?: ShoppingReportOptions): Promise<ShoppingReport>;
+  caseReadiness(options?: DraftRecord): Promise<DraftRecord>;
   manufacturerResearch(
     plan: Record<string, unknown>
   ): Promise<Record<string, unknown>>;
@@ -1337,7 +1423,10 @@ export declare class LazadaSearch {
     offline?: boolean;
     browserOptions?: Record<string, unknown>;
     scheduler?: DomainScheduler;
+    staticImageScheduler?: DomainScheduler;
     manufacturerRegistry?: Manufacturer[];
+    manufacturerSearchProvider?: ManufacturerSearchProvider;
+    manufacturerSearchConfiguration?: ManufacturerSearchConfiguration;
     translationProvider?:
       | TranslationProvider
       | TranslationProvider['translate'];
@@ -1350,6 +1439,7 @@ export declare class LazadaSearch {
   market: string;
   deliveryArea: string;
   translator: CachedTranslator;
+  manufacturerSearchProvider?: ManufacturerSearchProvider;
   translate(
     text: string,
     options?: TranslationOptions
@@ -1363,6 +1453,7 @@ export declare class LazadaSearch {
   ): Promise<CatalogTranslationJob>;
   translationStatus(options?: {
     jobId?: string;
+    verifyCurrentCatalog?: boolean;
   }): Promise<Record<string, unknown>>;
   importRecords(records: {
     products?: Product[];

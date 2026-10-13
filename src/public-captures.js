@@ -5,6 +5,7 @@ import { classifyPage, extractPage } from './browser.js';
 import { parseProduct } from './products.js';
 import { recordListingUnavailable } from './availability.js';
 import { publishScopeDecisions } from './scope-decisions.js';
+import { publishPublicProductImageOcr } from './public-product-ocr.js';
 import {
   publicationApplication,
   publicationFingerprint,
@@ -92,6 +93,14 @@ export async function publishAccountCaptures(application, accountStore) {
     application.store,
     accountStore
   );
+  const ocrPublication = await publishPublicProductImageOcr(
+    application.store,
+    accountStore,
+    {
+      publications: published,
+      sourceRecords,
+    }
+  );
   const currentIds = new Set(published.map((record) => record.id));
   return {
     published,
@@ -103,6 +112,7 @@ export async function publishAccountCaptures(application, accountStore) {
     reused,
     unavailablePublished,
     scopeDecisions,
+    ocrPublication,
     downloads: application.cache.stats.downloads,
   };
 }

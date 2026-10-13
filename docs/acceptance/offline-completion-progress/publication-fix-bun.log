@@ -1,0 +1,54 @@
+bun test v1.4.3 (c6da4a4d3)
+
+tests/case-readiness-evidence.test.js:
+(pass) captured readiness can advance only when every declared-inventory evidence gate passes [3.02ms]
+(pass) readiness verifies actual saved originals under a collection stop and withdraws changed or invalidated evidence [53.79ms]
+(pass) missing, changed-date and corrupt source descriptors cannot establish current price originals [20.32ms]
+(pass) only an eligible exact one-line basket contributes net freight and one-time discounts to captured readiness [0.29ms]
+(pass) readiness requires a positive finite integer quantity and a nonnegative freshness interval [14.95ms]
+(pass) fully discounted source-qualified orders retain zero unit rates as valid comparisons [0.25ms]
+
+tests/requirement-coverage.test.js:
+(pass) all recorded requirements retain executable regression references or explicit external operator procedures [5.21ms]
+(pass) GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates [0.54ms]
+(pass) passing synthetic arithmetic cannot certify real catalog coverage, shipping, OTP, translations or publisher access [27.57ms]
+(pass) published requirement mapping stays synchronized with source and current issue evidence [0.75ms]
+
+tests/case-checkout-replay.test.js:
+(pass) offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop [88.73ms]
+(pass) an ordinary missing offline translation does not strand another valid checkout task behind the global stop [68.72ms]
+(pass) offline bulk task refuses live capture without touching the prepared browser page [47.97ms]
+(pass) network-enabled workflow remains stopped before any saved or live checkout task [22.83ms]
+(pass) offline bulk task cannot succeed with stale original [66.57ms]
+(pass) offline bulk task cannot succeed with future original [66.52ms]
+(pass) offline bulk task cannot succeed with invalid original date [47.70ms]
+(pass) offline bulk task cannot succeed with wrong case destination [46.25ms]
+(pass) offline bulk task cannot succeed with wrong original digest [45.84ms]
+(pass) offline bulk task cannot succeed with another SKU row [54.32ms]
+(pass) offline bulk task cannot succeed with another order quantity [61.18ms]
+(pass) offline bulk task cannot succeed with unknown shipping [51.92ms]
+(pass) offline bulk task cannot succeed with challenged original [54.33ms]
+(pass) offline imported original is not promoted into a public store [40.82ms]
+(pass) workflow quote freshness honors its explicit age bound and distinguishes the comparison default [65.05ms]
+(pass) an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams [65.03ms]
+(pass) invalidated saved original cannot be rewritten or accepted by its case task [51.93ms]
+(pass) a case cannot import a prepared checkout for a newly excluded paid shaker [50.88ms]
+(pass) a case cannot import a prepared checkout for a newly excluded other flavour [49.68ms]
+(pass) a case cannot import a prepared checkout for a newly excluded soy isolate [48.81ms]
+
+tests/translation-catalog.test.js:
+(pass) catalog batch defaults to cache-only, resumes bounded text, deduplicates calls and replays without credentials [37.30ms]
+(pass) changed source bytes make new tasks and regenerate only changed text [17.30ms]
+(pass) failed early translations do not starve later unprocessed catalog fields [20.71ms]
+(pass) snapshot/OCR texts retain whole-source hashes, offsets and exact Unicode across chunks [7.91ms]
+(pass) missing original evidence stays an acceptance gap and private body/account text is excluded [10.46ms]
+(pass) CAPTCHA stops new batch requests immediately but all successful text can still replay [16.09ms]
+(pass) refresh catalog work resumes without re-translating completed refreshed chunks [21.79ms]
+(pass) current cached catalog acceptance rechecks each original translation and semantic approval without requests [13.05ms]
+(pass) title-only or obsolete translation jobs cannot approve the current catalog and originals [16.25ms]
+(pass) empty catalog and missing original source bytes never receive translation acceptance [4.73ms]
+(pass) catalog original acceptance validates attached image bytes and withdraws invalidated source text [17.42ms]
+
+ 41 pass
+ 0 fail
+Ran 41 tests across 4 files. [1.58s]

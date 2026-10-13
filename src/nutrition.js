@@ -26,6 +26,83 @@ export function parsePrice(value, currency = 'VND') {
   );
 }
 
+function skipWhitespace(text, start) {
+  while (start < text.length && /\s/u.test(text[start])) {
+    start++;
+  }
+  return start;
+}
+
+function numberEnd(text, start) {
+  let end = start;
+  while (end < text.length && /[\d.,]/u.test(text[end])) {
+    end++;
+  }
+  return end;
+}
+
+function declarationAt(text, start, unitExpression, grouped = false) {
+  if (!/\d/u.test(text[start] || '')) {
+    return undefined;
+  }
+  const end = numberEnd(text, start);
+  const number = text.slice(start, end);
+  if (!(grouped ? /^\d+(?:[.,]\d+)*$/u : /^\d+(?:[.,]\d+)?$/u).test(number)) {
+    return undefined;
+  }
+  const unitStart = skipWhitespace(text, end);
+  // Eleven code units cover the longest supported unit, and two more cover
+  // its trailing Unicode code point without copying the remaining document.
+  const unit = text.slice(unitStart, unitStart + 13).match(unitExpression);
+  if (!unit) {
+    return undefined;
+  }
+  const match = [
+    text.slice(start, unitStart + unit[0].length),
+    number,
+    unit[1],
+  ];
+  match.index = start;
+  return match;
+}
+
+function netMassPrefix(prefix) {
+  const labels =
+    /net\s*(?:wt\.?|weight|mass|content)|khoi luong tinh|trong luong(?: tinh)?/gu;
+  for (const label of prefix.matchAll(labels)) {
+    let cursor = skipWhitespace(prefix, label.index + label[0].length);
+    if (prefix[cursor] === ':' || prefix[cursor] === '=') {
+      cursor = skipWhitespace(prefix, cursor + 1);
+    }
+    while (cursor < prefix.length) {
+      const end = numberEnd(prefix, cursor);
+      if (end === cursor) {
+        break;
+      }
+      const unitStart = skipWhitespace(prefix, end);
+      const unit = prefix
+        .slice(unitStart, unitStart + 6)
+        .match(/^(lbs?|oz|pounds?|ounces?)/u);
+      if (!unit) {
+        break;
+      }
+      cursor = unitStart + unit[0].length;
+      while (
+        cursor < prefix.length &&
+        (prefix[cursor] === '(' ||
+          prefix[cursor] === ')' ||
+          /\s/u.test(prefix[cursor]))
+      ) {
+        cursor++;
+      }
+    }
+    if (cursor === prefix.length) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function massScope(prefix, suffix) {
   if (
     /(?:from|tu)\s+(?:(?:a|the|bich|tui|goi|bao)\s+)*(?:larger|large|lon|parent|original)?\s*$/u.test(
@@ -64,11 +141,7 @@ function massScope(prefix, suffix) {
   ) {
     return 'nutrition';
   }
-  if (
-    /(?:net\s*(?:wt\.?|weight|mass|content)|khoi luong tinh|trong luong(?: tinh)?)\s*[:=]?\s*(?:[\d.,]+\s*(?:lbs?|oz|pounds?|ounces?)\s*[()\s]*)*$/u.test(
-      prefix
-    )
-  ) {
+  if (netMassPrefix(prefix)) {
     return 'net';
   }
   return /\b(?:goi|tui(?: zip)?|bich|bag|pack|repack|share)\s*$/u.test(
@@ -81,13 +154,33 @@ function massScope(prefix, suffix) {
     : 'headline';
 }
 
+function* measurementDeclarations(text, unitExpression, grouped = false) {
+  // Each numeric run has one candidate, including malformed or unitless runs.
+  // Unit validation starts after the complete numeric token.
+  for (const token of text.matchAll(/\d[\d.,]*/gu)) {
+    const before = text[token.index - 1];
+    if (
+      (before === '.' || before === ',') &&
+      (token.index === 1 || /\s/u.test(text[token.index - 2]))
+    ) {
+      continue;
+    }
+    const match = declarationAt(text, token.index, unitExpression, grouped);
+    if (match) {
+      yield match;
+    }
+  }
+}
+
 // Keep every declaration so metric preference never erases a parent package,
 // rounded imperial headline, gross weight or conflicting food-size claim.
 export function massEvidence(value) {
   const text = String(value || '');
   const candidates = [
-    ...text.matchAll(
-      /(\d+(?:[.,]\d+)*)\s*(kilograms?|kgs?|grams?|gam|gr|g|pounds?|lbs?|ounces?|oz)(?![\p{L}\p{N}])/giu
+    ...measurementDeclarations(
+      text,
+      /^(kilograms?|kgs?|grams?|gam|gr|g|pounds?|lbs?|ounces?|oz)(?![\p{L}\p{N}])/iu,
+      true
     ),
   ]
     .map((match) => {
@@ -157,9 +250,10 @@ export function packCountOf(value) {
 }
 
 export function volumeMillilitres(value) {
-  const match = String(value || '').match(
-    /(\d+(?:[.,]\d+)?)\s*(ml|millilit(?:er|re)s?|lit(?:er|re)s?|l)(?![\p{L}\p{N}])/iu
-  );
+  const match = measurementDeclarations(
+    String(value || ''),
+    /^(ml|millilit(?:er|re)s?|lit(?:er|re)s?|l)(?![\p{L}\p{N}])/iu
+  ).next().value;
   if (!match) {
     return undefined;
   }
@@ -254,25 +348,70 @@ export function proteinTypeOf(ingredients, category) {
 }
 
 const NUTRIENTS = {
-  proteinPer100g:
-    /(?:protein|chất đạm|đạm)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
-  sugarPer100g:
-    /(?:total sugars?|sugars?|đường)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
-  fatPer100g:
-    /(?<!saturated\s+)(?:total fat|fat|chất béo)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
-  saturatedFatPer100g:
-    /(?:saturated fat|saturates|béo bão hòa)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu,
-  kcalPer100g:
-    /(?:energy|calories|năng lượng)\s*[:\t]?\s*(\d+(?:[.,]\d+)?)\s*(?:kcal|cal)\b/iu,
+  proteinPer100g: /protein|chất đạm|đạm/giu,
+  sugarPer100g: /total sugars?|sugars?|đường/giu,
+  fatPer100g: /total fat|fat|chất béo/giu,
+  saturatedFatPer100g: /saturated fat|saturates|béo bão hòa/giu,
+  kcalPer100g: /energy|calories|năng lượng/giu,
 };
+
+function labelValueStart(text, start) {
+  const cursor = skipWhitespace(text, start);
+  return text[cursor] === ':' ? skipWhitespace(text, cursor + 1) : cursor;
+}
+
+function saturatedFatLabel(text, start) {
+  let end = start;
+  while (end > 0 && /\s/u.test(text[end - 1])) {
+    end--;
+  }
+  return (
+    end < start &&
+    text.slice(Math.max(0, end - 9), end).toLowerCase() === 'saturated'
+  );
+}
+
+function* labeledDeclarations(text, labels, units, options = {}) {
+  for (const label of text.matchAll(labels)) {
+    if (options.excludeSaturated && saturatedFatLabel(text, label.index)) {
+      continue;
+    }
+    let start = labelValueStart(text, label.index + label[0].length);
+    if (options.serving) {
+      const countEnd = numberEnd(text, start);
+      if (/^\d+$/u.test(text.slice(start, countEnd))) {
+        const scoopStart = skipWhitespace(text, countEnd);
+        const scoop = text
+          .slice(scoopStart, scoopStart + 6)
+          .match(/^scoops?/iu);
+        if (scoop) {
+          start = skipWhitespace(text, scoopStart + scoop[0].length);
+          if (text[start] === '(') {
+            start = skipWhitespace(text, start + 1);
+          }
+        }
+      }
+    }
+    const declaration = declarationAt(text, start, units);
+    if (declaration) {
+      yield [
+        text.slice(label.index, start + declaration[0].length),
+        declaration[1],
+      ];
+    }
+  }
+}
 
 export function extractNutrition(text) {
   const fields = {};
   const excerpts = {};
   const warnings = [];
-  const serving = text.match(
-    /(?:serving size|khẩu phần)\s*[:\t]?\s*(?:\d+\s*scoops?\s*\()?\s*(\d+(?:[.,]\d+)?)\s*g\b/iu
-  );
+  const serving = labeledDeclarations(
+    text,
+    /serving size|khẩu phần/giu,
+    /^(g)\b/iu,
+    { serving: true }
+  ).next().value;
   if (serving) {
     fields.servingMassG = parseDecimal(serving[1]);
     excerpts.servingMassG = serving[0];
@@ -300,7 +439,12 @@ export function extractNutrition(text) {
           : undefined;
   for (const [key, expression] of Object.entries(NUTRIENTS)) {
     const matches = [
-      ...text.matchAll(new RegExp(expression.source, `${expression.flags}g`)),
+      ...labeledDeclarations(
+        text,
+        expression,
+        key === 'kcalPer100g' ? /^(kcal|cal)\b/iu : /^(g)\b/iu,
+        { excludeSaturated: key === 'fatPer100g' }
+      ),
     ];
     const values = [...new Set(matches.map((match) => parseDecimal(match[1])))];
     const targetKey = volume ? key.replace('Per100g', 'Per100ml') : key;
@@ -319,16 +463,20 @@ export function extractNutrition(text) {
       warnings.push(`Repeated ${key} needs review`);
     }
   }
-  const net = text.match(
-    /(?:net (?:weight|mass)|khối lượng tịnh|trọng lượng)\s*[:\t]?\s*\d+(?:[.,]\d+)?\s*(?:kg|g|oz|lbs?)\b/iu
-  );
+  const net = labeledDeclarations(
+    text,
+    /net (?:weight|mass)|khối lượng tịnh|trọng lượng/giu,
+    /^(kg|g|oz|lbs?)\b/iu
+  ).next().value;
   if (net) {
     fields.netMassG = massGrams(net[0]);
     excerpts.netMassG = net[0];
   }
-  const netVolume = text.match(
-    /(?:net (?:volume|content)|thể tích(?: thực)?|dung tích|khối lượng tịnh)\s*[:\t]?\s*\d+(?:[.,]\d+)?\s*(?:ml|l|lit(?:er|re)s?)\b/iu
-  );
+  const netVolume = labeledDeclarations(
+    text,
+    /net (?:volume|content)|thể tích(?: thực)?|dung tích|khối lượng tịnh/giu,
+    /^(ml|l|lit(?:er|re)s?)\b/iu
+  ).next().value;
   if (netVolume) {
     fields.netVolumeMl = volumeMillilitres(netVolume[0]);
     excerpts.netVolumeMl = netVolume[0];

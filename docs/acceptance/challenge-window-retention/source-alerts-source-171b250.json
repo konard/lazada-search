@@ -1,0 +1,883 @@
+{
+  "sourceCommit": "171b25030d993421eeb2a0ed9e0265937963756f",
+  "observedAt": "2026-10-12 19:53:07 UTC",
+  "queryRef": "refs/pull/41/merge",
+  "trackedExecutableAlertNumbers": [2, 9, 32, 35],
+  "tracked": [
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 52,
+        "end_line": 106,
+        "path": "src/translation-quality.js",
+        "start_column": 19,
+        "start_line": 106
+      },
+      "number": 35,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 13,
+        "end_line": 13,
+        "path": "scripts/promotion-report.mjs",
+        "start_column": 3,
+        "start_line": 12
+      },
+      "number": 32,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-sanitization",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 40,
+        "end_line": 307,
+        "path": "src/products.js",
+        "start_column": 5,
+        "start_line": 306
+      },
+      "number": 9,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 293,
+        "path": "src/browser.js",
+        "start_column": 23,
+        "start_line": 291
+      },
+      "number": 2,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    }
+  ],
+  "executableSourceAlerts": [
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 52,
+        "end_line": 106,
+        "path": "src/translation-quality.js",
+        "start_column": 19,
+        "start_line": 106
+      },
+      "number": 35,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/34",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 137,
+        "end_line": 68,
+        "path": "src/nutrition.js",
+        "start_column": 134,
+        "start_line": 68
+      },
+      "number": 34,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "d928ffdefa53f21df4c05975e032567869337429",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/33",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 6,
+        "end_line": 91,
+        "path": "src/nutrition.js",
+        "start_column": 8,
+        "start_line": 89
+      },
+      "number": 33,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 13,
+        "end_line": 13,
+        "path": "scripts/promotion-report.mjs",
+        "start_column": 3,
+        "start_line": 12
+      },
+      "number": 32,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-sanitization",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 40,
+        "end_line": 307,
+        "path": "src/products.js",
+        "start_column": 5,
+        "start_line": 306
+      },
+      "number": 9,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/7",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 364,
+        "path": "src/nutrition.js",
+        "start_column": 21,
+        "start_line": 362
+      },
+      "number": 7,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/6",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 357,
+        "path": "src/nutrition.js",
+        "start_column": 15,
+        "start_line": 355
+      },
+      "number": 6,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/5",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 308,
+        "path": "src/nutrition.js",
+        "start_column": 19,
+        "start_line": 306
+      },
+      "number": 5,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/4",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 195,
+        "path": "src/nutrition.js",
+        "start_column": 17,
+        "start_line": 193
+      },
+      "number": 4,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 293,
+        "path": "src/browser.js",
+        "start_column": 23,
+        "start_line": 291
+      },
+      "number": 2,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    }
+  ],
+  "openExecutableSourceAlerts": [],
+  "newHelper": {
+    "path": "src/blob-publication.js",
+    "matchingAlerts": [],
+    "openAlerts": []
+  },
+  "allAlertRecords": [
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/36",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 6,
+        "end_line": 276,
+        "path": "tests/manufacturer-source-validity.test.js",
+        "start_column": 5,
+        "start_line": 274
+      },
+      "number": 36,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-url-substring-sanitization",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 52,
+        "end_line": 106,
+        "path": "src/translation-quality.js",
+        "start_column": 19,
+        "start_line": 106
+      },
+      "number": 35,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/34",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 137,
+        "end_line": 68,
+        "path": "src/nutrition.js",
+        "start_column": 134,
+        "start_line": 68
+      },
+      "number": 34,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "d928ffdefa53f21df4c05975e032567869337429",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/33",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 6,
+        "end_line": 91,
+        "path": "src/nutrition.js",
+        "start_column": 8,
+        "start_line": 89
+      },
+      "number": 33,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 13,
+        "end_line": 13,
+        "path": "scripts/promotion-report.mjs",
+        "start_column": 3,
+        "start_line": 12
+      },
+      "number": 32,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-sanitization",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/31",
+      "instance_state": "open",
+      "location": {
+        "end_column": 687,
+        "end_line": 381,
+        "path": "docs/acceptance/ice-dual-units/expanded-fanfare-hmart.html",
+        "start_column": 659,
+        "start_line": 381
+      },
+      "number": 31,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-hostname-regexp",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/30",
+      "instance_state": "open",
+      "location": {
+        "end_column": 687,
+        "end_line": 664,
+        "path": "docs/acceptance/ice-dual-units/expanded-fanfare-vitaminhouse.html",
+        "start_column": 659,
+        "start_line": 664
+      },
+      "number": 30,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-hostname-regexp",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/29",
+      "instance_state": "open",
+      "location": {
+        "end_column": 36,
+        "end_line": 178,
+        "path": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-pint.html",
+        "start_column": 24,
+        "start_line": 178
+      },
+      "number": 29,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-sanitization",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/28",
+      "instance_state": "open",
+      "location": {
+        "end_column": 36,
+        "end_line": 178,
+        "path": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-minicup.html",
+        "start_column": 24,
+        "start_line": 178
+      },
+      "number": 28,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-sanitization",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/27",
+      "instance_state": "open",
+      "location": {
+        "end_column": 13518,
+        "end_line": 101,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 13493,
+        "start_line": 101
+      },
+      "number": 27,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/unsafe-html-expansion",
+      "severity": "medium",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/26",
+      "instance_state": "open",
+      "location": {
+        "end_column": 59,
+        "end_line": 7188,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 27,
+        "start_line": 7188
+      },
+      "number": 26,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/25",
+      "instance_state": "open",
+      "location": {
+        "end_column": 10,
+        "end_line": 6836,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 24,
+        "start_line": 6834
+      },
+      "number": 25,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/24",
+      "instance_state": "open",
+      "location": {
+        "end_column": 12,
+        "end_line": 6825,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 60,
+        "start_line": 6822
+      },
+      "number": 24,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/23",
+      "instance_state": "open",
+      "location": {
+        "end_column": 12,
+        "end_line": 6771,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 26,
+        "start_line": 6769
+      },
+      "number": 23,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/22",
+      "instance_state": "open",
+      "location": {
+        "end_column": 10,
+        "end_line": 6697,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 42,
+        "start_line": 6695
+      },
+      "number": 22,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/21",
+      "instance_state": "open",
+      "location": {
+        "end_column": 12,
+        "end_line": 6687,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 46,
+        "start_line": 6684
+      },
+      "number": 21,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/20",
+      "instance_state": "open",
+      "location": {
+        "end_column": 12,
+        "end_line": 6583,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 38,
+        "start_line": 6581
+      },
+      "number": 20,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/19",
+      "instance_state": "open",
+      "location": {
+        "end_column": 32,
+        "end_line": 2903,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 30,
+        "start_line": 2903
+      },
+      "number": 19,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/18",
+      "instance_state": "open",
+      "location": {
+        "end_column": 24848,
+        "end_line": 106,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 24847,
+        "start_line": 106
+      },
+      "number": 18,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/17",
+      "instance_state": "open",
+      "location": {
+        "end_column": 24436,
+        "end_line": 106,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 24435,
+        "start_line": 106
+      },
+      "number": 17,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/16",
+      "instance_state": "open",
+      "location": {
+        "end_column": 22513,
+        "end_line": 106,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 22512,
+        "start_line": 106
+      },
+      "number": 16,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/15",
+      "instance_state": "open",
+      "location": {
+        "end_column": 22216,
+        "end_line": 106,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 22215,
+        "start_line": 106
+      },
+      "number": 15,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/14",
+      "instance_state": "open",
+      "location": {
+        "end_column": 40903,
+        "end_line": 103,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 40902,
+        "start_line": 103
+      },
+      "number": 14,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/13",
+      "instance_state": "open",
+      "location": {
+        "end_column": 12923,
+        "end_line": 103,
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_column": 12922,
+        "start_line": 103
+      },
+      "number": 13,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/12",
+      "instance_state": "open",
+      "location": {
+        "end_column": 29,
+        "end_line": 2688,
+        "path": "docs/acceptance/ice-dual-units/expanded-kimphuc-iberri6l.html",
+        "start_column": 22,
+        "start_line": 2688
+      },
+      "number": 12,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/11",
+      "instance_state": "open",
+      "location": {
+        "end_column": 102,
+        "end_line": 2666,
+        "path": "docs/acceptance/ice-dual-units/expanded-kimphuc-iberri6l.html",
+        "start_column": 28,
+        "start_line": 2666
+      },
+      "number": 11,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/10",
+      "instance_state": "open",
+      "location": {
+        "end_column": 114,
+        "end_line": 566,
+        "path": "docs/acceptance/ice-dual-units/bing-export-directory.html",
+        "start_column": 29,
+        "start_line": 566
+      },
+      "number": 10,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/xss-through-dom",
+      "severity": "high",
+      "state": "open"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 40,
+        "end_line": 307,
+        "path": "src/products.js",
+        "start_column": 5,
+        "start_line": 306
+      },
+      "number": 9,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/7",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 364,
+        "path": "src/nutrition.js",
+        "start_column": 21,
+        "start_line": 362
+      },
+      "number": 7,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/6",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 357,
+        "path": "src/nutrition.js",
+        "start_column": 15,
+        "start_line": 355
+      },
+      "number": 6,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/5",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 308,
+        "path": "src/nutrition.js",
+        "start_column": 19,
+        "start_line": 306
+      },
+      "number": 5,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "83011136ce89529d17979dd658eecc740d92234b",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/4",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 195,
+        "path": "src/nutrition.js",
+        "start_column": 17,
+        "start_line": 193
+      },
+      "number": 4,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+      "instance_state": "fixed",
+      "location": {
+        "end_column": 4,
+        "end_line": 293,
+        "path": "src/browser.js",
+        "start_column": 23,
+        "start_line": 291
+      },
+      "number": 2,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/polynomial-redos",
+      "severity": "high",
+      "state": "fixed"
+    },
+    {
+      "commit_sha": "19f0e79abc862ca6b8e59b775f70ccc007e9c316",
+      "dismissed_reason": null,
+      "html_url": "https://github.com/konard/lazada-search/security/code-scanning/1",
+      "instance_state": "open",
+      "location": {
+        "end_column": 45,
+        "end_line": 87,
+        "path": "docs/case-studies/issue-3/original-format-release-notes.mjs",
+        "start_column": 7,
+        "start_line": 87
+      },
+      "number": 1,
+      "ref": "refs/pull/41/merge",
+      "rule_id": "js/incomplete-url-substring-sanitization",
+      "severity": "high",
+      "state": "open"
+    }
+  ],
+  "scope": "Read-only source-alert audit after completed Security and full runtime matrix. Fixed-alert commit/location fields identify their last detection; latest source-specific CodeQL check separately proves exact-head success. Archived raw HTML remains historical original evidence; no alert dismissals or exclusions performed."
+}

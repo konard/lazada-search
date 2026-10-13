@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-13T08:12:36.977336+00:00",
+  "scope": "Offline synthetic original-source replay and task orchestration only. No actual browser, website, network, profile/account inspection, collection-stop clearing or real purchasing acceptance.",
+  "files": {
+    "src/case-workflow.js": "b56eaf866b64df6aa96a80e6db7f25e072e7158171f32091aadc9b9f0ab7cfbb",
+    "src/case-worklist.js": "5ec797a62923d48f34b816e01ea0f1074dd749a80c7e007e155cc4dfa8b0d07a",
+    "src/basket-original.js": "af3cde8bd0389a16a59d71e5015ae47e93063389ad2dc95bd61f60b0ae064b3c",
+    "src/basket-quote.js": "d653637615abdd3a5bbbbe54029797c76fed0e99e76735cb255c2fedf29c7149",
+    "src/basket-comparison.js": "32b9b632fc515d108c7abffc000b5e8ff8998f0646afdde935aea490962810a2",
+    "tests/case-checkout-replay.test.js": "fd9e73267990951e3d0eff34876f731746e599088c9bf1217d759a2b86032507",
+    "tests/basket-source-invalidations.test.js": "cf313bac20b80b63f0e1a1df38c596d9eec7ddab802ea72fb1c2015424854483"
+  },
+  "commands": {
+    "node": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=4 tests/basket-source-invalidations.test.js tests/basket-quotes.test.js tests/case-checkout-replay.test.js tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js tests/checkout-scenarios.test.js",
+    "bun": "/Users/konard/.bun/bin/bun test tests/basket-source-invalidations.test.js tests/basket-quotes.test.js tests/case-checkout-replay.test.js tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js tests/checkout-scenarios.test.js",
+    "deno": "/opt/homebrew/bin/deno test --allow-all --no-check --cached-only --frozen tests/basket-source-invalidations.test.js tests/basket-quotes.test.js tests/case-checkout-replay.test.js tests/case-workflow-draft.test.js tests/lazada-checkout-draft.test.js tests/checkout-scenarios.test.js"
+  },
+  "tests": {
+    "newCaseOrchestrationRegressions": 20,
+    "newBasketOriginalRegressions": 19,
+    "affectedCasesEachRuntime": 100,
+    "node": {
+      "passed": 100,
+      "failed": 0
+    },
+    "bun": {
+      "passed": 100,
+      "failed": 0
+    },
+    "deno": {
+      "passed": 100,
+      "failed": 0,
+      "cachedOnly": true,
+      "frozen": true
+    }
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/lazada-case-basket-final-node.tap",
+      "sha256": "c787f5ea86b3ae4c508e2de041f14ce338f95d79c02f3f8223eab7e04714cf5b"
+    },
+    "bun": {
+      "path": "/private/tmp/lazada-case-basket-final-bun.log",
+      "sha256": "9b1073374a9eefa8a995052a37d1a50cc8ee37a3b6cc6c61a0b14a140fb2f49d"
+    },
+    "deno": {
+      "path": "/private/tmp/lazada-case-basket-final-deno.log",
+      "sha256": "2091e2a7ef53ebae1ccd7ed49822f4882e069aae591c194b3176f0f69d9528a1"
+    },
+    "lint": {
+      "path": "/private/tmp/lazada-case-basket-final-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format": {
+      "path": "/private/tmp/lazada-case-basket-final-format.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    }
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "format": "passed",
+  "advancedCapabilities": [
+    "Offline case bulk-checkout replay from verified private original HTML with exact SKU, quantity, destination, original date and eligibility",
+    "Cached-only continuation after an unrelated failure while the original CAPTCHA stop remains unchanged",
+    "Finite nonnegative quote age before suppressing pending delivery/checkout tasks",
+    "Quantity-specific fixed voucher/shipping arithmetic, explicit zero freight and no shaker food mass or volume",
+    "Private checkout originals retained in account overlay without public fallback promotion",
+    "Unified original evidence/cache/URL invalidation gates for basket saving and comparison; missing or malformed active invalidation/resolution dates cannot waive proof",
+    "Verified original SHA and byte length; originals and historical quotes never silently removed or rewritten",
+    "Finite comparison clock refusal before downstream calculations"
+  ],
+  "remainingExternalAcceptance": [
+    "The actual saved CAPTCHA stop stays active",
+    "Exhaustive current category inventory/manufacturer data remains incomplete",
+    "Actual authenticated session, current bulk/frozen delivery, layout and voucher acceptance still require legitimate observed originals"
+  ]
+}

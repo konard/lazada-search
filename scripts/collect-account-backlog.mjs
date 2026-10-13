@@ -136,7 +136,7 @@ try {
         )
       );
       if (
-        /dialog|challenge|login|captcha|access.denied|loading did not settle|HTTP (?:403|429)/iu.test(
+        /dialog|challenge|login|captcha|access.denied|loading did not settle|page capture timed out|previous page capture|HTTP (?:403|429)/iu.test(
           error.message
         )
       ) {

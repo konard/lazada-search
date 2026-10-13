@@ -297,3 +297,158 @@ test('refresh catalog work resumes without re-translating completed refreshed ch
   assert.equal(calls.length, 4);
   assert.equal(completed.refreshId, refreshed.refreshId);
 });
+
+test('current cached catalog acceptance rechecks each original translation and semantic approval without requests', async (t) => {
+  const { app, store, calls } = await setup(t);
+  await store.put('product', { id: 'ice', title: 'Kem sô cô la 40 g' });
+  const job = await app.translateCatalog({ cacheOnly: false });
+  assert.equal(job.complete, true);
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    false
+  );
+  const records = await store.list('translation');
+  for (const record of records) {
+    await app.translator.review(record.id, {
+      sourceSha256: record.sourceSha256,
+      translatedSha256: record.translatedSha256,
+      decision: 'approved',
+      reviewer: 'Synthetic Vietnamese reviewer',
+    });
+  }
+  await store.put('collection-stop', { id: COLLECTION_STOP_ID, active: true });
+  const before = calls.length;
+  const accepted = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(accepted.completeCachedCatalogEnglishAccepted, true);
+  assert.equal(accepted.completeCatalogEnglishAccepted, false);
+  assert.equal(accepted.reviewed, accepted.total);
+  assert.equal(calls.length, before);
+  await store.put('translation', {
+    ...records[0],
+    translatedText: 'Corrupt translated bytes',
+  });
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    false
+  );
+  assert.equal(calls.length, before);
+});
+
+test('title-only or obsolete translation jobs cannot approve the current catalog and originals', async (t) => {
+  const { app, store, calls } = await setup(t);
+  await store.put('product', { id: 'ice', title: 'Kem sô cô la' });
+  await app.translateCatalog({ includeSources: false, cacheOnly: false });
+  const limited = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(limited.completeCachedCatalogEnglishAccepted, false);
+  assert.equal(limited.jobId, null);
+  await app.translateCatalog({ cacheOnly: false });
+  for (const record of await store.list('translation')) {
+    await app.translator.review(record.id, {
+      sourceSha256: record.sourceSha256,
+      translatedSha256: record.translatedSha256,
+      decision: 'approved',
+      reviewer: 'Synthetic Vietnamese reviewer',
+    });
+  }
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    true
+  );
+  await store.put('product', { id: 'ice', title: 'Kem sô cô la 40 g' });
+  const before = calls.length;
+  const changed = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(changed.completeCachedCatalogEnglishAccepted, false);
+  assert.equal(changed.jobId, null);
+  assert.equal(calls.length, before);
+});
+
+test('empty catalog and missing original source bytes never receive translation acceptance', async (t) => {
+  const { app, store } = await setup(t);
+  await app.translateCatalog({ cacheOnly: false });
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    false
+  );
+  await store.put('product', {
+    id: 'ice',
+    title: 'Kem sô cô la',
+    evidenceIds: ['missing-label'],
+  });
+  const status = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(status.completeCachedCatalogEnglishAccepted, false);
+  assert.ok(
+    status.sourceGaps.some((gap) => gap.reason === 'source-evidence-not-cached')
+  );
+});
+
+test('catalog original acceptance validates attached image bytes and withdraws invalidated source text', async (t) => {
+  const { app, store, calls } = await setup(t);
+  const image = await store.putBlob('Synthetic original package image bytes');
+  const observedAt = new Date().toISOString();
+  await store.put('product', {
+    id: 'ice',
+    title: 'Kem sô cô la',
+    evidenceIds: ['label'],
+  });
+  await store.put('evidence', {
+    id: 'label',
+    role: 'ocr',
+    image,
+    observedAt,
+    url: 'https://img.lazcdn.com/fixture.webp',
+  });
+  await app.translateCatalog({ cacheOnly: false });
+  for (const record of await store.list('translation')) {
+    await app.translator.review(record.id, {
+      sourceSha256: record.sourceSha256,
+      translatedSha256: record.translatedSha256,
+      decision: 'approved',
+      reviewer: 'Synthetic Vietnamese reviewer',
+    });
+  }
+  const before = calls.length;
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    true
+  );
+  await store.put('invalidation', {
+    id: 'withdraw-label',
+    evidenceIds: ['label'],
+    invalidatedAt: observedAt,
+  });
+  const withdrawn = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(withdrawn.completeCachedCatalogEnglishAccepted, false);
+  assert.ok(
+    withdrawn.sourceGaps.some((gap) => gap.reason === 'source-invalidated')
+  );
+  await store.put('invalidation', {
+    id: 'withdraw-label',
+    evidenceIds: ['label'],
+    invalidatedAt: observedAt,
+    resolvedAt: new Date().toISOString(),
+  });
+  assert.equal(
+    (await app.translationStatus({ verifyCurrentCatalog: true }))
+      .completeCachedCatalogEnglishAccepted,
+    true
+  );
+  await store.put('evidence', {
+    id: 'label',
+    role: 'ocr',
+    image: { ...image, sha256: '0'.repeat(64) },
+    observedAt,
+  });
+  const missing = await app.translationStatus({ verifyCurrentCatalog: true });
+  assert.equal(missing.completeCachedCatalogEnglishAccepted, false);
+  assert.ok(
+    missing.sourceGaps.some(
+      (gap) => gap.reason === 'source-bytes-not-cached-or-invalid'
+    )
+  );
+  assert.equal(calls.length, before);
+});

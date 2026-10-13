@@ -62,6 +62,9 @@ export async function runCli(
         flavourScope: options.flavourScope,
         maxImages: options.maxImages,
         offline: options.offline,
+        manufacturerSearchConfiguration: options.manufacturerSearchConfig
+          ? JSON.parse(readFileSync(options.manufacturerSearchConfig, 'utf8'))
+          : undefined,
         translationProviderId: options.translationProvider,
         translationProviderVersion: options.translationVersion,
         translationProvider: options.translationEndpoint
@@ -81,11 +84,7 @@ export async function runCli(
           : false,
         browserOptions: {
           headless: command === 'login' ? false : options.headless,
-          persistentWindow:
-            options.persistentBrowser &&
-            (command === 'login' ||
-              Boolean(options.account) ||
-              !options.headless),
+          persistentWindow: options.persistentBrowser,
           idleTimeoutMs: options.browserIdleMs,
           ...(options.cdpUrl ? { cdpEndpoint: options.cdpUrl } : {}),
           ...(imported ? { seedCookies: imported.cookies } : {}),

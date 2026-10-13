@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: captured readiness can advance only when every declared-inventory evidence gate passes
+ok 1 - captured readiness can advance only when every declared-inventory evidence gate passes
+  ---
+  duration_ms: 7.3115
+  type: 'test'
+  ...
+# Subtest: readiness verifies actual saved originals under a collection stop and withdraws changed or invalidated evidence
+ok 2 - readiness verifies actual saved originals under a collection stop and withdraws changed or invalidated evidence
+  ---
+  duration_ms: 1155.453459
+  type: 'test'
+  ...
+# Subtest: missing, changed-date and corrupt source descriptors cannot establish current price originals
+ok 3 - missing, changed-date and corrupt source descriptors cannot establish current price originals
+  ---
+  duration_ms: 530.218875
+  type: 'test'
+  ...
+# Subtest: only an eligible exact one-line basket contributes net freight and one-time discounts to captured readiness
+ok 4 - only an eligible exact one-line basket contributes net freight and one-time discounts to captured readiness
+  ---
+  duration_ms: 0.392375
+  type: 'test'
+  ...
+# Subtest: readiness requires a positive finite integer quantity and a nonnegative freshness interval
+ok 5 - readiness requires a positive finite integer quantity and a nonnegative freshness interval
+  ---
+  duration_ms: 390.770083
+  type: 'test'
+  ...
+# Subtest: fully discounted source-qualified orders retain zero unit rates as valid comparisons
+ok 6 - fully discounted source-qualified orders retain zero unit rates as valid comparisons
+  ---
+  duration_ms: 0.462416
+  type: 'test'
+  ...
+# Subtest: current inventory rejects the old forty-issue snapshot, duplicate issues and state drift
+ok 7 - current inventory rejects the old forty-issue snapshot, duplicate issues and state drift
+  ---
+  duration_ms: 1.4945
+  type: 'test'
+  ...
+# Subtest: only fresh original-bound selected prices satisfy current price acceptance
+ok 8 - only fresh original-bound selected prices satisfy current price acceptance
+  ---
+  duration_ms: 0.220125
+  type: 'test'
+  ...
+# Subtest: undefined and nonfinite delivery totals do not count as captured shipping
+ok 9 - undefined and nonfinite delivery totals do not count as captured shipping
+  ---
+  duration_ms: 0.516292
+  type: 'test'
+  ...
+# Subtest: wrong destination, quantity, availability, invalidation and missing quote provenance fail closed
+ok 10 - wrong destination, quantity, availability, invalidation and missing quote provenance fail closed
+  ---
+  duration_ms: 0.259833
+  type: 'test'
+  ...
+# Subtest: confirmed zero shipping stays exact, but ambient freight cannot certify frozen delivery
+ok 11 - confirmed zero shipping stays exact, but ambient freight cannot certify frozen delivery
+  ---
+  duration_ms: 0.138583
+  type: 'test'
+  ...
+# Subtest: passing captured arithmetic and fixture coverage never accept the full case on behalf of the requirement registry
+ok 12 - passing captured arithmetic and fixture coverage never accept the full case on behalf of the requirement registry
+  ---
+  duration_ms: 0.2205
+  type: 'test'
+  ...
+# Subtest: empty or incomplete evidence cannot pass all-product acceptance by vacuous truth
+ok 13 - empty or incomplete evidence cannot pass all-product acceptance by vacuous truth
+  ---
+  duration_ms: 0.128375
+  type: 'test'
+  ...
+# Subtest: unknown chocolate identity and negative protein cannot masquerade as completed ice specifications
+ok 14 - unknown chocolate identity and negative protein cannot masquerade as completed ice specifications
+  ---
+  duration_ms: 0.10575
+  type: 'test'
+  ...
+# Subtest: recorded other-flavour exclusions do not become required chocolate specifications
+ok 15 - recorded other-flavour exclusions do not become required chocolate specifications
+  ---
+  duration_ms: 0.3305
+  type: 'test'
+  ...
+# Subtest: all recorded requirements retain executable regression references or explicit external operator procedures
+ok 16 - all recorded requirements retain executable regression references or explicit external operator procedures
+  ---
+  duration_ms: 61.036583
+  type: 'test'
+  ...
+# Subtest: GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates
+ok 17 - GitHub issue coverage retains every recorded issue, current source paths and unresolved release/data gates
+  ---
+  duration_ms: 1.666417
+  type: 'test'
+  ...
+# Subtest: passing synthetic arithmetic cannot certify real catalog coverage, shipping, OTP, translations or publisher access
+ok 18 - passing synthetic arithmetic cannot certify real catalog coverage, shipping, OTP, translations or publisher access
+  ---
+  duration_ms: 829.784
+  type: 'test'
+  ...
+# Subtest: published requirement mapping stays synchronized with source and current issue evidence
+ok 19 - published requirement mapping stays synchronized with source and current issue evidence
+  ---
+  duration_ms: 2.535292
+  type: 'test'
+  ...
+# Subtest: catalog batch defaults to cache-only, resumes bounded text, deduplicates calls and replays without credentials
+ok 20 - catalog batch defaults to cache-only, resumes bounded text, deduplicates calls and replays without credentials
+  ---
+  duration_ms: 1567.582708
+  type: 'test'
+  ...
+# Subtest: changed source bytes make new tasks and regenerate only changed text
+ok 21 - changed source bytes make new tasks and regenerate only changed text
+  ---
+  duration_ms: 629.629167
+  type: 'test'
+  ...
+# Subtest: failed early translations do not starve later unprocessed catalog fields
+ok 22 - failed early translations do not starve later unprocessed catalog fields
+  ---
+  duration_ms: 397.630791
+  type: 'test'
+  ...
+# Subtest: snapshot/OCR texts retain whole-source hashes, offsets and exact Unicode across chunks
+ok 23 - snapshot/OCR texts retain whole-source hashes, offsets and exact Unicode across chunks
+  ---
+  duration_ms: 117.798792
+  type: 'test'
+  ...
+# Subtest: missing original evidence stays an acceptance gap and private body/account text is excluded
+ok 24 - missing original evidence stays an acceptance gap and private body/account text is excluded
+  ---
+  duration_ms: 202.148584
+  type: 'test'
+  ...
+# Subtest: CAPTCHA stops new batch requests immediately but all successful text can still replay
+ok 25 - CAPTCHA stops new batch requests immediately but all successful text can still replay
+  ---
+  duration_ms: 325.428708
+  type: 'test'
+  ...
+# Subtest: refresh catalog work resumes without re-translating completed refreshed chunks
+ok 26 - refresh catalog work resumes without re-translating completed refreshed chunks
+  ---
+  duration_ms: 425.956625
+  type: 'test'
+  ...
+# Subtest: current cached catalog acceptance rechecks each original translation and semantic approval without requests
+ok 27 - current cached catalog acceptance rechecks each original translation and semantic approval without requests
+  ---
+  duration_ms: 216.985625
+  type: 'test'
+  ...
+# Subtest: title-only or obsolete translation jobs cannot approve the current catalog and originals
+ok 28 - title-only or obsolete translation jobs cannot approve the current catalog and originals
+  ---
+  duration_ms: 286.916334
+  type: 'test'
+  ...
+# Subtest: empty catalog and missing original source bytes never receive translation acceptance
+ok 29 - empty catalog and missing original source bytes never receive translation acceptance
+  ---
+  duration_ms: 75.96
+  type: 'test'
+  ...
+# Subtest: catalog original acceptance validates attached image bytes and withdraws invalidated source text
+ok 30 - catalog original acceptance validates attached image bytes and withdraws invalidated source text
+  ---
+  duration_ms: 270.014291
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4893.184917

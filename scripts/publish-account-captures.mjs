@@ -41,6 +41,9 @@ try {
       published: report.published.length,
       rejected: report.rejected.length,
       reused: report.reused,
+      ocrPublished: report.ocrPublication.published,
+      ocrReused: report.ocrPublication.reused,
+      ocrTransforms: report.ocrPublication.transforms,
       downloads: report.downloads,
       searchPages: report.discovery.published.length,
     })

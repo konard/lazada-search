@@ -22,7 +22,11 @@ const app = new LazadaSearch({
         tessdataDir: options.ocrDataDir || undefined,
       })
     : false,
-  browserOptions: { launch: 'engine', headless: options.headless },
+  browserOptions: {
+    headless: options.headless,
+    persistentWindow: options.persistentBrowser,
+    idleTimeoutMs: options.browserIdleMs,
+  },
 });
 const offers = (await app.store.list('offer')).filter(
   (offer) => !offer.supersededBy

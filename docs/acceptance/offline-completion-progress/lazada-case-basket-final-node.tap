@@ -1,0 +1,610 @@
+TAP version 13
+# Subtest: checkout lines reconcile fixed shipping and separately applied vouchers once per basket
+ok 1 - checkout lines reconcile fixed shipping and separately applied vouchers once per basket
+  ---
+  duration_ms: 7.680417
+  type: 'test'
+  ...
+# Subtest: source extraction rejects wrong identity, quantity, area, digest, duplicate vouchers and unreconciled totals
+ok 2 - source extraction rejects wrong identity, quantity, area, digest, duplicate vouchers and unreconciled totals
+  ---
+  duration_ms: 3.218166
+  type: 'test'
+  ...
+# Subtest: basket identity is order-independent but exact quantities and SKU choices cannot share freight
+ok 3 - basket identity is order-independent but exact quantities and SKU choices cannot share freight
+  ---
+  duration_ms: 6.638042
+  type: 'test'
+  ...
+# Subtest: discount scope cannot transfer excess freight savings to food and distinct IDs cannot count one DOM voucher twice
+ok 4 - discount scope cannot transfer excess freight savings to food and distinct IDs cannot count one DOM voucher twice
+  ---
+  duration_ms: 1.931625
+  type: 'test'
+  ...
+# Subtest: basket comparisons apply original availability receipts and unresolved specification holds
+ok 5 - basket comparisons apply original availability receipts and unresolved specification holds
+  ---
+  duration_ms: 686.877667
+  type: 'test'
+  ...
+# Subtest: captured basket prices override a product-page estimate without mutating the original offer
+ok 6 - captured basket prices override a product-page estimate without mutating the original offer
+  ---
+  duration_ms: 363.354458
+  type: 'test'
+  ...
+# Subtest: source tampering or invalidation removes a quoted basket from rankings without a request
+ok 7 - source tampering or invalidation removes a quoted basket from rankings without a request
+  ---
+  duration_ms: 674.121084
+  type: 'test'
+  ...
+# Subtest: stock, stale quotes, factory verification and frozen delivery remain acceptance gates
+ok 8 - stock, stale quotes, factory verification and frozen delivery remain acceptance gates
+  ---
+  duration_ms: 546.029625
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with evidence boolean flag
+ok 9 - basket save and ranking refuse an original with evidence boolean flag
+  ---
+  duration_ms: 582.689
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with evidence timestamp flag
+ok 10 - basket save and ranking refuse an original with evidence timestamp flag
+  ---
+  duration_ms: 643.11275
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with linked cache boolean flag
+ok 11 - basket save and ranking refuse an original with linked cache boolean flag
+  ---
+  duration_ms: 655.091375
+  type: 'test'
+  ...
+# Subtest: basket save and ranking refuse an original with linked cache timestamp flag
+ok 12 - basket save and ranking refuse an original with linked cache timestamp flag
+  ---
+  duration_ms: 600.637916
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate evidence ID binding
+ok 13 - basket original replay applies separate evidence ID binding
+  ---
+  duration_ms: 626.3955
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate cache ID binding
+ok 14 - basket original replay applies separate cache ID binding
+  ---
+  duration_ms: 652.055667
+  type: 'test'
+  ...
+# Subtest: basket original replay applies separate URL binding
+ok 15 - basket original replay applies separate URL binding
+  ---
+  duration_ms: 638.63975
+  type: 'test'
+  ...
+# Subtest: basket original replay applies URL record identity binding
+ok 16 - basket original replay applies URL record identity binding
+  ---
+  duration_ms: 603.972042
+  type: 'test'
+  ...
+# Subtest: basket original replay applies invalidated boolean without timestamp
+ok 17 - basket original replay applies invalidated boolean without timestamp
+  ---
+  duration_ms: 612.9205
+  type: 'test'
+  ...
+# Subtest: basket original replay applies malformed invalidation timestamp
+ok 18 - basket original replay applies malformed invalidation timestamp
+  ---
+  duration_ms: 583.313
+  type: 'test'
+  ...
+# Subtest: basket original replay applies undated active invalidation
+ok 19 - basket original replay applies undated active invalidation
+  ---
+  duration_ms: 614.404125
+  type: 'test'
+  ...
+# Subtest: basket original replay applies malformed resolution timestamp
+ok 20 - basket original replay applies malformed resolution timestamp
+  ---
+  duration_ms: 632.212958
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an earlier dated invalidation
+ok 21 - basket replay retains its exact source despite an earlier dated invalidation
+  ---
+  duration_ms: 667.773917
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an inactive flag
+ok 22 - basket replay retains its exact source despite an inactive flag
+  ---
+  duration_ms: 637.750542
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite a resolved flag
+ok 23 - basket replay retains its exact source despite a resolved flag
+  ---
+  duration_ms: 705.905292
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite an explicit cleared flag
+ok 24 - basket replay retains its exact source despite an explicit cleared flag
+  ---
+  duration_ms: 627.363375
+  type: 'test'
+  ...
+# Subtest: basket replay retains its exact source despite a different exact source
+ok 25 - basket replay retains its exact source despite a different exact source
+  ---
+  duration_ms: 642.3655
+  type: 'test'
+  ...
+# Subtest: basket source byte length metadata is checked independently from the original content digest
+ok 26 - basket source byte length metadata is checked independently from the original content digest
+  ---
+  duration_ms: 635.089584
+  type: 'test'
+  ...
+# Subtest: nonfinite evaluation time leaves the basket quote explicitly ineligible even with stale observations allowed
+ok 27 - nonfinite evaluation time leaves the basket quote explicitly ineligible even with stale observations allowed
+  ---
+  duration_ms: 612.842125
+  type: 'test'
+  ...
+# Subtest: offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+ok 28 - offline bulk task imports a private original and uses shared manufacturer facts despite an unrelated active stop
+  ---
+  duration_ms: 2421.191625
+  type: 'test'
+  ...
+# Subtest: an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+ok 29 - an ordinary missing offline translation does not strand another valid checkout task behind the global stop
+  ---
+  duration_ms: 2341.594541
+  type: 'test'
+  ...
+# Subtest: offline bulk task refuses live capture without touching the prepared browser page
+ok 30 - offline bulk task refuses live capture without touching the prepared browser page
+  ---
+  duration_ms: 1809.457625
+  type: 'test'
+  ...
+# Subtest: network-enabled workflow remains stopped before any saved or live checkout task
+ok 31 - network-enabled workflow remains stopped before any saved or live checkout task
+  ---
+  duration_ms: 975.050167
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with stale original
+ok 32 - offline bulk task cannot succeed with stale original
+  ---
+  duration_ms: 2338.77825
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with future original
+ok 33 - offline bulk task cannot succeed with future original
+  ---
+  duration_ms: 2289.1145
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with invalid original date
+ok 34 - offline bulk task cannot succeed with invalid original date
+  ---
+  duration_ms: 1712.81675
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong case destination
+ok 35 - offline bulk task cannot succeed with wrong case destination
+  ---
+  duration_ms: 1476.600333
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with wrong original digest
+ok 36 - offline bulk task cannot succeed with wrong original digest
+  ---
+  duration_ms: 1288.716875
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another SKU row
+ok 37 - offline bulk task cannot succeed with another SKU row
+  ---
+  duration_ms: 1415.22375
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with another order quantity
+ok 38 - offline bulk task cannot succeed with another order quantity
+  ---
+  duration_ms: 1245.985959
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with unknown shipping
+ok 39 - offline bulk task cannot succeed with unknown shipping
+  ---
+  duration_ms: 1099.825208
+  type: 'test'
+  ...
+# Subtest: offline bulk task cannot succeed with challenged original
+ok 40 - offline bulk task cannot succeed with challenged original
+  ---
+  duration_ms: 1072.83175
+  type: 'test'
+  ...
+# Subtest: offline imported original is not promoted into a public store
+ok 41 - offline imported original is not promoted into a public store
+  ---
+  duration_ms: 899.679083
+  type: 'test'
+  ...
+# Subtest: workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+ok 42 - workflow quote freshness honors its explicit age bound and distinguishes the comparison default
+  ---
+  duration_ms: 1245.212417
+  type: 'test'
+  ...
+# Subtest: an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+ok 43 - an explicitly observed zero delivery fee is retained without multiplying a fixed voucher or adding shaker grams
+  ---
+  duration_ms: 1307.949916
+  type: 'test'
+  ...
+# Subtest: invalidated saved original cannot be rewritten or accepted by its case task
+ok 44 - invalidated saved original cannot be rewritten or accepted by its case task
+  ---
+  duration_ms: 1067.944292
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded paid shaker
+ok 45 - a case cannot import a prepared checkout for a newly excluded paid shaker
+  ---
+  duration_ms: 1109.747042
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded other flavour
+ok 46 - a case cannot import a prepared checkout for a newly excluded other flavour
+  ---
+  duration_ms: 1097.895959
+  type: 'test'
+  ...
+# Subtest: a case cannot import a prepared checkout for a newly excluded soy isolate
+ok 47 - a case cannot import a prepared checkout for a newly excluded soy isolate
+  ---
+  duration_ms: 1062.274208
+  type: 'test'
+  ...
+# Subtest: draft manual review cannot waive unknown cards and inclusion creates missing-listing work
+ok 48 - draft manual review cannot waive unknown cards and inclusion creates missing-listing work
+  ---
+  duration_ms: 746.081084
+  type: 'test'
+  ...
+# Subtest: draft retained category decisions withdraw when their source card or original is changed
+ok 49 - draft retained category decisions withdraw when their source card or original is changed
+  ---
+  duration_ms: 733.150458
+  type: 'test'
+  ...
+# Subtest: draft manual task consumes a valid current review and later data changes revoke it
+ok 50 - draft manual task consumes a valid current review and later data changes revoke it
+  ---
+  duration_ms: 1258.509083
+  type: 'test'
+  ...
+# Subtest: draft worklist schedules scoped plain/chocolate powders and strict chocolate ice while retaining unknown SKU backlog
+ok 51 - draft worklist schedules scoped plain/chocolate powders and strict chocolate ice while retaining unknown SKU backlog
+  ---
+  duration_ms: 1749.023583
+  type: 'test'
+  ...
+# Subtest: draft case runner honours the persisted global CAPTCHA before collector work
+ok 52 - draft case runner honours the persisted global CAPTCHA before collector work
+  ---
+  duration_ms: 461.659917
+  type: 'test'
+  ...
+# Subtest: draft exact SKU task rejects a different item even when its numeric SKU suffix matches
+ok 53 - draft exact SKU task rejects a different item even when its numeric SKU suffix matches
+  ---
+  duration_ms: 843.838417
+  type: 'test'
+  ...
+# Subtest: draft preliminary inclusion cannot hide unknown or contradictory detailed categories or waive them with a blanket review
+ok 54 - draft preliminary inclusion cannot hide unknown or contradictory detailed categories or waive them with a blanket review
+  ---
+  duration_ms: 1542.217291
+  type: 'test'
+  ...
+# Subtest: case terminal discovery barrier defers exact-SKU work until every configured list is complete
+ok 55 - case terminal discovery barrier defers exact-SKU work until every configured list is complete
+  ---
+  duration_ms: 1130.16025
+  type: 'test'
+  ...
+# Subtest: case retries remain bounded and interrupted checkpoints require explicit recovery
+ok 56 - case retries remain bounded and interrupted checkpoints require explicit recovery
+  ---
+  duration_ms: 1676.600333
+  type: 'test'
+  ...
+# Subtest: case lease rejects an independent live worker and malformed orphan metadata without deleting it
+ok 57 - case lease rejects an independent live worker and malformed orphan metadata without deleting it
+  ---
+  duration_ms: 254.897709
+  type: 'test'
+  ...
+# Subtest: case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner
+ok 58 - case dead-owner recovery permits only one independent contender and an old release cannot delete the replacement owner
+  ---
+  duration_ms: 347.396375
+  type: 'test'
+  ...
+# Subtest: case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals
+ok 59 - case inventory distinguishes source-confirmed removed rows from unpriced SKUs and rejects invalidated originals
+  ---
+  duration_ms: 754.345292
+  type: 'test'
+  ...
+# Subtest: case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports
+ok 60 - case inventory rejects wrong item prefixes, contradictory selected SKU URLs, duplicate rows, totals and nonterminal exports
+  ---
+  duration_ms: 634.50375
+  type: 'test'
+  ...
+# Subtest: case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory
+ok 61 - case aggregate review rejects modified stored approval and is withdrawn after a new declared inventory
+  ---
+  duration_ms: 743.553708
+  type: 'test'
+  ...
+# Subtest: case old-product recollection stays deferred until every initial exact-SKU price is captured
+ok 62 - case old-product recollection stays deferred until every initial exact-SKU price is captured
+  ---
+  duration_ms: 1587.973166
+  type: 'test'
+  ...
+# Subtest: case failed discovery counts its attempted task and retains the barrier before any exact-SKU work
+ok 63 - case failed discovery counts its attempted task and retains the barrier before any exact-SKU work
+  ---
+  duration_ms: 620.920917
+  type: 'test'
+  ...
+# Subtest: bounded durable quantity/voucher/payment sweep resumes exact source after restart without re-extraction or source downloads
+ok 64 - bounded durable quantity/voucher/payment sweep resumes exact source after restart without re-extraction or source downloads
+  ---
+  duration_ms: 1460.952
+  type: 'test'
+  ...
+# Subtest: expected identity cannot replace observed SKU, quantities, voucher IDs or payment conditions and failures are durable/retryable
+ok 65 - expected identity cannot replace observed SKU, quantities, voucher IDs or payment conditions and failures are durable/retryable
+  ---
+  duration_ms: 2218.126125
+  type: 'test'
+  ...
+# Subtest: changed original bytes, separate invalidation and corrupt public output cannot reuse source proof
+ok 66 - changed original bytes, separate invalidation and corrupt public output cannot reuse source proof
+  ---
+  duration_ms: 2256.535125
+  type: 'test'
+  ...
+# Subtest: older original observations cannot overwrite newer source scenarios or current quoted totals
+ok 67 - older original observations cannot overwrite newer source scenarios or current quoted totals
+  ---
+  duration_ms: 1417.456083
+  type: 'test'
+  ...
+# Subtest: oversized sweeps, repeated normalized choices and unknown offers fail before plan mutations
+ok 68 - oversized sweeps, repeated normalized choices and unknown offers fail before plan mutations
+  ---
+  duration_ms: 296.646
+  type: 'test'
+  ...
+# Subtest: private checkout evidence and URL credentials are rejected before public receipts, and persistence failures propagate
+ok 69 - private checkout evidence and URL credentials are rejected before public receipts, and persistence failures propagate
+  ---
+  duration_ms: 1175.014291
+  type: 'test'
+  ...
+# Subtest: overlapping prepared batches atomically preserve the newer validated scenario observation
+ok 70 - overlapping prepared batches atomically preserve the newer validated scenario observation
+  ---
+  duration_ms: 1541.910625
+  type: 'test'
+  ...
+# Subtest: unknown or mismatched public original rejects before all writes and ordinary public source failures retain references only
+ok 71 - unknown or mismatched public original rejects before all writes and ordinary public source failures retain references only
+  ---
+  duration_ms: 1430.575583
+  type: 'test'
+  ...
+# Subtest: draft checkout extracts original attribute identities and reconciles signed discounts without HTML rewriting
+ok 72 - draft checkout extracts original attribute identities and reconciles signed discounts without HTML rewriting
+  ---
+  duration_ms: 9.41325
+  type: 'test'
+  ...
+# Subtest: draft checkout original selected JSON row supplies exact item/SKU, quantity and stock without visible SKU text
+ok 73 - draft checkout original selected JSON row supplies exact item/SKU, quantity and stock without visible SKU text
+  ---
+  duration_ms: 3.391708
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for wrong exact SKU
+ok 74 - draft checkout withholds an accepted mapping for wrong exact SKU
+  ---
+  duration_ms: 1.80075
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for unselected source row
+ok 75 - draft checkout withholds an accepted mapping for unselected source row
+  ---
+  duration_ms: 0.816916
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for hidden source price
+ok 76 - draft checkout withholds an accepted mapping for hidden source price
+  ---
+  duration_ms: 0.931834
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for wrong total
+ok 77 - draft checkout withholds an accepted mapping for wrong total
+  ---
+  duration_ms: 1.006792
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for insufficient exact stock
+ok 78 - draft checkout withholds an accepted mapping for insufficient exact stock
+  ---
+  duration_ms: 0.791
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for unresolved dialog
+ok 79 - draft checkout withholds an accepted mapping for unresolved dialog
+  ---
+  duration_ms: 0.970208
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for visible challenge
+ok 80 - draft checkout withholds an accepted mapping for visible challenge
+  ---
+  duration_ms: 1.11075
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for unresolved original loading
+ok 81 - draft checkout withholds an accepted mapping for unresolved original loading
+  ---
+  duration_ms: 0.976417
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for duplicated original unit price
+ok 82 - draft checkout withholds an accepted mapping for duplicated original unit price
+  ---
+  duration_ms: 0.689959
+  type: 'test'
+  ...
+# Subtest: draft checkout withholds an accepted mapping for another row stock proof
+ok 83 - draft checkout withholds an accepted mapping for another row stock proof
+  ---
+  duration_ms: 0.549375
+  type: 'test'
+  ...
+# Subtest: draft checkout rejects wrong original SHA and persists/replays private source gaps with invalidation
+ok 84 - draft checkout rejects wrong original SHA and persists/replays private source gaps with invalidation
+  ---
+  duration_ms: 576.099916
+  type: 'test'
+  ...
+# Subtest: draft prepared capture requires private visibility and honours global CAPTCHA before touching browser state
+ok 85 - draft prepared capture requires private visibility and honours global CAPTCHA before touching browser state
+  ---
+  duration_ms: 0.513375
+  type: 'test'
+  ...
+# Subtest: prepared checkout readiness waits for loading and stable totals, but never clicks a dialog or follows navigation
+ok 86 - prepared checkout readiness waits for loading and stable totals, but never clicks a dialog or follows navigation
+  ---
+  duration_ms: 344.194417
+  type: 'test'
+  ...
+# Subtest: prepared checkout capture preserves originals privately, enforces live properties and never scrolls
+ok 87 - prepared checkout capture preserves originals privately, enforces live properties and never scrolls
+  ---
+  duration_ms: 755.191
+  type: 'test'
+  ...
+# Subtest: prepared checkout readonly sweep validates its exact saved scenario with zero cart changes
+ok 88 - prepared checkout readonly sweep validates its exact saved scenario with zero cart changes
+  ---
+  duration_ms: 797.548666
+  type: 'test'
+  ...
+# Subtest: prepared scenario changes only reviewed quantity/voucher/payment controls with minute pacing and no submit keys
+ok 89 - prepared scenario changes only reviewed quantity/voucher/payment controls with minute pacing and no submit keys
+  ---
+  duration_ms: 487.404166
+  type: 'test'
+  ...
+# Subtest: prepared scenario rejects different original item before the first mutation
+ok 90 - prepared scenario rejects different original item before the first mutation
+  ---
+  duration_ms: 232.127417
+  type: 'test'
+  ...
+# Subtest: prepared scenario rejects wrong delivery area before the first mutation
+ok 91 - prepared scenario rejects wrong delivery area before the first mutation
+  ---
+  duration_ms: 257.055208
+  type: 'test'
+  ...
+# Subtest: prepared scenario rejects insufficient stock before the first mutation
+ok 92 - prepared scenario rejects insufficient stock before the first mutation
+  ---
+  duration_ms: 220.204833
+  type: 'test'
+  ...
+# Subtest: prepared scenario rejects submission-shaped quantity input before the first mutation
+ok 93 - prepared scenario rejects submission-shaped quantity input before the first mutation
+  ---
+  duration_ms: 245.438125
+  type: 'test'
+  ...
+# Subtest: prepared scenario stops later mutations when dialog appears during paced waiting
+ok 94 - prepared scenario stops later mutations when dialog appears during paced waiting
+  ---
+  duration_ms: 298.397084
+  type: 'test'
+  ...
+# Subtest: prepared scenario stops later mutations when destination appears during paced waiting
+ok 95 - prepared scenario stops later mutations when destination appears during paced waiting
+  ---
+  duration_ms: 315.697458
+  type: 'test'
+  ...
+# Subtest: prepared scenario stops later mutations when captcha appears during paced waiting
+ok 96 - prepared scenario stops later mutations when captcha appears during paced waiting
+  ---
+  duration_ms: 399.637708
+  type: 'test'
+  ...
+# Subtest: prepared scenario rejects soy, other flavours, shaker bundles and superseded exact offers before mutation
+ok 97 - prepared scenario rejects soy, other flavours, shaker bundles and superseded exact offers before mutation
+  ---
+  duration_ms: 532.488875
+  type: 'test'
+  ...
+# Subtest: prepared checkout refuses a live unchecked selected control even while its original checked attribute remains
+ok 98 - prepared checkout refuses a live unchecked selected control even while its original checked attribute remains
+  ---
+  duration_ms: 222.604291
+  type: 'test'
+  ...
+# Subtest: prepared checkout refuses a superseded exact offer and cannot borrow quantity from a different source row
+ok 99 - prepared checkout refuses a superseded exact offer and cannot borrow quantity from a different source row
+  ---
+  duration_ms: 1.116084
+  type: 'test'
+  ...
+# Subtest: prepared scenario revalidates destination after animation and refuses a different row stock proof
+ok 100 - prepared scenario revalidates destination after animation and refuses a different row stock proof
+  ---
+  duration_ms: 217.35725
+  type: 'test'
+  ...
+1..100
+# tests 100
+# suites 0
+# pass 100
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29770.422292

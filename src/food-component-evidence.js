@@ -5,6 +5,8 @@ import { parseTsv } from './ocr.js';
 import { MANUFACTURERS, isTrustedManufacturer } from './manufacturers.js';
 import { resolveProductReviews } from './catalog-products.js';
 import { REQUIRED_SPEC_FIELDS, specificationProblems } from './verification.js';
+import { extractCheckoutLineBinding } from './lazada-checkout-line-bindings.js';
+import { checkoutField, checkoutPointer } from './lazada-checkout-fields.js';
 
 const countFields = [
   'orderQuantity',
@@ -410,6 +412,10 @@ function eligibilitySourceContext(source, proof, component, offer, text) {
     );
   }
   const excerpt = proof.contextExcerpt || proof.excerpt;
+  if (proof.checkoutIdentityBinding) {
+    checkoutEligibilityContext(source, proof, offer, excerpt);
+    return;
+  }
   const tokens = normalizeText(excerpt).match(/[\p{L}\p{N}_-]+/gu) || [];
   if (
     !text ||
@@ -421,6 +427,86 @@ function eligibilitySourceContext(source, proof, component, offer, text) {
       'Gift eligibility original context does not identify the exact selected SKU'
     );
   }
+}
+
+function boundCheckoutEligibility(source, proof, offer) {
+  const url = new URL(proof.sourceUrl);
+  if (
+    source.reference.key !== 'html' ||
+    source.bytes.length > 20 * 1024 * 1024 ||
+    source.evidence.role !== 'checkout' ||
+    !/\/(?:cart|checkout)(?:\/|$)/u.test(url.pathname)
+  ) {
+    throw new Error(
+      'Attribute or JSON gift identity requires bounded original checkout HTML evidence'
+    );
+  }
+  const { document } = parseHTML(source.bytes.toString('utf8'));
+  const identity = extractCheckoutLineBinding(document, {
+    identityBinding: proof.checkoutIdentityBinding,
+  });
+  if (!identity || identity.sku !== offer.sku) {
+    throw new Error(
+      'Gift original checkout row does not identify the exact selected paid item and SKU'
+    );
+  }
+  return { document, identity };
+}
+
+function checkoutEligibilityContext(source, proof, offer, excerpt) {
+  const { document, identity } = boundCheckoutEligibility(source, proof, offer);
+  if (proof.checkoutValuePointer !== undefined) {
+    if (identity.kind !== 'embedded-json') {
+      throw new Error(
+        'Gift count JSON pointer must share the exact original selected identity JSON row'
+      );
+    }
+    return;
+  }
+  const context = checkoutField(
+    document,
+    proof.checkoutContextSelector,
+    'original checkout gift context'
+  );
+  const node = document.querySelector(proof.checkoutContextSelector);
+  if (
+    !identity.row.contains(node) ||
+    !normalizeText(context.text).includes(normalizeText(excerpt)) ||
+    !normalizeText(excerpt).includes(normalizeText(proof.excerpt))
+  ) {
+    throw new Error(
+      'Gift original count excerpt must belong to its exact selected checkout row'
+    );
+  }
+}
+
+function checkoutStateCountExcerpt(source, proof, component, offer, field) {
+  const { document, identity } = boundCheckoutEligibility(source, proof, offer);
+  if (identity.kind !== 'embedded-json' || !countFields.includes(field)) {
+    throw new Error(
+      'Only exact gift eligibility counts may use an original selected checkout JSON value'
+    );
+  }
+  const value = checkoutPointer(identity.value, proof.checkoutValuePointer);
+  const script = document.querySelector(
+    proof.checkoutIdentityBinding.scriptSelector
+  );
+  const original = script.textContent;
+  if (
+    !Number.isSafeInteger(value) ||
+    value < 1 ||
+    value !== proof.value ||
+    value !== component.eligibility?.[field] ||
+    !normalizeText(original).includes(normalizeText(proof.excerpt)) ||
+    !normalizeText(original).includes(
+      normalizeText(proof.contextExcerpt || proof.excerpt)
+    )
+  ) {
+    throw new Error(
+      'Gift eligibility count, original JSON value and reviewed original excerpt disagree'
+    );
+  }
+  return original;
 }
 
 function trustedSource(context, component, source) {
@@ -444,7 +530,12 @@ async function validateProof(
   mode = 'fact'
 ) {
   const source = await proofSource(context, proof, component.evidenceIds);
-  const text = await validateExcerpt(context, component, source, proof, field);
+  const text =
+    mode === 'eligibility' &&
+    proof.checkoutIdentityBinding &&
+    proof.checkoutValuePointer !== undefined
+      ? checkoutStateCountExcerpt(source, proof, component, offer, field)
+      : await validateExcerpt(context, component, source, proof, field);
   if (mode === 'eligibility') {
     eligibilitySourceContext(source, proof, component, offer, text);
   }

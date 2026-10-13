@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "recordedAt": "2026-10-12T07:38:53.980Z",
+  "nodeVersion": "v22.23.0",
+  "scope": "local synthetic gifts and isolated intercepted Chromium actions only",
+  "realAccountAccess": false,
+  "externalRequests": 0,
+  "captchaStopCleared": false,
+  "productionSourceChanges": [],
+  "sourceSha256": {
+    "tests/lazada-checkout-gifts.test.js": "48d244cace0e1002b325a624140394a6461ef65ebb8241e6ec0f582f331d1201",
+    "tests/e2e/prepared-checkout-adapter.test.js": "b0eed38ad85c1c98cf76ab36bb755a3bd4e7552b34413f086e4ace402ee08d01",
+    "src/lazada-checkout-gifts.js": "38c6a66abbb79745662b485e2876da03f02b9aabd991fb04515e5c8852f91060",
+    "src/food-component-evidence.js": "a222e26664f85e3dc83ac20aa2c6203860bf937f0fdb331616e0cb92f9f13f77",
+    "src/lazada-checkout-actions.js": "7d7be721eef17a97475b6a506749d3bcb0b95bac3e4c35a154b8abe02629d5a0",
+    "src/lazada-checkout-capture.js": "87546fdd2e48722f407b255d250bb613e3e5344e195d9685835752c1ac79f7a7"
+  },
+  "runs": [
+    {
+      "id": "affected-node",
+      "tests": 52,
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/lazada-checkout-gifts.test.js tests/food-component-evidence.test.js tests/lazada-checkout-draft.test.js",
+      "log": "affected-node.log.gz",
+      "originalBytes": 13324,
+      "originalSha256": "354b1581c32454e5fabfae8458ac238e2e552b7d1394fc03b590f40a4c6c4bcb",
+      "compressedSha256": "9f3af8765394a6a636d84541ec327d05ea9fe01a7603b66998aa9e79869ef9b7"
+    },
+    {
+      "id": "chromium-e2e",
+      "tests": 2,
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/prepared-checkout-adapter.test.js",
+      "sandbox": "approved outside macOS process sandbox; isolated temporary engine profile, all browser requests intercepted or aborted",
+      "log": "chromium-e2e.log.gz",
+      "originalBytes": 930,
+      "originalSha256": "c5f0193a5de74a47e64e852647cb3e4f88483fb7dff5b6bd02605c5faa1b182d",
+      "compressedSha256": "b8e2f4700b8221d8e743bd6907d394c6f601e885fd5e38608ca38374a1ea42d3"
+    },
+    {
+      "id": "lint",
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node node_modules/eslint/bin/eslint.js tests/lazada-checkout-gifts.test.js tests/e2e/prepared-checkout-adapter.test.js",
+      "log": "lint.log.gz",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compressedSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+    },
+    {
+      "id": "initial-test-assertion-failure",
+      "tests": 7,
+      "exitCode": 1,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/lazada-checkout-gifts.test.js",
+      "log": "initial-test-assertion-failure.log.gz",
+      "originalBytes": 5561,
+      "originalSha256": "f7c15a35947228a1f6011559afb49e4f8a2b509f18b281eca856a13b7796715b",
+      "compressedSha256": "d50b4f60626a194ce910d328cc3a16b9c414f4648745e8400ef6e7fadec50395"
+    },
+    {
+      "id": "initial-sandbox-browser-failure",
+      "tests": 2,
+      "exitCode": 1,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 --test-timeout=120000 tests/e2e/prepared-checkout-adapter.test.js",
+      "log": "initial-sandbox-browser-failure.log.gz",
+      "originalBytes": 11628,
+      "originalSha256": "7810ee7ee598f15231cf43ba59c61008114c125e4b615612e8d07890eed00fe9",
+      "compressedSha256": "c76dff7c18c2d81379f7c250313991212eed6f72033e15fbe6c8b33369a2f690"
+    }
+  ]
+}

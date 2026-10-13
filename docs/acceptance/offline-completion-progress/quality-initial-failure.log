@@ -1,0 +1,16 @@
+
+> lazada-search@0.11.31 check
+> npm run lint && npm run format:check && npm run check:duplication
+
+
+> lazada-search@0.11.31 lint
+> node scripts/lint.mjs
+
+9 warning(s) on unchanged lines were not reported. Run LINT_ALL_WARNINGS=1 npm run lint to see them.
+
+> lazada-search@0.11.31 format:check
+> prettier --check .
+
+Checking formatting...
+[warn] docs/acceptance/offline-completion-progress/captured-readiness.json
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.

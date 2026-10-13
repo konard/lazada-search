@@ -16,6 +16,7 @@ const number = (value) =>
     : '—';
 
 export function auditIceUnitCompleteness(report, markdown) {
+  const text = markdown.replaceAll('\r\n', '\n');
   let calculations = 0;
   for (const row of report.rows) {
     for (const [amount, before, after] of metrics) {
@@ -38,7 +39,7 @@ export function auditIceUnitCompleteness(report, markdown) {
     [1, 'Lowest price per millilitre', 'beforePerMl'],
     [2, 'Lowest price per gram of protein — reference', 'beforePerProteinGram'],
   ]) {
-    const section = markdown.split(`## ${title}\n`)[1]?.split('\n## ')[0];
+    const section = text.split(`## ${title}\n`)[1]?.split('\n## ')[0];
     assert.ok(section, `Missing ranking ${index}`);
     const lines = section.split('\n').filter((line) => line.startsWith('|'));
     if (!report.rankings[metric].length) {

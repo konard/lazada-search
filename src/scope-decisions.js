@@ -1,7 +1,11 @@
-import { sha256 } from './util.js';
+import { sha256, listingKey } from './util.js';
 import { sanitizePublicData } from './archive.js';
 
-export const SCOPE_POLICY_VERSION = 3;
+export const SCOPE_POLICY_VERSION = 4;
+
+function skuDecisionId(entry, scope) {
+  return `scope:${scope}:sku:${listingKey(entry.listingUrl || entry.url)}:${String(entry.sku).split('_VNAMZ-').at(-1)}`;
+}
 
 function decisionsFor(audit, scope) {
   return [
@@ -15,17 +19,29 @@ function decisionsFor(audit, scope) {
       sourceUrls: entry.sourceUrls || [],
       sourceRecordIds: entry.sourceRecordIds || [],
     })),
-    ...(audit.excludedFlavourTasks || []).map((entry) => ({
-      id: `scope:${scope}:sku:${entry.sku}:${entry.url}`,
-      kind: 'sku',
-      listingUrl: entry.listingUrl,
-      url: entry.url,
-      sku: entry.sku,
-      decision: 'excluded',
-      options: entry.options,
-      reasons: [entry.reason],
-      extractedFlavour: entry.extractedFlavour,
-    })),
+    ...(scope === 'all' ? [] : audit.excludedFlavourTasks || []).map(
+      (entry) => ({
+        id: skuDecisionId(entry, scope),
+        kind: 'sku',
+        listingUrl: entry.listingUrl,
+        url: entry.url,
+        sku: entry.sku,
+        decision: 'excluded',
+        options: entry.options,
+        title: entry.title,
+        selectedVariant: entry.selectedVariant,
+        productId: entry.productId,
+        offerId: entry.offerId,
+        observedAt: entry.observedAt,
+        observationKind: entry.observationKind,
+        sourceAuthority: entry.sourceAuthority,
+        sourceUrl: entry.sourceUrl,
+        sourceRecordIds: entry.sourceRecordIds || [],
+        sourceEvidenceIds: entry.sourceEvidenceIds || [],
+        reasons: [entry.reason],
+        extractedFlavour: entry.extractedFlavour,
+      })
+    ),
   ];
 }
 
@@ -60,22 +76,25 @@ export async function persistScopeDecisions(
   audit,
   { flavourScope = 'chocolate-or-unflavoured' } = {}
 ) {
-  const inputs = decisionsFor(audit, flavourScope).map((entry) => ({
-    ...entry,
-    flavourScope,
-    policyVersion: SCOPE_POLICY_VERSION,
-  }));
+  const inputs = [
+    ...new Map(
+      decisionsFor(audit, flavourScope).map((entry) => [
+        entry.id,
+        {
+          ...entry,
+          flavourScope,
+          policyVersion: SCOPE_POLICY_VERSION,
+        },
+      ])
+    ).values(),
+  ];
   const currentIds = new Set(inputs.map((entry) => entry.id));
   const results = [];
   for (const input of inputs) {
     results.push(await saveDecision(store, input));
   }
   for (const previous of await store.list('scope-decision')) {
-    if (
-      previous.flavourScope === flavourScope &&
-      previous.decision === 'excluded' &&
-      !currentIds.has(previous.id)
-    ) {
+    if (previous.decision === 'excluded' && !currentIds.has(previous.id)) {
       results.push(
         await saveDecision(store, {
           ...Object.fromEntries(
@@ -88,7 +107,11 @@ export async function persistScopeDecisions(
           ),
           decision: 'needs-review',
           policyVersion: SCOPE_POLICY_VERSION,
-          reasons: ['Current audit no longer confirms the prior exclusion'],
+          reasons: [
+            previous.flavourScope === flavourScope
+              ? 'Current audit no longer confirms the prior exclusion'
+              : 'Active flavour scope changed; prior exclusion needs review',
+          ],
         })
       );
     }

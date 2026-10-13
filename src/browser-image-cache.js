@@ -90,6 +90,7 @@ export async function serveBrowserImage({
   cache,
   refresh = false,
   activePageUrl,
+  requestGuard = () => {},
 }) {
   let url;
   try {
@@ -99,6 +100,7 @@ export async function serveBrowserImage({
     return;
   }
   try {
+    await requestGuard(url);
     const cached = await cache.store.get('cache', `image:${url}`);
     if (
       (cached?.blob || cached?.status === 'failed') &&
@@ -110,6 +112,7 @@ export async function serveBrowserImage({
         return;
       }
       if (inspected.status !== 'failed' && !refresh) {
+        await requestGuard(url);
         await route.fulfill({
           body: await cache.store.blob(inspected.blob.sha256),
           contentType: inspected.contentType,
@@ -118,12 +121,17 @@ export async function serveBrowserImage({
       }
     }
     await assertCollectionRunning(cache.store);
+    const hostGuard = pageHostGuard(route, activePageUrl);
     const image = await cache.image(url, {
       ...IMAGE_OPTIONS,
       refresh,
       fetchImage: browserImageRequest(route),
-      requestGuard: pageHostGuard(route, activePageUrl),
+      requestGuard: async (requestUrl) => {
+        await requestGuard(requestUrl);
+        hostGuard(requestUrl);
+      },
     });
+    await requestGuard(url);
     await route.fulfill({
       body: await cache.store.blob(image.blob.sha256),
       contentType: image.contentType,

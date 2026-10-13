@@ -108,6 +108,26 @@ test('large cached fixture deadlines stay bounded by the matrix job backstop', (
   }
 });
 
+test('Node configures projection I/O at startup without changing fixtures or deadlines', () => {
+  const step = named('Run tests (Node.js)');
+  assert.equal(step.if, "matrix.runtime == 'node'");
+  assert.equal(step.env.UV_THREADPOOL_SIZE, '32');
+  assert.equal(step.shell, 'bash');
+  assert.equal(
+    step.run,
+    'bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test'
+  );
+});
+
+test('complete runtime fixtures use the runner temporary directory on every OS', () => {
+  for (const runtime of ['Node.js', 'Bun', 'Deno']) {
+    const step = named(`Run tests (${runtime})`);
+    for (const key of ['TMPDIR', 'TMP', 'TEMP']) {
+      assert.equal(step.env[key], '${{ runner.temp }}');
+    }
+  }
+});
+
 test('every OS provisions native OCR before tests and Windows uses an exact approved version', () => {
   const linux = named('Install native OCR (Ubuntu)');
   const mac = named('Install native OCR (macOS)');
@@ -125,7 +145,11 @@ test('every OS provisions native OCR before tests and Windows uses an exact appr
     windows.run,
     /choco install tesseract --version=5\.5\.3\.20260724 --yes --no-progress/u
   );
-  assert.ok(windows.run.includes('$LASTEXITCODE -ne 0'));
+  assert.ok(windows.run.includes('$ocrInstallExit = $LASTEXITCODE'));
+  assert.ok(windows.run.includes('$ocrInstallExit -ne 0'));
+  assert.ok(windows.run.includes('$ocrAttempt -le 3'));
+  assert.ok(windows.run.includes('$ocrInstallExit -eq 0) { break }'));
+  assert.ok(windows.run.includes('Start-Sleep -Seconds (10 * $ocrAttempt)'));
   assert.ok(windows.run.includes('tesseract.exe'));
   assert.ok(windows.run.includes('$env:GITHUB_PATH'));
   const gate = named('Verify native OCR executable and English model');

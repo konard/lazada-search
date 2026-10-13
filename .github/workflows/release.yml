@@ -97,7 +97,14 @@ jobs:
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
     needs: [detect-changes]
     if: |
-      needs.detect-changes.outputs.js-changed == 'true'
+      !cancelled() &&
+      (
+        needs.detect-changes.outputs.any-code-changed == 'true' ||
+        (
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.release_mode == 'instant'
+        )
+      )
     steps:
       - uses: actions/checkout@v6
         with:
@@ -105,6 +112,17 @@ jobs:
 
       - name: Check .mjs syntax
         run: bash scripts/check-mjs-syntax.sh
+
+      - name: Setup Node.js for public API type checks
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+
+      - name: Install locked type-check dependencies
+        run: npm ci
+
+      - name: Check public library and workflow declarations
+        run: npm run test:types
 
   # Enforce 1500-line limit on .mjs files and release.yml
   check-file-line-limits:
@@ -281,7 +299,9 @@ jobs:
     # only the backstop behind those budgets, sized so the budgets always
     # expire first. A job killed by timeout-minutes reports *cancelled*,
     # which hides the failure -- see docs/CI-TIMEOUT-BUDGETS.md.
-    timeout-minutes: 15
+    # A measured cold Windows setup took over five minutes; leave its full
+    # 600-second suite deadline and cleanup room before this job backstop.
+    timeout-minutes: 20
     concurrency:
       group: check-${{ github.workflow }}-${{ github.ref }}-test-${{ matrix.runtime }}-${{ matrix.os }}
       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -359,8 +379,17 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          choco install tesseract --version=5.5.3.20260724 --yes --no-progress
-          if ($LASTEXITCODE -ne 0) { throw "Tesseract installation failed with exit $LASTEXITCODE" }
+          $ocrInstallExit = 1
+          for ($ocrAttempt = 1; $ocrAttempt -le 3; $ocrAttempt++) {
+            choco install tesseract --version=5.5.3.20260724 --yes --no-progress
+            $ocrInstallExit = $LASTEXITCODE
+            if ($ocrInstallExit -eq 0) { break }
+            if ($ocrAttempt -lt 3) {
+              Write-Host "Pinned OCR installation attempt $ocrAttempt failed with exit $ocrInstallExit; retrying."
+              Start-Sleep -Seconds (10 * $ocrAttempt)
+            }
+          }
+          if ($ocrInstallExit -ne 0) { throw "Tesseract installation failed with exit $ocrInstallExit" }
           $ocrDirectory = Join-Path $env:ProgramFiles 'Tesseract-OCR'
           if (-not (Test-Path (Join-Path $ocrDirectory 'tesseract.exe'))) { throw 'Installed Tesseract executable is missing' }
           $ocrDirectory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
@@ -378,10 +407,14 @@ jobs:
 
       - name: Run tests (Node.js)
         if: matrix.runtime == 'node'
-        # Match the store's eight bounded I/O workers at process startup.
+        # Sixteen record workers each commit two independent projections.
+        # Configure their thirty-two bounded I/O slots before Node starts.
         # Preserve complete fixtures, per-file/suite budgets and fsync writes.
         env:
-          UV_THREADPOOL_SIZE: '8'
+          UV_THREADPOOL_SIZE: '32'
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         shell: bash
         run: bash scripts/run-with-budget-warning.sh 600 "Node.js test suite" npm test
 
@@ -394,6 +427,10 @@ jobs:
       - name: Run tests (Bun)
         if: matrix.runtime == 'bun'
         shell: bash
+        env:
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         # The committed source/catalog fixtures need the same 450-second cap
         # as Node. This is a per-test bound and does not bound the suite; the
         # explicit suite budget stays below the job backstop. Two isolated
@@ -413,6 +450,9 @@ jobs:
         shell: bash
         env:
           DENO_JOBS: '4'
+          TMPDIR: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
         # Manual node_modules uses npm ci's integrity-checked graph instead of
         # resolving fresh semver ranges or the obsolete template deno.lock.
         # No minimum-dependency-age override and no remote dependency fetches.

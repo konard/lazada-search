@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-12T07:55:12.981365+00:00",
+  "status": "targeted-local-tests-passed",
+  "runtime": "Node.js 22.23.0",
+  "platform": "macOS aarch64",
+  "unitResults": {
+    "passed": 80,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=2 tests/manufacturer-source-validity.test.js tests/page-readiness-tag.test.js tests/manufacturer-workflow-draft.test.js tests/catalog-products.test.js tests/package-quantity-review.test.js tests/shopping-workflow-draft.test.js tests/collection-review-replay.test.js",
+    "log": {
+      "path": "unit.tap.gz",
+      "sha256": "ee7dd02a987e58c5e205bec7d8f6126d0dbd640570e9de8264ff5c2fc13209f2",
+      "bytes": 19681,
+      "gzipSha256": "0e1b94f3a7db6630be419914be9ca4e7a85e805f9277a80b13763be9c9b26c98"
+    }
+  },
+  "nativeE2eResults": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=1 tests/e2e/tag-search-readiness.test.js tests/e2e/page-loading.test.js",
+    "execution": "Approved isolated native Chromium execution outside the macOS process sandbox after default-sandbox browser launch was denied; temporary profile only, all page requests intercepted",
+    "log": {
+      "path": "native-e2e.tap.gz",
+      "sha256": "5a365aea7513c0ee73de24b22788eaf373e309bfe4fe1da358539a0c057572ff",
+      "bytes": 881,
+      "gzipSha256": "d5e86bf082ec012c137b3aa80a7d655d724483b5024952eb6a3b3a66ab95d594"
+    }
+  },
+  "checks": {
+    "strictLint": {
+      "exitCode": 0,
+      "log": {
+        "path": "lint.log.gz",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+      }
+    },
+    "format": {
+      "exitCode": 0,
+      "log": {
+        "path": "format.log.gz",
+        "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+        "bytes": 66,
+        "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59"
+      }
+    }
+  },
+  "newTests": {
+    "manufacturerSourceValidity": 11,
+    "tagReadinessUnit": 1,
+    "tagBrowserE2e": 1
+  },
+  "sourceWebsiteRequests": 0,
+  "apiRequests": 0,
+  "realProfilesOrArchivedDataModified": false,
+  "savedCaptchaResumed": false,
+  "fixes": [
+    "Catalog and comparison consumers dynamically withdraw only affected manufacturer facts after original evidence/source/cache/URL invalidation, replacement, lost bytes or invalidated approval; preserved stored observations and offer prices are not rewritten",
+    "Independent valid source quantities survive partial nutrition invalidation and source-dependent workflow work reopens",
+    "Legacy broad source holds are preserved unless a complete current review supplies granular SHA and source-evidence bindings; an unrelated granular fact cannot waive a legacy nutrient hold",
+    "Manufacturer-source validity contexts share record/blob/OCR/cache/invalidation reads within one comparison, including selected-offer comparisons, and refresh on subsequent operations",
+    "Lazada /tag keyword redirects now require stable visible cards or an explicit empty state before a terminal pager can certify discovery"
+  ],
+  "testedFiles": [
+    {
+      "path": "src/source-invalidation.js",
+      "sha256": "13a60e19194db21cc1d93d5ac3883bc6676791c6c71eafc1c753124e17efb62f",
+      "bytes": 1161
+    },
+    {
+      "path": "src/manufacturer-source-validity.js",
+      "sha256": "ae736aaa2e5666281187f4185ca66b1cf6fea54fda98306d92a56afb6f8c73d0",
+      "bytes": 9386
+    },
+    {
+      "path": "src/catalog-products.js",
+      "sha256": "802fa9887c2f8384f01232adf8193a88fe28998f6f70dcc0245aa25281943650",
+      "bytes": 5567
+    },
+    {
+      "path": "src/comparison-inputs.js",
+      "sha256": "9ee7b2388814ea5ff01bb8e990874a10b40bf1264c39d070fe778574f7c864c2",
+      "bytes": 2402
+    },
+    {
+      "path": "src/label-worklist.js",
+      "sha256": "d72c88eee58f7bf6aaf8d157f10cb85206edcfab85aee237ec1e6580de314acc",
+      "bytes": 6501
+    },
+    {
+      "path": "src/page-readiness.js",
+      "sha256": "f8356d47dc474402a199a7cf3bbf58cb2c21eb39ca0e218da5898f73c39dad92",
+      "bytes": 4101
+    },
+    {
+      "path": "tests/manufacturer-source-validity.test.js",
+      "sha256": "6a88429ff9ca29127da7d8166ffae26d0221be5170c4b30dc6ef52079ef93f63",
+      "bytes": 11383
+    },
+    {
+      "path": "tests/page-readiness-tag.test.js",
+      "sha256": "281d539459310bea06f204afd8f7a646ba379b812a7d03bb79696724b8a15acc",
+      "bytes": 901
+    },
+    {
+      "path": "tests/e2e/tag-search-readiness.test.js",
+      "sha256": "79f57d9305c825a05789cd7a3e1859c344848818a4aeaa799109c2b9ed9e8803",
+      "bytes": 2845
+    }
+  ],
+  "limits": [
+    "Targeted local acceptance does not attest the current GitHub head or complete CI matrix",
+    "Native browser routes use local in-process fixtures, not current Lazada layouts",
+    "Current manufacturer identity, exhaustive live inventory, stock, authentication and bulk/frozen Nha Trang delivery remain separate external acceptance conditions"
+  ]
+}

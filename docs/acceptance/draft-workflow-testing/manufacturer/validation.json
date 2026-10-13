@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-12T06:13:45.746691+00:00",
+  "platform": "macOS aarch64",
+  "status": "passed-local-targeted-offline",
+  "scope": "Manufacturer workflow/review, original-bound OCR, native model manifests and independent package quantities; not whole-market collection acceptance",
+  "sourceWebsiteRequests": 0,
+  "apiRequests": 0,
+  "httpProviderTests": "Global fetch is replaced with in-process Response fixtures; no sockets or network endpoints are contacted",
+  "savedOptimumNutritionCaptcha": "Not changed or resumed",
+  "archivedCatalogAndOriginals": "Read only; all writable test stores and model snapshots are isolated temporary directories",
+  "results": [
+    {
+      "runtime": "Node.js",
+      "version": "22.23.0",
+      "testFiles": 7,
+      "passed": 112,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node --test --test-concurrency=2 tests/manufacturer-workflow-draft.test.js tests/manufacturer-research.test.js tests/manufacturer-package-basis.test.js tests/package-quantity-review.test.js tests/ocr-crops.test.js tests/ocr-models.test.js tests/manufacturer-owned-brands.test.js",
+      "log": {
+        "path": "node.tap.gz",
+        "sha256": "da288a2bc886709478c21c548e63b975cc6f714a70f50d3a53097f24e27d7f2e",
+        "bytes": 26880,
+        "gzipSha256": "1f6bb707fc30f41a494d03b052d183e4c90ecf9d177efca60b629e7f4ddb2b8c"
+      }
+    },
+    {
+      "runtime": "Bun",
+      "version": "1.4.3",
+      "testFiles": 7,
+      "passed": 112,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "command": "/Users/konard/.bun/bin/bun test --timeout 120000 tests/manufacturer-workflow-draft.test.js tests/manufacturer-research.test.js tests/manufacturer-package-basis.test.js tests/package-quantity-review.test.js tests/ocr-crops.test.js tests/ocr-models.test.js tests/manufacturer-owned-brands.test.js",
+      "log": {
+        "path": "bun.log.gz",
+        "sha256": "efd5df21f357d6e8893e4c5ee05191404dd31f29fe018f511aa2eee28d8b886e",
+        "bytes": 11608,
+        "gzipSha256": "c5a397517e18c8ea1e6d2e55be9561271fb23dbe1b502e0be8dda7c80c054c51"
+      }
+    },
+    {
+      "runtime": "Deno",
+      "version": "2.4.5",
+      "testFiles": 7,
+      "passed": 112,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "networkPermissions": [],
+      "command": "/opt/homebrew/bin/deno test --frozen --cached-only --no-check --parallel --allow-read --allow-write --allow-env --allow-run --allow-sys --allow-ffi tests/manufacturer-workflow-draft.test.js tests/manufacturer-research.test.js tests/manufacturer-package-basis.test.js tests/package-quantity-review.test.js tests/ocr-crops.test.js tests/ocr-models.test.js tests/manufacturer-owned-brands.test.js",
+      "log": {
+        "path": "deno.log.gz",
+        "sha256": "5fb0eabe50228cd6bd9fda0d68105840d76718da88ad29ea364744557544b414",
+        "bytes": 15628,
+        "gzipSha256": "44734905a62b9be2d24a7558a88ebb5367de6c66076b030c1ee6d7ff30491885"
+      }
+    },
+    {
+      "check": "strict lint",
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node node_modules/eslint/bin/eslint.js src/manufacturer-workflow*.js src/ocr-evidence.js src/ocr-models.js src/manufacturer-research.js src/label-worklist.js tests/manufacturer-workflow-draft.test.js tests/manufacturer-research.test.js tests/manufacturer-package-basis.test.js --max-warnings 0",
+      "log": {
+        "path": "lint.log.gz",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "gzipSha256": "f1b651238a58fe290baec6c5e32f3bdb1943dd2bd582f02569231f7a757c7837"
+      }
+    },
+    {
+      "check": "formatting",
+      "exitCode": 0,
+      "command": "/Users/konard/.nvm/versions/node/v22.23.0/bin/node node_modules/prettier/bin/prettier.cjs --check src/manufacturer-workflow*.js src/ocr-evidence.js src/ocr-models.js src/manufacturer-research.js src/label-worklist.js tests/manufacturer-workflow-draft.test.js tests/manufacturer-research.test.js tests/manufacturer-package-basis.test.js",
+      "log": {
+        "path": "format.log.gz",
+        "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+        "bytes": 66,
+        "gzipSha256": "d64010ae55eaddf0a918163db8e4a6821b3d87a770c6df0154973888c7113c59"
+      }
+    }
+  ],
+  "newWorkflowTests": 40,
+  "nativeOcrVersion": "Tesseract 5.5.2; leptonica 1.87.0",
+  "fixes": [
+    "Source-bound quantity candidates now pass the existing literal original value/unit/excerpt/basis validator before staged writes; explicit source identity quantity must equal the selected candidate",
+    "Existing synthetic OCR fixture now declares engine, language and PSM and preserves parseTsv-derived text/confidence/word geometry; verifier provenance requirements remain strict",
+    "OCR model streaming uses explicit FileHandle.read buffer offset, length and null position, supported by Node, Bun and Deno; content hashing and byte limits unchanged",
+    "Reviewed packets cannot override explicit original structured flavour or formula revision; retained candidate identity and reparsed source identity are checked independently",
+    "Original archived H\u00e4agen-Dazs negative-basis fixture imports its exact archived OCR receipt and asserts original TSV text/confidence/words, replacing incomplete locally reconstructed metadata"
+  ],
+  "historicalFailures": {
+    "initial-legacy-fixture-failure": {
+      "path": "initial-legacy-fixture-failure.log.gz",
+      "sha256": "d0d3aa78d6a0bfee93a7c6f2a274f208e7f579f05ddd9759aebc6c1ad4d9e41e",
+      "bytes": 17969,
+      "gzipSha256": "ec5a03b44fde70eee12aae5ee46862b9907d44c7951e8e361dc4fed1650ac447"
+    },
+    "initial-deno-read-overload-failure": {
+      "path": "initial-deno-read-overload-failure.log.gz",
+      "sha256": "7692e1bd995b999bad8b399d4152a272f242925e222c268dbc88ceed2e918c92",
+      "bytes": 30149,
+      "gzipSha256": "38b532bc12a0df0ca0e4b2c14adc66a24e932ce48f89d5b94d76d417505bb039"
+    }
+  },
+  "testedFiles": [
+    {
+      "path": "src/label-worklist.js",
+      "sha256": "87add7a33826a27e6a4d24a61ca7049a4ae27a30d9083ec681bd9b19ebfc58a9",
+      "bytes": 7592
+    },
+    {
+      "path": "src/manufacturer-research.js",
+      "sha256": "41871e7bf999e5fac8ead5bf0630ab5cf7ce9980f505c5414cc71525c245bf13",
+      "bytes": 16468
+    },
+    {
+      "path": "src/manufacturer-workflow-facts.js",
+      "sha256": "8b56157235867bdd515a0c71f69b449ef67c9d76633d45f46087b6b250f785b1",
+      "bytes": 12400
+    },
+    {
+      "path": "src/manufacturer-workflow-review.js",
+      "sha256": "c6cd48553c969226c3e68f702a95a074c700e3a216fcfcbee18b19a1d327466a",
+      "bytes": 26336
+    },
+    {
+      "path": "src/manufacturer-workflow-search.js",
+      "sha256": "0c961d4199f00f674ff4291f98eacf97c8c898dcd1d16849e7b3353a04a3dfce",
+      "bytes": 11391
+    },
+    {
+      "path": "src/manufacturer-workflow.js",
+      "sha256": "26e439ddf046122ebc96388ed368ee52671ac730ce8258ca575fc419f5b3584f",
+      "bytes": 30634
+    },
+    {
+      "path": "src/ocr-evidence.js",
+      "sha256": "026b98e5028a63c95d07a8821c6b867980e645a17b44637409e09426813db437",
+      "bytes": 7603
+    },
+    {
+      "path": "src/ocr-models.js",
+      "sha256": "a48dd939fdf19a6b9ae79ba9523414af2f88691af7b4127d3e48103ca44f1e55",
+      "bytes": 5367
+    },
+    {
+      "path": "tests/manufacturer-owned-brands.test.js",
+      "sha256": "122ce671d739434265f654e79deabcd400350728a47f974bd45831cada613011",
+      "bytes": 6024
+    },
+    {
+      "path": "tests/manufacturer-package-basis.test.js",
+      "sha256": "bc283e4c5f9791c343366c14424825447d81859fde081ac9a2803107f0be0c64",
+      "bytes": 9097
+    },
+    {
+      "path": "tests/manufacturer-research.test.js",
+      "sha256": "2715d1372508f3aa4f6fa0ee92db35f76b265b7fab615dc6e83dba0717559d88",
+      "bytes": 27059
+    },
+    {
+      "path": "tests/manufacturer-workflow-draft.test.js",
+      "sha256": "49f42e521fb29c4032a6c4c7fbbf0b01884046aca90fcb2c85bcc3b2f09bae49",
+      "bytes": 42731
+    },
+    {
+      "path": "tests/ocr-crops.test.js",
+      "sha256": "3803bfe2dd38f89f6d232ba3f6d517bc93eea3d8ae8f9d263c0eed9c6a9bcae3",
+      "bytes": 13198
+    },
+    {
+      "path": "tests/ocr-models.test.js",
+      "sha256": "9d866f422f6f922f6f2264cca540043bc5d9f145597cae6c2ae9a60f3b94309a",
+      "bytes": 12740
+    },
+    {
+      "path": "tests/package-quantity-review.test.js",
+      "sha256": "b0b0ef9a6abfdc68970a1d1bb27ef818b0c8d893ae9a9270c91c311dd42c71ca",
+      "bytes": 11877
+    }
+  ],
+  "limits": [
+    "Local macOS checks do not establish the GitHub CI matrix on Windows or Linux",
+    "Synthetic review identities/HTTP responses are test fixtures and do not verify any current manufacturer formula or offer",
+    "Positive transformation test renders actual lossless crop bytes with Sharp but injects fixture OCR; the existing ocr-crops suite separately exercises actual installed native decimal OCR",
+    "No live source provider, Telegram deployment, user login, current stock, bulk freight, complete catalog or buying winner is attested"
+  ],
+  "coverageAdditions": [
+    "Actual offline catalog work planning, cached primary JSON source reuse, retained independent quantity/nutrition review drafts, no automatic approvals and a zero-task/zero-download resumable replay"
+  ]
+}

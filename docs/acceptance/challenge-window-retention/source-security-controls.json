@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-12T19:13:16.738067+00:00",
+  "scope": "Bounded count/discount/protected URL and decimal readers; all five promotion tables preserve actual Markdown shape and literal codes/URLs; synchronized requirement/issue mapping. Current hashes are frozen after passing integrated focused checks.",
+  "focused": {
+    "node": 138,
+    "bun": 138,
+    "frozenCachedOnlyDeno": 138,
+    "sharedNode": 138,
+    "validCompatibilityCases": 357,
+    "compatibilityDifferences": 0,
+    "originalHostileTimeouts": 4,
+    "fixedHostileMsRange": [153, 164],
+    "strictLintAndFormatting": "passed"
+  },
+  "sourceSha256": {
+    "src/browser.js": "929ea628b355e36bb6da6591bae203908d5553ad0719bdbd6708018878a8b6bc",
+    "src/products.js": "fb579eb88563d72378b9128d3f7347c843b556daf56fbab3317b4f8d4411d78e",
+    "src/translation-quality.js": "391044d12ab9521621e969353c8882f55d5e01e69097fbf0dc01a7d61a58b136",
+    "scripts/promotion-report.mjs": "1ad78f6b17623186a76ba053abbe4d030cc554c321ee62ac735955d5954cb123",
+    "src/requirement-registry.js": "ece44873039d19fdda03ba7c91339e0adb9f75008b7f67e4f98ff67ec9191eec",
+    "src/requirement-draft-review.js": "acf7a3244e76a358cb581854a3f06e8c56b99f95d1cd5b2cc55d726d961e2e21",
+    "tests/source-text-parsing-performance.test.js": "ab8e7ff95e4bb960ff7bc7c440f4431e19ceccff2d8e157aa7280c704f87e3f6",
+    "tests/promotion-report-escaping.test.js": "c96558e36c8360dc5003ec69f066c4467e1abd8907e89e2023f0c1ecbeeac261",
+    "tests/requirement-coverage.test.js": "337926e749b9bd50550462fad25d67022213189b7a458c678410655840726c5b"
+  },
+  "compatibility": "source-security-compatibility.json",
+  "attacks": "source-security-attack-comparison.json",
+  "branchAudit": "codeql-branch-source-audit.json",
+  "fullSourceAcceptance": "source-specific-focused-and-CodeQL-passed;overall-CI-blocked-by-concurrent-blob-publication",
+  "logs": {
+    "source-security-node.log.gz": {
+      "rawSha256": "86252413ce9d8017541a12c5e956f8dbe633a45edc9fc761dac95cd2e225ab8f",
+      "rawBytes": 33598
+    },
+    "source-security-bun.log.gz": {
+      "rawSha256": "0c2028891539f2e2dd76306bbb1f78579c0064e7b22a176bbc63bf2901a7c7ec",
+      "rawBytes": 14517
+    },
+    "source-security-deno.log.gz": {
+      "rawSha256": "ec903ea7a30c957f637f1487401d31e24176a0362ba19557e312300a407bef92",
+      "rawBytes": 15989
+    },
+    "source-security-shared-node.log.gz": {
+      "rawSha256": "b1da9e27a56eaee7ace6c994262d61f7e6dbce8bad98a0d1314ce556e35b7691",
+      "rawBytes": 33569
+    },
+    "source-security-final-focused.tap.gz": {
+      "rawSha256": "c4823354818ab07ad9dc547f1b24aba42f0bcd5ff794fadaa3793b885d250652",
+      "rawBytes": 2826
+    },
+    "promotion-escaping-node.tap.gz": {
+      "rawSha256": "bccbc448d5e53673694c8f27757014cde448a72179494fdf4ece6679a0ee8f6f",
+      "rawBytes": 1747
+    },
+    "promotion-escaping-bun.log.gz": {
+      "rawSha256": "3cbf54e4520baf37e267de5c1dae34c9818dbad013c423d75aa344cb35a2be19",
+      "rawBytes": 828
+    },
+    "promotion-escaping-deno.log.gz": {
+      "rawSha256": "204a111436c9c0ab3907012a3e669ff068a93d35158cb503222a9815d70592a8",
+      "rawBytes": 996
+    },
+    "requirement-refresh-tests.tap.gz": {
+      "rawSha256": "b19c771d77b41659131167c97b956c574e5da9356b25ee696531b43162790f24",
+      "rawBytes": 1230
+    },
+    "promotion-renderer-final-node.tap.gz": {
+      "rawSha256": "edfc4f7966d739274369de4bded33f038073e678db13fdb4c6642f32216ae490",
+      "rawBytes": 1419
+    },
+    "promotion-renderer-final-bun.log.gz": {
+      "rawSha256": "e85f878527f2177f0c6a2b8b4e56dc654ce7157ee38988bbdedf0f864086375a",
+      "rawBytes": 682
+    },
+    "promotion-renderer-final-deno.log.gz": {
+      "rawSha256": "814ab520855986ec885af3a0d04607a8d39f43e901d164054c6c36322a140c52",
+      "rawBytes": 639
+    },
+    "promotion-renderer-final-lint.log.gz": {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    "promotion-renderer-final-format.log.gz": {
+      "rawSha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "rawBytes": 66
+    },
+    "source-security-final-integrated-focused.tap.gz": {
+      "rawSha256": "0b31f709130fcb692f37781ae1ddc483ab9a2380976060785b9e31c1c1088911",
+      "rawBytes": 5035
+    }
+  },
+  "rendererControls": {
+    "status": "passed-all-three-runtimes-and-strict-lint",
+    "tests": 5,
+    "runtimes": ["Node", "Bun", "frozenCachedOnlyDeno"],
+    "scope": "Actual GFM table parsing and literal code/link reconstruction, including special characters and whitespace."
+  },
+  "requirementsControls": {
+    "tests": 4,
+    "scope": "Real file paths, regression manifest membership, issue snapshot, published mapping alignment and false readiness gates."
+  },
+  "sourceCommit": "2bcb7667ad303ea2bc94a67e3743a4a294d545d3"
+}

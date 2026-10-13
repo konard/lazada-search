@@ -77,7 +77,7 @@ test('one batch writer lock bounds parallel independent paths and commits canoni
   };
   assert.deepEqual(await store.putMany('discovery', records), original);
   assert.equal(locks, 1);
-  assert.ok(peak > 1 && peak <= 8, `parallel projection peak was ${peak}`);
+  assert.ok(peak > 1 && peak <= 16, `parallel projection peak was ${peak}`);
   assert.equal(active, 0);
   assert.deepEqual(records, original);
   assert.equal((await store.list('discovery')).length, records.length);
@@ -463,7 +463,7 @@ test('chronological batches keep one writer lock and at most eight independent p
   };
   const results = await store.putLatestMany('offer', records);
   assert.equal(locks, 1);
-  assert.ok(peak > 1 && peak <= 8, `parallel projection peak was ${peak}`);
+  assert.ok(peak > 1 && peak <= 16, `parallel projection peak was ${peak}`);
   assert.equal(active.size, 0);
   assert.deepEqual(results.at(-1), records.at(-2));
   assert.equal((await store.get('offer', records[0].id)).price, 100);

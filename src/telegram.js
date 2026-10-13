@@ -132,7 +132,7 @@ export function createTelegramBot({
   });
   bot.command(['start', 'help'], (ctx) =>
     ctx.reply(
-      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /replay_captures --offline, /delivery URL, /compare --category whey --quantity 10, /compare_baskets, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /translate_catalog, /translation_status JOB_ID, /operation JSON, /collection_status, /resume_collection. Catalog translation defaults to cache-only; --translation-download explicitly enables configured provider calls. /operation accepts structured imports, reviews and manufacturer-research plans without filesystem access. Translations are presentation only; original product facts remain authoritative. Comparison titles use source-bound reviewed English when cached and retain original text. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
+      'Commands: /discover --exhaustive, /crawl --exhaustive, /audit --strict, /collect URL, /replay_captures --offline, /delivery URL, /compare --category whey --quantity 10, /compare_baskets, /inspect product ID, /verify ID OFFICIAL_URL, /review ID FIELD VALUE EVIDENCE_ID, /quote OFFER_ID JSON, /translate "Vietnamese text", /translate_product ID, /translate_catalog, /translation_status JOB_ID, /operation JSON, /collection_status, /resume_collection. Catalog translation defaults to cache-only; --translation-download explicitly enables configured provider calls. /operation accepts structured imports, reviews, case/manufacturer workflow plans and shopping reports without filesystem access. Draft report example: /operation {"operation":"shopping-report","options":{"quantities":[1,10],"limit":10}}. /operation {"operation":"requirement-draft-status"} lists the complete requirement registry. New workflows remain draft and untested; provider credentials must be configured by the operator at application startup. Translations are presentation only; original product facts remain authoritative. Comparison titles use source-bound reviewed English when cached and retain original text. Translation requires an operator-configured provider or existing cache. CAPTCHA detection stops new requests until the challenge is cleared and collection is explicitly resumed. Manufacturer verification is required for purchase rankings. All collection is cached. Use /compare --category chocolate-ice-cream for ice cream.'
     )
   );
   bot.command(
@@ -193,13 +193,16 @@ export function createTelegramBot({
       await operation;
     }
   );
-  bot.command('operation', async (ctx) => {
+  bot.command(['operation', 'review_collection_stop'], async (ctx) => {
     const run = async () => {
       try {
-        const result = await executeOperation(
-          application,
-          JSON.parse(ctx.match || '{}')
-        );
+        const input = JSON.parse(ctx.match || '{}');
+        const request = /^\/review_collection_stop(?:\s|@|$)/u.test(
+          ctx.message.text
+        )
+          ? { operation: 'review-collection-stop', input: { review: input } }
+          : input;
+        const result = await executeOperation(application, request);
         const text = JSON.stringify(result ?? null, null, 2);
         for (let offset = 0; offset < text.length; offset += 3500) {
           await ctx.reply(text.slice(offset, offset + 3500));

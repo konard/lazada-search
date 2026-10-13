@@ -1,5 +1,5 @@
 import { AssociativeStore } from './store.js';
-import { EvidenceCache, evidenceId } from './cache.js';
+import { EvidenceCache, DomainScheduler, evidenceId } from './cache.js';
 import { BrowserCollector } from './browser.js';
 import { TesseractOcr } from './ocr.js';
 import {
@@ -42,6 +42,24 @@ import {
   ListingUnavailableError,
   recordListingUnavailable,
 } from './availability.js';
+import {
+  planCaseWorkflow,
+  runCaseWorkflow,
+  caseWorkflowStatus,
+} from './case-workflow.js';
+import { buildShoppingReport } from './shopping-report.js';
+import {
+  planManufacturerWorkflow,
+  runManufacturerWorkflow,
+  manufacturerWorkflowStatus,
+} from './manufacturer-workflow.js';
+import { buildLabelWorklist } from './label-worklist.js';
+import {
+  prepareManufacturerWorkflowReview,
+  reviewManufacturerWorkflow,
+} from './manufacturer-workflow-review.js';
+import { caseReadiness } from './case-readiness.js';
+import { createManufacturerSearchProvider } from './manufacturer-workflow-search.js';
 
 export const MARKETS = {
   vn: {
@@ -93,10 +111,15 @@ export class LazadaSearch {
     offline = false,
     browserOptions,
     scheduler,
+    staticImageScheduler = new DomainScheduler({
+      intervalMs: Math.min(1000, scheduler?.intervalMs ?? 1000),
+    }),
     manufacturerRegistry = MANUFACTURERS,
     translationProvider,
     translationProviderId,
     translationProviderVersion,
+    manufacturerSearchProvider,
+    manufacturerSearchConfiguration,
   } = {}) {
     if (!MARKETS[market]) {
       throw new Error('Unsupported Lazada market');
@@ -106,7 +129,9 @@ export class LazadaSearch {
     }
     positive(maxImages, 'maxImages', { zero: true, integer: true });
     this.store = store;
-    this.cache = cache || new EvidenceCache({ store, offline, scheduler });
+    this.cache =
+      cache ||
+      new EvidenceCache({ store, offline, scheduler, staticImageScheduler });
     this.collector =
       collector ||
       new BrowserCollector({
@@ -123,6 +148,14 @@ export class LazadaSearch {
     this.flavourScope = flavourScope;
     this.maxImages = maxImages;
     this.manufacturerRegistry = manufacturerRegistry;
+    this.manufacturerSearchProvider =
+      manufacturerSearchProvider ||
+      (manufacturerSearchConfiguration
+        ? createManufacturerSearchProvider(
+            this,
+            manufacturerSearchConfiguration
+          )
+        : undefined);
     this.translator = new CachedTranslator({
       store,
       provider: translationProvider,
@@ -167,6 +200,41 @@ export class LazadaSearch {
 
   translationStatus(options) {
     return translationStatus(this, options);
+  }
+
+  planCaseWorkflow(input) {
+    return planCaseWorkflow(this, input);
+  }
+  runCaseWorkflow(id, options) {
+    return runCaseWorkflow(this, id, options);
+  }
+  caseWorkflowStatus(id) {
+    return caseWorkflowStatus(this, id);
+  }
+  planManufacturerWorkflow(options) {
+    return planManufacturerWorkflow(this, options);
+  }
+  runManufacturerWorkflow(id, options) {
+    return runManufacturerWorkflow(this, id, options);
+  }
+  manufacturerWorkflowStatus(id) {
+    return manufacturerWorkflowStatus(this, id);
+  }
+  prepareManufacturerWorkflowReview(input) {
+    return prepareManufacturerWorkflowReview(this, input);
+  }
+  reviewManufacturerWorkflow(input) {
+    return reviewManufacturerWorkflow(this, input);
+  }
+
+  labelWorklist(options) {
+    return buildLabelWorklist(this, options);
+  }
+  shoppingReport(options) {
+    return buildShoppingReport(this, options);
+  }
+  caseReadiness(options) {
+    return caseReadiness(this, options);
   }
 
   assertMarket(url) {

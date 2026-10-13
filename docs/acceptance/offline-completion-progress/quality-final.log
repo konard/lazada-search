@@ -1,0 +1,2494 @@
+
+> lazada-search@0.11.31 check
+> npm run lint && npm run format:check && npm run check:duplication
+
+
+> lazada-search@0.11.31 lint
+> node scripts/lint.mjs
+
+9 warning(s) on unchanged lines were not reported. Run LINT_ALL_WARNINGS=1 npm run lint to see them.
+
+> lazada-search@0.11.31 format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> lazada-search@0.11.31 check:duplication
+> jscpd .
+
+Using config from .jscpd.json
+config file .jscpd.json: unknown field 'skipComments'
+[1mClone found (javascript)[22m
+ - [1m[32mbin/lazada-search.js[39m[22m [77:22 - 84:19] (8 lines, 32 tokens)
+   scripts/audit-cached-catalog.mjs [28:16 - 35:13]
+[1mClone found (javascript)[22m
+ - [1m[32mbin/lazada-search.js[39m[22m [77:22 - 84:19] (8 lines, 32 tokens)
+   scripts/collect-account-backlog.mjs [33:57 - 40:13]
+[1mClone found (javascript)[22m
+ - [1m[32mbin/lazada-search.js[39m[22m [77:22 - 84:19] (8 lines, 32 tokens)
+   scripts/collect-account-case.mjs [196:39 - 203:15]
+[1mClone found (javascript)[22m
+ - [1m[32mbin/lazada-search.js[39m[22m [77:22 - 86:20] (10 lines, 37 tokens)
+   scripts/collect-manufacturer-sources.mjs [17:27 - 26:14]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/issue-216-release-dry-run.mjs[39m[22m [21:52 - 32:8] (12 lines, 80 tokens)
+   tests/changeset-config.test.js [209:74 - 223:12]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-changeset-scripts.mjs[39m[22m [178:77 - 187:6] (10 lines, 40 tokens)
+   experiments/test-changeset-scripts.mjs [224:63 - 232:6]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-changeset-scripts.mjs[39m[22m [178:77 - 186:23] (9 lines, 34 tokens)
+   experiments/test-changeset-scripts.mjs [246:61 - 253:23]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-changeset-scripts.mjs[39m[22m [181:5 - 186:23] (6 lines, 32 tokens)
+   experiments/test-changeset-scripts.mjs [276:5 - 281:23]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-changeset-scripts.mjs[39m[22m [186:48 - 193:27] (8 lines, 36 tokens)
+   experiments/test-changeset-scripts.mjs [257:78 - 264:27]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-changeset-scripts.mjs[39m[22m [248:19 - 257:23] (10 lines, 50 tokens)
+   experiments/test-changeset-scripts.mjs [276:19 - 285:23]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-failure-detection.mjs[39m[22m [13:1 - 37:2] (25 lines, 68 tokens)
+   scripts/publish-to-npm.mjs [79:1 - 103:2]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-format-major-changes.mjs[39m[22m [15:35 - 49:13] (35 lines, 171 tokens)
+   experiments/test-format-minor-changes.mjs [18:37 - 52:13]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-format-major-changes.mjs[39m[22m [15:35 - 31:48] (17 lines, 80 tokens)
+   experiments/test-format-no-hash.mjs [10:44 - 26:48]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-format-major-changes.mjs[39m[22m [15:35 - 49:13] (35 lines, 171 tokens)
+   experiments/test-format-patch-changes.mjs [12:78 - 46:13]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-format-major-changes.mjs[39m[22m [20:30 - 28:15] (9 lines, 41 tokens)
+   scripts/format-release-notes.mjs [114:35 - 123:17]
+[1mClone found (javascript)[22m
+ - [1m[32mexperiments/test-format-major-changes.mjs[39m[22m [31:70 - 37:58] (7 lines, 34 tokens)
+   scripts/format-release-notes.mjs [123:61 - 131:60]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/apply-selected-package-corrections.mjs[39m[22m [274:65 - 279:49] (6 lines, 37 tokens)
+   scripts/review-cached-ice-quantities.mjs [131:3 - 137:41]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/archive-decimal-ocr.mjs[39m[22m [65:18 - 71:38] (7 lines, 38 tokens)
+   scripts/archive-ice-label-followup.mjs [69:28 - 75:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/archive-ice-research.mjs[39m[22m [71:36 - 77:7] (7 lines, 30 tokens)
+   tests/e2e/challenge-window-retention.test.js [485:46 - 491:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/archive-ice-research.mjs[39m[22m [103:20 - 109:11] (7 lines, 43 tokens)
+   scripts/archive-source-research.mjs [56:16 - 62:13]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/archive-ice-research.mjs[39m[22m [119:23 - 127:28] (9 lines, 36 tokens)
+   scripts/archive-source-research.mjs [71:40 - 80:20]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/archive-manufacturer-research.mjs[39m[22m [21:6 - 30:43] (10 lines, 65 tokens)
+   scripts/collect-manufacturer-research.mjs [59:57 - 67:54]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-cached-catalog.mjs[39m[22m [29:8 - 36:4] (8 lines, 32 tokens)
+   scripts/collect-account-backlog.mjs [34:8 - 41:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-deadline-unit-costs.mjs[39m[22m [106:18 - 112:18] (7 lines, 37 tokens)
+   scripts/urgent-whey-seller-mass-review.mjs [51:21 - 57:18]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-ice-unit-completeness.mjs[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   scripts/review-cached-ice-quantities.mjs [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-ice-unit-completeness.mjs[39m[22m [107:62 - 113:3] (7 lines, 32 tokens)
+   scripts/review-cached-ice-quantities.mjs [148:74 - 152:12]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-ice-unit-completeness.mjs[39m[22m [110:39 - 116:4] (7 lines, 33 tokens)
+   scripts/patch-lino-large-documents.mjs [246:17 - 252:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-ice-unit-completeness.mjs[39m[22m [111:1 - 118:2] (8 lines, 38 tokens)
+   scripts/review-cached-ice-quantities.mjs [155:1 - 162:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-saved-extraction.mjs[39m[22m [79:68 - 85:17] (7 lines, 31 tokens)
+   scripts/cache-manufacturer-labels.mjs [77:7 - 83:17]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/audit-saved-extraction.mjs[39m[22m [81:3 - 86:19] (6 lines, 37 tokens)
+   scripts/collect-manufacturer-sources.mjs [91:3 - 96:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/cache-manufacturer-labels.mjs[39m[22m [13:76 - 18:6] (6 lines, 31 tokens)
+   scripts/urgent-whey-review.mjs [8:78 - 12:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/cache-manufacturer-labels.mjs[39m[22m [13:76 - 18:6] (6 lines, 31 tokens)
+   scripts/urgent-whey-selected-brand-review.mjs [9:3 - 13:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/cache-manufacturer-labels.mjs[39m[22m [18:14 - 27:34] (10 lines, 52 tokens)
+   scripts/cache-official-pages.mjs [21:13 - 28:70]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/cache-manufacturer-labels.mjs[39m[22m [69:41 - 74:23] (6 lines, 30 tokens)
+   scripts/cache-official-pages.mjs [86:28 - 91:21]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/changeset-version.mjs[39m[22m [53:3 - 65:15] (13 lines, 42 tokens)
+   scripts/instant-version-bump.mjs [151:3 - 164:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/changeset-version.mjs[39m[22m [69:45 - 74:2] (6 lines, 35 tokens)
+   scripts/create-manual-changeset.mjs [98:44 - 103:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/changeset-version.mjs[39m[22m [69:45 - 74:2] (6 lines, 35 tokens)
+   scripts/instant-version-bump.mjs [169:53 - 174:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/changeset-version.mjs[39m[22m [69:60 - 74:2] (6 lines, 31 tokens)
+   scripts/merge-changesets.mjs [284:44 - 289:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/changeset-version.mjs[39m[22m [69:45 - 74:2] (6 lines, 35 tokens)
+   scripts/validate-changeset.mjs [209:53 - 214:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [26:28 - 38:15] (13 lines, 39 tokens)
+   scripts/check-release-needed.mjs [41:66 - 53:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [26:28 - 39:2] (14 lines, 47 tokens)
+   scripts/check-web-archive.mjs [35:65 - 48:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [33:1 - 38:15] (6 lines, 38 tokens)
+   scripts/check-docker-build.mjs [60:1 - 65:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [34:9 - 46:9] (13 lines, 38 tokens)
+   scripts/detect-code-changes.mjs [113:9 - 120:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [109:58 - 116:42] (8 lines, 58 tokens)
+   scripts/merge-changesets.mjs [194:61 - 199:42]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-changesets.mjs[39m[22m [109:58 - 116:42] (8 lines, 58 tokens)
+   scripts/validate-changeset.mjs [147:58 - 152:42]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-ci-workflows.mjs[39m[22m [59:4 - 65:4] (7 lines, 34 tokens)
+   scripts/collect-promotions.mjs [695:3 - 701:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [16:1 - 25:2] (10 lines, 52 tokens)
+   scripts/check-docker-publish.mjs [13:1 - 22:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [56:11 - 77:17] (22 lines, 118 tokens)
+   scripts/check-docker-publish.mjs [95:13 - 116:17]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [57:4 - 65:15] (9 lines, 40 tokens)
+   scripts/detect-code-changes.mjs [109:58 - 117:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [61:9 - 68:9] (8 lines, 38 tokens)
+   scripts/check-release-needed.mjs [49:9 - 60:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [61:47 - 66:2] (6 lines, 30 tokens)
+   scripts/wait-for-npm.mjs [232:44 - 237:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [65:39 - 76:7] (12 lines, 48 tokens)
+   scripts/wait-for-npm.mjs [299:51 - 311:7]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [66:1 - 74:2] (9 lines, 44 tokens)
+   scripts/create-github-release.mjs [297:1 - 305:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [77:43 - 83:5] (7 lines, 37 tokens)
+   scripts/check-docker-publish.mjs [116:45 - 121:12]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-docker-build.mjs[39m[22m [83:3 - 88:4] (6 lines, 33 tokens)
+   scripts/check-docker-publish.mjs [130:3 - 135:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [42:29 - 50:38] (9 lines, 53 tokens)
+   tests/checkout-credentials.test.js [37:25 - 45:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [42:29 - 49:8] (8 lines, 37 tokens)
+   tests/docker-publish.test.js [13:50 - 19:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [42:29 - 50:38] (9 lines, 53 tokens)
+   tests/pipeline-status.test.js [47:23 - 55:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [43:67 - 50:38] (8 lines, 31 tokens)
+   tests/ci-timeouts.test.js [28:61 - 35:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [43:67 - 50:38] (8 lines, 31 tokens)
+   tests/ci-timeouts.test.js [52:3 - 59:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [43:67 - 50:38] (8 lines, 31 tokens)
+   tests/links-workflow.test.js [12:58 - 19:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [45:3 - 58:9] (14 lines, 63 tokens)
+   tests/security-workflow.test.js [14:3 - 25:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [50:65 - 58:9] (9 lines, 33 tokens)
+   tests/checkout-credentials.test.js [45:67 - 51:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [50:65 - 58:9] (9 lines, 33 tokens)
+   tests/ci-timeouts.test.js [59:63 - 71:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [50:75 - 59:8] (10 lines, 35 tokens)
+   tests/pipeline-status.test.js [55:77 - 62:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-status-gate-covers-all-jobs.mjs[39m[22m [68:3 - 78:29] (11 lines, 67 tokens)
+   tests/pipeline-status.test.js [62:3 - 72:29]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/check-web-archive.mjs[39m[22m [390:19 - 400:19] (11 lines, 55 tokens)
+   scripts/recheck-broken-links.mjs [374:5 - 386:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-account-backlog.mjs[39m[22m [18:43 - 23:6] (6 lines, 30 tokens)
+   scripts/collect-account-case.mjs [18:46 - 23:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-account-backlog.mjs[39m[22m [22:30 - 27:38] (6 lines, 30 tokens)
+   scripts/collect-manufacturer-sources.mjs [10:54 - 15:38]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-account-case.mjs[39m[22m [203:7 - 209:8] (7 lines, 42 tokens)
+   scripts/collect-account-discovery.mjs [15:6 - 21:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-account-case.mjs[39m[22m [204:36 - 210:8] (7 lines, 34 tokens)
+   scripts/collect-account-discovery.mjs [16:34 - 22:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-account-discovery.mjs[39m[22m [3:15 - 11:6] (9 lines, 45 tokens)
+   scripts/collect-priority-quote.mjs [4:18 - 14:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-expanded-ice.mjs[39m[22m [1:27 - 6:8] (6 lines, 37 tokens)
+   scripts/collect-handpicked.mjs [1:19 - 6:3]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-expanded-ice.mjs[39m[22m [13:1 - 21:4] (9 lines, 57 tokens)
+   scripts/collect-handpicked.mjs [9:1 - 17:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-expanded-ice.mjs[39m[22m [44:12 - 49:17] (6 lines, 33 tokens)
+   scripts/collect-handpicked.mjs [49:30 - 54:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-priority-quote.mjs[39m[22m [19:13 - 26:16] (8 lines, 34 tokens)
+   scripts/collect-promotions.mjs [425:10 - 431:49]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/collect-promotions.mjs[39m[22m [694:6 - 703:2] (10 lines, 41 tokens)
+   scripts/export-whey-verification-worklist.mjs [423:43 - 431:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-github-release.mjs[39m[22m [295:13 - 303:39] (9 lines, 32 tokens)
+   scripts/smoke-test-package.mjs [497:56 - 505:39]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [21:58 - 36:15] (16 lines, 43 tokens)
+   scripts/format-github-release.mjs [21:72 - 38:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [27:60 - 45:18] (19 lines, 82 tokens)
+   scripts/instant-version-bump.mjs [39:60 - 57:18]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [45:50 - 53:4] (9 lines, 32 tokens)
+   scripts/format-github-release.mjs [56:72 - 64:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [45:50 - 53:4] (9 lines, 32 tokens)
+   scripts/format-release-notes.mjs [68:48 - 76:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [45:50 - 53:4] (9 lines, 32 tokens)
+   scripts/instant-version-bump.mjs [57:53 - 65:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [45:50 - 53:4] (9 lines, 32 tokens)
+   scripts/publish-to-npm.mjs [54:58 - 62:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/create-manual-changeset.mjs[39m[22m [45:50 - 53:4] (9 lines, 32 tokens)
+   scripts/version-and-commit.mjs [61:57 - 69:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-catalog-tables.mjs[39m[22m [151:39 - 157:7] (7 lines, 34 tokens)
+   scripts/export-catalog-tables.mjs [573:26 - 579:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-catalog-tables.mjs[39m[22m [317:42 - 322:20] (6 lines, 35 tokens)
+   scripts/export-catalog-tables.mjs [500:50 - 505:18]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-catalog-tables.mjs[39m[22m [423:36 - 429:35] (7 lines, 41 tokens)
+   scripts/export-catalog-tables.mjs [506:28 - 512:33]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-deadline-report.mjs[39m[22m [26:25 - 33:6] (8 lines, 30 tokens)
+   scripts/export-ice-unit-report.mjs [54:24 - 61:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-deadline-report.mjs[39m[22m [62:19 - 68:8] (7 lines, 35 tokens)
+   scripts/export-shopping-shortlist.mjs [41:14 - 47:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-deadline-report.mjs[39m[22m [238:54 - 243:12] (6 lines, 30 tokens)
+   scripts/export-deadline-report.mjs [270:20 - 275:12]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-deadline-report.mjs[39m[22m [272:5 - 277:8] (6 lines, 39 tokens)
+   scripts/export-deadline-report.mjs [300:5 - 305:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-handpicked-report.mjs[39m[22m [30:31 - 39:9] (10 lines, 80 tokens)
+   scripts/export-shopping-shortlist.mjs [21:24 - 30:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/export-ice-unit-report.mjs[39m[22m [42:47 - 48:6] (7 lines, 32 tokens)
+   src/shopping-report.js [524:4 - 531:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [19:80 - 41:18] (23 lines, 77 tokens)
+   scripts/format-release-notes.mjs [31:44 - 53:18]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [19:80 - 38:15] (20 lines, 59 tokens)
+   scripts/instant-version-bump.mjs [31:24 - 48:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [19:80 - 29:20] (11 lines, 35 tokens)
+   scripts/publish-to-npm.mjs [34:29 - 43:40]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [41:49 - 53:15] (13 lines, 56 tokens)
+   scripts/format-release-notes.mjs [58:38 - 70:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [58:7 - 66:6] (9 lines, 30 tokens)
+   scripts/format-release-notes.mjs [70:7 - 78:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [58:7 - 66:6] (9 lines, 30 tokens)
+   scripts/instant-version-bump.mjs [59:7 - 69:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [58:7 - 66:8] (9 lines, 31 tokens)
+   scripts/publish-to-npm.mjs [56:7 - 64:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/format-github-release.mjs[39m[22m [58:7 - 66:8] (9 lines, 31 tokens)
+   scripts/version-and-commit.mjs [63:7 - 71:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/instant-version-bump.mjs[39m[22m [72:32 - 78:8] (7 lines, 34 tokens)
+   scripts/publish-to-npm.mjs [64:19 - 70:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/land-via-pull-request.mjs[39m[22m [160:46 - 166:15] (7 lines, 61 tokens)
+   scripts/land-via-pull-request.mjs [204:76 - 210:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/merge-changesets.mjs[39m[22m [197:39 - 202:8] (6 lines, 30 tokens)
+   scripts/validate-changeset.mjs [150:39 - 155:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/publish-account-captures.mjs[39m[22m [5:69 - 20:8] (16 lines, 75 tokens)
+   scripts/publish-account-discovery.mjs [3:67 - 20:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/publish-account-captures.mjs[39m[22m [5:69 - 12:6] (8 lines, 37 tokens)
+   scripts/publish-expanded-ice.mjs [4:67 - 11:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/publish-account-captures.mjs[39m[22m [34:8 - 42:32] (9 lines, 30 tokens)
+   scripts/publish-expanded-ice.mjs [39:29 - 44:32]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/publish-to-npm.mjs[39m[22m [120:1 - 125:2] (6 lines, 35 tokens)
+   scripts/version-and-commit.mjs [141:1 - 146:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/publish-to-npm.mjs[39m[22m [297:3 - 305:8] (9 lines, 37 tokens)
+   scripts/version-and-commit.mjs [300:3 - 308:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/replay-package-volume-reviews.mjs[39m[22m [14:55 - 21:8] (8 lines, 30 tokens)
+   tests/e2e/verified-case.test.js [97:16 - 104:10]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/replay-package-volume-reviews.mjs[39m[22m [113:38 - 119:2] (7 lines, 38 tokens)
+   scripts/review-cached-container-mass.mjs [71:63 - 77:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/report-unit-costs.mjs[39m[22m [8:56 - 22:57] (15 lines, 82 tokens)
+   src/shopping-report.js [28:3 - 43:11]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/report-unit-costs.mjs[39m[22m [22:64 - 31:45] (10 lines, 44 tokens)
+   src/shopping-report.js [43:26 - 54:43]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-container-mass.mjs[39m[22m [1:1 - 7:6] (7 lines, 44 tokens)
+   scripts/urgent-whey-seller-mass-review.mjs [2:1 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-ice-quantities.mjs[39m[22m [139:3 - 146:10] (8 lines, 30 tokens)
+   scripts/review-handpicked-selling-mass.mjs [10:1 - 17:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-ice-quantities.mjs[39m[22m [139:3 - 146:10] (8 lines, 30 tokens)
+   scripts/review-prosupps-mass.mjs [8:77 - 15:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-ice-quantities.mjs[39m[22m [151:39 - 162:2] (12 lines, 52 tokens)
+   scripts/review-cached-ice-selling-unit.mjs [309:7 - 321:2]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-ice-selling-unit.mjs[39m[22m [36:15 - 46:9] (11 lines, 40 tokens)
+   src/collection-source-replay.js [37:19 - 47:9]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-cached-ice-selling-unit.mjs[39m[22m [161:9 - 166:6] (6 lines, 30 tokens)
+   tests/cached-ice-selling-unit-review.test.js [34:5 - 39:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-handpicked-selling-mass.mjs[39m[22m [1:40 - 8:39] (8 lines, 52 tokens)
+   scripts/review-prosupps-mass.mjs [2:44 - 8:47]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-handpicked-selling-mass.mjs[39m[22m [2:23 - 8:39] (7 lines, 48 tokens)
+   scripts/urgent-whey-seller-mass-review.mjs [4:50 - 9:47]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/review-prosupps-mass.mjs[39m[22m [5:40 - 15:8] (11 lines, 60 tokens)
+   scripts/review-top10-ice-categories.mjs [3:67 - 13:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/run-command.mjs[39m[22m [55:5 - 60:23] (6 lines, 30 tokens)
+   tests/detect-code-changes.test.js [340:7 - 345:23]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/sanitize-npm-userconfig.mjs[39m[22m [66:1 - 74:22] (9 lines, 43 tokens)
+   scripts/setup-npm.mjs [248:1 - 256:22]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/smoke-test-package.mjs[39m[22m [26:291 - 51:10] (26 lines, 140 tokens)
+   scripts/wait-for-npm.mjs [23:163 - 48:10]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/smoke-test-package.mjs[39m[22m [505:40 - 517:17] (13 lines, 70 tokens)
+   scripts/wait-for-npm.mjs [307:45 - 319:17]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/smoke-test-package.mjs[39m[22m [518:57 - 525:65] (8 lines, 39 tokens)
+   scripts/wait-for-npm.mjs [320:57 - 327:65]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/update-preview-images.mjs[39m[22m [169:31 - 175:19] (7 lines, 30 tokens)
+   src/server.js [149:60 - 154:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/update-preview-images.mjs[39m[22m [171:3 - 178:8] (8 lines, 38 tokens)
+   tests/e2e/image-redirects.test.js [100:3 - 105:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-discounts-shortlist.mjs[39m[22m [15:1 - 23:19] (9 lines, 47 tokens)
+   scripts/urgent-extraction-reprocess-ingredients.mjs [8:1 - 16:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-discounts-shortlist.mjs[39m[22m [16:33 - 23:19] (8 lines, 35 tokens)
+   scripts/urgent-extraction-audit.mjs [16:4 - 23:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-audit.mjs[39m[22m [1:1 - 6:7] (6 lines, 39 tokens)
+   scripts/urgent-extraction-reprocess-musa.mjs [1:1 - 7:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-audit.mjs[39m[22m [8:69 - 21:4] (14 lines, 52 tokens)
+   scripts/urgent-extraction-reprocess-remaining.mjs [5:51 - 18:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-audit.mjs[39m[22m [10:60 - 21:4] (12 lines, 47 tokens)
+   scripts/urgent-extraction-reprocess-musa.mjs [8:45 - 19:4]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-audit.mjs[39m[22m [14:5 - 23:19] (10 lines, 44 tokens)
+   scripts/urgent-extraction-reprocess-seeq-public.mjs [9:5 - 18:19]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-reprocess-ingredients.mjs[39m[22m [26:58 - 31:8] (6 lines, 36 tokens)
+   scripts/urgent-extraction-reprocess-musa.mjs [36:67 - 41:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-reprocess-ingredients.mjs[39m[22m [26:58 - 31:8] (6 lines, 36 tokens)
+   scripts/urgent-extraction-reprocess-remaining.mjs [39:18 - 44:8]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-reprocess-musa.mjs[39m[22m [2:27 - 8:6] (7 lines, 35 tokens)
+   scripts/urgent-extraction-reprocess-remaining.mjs [2:27 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-reprocess-musa.mjs[39m[22m [2:27 - 7:6] (6 lines, 30 tokens)
+   scripts/urgent-extraction-reprocess-seeq-public.mjs [2:20 - 7:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-extraction-reprocess-musa.mjs[39m[22m [12:12 - 25:6] (14 lines, 58 tokens)
+   scripts/urgent-extraction-reprocess-remaining.mjs [11:12 - 24:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-icecream-labels.mjs[39m[22m [64:29 - 71:15] (8 lines, 44 tokens)
+   scripts/urgent-icecream-sources.mjs [82:29 - 89:15]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-cgn-review.mjs[39m[22m [2:41 - 7:40] (6 lines, 44 tokens)
+   scripts/urgent-whey-review.mjs [2:33 - 7:40]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-cgn-review.mjs[39m[22m [2:41 - 7:40] (6 lines, 44 tokens)
+   scripts/urgent-whey-selected-brand-review.mjs [1:62 - 6:40]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-cgn-review.mjs[39m[22m [191:5 - 199:22] (9 lines, 57 tokens)
+   scripts/urgent-whey-review.mjs [45:78 - 53:22]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-factory-lead-sources.mjs[39m[22m [89:9 - 99:6] (11 lines, 50 tokens)
+   scripts/urgent-whey-low-price-sources.mjs [71:70 - 80:6]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-factory-lead-sources.mjs[39m[22m [147:56 - 154:16] (8 lines, 30 tokens)
+   scripts/urgent-whey-low-price-sources.mjs [104:69 - 111:16]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-factory-lead-sources.mjs[39m[22m [173:8 - 180:47] (8 lines, 49 tokens)
+   scripts/urgent-whey-low-price-sources.mjs [124:39 - 130:47]
+[1mClone found (javascript)[22m
+ - [1m[32mscripts/urgent-whey-review.mjs[39m[22m [35:612 - 42:8] (8 lines, 40 tokens)
+   scripts/urgent-whey-selected-brand-review.mjs [51:427 - 58:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/application.js[39m[22m [177:21 - 182:16] (6 lines, 36 tokens)
+   src/manufacturer-workflow-review.js [136:28 - 141:10]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/application.js[39m[22m [622:7 - 627:31] (6 lines, 33 tokens)
+   src/application.js [639:7 - 644:31]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/archive.js[39m[22m [98:46 - 106:16] (9 lines, 39 tokens)
+   src/archive.js [110:5 - 118:16]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/archive.js[39m[22m [597:18 - 603:5] (7 lines, 32 tokens)
+   src/archive.js [760:16 - 766:7]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/archive.js[39m[22m [598:4 - 604:8] (7 lines, 30 tokens)
+   src/store.js [379:47 - 385:10]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-comparison.js[39m[22m [10:30 - 18:14] (9 lines, 40 tokens)
+   src/checkout-scenarios.js [12:26 - 19:14]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-comparison.js[39m[22m [10:30 - 17:18] (8 lines, 35 tokens)
+   src/publication-cache.js [3:49 - 10:18]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-comparison.js[39m[22m [237:3 - 242:8] (6 lines, 32 tokens)
+   src/compare.js [341:65 - 346:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-quote.js[39m[22m [30:25 - 36:6] (7 lines, 30 tokens)
+   src/handpicked-links.js [8:22 - 14:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-quote.js[39m[22m [31:28 - 39:21] (9 lines, 43 tokens)
+   src/lazada-checkout-capture.js [71:33 - 79:21]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-quote.js[39m[22m [491:40 - 502:2] (12 lines, 71 tokens)
+   src/lazada-checkout-actions.js [414:42 - 425:2]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/basket-quote.js[39m[22m [491:40 - 502:2] (12 lines, 71 tokens)
+   src/lazada-checkout-capture.js [200:34 - 211:2]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/browser.js[39m[22m [624:10 - 629:29] (6 lines, 34 tokens)
+   src/browser.js [641:12 - 646:29]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/browser.js[39m[22m [850:9 - 856:6] (7 lines, 35 tokens)
+   src/browser.js [878:7 - 884:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/cache.js[39m[22m [468:7 - 475:8] (8 lines, 38 tokens)
+   src/manufacturer-source-cache.js [318:28 - 323:10]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/case-workflow.js[39m[22m [414:7 - 421:8] (8 lines, 37 tokens)
+   src/case-workflow.js [537:26 - 544:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/case-worklist.js[39m[22m [93:66 - 104:2] (12 lines, 58 tokens)
+   src/flavour-scope.js [83:29 - 94:2]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/checkout-scenarios.js[39m[22m [235:79 - 243:21] (9 lines, 47 tokens)
+   src/checkout-scenarios.js [402:7 - 410:23]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/compare.js[39m[22m [22:13 - 27:5] (6 lines, 37 tokens)
+   src/food-components.js [233:14 - 238:9]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/delivery.js[39m[22m [135:54 - 142:19] (8 lines, 34 tokens)
+   src/delivery.js [145:12 - 152:19]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/discovery-publication-cache.js[39m[22m [247:63 - 252:6] (6 lines, 30 tokens)
+   src/historical-capture-replay.js [189:10 - 194:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/food-component-evidence.js[39m[22m [28:1 - 36:9] (9 lines, 30 tokens)
+   src/handpicked-links.js [49:1 - 57:9]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/food-components.js[39m[22m [384:26 - 391:13] (8 lines, 40 tokens)
+   src/products.js [936:33 - 943:13]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/historical-capture-replay.js[39m[22m [183:13 - 194:6] (12 lines, 68 tokens)
+   src/publication-cache.js [287:14 - 298:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/lazada-checkout-adapter.js[39m[22m [550:5 - 559:19] (10 lines, 33 tokens)
+   src/lazada-checkout-adapter.js [571:19 - 580:19]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-research.js[39m[22m [29:14 - 35:9] (7 lines, 36 tokens)
+   src/manufacturer-review.js [21:27 - 27:9]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-source-validity.js[39m[22m [30:56 - 38:2] (9 lines, 44 tokens)
+   src/package-quantity-review-evidence.js [75:4 - 83:2]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-workflow-review.js[39m[22m [135:20 - 140:11] (6 lines, 40 tokens)
+   src/manufacturer-workflow.js [213:29 - 218:9]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-workflow-review.js[39m[22m [160:17 - 166:8] (7 lines, 31 tokens)
+   src/manufacturer-workflow-review.js [312:23 - 318:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-workflow-review.js[39m[22m [268:33 - 274:45] (7 lines, 30 tokens)
+   src/manufacturer-workflow-review.js [445:27 - 451:47]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-workflow-review.js[39m[22m [442:5 - 450:16] (9 lines, 44 tokens)
+   src/manufacturer-workflow-review.js [839:3 - 846:16]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/manufacturer-workflow.js[39m[22m [697:3 - 709:8] (13 lines, 125 tokens)
+   src/manufacturer-workflow.js [734:3 - 746:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/nutrition.js[39m[22m [161:5 - 167:6] (7 lines, 50 tokens)
+   src/products.js [309:5 - 315:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/page-challenge.js[39m[22m [27:7 - 33:6] (7 lines, 36 tokens)
+   src/page-readiness.js [16:5 - 22:4]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/persistent-browser-worker.js[39m[22m [57:31 - 62:6] (6 lines, 30 tokens)
+   src/persistent-browser.js [202:37 - 207:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/products.js[39m[22m [624:37 - 632:10] (9 lines, 30 tokens)
+   src/products.js [814:51 - 822:10]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/server.js[39m[22m [64:9 - 69:15] (6 lines, 31 tokens)
+   src/server.js [139:7 - 144:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/server.js[39m[22m [108:21 - 115:26] (8 lines, 31 tokens)
+   src/server.js [134:14 - 141:24]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/shopping-report.js[39m[22m [336:21 - 343:6] (8 lines, 39 tokens)
+   src/shopping-report.js [348:13 - 355:8]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/shopping-report.js[39m[22m [584:23 - 589:12] (6 lines, 43 tokens)
+   src/shopping-report.js [649:18 - 654:21]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/store.js[39m[22m [179:5 - 185:16] (7 lines, 52 tokens)
+   src/store.js [205:5 - 211:16]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/telegram.js[39m[22m [182:17 - 195:5] (14 lines, 101 tokens)
+   src/telegram.js [203:22 - 214:6]
+[1mClone found (javascript)[22m
+ - [1m[32msrc/translation-presentation.js[39m[22m [196:50 - 204:8] (9 lines, 30 tokens)
+   src/translation-presentation.js [264:56 - 272:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/acceptance-corrections.test.js[39m[22m [63:44 - 68:2] (6 lines, 50 tokens)
+   tests/nutrition-parsing-performance.test.js [123:79 - 128:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-backlog-order.test.js[39m[22m [39:38 - 47:2] (9 lines, 33 tokens)
+   tests/category-discovery.test.js [210:41 - 218:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-cache.test.js[39m[22m [151:67 - 162:47] (12 lines, 73 tokens)
+   tests/account-cache.test.js [172:42 - 183:49]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/browser-import-review.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 7:9] (7 lines, 42 tokens)
+   tests/case-original-invalidation.test.js [1:1 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/captcha-stop.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/e2e/dialog-variant.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/e2e/page-loading.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/e2e/page-scroll.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/e2e/preferred-variant.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/translation-presentation-baskets.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/translation-presentation-chunks.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/account-collection-attempts.test.js[39m[22m [1:1 - 6:26] (6 lines, 36 tokens)
+   tests/translation-quality.test.js [1:1 - 7:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [1:1 - 6:9] (6 lines, 39 tokens)
+   tests/archive.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [1:1 - 6:9] (6 lines, 39 tokens)
+   tests/lazada.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [1:1 - 8:20] (8 lines, 48 tokens)
+   tests/package-quantity-review.test.js [1:1 - 7:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [35:17 - 40:25] (6 lines, 30 tokens)
+   tests/blob-publication.test.js [437:22 - 442:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [97:52 - 104:6] (8 lines, 30 tokens)
+   tests/archive.test.js [192:65 - 199:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [144:50 - 149:39] (6 lines, 32 tokens)
+   tests/archive-telemetry-redaction.test.js [199:30 - 204:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [144:53 - 149:39] (6 lines, 30 tokens)
+   tests/archive-telemetry-redaction.test.js [289:52 - 294:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [209:7 - 215:77] (7 lines, 42 tokens)
+   tests/archive.test.js [136:50 - 142:75]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [214:5 - 220:6] (7 lines, 49 tokens)
+   tests/archive-provenance.test.js [258:3 - 264:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-provenance.test.js[39m[22m [215:75 - 220:6] (6 lines, 31 tokens)
+   tests/archive.test.js [121:3 - 126:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-refresh.test.js[39m[22m [121:169 - 127:10] (7 lines, 74 tokens)
+   tests/archive-refresh.test.js [168:101 - 174:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-refresh.test.js[39m[22m [121:169 - 126:10] (6 lines, 64 tokens)
+   tests/archive-refresh.test.js [231:88 - 236:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-refresh.test.js[39m[22m [126:40 - 134:8] (9 lines, 55 tokens)
+   tests/archive-refresh.test.js [175:49 - 183:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/availability.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/browser-image-cache.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/case-checkout-replay.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/category-discovery.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/challenge-source-archive.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/delivery-context.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/capture-timeout.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/delivery.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/pipeline.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/e2e/tag-search-readiness.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/lazada-checkout-draft.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/lazada-checkout-gifts.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/observation-order.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/ocr-stop-propagation.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/public-source-secrets.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/publication-cache.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/scope-decisions.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/selected-package-ocr.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [1:1 - 6:9] (6 lines, 35 tokens)
+   tests/translation-catalog.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive-telemetry-redaction.test.js[39m[22m [199:34 - 207:10] (9 lines, 61 tokens)
+   tests/archive-telemetry-redaction.test.js [289:53 - 297:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/archive.test.js[39m[22m [3:1 - 8:19] (6 lines, 31 tokens)
+   tests/lazada.test.js [3:1 - 8:15]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/atomic-write.test.js[39m[22m [5:8 - 14:9] (10 lines, 31 tokens)
+   tests/store-projection.test.js [6:10 - 15:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/browser-image-cache.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 8:15] (7 lines, 32 tokens)
+   tests/case-checkout-replay.test.js [2:8 - 6:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 8:16] (7 lines, 33 tokens)
+   tests/category-discovery.test.js [2:8 - 6:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/challenge-source-archive.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:20] (6 lines, 31 tokens)
+   tests/e2e/capture-timeout.test.js [2:8 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:20] (6 lines, 31 tokens)
+   tests/e2e/delivery.test.js [2:8 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 8:16] (7 lines, 33 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [2:8 - 8:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:20] (6 lines, 31 tokens)
+   tests/e2e/tag-search-readiness.test.js [2:8 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/lazada-checkout-draft.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/lazada-checkout-gifts.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 8:15] (7 lines, 32 tokens)
+   tests/observation-order.test.js [2:8 - 6:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/ocr-stop-propagation.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:19] (6 lines, 30 tokens)
+   tests/public-source-secrets.test.js [2:8 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 7:20] (6 lines, 31 tokens)
+   tests/scope-decisions.test.js [2:8 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [2:8 - 8:16] (7 lines, 33 tokens)
+   tests/translation-catalog.test.js [2:8 - 8:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/availability.test.js[39m[22m [222:53 - 228:8] (7 lines, 30 tokens)
+   tests/public-captures.test.js [125:79 - 131:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/catalog-audit.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [17:24 - 24:14] (8 lines, 30 tokens)
+   tests/helpers/checkout-scenarios.js [30:19 - 37:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [25:40 - 49:10] (25 lines, 77 tokens)
+   tests/helpers/checkout-scenarios.js [38:35 - 62:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [58:66 - 63:15] (6 lines, 30 tokens)
+   tests/browser-import-review.test.js [110:63 - 112:66]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [58:66 - 63:16] (6 lines, 31 tokens)
+   tests/e2e/basket-quotes.test.js [86:70 - 91:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [58:66 - 63:15] (6 lines, 30 tokens)
+   tests/helpers/checkout-scenarios.js [20:69 - 22:66]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [58:66 - 63:15] (6 lines, 30 tokens)
+   tests/helpers/draft-workflows.js [8:75 - 10:66]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [64:45 - 69:6] (6 lines, 39 tokens)
+   tests/category-discovery.test.js [19:15 - 24:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [64:45 - 69:6] (6 lines, 39 tokens)
+   tests/e2e/pipeline.test.js [84:30 - 89:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [64:45 - 69:6] (6 lines, 39 tokens)
+   tests/translation-catalog.test.js [34:6 - 39:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [65:5 - 70:8] (6 lines, 37 tokens)
+   tests/category-review.test.js [22:4 - 27:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [65:4 - 70:8] (6 lines, 38 tokens)
+   tests/e2e/ice-quantity-review.test.js [50:18 - 55:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [70:25 - 81:11] (12 lines, 63 tokens)
+   tests/e2e/basket-quotes.test.js [100:3 - 111:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [74:22 - 81:11] (8 lines, 38 tokens)
+   tests/helpers/checkout-scenarios.js [85:24 - 92:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [87:45 - 96:16] (10 lines, 38 tokens)
+   tests/helpers/checkout-scenarios.js [97:17 - 106:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/basket-quotes.test.js[39m[22m [264:3 - 269:54] (6 lines, 30 tokens)
+   tests/basket-quotes.test.js [308:33 - 313:54]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/blob-publication.test.js[39m[22m [161:3 - 166:4] (6 lines, 43 tokens)
+   tests/blob-publication.test.js [247:30 - 251:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/blob-publication.test.js[39m[22m [169:55 - 174:42] (6 lines, 34 tokens)
+   tests/blob-publication.test.js [192:4 - 197:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/blob-publication.test.js[39m[22m [263:9 - 269:18] (7 lines, 43 tokens)
+   tests/blob-publication.test.js [328:5 - 334:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/collection-source-replay.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/e2e/basket-quotes.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:26] (6 lines, 38 tokens)
+   tests/food-component-evidence.test.js [1:1 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/food-offer-discovery.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:26] (6 lines, 38 tokens)
+   tests/manufacturer-package-basis.test.js [1:1 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/manufacturer-research-stop.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bonus-paid-mass-hold.test.js[39m[22m [1:1 - 6:26] (6 lines, 38 tokens)
+   tests/manufacturer-research.test.js [1:1 - 6:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/bot-commit-attribution.test.js[39m[22m [31:54 - 39:6] (9 lines, 32 tokens)
+   tests/bot-commit-attribution.test.js [41:55 - 49:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-challenge-handoff.test.js[39m[22m [3:49 - 8:27] (6 lines, 36 tokens)
+   tests/delivery-context.test.js [3:22 - 8:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-challenge-handoff.test.js[39m[22m [3:74 - 8:27] (6 lines, 33 tokens)
+   tests/e2e/ice-selling-units.test.js [5:39 - 11:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-challenge-handoff.test.js[39m[22m [133:10 - 139:13] (7 lines, 39 tokens)
+   tests/browser-challenge-handoff.test.js [221:71 - 227:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:15 - 8:9] (7 lines, 42 tokens)
+   tests/challenge-source-archive.test.js [2:15 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:40 - 7:9] (6 lines, 33 tokens)
+   tests/image-redirect-pacing.test.js [3:53 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:15 - 7:9] (6 lines, 35 tokens)
+   tests/lazada-checkout-draft.test.js [2:15 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:15 - 7:9] (6 lines, 35 tokens)
+   tests/lazada-checkout-gifts.test.js [2:15 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:15 - 7:9] (6 lines, 35 tokens)
+   tests/ocr-stop-propagation.test.js [2:15 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [2:15 - 7:9] (6 lines, 35 tokens)
+   tests/public-source-secrets.test.js [2:15 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-image-cache.test.js[39m[22m [89:63 - 94:5] (6 lines, 36 tokens)
+   tests/e2e/image-redirects.test.js [232:39 - 237:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/browser-import-review.test.js[39m[22m [335:47 - 342:65] (8 lines, 49 tokens)
+   tests/browser-import-review.test.js [362:5 - 369:65]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [3:40 - 8:9] (6 lines, 34 tokens)
+   tests/collection-source-replay.test.js [3:32 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [87:75 - 94:8] (8 lines, 49 tokens)
+   tests/checkout-scenarios.test.js [41:51 - 48:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [89:52 - 94:8] (6 lines, 30 tokens)
+   tests/collection-source-replay.test.js [357:37 - 362:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [89:62 - 94:43] (6 lines, 37 tokens)
+   tests/food-offer-discovery.test.js [136:45 - 141:43]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [113:18 - 124:4] (12 lines, 41 tokens)
+   tests/cached-ice-selling-unit-review.test.js [136:5 - 147:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [161:10 - 167:14] (7 lines, 40 tokens)
+   tests/cached-ice-selling-unit-review.test.js [168:62 - 173:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/cached-ice-selling-unit-review.test.js[39m[22m [162:7 - 167:14] (6 lines, 39 tokens)
+   tests/cached-ice-selling-unit-review.test.js [176:60 - 180:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [2:40 - 7:7] (6 lines, 33 tokens)
+   tests/observation-order.test.js [2:40 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [40:45 - 79:6] (40 lines, 168 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [33:35 - 72:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [40:45 - 79:6] (40 lines, 168 tokens)
+   tests/lazada-checkout-draft.test.js [54:33 - 93:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [41:43 - 51:18] (11 lines, 31 tokens)
+   tests/lazada-checkout-gifts.test.js [96:15 - 106:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [89:9 - 94:39] (6 lines, 32 tokens)
+   tests/public-captures.test.js [126:18 - 131:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [166:26 - 172:6] (7 lines, 39 tokens)
+   tests/case-workflow-draft.test.js [60:18 - 66:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-checkout-replay.test.js[39m[22m [168:20 - 176:25] (9 lines, 52 tokens)
+   tests/case-original-invalidation.test.js [55:29 - 63:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-original-invalidation.test.js[39m[22m [58:24 - 65:8] (8 lines, 31 tokens)
+   tests/historical-capture-replay.test.js [60:30 - 67:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-original-invalidation.test.js[39m[22m [69:44 - 78:5] (10 lines, 32 tokens)
+   tests/case-workflow-draft.test.js [718:49 - 727:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-original-invalidation.test.js[39m[22m [69:44 - 78:5] (10 lines, 32 tokens)
+   tests/e2e/draft-workflow-interfaces.test.js [354:10 - 363:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-readiness-evidence.test.js[39m[22m [202:8 - 212:8] (11 lines, 44 tokens)
+   tests/case-readiness-evidence.test.js [212:56 - 218:77]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-readiness-evidence.test.js[39m[22m [202:5 - 210:10] (9 lines, 40 tokens)
+   tests/case-readiness-evidence.test.js [252:24 - 260:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-readiness-evidence.test.js[39m[22m [251:46 - 257:5] (7 lines, 36 tokens)
+   tests/case-readiness-evidence.test.js [261:41 - 267:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [145:50 - 153:31] (9 lines, 47 tokens)
+   tests/case-workflow-draft.test.js [442:3 - 448:56]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [160:9 - 173:18] (14 lines, 80 tokens)
+   tests/case-workflow-draft.test.js [206:9 - 219:18]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [160:9 - 173:18] (14 lines, 80 tokens)
+   tests/case-workflow-draft.test.js [814:9 - 827:18]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [224:3 - 230:8] (7 lines, 30 tokens)
+   tests/case-workflow-draft.test.js [286:4 - 292:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [224:4 - 231:14] (8 lines, 45 tokens)
+   tests/case-workflow-draft.test.js [365:5 - 372:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [248:4 - 255:6] (8 lines, 32 tokens)
+   tests/case-workflow-draft.test.js [855:55 - 862:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [277:3 - 282:70] (6 lines, 38 tokens)
+   tests/case-workflow-draft.test.js [351:3 - 355:75]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [285:6 - 292:8] (8 lines, 32 tokens)
+   tests/case-workflow-draft.test.js [364:6 - 371:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [452:36 - 458:19] (7 lines, 30 tokens)
+   tests/case-workflow-draft.test.js [474:105 - 480:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/case-workflow-draft.test.js[39m[22m [507:101 - 515:22] (9 lines, 79 tokens)
+   tests/case-workflow-draft.test.js [920:105 - 928:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [58:63 - 64:8] (7 lines, 39 tokens)
+   tests/e2e/captcha-stop.test.js [26:72 - 32:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [58:63 - 64:8] (7 lines, 39 tokens)
+   tests/e2e/category-discovery.test.js [187:72 - 193:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [58:63 - 64:8] (7 lines, 39 tokens)
+   tests/e2e/delivery.test.js [15:72 - 21:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [58:63 - 64:8] (7 lines, 39 tokens)
+   tests/e2e/pipeline.test.js [50:63 - 56:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [58:63 - 64:8] (7 lines, 39 tokens)
+   tests/e2e/tag-search-readiness.test.js [15:69 - 21:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [97:24 - 103:34] (7 lines, 31 tokens)
+   tests/catalog-audit.test.js [133:27 - 139:34]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [176:92 - 181:4] (6 lines, 32 tokens)
+   tests/catalog-audit.test.js [354:103 - 359:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [314:64 - 319:6] (6 lines, 30 tokens)
+   tests/catalog-tables.test.js [205:43 - 210:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [314:63 - 319:6] (6 lines, 31 tokens)
+   tests/category-review.test.js [14:75 - 19:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [314:63 - 319:6] (6 lines, 31 tokens)
+   tests/e2e/telegram.test.js [14:68 - 19:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [520:51 - 526:27] (7 lines, 31 tokens)
+   tests/lazada.test.js [647:34 - 653:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [579:65 - 584:27] (6 lines, 32 tokens)
+   tests/catalog-audit.test.js [635:52 - 640:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [579:65 - 584:27] (6 lines, 32 tokens)
+   tests/catalog-audit.test.js [691:19 - 696:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [579:31 - 587:22] (9 lines, 57 tokens)
+   tests/catalog-audit.test.js [728:31 - 736:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [584:13 - 591:56] (8 lines, 40 tokens)
+   tests/catalog-audit.test.js [609:24 - 615:58]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-audit.test.js[39m[22m [698:16 - 703:64] (6 lines, 30 tokens)
+   tests/catalog-audit.test.js [733:29 - 739:56]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-products.test.js[39m[22m [1:1 - 7:20] (7 lines, 39 tokens)
+   tests/translation.test.js [1:1 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-products.test.js[39m[22m [28:79 - 33:6] (6 lines, 55 tokens)
+   tests/helpers/checkout-scenarios.js [21:52 - 26:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-products.test.js[39m[22m [28:79 - 33:6] (6 lines, 55 tokens)
+   tests/package-quantity-review.test.js [17:79 - 22:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-products.test.js[39m[22m [142:63 - 149:8] (8 lines, 49 tokens)
+   tests/e2e/basket-quotes.test.js [231:76 - 238:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/catalog-tables.test.js[39m[22m [205:44 - 212:21] (8 lines, 43 tokens)
+   tests/category-review.test.js [14:77 - 21:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-discovery.test.js[39m[22m [17:30 - 24:6] (8 lines, 47 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [93:14 - 100:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-discovery.test.js[39m[22m [17:30 - 24:6] (8 lines, 47 tokens)
+   tests/e2e/verified-case.test.js [46:10 - 53:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-discovery.test.js[39m[22m [18:18 - 24:6] (7 lines, 43 tokens)
+   tests/e2e/tag-search-readiness.test.js [32:19 - 38:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-discovery.test.js[39m[22m [209:13 - 217:4] (9 lines, 43 tokens)
+   tests/configuration-line-endings.test.js [24:17 - 32:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-review.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/configuration-line-endings.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-review.test.js[39m[22m [21:64 - 27:8] (7 lines, 40 tokens)
+   tests/e2e/flavour-scope.test.js [115:62 - 121:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-review.test.js[39m[22m [21:64 - 26:6] (6 lines, 39 tokens)
+   tests/e2e/ice-selling-units.test.js [34:74 - 39:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-review.test.js[39m[22m [21:64 - 27:8] (7 lines, 40 tokens)
+   tests/e2e/verified-case.test.js [104:63 - 110:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/category-review.test.js[39m[22m [21:64 - 26:6] (6 lines, 39 tokens)
+   tests/helpers/draft-workflows.js [28:74 - 33:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/challenge-source-archive.test.js[39m[22m [43:14 - 48:8] (6 lines, 40 tokens)
+   tests/public-source-secrets.test.js [52:23 - 57:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/changeset-config.test.js[39m[22m [250:7 - 257:10] (8 lines, 30 tokens)
+   tests/changeset-config.test.js [359:7 - 366:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/changeset-config.test.js[39m[22m [250:7 - 257:10] (8 lines, 30 tokens)
+   tests/changeset-config.test.js [415:7 - 422:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/changeset-config.test.js[39m[22m [291:7 - 301:6] (11 lines, 57 tokens)
+   tests/changeset-config.test.js [353:8 - 363:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/changeset-config.test.js[39m[22m [291:7 - 297:11] (7 lines, 34 tokens)
+   tests/changeset-config.test.js [406:63 - 412:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/changeset-config.test.js[39m[22m [331:7 - 339:46] (9 lines, 43 tokens)
+   tests/changeset-config.test.js [378:52 - 384:46]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [10:3 - 21:11] (12 lines, 43 tokens)
+   tests/check-file-line-limits.test.js [5:3 - 16:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [11:12 - 21:11] (11 lines, 40 tokens)
+   tests/detect-code-changes.test.js [6:14 - 16:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [12:15 - 18:47] (7 lines, 30 tokens)
+   tests/merge-changesets.test.js [8:14 - 14:47]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [15:1 - 21:11] (7 lines, 33 tokens)
+   tests/package-manager.test.js [3:57 - 9:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [21:44 - 27:9] (7 lines, 33 tokens)
+   tests/detect-code-changes.test.js [16:47 - 22:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [41:33 - 47:22] (7 lines, 44 tokens)
+   tests/detect-code-changes.test.js [102:46 - 108:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [67:9 - 72:41] (6 lines, 35 tokens)
+   tests/check-changesets.test.js [93:9 - 98:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [67:9 - 79:8] (13 lines, 75 tokens)
+   tests/check-changesets.test.js [119:9 - 131:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-changesets.test.js[39m[22m [69:29 - 81:7] (13 lines, 69 tokens)
+   tests/check-changesets.test.js [121:29 - 132:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [1:1 - 13:47] (13 lines, 57 tokens)
+   tests/create-github-release.test.js [7:1 - 19:47]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [77:46 - 84:31] (8 lines, 33 tokens)
+   tests/check-file-line-limits.test.js [197:23 - 204:31]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [78:7 - 84:31] (7 lines, 32 tokens)
+   tests/check-file-line-limits.test.js [229:51 - 235:31]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [81:46 - 87:31] (7 lines, 33 tokens)
+   tests/check-file-line-limits.test.js [294:10 - 300:31]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [106:34 - 113:41] (8 lines, 35 tokens)
+   tests/check-file-line-limits.test.js [128:31 - 135:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [106:28 - 113:41] (8 lines, 37 tokens)
+   tests/check-file-line-limits.test.js [151:23 - 158:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [106:34 - 113:41] (8 lines, 35 tokens)
+   tests/check-file-line-limits.test.js [174:23 - 181:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [140:9 - 149:8] (10 lines, 38 tokens)
+   tests/check-file-line-limits.test.js [160:9 - 171:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [209:64 - 214:8] (6 lines, 36 tokens)
+   tests/check-file-line-limits.test.js [235:61 - 240:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [227:67 - 234:36] (8 lines, 55 tokens)
+   tests/check-file-line-limits.test.js [244:77 - 251:36]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-file-line-limits.test.js[39m[22m [246:52 - 252:41] (7 lines, 33 tokens)
+   tests/check-file-line-limits.test.js [262:57 - 268:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-release-needed.test.js[39m[22m [2:16 - 12:7] (11 lines, 35 tokens)
+   tests/detect-code-changes.test.js [2:27 - 12:7]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-staged-formatting.test.js[39m[22m [1:1 - 6:9] (6 lines, 47 tokens)
+   tests/release-metadata.test.js [1:1 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-staged-formatting.test.js[39m[22m [13:2 - 19:4] (7 lines, 47 tokens)
+   tests/release-metadata.test.js [8:56 - 14:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/check-staged-formatting.test.js[39m[22m [27:61 - 33:44] (7 lines, 54 tokens)
+   tests/release-metadata.test.js [23:63 - 29:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [1:1 - 17:9] (17 lines, 78 tokens)
+   tests/workflow-permissions.test.js [1:1 - 17:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [36:21 - 44:8] (9 lines, 47 tokens)
+   tests/docker-build.test.js [11:24 - 18:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [36:1 - 45:38] (10 lines, 65 tokens)
+   tests/release-preflight.test.js [16:1 - 25:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [36:32 - 45:38] (10 lines, 60 tokens)
+   tests/security-workflow.test.js [10:22 - 19:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [40:3 - 51:9] (12 lines, 63 tokens)
+   tests/ci-timeouts.test.js [30:3 - 41:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [40:3 - 51:9] (12 lines, 63 tokens)
+   tests/pipeline-status.test.js [50:3 - 61:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-credentials.test.js[39m[22m [53:52 - 61:9] (9 lines, 30 tokens)
+   tests/pipeline-status.test.js [38:50 - 46:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/checkout-scenarios.test.js[39m[22m [129:3 - 137:5] (9 lines, 54 tokens)
+   tests/checkout-scenarios.test.js [139:56 - 147:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ci-timeouts.test.js[39m[22m [26:44 - 41:9] (16 lines, 92 tokens)
+   tests/workflow-reliability.test.js [59:25 - 74:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ci-timeouts.test.js[39m[22m [464:95 - 470:37] (7 lines, 32 tokens)
+   tests/ci-timeouts.test.js [540:102 - 546:37]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-checkpoint-deferral.test.js[39m[22m [30:46 - 36:35] (7 lines, 70 tokens)
+   tests/collection-checkpoint.test.js [17:46 - 23:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-checkpoint-deferral.test.js[39m[22m [77:77 - 82:30] (6 lines, 30 tokens)
+   tests/collection-checkpoint-deferral.test.js [249:3 - 255:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-checkpoint-deferral.test.js[39m[22m [94:24 - 100:23] (7 lines, 40 tokens)
+   tests/collection-checkpoint-deferral.test.js [143:5 - 149:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-checkpoint-deferral.test.js[39m[22m [124:3 - 130:19] (7 lines, 32 tokens)
+   tests/collection-checkpoint-deferral.test.js [241:37 - 247:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-review-replay.test.js[39m[22m [1:1 - 6:9] (6 lines, 33 tokens)
+   tests/package-mass-consistency.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-review-replay.test.js[39m[22m [1:1 - 6:9] (6 lines, 33 tokens)
+   tests/package-mass-quarantine.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-review-replay.test.js[39m[22m [1:1 - 6:9] (6 lines, 33 tokens)
+   tests/selected-package-corrections.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-review-replay.test.js[39m[22m [351:118 - 357:8] (7 lines, 42 tokens)
+   tests/package-mass-consistency.test.js [24:106 - 30:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [2:20 - 9:22] (8 lines, 51 tokens)
+   tests/food-offer-discovery.test.js [2:20 - 9:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [2:20 - 7:9] (6 lines, 36 tokens)
+   tests/manufacturer-research-stop.test.js [2:20 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [5:33 - 10:9] (6 lines, 31 tokens)
+   tests/package-mass-consistency.test.js [3:44 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [313:26 - 322:28] (10 lines, 47 tokens)
+   tests/food-offer-discovery.test.js [168:19 - 175:66]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [355:5 - 360:8] (6 lines, 30 tokens)
+   tests/food-component-persistence.test.js [187:66 - 192:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/collection-source-replay.test.js[39m[22m [355:5 - 362:10] (8 lines, 45 tokens)
+   tests/food-offer-discovery.test.js [134:3 - 141:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/create-github-release.test.js[39m[22m [14:3 - 21:9] (8 lines, 31 tokens)
+   tests/merge-changesets.test.js [9:3 - 16:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/create-github-release.test.js[39m[22m [223:23 - 230:23] (8 lines, 38 tokens)
+   tests/create-github-release.test.js [237:49 - 244:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/create-github-release.test.js[39m[22m [393:27 - 399:41] (7 lines, 33 tokens)
+   tests/create-github-release.test.js [423:17 - 426:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/create-github-release.test.js[39m[22m [411:40 - 419:8] (9 lines, 32 tokens)
+   tests/create-github-release.test.js [431:37 - 439:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/deadline-report.test.js[39m[22m [87:133 - 96:16] (10 lines, 34 tokens)
+   tests/selected-package-mass.test.js [266:115 - 275:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/deadline-report.test.js[39m[22m [96:62 - 101:6] (6 lines, 34 tokens)
+   tests/selected-package-mass.test.js [275:27 - 280:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/delivery-context.test.js[39m[22m [2:40 - 8:27] (7 lines, 42 tokens)
+   tests/e2e/category-discovery.test.js [3:41 - 10:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/delivery-context.test.js[39m[22m [3:17 - 8:9] (6 lines, 36 tokens)
+   tests/e2e/basket-quotes.test.js [3:27 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/delivery-context.test.js[39m[22m [3:10 - 8:27] (6 lines, 39 tokens)
+   tests/e2e/flavour-scope.test.js [4:20 - 10:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [5:3 - 16:11] (12 lines, 43 tokens)
+   tests/push-main-with-rebase-retry.test.js [5:3 - 16:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [37:16 - 42:9] (6 lines, 32 tokens)
+   tests/push-main-with-rebase-retry.test.js [50:19 - 55:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [43:3 - 49:62] (7 lines, 70 tokens)
+   tests/detect-code-changes.test.js [72:3 - 78:62]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [43:70 - 49:32] (7 lines, 50 tokens)
+   tests/detect-code-changes.test.js [272:75 - 278:32]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [50:32 - 55:27] (6 lines, 43 tokens)
+   tests/detect-code-changes.test.js [280:55 - 284:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [58:35 - 64:9] (7 lines, 43 tokens)
+   tests/detect-code-changes.test.js [286:55 - 291:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [123:45 - 129:35] (7 lines, 37 tokens)
+   tests/detect-code-changes.test.js [183:58 - 189:37]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [123:45 - 128:39] (6 lines, 30 tokens)
+   tests/detect-code-changes.test.js [234:10 - 239:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [123:46 - 129:35] (7 lines, 36 tokens)
+   tests/detect-code-changes.test.js [252:9 - 258:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [145:56 - 150:8] (6 lines, 34 tokens)
+   tests/detect-code-changes.test.js [217:61 - 222:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [145:56 - 150:8] (6 lines, 34 tokens)
+   tests/detect-code-changes.test.js [258:55 - 263:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [159:63 - 167:67] (9 lines, 60 tokens)
+   tests/detect-code-changes.test.js [210:12 - 218:67]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [170:62 - 178:26] (9 lines, 32 tokens)
+   tests/detect-code-changes.test.js [218:65 - 226:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [218:27 - 224:6] (7 lines, 31 tokens)
+   tests/detect-code-changes.test.js [259:23 - 265:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [232:50 - 239:41] (8 lines, 39 tokens)
+   tests/detect-code-changes.test.js [250:57 - 257:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [376:61 - 381:10] (6 lines, 55 tokens)
+   tests/detect-code-changes.test.js [470:53 - 475:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [378:38 - 383:10] (6 lines, 35 tokens)
+   tests/detect-code-changes.test.js [472:38 - 476:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [386:56 - 391:16] (6 lines, 31 tokens)
+   tests/detect-code-changes.test.js [410:56 - 415:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [393:10 - 400:8] (8 lines, 34 tokens)
+   tests/detect-code-changes.test.js [416:39 - 423:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [393:10 - 400:8] (8 lines, 34 tokens)
+   tests/detect-code-changes.test.js [437:54 - 444:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [393:10 - 400:8] (8 lines, 34 tokens)
+   tests/detect-code-changes.test.js [463:9 - 470:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [393:9 - 398:8] (6 lines, 33 tokens)
+   tests/detect-code-changes.test.js [494:35 - 499:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [408:31 - 414:56] (7 lines, 49 tokens)
+   tests/detect-code-changes.test.js [431:23 - 437:56]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [423:38 - 428:10] (6 lines, 53 tokens)
+   tests/detect-code-changes.test.js [444:69 - 449:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/detect-code-changes.test.js[39m[22m [451:33 - 460:35] (10 lines, 39 tokens)
+   tests/detect-code-changes.test.js [483:34 - 492:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/discovery-publication-cache.test.js[39m[22m [29:42 - 36:78] (8 lines, 76 tokens)
+   tests/publication-cache.test.js [22:42 - 29:78]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/discovery-publication-cache.test.js[39m[22m [31:16 - 39:21] (9 lines, 74 tokens)
+   tests/public-discovery.test.js [73:22 - 81:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/discovery-publication-cache.test.js[39m[22m [32:41 - 39:21] (8 lines, 62 tokens)
+   tests/public-captures.test.js [127:41 - 134:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/docker-build.test.js[39m[22m [13:15 - 22:2] (10 lines, 78 tokens)
+   tests/docker-publish.test.js [14:15 - 23:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/docker-build.test.js[39m[22m [18:19 - 24:9] (7 lines, 47 tokens)
+   tests/docker-publish.test.js [19:19 - 25:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/docker-build.test.js[39m[22m [98:62 - 105:18] (8 lines, 30 tokens)
+   tests/docker-publish.test.js [193:7 - 200:18]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/docker-publish.test.js[39m[22m [47:15 - 58:2] (12 lines, 50 tokens)
+   tests/workflow-reliability.test.js [120:13 - 131:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/image-source-challenge.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/manufacturer-source-challenge.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/public-captures.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [1:1 - 6:9] (6 lines, 37 tokens)
+   tests/public-discovery.test.js [1:1 - 6:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [3:27 - 9:20] (7 lines, 38 tokens)
+   tests/e2e/archive.test.js [3:21 - 9:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [3:10 - 8:9] (6 lines, 39 tokens)
+   tests/historical-capture-replay.test.js [3:17 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [38:5 - 44:27] (7 lines, 47 tokens)
+   tests/e2e/account-login.test.js [124:40 - 130:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [38:5 - 44:27] (7 lines, 47 tokens)
+   tests/e2e/page-loading.test.js [24:59 - 30:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [119:75 - 130:27] (12 lines, 90 tokens)
+   tests/e2e/account-login.test.js [151:69 - 162:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/account-login.test.js[39m[22m [123:40 - 130:27] (8 lines, 54 tokens)
+   tests/e2e/capture-timeout.test.js [23:16 - 30:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/archive.test.js[39m[22m [61:13 - 72:27] (12 lines, 36 tokens)
+   tests/e2e/archive.test.js [86:20 - 97:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [4:33 - 9:9] (6 lines, 31 tokens)
+   tests/e2e/checkout-scenarios.test.js [3:45 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [29:36 - 42:7] (14 lines, 74 tokens)
+   tests/e2e/category-discovery.test.js [83:38 - 96:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [30:12 - 36:22] (7 lines, 39 tokens)
+   tests/e2e/captcha-stop.test.js [70:13 - 76:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [30:25 - 39:16] (10 lines, 57 tokens)
+   tests/e2e/checkout-scenarios.test.js [24:23 - 33:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [30:30 - 36:22] (7 lines, 33 tokens)
+   tests/e2e/draft-workflow-interfaces.test.js [67:26 - 73:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [30:25 - 36:22] (7 lines, 35 tokens)
+   tests/e2e/flavour-scope.test.js [179:23 - 185:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [32:17 - 39:16] (8 lines, 37 tokens)
+   tests/food-component-persistence.test.js [319:39 - 326:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [36:30 - 43:6] (8 lines, 34 tokens)
+   tests/e2e/captcha-stop.test.js [76:31 - 83:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [36:37 - 43:6] (8 lines, 32 tokens)
+   tests/e2e/pipeline.test.js [117:37 - 124:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [36:37 - 43:6] (8 lines, 32 tokens)
+   tests/e2e/translation-catalog.test.js [119:37 - 126:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [129:31 - 137:56] (9 lines, 106 tokens)
+   tests/e2e/checkout-scenarios.test.js [75:4 - 83:56]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [142:3 - 147:38] (6 lines, 46 tokens)
+   tests/e2e/checkout-scenarios.test.js [41:3 - 46:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [184:37 - 196:6] (13 lines, 65 tokens)
+   tests/e2e/captcha-stop.test.js [85:60 - 97:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [184:38 - 204:54] (21 lines, 123 tokens)
+   tests/e2e/checkout-scenarios.test.js [91:46 - 111:54]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [184:38 - 196:6] (13 lines, 64 tokens)
+   tests/e2e/telegram.test.js [69:4 - 81:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [186:21 - 195:23] (10 lines, 37 tokens)
+   tests/e2e/category-discovery.test.js [264:24 - 273:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [186:21 - 195:44] (10 lines, 38 tokens)
+   tests/e2e/translation-catalog.test.js [130:16 - 139:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [187:22 - 195:23] (9 lines, 33 tokens)
+   tests/e2e/pipeline.test.js [229:25 - 237:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [237:3 - 243:8] (7 lines, 35 tokens)
+   tests/e2e/capture-timeout.test.js [15:50 - 21:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 244:17] (7 lines, 33 tokens)
+   tests/e2e/dialog-variant.test.js [16:21 - 22:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 244:17] (7 lines, 33 tokens)
+   tests/e2e/page-loading.test.js [16:21 - 22:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 244:17] (7 lines, 33 tokens)
+   tests/e2e/page-loading.test.js [54:21 - 60:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 245:39] (8 lines, 39 tokens)
+   tests/e2e/page-scroll.test.js [81:21 - 88:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 245:39] (8 lines, 39 tokens)
+   tests/e2e/page-scroll.test.js [242:21 - 249:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/basket-quotes.test.js[39m[22m [238:21 - 244:17] (7 lines, 33 tokens)
+   tests/e2e/preferred-variant.test.js [18:21 - 24:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [27:40 - 35:17] (9 lines, 43 tokens)
+   tests/e2e/category-discovery.test.js [188:40 - 196:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [27:40 - 35:14] (9 lines, 41 tokens)
+   tests/e2e/delivery.test.js [16:40 - 24:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [27:40 - 35:14] (9 lines, 41 tokens)
+   tests/e2e/pipeline.test.js [51:40 - 59:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [27:40 - 37:39] (11 lines, 53 tokens)
+   tests/e2e/tag-search-readiness.test.js [16:40 - 26:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [36:18 - 44:27] (9 lines, 73 tokens)
+   tests/e2e/delivery.test.js [24:17 - 32:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [40:20 - 45:8] (6 lines, 36 tokens)
+   tests/e2e/pipeline.test.js [86:20 - 91:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [40:20 - 45:8] (6 lines, 36 tokens)
+   tests/e2e/tag-search-readiness.test.js [35:20 - 40:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [59:58 - 64:58] (6 lines, 31 tokens)
+   tests/e2e/draft-workflow-interfaces.test.js [56:3 - 61:58]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [59:59 - 64:58] (6 lines, 30 tokens)
+   tests/e2e/ice-quantity-review.test.js [150:35 - 155:58]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [62:24 - 70:26] (9 lines, 59 tokens)
+   tests/e2e/translation.test.js [197:31 - 205:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [63:3 - 69:10] (7 lines, 39 tokens)
+   tests/e2e/flavour-scope.test.js [172:3 - 178:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [64:57 - 69:38] (6 lines, 30 tokens)
+   tests/e2e/category-discovery.test.js [78:36 - 83:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [64:15 - 69:10] (6 lines, 30 tokens)
+   tests/e2e/checkout-scenarios.test.js [18:10 - 23:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [64:27 - 70:26] (7 lines, 43 tokens)
+   tests/e2e/telegram.test.js [44:27 - 50:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [64:13 - 69:10] (6 lines, 31 tokens)
+   tests/e2e/translation-catalog.test.js [29:18 - 34:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [64:13 - 69:38] (6 lines, 40 tokens)
+   tests/e2e/translation-catalog.test.js [107:16 - 112:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [71:14 - 88:11] (18 lines, 119 tokens)
+   tests/e2e/draft-workflow-interfaces.test.js [68:14 - 85:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [71:14 - 79:16] (9 lines, 51 tokens)
+   tests/e2e/flavour-scope.test.js [180:14 - 188:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [72:13 - 98:8] (27 lines, 158 tokens)
+   tests/e2e/verified-case.test.js [189:8 - 215:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [77:17 - 84:33] (8 lines, 37 tokens)
+   tests/e2e/translation-catalog.test.js [120:17 - 127:33]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [79:24 - 98:8] (20 lines, 118 tokens)
+   tests/e2e/flavour-scope.test.js [188:21 - 207:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [82:5 - 97:6] (16 lines, 110 tokens)
+   tests/e2e/translation.test.js [217:5 - 232:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [85:45 - 96:44] (12 lines, 55 tokens)
+   tests/e2e/ice-selling-units.test.js [84:48 - 95:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [102:40 - 108:78] (7 lines, 60 tokens)
+   tests/e2e/ice-quantity-review.test.js [196:28 - 205:34]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [105:24 - 111:8] (7 lines, 42 tokens)
+   tests/e2e/pipeline.test.js [245:25 - 251:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [105:42 - 111:8] (7 lines, 38 tokens)
+   tests/e2e/telegram.test.js [89:32 - 95:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [105:42 - 111:8] (7 lines, 38 tokens)
+   tests/e2e/translation-catalog.test.js [150:42 - 156:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/captcha-stop.test.js[39m[22m [269:51 - 275:5] (7 lines, 31 tokens)
+   tests/image-source-challenge.test.js [630:71 - 636:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/dialog-variant.test.js [14:70 - 21:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/page-loading.test.js [14:67 - 21:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/page-loading.test.js [52:72 - 59:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/page-scroll.test.js [79:66 - 86:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/page-scroll.test.js [240:73 - 247:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [14:74 - 21:8] (8 lines, 46 tokens)
+   tests/e2e/preferred-variant.test.js [16:77 - 23:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/capture-timeout.test.js[39m[22m [23:13 - 30:27] (8 lines, 56 tokens)
+   tests/e2e/dialog-variant.test.js [23:15 - 30:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [1:1 - 7:9] (7 lines, 42 tokens)
+   tests/e2e/image-redirects.test.js [1:1 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [1:1 - 10:20] (10 lines, 58 tokens)
+   tests/e2e/verified-case.test.js [1:1 - 10:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [79:7 - 96:9] (18 lines, 101 tokens)
+   tests/e2e/pipeline.test.js [106:5 - 123:7]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [79:7 - 96:9] (18 lines, 101 tokens)
+   tests/e2e/translation-catalog.test.js [108:5 - 125:7]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [274:5 - 282:12] (9 lines, 52 tokens)
+   tests/e2e/flavour-scope.test.js [207:52 - 215:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [274:5 - 282:11] (9 lines, 51 tokens)
+   tests/e2e/verified-case.test.js [216:105 - 224:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [275:3 - 282:11] (8 lines, 50 tokens)
+   tests/e2e/ice-selling-units.test.js [100:7 - 107:15]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/category-discovery.test.js[39m[22m [275:26 - 282:11] (8 lines, 45 tokens)
+   tests/food-component-persistence.test.js [255:10 - 262:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [1:1 - 8:9] (8 lines, 53 tokens)
+   tests/persistent-window-recovery.test.js [1:1 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [2:40 - 7:9] (6 lines, 37 tokens)
+   tests/e2e/ice-quantity-review.test.js [3:41 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [141:31 - 149:8] (9 lines, 35 tokens)
+   tests/e2e/challenge-window-retention.test.js [745:45 - 753:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [283:34 - 288:8] (6 lines, 32 tokens)
+   tests/e2e/challenge-window-retention.test.js [410:41 - 413:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [312:130 - 317:8] (6 lines, 38 tokens)
+   tests/e2e/challenge-window-retention.test.js [499:119 - 504:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [312:130 - 317:8] (6 lines, 38 tokens)
+   tests/e2e/challenge-window-retention.test.js [584:160 - 589:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [312:130 - 317:8] (6 lines, 38 tokens)
+   tests/e2e/challenge-window-retention.test.js [671:137 - 676:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [312:130 - 317:8] (6 lines, 38 tokens)
+   tests/e2e/challenge-window-retention.test.js [727:125 - 732:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [324:29 - 329:8] (6 lines, 36 tokens)
+   tests/e2e/challenge-window-retention.test.js [708:3 - 713:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [405:60 - 410:60] (6 lines, 46 tokens)
+   tests/e2e/challenge-window-retention.test.js [819:49 - 824:62]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [501:3 - 506:10] (6 lines, 41 tokens)
+   tests/e2e/challenge-window-retention.test.js [816:5 - 821:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/challenge-window-retention.test.js[39m[22m [555:68 - 561:22] (7 lines, 33 tokens)
+   tests/e2e/challenge-window-retention.test.js [628:5 - 634:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/checkout-scenarios.test.js[39m[22m [2:40 - 7:9] (6 lines, 31 tokens)
+   tests/e2e/draft-workflow-interfaces.test.js [3:41 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/checkout-scenarios.test.js[39m[22m [18:22 - 23:36] (6 lines, 38 tokens)
+   tests/e2e/translation-catalog.test.js [29:32 - 34:36]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/checkout-scenarios.test.js[39m[22m [18:22 - 23:36] (6 lines, 38 tokens)
+   tests/e2e/translation.test.js [30:30 - 35:36]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/delivery.test.js[39m[22m [2:40 - 10:19] (9 lines, 34 tokens)
+   tests/e2e/image-redirects.test.js [3:41 - 11:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/delivery.test.js[39m[22m [2:20 - 14:6] (13 lines, 43 tokens)
+   tests/e2e/tag-search-readiness.test.js [2:20 - 14:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/delivery.test.js[39m[22m [29:21 - 34:8] (6 lines, 33 tokens)
+   tests/e2e/preferred-variant.test.js [29:27 - 34:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 13:6] (12 lines, 42 tokens)
+   tests/e2e/page-loading.test.js [2:15 - 13:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 11:29] (10 lines, 40 tokens)
+   tests/e2e/page-scroll.test.js [2:15 - 11:29]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 10:19] (9 lines, 36 tokens)
+   tests/e2e/preferred-variant.test.js [2:15 - 10:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 7:20] (6 lines, 30 tokens)
+   tests/translation-presentation-baskets.test.js [2:15 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 7:20] (6 lines, 30 tokens)
+   tests/translation-presentation-chunks.test.js [2:15 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [2:15 - 7:20] (6 lines, 30 tokens)
+   tests/translation-quality.test.js [2:15 - 7:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [17:5 - 23:16] (7 lines, 31 tokens)
+   tests/e2e/page-loading.test.js [17:5 - 23:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [17:5 - 23:19] (7 lines, 33 tokens)
+   tests/e2e/page-loading.test.js [55:5 - 61:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [17:5 - 30:27] (14 lines, 86 tokens)
+   tests/e2e/preferred-variant.test.js [19:5 - 32:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/dialog-variant.test.js[39m[22m [28:23 - 34:12] (7 lines, 48 tokens)
+   tests/e2e/page-loading.test.js [28:23 - 34:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/draft-workflow-interfaces.test.js[39m[22m [57:1 - 66:10] (10 lines, 53 tokens)
+   tests/e2e/ice-quantity-review.test.js [151:1 - 160:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/draft-workflow-interfaces.test.js[39m[22m [61:13 - 66:10] (6 lines, 35 tokens)
+   tests/e2e/ice-selling-units.test.js [63:16 - 68:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/draft-workflow-interfaces.test.js[39m[22m [66:70 - 82:11] (17 lines, 99 tokens)
+   tests/e2e/telegram.test.js [49:36 - 65:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/draft-workflow-interfaces.test.js[39m[22m [98:27 - 103:55] (6 lines, 31 tokens)
+   tests/e2e/telegram.test.js [83:60 - 88:53]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [1:1 - 7:9] (7 lines, 44 tokens)
+   tests/e2e/telegram.test.js [1:1 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [1:1 - 9:9] (9 lines, 58 tokens)
+   tests/e2e/translation.test.js [1:1 - 9:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [5:17 - 12:21] (8 lines, 33 tokens)
+   tests/e2e/ice-selling-units.test.js [6:17 - 13:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [5:17 - 16:37] (12 lines, 47 tokens)
+   tests/e2e/verified-case.test.js [5:17 - 15:37]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [6:1 - 17:6] (12 lines, 43 tokens)
+   tests/e2e/verified-case.test.js [6:1 - 17:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [107:71 - 115:10] (9 lines, 46 tokens)
+   tests/e2e/ice-selling-units.test.js [26:76 - 34:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [108:13 - 113:6] (6 lines, 30 tokens)
+   tests/e2e/ice-quantity-review.test.js [39:23 - 44:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [170:74 - 178:10] (9 lines, 41 tokens)
+   tests/e2e/telegram.test.js [42:47 - 49:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/flavour-scope.test.js[39m[22m [178:33 - 206:6] (29 lines, 182 tokens)
+   tests/e2e/ice-quantity-review.test.js [160:61 - 188:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [140:29 - 155:8] (16 lines, 58 tokens)
+   tests/e2e/ice-selling-units.test.js [48:14 - 63:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [155:42 - 175:33] (21 lines, 130 tokens)
+   tests/e2e/ice-selling-units.test.js [63:45 - 83:33]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [184:19 - 189:6] (6 lines, 30 tokens)
+   tests/e2e/telegram.test.js [77:19 - 82:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [184:19 - 189:6] (6 lines, 30 tokens)
+   tests/e2e/translation.test.js [228:19 - 233:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [192:30 - 205:34] (14 lines, 80 tokens)
+   tests/e2e/translation-catalog.test.js [143:27 - 153:78]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [418:26 - 423:52] (6 lines, 57 tokens)
+   tests/e2e/ice-quantity-review.test.js [451:20 - 456:52]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-quantity-review.test.js[39m[22m [436:66 - 445:4] (10 lines, 74 tokens)
+   tests/e2e/ice-quantity-review.test.js [478:46 - 487:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [78:21 - 86:16] (9 lines, 62 tokens)
+   tests/e2e/translation-catalog.test.js [122:24 - 130:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [79:10 - 84:66] (6 lines, 51 tokens)
+   tests/e2e/translation.test.js [41:64 - 46:66]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [88:25 - 96:6] (9 lines, 44 tokens)
+   tests/e2e/translation-catalog.test.js [132:25 - 140:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [105:43 - 110:10] (6 lines, 42 tokens)
+   tests/e2e/verified-case.test.js [222:39 - 227:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [163:14 - 175:38] (13 lines, 89 tokens)
+   tests/e2e/ice-selling-units.test.js [277:22 - 289:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [168:6 - 173:44] (6 lines, 57 tokens)
+   tests/e2e/verified-case.test.js [167:44 - 172:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [170:58 - 176:25] (7 lines, 62 tokens)
+   tests/e2e/ice-selling-units.test.js [284:58 - 290:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/ice-selling-units.test.js[39m[22m [183:63 - 188:21] (6 lines, 44 tokens)
+   tests/observed-prices.test.js [144:39 - 149:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/image-redirects.test.js[39m[22m [202:75 - 207:18] (6 lines, 37 tokens)
+   tests/e2e/image-redirects.test.js [219:79 - 224:18]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/page-loading.test.js[39m[22m [23:18 - 30:27] (8 lines, 58 tokens)
+   tests/e2e/page-loading.test.js [62:28 - 69:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/page-loading.test.js[39m[22m [23:18 - 30:27] (8 lines, 58 tokens)
+   tests/e2e/page-scroll.test.js [87:16 - 94:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/page-scroll.test.js[39m[22m [83:29 - 99:12] (17 lines, 111 tokens)
+   tests/e2e/page-scroll.test.js [244:29 - 260:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/page-scroll.test.js[39m[22m [91:27 - 96:14] (6 lines, 40 tokens)
+   tests/e2e/pipeline.test.js [87:21 - 92:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/persistent-window-recovery.test.js[39m[22m [3:10 - 8:23] (6 lines, 36 tokens)
+   tests/store-batch.test.js [3:18 - 7:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/persistent-window-recovery.test.js[39m[22m [13:74 - 23:53] (11 lines, 77 tokens)
+   tests/e2e/persistent-window.test.js [19:77 - 29:53]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/pipeline.test.js[39m[22m [175:41 - 180:6] (6 lines, 37 tokens)
+   tests/e2e/pipeline.test.js [191:43 - 198:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/pipeline.test.js[39m[22m [228:27 - 237:14] (10 lines, 35 tokens)
+   tests/food-component-persistence.test.js [306:21 - 315:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/pipeline.test.js[39m[22m [242:21 - 251:6] (10 lines, 69 tokens)
+   tests/e2e/translation.test.js [237:25 - 246:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/pipeline.test.js[39m[22m [284:59 - 289:22] (6 lines, 41 tokens)
+   tests/e2e/pipeline.test.js [300:44 - 305:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [63:5 - 73:2] (11 lines, 31 tokens)
+   tests/lazada-checkout-draft.test.js [84:5 - 94:2]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [77:51 - 100:6] (24 lines, 131 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [271:50 - 294:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [79:74 - 85:8] (7 lines, 31 tokens)
+   tests/helpers/manufacturer-workflow.js [104:62 - 110:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [87:10 - 94:13] (8 lines, 31 tokens)
+   tests/e2e/tag-search-readiness.test.js [25:18 - 32:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [101:28 - 110:16] (10 lines, 35 tokens)
+   tests/lazada-checkout-draft.test.js [96:15 - 105:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/prepared-checkout-adapter.test.js[39m[22m [129:40 - 134:6] (6 lines, 32 tokens)
+   tests/e2e/prepared-checkout-adapter.test.js [149:25 - 154:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/telegram.test.js[39m[22m [46:5 - 65:11] (20 lines, 121 tokens)
+   tests/e2e/translation.test.js [201:5 - 220:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation-catalog.test.js[39m[22m [30:5 - 35:19] (6 lines, 33 tokens)
+   tests/e2e/translation.test.js [31:5 - 36:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation-catalog.test.js[39m[22m [42:75 - 49:15] (8 lines, 43 tokens)
+   tests/e2e/translation.test.js [337:32 - 344:15]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation-catalog.test.js[39m[22m [43:50 - 49:15] (7 lines, 34 tokens)
+   tests/e2e/translation.test.js [175:73 - 181:15]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation-catalog.test.js[39m[22m [84:14 - 98:38] (15 lines, 50 tokens)
+   tests/e2e/translation.test.js [62:20 - 76:38]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation-catalog.test.js[39m[22m [106:17 - 112:10] (7 lines, 37 tokens)
+   tests/e2e/translation.test.js [29:18 - 35:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation.test.js[39m[22m [151:14 - 158:30] (8 lines, 40 tokens)
+   tests/e2e/translation.test.js [179:54 - 186:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation.test.js[39m[22m [153:29 - 159:13] (7 lines, 32 tokens)
+   tests/e2e/translation.test.js [344:29 - 350:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation.test.js[39m[22m [176:13 - 186:30] (11 lines, 62 tokens)
+   tests/e2e/translation.test.js [339:13 - 349:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation.test.js[39m[22m [460:25 - 476:50] (17 lines, 59 tokens)
+   tests/e2e/translation.test.js [582:29 - 598:50]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/translation.test.js[39m[22m [481:16 - 486:30] (6 lines, 40 tokens)
+   tests/e2e/translation.test.js [602:48 - 607:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/e2e/verified-case.test.js[39m[22m [50:18 - 55:10] (6 lines, 40 tokens)
+   tests/package-quantity-review.test.js [19:18 - 24:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/flavour-scope.test.js[39m[22m [303:65 - 310:9] (8 lines, 36 tokens)
+   tests/flavour-scope.test.js [315:61 - 322:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [2:40 - 7:9] (6 lines, 35 tokens)
+   tests/manufacturer-package-basis.test.js [2:40 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [2:40 - 7:9] (6 lines, 35 tokens)
+   tests/manufacturer-research.test.js [2:40 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [3:27 - 8:9] (6 lines, 36 tokens)
+   tests/ocr-stop-propagation.test.js [3:17 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [28:68 - 39:9] (12 lines, 36 tokens)
+   tests/lazada-checkout-gifts.test.js [32:78 - 43:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [58:21 - 67:28] (10 lines, 43 tokens)
+   tests/lazada-checkout-gifts.test.js [130:65 - 139:28]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [77:15 - 87:18] (11 lines, 56 tokens)
+   tests/lazada-checkout-gifts.test.js [148:6 - 158:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [103:3 - 115:8] (13 lines, 49 tokens)
+   tests/lazada-checkout-gifts.test.js [167:3 - 179:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [149:16 - 157:17] (9 lines, 45 tokens)
+   tests/food-components.test.js [130:19 - 138:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [336:18 - 343:10] (8 lines, 47 tokens)
+   tests/food-component-evidence.test.js [658:16 - 665:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [337:41 - 343:16] (7 lines, 31 tokens)
+   tests/food-component-evidence.test.js [739:41 - 745:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [342:3 - 348:10] (7 lines, 31 tokens)
+   tests/food-component-evidence.test.js [541:3 - 547:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [444:21 - 450:12] (7 lines, 31 tokens)
+   tests/food-component-evidence.test.js [521:8 - 527:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [478:35 - 483:46] (6 lines, 32 tokens)
+   tests/food-component-evidence.test.js [649:16 - 654:46]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [496:76 - 501:19] (6 lines, 39 tokens)
+   tests/food-component-evidence.test.js [503:7 - 508:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [537:3 - 543:50] (7 lines, 38 tokens)
+   tests/food-component-evidence.test.js [744:3 - 750:50]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [546:3 - 553:5] (8 lines, 37 tokens)
+   tests/food-component-evidence.test.js [748:3 - 755:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-component-evidence.test.js[39m[22m [657:39 - 665:10] (9 lines, 51 tokens)
+   tests/food-component-evidence.test.js [737:4 - 745:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-components.test.js[39m[22m [44:17 - 50:28] (7 lines, 32 tokens)
+   tests/package-mass-quarantine.test.js [34:63 - 40:28]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-components.test.js[39m[22m [373:64 - 378:31] (6 lines, 35 tokens)
+   tests/food-components.test.js [491:65 - 496:33]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-offer-discovery.test.js[39m[22m [17:3 - 28:8] (12 lines, 49 tokens)
+   tests/food-offer-discovery.test.js [152:3 - 163:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-offer-discovery.test.js[39m[22m [22:3 - 29:16] (8 lines, 41 tokens)
+   tests/food-offer-source-basis.test.js [77:3 - 84:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/food-offer-discovery.test.js[39m[22m [45:51 - 51:6] (7 lines, 54 tokens)
+   tests/food-offer-source-basis.test.js [140:40 - 146:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/historical-capture-replay.test.js[39m[22m [70:55 - 75:35] (6 lines, 37 tokens)
+   tests/historical-capture-replay.test.js [149:40 - 154:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/historical-capture-replay.test.js[39m[22m [149:39 - 154:39] (6 lines, 41 tokens)
+   tests/historical-capture-replay.test.js [235:36 - 240:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/historical-capture-replay.test.js[39m[22m [308:3 - 314:37] (7 lines, 39 tokens)
+   tests/package-quantity-review.test.js [133:63 - 139:37]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ice-selling-units.test.js[39m[22m [1:1 - 7:9] (7 lines, 40 tokens)
+   tests/selected-package-mass.test.js [1:1 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ice-unit-rankings.test.js[39m[22m [186:3 - 191:6] (6 lines, 30 tokens)
+   tests/ice-withheld-specifications.test.js [44:74 - 49:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-redirect-pacing.test.js[39m[22m [170:93 - 175:8] (6 lines, 30 tokens)
+   tests/image-redirect-pacing.test.js [275:127 - 280:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-redirect-pacing.test.js[39m[22m [266:3 - 271:38] (6 lines, 33 tokens)
+   tests/image-redirect-pacing.test.js [574:40 - 579:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-redirect-pacing.test.js[39m[22m [543:56 - 548:38] (6 lines, 30 tokens)
+   tests/image-redirect-pacing.test.js [627:47 - 632:36]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-redirect-pacing.test.js[39m[22m [573:54 - 578:7] (6 lines, 34 tokens)
+   tests/image-source-challenge.test.js [204:51 - 209:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-redirect-pacing.test.js[39m[22m [586:53 - 594:20] (9 lines, 41 tokens)
+   tests/image-redirect-pacing.test.js [627:48 - 635:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [2:20 - 9:9] (8 lines, 52 tokens)
+   tests/manufacturer-source-challenge.test.js [2:20 - 9:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [2:40 - 7:9] (6 lines, 35 tokens)
+   tests/page-challenge.test.js [3:37 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [20:50 - 32:3] (13 lines, 36 tokens)
+   tests/manufacturer-source-challenge.test.js [27:34 - 39:3]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [40:68 - 45:9] (6 lines, 37 tokens)
+   tests/manufacturer-package-basis.test.js [26:66 - 31:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [40:68 - 45:9] (6 lines, 37 tokens)
+   tests/manufacturer-research.test.js [46:74 - 51:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [40:68 - 45:9] (6 lines, 37 tokens)
+   tests/manufacturer-source-challenge.test.js [42:75 - 47:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [105:67 - 111:24] (7 lines, 45 tokens)
+   tests/image-source-challenge.test.js [533:52 - 539:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [126:87 - 132:11] (7 lines, 40 tokens)
+   tests/image-source-challenge.test.js [212:79 - 218:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [126:87 - 131:13] (6 lines, 39 tokens)
+   tests/image-source-challenge.test.js [348:99 - 353:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [126:87 - 132:21] (7 lines, 42 tokens)
+   tests/image-source-challenge.test.js [407:85 - 413:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [136:73 - 145:34] (10 lines, 53 tokens)
+   tests/manufacturer-source-challenge.test.js [141:5 - 150:34]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [220:9 - 225:8] (6 lines, 31 tokens)
+   tests/image-source-challenge.test.js [502:12 - 507:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/image-source-challenge.test.js[39m[22m [587:90 - 592:22] (6 lines, 38 tokens)
+   tests/image-source-challenge.test.js [617:101 - 622:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [1:1 - 12:30] (12 lines, 48 tokens)
+   tests/push-main-with-rebase-retry.test.js [1:1 - 12:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [1:1 - 12:30] (12 lines, 48 tokens)
+   tests/run-with-budget-warning.test.js [1:1 - 12:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [1:1 - 12:30] (12 lines, 48 tokens)
+   tests/simulate-fresh-merge.test.js [1:1 - 12:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [100:56 - 107:70] (8 lines, 64 tokens)
+   tests/install-git-hooks.test.js [155:19 - 162:70]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [100:56 - 107:70] (8 lines, 64 tokens)
+   tests/install-git-hooks.test.js [175:26 - 182:70]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [102:53 - 107:70] (6 lines, 43 tokens)
+   tests/install-git-hooks.test.js [197:54 - 202:70]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [112:35 - 119:6] (8 lines, 41 tokens)
+   tests/install-git-hooks.test.js [131:60 - 138:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [112:35 - 119:6] (8 lines, 41 tokens)
+   tests/install-git-hooks.test.js [148:59 - 155:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [112:35 - 119:6] (8 lines, 41 tokens)
+   tests/install-git-hooks.test.js [168:58 - 175:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [119:52 - 125:70] (7 lines, 52 tokens)
+   tests/install-git-hooks.test.js [138:42 - 144:70]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [163:16 - 175:6] (13 lines, 76 tokens)
+   tests/install-git-hooks.test.js [183:19 - 195:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/install-git-hooks.test.js[39m[22m [163:16 - 173:6] (11 lines, 74 tokens)
+   tests/install-git-hooks.test.js [202:69 - 212:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [59:51 - 67:29] (9 lines, 36 tokens)
+   tests/land-via-pull-request.test.js [133:50 - 141:29]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [82:23 - 91:12] (10 lines, 34 tokens)
+   tests/land-via-pull-request.test.js [111:24 - 120:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [83:16 - 91:20] (9 lines, 34 tokens)
+   tests/land-via-pull-request.test.js [167:21 - 175:20]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [146:73 - 152:9] (7 lines, 49 tokens)
+   tests/land-via-pull-request.test.js [195:61 - 201:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [161:7 - 170:10] (10 lines, 42 tokens)
+   tests/land-via-pull-request.test.js [204:20 - 213:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [161:7 - 170:10] (10 lines, 42 tokens)
+   tests/land-via-pull-request.test.js [413:5 - 422:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [176:5 - 181:6] (6 lines, 31 tokens)
+   tests/land-via-pull-request.test.js [380:5 - 385:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [207:18 - 215:12] (9 lines, 31 tokens)
+   tests/land-via-pull-request.test.js [416:18 - 424:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [237:6 - 242:52] (6 lines, 38 tokens)
+   tests/land-via-pull-request.test.js [292:53 - 296:52]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [259:78 - 265:9] (7 lines, 41 tokens)
+   tests/land-via-pull-request.test.js [351:56 - 357:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [261:16 - 266:6] (6 lines, 34 tokens)
+   tests/land-via-pull-request.test.js [353:16 - 358:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [300:78 - 312:35] (13 lines, 78 tokens)
+   tests/land-via-pull-request.test.js [339:66 - 351:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [312:56 - 328:39] (17 lines, 66 tokens)
+   tests/land-via-pull-request.test.js [360:77 - 376:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/land-via-pull-request.test.js[39m[22m [329:66 - 335:6] (7 lines, 38 tokens)
+   tests/land-via-pull-request.test.js [377:70 - 383:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada-checkout-draft.test.js[39m[22m [3:17 - 8:9] (6 lines, 36 tokens)
+   tests/lazada-checkout-gifts.test.js [3:17 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada-checkout-draft.test.js[39m[22m [643:119 - 650:7] (8 lines, 39 tokens)
+   tests/lazada-checkout-draft.test.js [731:94 - 738:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada-checkout-draft.test.js[39m[22m [643:119 - 651:10] (9 lines, 40 tokens)
+   tests/lazada-checkout-draft.test.js [769:113 - 777:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada-checkout-draft.test.js[39m[22m [723:7 - 728:2] (6 lines, 32 tokens)
+   tests/lazada-checkout-draft.test.js [799:5 - 805:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada-e2e-workflow.test.js[39m[22m [182:71 - 187:6] (6 lines, 50 tokens)
+   tests/lazada-e2e-workflow.test.js [198:5 - 203:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lazada.test.js[39m[22m [678:16 - 683:30] (6 lines, 33 tokens)
+   tests/lazada.test.js [697:17 - 702:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lint-changed-lines.test.js[39m[22m [43:32 - 52:41] (10 lines, 31 tokens)
+   tests/lint-changed-lines.test.js [61:31 - 70:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lint-changed-lines.test.js[39m[22m [43:32 - 52:41] (10 lines, 31 tokens)
+   tests/lint-changed-lines.test.js [79:31 - 88:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/lint-changed-lines.test.js[39m[22m [61:33 - 70:44] (10 lines, 32 tokens)
+   tests/lint-changed-lines.test.js [79:33 - 88:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-package-basis.test.js[39m[22m [20:19 - 26:49] (7 lines, 30 tokens)
+   tests/manufacturer-research.test.js [40:19 - 46:49]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-research.test.js[39m[22m [47:12 - 54:14] (8 lines, 48 tokens)
+   tests/manufacturer-source-challenge.test.js [43:12 - 50:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-research.test.js[39m[22m [468:93 - 473:13] (6 lines, 34 tokens)
+   tests/manufacturer-research.test.js [626:89 - 631:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-research.test.js[39m[22m [468:93 - 473:13] (6 lines, 34 tokens)
+   tests/manufacturer-research.test.js [685:103 - 690:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-research.test.js[39m[22m [626:101 - 634:8] (9 lines, 33 tokens)
+   tests/manufacturer-research.test.js [685:115 - 693:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-challenge.test.js[39m[22m [73:101 - 85:8] (13 lines, 69 tokens)
+   tests/manufacturer-source-challenge.test.js [124:89 - 136:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-challenge.test.js[39m[22m [73:101 - 79:13] (7 lines, 40 tokens)
+   tests/manufacturer-source-challenge.test.js [214:100 - 220:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-challenge.test.js[39m[22m [78:14 - 85:8] (8 lines, 31 tokens)
+   tests/manufacturer-source-challenge.test.js [663:29 - 670:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-challenge.test.js[39m[22m [545:109 - 553:17] (9 lines, 59 tokens)
+   tests/manufacturer-source-challenge.test.js [697:107 - 705:17]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-validity.test.js[39m[22m [62:54 - 67:52] (6 lines, 30 tokens)
+   tests/manufacturer-workflow-draft.test.js [510:53 - 515:52]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-source-validity.test.js[39m[22m [342:30 - 347:25] (6 lines, 44 tokens)
+   tests/manufacturer-source-validity.test.js [383:4 - 388:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-workflow-draft.test.js[39m[22m [59:18 - 68:8] (10 lines, 31 tokens)
+   tests/manufacturer-workflow-draft.test.js [196:21 - 205:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-workflow-draft.test.js[39m[22m [425:3 - 430:6] (6 lines, 45 tokens)
+   tests/public-discovery.test.js [72:3 - 77:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-workflow-draft.test.js[39m[22m [610:4 - 615:20] (6 lines, 46 tokens)
+   tests/manufacturer-workflow-draft.test.js [632:16 - 636:53]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/manufacturer-workflow-draft.test.js[39m[22m [819:8 - 824:33] (6 lines, 35 tokens)
+   tests/manufacturer-workflow-draft.test.js [842:7 - 847:33]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/mass-evidence-performance.test.js[39m[22m [16:42 - 24:23] (9 lines, 51 tokens)
+   tests/nutrition-parsing-performance.test.js [32:47 - 40:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/npm-registry.test.js[39m[22m [9:54 - 20:10] (12 lines, 33 tokens)
+   tests/wait-for-npm.test.js [16:48 - 27:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/observation-order.test.js[39m[22m [33:3 - 38:13] (6 lines, 41 tokens)
+   tests/observation-order.test.js [138:66 - 143:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-models.test.js[39m[22m [194:78 - 199:6] (6 lines, 41 tokens)
+   tests/ocr-models.test.js [231:3 - 236:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-models.test.js[39m[22m [297:30 - 302:6] (6 lines, 62 tokens)
+   tests/ocr-models.test.js [325:30 - 330:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-models.test.js[39m[22m [316:5 - 321:4] (6 lines, 58 tokens)
+   tests/ocr-models.test.js [334:55 - 339:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-stop-propagation.test.js[39m[22m [31:6 - 41:15] (11 lines, 45 tokens)
+   tests/ocr-stop-propagation.test.js [82:67 - 92:13]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-stop-propagation.test.js[39m[22m [50:21 - 56:10] (7 lines, 30 tokens)
+   tests/ocr-stop-propagation.test.js [109:10 - 115:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-stop-propagation.test.js[39m[22m [57:7 - 66:9] (10 lines, 31 tokens)
+   tests/ocr-stop-propagation.test.js [115:9 - 124:5]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/ocr-stop-propagation.test.js[39m[22m [110:8 - 116:14] (7 lines, 37 tokens)
+   tests/selected-package-ocr.test.js [101:9 - 106:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-artwork-consistency.test.js[39m[22m [221:45 - 226:10] (6 lines, 35 tokens)
+   tests/selected-package-corrections.test.js [61:41 - 66:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-artwork-consistency.test.js[39m[22m [263:51 - 270:12] (8 lines, 48 tokens)
+   tests/selected-package-ocr.test.js [161:70 - 168:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-artwork-consistency.test.js[39m[22m [264:3 - 270:12] (7 lines, 46 tokens)
+   tests/selected-package-ocr.test.js [136:5 - 142:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [3:19 - 8:6] (6 lines, 32 tokens)
+   tests/pipeline-status.test.js [3:21 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [3:35 - 9:11] (7 lines, 36 tokens)
+   tests/required-docs.test.js [3:37 - 9:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [3:35 - 9:11] (7 lines, 36 tokens)
+   tests/status-gate-coverage.test.js [3:37 - 9:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [64:50 - 70:39] (7 lines, 34 tokens)
+   tests/package-manager.test.js [86:5 - 92:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [64:51 - 70:39] (7 lines, 33 tokens)
+   tests/package-manager.test.js [145:66 - 151:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [78:67 - 85:44] (8 lines, 32 tokens)
+   tests/package-manager.test.js [118:73 - 124:63]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-manager.test.js[39m[22m [133:49 - 140:6] (8 lines, 38 tokens)
+   tests/package-manager.test.js [150:35 - 157:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-mass-consistency.test.js[39m[22m [1:29 - 7:9] (7 lines, 36 tokens)
+   tests/package-mass-quarantine.test.js [1:29 - 7:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-mass-consistency.test.js[39m[22m [93:48 - 99:6] (7 lines, 31 tokens)
+   tests/package-mass-consistency.test.js [168:55 - 174:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-mass-quarantine.test.js[39m[22m [50:36 - 55:20] (6 lines, 31 tokens)
+   tests/selected-package-mass.test.js [145:35 - 150:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-mass-quarantine.test.js[39m[22m [158:6 - 165:41] (8 lines, 38 tokens)
+   tests/package-mass-quarantine.test.js [212:106 - 219:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-quantity-review.test.js[39m[22m [185:39 - 192:45] (8 lines, 50 tokens)
+   tests/package-quantity-review.test.js [219:59 - 226:45]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/package-quantity-review.test.js[39m[22m [199:6 - 206:59] (8 lines, 49 tokens)
+   tests/package-quantity-review.test.js [239:44 - 246:61]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pipeline-status.test.js[39m[22m [1:1 - 8:6] (8 lines, 53 tokens)
+   tests/required-docs.test.js [1:1 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pipeline-status.test.js[39m[22m [1:1 - 8:6] (8 lines, 53 tokens)
+   tests/status-gate-coverage.test.js [1:1 - 8:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pipeline-status.test.js[39m[22m [271:54 - 280:39] (10 lines, 38 tokens)
+   tests/pipeline-status.test.js [287:39 - 294:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pipeline-status.test.js[39m[22m [320:82 - 326:27] (7 lines, 41 tokens)
+   tests/pipeline-status.test.js [374:73 - 380:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pipeline-status.test.js[39m[22m [355:11 - 363:36] (9 lines, 44 tokens)
+   tests/pipeline-status.test.js [388:73 - 393:36]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pr-guards.test.js[39m[22m [77:33 - 82:6] (6 lines, 44 tokens)
+   tests/pr-guards.test.js [118:69 - 124:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pr-guards.test.js[39m[22m [151:68 - 157:42] (7 lines, 33 tokens)
+   tests/pr-guards.test.js [239:82 - 244:47]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pr-guards.test.js[39m[22m [192:44 - 197:8] (6 lines, 31 tokens)
+   tests/pr-guards.test.js [319:67 - 324:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/pr-guards.test.js[39m[22m [319:42 - 324:8] (6 lines, 35 tokens)
+   tests/pr-guards.test.js [354:36 - 359:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/public-captures.test.js[39m[22m [2:20 - 8:9] (7 lines, 43 tokens)
+   tests/public-discovery.test.js [2:20 - 8:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/public-captures.test.js[39m[22m [125:16 - 134:21] (10 lines, 92 tokens)
+   tests/public-captures.test.js [209:16 - 218:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/public-captures.test.js[39m[22m [125:16 - 132:30] (8 lines, 78 tokens)
+   tests/public-captures.test.js [307:16 - 314:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/public-captures.test.js[39m[22m [154:62 - 160:15] (7 lines, 30 tokens)
+   tests/publication-cache.test.js [303:78 - 309:15]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [38:7 - 46:12] (9 lines, 37 tokens)
+   tests/publish-retry.test.js [198:7 - 207:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [127:77 - 135:26] (9 lines, 56 tokens)
+   tests/publish-retry.test.js [143:71 - 151:26]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [127:77 - 132:21] (6 lines, 33 tokens)
+   tests/publish-retry.test.js [181:53 - 186:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [172:9 - 178:12] (7 lines, 30 tokens)
+   tests/publish-retry.test.js [242:8 - 248:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [173:31 - 178:44] (6 lines, 32 tokens)
+   tests/publish-retry.test.js [203:8 - 208:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [212:73 - 217:26] (6 lines, 32 tokens)
+   tests/publish-retry.test.js [269:63 - 275:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [220:37 - 226:25] (7 lines, 36 tokens)
+   tests/publish-retry.test.js [260:31 - 266:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/publish-retry.test.js[39m[22m [241:64 - 248:28] (8 lines, 38 tokens)
+   tests/publish-retry.test.js [278:9 - 285:28]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/push-main-with-rebase-retry.test.js[39m[22m [3:8 - 16:11] (14 lines, 46 tokens)
+   tests/run-with-budget-warning.test.js [3:8 - 16:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/push-main-with-rebase-retry.test.js[39m[22m [3:8 - 16:11] (14 lines, 46 tokens)
+   tests/simulate-fresh-merge.test.js [3:8 - 16:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [175:63 - 180:21] (6 lines, 32 tokens)
+   tests/recheck-broken-links.test.js [199:66 - 204:21]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [318:85 - 323:19] (6 lines, 31 tokens)
+   tests/recheck-broken-links.test.js [356:67 - 361:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [318:85 - 323:19] (6 lines, 31 tokens)
+   tests/recheck-broken-links.test.js [389:84 - 394:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [323:28 - 332:27] (10 lines, 43 tokens)
+   tests/recheck-broken-links.test.js [361:20 - 370:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [326:9 - 332:51] (7 lines, 35 tokens)
+   tests/recheck-broken-links.test.js [397:9 - 403:51]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [338:57 - 345:6] (8 lines, 32 tokens)
+   tests/recheck-broken-links.test.js [370:78 - 377:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [338:57 - 345:6] (8 lines, 32 tokens)
+   tests/recheck-broken-links.test.js [404:48 - 411:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [345:73 - 355:44] (11 lines, 92 tokens)
+   tests/recheck-broken-links.test.js [377:76 - 387:44]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/recheck-broken-links.test.js[39m[22m [357:8 - 370:27] (14 lines, 72 tokens)
+   tests/recheck-broken-links.test.js [390:8 - 403:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-metadata.test.js[39m[22m [52:19 - 62:43] (11 lines, 46 tokens)
+   tests/release-metadata.test.js [67:27 - 77:43]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [167:35 - 173:23] (7 lines, 32 tokens)
+   tests/release-preflight.test.js [339:62 - 344:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [187:35 - 193:30] (7 lines, 32 tokens)
+   tests/release-preflight.test.js [234:7 - 240:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [187:35 - 193:30] (7 lines, 32 tokens)
+   tests/release-preflight.test.js [299:60 - 305:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [199:34 - 205:30] (7 lines, 32 tokens)
+   tests/release-preflight.test.js [252:7 - 258:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [209:53 - 221:23] (13 lines, 46 tokens)
+   tests/release-preflight.test.js [226:53 - 238:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [209:53 - 221:23] (13 lines, 46 tokens)
+   tests/release-preflight.test.js [262:53 - 274:23]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [209:53 - 221:23] (13 lines, 46 tokens)
+   tests/release-preflight.test.js [315:54 - 326:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [212:34 - 222:30] (11 lines, 39 tokens)
+   tests/release-preflight.test.js [247:33 - 257:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [229:34 - 239:30] (11 lines, 39 tokens)
+   tests/release-preflight.test.js [265:34 - 275:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [229:34 - 239:20] (11 lines, 37 tokens)
+   tests/release-preflight.test.js [318:36 - 327:22]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [233:32 - 240:30] (8 lines, 33 tokens)
+   tests/release-preflight.test.js [284:40 - 291:30]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/release-preflight.test.js[39m[22m [340:28 - 345:14] (6 lines, 30 tokens)
+   tests/release-preflight.test.js [351:18 - 356:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/required-docs.test.js[39m[22m [123:47 - 130:41] (8 lines, 35 tokens)
+   tests/required-docs.test.js [144:40 - 151:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/required-docs.test.js[39m[22m [124:7 - 130:41] (7 lines, 34 tokens)
+   tests/required-docs.test.js [158:60 - 164:41]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/run-with-budget-warning.test.js[39m[22m [16:50 - 25:9] (10 lines, 45 tokens)
+   tests/simulate-fresh-merge.test.js [16:47 - 28:9]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/run-with-budget-warning.test.js[39m[22m [72:63 - 77:37] (6 lines, 31 tokens)
+   tests/run-with-budget-warning.test.js [264:64 - 269:39]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/scripts-use-module-adoption.test.js[39m[22m [41:48 - 47:6] (7 lines, 34 tokens)
+   tests/scripts-use-module-adoption.test.js [50:51 - 56:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/scripts-use-module-adoption.test.js[39m[22m [41:48 - 47:6] (7 lines, 34 tokens)
+   tests/scripts-use-module-adoption.test.js [62:69 - 70:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/selected-package-ocr.test.js[39m[22m [48:78 - 55:4] (8 lines, 34 tokens)
+   tests/selected-package-ocr.test.js [71:7 - 78:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/selected-package-ocr.test.js[39m[22m [100:15 - 105:29] (6 lines, 30 tokens)
+   tests/selected-package-ocr.test.js [171:25 - 176:29]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/status-gate-coverage.test.js[39m[22m [68:68 - 73:40] (6 lines, 38 tokens)
+   tests/status-gate-coverage.test.js [98:51 - 103:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/status-gate-coverage.test.js[39m[22m [68:68 - 73:40] (6 lines, 38 tokens)
+   tests/status-gate-coverage.test.js [132:37 - 137:40]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/status-gate-coverage.test.js[39m[22m [79:17 - 89:34] (11 lines, 33 tokens)
+   tests/status-gate-coverage.test.js [149:27 - 159:34]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-batch.test.js[39m[22m [25:56 - 32:11] (8 lines, 31 tokens)
+   tests/store-batch.test.js [371:42 - 378:11]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-batch.test.js[39m[22m [60:12 - 66:60] (7 lines, 44 tokens)
+   tests/store-batch.test.js [445:13 - 451:60]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-batch.test.js[39m[22m [218:22 - 223:8] (6 lines, 30 tokens)
+   tests/store-batch.test.js [480:15 - 485:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-batch.test.js[39m[22m [288:47 - 297:8] (10 lines, 51 tokens)
+   tests/store-batch.test.js [334:44 - 343:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [44:24 - 52:25] (9 lines, 34 tokens)
+   tests/store-lock-directory.test.js [66:17 - 74:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [45:13 - 52:29] (8 lines, 35 tokens)
+   tests/store-lock-directory.test.js [122:11 - 129:29]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [60:23 - 65:31] (6 lines, 33 tokens)
+   tests/store-lock-directory.test.js [139:20 - 144:25]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [67:20 - 75:4] (9 lines, 33 tokens)
+   tests/store-lock-directory.test.js [146:18 - 154:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [79:71 - 85:32] (7 lines, 70 tokens)
+   tests/store-lock-directory.test.js [108:72 - 114:32]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [102:31 - 107:6] (6 lines, 41 tokens)
+   tests/store-lock-directory.test.js [129:27 - 134:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/store-lock-directory.test.js[39m[22m [121:24 - 129:25] (9 lines, 34 tokens)
+   tests/store-lock-directory.test.js [145:17 - 153:27]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [17:49 - 26:10] (10 lines, 50 tokens)
+   tests/translation-presentation-chunks.test.js [33:78 - 41:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [32:53 - 39:6] (8 lines, 43 tokens)
+   tests/translation-presentation-chunks.test.js [47:53 - 54:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [97:85 - 103:6] (7 lines, 44 tokens)
+   tests/translation-catalog.test.js [276:95 - 282:6]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [98:11 - 104:8] (7 lines, 38 tokens)
+   tests/translation-catalog.test.js [277:11 - 283:8]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [312:31 - 319:4] (8 lines, 38 tokens)
+   tests/translation-catalog.test.js [347:55 - 354:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-catalog.test.js[39m[22m [345:35 - 354:4] (10 lines, 64 tokens)
+   tests/translation-catalog.test.js [403:4 - 412:4]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-presentation-baskets.test.js[39m[22m [2:20 - 9:19] (8 lines, 33 tokens)
+   tests/translation-presentation-chunks.test.js [2:20 - 9:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-presentation-baskets.test.js[39m[22m [2:20 - 9:19] (8 lines, 33 tokens)
+   tests/translation-quality.test.js [2:20 - 9:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-presentation-baskets.test.js[39m[22m [16:33 - 23:10] (8 lines, 54 tokens)
+   tests/translation-quality.test.js [23:33 - 30:10]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-presentation-chunks.test.js[39m[22m [3:10 - 10:16] (8 lines, 31 tokens)
+   tests/translation-quality.test.js [3:10 - 10:16]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-presentation-chunks.test.js[39m[22m [160:5 - 166:66] (7 lines, 38 tokens)
+   tests/translation-presentation-chunks.test.js [250:76 - 256:64]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/translation-quality.test.js[39m[22m [268:49 - 273:14] (6 lines, 30 tokens)
+   tests/translation-quality.test.js [299:31 - 304:14]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/use-module.test.js[39m[22m [300:48 - 307:12] (8 lines, 30 tokens)
+   tests/use-module.test.js [344:10 - 351:12]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/use-module.test.js[39m[22m [301:20 - 307:35] (7 lines, 32 tokens)
+   tests/use-module.test.js [368:22 - 374:35]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/wait-for-npm.test.js[39m[22m [67:49 - 72:19] (6 lines, 32 tokens)
+   tests/wait-for-npm.test.js [153:44 - 158:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/wait-for-npm.test.js[39m[22m [109:67 - 114:32] (6 lines, 30 tokens)
+   tests/wait-for-npm.test.js [144:62 - 149:32]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/wait-for-npm.test.js[39m[22m [110:28 - 115:19] (6 lines, 32 tokens)
+   tests/wait-for-npm.test.js [247:23 - 252:19]
+[1mClone found (javascript)[22m
+ - [1m[32mtests/workflows-lint.test.js[39m[22m [125:20 - 138:45] (14 lines, 57 tokens)
+   tests/workflows-lint.test.js [164:18 - 177:45]
+[90m┌────────────┬────────────────┬─────────────┬──────────────┬──────────────┬──────────────────┬───────────────────┐[39m
+[90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[31m Total lines [39m[90m│[39m[31m Total tokens [39m[90m│[39m[31m Clones found [39m[90m│[39m[31m Duplicated lines [39m[90m│[39m[31m Duplicated tokens [39m[90m│[39m
+[90m├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤[39m
+[90m│[39m javascript [90m│[39m 490            [90m│[39m 111156      [90m│[39m 644358       [90m│[39m 821          [90m│[39m 6886 (6.19%)     [90m│[39m 35771 (5.55%)     [90m│[39m
+[90m├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤[39m
+[90m│[39m [1mTotal:[22m     [90m│[39m 490            [90m│[39m 111156      [90m│[39m 644358       [90m│[39m 821          [90m│[39m 6886 (6.19%)     [90m│[39m 35771 (5.55%)     [90m│[39m
+[90m└────────────┴────────────────┴─────────────┴──────────────┴──────────────┴──────────────────┴───────────────────┘[39m
+[90mFound 821 clones.[39m
+[32mHTML report saved to ./reports/jscpd/jscpd-report.html[39m
+[90mtime: 234.879ms[39m

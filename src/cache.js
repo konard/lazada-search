@@ -96,11 +96,13 @@ export class DomainScheduler {
     this.last = new Map();
   }
 
-  run(url, action) {
+  run(url, action, { beforePace } = {}) {
     const host = new URL(url).hostname;
     const previous = this.tails.get(host) || Promise.resolve();
     const execute = async () => {
+      await beforePace?.();
       await this.pace(url);
+      await beforePace?.();
       return action();
     };
     const operation = previous.then(execute, execute);
@@ -126,11 +128,19 @@ export class EvidenceCache {
   constructor({
     store,
     scheduler = new DomainScheduler(),
+    staticImageScheduler,
     now = Date.now,
     offline = false,
   } = {}) {
+    if (
+      staticImageScheduler !== undefined &&
+      typeof staticImageScheduler?.run !== 'function'
+    ) {
+      throw new Error('staticImageScheduler must provide run(url, action)');
+    }
     this.store = store;
     this.scheduler = scheduler;
+    this.staticImageScheduler = staticImageScheduler;
     this.now = now;
     this.offline = offline;
     this.pending = new Map();
@@ -439,7 +449,11 @@ export class EvidenceCache {
         loaded = await this.requestImage(url, cached, options);
       }
     } catch (error) {
-      if (error.code === 'IMAGE_ACQUISITION_DEFERRED') {
+      if (
+        error.code === 'IMAGE_ACQUISITION_DEFERRED' ||
+        error.code === 'ABORT_ERR' ||
+        error.name === 'AbortError'
+      ) {
         throw error;
       }
       if (error.code === 'COLLECTION_STOPPED') {

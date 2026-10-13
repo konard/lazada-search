@@ -1,0 +1,1417 @@
+[
+  {
+    "number": 35,
+    "created_at": "2026-10-11T08:59:41Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/35",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/35",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/polynomial-redos",
+      "severity": "warning",
+      "description": "Polynomial regular expression used on uncontrolled data",
+      "name": "js/polynomial-redos",
+      "tags": [
+        "external/cwe/cwe-1333",
+        "external/cwe/cwe-400",
+        "external/cwe/cwe-730",
+        "security"
+      ],
+      "full_description": "A regular expression that can require polynomial time to match may be vulnerable to denial-of-service attacks.",
+      "help": "# Polynomial regular expression used on uncontrolled data\nSome regular expressions take a long time to match certain input strings to the point where the time it takes to match a string of length *n* is proportional to *n<sup>k</sup>* or even *2<sup>n</sup>*. Such regular expressions can negatively affect performance, or even allow a malicious user to perform a Denial of Service (\"DoS\") attack by crafting an expensive input string for the regular expression to match.\n\nThe regular expression engines provided by many popular JavaScript platforms use backtracking non-deterministic finite automata to implement regular expression matching. While this approach is space-efficient and allows supporting advanced features like capture groups, it is not time-efficient in general. The worst-case time complexity of such an automaton can be polynomial or even exponential, meaning that for strings of a certain shape, increasing the input length by ten characters may make the automaton about 1000 times slower.\n\nTypically, a regular expression is affected by this problem if it contains a repetition of the form `r*` or `r+` where the sub-expression `r` is ambiguous in the sense that it can match some string in multiple ways. More information about the precise circumstances can be found in the references.\n\n\n## Recommendation\nModify the regular expression to remove the ambiguity, or ensure that the strings matched with the regular expression are short enough that the time-complexity does not matter.\n\n\n## Example\nConsider this use of a regular expression, which removes all leading and trailing whitespace in a string:\n\n```javascript\n\ntext.replace(/^\\s+|\\s+$/g, ''); // BAD\n```\nThe sub-expression `\"\\s+$\"` will match the whitespace characters in `text` from left to right, but it can start matching anywhere within a whitespace sequence. This is problematic for strings that do **not** end with a whitespace character. Such a string will force the regular expression engine to process each whitespace sequence once per whitespace character in the sequence.\n\nThis ultimately means that the time cost of trimming a string is quadratic in the length of the string. So a string like `\"a b\"` will take milliseconds to process, but a similar string with a million spaces instead of just one will take several minutes.\n\nAvoid this problem by rewriting the regular expression to not contain the ambiguity about when to start matching whitespace sequences. For instance, by using a negative look-behind (`/^\\s+|(?<!\\s)\\s+$/g`), or just by using the built-in trim method (`text.trim()`).\n\nNote that the sub-expression `\"^\\s+\"` is **not** problematic as the `^` anchor restricts when that sub-expression can start matching, and as the regular expression engine matches from left to right.\n\n\n## Example\nAs a similar, but slightly subtler problem, consider the regular expression that matches lines with numbers, possibly written using scientific notation:\n\n```javascript\n\n/^0\\.\\d+E?\\d+$/.test(str) // BAD\n```\nThe problem with this regular expression is in the sub-expression `\\d+E?\\d+` because the second `\\d+` can start matching digits anywhere after the first match of the first `\\d+` if there is no `E` in the input string.\n\nThis is problematic for strings that do **not** end with a digit. Such a string will force the regular expression engine to process each digit sequence once per digit in the sequence, again leading to a quadratic time complexity.\n\nTo make the processing faster, the regular expression should be rewritten such that the two `\\d+` sub-expressions do not have overlapping matches: `^0\\.\\d+(E\\d+)?$`.\n\n\n## Example\nSometimes it is unclear how a regular expression can be rewritten to avoid the problem. In such cases, it often suffices to limit the length of the input string. For instance, the following regular expression is used to match numbers, and on some non-number inputs it can have quadratic time complexity:\n\n```javascript\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str) // BAD\n```\nIt is not immediately obvious how to rewrite this regular expression to avoid the problem. However, you can mitigate performance issues by limiting the length to 1000 characters, which will always finish in a reasonable amount of time.\n\n```javascript\n\nif (str.length > 1000) {\n    throw new Error(\"Input too long\");\n}\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str)\n```\n\n## References\n* OWASP: [Regular expression Denial of Service - ReDoS](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS).\n* Wikipedia: [ReDoS](https://en.wikipedia.org/wiki/ReDoS).\n* Wikipedia: [Time complexity](https://en.wikipedia.org/wiki/Time_complexity).\n* James Kirrage, Asiri Rathnayake, Hayo Thielecke: [Static Analysis for Regular Expression Denial-of-Service Attack](https://arxiv.org/abs/1301.0849).\n* Common Weakness Enumeration: [CWE-1333](https://cwe.mitre.org/data/definitions/1333.html).\n* Common Weakness Enumeration: [CWE-730](https://cwe.mitre.org/data/definitions/730.html).\n* Common Weakness Enumeration: [CWE-400](https://cwe.mitre.org/data/definitions/400.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'.\nThis regular expression that depends on library input may run slow on strings with many repetitions of ')'."
+      },
+      "location": {
+        "path": "src/translation-quality.js",
+        "start_line": 106,
+        "end_line": 106,
+        "start_column": 19,
+        "end_column": 52
+      },
+      "classifications": []
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/35/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 32,
+    "created_at": "2026-10-10T19:16:44Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/32",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/32",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-sanitization",
+      "severity": "warning",
+      "description": "Incomplete string escaping or encoding",
+      "name": "js/incomplete-sanitization",
+      "tags": [
+        "correctness",
+        "external/cwe/cwe-020",
+        "external/cwe/cwe-080",
+        "external/cwe/cwe-116",
+        "security"
+      ],
+      "full_description": "A string transformer that does not replace or escape all occurrences of a meta-character may be ineffective.",
+      "help": "# Incomplete string escaping or encoding\nSanitizing untrusted input is a common technique for preventing injection attacks such as SQL injection or cross-site scripting. Usually, this is done by escaping meta-characters such as quotes in a domain-specific way so that they are treated as normal characters.\n\nHowever, directly using the string `replace` method to perform escaping is notoriously error-prone. Common mistakes include only replacing the first occurrence of a meta-character, or backslash-escaping various meta-characters but not the backslash itself.\n\nIn the former case, later meta-characters are left undisturbed and can be used to subvert the sanitization. In the latter case, preceding a meta-character with a backslash leads to the backslash being escaped, but the meta-character appearing un-escaped, which again makes the sanitization ineffective.\n\nEven if the escaped string is not used in a security-critical context, incomplete escaping may still have undesirable effects, such as badly rendered or confusing output.\n\n\n## Recommendation\nUse a (well-tested) sanitization library if at all possible. These libraries are much more likely to handle corner cases correctly than a custom implementation.\n\nAn even safer alternative is to design the application so that sanitization is not needed, for instance by using prepared statements for SQL queries.\n\nOtherwise, make sure to use a regular expression with the `g` flag to ensure that all occurrences are replaced, and remember to escape backslashes if applicable.\n\n\n## Example\nFor example, assume that we want to embed a user-controlled string `accountNumber` into a SQL query as part of a string literal. To avoid SQL injection, we need to ensure that the string does not contain un-escaped single-quote characters. The following function attempts to ensure this by doubling single quotes, and thereby escaping them:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(\"'\", \"''\");\n}\n\n```\nAs written, this sanitizer is ineffective: if the first argument to `replace` is a string literal (as in this case), only the *first* occurrence of that string is replaced.\n\nAs mentioned above, the function `escapeQuotes` should be replaced with a purpose-built sanitization library, such as the npm module `sqlstring`. Many other sanitization libraries are available from npm and other sources.\n\nIf this is not an option, `escapeQuotes` should be rewritten to use a regular expression with the `g` (\"global\") flag instead:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(/'/g, \"''\");\n}\n\n```\nNote that it is very important to include the global flag: `s.replace(/'/, \"''\")` *without* the global flag is equivalent to the first example above and only replaces the first quote.\n\n\n## References\n* OWASP Top 10: [A1 Injection](https://www.owasp.org/index.php/Top_10-2017_A1-Injection).\n* npm: [sqlstring](https://www.npmjs.com/package/sqlstring) package.\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n* Common Weakness Enumeration: [CWE-80](https://cwe.mitre.org/data/definitions/80.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This does not escape backslash characters in the input."
+      },
+      "location": {
+        "path": "scripts/promotion-report.mjs",
+        "start_line": 12,
+        "end_line": 13,
+        "start_column": 3,
+        "end_column": 13
+      },
+      "classifications": []
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/32/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 31,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/31",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/31",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-hostname-regexp",
+      "severity": "warning",
+      "description": "Incomplete regular expression for hostnames",
+      "name": "js/incomplete-hostname-regexp",
+      "tags": ["correctness", "external/cwe/cwe-020", "security"],
+      "full_description": "Matching a URL or hostname against a regular expression that contains an unescaped dot as part of the hostname might match more hostnames than expected.",
+      "help": "# Incomplete regular expression for hostnames\nSanitizing untrusted URLs is an important technique for preventing attacks such as request forgeries and malicious redirections. Often, this is done by checking that the host of a URL is in a set of allowed hosts.\n\nIf a regular expression implements such a check, it is easy to accidentally make the check too permissive by not escaping the `.` meta-characters appropriately. Even if the check is not used in a security-critical context, the incomplete check may still cause undesirable behaviors when it accidentally succeeds.\n\n\n## Recommendation\nEscape all meta-characters appropriately when constructing regular expressions for security checks, and pay special attention to the `.` meta-character.\n\n\n## Example\nThe following example code checks that a URL redirection will reach the `example.com` domain, or one of its subdomains.\n\n\n```javascript\napp.get('/some/path', function(req, res) {\n    let url = req.param('url'),\n        host = urlLib.parse(url).host;\n    // BAD: the host of `url` may be controlled by an attacker\n    let regex = /^((www|beta).)?example.com/;\n    if (host.match(regex)) {\n        res.redirect(url);\n    }\n});\n\n```\nThe check is however easy to bypass because the unescaped `.` allows for any character before `example.com`, effectively allowing the redirect to go to an attacker-controlled domain such as `wwwXexample.com`.\n\nAddress this vulnerability by escaping `.` appropriately: `let regex = /^((www|beta)\\.)?example\\.com/`.\n\n\n## References\n* MDN: [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)\n* OWASP: [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery)\n* OWASP: [XSS Unvalidated Redirects and Forwards Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html).\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This regular expression has an unescaped '.' before 'shopifysvc.com', so it might match more hosts than expected."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-fanfare-hmart.html",
+        "start_line": 381,
+        "end_line": 381,
+        "start_column": 659,
+        "end_column": 687
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/31/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 30,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/30",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/30",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-hostname-regexp",
+      "severity": "warning",
+      "description": "Incomplete regular expression for hostnames",
+      "name": "js/incomplete-hostname-regexp",
+      "tags": ["correctness", "external/cwe/cwe-020", "security"],
+      "full_description": "Matching a URL or hostname against a regular expression that contains an unescaped dot as part of the hostname might match more hostnames than expected.",
+      "help": "# Incomplete regular expression for hostnames\nSanitizing untrusted URLs is an important technique for preventing attacks such as request forgeries and malicious redirections. Often, this is done by checking that the host of a URL is in a set of allowed hosts.\n\nIf a regular expression implements such a check, it is easy to accidentally make the check too permissive by not escaping the `.` meta-characters appropriately. Even if the check is not used in a security-critical context, the incomplete check may still cause undesirable behaviors when it accidentally succeeds.\n\n\n## Recommendation\nEscape all meta-characters appropriately when constructing regular expressions for security checks, and pay special attention to the `.` meta-character.\n\n\n## Example\nThe following example code checks that a URL redirection will reach the `example.com` domain, or one of its subdomains.\n\n\n```javascript\napp.get('/some/path', function(req, res) {\n    let url = req.param('url'),\n        host = urlLib.parse(url).host;\n    // BAD: the host of `url` may be controlled by an attacker\n    let regex = /^((www|beta).)?example.com/;\n    if (host.match(regex)) {\n        res.redirect(url);\n    }\n});\n\n```\nThe check is however easy to bypass because the unescaped `.` allows for any character before `example.com`, effectively allowing the redirect to go to an attacker-controlled domain such as `wwwXexample.com`.\n\nAddress this vulnerability by escaping `.` appropriately: `let regex = /^((www|beta)\\.)?example\\.com/`.\n\n\n## References\n* MDN: [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)\n* OWASP: [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery)\n* OWASP: [XSS Unvalidated Redirects and Forwards Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html).\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This regular expression has an unescaped '.' before 'shopifysvc.com', so it might match more hosts than expected."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-fanfare-vitaminhouse.html",
+        "start_line": 664,
+        "end_line": 664,
+        "start_column": 659,
+        "end_column": 687
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/30/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 29,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/29",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/29",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-sanitization",
+      "severity": "warning",
+      "description": "Incomplete string escaping or encoding",
+      "name": "js/incomplete-sanitization",
+      "tags": [
+        "correctness",
+        "external/cwe/cwe-020",
+        "external/cwe/cwe-080",
+        "external/cwe/cwe-116",
+        "security"
+      ],
+      "full_description": "A string transformer that does not replace or escape all occurrences of a meta-character may be ineffective.",
+      "help": "# Incomplete string escaping or encoding\nSanitizing untrusted input is a common technique for preventing injection attacks such as SQL injection or cross-site scripting. Usually, this is done by escaping meta-characters such as quotes in a domain-specific way so that they are treated as normal characters.\n\nHowever, directly using the string `replace` method to perform escaping is notoriously error-prone. Common mistakes include only replacing the first occurrence of a meta-character, or backslash-escaping various meta-characters but not the backslash itself.\n\nIn the former case, later meta-characters are left undisturbed and can be used to subvert the sanitization. In the latter case, preceding a meta-character with a backslash leads to the backslash being escaped, but the meta-character appearing un-escaped, which again makes the sanitization ineffective.\n\nEven if the escaped string is not used in a security-critical context, incomplete escaping may still have undesirable effects, such as badly rendered or confusing output.\n\n\n## Recommendation\nUse a (well-tested) sanitization library if at all possible. These libraries are much more likely to handle corner cases correctly than a custom implementation.\n\nAn even safer alternative is to design the application so that sanitization is not needed, for instance by using prepared statements for SQL queries.\n\nOtherwise, make sure to use a regular expression with the `g` flag to ensure that all occurrences are replaced, and remember to escape backslashes if applicable.\n\n\n## Example\nFor example, assume that we want to embed a user-controlled string `accountNumber` into a SQL query as part of a string literal. To avoid SQL injection, we need to ensure that the string does not contain un-escaped single-quote characters. The following function attempts to ensure this by doubling single quotes, and thereby escaping them:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(\"'\", \"''\");\n}\n\n```\nAs written, this sanitizer is ineffective: if the first argument to `replace` is a string literal (as in this case), only the *first* occurrence of that string is replaced.\n\nAs mentioned above, the function `escapeQuotes` should be replaced with a purpose-built sanitization library, such as the npm module `sqlstring`. Many other sanitization libraries are available from npm and other sources.\n\nIf this is not an option, `escapeQuotes` should be rewritten to use a regular expression with the `g` (\"global\") flag instead:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(/'/g, \"''\");\n}\n\n```\nNote that it is very important to include the global flag: `s.replace(/'/, \"''\")` *without* the global flag is equivalent to the first example above and only replaces the first quote.\n\n\n## References\n* OWASP Top 10: [A1 Injection](https://www.owasp.org/index.php/Top_10-2017_A1-Injection).\n* npm: [sqlstring](https://www.npmjs.com/package/sqlstring) package.\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n* Common Weakness Enumeration: [CWE-80](https://cwe.mitre.org/data/definitions/80.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This does not escape backslash characters in the input."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-pint.html",
+        "start_line": 178,
+        "end_line": 178,
+        "start_column": 24,
+        "end_column": 36
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/29/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 28,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/28",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/28",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-sanitization",
+      "severity": "warning",
+      "description": "Incomplete string escaping or encoding",
+      "name": "js/incomplete-sanitization",
+      "tags": [
+        "correctness",
+        "external/cwe/cwe-020",
+        "external/cwe/cwe-080",
+        "external/cwe/cwe-116",
+        "security"
+      ],
+      "full_description": "A string transformer that does not replace or escape all occurrences of a meta-character may be ineffective.",
+      "help": "# Incomplete string escaping or encoding\nSanitizing untrusted input is a common technique for preventing injection attacks such as SQL injection or cross-site scripting. Usually, this is done by escaping meta-characters such as quotes in a domain-specific way so that they are treated as normal characters.\n\nHowever, directly using the string `replace` method to perform escaping is notoriously error-prone. Common mistakes include only replacing the first occurrence of a meta-character, or backslash-escaping various meta-characters but not the backslash itself.\n\nIn the former case, later meta-characters are left undisturbed and can be used to subvert the sanitization. In the latter case, preceding a meta-character with a backslash leads to the backslash being escaped, but the meta-character appearing un-escaped, which again makes the sanitization ineffective.\n\nEven if the escaped string is not used in a security-critical context, incomplete escaping may still have undesirable effects, such as badly rendered or confusing output.\n\n\n## Recommendation\nUse a (well-tested) sanitization library if at all possible. These libraries are much more likely to handle corner cases correctly than a custom implementation.\n\nAn even safer alternative is to design the application so that sanitization is not needed, for instance by using prepared statements for SQL queries.\n\nOtherwise, make sure to use a regular expression with the `g` flag to ensure that all occurrences are replaced, and remember to escape backslashes if applicable.\n\n\n## Example\nFor example, assume that we want to embed a user-controlled string `accountNumber` into a SQL query as part of a string literal. To avoid SQL injection, we need to ensure that the string does not contain un-escaped single-quote characters. The following function attempts to ensure this by doubling single quotes, and thereby escaping them:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(\"'\", \"''\");\n}\n\n```\nAs written, this sanitizer is ineffective: if the first argument to `replace` is a string literal (as in this case), only the *first* occurrence of that string is replaced.\n\nAs mentioned above, the function `escapeQuotes` should be replaced with a purpose-built sanitization library, such as the npm module `sqlstring`. Many other sanitization libraries are available from npm and other sources.\n\nIf this is not an option, `escapeQuotes` should be rewritten to use a regular expression with the `g` (\"global\") flag instead:\n\n\n```javascript\nfunction escapeQuotes(s) {\n  return s.replace(/'/g, \"''\");\n}\n\n```\nNote that it is very important to include the global flag: `s.replace(/'/, \"''\")` *without* the global flag is equivalent to the first example above and only replaces the first quote.\n\n\n## References\n* OWASP Top 10: [A1 Injection](https://www.owasp.org/index.php/Top_10-2017_A1-Injection).\n* npm: [sqlstring](https://www.npmjs.com/package/sqlstring) package.\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n* Common Weakness Enumeration: [CWE-80](https://cwe.mitre.org/data/definitions/80.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This does not escape backslash characters in the input."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-hd-sg-belgian-minicup.html",
+        "start_line": 178,
+        "end_line": 178,
+        "start_column": 24,
+        "end_column": 36
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/28/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 27,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/27",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/27",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/unsafe-html-expansion",
+      "severity": "warning",
+      "description": "Unsafe expansion of self-closing HTML tag",
+      "name": "js/unsafe-html-expansion",
+      "tags": [
+        "correctness",
+        "external/cwe/cwe-079",
+        "external/cwe/cwe-116",
+        "security"
+      ],
+      "full_description": "Using regular expressions to expand self-closing HTML tags may lead to cross-site scripting vulnerabilities.",
+      "help": "# Unsafe expansion of self-closing HTML tag\nSanitizing untrusted input for HTML meta-characters is a common technique for preventing cross-site scripting attacks. But even a sanitized input can be dangerous to use if it is modified further before a browser treats it as HTML. A seemingly innocent transformation that expands a self-closing HTML tag from `<div attr=\"{sanitized}\"/>` to `<div attr=\"{sanitized}\"></div>` may in fact cause cross-site scripting vulnerabilities.\n\n\n## Recommendation\nUse a well-tested sanitization library if at all possible, and avoid modifying sanitized values further before treating them as HTML.\n\nAn even safer alternative is to design the application so that sanitization is not needed, for instance by using HTML templates that are explicit about the values they treat as HTML.\n\n\n## Example\nThe following function transforms a self-closing HTML tag to a pair of open/close tags. It does so for all non-`img` and non-`area` tags, by using a regular expression with two capture groups. The first capture group corresponds to the name of the tag, and the second capture group to the content of the tag.\n\n\n```javascript\nfunction expandSelfClosingTags(html) {\n\tvar rxhtmlTag = /<(?!img|area)(([a-z][^\\w\\/>]*)[^>]*)\\/>/gi;\n\treturn html.replace(rxhtmlTag, \"<$1></$2>\"); // BAD\n}\n\n```\nWhile it is generally known regular expressions are ill-suited for parsing HTML, variants of this particular transformation pattern have long been considered safe.\n\nHowever, the function is not safe. As an example, consider the following string:\n\n\n```html\n<div alt=\"\n<x\" title=\"/>\n<img src=url404 onerror=alert(1)>\"/>\n\n```\nWhen the above function transforms the string, it becomes a string that results in an alert when a browser treats it as HTML.\n\n\n```html\n<div alt=\"\n<x\" title=\"></x\" >\n<img src=url404 onerror=alert(1)>\"/>\n\n```\n\n## References\n* jQuery: [Security fixes in jQuery 3.5.0](https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/)\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [Types of Cross-Site](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "medium"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This self-closing HTML tag expansion invalidates prior sanitization as this regular expression may match part of an attribute value."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 101,
+        "end_line": 101,
+        "start_column": 13493,
+        "end_column": 13518
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/27/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 26,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/26",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/26",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 7188,
+        "end_line": 7188,
+        "start_column": 27,
+        "end_column": 59
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/26/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 25,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/25",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/25",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6834,
+        "end_line": 6836,
+        "start_column": 24,
+        "end_column": 10
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/25/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 24,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/24",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/24",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6822,
+        "end_line": 6825,
+        "start_column": 60,
+        "end_column": 12
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/24/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 23,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/23",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/23",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6769,
+        "end_line": 6771,
+        "start_column": 26,
+        "end_column": 12
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/23/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 22,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/22",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/22",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6695,
+        "end_line": 6697,
+        "start_column": 42,
+        "end_column": 10
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/22/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 21,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/21",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/21",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6684,
+        "end_line": 6687,
+        "start_column": 46,
+        "end_column": 12
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/21/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 20,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/20",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/20",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 6581,
+        "end_line": 6583,
+        "start_column": 38,
+        "end_column": 12
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/20/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 19,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/19",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/19",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 2903,
+        "end_line": 2903,
+        "start_column": 30,
+        "end_column": 32
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/19/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 18,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/18",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/18",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 106,
+        "end_line": 106,
+        "start_column": 24847,
+        "end_column": 24848
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/18/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 17,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/17",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/17",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 106,
+        "end_line": 106,
+        "start_column": 24435,
+        "end_column": 24436
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/17/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 16,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/16",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/16",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 106,
+        "end_line": 106,
+        "start_column": 22512,
+        "end_column": 22513
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/16/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 15,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/15",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/15",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 106,
+        "end_line": 106,
+        "start_column": 22215,
+        "end_column": 22216
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/15/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 14,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/14",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/14",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters.\nDOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 103,
+        "end_line": 103,
+        "start_column": 40902,
+        "end_column": 40903
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/14/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 13,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/13",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/13",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-lsplace-hd473.html",
+        "start_line": 103,
+        "end_line": 103,
+        "start_column": 12922,
+        "end_column": 12923
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/13/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 12,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/12",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/12",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-kimphuc-iberri6l.html",
+        "start_line": 2688,
+        "end_line": 2688,
+        "start_column": 22,
+        "end_column": 29
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/12/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 11,
+    "created_at": "2026-10-10T17:54:39Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/11",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/11",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/expanded-kimphuc-iberri6l.html",
+        "start_line": 2666,
+        "end_line": 2666,
+        "start_column": 28,
+        "end_column": 102
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/11/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 10,
+    "created_at": "2026-10-10T17:17:56Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/10",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/10",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/xss-through-dom",
+      "severity": "warning",
+      "description": "DOM text reinterpreted as HTML",
+      "name": "js/xss-through-dom",
+      "tags": ["external/cwe/cwe-079", "external/cwe/cwe-116", "security"],
+      "full_description": "Reinterpreting text from the DOM as HTML can lead to a cross-site scripting vulnerability.",
+      "help": "# DOM text reinterpreted as HTML\nExtracting text from a DOM node and interpreting it as HTML can lead to a cross-site scripting vulnerability.\n\nA webpage with this vulnerability reads text from the DOM, and afterwards adds the text as HTML to the DOM. Using text from the DOM as HTML effectively unescapes the text, and thereby invalidates any escaping done on the text. If an attacker is able to control the safe sanitized text, then this vulnerability can be exploited to perform a cross-site scripting attack.\n\n\n## Recommendation\nTo guard against cross-site scripting, consider using contextual output encoding/escaping before writing text to the page, or one of the other solutions that are mentioned in the References section below.\n\n\n## Example\nThe following example shows a webpage using a `data-target` attribute to select and manipulate a DOM element using the JQuery library. In the example, the `data-target` attribute is read into the `target` variable, and the `$` function is then supposed to use the `target` variable as a CSS selector to determine which element should be manipulated.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n    $(target).hide();\n});\n\n```\nHowever, if an attacker can control the `data-target` attribute, then the value of `target` can be used to cause the `$` function to execute arbitrary JavaScript.\n\nThe above vulnerability can be fixed by using `$.find` instead of `$`. The `$.find` function will only interpret `target` as a CSS selector and never as HTML, thereby preventing an XSS attack.\n\n\n```javascript\n$(\"button\").click(function () {\n    var target = $(this).attr(\"data-target\");\n\t$.find(target).hide();\n});\n\n```\n\n## References\n* OWASP: [DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html).\n* OWASP: [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html).\n* OWASP [DOM Based XSS](https://owasp.org/www-community/attacks/DOM_Based_XSS).\n* OWASP [Types of Cross-Site Scripting](https://owasp.org/www-community/Types_of_Cross-Site_Scripting).\n* Wikipedia: [Cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).\n* Common Weakness Enumeration: [CWE-79](https://cwe.mitre.org/data/definitions/79.html).\n* Common Weakness Enumeration: [CWE-116](https://cwe.mitre.org/data/definitions/116.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "DOM text is reinterpreted as HTML without escaping meta-characters.\nDOM text is reinterpreted as HTML without escaping meta-characters."
+      },
+      "location": {
+        "path": "docs/acceptance/ice-dual-units/bing-export-directory.html",
+        "start_line": 566,
+        "end_line": 566,
+        "start_column": 29,
+        "end_column": 114
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/10/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 9,
+    "created_at": "2026-10-10T10:47:36Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/9",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/9",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/polynomial-redos",
+      "severity": "warning",
+      "description": "Polynomial regular expression used on uncontrolled data",
+      "name": "js/polynomial-redos",
+      "tags": [
+        "external/cwe/cwe-1333",
+        "external/cwe/cwe-400",
+        "external/cwe/cwe-730",
+        "security"
+      ],
+      "full_description": "A regular expression that can require polynomial time to match may be vulnerable to denial-of-service attacks.",
+      "help": "# Polynomial regular expression used on uncontrolled data\nSome regular expressions take a long time to match certain input strings to the point where the time it takes to match a string of length *n* is proportional to *n<sup>k</sup>* or even *2<sup>n</sup>*. Such regular expressions can negatively affect performance, or even allow a malicious user to perform a Denial of Service (\"DoS\") attack by crafting an expensive input string for the regular expression to match.\n\nThe regular expression engines provided by many popular JavaScript platforms use backtracking non-deterministic finite automata to implement regular expression matching. While this approach is space-efficient and allows supporting advanced features like capture groups, it is not time-efficient in general. The worst-case time complexity of such an automaton can be polynomial or even exponential, meaning that for strings of a certain shape, increasing the input length by ten characters may make the automaton about 1000 times slower.\n\nTypically, a regular expression is affected by this problem if it contains a repetition of the form `r*` or `r+` where the sub-expression `r` is ambiguous in the sense that it can match some string in multiple ways. More information about the precise circumstances can be found in the references.\n\n\n## Recommendation\nModify the regular expression to remove the ambiguity, or ensure that the strings matched with the regular expression are short enough that the time-complexity does not matter.\n\n\n## Example\nConsider this use of a regular expression, which removes all leading and trailing whitespace in a string:\n\n```javascript\n\ntext.replace(/^\\s+|\\s+$/g, ''); // BAD\n```\nThe sub-expression `\"\\s+$\"` will match the whitespace characters in `text` from left to right, but it can start matching anywhere within a whitespace sequence. This is problematic for strings that do **not** end with a whitespace character. Such a string will force the regular expression engine to process each whitespace sequence once per whitespace character in the sequence.\n\nThis ultimately means that the time cost of trimming a string is quadratic in the length of the string. So a string like `\"a b\"` will take milliseconds to process, but a similar string with a million spaces instead of just one will take several minutes.\n\nAvoid this problem by rewriting the regular expression to not contain the ambiguity about when to start matching whitespace sequences. For instance, by using a negative look-behind (`/^\\s+|(?<!\\s)\\s+$/g`), or just by using the built-in trim method (`text.trim()`).\n\nNote that the sub-expression `\"^\\s+\"` is **not** problematic as the `^` anchor restricts when that sub-expression can start matching, and as the regular expression engine matches from left to right.\n\n\n## Example\nAs a similar, but slightly subtler problem, consider the regular expression that matches lines with numbers, possibly written using scientific notation:\n\n```javascript\n\n/^0\\.\\d+E?\\d+$/.test(str) // BAD\n```\nThe problem with this regular expression is in the sub-expression `\\d+E?\\d+` because the second `\\d+` can start matching digits anywhere after the first match of the first `\\d+` if there is no `E` in the input string.\n\nThis is problematic for strings that do **not** end with a digit. Such a string will force the regular expression engine to process each digit sequence once per digit in the sequence, again leading to a quadratic time complexity.\n\nTo make the processing faster, the regular expression should be rewritten such that the two `\\d+` sub-expressions do not have overlapping matches: `^0\\.\\d+(E\\d+)?$`.\n\n\n## Example\nSometimes it is unclear how a regular expression can be rewritten to avoid the problem. In such cases, it often suffices to limit the length of the input string. For instance, the following regular expression is used to match numbers, and on some non-number inputs it can have quadratic time complexity:\n\n```javascript\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str) // BAD\n```\nIt is not immediately obvious how to rewrite this regular expression to avoid the problem. However, you can mitigate performance issues by limiting the length to 1000 characters, which will always finish in a reasonable amount of time.\n\n```javascript\n\nif (str.length > 1000) {\n    throw new Error(\"Input too long\");\n}\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str)\n```\n\n## References\n* OWASP: [Regular expression Denial of Service - ReDoS](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS).\n* Wikipedia: [ReDoS](https://en.wikipedia.org/wiki/ReDoS).\n* Wikipedia: [Time complexity](https://en.wikipedia.org/wiki/Time_complexity).\n* James Kirrage, Asiri Rathnayake, Hayo Thielecke: [Static Analysis for Regular Expression Denial-of-Service Attack](https://arxiv.org/abs/1301.0849).\n* Common Weakness Enumeration: [CWE-1333](https://cwe.mitre.org/data/definitions/1333.html).\n* Common Weakness Enumeration: [CWE-730](https://cwe.mitre.org/data/definitions/730.html).\n* Common Weakness Enumeration: [CWE-400](https://cwe.mitre.org/data/definitions/400.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This regular expression that depends on library input may run slow on strings with many repetitions of '0'."
+      },
+      "location": {
+        "path": "src/products.js",
+        "start_line": 306,
+        "end_line": 307,
+        "start_column": 5,
+        "end_column": 40
+      },
+      "classifications": []
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/9/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 2,
+    "created_at": "2026-10-09T14:08:33Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/2",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/2",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/polynomial-redos",
+      "severity": "warning",
+      "description": "Polynomial regular expression used on uncontrolled data",
+      "name": "js/polynomial-redos",
+      "tags": [
+        "external/cwe/cwe-1333",
+        "external/cwe/cwe-400",
+        "external/cwe/cwe-730",
+        "security"
+      ],
+      "full_description": "A regular expression that can require polynomial time to match may be vulnerable to denial-of-service attacks.",
+      "help": "# Polynomial regular expression used on uncontrolled data\nSome regular expressions take a long time to match certain input strings to the point where the time it takes to match a string of length *n* is proportional to *n<sup>k</sup>* or even *2<sup>n</sup>*. Such regular expressions can negatively affect performance, or even allow a malicious user to perform a Denial of Service (\"DoS\") attack by crafting an expensive input string for the regular expression to match.\n\nThe regular expression engines provided by many popular JavaScript platforms use backtracking non-deterministic finite automata to implement regular expression matching. While this approach is space-efficient and allows supporting advanced features like capture groups, it is not time-efficient in general. The worst-case time complexity of such an automaton can be polynomial or even exponential, meaning that for strings of a certain shape, increasing the input length by ten characters may make the automaton about 1000 times slower.\n\nTypically, a regular expression is affected by this problem if it contains a repetition of the form `r*` or `r+` where the sub-expression `r` is ambiguous in the sense that it can match some string in multiple ways. More information about the precise circumstances can be found in the references.\n\n\n## Recommendation\nModify the regular expression to remove the ambiguity, or ensure that the strings matched with the regular expression are short enough that the time-complexity does not matter.\n\n\n## Example\nConsider this use of a regular expression, which removes all leading and trailing whitespace in a string:\n\n```javascript\n\ntext.replace(/^\\s+|\\s+$/g, ''); // BAD\n```\nThe sub-expression `\"\\s+$\"` will match the whitespace characters in `text` from left to right, but it can start matching anywhere within a whitespace sequence. This is problematic for strings that do **not** end with a whitespace character. Such a string will force the regular expression engine to process each whitespace sequence once per whitespace character in the sequence.\n\nThis ultimately means that the time cost of trimming a string is quadratic in the length of the string. So a string like `\"a b\"` will take milliseconds to process, but a similar string with a million spaces instead of just one will take several minutes.\n\nAvoid this problem by rewriting the regular expression to not contain the ambiguity about when to start matching whitespace sequences. For instance, by using a negative look-behind (`/^\\s+|(?<!\\s)\\s+$/g`), or just by using the built-in trim method (`text.trim()`).\n\nNote that the sub-expression `\"^\\s+\"` is **not** problematic as the `^` anchor restricts when that sub-expression can start matching, and as the regular expression engine matches from left to right.\n\n\n## Example\nAs a similar, but slightly subtler problem, consider the regular expression that matches lines with numbers, possibly written using scientific notation:\n\n```javascript\n\n/^0\\.\\d+E?\\d+$/.test(str) // BAD\n```\nThe problem with this regular expression is in the sub-expression `\\d+E?\\d+` because the second `\\d+` can start matching digits anywhere after the first match of the first `\\d+` if there is no `E` in the input string.\n\nThis is problematic for strings that do **not** end with a digit. Such a string will force the regular expression engine to process each digit sequence once per digit in the sequence, again leading to a quadratic time complexity.\n\nTo make the processing faster, the regular expression should be rewritten such that the two `\\d+` sub-expressions do not have overlapping matches: `^0\\.\\d+(E\\d+)?$`.\n\n\n## Example\nSometimes it is unclear how a regular expression can be rewritten to avoid the problem. In such cases, it often suffices to limit the length of the input string. For instance, the following regular expression is used to match numbers, and on some non-number inputs it can have quadratic time complexity:\n\n```javascript\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str) // BAD\n```\nIt is not immediately obvious how to rewrite this regular expression to avoid the problem. However, you can mitigate performance issues by limiting the length to 1000 characters, which will always finish in a reasonable amount of time.\n\n```javascript\n\nif (str.length > 1000) {\n    throw new Error(\"Input too long\");\n}\n\n/^(\\+|-)?(\\d+|(\\d*\\.\\d*))?(E|e)?([-+])?(\\d+)?$/.test(str)\n```\n\n## References\n* OWASP: [Regular expression Denial of Service - ReDoS](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS).\n* Wikipedia: [ReDoS](https://en.wikipedia.org/wiki/ReDoS).\n* Wikipedia: [Time complexity](https://en.wikipedia.org/wiki/Time_complexity).\n* James Kirrage, Asiri Rathnayake, Hayo Thielecke: [Static Analysis for Regular Expression Denial-of-Service Attack](https://arxiv.org/abs/1301.0849).\n* Common Weakness Enumeration: [CWE-1333](https://cwe.mitre.org/data/definitions/1333.html).\n* Common Weakness Enumeration: [CWE-730](https://cwe.mitre.org/data/definitions/730.html).\n* Common Weakness Enumeration: [CWE-400](https://cwe.mitre.org/data/definitions/400.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "This regular expression that depends on library input may run slow on strings with many repetitions of ','."
+      },
+      "location": {
+        "path": "src/browser.js",
+        "start_line": 291,
+        "end_line": 293,
+        "start_column": 23,
+        "end_column": 4
+      },
+      "classifications": []
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/2/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  },
+  {
+    "number": 1,
+    "created_at": "2026-10-09T08:40:19Z",
+    "updated_at": "2026-10-12T17:53:51Z",
+    "url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/1",
+    "html_url": "https://github.com/konard/lazada-search/security/code-scanning/1",
+    "state": "open",
+    "fixed_at": null,
+    "dismissed_by": null,
+    "dismissed_at": null,
+    "dismissed_reason": null,
+    "dismissed_comment": null,
+    "rule": {
+      "id": "js/incomplete-url-substring-sanitization",
+      "severity": "warning",
+      "description": "Incomplete URL substring sanitization",
+      "name": "js/incomplete-url-substring-sanitization",
+      "tags": ["correctness", "external/cwe/cwe-020", "security"],
+      "full_description": "Security checks on the substrings of an unparsed URL are often vulnerable to bypassing.",
+      "help": "# Incomplete URL substring sanitization\nSanitizing untrusted URLs is an important technique for preventing attacks such as request forgeries and malicious redirections. Usually, this is done by checking that the host of a URL is in a set of allowed hosts.\n\nHowever, treating the URL as a string and checking if one of the allowed hosts is a substring of the URL is very prone to errors. Malicious URLs can bypass such security checks by embedding one of the allowed hosts in an unexpected location.\n\nEven if the substring check is not used in a security-critical context, the incomplete check may still cause undesirable behaviors when the check succeeds accidentally.\n\n\n## Recommendation\nParse a URL before performing a check on its host value, and ensure that the check handles arbitrary subdomain sequences correctly.\n\n\n## Example\nThe following example code checks that a URL redirection will reach the `example.com` domain, or one of its subdomains, and not some malicious site.\n\n\n```javascript\napp.get('/some/path', function(req, res) {\n    let url = req.param(\"url\");\n    // BAD: the host of `url` may be controlled by an attacker\n    if (url.includes(\"example.com\")) {\n        res.redirect(url);\n    }\n});\n\n```\nThe substring check is, however, easy to bypass. For example by embedding `example.com` in the path component: `http://evil-example.net/example.com`, or in the query string component: `http://evil-example.net/?x=example.com`. Address these shortcomings by checking the host of the parsed URL instead:\n\n\n```javascript\napp.get('/some/path', function(req, res) {\n    let url = req.param(\"url\"),\n        host = urlLib.parse(url).host;\n    // BAD: the host of `url` may be controlled by an attacker\n    if (host.includes(\"example.com\")) {\n        res.redirect(url);\n    }\n});\n\n```\nThis is still not a sufficient check as the following URLs bypass it: `http://evil-example.com` `http://example.com.evil-example.net`. Instead, use an explicit whitelist of allowed hosts to make the redirect secure:\n\n\n```javascript\napp.get('/some/path', function(req, res) {\n    let url = req.param('url'),\n        host = urlLib.parse(url).host;\n    // GOOD: the host of `url` can not be controlled by an attacker\n    let allowedHosts = [\n        'example.com',\n        'beta.example.com',\n        'www.example.com'\n    ];\n    if (allowedHosts.includes(host)) {\n        res.redirect(url);\n    }\n});\n\n```\n\n## References\n* OWASP: [SSRF](https://www.owasp.org/index.php/Server_Side_Request_Forgery)\n* OWASP: [XSS Unvalidated Redirects and Forwards Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html).\n* Common Weakness Enumeration: [CWE-20](https://cwe.mitre.org/data/definitions/20.html).\n",
+      "security_severity_level": "high"
+    },
+    "tool": {
+      "name": "CodeQL",
+      "guid": null,
+      "version": "2.27.2"
+    },
+    "most_recent_instance": {
+      "ref": "refs/pull/41/merge",
+      "analysis_key": ".github/workflows/security.yml:codeql",
+      "environment": "{\"language\":\"javascript-typescript\"}",
+      "category": ".github/workflows/security.yml:codeql/language:javascript-typescript",
+      "state": "open",
+      "commit_sha": "f25ee02d3d38fd593469d455666d44a6ab1cffd9",
+      "message": {
+        "text": "'img.shields.io' can be anywhere in the URL, and arbitrary hosts may come before or after it."
+      },
+      "location": {
+        "path": "docs/case-studies/issue-3/original-format-release-notes.mjs",
+        "start_line": 87,
+        "end_line": 87,
+        "start_column": 7,
+        "end_column": 45
+      },
+      "classifications": ["documentation"]
+    },
+    "instances_url": "https://api.github.com/repos/konard/lazada-search/code-scanning/alerts/1/instances",
+    "dismissal_approved_by": null,
+    "assignees": [],
+    "linked_pull_requests": []
+  }
+]
