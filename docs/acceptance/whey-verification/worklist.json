@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-13T14:44:08.481Z",
+  "generatedAt": "2026-10-13T15:05:23.629Z",
   "input": {
     "path": "docs/tables/catalog.json",
-    "sha256": "24b22edf710653bc73ab00d103f6577acce658b3ce18053c8e35a11b96ca4e78",
-    "bytes": 38027581
+    "sha256": "c0998b620f89003ae6f7b39e71869baa98e6afa57d9a71846340dcdddf7c0f22",
+    "bytes": 38367278
   },
-  "catalogCheckedAt": "2026-10-13T14:43:42.310Z",
+  "catalogCheckedAt": "2026-10-13T15:04:56.936Z",
   "market": "vn",
   "deliveryArea": "Nha Trang",
   "scope": "Chocolate/plain whey; soy and mixed powders classified separately. Listing discovery never excludes flavour siblings by title.",
@@ -19,15 +19,15 @@
     "networkRequests": 0
   },
   "counts": {
-    "capturedPowderSkus": 375,
-    "strictWheySkus": 132,
+    "capturedPowderSkus": 385,
+    "strictWheySkus": 136,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
-    "missingFactoryMatches": 124,
-    "discoveryTasks": 6027,
-    "pendingSkuTasks": 412,
-    "excludedSkuOptions": 737,
-    "originalSourcePointers": 2122,
+    "missingFactoryMatches": 129,
+    "discoveryTasks": 6017,
+    "pendingSkuTasks": 436,
+    "excludedSkuOptions": 768,
+    "originalSourcePointers": 2137,
     "unresolvedEvidencePointers": 0
   },
   "capturedSkus": [
@@ -30050,6 +30050,132 @@
       ]
     },
     {
+      "productId": "product:5e9210e04843d68047d2f0fa1684bacb68aeb8aeb8cb2272b761e6f6c47ae21c",
+      "listingKey": "lazada.vn:item:13367626146",
+      "url": "https://www.lazada.vn/products/pdp-i13367626146.html",
+      "sku": "13367626146_VNAMZ-116908215953",
+      "title": "Whey Scitec Chocolate Jumbo (1320g) - Bổ sung năng lượng và hỗ trợ phát triển cơ bắp chứa hàm lượng cao protein kết hợp với carbohydrate phức hợp, giúp cung cấp đầy đủ dưỡng chất cho quá trình tăng cơ và tăng trọng lượng cơ thể.",
+      "brand": "CANTU",
+      "proteinSource": "whey",
+      "flavour": "chocolate",
+      "selectedOptions": [],
+      "scopeEligible": true,
+      "scopeExclusion": null,
+      "netMassG": 1320,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [
+        {
+          "name": "Scitec Nutrition",
+          "url": "https://scitecnutrition.com/",
+          "identityStatus": "candidate-only",
+          "reason": "Exact manufacturer product, flavour, package and specification evidence must be matched",
+          "brandConflict": true
+        }
+      ],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:58:03.411Z",
+      "price": 1899900,
+      "priceObservedAt": "2026-10-13T14:58:03.411Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 1320,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 1899900,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 1439.3181818181818,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netMassG",
+          "value": 1320,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": "ấy phép\n\n\n\nLoại giấy phép\nVN_FOODSUPP_OTHER\n\nMã giấy phép\n\nĐặc điểm nổi bật\nScitec Nutrition Jumbo (1320g) là sản phẩm tăng cơ hiệu quả từ thương hiệu Scitec Nutrition, được thiết kế đặc biệt dành cho nhữn"
+        },
+        {
+          "field": "netMassG",
+          "value": 160,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": " bắp săn chắc và bền vững. \nHƯỚNG DẪN SỬ DỤNG SCITEC NUTRITION JUMBO HIỆU QUẢ\n– Pha 2 muỗng (khoảng 160g) với 400-500ml nước hoặc sữa tùy thích, khuấy đều cho đến khi tan hoàn toàn.\n– Sử dụng 1-2 lần mỗi "
+        },
+        {
+          "field": "netMassG",
+          "value": 1320,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": "mạnh và săn chắc.\n\n️️THÔNG SỐ SẢN PHẨM:\n   – Mùi vị: Chocolate\n   – Số Lần Dùng: 6\n   – Khối lượng: 1320 g\n   – Thương Hiệu: Scitec Nutrition\n\n️ Hạn Sử dụng: Ghi trên bao bì nhà sản xuất\n️ Sản phẩm này khôn"
+        },
+        {
+          "field": "netMassG",
+          "value": 1320,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": "t hơn hoặc tư vấn về sản phẩm này, shop sẵn sàng hỗ trợ ạ!\nMô tả sản phẩm\n\n Scitec Nutrition Jumbo (1320g) là sản phẩm tăng cơ hiệu quả từ thương hiệu Scitec Nutrition, được thiết kế đặc biệt dành cho nhữn"
+        },
+        {
+          "field": "netMassG",
+          "value": 160,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": "bắp săn chắc và bền vững. \nHƯỚNG DẪN SỬ DỤNG SCITEC NUTRITION JUMBO HIỆU QUẢ \n– Pha 2 muỗng (khoảng 160g) với 400-500ml nước hoặc sữa tùy thích, khuấy đều cho đến khi tan hoàn toàn. \n– Sử dụng 1-2 lần mỗi"
+        },
+        {
+          "field": "netMassG",
+          "value": 1320,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": true,
+          "excerpt": "khỏe mạnh và săn chắc. \n\n️️THÔNG SỐ SẢN PHẨM: \n– Mùi vị: Chocolate \n– Số Lần Dùng: 6 \n– Khối lượng: 1320 g \n– Thương Hiệu: Scitec Nutrition \n\n️ Hạn Sử dụng: Ghi trên bao bì nhà sản xuất \n️ Sản phẩm này khôn"
+        },
+        {
+          "field": "netMassG",
+          "value": 1320,
+          "source": "dom",
+          "evidenceId": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+          "requiresReview": false,
+          "excerpt": "Whey Scitec Chocolate Jumbo (1320g) - Bổ sung năng lượng và hỗ trợ phát triển cơ bắp chứa hàm lượng cao protein kết hợp với carbohydra"
+        }
+      ]
+    },
+    {
       "productId": "product:8321d35e7b08cd0f9774d1f7b12405b3354dfb1c857ce61c990376de63523a27",
       "listingKey": "lazada.vn:item:1147812854",
       "url": "https://www.lazada.vn/products/pdp-i1147812854.html",
@@ -46688,6 +46814,147 @@
       ]
     },
     {
+      "productId": "product:aab23d5f7329517b7720a42260344f8be13f56921578ef3ae4bd6a6ba6beb3cf",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/pdp-i13465787393.html",
+      "sku": "13465787393_VNAMZ-117357796852",
+      "title": "Whey Protein 100% Gold Standard bán chạy nhất thế giới : Optimum Nutrition",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "chocolate",
+      "selectedOptions": ["Double Rich Choco", "2lb 907g"],
+      "scopeEligible": true,
+      "scopeExclusion": null,
+      "netMassG": 907,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [
+        {
+          "name": "Optimum Nutrition",
+          "url": "https://www.optimumnutrition.com/en-us/products/gold-standard-100-whey-protein-powder",
+          "identityStatus": "candidate-only",
+          "reason": "Exact manufacturer product, flavour, package and specification evidence must be matched",
+          "brandConflict": false
+        }
+      ],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "price": 1800000,
+      "priceObservedAt": "2026-10-13T15:02:02.626Z",
+      "available": false,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 907,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 1800000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 1984.5644983461962,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "match-exact-factory-package-and-formula",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "ingredients",
+          "value": ["Protein whey"],
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": false,
+          "excerpt": "\n Thành phần \nProtein whey"
+        },
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "Double Rich Choco 2lb 907g Double Rich Choco 2lb 907g"
+        },
+        {
+          "field": "netMassG",
+          "value": 907,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": false,
+          "excerpt": "Double Rich Choco 2lb 907g Double Rich Choco 2lb 907g"
+        },
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "Double Rich Choco 2lb 907g Double Rich Choco 2lb 907g"
+        },
+        {
+          "field": "netMassG",
+          "value": 907,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "Double Rich Choco 2lb 907g Double Rich Choco 2lb 907g"
+        },
+        {
+          "field": "netMassG",
+          "value": 2270,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": " Net Content \n2.27 kg"
+        },
+        {
+          "field": "netMassG",
+          "value": 2270,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "oặc có nhu cầu tìm hiểu về sản phẩm.\n\nThông số\n\n\n SKU \n13465787393_VNAMZ-117357796852\n Net Content \n2.27 kg\n Thành phần \nProtein whey\n Xuất xứ \nHoa Kỳ\n Dạng Sản Phẩm \nBột\n Người dùng được khuyến nghị \nNgười "
+        },
+        {
+          "field": "netMassG",
+          "value": 5.5,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "te và Hydrolyzed Whey giúp cân bằng giữa chất lượng, hương vị và giá thành.\n• Cung cấp 24g protein, 5.5g BCAA và 4g+ Glutamine & Glutamic Acid : Hỗ trợ phục hồi và phát triển cơ bắp hiệu quả.\n• Công nghệ "
+        },
+        {
+          "field": "netMassG",
+          "value": 4,
+          "source": "dom",
+          "evidenceId": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+          "requiresReview": true,
+          "excerpt": "zed Whey giúp cân bằng giữa chất lượng, hương vị và giá thành.\n• Cung cấp 24g protein, 5.5g BCAA và 4g+ Glutamine & Glutamic Acid : Hỗ trợ phục hồi và phát triển cơ bắp hiệu quả.\n• Công nghệ Instantized"
+        }
+      ]
+    },
+    {
       "productId": "product:8f8bd630e4601f8eb8cc29caf922b945754e030ebe7699ea3512d239a540fa3b",
       "listingKey": "lazada.vn:item:2511319879",
       "url": "https://www.lazada.vn/products/pdp-i2511319879.html",
@@ -47494,6 +47761,92 @@
           "evidenceId": "evidence:feae8dc2c72b7b6ea67ded96bcd26958401ee31f5e851b8bd0f1a3fa712fcdfd",
           "requiresReview": true,
           "excerpt": "Whey | Sữa Tăng Cơ Cho Người Tập Gym - Scitec 100% Whey Protein Professional 920G - Chính Hãng"
+        }
+      ]
+    },
+    {
+      "productId": "product:b01a18a8e7099e8ed70fd276340f5f46a35ec25969fb021b9f8b3cf562be24a6",
+      "listingKey": "lazada.vn:item:3275798306",
+      "url": "https://www.lazada.vn/products/pdp-i3275798306.html",
+      "sku": "3275798306_VNAMZ-15824802963",
+      "title": "Hydrolyzed Whey Protein EHPlabs ISOPEPT : Thuỷ phân hấp thu nhanh 2lbs - hấp thụ nhanh chóng và giàu chất dinh dưỡng giúp cung cấp năng lượng làm giảm mệt mỏi",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "chocolate",
+      "selectedOptions": ["Chocolate Decadence"],
+      "scopeEligible": true,
+      "scopeExclusion": null,
+      "netMassG": 907.18474,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:51:45.992Z",
+      "price": 1899900,
+      "priceObservedAt": "2026-10-13T14:51:45.992Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 907.18474,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 1899900,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 2094.2812596252443,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:384d45c2565eabbcdbb830064b647f07422580629aaa135f738030551ff1d2b8"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:384d45c2565eabbcdbb830064b647f07422580629aaa135f738030551ff1d2b8",
+          "requiresReview": true,
+          "excerpt": "p giảm chuột rút, giảm đau nhức cơ bắp và bù nước cho bạn sau khi tập luyện.\n\n• Khối lượng : 1.75 - 2 lbs tuỳ hương vị.\n• Đủ 25 lần dùng mỗi vị.\n'Sản phẩm này không phải là thuốc và không có tác dụng thay "
+        },
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:384d45c2565eabbcdbb830064b647f07422580629aaa135f738030551ff1d2b8",
+          "requiresReview": true,
+          "excerpt": " giảm chuột rút, giảm đau nhức cơ bắp và bù nước cho bạn sau khi tập luyện. \n\n• Khối lượng : 1.75 - 2 lbs tuỳ hương vị. \n• Đủ 25 lần dùng mỗi vị. \n'Sản phẩm này không phải là thuốc và không có tác dụng tha"
+        },
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:384d45c2565eabbcdbb830064b647f07422580629aaa135f738030551ff1d2b8",
+          "requiresReview": false,
+          "excerpt": "Hydrolyzed Whey Protein EHPlabs ISOPEPT : Thuỷ phân hấp thu nhanh 2lbs - hấp thụ nhanh chóng và giàu chất dinh dưỡng giúp cung cấp năng lượng làm giảm mệt mỏi"
         }
       ]
     },
@@ -51188,6 +51541,141 @@
       ]
     },
     {
+      "productId": "product:a7940dd3c57a85d82eb3feba13545d7115cb63c0ad795defe1fd7b035acfbfa0",
+      "listingKey": "lazada.vn:item:13460375287",
+      "url": "https://www.lazada.vn/products/pdp-i13460375287.html",
+      "sku": "13460375287_VNAMZ-117316331152",
+      "title": "1 TÚI SHOP GIAO MÙI NGẪU NHIÊN - SFD - Whey Protein WPC Plus - 75 lần dùng - Với công thức tối ưu, sản phẩm giúp tăng cơ hiệu quả, hấp thu cực nhanh và sở hữu dàn hương vị siêu thơm ngon, không gây ngấy!",
+      "brand": "CANTU",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["900g - 30 lần dùng"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": 900,
+      "packCount": 1,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:57:03.800Z",
+      "price": 2149900,
+      "priceObservedAt": "2026-10-13T14:57:03.800Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 900,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 2149900,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 2388.777777777778,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "packCount",
+          "value": 1,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": false,
+          "excerpt": "1 TÚI SHOP GIAO MÙI NGẪU NHIÊN - SFD - Whey Protein WPC Plus - 75 lần dùng - Với công thức tối ưu, sản phẩm giúp tăng cơ hiệu quả, hấp thu cực nhanh và sở hữu dàn hương vị siêu thơm ngon, không gây ngấy!"
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": false,
+          "excerpt": "900g - 30 lần dùng 900g - 30 lần dùng"
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "900g - 30 lần dùng 900g - 30 lần dùng"
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "bỏ qua sản phẩm này)\n-Thương hiệu: SFD Nutrition\n-Xuất xứ: Ba Lan (Châu Âu)\nQuy cách đóng gói:\n-Túi 900g: Khoảng 30 lần dùng (Servings)\n-Túi 2250g: Khoảng 75 lần dùng (Servings)\n\nThành phần đặc biệt: Glut"
+        },
+        {
+          "field": "netMassG",
+          "value": 2250,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "trition\n-Xuất xứ: Ba Lan (Châu Âu)\nQuy cách đóng gói:\n-Túi 900g: Khoảng 30 lần dùng (Servings)\n-Túi 2250g: Khoảng 75 lần dùng (Servings)\n\nThành phần đặc biệt: Gluten Free (Không chứa Gluten), thành phần ch"
+        },
+        {
+          "field": "netMassG",
+          "value": 30,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "n Free: An toàn cho hệ tiêu hóa, không lo đầy bụng.\nHƯỚNG DẪN SỬ DỤNG\nCách pha: Pha 1 muỗng (khoảng 30g) với 200 - 250ml nước lọc hoặc sữa tươi không đường (tùy khẩu vị). Lắc đều trong bình shaker từ 10 "
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "ua sản phẩm này) \n-Thương hiệu: SFD Nutrition \n-Xuất xứ: Ba Lan (Châu Âu) \nQuy cách đóng gói: \n-Túi 900g: Khoảng 30 lần dùng (Servings) \n-Túi 2250g: Khoảng 75 lần dùng (Servings) \n\nThành phần đặc biệt: Gl"
+        },
+        {
+          "field": "netMassG",
+          "value": 2250,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "ion \n-Xuất xứ: Ba Lan (Châu Âu) \nQuy cách đóng gói: \n-Túi 900g: Khoảng 30 lần dùng (Servings) \n-Túi 2250g: Khoảng 75 lần dùng (Servings) \n\nThành phần đặc biệt: Gluten Free (Không chứa Gluten), thành phần c"
+        },
+        {
+          "field": "netMassG",
+          "value": 30,
+          "source": "dom",
+          "evidenceId": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+          "requiresReview": true,
+          "excerpt": "e: An toàn cho hệ tiêu hóa, không lo đầy bụng. \n🥤 HƯỚNG DẪN SỬ DỤNG \nCách pha: Pha 1 muỗng (khoảng 30g) với 200 - 250ml nước lọc hoặc sữa tươi không đường (tùy khẩu vị). Lắc đều trong bình shaker từ 10 "
+        }
+      ]
+    },
+    {
       "productId": "product:5d63486d5e0dede88c48c62489e263b86e9683d75d085cac692bc3334308ba1f",
       "listingKey": "lazada.vn:item:13411628453",
       "url": "https://www.lazada.vn/products/pdp-i13411628453.html",
@@ -52148,6 +52636,101 @@
           "evidenceId": "evidence:5723e6c3420ed844b9a22fb8de476dfb2810f2f721d690e1e87ac3674da91ee3",
           "requiresReview": false,
           "excerpt": " giảm chuột rút, giảm đau nhức cơ bắp và bù nước cho bạn sau khi tập luyện.\n\n✅Khối lượng : Lẻ 1 gói 31g\n'Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh'\nIf you want to rep"
+        }
+      ]
+    },
+    {
+      "productId": "product:7c908b440f103ae9bcbca9db0b346698523222553c3b4a16fa76c1ddb9b92ccb",
+      "listingKey": "lazada.vn:item:13409789785",
+      "url": "https://www.lazada.vn/products/pdp-i13409789785.html",
+      "sku": "13409789785_VNAMZ-117117064487",
+      "title": "WANDASHAN | Sữa bột công thức tăng trưởng giai đoạn 4 chứa Whey Protein thủy phân cho trẻ 3-12 tuổi 700g",
+      "brand": "WANDASHAN",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["700 gram", "1 hộp"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": 700,
+      "packCount": 1,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:53:02.512Z",
+      "price": 1812000,
+      "priceObservedAt": "2026-10-13T14:53:02.512Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 700,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 1812000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 2588.5714285714284,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "packCount",
+          "value": 1,
+          "source": "dom",
+          "evidenceId": "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa",
+          "requiresReview": false,
+          "excerpt": "700 gram 1 hộp 700 gram 1 hộp"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa",
+          "requiresReview": false,
+          "excerpt": "700 gram 1 hộp 700 gram 1 hộp"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa",
+          "requiresReview": true,
+          "excerpt": "700 gram 1 hộp 700 gram 1 hộp"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa",
+          "requiresReview": true,
+          "excerpt": "WANDASHAN | Sữa bột công thức tăng trưởng giai đoạn 4 chứa Whey Protein thủy phân cho trẻ 3-12 tuổi 700g"
         }
       ]
     },
@@ -54507,6 +55090,123 @@
       ]
     },
     {
+      "productId": "product:96a4d1672ea8148ef5abb0011a943e9165f8e25e88212900a3edf1ca918495f6",
+      "listingKey": "lazada.vn:item:13464372120",
+      "url": "https://www.lazada.vn/products/pdp-i13464372120.html",
+      "sku": "13464372120_VNAMZ-117323969985",
+      "title": "Scitec Nutrition 100% Whey Protein Professional – Bổ Sung Đạm Chất Lượng Cao, Hỗ Trợ Phục Hồi Cơ Vị Vani 700g",
+      "brand": "Scitec Nutrition",
+      "proteinSource": "whey",
+      "flavour": "chocolate",
+      "selectedOptions": ["Socola"],
+      "scopeEligible": true,
+      "scopeExclusion": null,
+      "netMassG": 700,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [
+        {
+          "name": "Scitec Nutrition",
+          "url": "https://scitecnutrition.com/",
+          "identityStatus": "candidate-only",
+          "reason": "Exact manufacturer product, flavour, package and specification evidence must be matched",
+          "brandConflict": false
+        }
+      ],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:56:02.622Z",
+      "price": 2100000,
+      "priceObservedAt": "2026-10-13T14:56:02.622Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 2500000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 700,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 2100000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 3000,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "match-exact-factory-package-and-formula",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "ingredients",
+          "value": ["whey protein isolate"],
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": false,
+          "excerpt": "\n Thành phần \nwhey protein isolate"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": false,
+          "excerpt": " Net Content \n700g"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": true,
+          "excerpt": "phẩm.\n\nThông số\n\n\n Thương hiệu \nScitec Nutrition\n SKU \n13464372120_VNAMZ-117323969985\n Net Content \n700g\n Thành phần \nwhey protein isolate\n Dạng Sản Phẩm \nBột\n Người dùng được khuyến nghị \nNgười lớn\n Loại"
+        },
+        {
+          "field": "netMassG",
+          "value": 5,
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": true,
+          "excerpt": ".\n\n\n\nƯu điểm nổi bật:\n\n- Cung cấp 25g protein tinh khiết từ whey isolate mỗi khẩu phần \n\n- Chứa hơn 5g BCAA – hỗ trợ phục hồi và giữ cơ hiệu quả \n\n- Hàm lượng đường và chất béo thấp, phù hợp chế độ ăn l"
+        },
+        {
+          "field": "netMassG",
+          "value": 30,
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": true,
+          "excerpt": "ế độ ăn uống \n\n- Hạn chế dị hóa cơ, tăng hiệu quả luyện tập \n\n\n\nHướng dẫn sử dụng:\n\n- Pha 1 muỗng (~30g) với 280–330ml nước tùy vào khẩu vị ngọt/ nhạt. Nhiều hay ít nước đều không ảnh hưởng đến dinh dưỡn"
+        },
+        {
+          "field": "netMassG",
+          "value": 700,
+          "source": "dom",
+          "evidenceId": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+          "requiresReview": true,
+          "excerpt": "c Nutrition 100% Whey Protein Professional – Bổ Sung Đạm Chất Lượng Cao, Hỗ Trợ Phục Hồi Cơ Vị Vani 700g"
+        }
+      ]
+    },
+    {
       "productId": "product:69b8431bdabe4d4502d32beca66e49849fcb2304538083ff38d4b67bb9a82ff5",
       "listingKey": "lazada.vn:item:2783339578",
       "url": "https://www.lazada.vn/products/pdp-i2783339578.html",
@@ -54622,6 +55322,117 @@
           "evidenceId": "evidence:31633e43e9924e892fec682634777a209035ae4234859ac49a82853995ef2f20",
           "requiresReview": false,
           "excerpt": " 2 phút cho bọt lắng xuống. Ngon hơn khi bỏ thêm đá hoặc làm lạnh sau đó. \n\n✅ Khối lượng : Lẻ 1 gói 28g\nSản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh\nIf you want to repor"
+        }
+      ]
+    },
+    {
+      "productId": "product:6ad21f35af1a89675c512d5088e15d2fd2d1f8751424d9130a7d8a13b9ad98ab",
+      "listingKey": "lazada.vn:item:13445659122",
+      "url": "https://www.lazada.vn/products/pdp-i13445659122.html",
+      "sku": "13445659122_VNAMZ-117265530892",
+      "title": "1 TÚI Grass Fed Whey Protein chứng nhận Clean Label Project 2lb 30 lần dùng : Puori PW1 - • Cung cấp 21g protein đạt chuẩn công nghệ Grass-fed : Nuôi bằng bò ăn cỏ, thả rông và không xử lý bằng hóa chất hoặc hormone tổng hợp.",
+      "brand": "CANTU",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": [],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": 907.18474,
+      "packCount": 1,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T15:00:02.630Z",
+      "price": 2799900,
+      "priceObservedAt": "2026-10-13T15:00:02.630Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 907.18474,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 2799900,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 3086.3614394571937,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "packCount",
+          "value": 1,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": false,
+          "excerpt": "1 TÚI Grass Fed Whey Protein chứng nhận Clean Label Project 2lb 30 lần dùng : Puori PW1 - • Cung cấp 21g protein đạt chuẩn công nghệ Grass-fed : Nuôi bằng bò ăn cỏ, thả rông và không xử lý bằng hóa chất hoặc hormone tổng hợp."
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": true,
+          "excerpt": "t tự nhiên từ đường dừa hữu cơ ( Coconut organic) mang lại vị ngọt nhẹ nhàng thanh mát.\nKhối lượng: 900g (1.94lb ) 30 lần dùng.\nChúng tôi cam kết giao hàng có hạn sử dụng trên 1 năm\nSản phẩm này không phả"
+        },
+        {
+          "field": "netMassG",
+          "value": 879.9691978,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": true,
+          "excerpt": "hiên từ đường dừa hữu cơ ( Coconut organic) mang lại vị ngọt nhẹ nhàng thanh mát.\nKhối lượng: 900g (1.94lb ) 30 lần dùng.\nChúng tôi cam kết giao hàng có hạn sử dụng trên 1 năm\nSản phẩm này không phải là thu"
+        },
+        {
+          "field": "netMassG",
+          "value": 900,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": true,
+          "excerpt": " tự nhiên từ đường dừa hữu cơ ( Coconut organic) mang lại vị ngọt nhẹ nhàng thanh mát. \nKhối lượng: 900g (1.94lb ) 30 lần dùng. \nChúng tôi cam kết giao hàng có hạn sử dụng trên 1 năm \nSản phẩm này không p"
+        },
+        {
+          "field": "netMassG",
+          "value": 879.9691978,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": true,
+          "excerpt": "iên từ đường dừa hữu cơ ( Coconut organic) mang lại vị ngọt nhẹ nhàng thanh mát. \nKhối lượng: 900g (1.94lb ) 30 lần dùng. \nChúng tôi cam kết giao hàng có hạn sử dụng trên 1 năm \nSản phẩm này không phải là t"
+        },
+        {
+          "field": "netMassG",
+          "value": 907.18474,
+          "source": "dom",
+          "evidenceId": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+          "requiresReview": false,
+          "excerpt": "1 TÚI Grass Fed Whey Protein chứng nhận Clean Label Project 2lb 30 lần dùng : Puori PW1 - • Cung cấp 21g protein đạt chuẩn công nghệ Grass-fed : Nuôi bằng bò ăn cỏ"
         }
       ]
     },
@@ -57048,6 +57859,124 @@
           "evidenceId": "evidence:df04934c944026fdf3ea4017809f92593496d1a3c62f5594bb26ae1c1923f8a5",
           "requiresReview": true,
           "excerpt": "phép\n3413\n\n\n\nLoại giấy phép\nVN_FOODSUPP_OTHER\n\nMã giấy phép\n\nMô tả sản phẩm\n\n\n💪 HYDRO WHEY LABRADA 4lbs – nguồn đạm tinh khiết cao cấp, hỗ trợ phát triển và phục hồi cơ hiệu quả sau khi tập luyện. Dễ hấp"
+        }
+      ]
+    },
+    {
+      "productId": "product:2a9a5b8b516cc289944f621961c6c911169f7683fdfab4d5184420fd8ca342ad",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/pdp-i2666820811.html",
+      "sku": "2666820811_VNAMZ-117003175018",
+      "title": "Dymatize ISO 100 Hydrolyzed Protein Bột 1.5LBS - Dòng protein tinh khiết và hấp thụ nhanh nhất hiện nay",
+      "brand": "Dymatize",
+      "proteinSource": "other-protein",
+      "flavour": "chocolate",
+      "selectedOptions": ["Gourmet Chocolate"],
+      "scopeEligible": true,
+      "scopeExclusion": null,
+      "netMassG": 680.388555,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "price": 3342000,
+      "priceObservedAt": "2026-10-13T14:50:46.007Z",
+      "available": false,
+      "priceVariantConfirmed": true,
+      "originalPrice": 5000000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": 680.388555,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 3342000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": 4911.899201479073,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "ingredients",
+          "value": ["hydrolyzed whey protein isolate"],
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": false,
+          "excerpt": "\n Thành phần \nhydrolyzed whey protein isolate"
+        },
+        {
+          "field": "netMassG",
+          "value": 680.388555,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": false,
+          "excerpt": " Net Content \n1.5lbs"
+        },
+        {
+          "field": "netMassG",
+          "value": 680.388555,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": true,
+          "excerpt": "u về sản phẩm.\n\nThông số\n\n\n Thương hiệu \nDymatize\n SKU \n2666820811_VNAMZ-117003175018\n Net Content \n1.5lbs\n Thành phần \nhydrolyzed whey protein isolate\n Xuất xứ \nHoa Kỳ\n Dạng Sản Phẩm \nBột\n Người dùng được "
+        },
+        {
+          "field": "netMassG",
+          "value": 25,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": true,
+          "excerpt": "_FOODSUPP_OTHER\n\nMã giấy phép\n\nMô tả sản phẩm\n\n\n1. THÀNH PHẦN VÀ CÔNG DỤNG CỦA DYMATIZE ISO 100:\n▪️ 25g Hydrolyzed 100% Whey Protein Isolate ( Whey đã thủy phân siêu tinh khiết ).\n▪️ 5.5g BCAAs và 2.7g L"
+        },
+        {
+          "field": "netMassG",
+          "value": 5.5,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": true,
+          "excerpt": "TIZE ISO 100:\n▪️ 25g Hydrolyzed 100% Whey Protein Isolate ( Whey đã thủy phân siêu tinh khiết ).\n▪️ 5.5g BCAAs và 2.7g L-Leucine giúp chống dị hóa và phục hồi cơ bắp.\n▪️ 0g Fat ( cHất béo ) và 0g đường gi"
+        },
+        {
+          "field": "netMassG",
+          "value": 2.7,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": true,
+          "excerpt": "▪️ 25g Hydrolyzed 100% Whey Protein Isolate ( Whey đã thủy phân siêu tinh khiết ).\n▪️ 5.5g BCAAs và 2.7g L-Leucine giúp chống dị hóa và phục hồi cơ bắp.\n▪️ 0g Fat ( cHất béo ) và 0g đường giúp bạn kiếp so"
+        },
+        {
+          "field": "netMassG",
+          "value": 680.388555,
+          "source": "dom",
+          "evidenceId": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+          "requiresReview": true,
+          "excerpt": "Dymatize ISO 100 Hydrolyzed Protein Bột 1.5LBS - Dòng protein tinh khiết và hấp thụ nhanh nhất hiện nay"
         }
       ]
     },
@@ -60956,6 +61885,77 @@
       ]
     },
     {
+      "productId": "product:d23a27426970345bf969cab721b20c005661c7283d20f400ce62ef5437c2a18a",
+      "listingKey": "lazada.vn:item:13363706209",
+      "url": "https://www.lazada.vn/products/pdp-i13363706209.html",
+      "sku": "13363706209_VNAMZ-116897856163",
+      "title": "2 hộp bột lắc bổ sung protein whey phân tử thấp, collagen peptide và protein sữa non New Zealand.",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": [],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": 2,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:59:02.869Z",
+      "price": 2654499,
+      "priceObservedAt": "2026-10-13T14:59:02.869Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 4366000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 2,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 2654499,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:d313a5cc80aeb4442eb4382950d9b872be71496b796e3847acb5c73c702a994f"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "packCount",
+          "value": 2,
+          "source": "dom",
+          "evidenceId": "evidence:d313a5cc80aeb4442eb4382950d9b872be71496b796e3847acb5c73c702a994f",
+          "requiresReview": false,
+          "excerpt": "2 hộp bột lắc bổ sung protein whey phân tử thấp, collagen peptide và protein sữa non New Zealand."
+        }
+      ]
+    },
+    {
       "productId": "product:8def1e818563809809c5d1ae304b92512b1fec9182a23b3e7c2ca15b8e2e1aea",
       "listingKey": "lazada.vn:item:13363830022",
       "url": "https://www.lazada.vn/products/pdp-i13363830022.html",
@@ -64646,6 +65646,117 @@
           "evidenceId": "evidence:9bf292f56a4c79f0d12a70bf24d9b81244b11dea1f7bcf1e5d07155b01ac7c8c",
           "requiresReview": true,
           "excerpt": "\nLoại giấy phép\nVN_FOODSUPP_OTHER\n\nMã giấy phép\n\nMô tả sản phẩm\n\n\nHướng dẫn sử dụng:– Pha một muỗng 35g Whey BioX với 300ml đến 350ml nước lạnh hoặc nước trái cây, sau đó lắc đều với shaker cho đến khi b"
+        }
+      ]
+    },
+    {
+      "productId": "product:3f36cd0e99c3fbac8487e616db0d59073a78adaa19c8af684d58d36f6c390a32",
+      "listingKey": "lazada.vn:item:13466036582",
+      "url": "https://www.lazada.vn/products/pdp-i13466036582.html",
+      "sku": "13466036582_VNAMZ-117332247972",
+      "title": "Protein có hương vị ngon nhất 100% Grass-Fed Whey: ''Clean Simple Eats\" 30 lần dùng - • Công thức độc quyền với kem béo, la hán quả và cỏ ngọt, tạo nên các hương vị thơm ngon béo ngậy được khách hàng là nữ giới và trẻ em cực kỳ yêu thích.",
+      "brand": "CANTU",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": [],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [
+        {
+          "name": "Clean Simple Eats",
+          "url": "https://cleansimpleeats.com/collections/protein-powder",
+          "identityStatus": "candidate-only",
+          "reason": "Exact manufacturer product, flavour, package and specification evidence must be matched",
+          "brandConflict": true
+        }
+      ],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T14:54:02.610Z",
+      "price": 2749900,
+      "priceObservedAt": "2026-10-13T14:54:02.610Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 2749900,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "ingredients",
+          "value": ["grass-fed whey"],
+          "source": "dom",
+          "evidenceId": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+          "requiresReview": false,
+          "excerpt": "\n Thành phần \ngrass-fed whey"
+        },
+        {
+          "field": "netMassG",
+          "value": 1020,
+          "source": "dom",
+          "evidenceId": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+          "requiresReview": true,
+          "excerpt": "không chứa gluten, không có chất độn và không có hương vị hoặc chất làm ngọt nhân tạo.\nKhối lượng : 1020g đến 1050g tuỳ hương vị, nhưng đảm bảo đủ 30 lần dùng.\nSản phẩm này không phải là thuốc và không có "
+        },
+        {
+          "field": "netMassG",
+          "value": 1050,
+          "source": "dom",
+          "evidenceId": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+          "requiresReview": true,
+          "excerpt": " gluten, không có chất độn và không có hương vị hoặc chất làm ngọt nhân tạo.\nKhối lượng : 1020g đến 1050g tuỳ hương vị, nhưng đảm bảo đủ 30 lần dùng.\nSản phẩm này không phải là thuốc và không có tác dụng t"
+        },
+        {
+          "field": "netMassG",
+          "value": 1020,
+          "source": "dom",
+          "evidenceId": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+          "requiresReview": true,
+          "excerpt": "hông chứa gluten, không có chất độn và không có hương vị hoặc chất làm ngọt nhân tạo. \nKhối lượng : 1020g đến 1050g tuỳ hương vị, nhưng đảm bảo đủ 30 lần dùng. \nSản phẩm này không phải là thuốc và không có"
+        },
+        {
+          "field": "netMassG",
+          "value": 1050,
+          "source": "dom",
+          "evidenceId": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+          "requiresReview": true,
+          "excerpt": "gluten, không có chất độn và không có hương vị hoặc chất làm ngọt nhân tạo. \nKhối lượng : 1020g đến 1050g tuỳ hương vị, nhưng đảm bảo đủ 30 lần dùng. \nSản phẩm này không phải là thuốc và không có tác dụng "
         }
       ]
     },
@@ -70685,41 +71796,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=7&q=kem+chocolate",
           "query": "kem chocolate",
           "observedAt": "2026-10-10T14:38:04.703Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:2666820811",
-      "listingKey": "lazada.vn:item:2666820811",
-      "url": "https://www.lazada.vn/products/pdp-i2666820811.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Dymatize ISO 100 Hydrolyzed Protein Bột 1.5LBS - Dòng protein tinh khiết và hấp thụ nhanh nhất hiện nay"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:024588aa8aeeda6e37cab43b39273755b6b5712ebb456d49d0a8dd4cd0482071",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=3&q=protein+powder",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=3&q=protein+powder",
-          "query": "protein powder",
-          "observedAt": "2026-10-10T12:56:29.651Z"
-        },
-        {
-          "discoveryId": "discovery:2b7a935e00459050278d5ea2238b72bfc42c4dbddbfc844b73a11e072569f60e",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=2&q=whey+isolate",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=2&q=whey+isolate",
-          "query": "whey isolate",
-          "observedAt": "2026-10-10T11:21:15.183Z"
-        },
-        {
-          "discoveryId": "discovery:c08b1ad8ab122c38b0ea69ad1867269228456cc6ebcd4bfc6a1d7d0c02f6adcf",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -118939,27 +120015,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13460375287",
-      "listingKey": "lazada.vn:item:13460375287",
-      "url": "https://www.lazada.vn/products/pdp-i13460375287.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "1 TÚI SHOP GIAO MÙI NGẪU NHIÊN - SFD - Whey Protein WPC Plus - 75 lần dùng - Với công thức tối ưu, sản phẩm giúp tăng cơ hiệu quả, hấp thu cực nhanh và sở hữu dàn hương vị siêu thơm ngon, không gây ngấy!"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:3d87926e4a4a14908b535d63a0d4fd0f25d1ef796bd7bbfb1a87ab3bcd6e3070",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:3218411923",
       "listingKey": "lazada.vn:item:3218411923",
       "url": "https://www.lazada.vn/products/pdp-i3218411923.html",
@@ -123075,27 +124130,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=13&q=whey+protein",
           "query": "whey protein",
           "observedAt": "2026-10-10T10:31:15.072Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13466036582",
-      "listingKey": "lazada.vn:item:13466036582",
-      "url": "https://www.lazada.vn/products/pdp-i13466036582.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Protein có hương vị ngon nhất 100% Grass-Fed Whey: ''Clean Simple Eats\" 30 lần dùng - •  Công thức độc quyền với kem béo, la hán quả và cỏ ngọt, tạo nên các hương vị thơm ngon béo ngậy được khách hàng là nữ giới và trẻ em cực kỳ yêu thích."
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:42ed00fa8d6db4629706fb68c8cd61bcdb647e5fdf621525bc27df3e90d2300f",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -141771,34 +142805,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:3275798306",
-      "listingKey": "lazada.vn:item:3275798306",
-      "url": "https://www.lazada.vn/products/pdp-i3275798306.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Hydrolyzed Whey Protein EHPlabs ISOPEPT : Thuỷ phân hấp thu nhanh 2lbs -  hấp thụ nhanh chóng và giàu chất dinh dưỡng giúp cung cấp năng lượng làm giảm mệt mỏi"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:5dd2a77bd04e59bdbd296185ad828501e7ee7dbc0a0a2082c1d129d950fea604",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=56&q=whey+isolate",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=56&q=whey+isolate",
-          "query": "whey isolate",
-          "observedAt": "2026-10-10T12:29:26.724Z"
-        },
-        {
-          "discoveryId": "discovery:cacd43b230f465d32fefee6f8192700758ce6944cd70d734af099b6dec8ebdd1",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:2841067754",
       "listingKey": "lazada.vn:item:2841067754",
       "url": "https://www.lazada.vn/products/pdp-i2841067754.html",
@@ -149074,27 +150080,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=78&q=whey+isolate",
           "query": "whey isolate",
           "observedAt": "2026-10-10T12:51:26.489Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13465787393",
-      "listingKey": "lazada.vn:item:13465787393",
-      "url": "https://www.lazada.vn/products/pdp-i13465787393.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Whey Protein 100% Gold Standard bán chạy nhất thế giới : Optimum Nutrition"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:68e5c20b0d4e2b462f6fee4a2b76ab38846007ed73137492d7857a08cfe37782",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -162055,27 +163040,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13363706209",
-      "listingKey": "lazada.vn:item:13363706209",
-      "url": "https://www.lazada.vn/products/pdp-i13363706209.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "2 hộp bột lắc bổ sung protein whey phân tử thấp, collagen peptide và protein sữa non New Zealand."
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:7deff796f5c942e917d9cd0b8b9db967205e0f3940e65f994f8bc79edd101545",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:1875264334",
       "listingKey": "lazada.vn:item:1875264334",
       "url": "https://www.lazada.vn/products/pdp-i1875264334.html",
@@ -168936,27 +169900,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=41&q=whey+isolate",
           "query": "whey isolate",
           "observedAt": "2026-10-10T12:14:26.013Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13367626146",
-      "listingKey": "lazada.vn:item:13367626146",
-      "url": "https://www.lazada.vn/products/pdp-i13367626146.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Whey Scitec Chocolate Jumbo (1320g) - Bổ sung năng lượng và hỗ trợ phát triển cơ bắp chứa hàm lượng cao protein kết hợp với carbohydrate phức hợp, giúp cung cấp đầy đủ dưỡng chất cho quá trình tăng cơ và tăng trọng lượng cơ thể."
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:8b591d7ae8e26123a36cc6a7a0d6b5aeede72bf7fa02d073147b37e4c433b4b5",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -184719,27 +185662,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=8&q=kem+chocolate",
           "query": "kem chocolate",
           "observedAt": "2026-10-10T14:39:04.489Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13464372120",
-      "listingKey": "lazada.vn:item:13464372120",
-      "url": "https://www.lazada.vn/products/pdp-i13464372120.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Scitec Nutrition 100% Whey Protein Professional – Bổ Sung Đạm Chất Lượng Cao, Hỗ Trợ Phục Hồi Cơ Vị Vani 700g"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:ab35d6688add1c3eb928b59fb37bc717232a1badfa1eca9578ad88034457dfca",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -210337,27 +211259,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13409789785",
-      "listingKey": "lazada.vn:item:13409789785",
-      "url": "https://www.lazada.vn/products/pdp-i13409789785.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "WANDASHAN | Sữa bột công thức tăng trưởng giai đoạn 4 chứa Whey Protein thủy phân cho trẻ 3-12 tuổi 700g"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:eec6535aa1c63dbe4a38ff5a97c3f0504d8f57be5ce506bb07413637edfc8ce1",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:2693880234",
       "listingKey": "lazada.vn:item:2693880234",
       "url": "https://www.lazada.vn/products/pdp-i2693880234.html",
@@ -211272,27 +212173,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=51&q=whey+protein",
           "query": "whey protein",
           "observedAt": "2026-10-10T11:09:15.154Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13445659122",
-      "listingKey": "lazada.vn:item:13445659122",
-      "url": "https://www.lazada.vn/products/pdp-i13445659122.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "1 TÚI Grass Fed Whey Protein chứng nhận Clean Label Project 2lb 30 lần dùng : Puori PW1 - • Cung cấp 21g protein đạt chuẩn công nghệ Grass-fed : Nuôi bằng bò ăn cỏ, thả rông và không xử lý bằng hóa chất hoặc hormone tổng hợp."
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:f1acbe06ec7a8cb47e4ec1795fc04b1dea55842d83adcc5616953e37d429f8f5",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=9&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:22:53.182Z"
         }
       ],
       "status": "pending",
@@ -220794,6 +221674,20 @@
       "exclusionReason": null
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:13460375287:117316331153",
+      "listingKey": "lazada.vn:item:13460375287",
+      "url": "https://www.lazada.vn/products/1-tui-shop-giao-mui-ngau-nhien-sfd-whey-protein-wpc-plus-75-lan-dung-voi-cong-thuc-toi-uu-san-pham-giup-tang-co-hieu-qua-hap-thu-cuc-nhanh-va-so-huu-dan-huong-vi-sieu-thom-ngon-khong-gay-ngay-i13460375287-s117316331153.html",
+      "sku": "117316331153",
+      "options": [{ "name": "Size", "value": "2250g - 75 lần dùng" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13460375287.html",
+      "observedAt": "2026-10-13T14:57:03.800Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:13460575652:117333178077",
       "listingKey": "lazada.vn:item:13460575652",
       "url": "https://www.lazada.vn/products/hydro-whey-protein-chinh-hang-thuc-pham-bo-sung-protein-ho-tro-phat-trien-co-bap-phuc-hoi-sau-tap-vani-i13460575652-s117333178077.html",
@@ -222256,6 +223150,20 @@
       "exclusionReason": "selected-other-flavour"
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:13464372120:117323969986",
+      "listingKey": "lazada.vn:item:13464372120",
+      "url": "https://www.lazada.vn/products/scitec-nutrition-100-whey-protein-professional-bo-sung-dam-chat-luong-cao-ho-tro-phuc-hoi-co-vi-vani-700g-i13464372120-s117323969986.html",
+      "sku": "117323969986",
+      "options": [{ "name": "Hương Vị", "value": "Vanilla" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13464372120.html",
+      "observedAt": "2026-10-13T14:56:02.622Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:13464938801:117342906975",
       "listingKey": "lazada.vn:item:13464938801",
       "url": "https://www.lazada.vn/products/biox-complex-whey-protein-bot-protein-de-pha-thom-ngon-bo-sung-dam-cho-che-do-dinh-duong-hang-ngay-vi-socola-i13464938801-s117342906975.html",
@@ -222601,6 +223509,737 @@
       "observedAt": "2026-10-11T09:33:50.223Z",
       "requiredAction": "capture-exact-sku-price-and-labels",
       "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796848",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796848.html",
+      "sku": "117357796848",
+      "options": [
+        { "name": "Hương vị", "value": "Rocky Road" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796849",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796849.html",
+      "sku": "117357796849",
+      "options": [
+        { "name": "Hương vị", "value": "Rocky Road" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796850",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796850.html",
+      "sku": "117357796850",
+      "options": [
+        { "name": "Hương vị", "value": "Vanilla Ice Cream" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796851",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796851.html",
+      "sku": "117357796851",
+      "options": [
+        { "name": "Hương vị", "value": "Vanilla Ice Cream" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796853",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796853.html",
+      "sku": "117357796853",
+      "options": [
+        { "name": "Hương vị", "value": "Double Rich Choco" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796854",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796854.html",
+      "sku": "117357796854",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Hazelnut" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796855",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796855.html",
+      "sku": "117357796855",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Hazelnut" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796856",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796856.html",
+      "sku": "117357796856",
+      "options": [
+        { "name": "Hương vị", "value": "Strawberries & Cream" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796857",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796857.html",
+      "sku": "117357796857",
+      "options": [
+        { "name": "Hương vị", "value": "Strawberries & Cream" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796858",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796858.html",
+      "sku": "117357796858",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Mint" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796859",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796859.html",
+      "sku": "117357796859",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Mint" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796860",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796860.html",
+      "sku": "117357796860",
+      "options": [
+        { "name": "Hương vị", "value": "Mocha Cappuccino" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796861",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796861.html",
+      "sku": "117357796861",
+      "options": [
+        { "name": "Hương vị", "value": "Mocha Cappuccino" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796862",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796862.html",
+      "sku": "117357796862",
+      "options": [
+        { "name": "Hương vị", "value": "White Chocolate" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796863",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796863.html",
+      "sku": "117357796863",
+      "options": [
+        { "name": "Hương vị", "value": "White Chocolate" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796864",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796864.html",
+      "sku": "117357796864",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Coconut" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796865",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796865.html",
+      "sku": "117357796865",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Coconut" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796866",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796866.html",
+      "sku": "117357796866",
+      "options": [
+        { "name": "Hương vị", "value": "Strawberry Banana" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796867",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796867.html",
+      "sku": "117357796867",
+      "options": [
+        { "name": "Hương vị", "value": "Strawberry Banana" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796868",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796868.html",
+      "sku": "117357796868",
+      "options": [
+        { "name": "Hương vị", "value": "Choco Peanut Butter" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796869",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796869.html",
+      "sku": "117357796869",
+      "options": [
+        { "name": "Hương vị", "value": "Choco Peanut Butter" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796870",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796870.html",
+      "sku": "117357796870",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Malt" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796871",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796871.html",
+      "sku": "117357796871",
+      "options": [
+        { "name": "Hương vị", "value": "Chocolate Malt" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796872",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796872.html",
+      "sku": "117357796872",
+      "options": [
+        { "name": "Hương vị", "value": "Cinnamon Roll" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796873",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796873.html",
+      "sku": "117357796873",
+      "options": [
+        { "name": "Hương vị", "value": "Cinnamon Roll" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796874",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796874.html",
+      "sku": "117357796874",
+      "options": [
+        { "name": "Hương vị", "value": "Caramel Macchiato" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796875",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796875.html",
+      "sku": "117357796875",
+      "options": [
+        { "name": "Hương vị", "value": "Caramel Macchiato" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796876",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796876.html",
+      "sku": "117357796876",
+      "options": [
+        { "name": "Hương vị", "value": "Coffee" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796877",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796877.html",
+      "sku": "117357796877",
+      "options": [
+        { "name": "Hương vị", "value": "Coffee" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796878",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796878.html",
+      "sku": "117357796878",
+      "options": [
+        { "name": "Hương vị", "value": "Girl Scouts Mint" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796879",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796879.html",
+      "sku": "117357796879",
+      "options": [
+        { "name": "Hương vị", "value": "Girl Scouts Mint" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796880",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796880.html",
+      "sku": "117357796880",
+      "options": [
+        { "name": "Hương vị", "value": "Cookies & Cream" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796881",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796881.html",
+      "sku": "117357796881",
+      "options": [
+        { "name": "Hương vị", "value": "Cookies & Cream" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796882",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796882.html",
+      "sku": "117357796882",
+      "options": [
+        { "name": "Hương vị", "value": "Delicious Strawberry" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796883",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796883.html",
+      "sku": "117357796883",
+      "options": [
+        { "name": "Hương vị", "value": "Delicious Strawberry" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796884",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796884.html",
+      "sku": "117357796884",
+      "options": [
+        { "name": "Hương vị", "value": "Banana Cream" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796885",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796885.html",
+      "sku": "117357796885",
+      "options": [
+        { "name": "Hương vị", "value": "Banana Cream" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796886",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796886.html",
+      "sku": "117357796886",
+      "options": [
+        { "name": "Hương vị", "value": "Extreme Milk Chocola" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796887",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796887.html",
+      "sku": "117357796887",
+      "options": [
+        { "name": "Hương vị", "value": "Extreme Milk Chocola" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796888",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796888.html",
+      "sku": "117357796888",
+      "options": [
+        { "name": "Hương vị", "value": "S'Mores" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796889",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796889.html",
+      "sku": "117357796889",
+      "options": [
+        { "name": "Hương vị", "value": "S'Mores" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796890",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796890.html",
+      "sku": "117357796890",
+      "options": [
+        { "name": "Hương vị", "value": "Fruity Cereal" },
+        { "name": "Khối lượng", "value": "2lb 907g" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13465787393:117357796891",
+      "listingKey": "lazada.vn:item:13465787393",
+      "url": "https://www.lazada.vn/products/whey-protein-100-gold-standard-ban-chay-nhat-the-gioi-optimum-nutrition-i13465787393-s117357796891.html",
+      "sku": "117357796891",
+      "options": [
+        { "name": "Hương vị", "value": "Fruity Cereal" },
+        { "name": "Khối lượng", "value": "5lb 2.27kg" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
     },
     {
       "taskId": "selected-sku:lazada.vn:item:13466090407:117347846976",
@@ -227544,6 +229183,118 @@
       "exclusionReason": null
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:13054995238",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s13054995238.html",
+      "sku": "13054995238",
+      "options": [{ "name": "Hương vị", "value": "Dunkin Mocha" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117003175017",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117003175017.html",
+      "sku": "117003175017",
+      "options": [{ "name": "Hương vị", "value": "Fruity Pebbles" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117014511146",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117014511146.html",
+      "sku": "117014511146",
+      "options": [{ "name": "Hương vị", "value": "Cocoa Pebbles" }],
+      "available": true,
+      "flavour": "chocolate",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117114534135",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117114534135.html",
+      "sku": "117114534135",
+      "options": [{ "name": "Hương vị", "value": "Choco Peanut Butter" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117172762542",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117172762542.html",
+      "sku": "117172762542",
+      "options": [{ "name": "Hương vị", "value": "Cinnamon Cereal" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117172762543",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117172762543.html",
+      "sku": "117172762543",
+      "options": [{ "name": "Hương vị", "value": "Gourmet Vanilla" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117172762544",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117172762544.html",
+      "sku": "117172762544",
+      "options": [{ "name": "Hương vị", "value": "Cookies & Cream" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:2666820811:117369702627",
+      "listingKey": "lazada.vn:item:2666820811",
+      "url": "https://www.lazada.vn/products/dymatize-iso-100-hydrolyzed-protein-bot-15lbs-dong-protein-tinh-khiet-va-hap-thu-nhanh-nhat-hien-nay-i2666820811-s117369702627.html",
+      "sku": "117369702627",
+      "options": [{ "name": "Hương vị", "value": "Mint Chocolate Chip" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:2666974114:13054825589",
       "listingKey": "lazada.vn:item:2666974114",
       "url": "https://www.lazada.vn/products/whey-protein-dymatize-iso-100-15lbs-bo-sung-protein-chat-luong-cao-cap-nhat-i2666974114-s13054825589.html",
@@ -231309,6 +233060,34 @@
       "exclusionReason": null
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:3275798306:15824802964",
+      "listingKey": "lazada.vn:item:3275798306",
+      "url": "https://www.lazada.vn/products/hydrolyzed-whey-protein-ehplabs-isopept-thuy-phan-hap-thu-nhanh-2lbs-hap-thu-nhanh-chong-va-giau-chat-dinh-duong-giup-cung-cap-nang-luong-lam-giam-met-moi-i3275798306-s15824802964.html",
+      "sku": "15824802964",
+      "options": [{ "name": "Hương vị", "value": "Peanut Butter Cups" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i3275798306.html",
+      "observedAt": "2026-10-13T14:51:45.992Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:3275798306:15824802965",
+      "listingKey": "lazada.vn:item:3275798306",
+      "url": "https://www.lazada.vn/products/hydrolyzed-whey-protein-ehplabs-isopept-thuy-phan-hap-thu-nhanh-2lbs-hap-thu-nhanh-chong-va-giau-chat-dinh-duong-giup-cung-cap-nang-luong-lam-giam-met-moi-i3275798306-s15824802965.html",
+      "sku": "15824802965",
+      "options": [{ "name": "Hương vị", "value": "Vanilla Ice Cream" }],
+      "available": true,
+      "flavour": "other",
+      "status": "out-of-scope-selected-option",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i3275798306.html",
+      "observedAt": "2026-10-13T14:51:45.992Z",
+      "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": "selected-other-flavour"
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:3286561475:117374785327",
       "listingKey": "lazada.vn:item:3286561475",
       "url": "https://www.lazada.vn/products/whey-protein-power-whey-isolate-biox-18kg-tang-co-nac-hap-thu-nhanh-i3286561475-s117374785327.html",
@@ -234335,6 +236114,17 @@
       }
     },
     {
+      "id": "evidence:13b9bd8056050c1f96b17c5bf8299cb502682ccf5819f14ead649bc8f74e78c1",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13466036582.html",
+      "observedAt": "2026-10-13T14:54:02.610Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "2fc6bcdc22dd1d323bfb0d0ed474540ed5848ea5717c1660b41775797bf0082b",
+        "bytes": 330538
+      }
+    },
+    {
       "id": "evidence:13ea261184bd574785b37becd69e878abc323e681c3f9f18873ef2bc44d828b6",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i2675715216.html",
@@ -235007,6 +236797,17 @@
       "screenshot": {
         "sha256": "86ce3a089170e285a5e72836dfe15b540be8ecafcc482ec8b9ba396683cd2861",
         "bytes": 440129
+      }
+    },
+    {
+      "id": "evidence:23798b962a6677a00407c138cf2c398f74912916e36c882b8af0e9d8f6e8cd76",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13445659122.html",
+      "observedAt": "2026-10-13T15:00:02.630Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "03ecfb8923936fa100899756657d6b5a0f7a6ce96389629d9eae2f018e670b01",
+        "bytes": 215981
       }
     },
     {
@@ -235884,6 +237685,17 @@
       }
     },
     {
+      "id": "evidence:384d45c2565eabbcdbb830064b647f07422580629aaa135f738030551ff1d2b8",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i3275798306.html",
+      "observedAt": "2026-10-13T14:51:45.992Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "114dc9bc7967b4885cbea940f18c61c5b07fc0a3597feb91b4b47c0b22629e37",
+        "bytes": 328406
+      }
+    },
+    {
       "id": "evidence:3889d285401a89fa6db9f1c60a5932cb3a85e7f24f7eb511914478664f10299b",
       "role": "listing",
       "url": "https://www.lazada.vn/products/chinh-hang-on-gold-standard-100-whey-protein-shapeyourbody-i3154800181-s16289192123.html",
@@ -236446,6 +238258,17 @@
       }
     },
     {
+      "id": "evidence:45e0eb92b2bc2b602321a0c00fdb78a7581bca20c51b0a735c63edbd7f2e0faa",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13409789785.html",
+      "observedAt": "2026-10-13T14:53:02.512Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "e3e3275e237673b4ecfddd36e90620e91e81fe3bcc635ef9b220b1e573dbe97c",
+        "bytes": 319164
+      }
+    },
+    {
       "id": "evidence:461c32ff3a3d1ea8765a5a4f448ea3f52ee5e665397e391b25aec0f7962256db",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i13474249654.html",
@@ -236974,6 +238797,17 @@
       "screenshot": {
         "sha256": "e69ceabf0f2da34f27f8bd4b76b91cb5ea4f3711584e93d4f291cdb210d5ed9d",
         "bytes": 322312
+      }
+    },
+    {
+      "id": "evidence:5051a9aa6de95e2a9cc7888d7c50e04cec91f3c51d5e5092be2846904ccda733",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13464372120.html",
+      "observedAt": "2026-10-13T14:56:02.622Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "912af0f1d786a9a1b736e4ca2570c5cd3ac9c38d2a4a806d04bc14046704c838",
+        "bytes": 327312
       }
     },
     {
@@ -238844,6 +240678,17 @@
       "screenshot": {
         "sha256": "a5c799eca16f033d1d73de48029629e25c50728bc66ba3c03e92548f46824be4",
         "bytes": 706790
+      }
+    },
+    {
+      "id": "evidence:7793cc5d65e735991546641e67210f9ed166ff336797dce37432d2b6ac288e90",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13367626146.html",
+      "observedAt": "2026-10-13T14:58:03.411Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "a9ddaec53263c623f0fa4ac1bede43e0492f37a4f8138e1f6304744adc42dd6c",
+        "bytes": 223025
       }
     },
     {
@@ -241954,6 +243799,17 @@
       }
     },
     {
+      "id": "evidence:c6fce9aa35695a20528177accec7cc529439b323ce093f3611bbcf6d8e93bbd7",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "5b5889dd10b649428326412a61651322a759fe19af7114f649a66f93e509b788",
+        "bytes": 368969
+      }
+    },
+    {
       "id": "evidence:c7177c5992e4b94571195c8476363beeddaf4e87c3673bc5a5e0443643a13a9a",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i2783331609.html",
@@ -242509,6 +244365,17 @@
       }
     },
     {
+      "id": "evidence:d313a5cc80aeb4442eb4382950d9b872be71496b796e3847acb5c73c702a994f",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13363706209.html",
+      "observedAt": "2026-10-13T14:59:02.869Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "02569ab56d8ad597dabfac8e903652fdbd5973c9d2f21668a5f542bab7a4ab70",
+        "bytes": 303857
+      }
+    },
+    {
       "id": "evidence:d34123a69bd285cccd564ed7407614968b9e2a738d36e093ee6af22f0507c13b",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i954218508.html",
@@ -242845,6 +244712,17 @@
         "type": "stored-blob",
         "sha256": "a5642c2c035208eea460450dc6aa8b75581d6d44523badfe3b91f9ac79c12625",
         "bytes": 311956
+      }
+    },
+    {
+      "id": "evidence:db4e629c569512ded37e9cbae05315403fe9725909e90736b1246584cb9a3152",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "e1ee93131fb5d0e306d699487a9e8e27b358e431d491b86275d5a6b5f9cabf6e",
+        "bytes": 323444
       }
     },
     {
@@ -244399,6 +246277,17 @@
       "screenshot": {
         "sha256": "3e2650a77be60c5ca702d0e6ff558f3cf5b986f8c942e6557adf096ec1795e6f",
         "bytes": 730417
+      }
+    },
+    {
+      "id": "evidence:ff54d1a2022e83c636c0fbd546f246117c7a440c9cea3ed32468fa4f0c582233",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13460375287.html",
+      "observedAt": "2026-10-13T14:57:03.800Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "808fe35b85184a1f14b71f07a2f036422bdcb8bba5ed376afa8f60d99ed4dddb",
+        "bytes": 314993
       }
     },
     {
@@ -251664,6 +253553,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13460375287.html",
+      "url": "https://www.lazada.vn/products/pdp-i13460375287.html",
+      "observedAt": "2026-10-13T14:57:03.800Z",
+      "fetchedAt": 1791903423800,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "808fe35b85184a1f14b71f07a2f036422bdcb8bba5ed376afa8f60d99ed4dddb",
+        "bytes": 314993
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13460575652.html",
       "url": "https://www.lazada.vn/products/pdp-i13460575652.html",
       "observedAt": "2026-10-10T21:12:51.104Z",
@@ -251784,6 +253685,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13464372120.html",
+      "url": "https://www.lazada.vn/products/pdp-i13464372120.html",
+      "observedAt": "2026-10-13T14:56:02.622Z",
+      "fetchedAt": 1791903362622,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "912af0f1d786a9a1b736e4ca2570c5cd3ac9c38d2a4a806d04bc14046704c838",
+        "bytes": 327312
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13464938801.html",
       "url": "https://www.lazada.vn/products/pdp-i13464938801.html",
       "observedAt": "2026-10-11T09:35:35.934Z",
@@ -251817,6 +253730,18 @@
         "type": "stored-blob",
         "sha256": "007f822de0994ae9d0498485579eeeb59e86c34fd54e33c4e497ccd6b9a7d9c3",
         "bytes": 322985
+      }
+    },
+    {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13465787393.html",
+      "url": "https://www.lazada.vn/products/pdp-i13465787393.html",
+      "observedAt": "2026-10-13T15:02:02.626Z",
+      "fetchedAt": 1791903722626,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "5b5889dd10b649428326412a61651322a759fe19af7114f649a66f93e509b788",
+        "bytes": 368969
       }
     },
     {
@@ -252672,6 +254597,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666820811.html",
+      "url": "https://www.lazada.vn/products/pdp-i2666820811.html",
+      "observedAt": "2026-10-13T14:50:46.007Z",
+      "fetchedAt": 1791903046007,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "e1ee93131fb5d0e306d699487a9e8e27b358e431d491b86275d5a6b5f9cabf6e",
+        "bytes": 323444
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i2666974114.html",
       "url": "https://www.lazada.vn/products/pdp-i2666974114.html",
       "observedAt": "2026-10-10T19:12:07.981Z",
@@ -253065,6 +255002,18 @@
         "type": "stored-blob",
         "sha256": "ca26393ebd0afeaf63a3257c4932e82333c511d27b97b10c46e2ad2710d27515",
         "bytes": 339970
+      }
+    },
+    {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i3275798306.html",
+      "url": "https://www.lazada.vn/products/pdp-i3275798306.html",
+      "observedAt": "2026-10-13T14:51:45.992Z",
+      "fetchedAt": 1791903105992,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "114dc9bc7967b4885cbea940f18c61c5b07fc0a3597feb91b4b47c0b22629e37",
+        "bytes": 328406
       }
     },
     {
