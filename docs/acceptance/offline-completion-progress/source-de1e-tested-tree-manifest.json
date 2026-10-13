@@ -1,0 +1,2486 @@
+{
+  "sourceCommit": "de1e18e3a9426417bd7f7e88070a0d3dc24c6d73",
+  "testedMerge": "92806e14fbc21981a21d2dcc3b5197569096ae0c",
+  "files": [
+    {
+      "path": ".github/actions/publish-dockerhub/action.yml",
+      "gitBlobSha": "ae70008cca3c60bccead2847423971cba3ab34a1"
+    },
+    {
+      "path": ".github/actions/setup-buildx-resilient/action.yml",
+      "gitBlobSha": "375a1f7e951b7a267e447754cf9b7d87e03c3469"
+    },
+    {
+      "path": ".github/codeql/codeql-config.yml",
+      "gitBlobSha": "05148d34fea086151f6ca2554ceb39588b0d58cb"
+    },
+    {
+      "path": ".github/workflows/example-app.yml",
+      "gitBlobSha": "003d4bbd2ec7a551cac0cda098227616a95b46f6"
+    },
+    {
+      "path": ".github/workflows/lazada-e2e.yml",
+      "gitBlobSha": "6166b3fcf943f7bcccc27032bf345142539e6b99"
+    },
+    {
+      "path": ".github/workflows/links.yml",
+      "gitBlobSha": "eaeb00788429a5b037965f963d3f4df0857edd9d"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "gitBlobSha": "66925bc1c2f6d4c949db23fdc57e2b40ed5fa282"
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "gitBlobSha": "a41cc693d28c1a3c30a0aa0ad4991bf6063d0ca4"
+    },
+    {
+      "path": ".github/workflows/workflows.yml",
+      "gitBlobSha": "5e16272e5f574d37370321bf4c3103d424dccf62"
+    },
+    {
+      "path": ".github/zizmor.yml",
+      "gitBlobSha": "62ffd9c7963425f3112d5258e1804dc08313eb3f"
+    },
+    {
+      "path": ".jscpd.json",
+      "gitBlobSha": "e5485e9229a732da5a0372c372b2670da97d2a4b"
+    },
+    {
+      "path": "deno.json",
+      "gitBlobSha": "3d0a5166db15f243af525a077adef72734ee62f5"
+    },
+    {
+      "path": "deno.lock",
+      "gitBlobSha": "af0394de801108a50f5f79e6ac07571730fe16c3"
+    },
+    {
+      "path": "eslint.config.js",
+      "gitBlobSha": "0e20945adef0b17ce2fe45c4864be46db9655a52"
+    },
+    {
+      "path": "package-lock.json",
+      "gitBlobSha": "89991c657af41f48850e08cd3844ee51d8430fb6"
+    },
+    {
+      "path": "package.json",
+      "gitBlobSha": "9c53f357aa84ff19026392efd8d624bebf602031"
+    },
+    {
+      "path": "scripts/account-backlog-order.mjs",
+      "gitBlobSha": "1ac5a5f847e8907d4bc4f4769a3ddab2833171ab"
+    },
+    {
+      "path": "scripts/account-case-workflow.mjs",
+      "gitBlobSha": "cb1413c07443ec5885de96a27af98ed76c2999ef"
+    },
+    {
+      "path": "scripts/account-category-scope.mjs",
+      "gitBlobSha": "b8fd7abcc7633b2d7a5ccae6571a1440e4343ecf"
+    },
+    {
+      "path": "scripts/account-collection-attempts.mjs",
+      "gitBlobSha": "fc0d129d93d1691684932d38cb602efe098e4aeb"
+    },
+    {
+      "path": "scripts/apply-selected-package-corrections.mjs",
+      "gitBlobSha": "fe9e9f48fd7e3c2b4661e2cf10239bb088fa6694"
+    },
+    {
+      "path": "scripts/archive-case.mjs",
+      "gitBlobSha": "4c4647f189094d2be797397603a921a2cdf070ed"
+    },
+    {
+      "path": "scripts/archive-decimal-ocr.mjs",
+      "gitBlobSha": "a1cdb8825994a529812804e1f7676a890086b6ff"
+    },
+    {
+      "path": "scripts/archive-ice-current-primary-followup.mjs",
+      "gitBlobSha": "c01da3083d5f300257552159e9552b809c8be094"
+    },
+    {
+      "path": "scripts/archive-ice-label-followup.mjs",
+      "gitBlobSha": "32766022806e3f9c6a60b12ff8ccbe65a749f3cb"
+    },
+    {
+      "path": "scripts/archive-ice-research.mjs",
+      "gitBlobSha": "f0d4135758588fc25c3e46635f0893325cd0576f"
+    },
+    {
+      "path": "scripts/archive-manufacturer-challenge.mjs",
+      "gitBlobSha": "dc3cb03eea275b9b3b1663e5c604696bb4ecbebf"
+    },
+    {
+      "path": "scripts/archive-manufacturer-research.mjs",
+      "gitBlobSha": "d406f99af277e49f67fc47189be0d4952b01eade"
+    },
+    {
+      "path": "scripts/archive-source-research.mjs",
+      "gitBlobSha": "f86cebf110f4e8c16b841ae390feddca1b4ad784"
+    },
+    {
+      "path": "scripts/audit-cached-catalog.mjs",
+      "gitBlobSha": "52f10578c4f4bdc4b5c4a2b9ac23b5c77b104ba7"
+    },
+    {
+      "path": "scripts/audit-case-requirements.mjs",
+      "gitBlobSha": "13b5a6a82b95f831c78c690dc776c3ce8ed158dc"
+    },
+    {
+      "path": "scripts/audit-current-offer-sources.mjs",
+      "gitBlobSha": "9aab95d84f599ad20061e3a0c83d98e2916a159b"
+    },
+    {
+      "path": "scripts/audit-deadline-unit-costs.mjs",
+      "gitBlobSha": "34dee1dd0c4f178117449b3f4fdf1cd40a8dc0cc"
+    },
+    {
+      "path": "scripts/audit-ice-unit-completeness.mjs",
+      "gitBlobSha": "b2c0f2ad01976a944176e38ef084c2ffe63de676"
+    },
+    {
+      "path": "scripts/audit-report-order.mjs",
+      "gitBlobSha": "984fa5036382aac9d73139cb89325561a73554a4"
+    },
+    {
+      "path": "scripts/audit-saved-extraction.mjs",
+      "gitBlobSha": "ced7dd668a51bfdcaf5bcc13fb16ed47e0453294"
+    },
+    {
+      "path": "scripts/audit-variant-selections.mjs",
+      "gitBlobSha": "eb0742ec6cc7a1c8882c22ba497b5a272948e9a6"
+    },
+    {
+      "path": "scripts/audit-whey-handpicked.py",
+      "gitBlobSha": "59220601cf5a1babd3734a9584935b0568c3da43"
+    },
+    {
+      "path": "scripts/bootstrap-dependencies.mjs",
+      "gitBlobSha": "76406d821b342d6a9bf9afb38454746ba6d23a68"
+    },
+    {
+      "path": "scripts/cache-expanded-ice-sources.mjs",
+      "gitBlobSha": "83022c9d180efbc8f55cd1fc5144436977ef8d80"
+    },
+    {
+      "path": "scripts/cache-handpicked-list.mjs",
+      "gitBlobSha": "4862edb2c164d36356b817b0654a29d65e72c291"
+    },
+    {
+      "path": "scripts/cache-manufacturer-labels.mjs",
+      "gitBlobSha": "0a5d6614153b3fe25121225348193f5b4bba96ff"
+    },
+    {
+      "path": "scripts/cache-official-pages.mjs",
+      "gitBlobSha": "185dc645d71e51d37c8ba7925c2860decb47c579"
+    },
+    {
+      "path": "scripts/catalog-markdown-pages.mjs",
+      "gitBlobSha": "c928a433994a78281dfc09d7820cc3ae5fbf309f"
+    },
+    {
+      "path": "scripts/changeset-version.mjs",
+      "gitBlobSha": "ab6a31fababa8f8cc6b91e0c9ad463df5d88d346"
+    },
+    {
+      "path": "scripts/check-changesets.mjs",
+      "gitBlobSha": "30c0025a9dc708f3493b1f4c224c178a751669c9"
+    },
+    {
+      "path": "scripts/check-ci-workflows.mjs",
+      "gitBlobSha": "4ce8dc3810b14ee5dfc79d3d678ecb99d0261c9d"
+    },
+    {
+      "path": "scripts/check-docker-build.mjs",
+      "gitBlobSha": "59f39e0d4efd7ca40a39ea8c4fd7b6e261a8b01e"
+    },
+    {
+      "path": "scripts/check-docker-publish.mjs",
+      "gitBlobSha": "e2793f140c2302c7ee811238dfa59b52a3655911"
+    },
+    {
+      "path": "scripts/check-file-line-limits.sh",
+      "gitBlobSha": "0979d27f20d0b6718039c9f75d77c4f2a216bc6d"
+    },
+    {
+      "path": "scripts/check-mjs-syntax.sh",
+      "gitBlobSha": "8982bb1b08906a978451e762f440b0267e80f492"
+    },
+    {
+      "path": "scripts/check-package-manager.mjs",
+      "gitBlobSha": "f0d0e49bb5ad7901c79d30e09b07b77468534919"
+    },
+    {
+      "path": "scripts/check-pipeline-status.sh",
+      "gitBlobSha": "8ada1f6e229edaf85b015c66b0f4365b56746cb0"
+    },
+    {
+      "path": "scripts/check-release-needed.mjs",
+      "gitBlobSha": "4e3e6c7d45628226939d2c4ecc61897ee7eafa50"
+    },
+    {
+      "path": "scripts/check-required-docs.sh",
+      "gitBlobSha": "b099b07d23dad405aa6927d1c73dde8faa6ac8fd"
+    },
+    {
+      "path": "scripts/check-staged-formatting.mjs",
+      "gitBlobSha": "d22ff2c0a49af834f50e7ab0cbb6cd12ad611d51"
+    },
+    {
+      "path": "scripts/check-status-gate-covers-all-jobs.mjs",
+      "gitBlobSha": "76925c834167c7d851ebd1672c5eb503c25f7395"
+    },
+    {
+      "path": "scripts/check-version.mjs",
+      "gitBlobSha": "3a9bd1e183814099dd4c5b434c485954d2c22249"
+    },
+    {
+      "path": "scripts/check-web-archive.mjs",
+      "gitBlobSha": "2b4a68e61aa81c1e0dbf3eceef620f0e2ab17965"
+    },
+    {
+      "path": "scripts/collect-account-backlog.mjs",
+      "gitBlobSha": "eb9112ad54da0d28462033aba141ea5c1cf8826a"
+    },
+    {
+      "path": "scripts/collect-account-case.mjs",
+      "gitBlobSha": "b2e48fb108cd57c3aa8bce5978c6f8bf59e9f5dd"
+    },
+    {
+      "path": "scripts/collect-account-discovery.mjs",
+      "gitBlobSha": "25ef38adea99904dcef83305fc0a51a7dbe587ed"
+    },
+    {
+      "path": "scripts/collect-expanded-ice.mjs",
+      "gitBlobSha": "4992c25f463105c456f389b00c49a3afaf2876c1"
+    },
+    {
+      "path": "scripts/collect-handpicked.mjs",
+      "gitBlobSha": "2e4ab78d1e9cfea38df813e075b8abe71dcc10a3"
+    },
+    {
+      "path": "scripts/collect-manufacturer-research.mjs",
+      "gitBlobSha": "c5aa6c97361e123a1eeb90dfba4e552f1b38e153"
+    },
+    {
+      "path": "scripts/collect-manufacturer-sources.mjs",
+      "gitBlobSha": "5c89406377141104db2900e56591d6a9ce392d41"
+    },
+    {
+      "path": "scripts/collect-priority-quote.mjs",
+      "gitBlobSha": "e0e304fa88466440982312ae788077d9ed7416f4"
+    },
+    {
+      "path": "scripts/collect-promotions.mjs",
+      "gitBlobSha": "d4bcaa34b7e0b625abb23e61dff0eea93229c46a"
+    },
+    {
+      "path": "scripts/collection-checkpoint.mjs",
+      "gitBlobSha": "b43cf9008bebb3a127cf50fa69cdbe46c072a459"
+    },
+    {
+      "path": "scripts/create-github-release.mjs",
+      "gitBlobSha": "748efecf31e3eb92b2a437a3bb9964296d5c0862"
+    },
+    {
+      "path": "scripts/create-manual-changeset.mjs",
+      "gitBlobSha": "a2531d12ebe4de400978a1eb4829d5ce355ef6a5"
+    },
+    {
+      "path": "scripts/deadline-report-costs.mjs",
+      "gitBlobSha": "fcff835e823bd42228d50e3224a5f5e32591da2e"
+    },
+    {
+      "path": "scripts/debug-print.mjs",
+      "gitBlobSha": "53b2764cce14c73e0d53000188237e5ce8cc6f0d"
+    },
+    {
+      "path": "scripts/detect-code-changes.mjs",
+      "gitBlobSha": "0ab2f6a5fc6445a3d576de8f88a0576dad751807"
+    },
+    {
+      "path": "scripts/export-catalog-tables.mjs",
+      "gitBlobSha": "127a18c5ac771101ad81dc146c4ef1d4d392c0e9"
+    },
+    {
+      "path": "scripts/export-deadline-report.mjs",
+      "gitBlobSha": "2cb61deb47e2e00ec8a06ed5a43d1b65ce1bb663"
+    },
+    {
+      "path": "scripts/export-handpicked-report.mjs",
+      "gitBlobSha": "50863c1603da2a02ed74c26e6ae744bea726878f"
+    },
+    {
+      "path": "scripts/export-ice-unit-report.mjs",
+      "gitBlobSha": "130e8c209134e0643313dfe704192ca39c98c67f"
+    },
+    {
+      "path": "scripts/export-public-fixtures.mjs",
+      "gitBlobSha": "46ca715e5e6e17e3e8d82f0091ae32a95535fd77"
+    },
+    {
+      "path": "scripts/export-shopping-shortlist.mjs",
+      "gitBlobSha": "af657145dd97107c0b6ff05ce08e8db7ed6d5810"
+    },
+    {
+      "path": "scripts/export-whey-verification-worklist.mjs",
+      "gitBlobSha": "7287d86d1fb705c55493b4321b82e0a6085c5bf6"
+    },
+    {
+      "path": "scripts/format-github-release.mjs",
+      "gitBlobSha": "cd140e28cb7729f881fd4a511bf550fddf79fa82"
+    },
+    {
+      "path": "scripts/format-release-notes-helpers.mjs",
+      "gitBlobSha": "6f930bbb9e4881491fadf765c4eaaa20bb63750d"
+    },
+    {
+      "path": "scripts/format-release-notes.mjs",
+      "gitBlobSha": "c5844c8b2d83d060117d017d66035dd64ea76682"
+    },
+    {
+      "path": "scripts/github-actions-log.mjs",
+      "gitBlobSha": "d90597feb62e70bef29485e75b2a0d98a626ea42"
+    },
+    {
+      "path": "scripts/github-release-state.mjs",
+      "gitBlobSha": "d5d4ba0bb5230a330708a93c3dec985f0ab04cb2"
+    },
+    {
+      "path": "scripts/ice-unit-rankings.mjs",
+      "gitBlobSha": "1ad1361b3194356a2ad8f577471e3ac220a76df9"
+    },
+    {
+      "path": "scripts/install-git-hooks.mjs",
+      "gitBlobSha": "0c486f810cab5a8590dc1dd3b7bf1410120c04f4"
+    },
+    {
+      "path": "scripts/instant-version-bump.mjs",
+      "gitBlobSha": "b1d6b85a7a6fdd6ae449b5811be65c3187fadc97"
+    },
+    {
+      "path": "scripts/js-paths.mjs",
+      "gitBlobSha": "2f2534516b91aee79a6de039d15dfb21d5445dc4"
+    },
+    {
+      "path": "scripts/land-via-pull-request.mjs",
+      "gitBlobSha": "f48a67b9a981291a4978bdda6afb97c8e80d1674"
+    },
+    {
+      "path": "scripts/lint-changed-lines.mjs",
+      "gitBlobSha": "8b925d08bea2d63b69c26493ec5443d80de0ad4c"
+    },
+    {
+      "path": "scripts/lint.mjs",
+      "gitBlobSha": "9c8ae0c29c992054969b1540394be3033186e52c"
+    },
+    {
+      "path": "scripts/live-acceptance.mjs",
+      "gitBlobSha": "c360016d2ebf2fa76cee1bebb1cddbbf61c5c981"
+    },
+    {
+      "path": "scripts/merge-changesets.mjs",
+      "gitBlobSha": "6c40c4347c6d6f040b50656409a700d0b5117d62"
+    },
+    {
+      "path": "scripts/npm-registry.mjs",
+      "gitBlobSha": "57bd9398eaeee5767a21b076209b2bd1b219fd96"
+    },
+    {
+      "path": "scripts/package-info.mjs",
+      "gitBlobSha": "93d5aa84ebf9f68437e75e175d442d8f41e8ac18"
+    },
+    {
+      "path": "scripts/patch-lino-large-documents.mjs",
+      "gitBlobSha": "1d808ea8ea42fd28d54c5232a4f1d1dc4a3cc4cf"
+    },
+    {
+      "path": "scripts/pr-comparison.mjs",
+      "gitBlobSha": "52309c80ec8faf9a292bb8b356517125a993ef06"
+    },
+    {
+      "path": "scripts/preflight-credentials.sh",
+      "gitBlobSha": "b2f6632ec7223d21aa2bcce5dd89459c8e9b6046"
+    },
+    {
+      "path": "scripts/promotion-report.mjs",
+      "gitBlobSha": "73c511ba2ccd510f392cad36f44b4d6040945708"
+    },
+    {
+      "path": "scripts/publish-account-captures.mjs",
+      "gitBlobSha": "b82db34d9ddb95f9b9837c601cc3ea160043e932"
+    },
+    {
+      "path": "scripts/publish-account-discovery.mjs",
+      "gitBlobSha": "c78261cdd733a1e8bf93658ea3e6cf37ff1704c8"
+    },
+    {
+      "path": "scripts/publish-collection-checkpoint.mjs",
+      "gitBlobSha": "b44f5d5485dbad48b39f60a1afb7eb4bf5479647"
+    },
+    {
+      "path": "scripts/publish-expanded-ice.mjs",
+      "gitBlobSha": "943f2f0e426c6aa1cc3082a92aa746a96c7c3c15"
+    },
+    {
+      "path": "scripts/publish-failure-classifier.mjs",
+      "gitBlobSha": "cbd818a71cd03418a826e1e875b77c7f40a7c7f5"
+    },
+    {
+      "path": "scripts/publish-retry.mjs",
+      "gitBlobSha": "8bd0fe3f41116c2e9870e95ec487c5f4c5427ba8"
+    },
+    {
+      "path": "scripts/publish-to-npm.mjs",
+      "gitBlobSha": "0e564419a63ccc8dfb743b1ff5de1aebd2e9970e"
+    },
+    {
+      "path": "scripts/push-failure-classifier.mjs",
+      "gitBlobSha": "024470413d8dc50dc08880446fe9b66f6a6c9eb7"
+    },
+    {
+      "path": "scripts/push-main-with-rebase-retry.mjs",
+      "gitBlobSha": "c3a68eaf91ad17c2f2793beeec6f15b60e158a9b"
+    },
+    {
+      "path": "scripts/read-job-cancel-in-progress.sh",
+      "gitBlobSha": "bbc3598cb47086b9f2efc62dc1eb63bca1203f78"
+    },
+    {
+      "path": "scripts/recheck-broken-links.mjs",
+      "gitBlobSha": "d84075f32fbf25ea56017fb29e45bd8a3d35d279"
+    },
+    {
+      "path": "scripts/release-metadata.mjs",
+      "gitBlobSha": "dda48a4e2f56e88524dd0847cdf91cccaa2e260e"
+    },
+    {
+      "path": "scripts/release-naming.mjs",
+      "gitBlobSha": "50cbac339b5c6f2a60766b93c7ac217fd2528bd4"
+    },
+    {
+      "path": "scripts/replay-package-volume-reviews.mjs",
+      "gitBlobSha": "652927c5c063da56fa49d3518eed520cd36d8215"
+    },
+    {
+      "path": "scripts/report-unit-costs.mjs",
+      "gitBlobSha": "2654bb5f0a0aaaba14017d55aeebd2ffdf1b5587"
+    },
+    {
+      "path": "scripts/reprocess-public-captures.mjs",
+      "gitBlobSha": "33865b5cc0dcf9db22c91e83c79eeed93696a1bc"
+    },
+    {
+      "path": "scripts/requirement-audit-gates.mjs",
+      "gitBlobSha": "4d2f3328b833858ce386d99641090173d9480a0c"
+    },
+    {
+      "path": "scripts/review-cached-container-mass.mjs",
+      "gitBlobSha": "570195d0cd1e4e217069e0a001c097b3b9c46156"
+    },
+    {
+      "path": "scripts/review-cached-ice-quantities.mjs",
+      "gitBlobSha": "15b08b29219534c42a687001782b6a771a13d202"
+    },
+    {
+      "path": "scripts/review-cached-ice-selling-unit.mjs",
+      "gitBlobSha": "537337f28d3475856ee0c26834be903c2bd5fb0d"
+    },
+    {
+      "path": "scripts/review-handpicked-selling-mass.mjs",
+      "gitBlobSha": "598ec7a4ed0ed693bfbcc754e9260a1cd7d7ff5c"
+    },
+    {
+      "path": "scripts/review-prosupps-mass.mjs",
+      "gitBlobSha": "abf0ebe6783b7756e3a279f6475e9a8a6ee6f154"
+    },
+    {
+      "path": "scripts/review-top10-ice-categories.mjs",
+      "gitBlobSha": "4ce7c7b3a7596b189b7687ab6b387af0ad8b71fa"
+    },
+    {
+      "path": "scripts/run-command.mjs",
+      "gitBlobSha": "4fac0033e700f78f5f9888f5d371bae936687363"
+    },
+    {
+      "path": "scripts/run-with-budget-warning.sh",
+      "gitBlobSha": "e52a91ce31fa0e8b52283bb9802ea9446718da5a"
+    },
+    {
+      "path": "scripts/sanitize-npm-userconfig.mjs",
+      "gitBlobSha": "b344a25c1c543176af72fd0b75c227ec1cc512f8"
+    },
+    {
+      "path": "scripts/setup-npm.mjs",
+      "gitBlobSha": "7a05bc43805c676f9e7fafcbc8307b1e1bc8d1e1"
+    },
+    {
+      "path": "scripts/simulate-fresh-merge.sh",
+      "gitBlobSha": "c6c9220100f993a69fe6e19e27d9ab344cb04283"
+    },
+    {
+      "path": "scripts/smoke-test-package.mjs",
+      "gitBlobSha": "1970e3561ce2826b10f625563c2eb2a78093c032"
+    },
+    {
+      "path": "scripts/update-preview-images.mjs",
+      "gitBlobSha": "3b45e0d0343fb7b64a1264e6dca552527263482b"
+    },
+    {
+      "path": "scripts/urgent-discounts-shortlist.mjs",
+      "gitBlobSha": "2712d3b600d73ee46b4a5f61a918c8de7599b439"
+    },
+    {
+      "path": "scripts/urgent-discounts-validate.mjs",
+      "gitBlobSha": "36aad1ffe441cf6c3995afbcae3fc9e4f4acff4b"
+    },
+    {
+      "path": "scripts/urgent-extraction-audit.mjs",
+      "gitBlobSha": "9d21fbd225b0b0d866779216215143179e90b3da"
+    },
+    {
+      "path": "scripts/urgent-extraction-reprocess-ingredients.mjs",
+      "gitBlobSha": "f3a22a1abe809d3134f92dcae699a2eff674b130"
+    },
+    {
+      "path": "scripts/urgent-extraction-reprocess-musa.mjs",
+      "gitBlobSha": "9c27d28ae1e9350024f9c247385871816a8802c6"
+    },
+    {
+      "path": "scripts/urgent-extraction-reprocess-remaining.mjs",
+      "gitBlobSha": "3c346ca987d4ebb109cd325aa9485748ecc5d593"
+    },
+    {
+      "path": "scripts/urgent-extraction-reprocess-seeq-public.mjs",
+      "gitBlobSha": "92ee35745b266345de2641aaae993d9b2c9e0ca3"
+    },
+    {
+      "path": "scripts/urgent-icecream-apply-quarantine.mjs",
+      "gitBlobSha": "e72764220aa156a892db3a3ae4b6041cf14adb06"
+    },
+    {
+      "path": "scripts/urgent-icecream-labels.mjs",
+      "gitBlobSha": "ad288deec0b9b22dec82decf4944a3f3b683ffa1"
+    },
+    {
+      "path": "scripts/urgent-icecream-report.mjs",
+      "gitBlobSha": "1f175e8e877453d923c170bf6fda3aa0d4906d6c"
+    },
+    {
+      "path": "scripts/urgent-icecream-sources.mjs",
+      "gitBlobSha": "d150f29a54c3e3f70431e6f3f444554a46b5119b"
+    },
+    {
+      "path": "scripts/urgent-icecream-targeted-evidence.mjs",
+      "gitBlobSha": "c04e1604d1a02e530f0402565372e787578cb025"
+    },
+    {
+      "path": "scripts/urgent-whey-candidate-gaps.mjs",
+      "gitBlobSha": "cc10ac1def1a0f7b9d942c02b9e7421eb27154cf"
+    },
+    {
+      "path": "scripts/urgent-whey-cgn-review.mjs",
+      "gitBlobSha": "cfa17cd1084c8aee565b3e8f700be4783a385ddb"
+    },
+    {
+      "path": "scripts/urgent-whey-cgn-sources.mjs",
+      "gitBlobSha": "629315d1d2bedcab7c4406ea6d3110a2d336f969"
+    },
+    {
+      "path": "scripts/urgent-whey-factory-lead-sources.mjs",
+      "gitBlobSha": "8c601b80855dfd65a9b1491ab4532d340886bc4e"
+    },
+    {
+      "path": "scripts/urgent-whey-low-price-audit.mjs",
+      "gitBlobSha": "f87bcc41b24f2ca36c10b000620eb4a7a8b87474"
+    },
+    {
+      "path": "scripts/urgent-whey-low-price-sources.mjs",
+      "gitBlobSha": "3739574e18e76cea3afbc15e7a5932341e6d4926"
+    },
+    {
+      "path": "scripts/urgent-whey-review.mjs",
+      "gitBlobSha": "8b652f6ce35a52d1e3fb5b08adbcad9408901e2b"
+    },
+    {
+      "path": "scripts/urgent-whey-selected-brand-review.mjs",
+      "gitBlobSha": "c081341cb59d9853b48e1f5cbbb1a2bab332a08a"
+    },
+    {
+      "path": "scripts/urgent-whey-seller-mass-review.mjs",
+      "gitBlobSha": "37f898a60cfc65696de3157d83448d85912d1f8d"
+    },
+    {
+      "path": "scripts/use-module.mjs",
+      "gitBlobSha": "597158e00e2ffa7bf76949c72a3b087281bf934e"
+    },
+    {
+      "path": "scripts/validate-changeset.mjs",
+      "gitBlobSha": "bf837d86bb7433024da135e2f6ec6eee4a9cbb7e"
+    },
+    {
+      "path": "scripts/version-and-commit.mjs",
+      "gitBlobSha": "606ae688a80ced3254dc223c7706a97a20714925"
+    },
+    {
+      "path": "scripts/wait-for-npm.mjs",
+      "gitBlobSha": "89e303a21cb6e96f221839c24fc97705fe158d8e"
+    },
+    {
+      "path": "src/application.js",
+      "gitBlobSha": "e07243d296739e13288aa55a28b7c53006cf0dda"
+    },
+    {
+      "path": "src/archive.js",
+      "gitBlobSha": "a78442f1e9221d68a6bfc4c5db9d87ac085d424a"
+    },
+    {
+      "path": "src/availability.js",
+      "gitBlobSha": "c1918dc9a4041a675ed351ab0b124f19650aefba"
+    },
+    {
+      "path": "src/basket-comparison.js",
+      "gitBlobSha": "ea2d7d4dbfdff0bc21299cb2f54bed8045a134c5"
+    },
+    {
+      "path": "src/basket-original.js",
+      "gitBlobSha": "660748c698af54b78485a3e30fbba02b2430d5bb"
+    },
+    {
+      "path": "src/basket-quote.js",
+      "gitBlobSha": "0a07087ca05d12de2678c8124e731dd601f5a950"
+    },
+    {
+      "path": "src/blob-publication.js",
+      "gitBlobSha": "d9f69d846643b4c207d44d9c7b728b79170f2d07"
+    },
+    {
+      "path": "src/blob-reference.js",
+      "gitBlobSha": "19b3de8bbb6252cb88c68d67f881b36e9d5ee523"
+    },
+    {
+      "path": "src/browser-challenge-handoff.js",
+      "gitBlobSha": "76001fa667a3e9ccd526f444ffda003654c97393"
+    },
+    {
+      "path": "src/browser-connection.js",
+      "gitBlobSha": "57b51a350f40dcff13becede80d400a995999512"
+    },
+    {
+      "path": "src/browser-image-cache.js",
+      "gitBlobSha": "3e707f2bfef3d6d9d058c9d1da1159c678a71313"
+    },
+    {
+      "path": "src/browser-pacing.js",
+      "gitBlobSha": "6e22be212096b67160af247fc9f8ed061bd85d2f"
+    },
+    {
+      "path": "src/browser-variant.js",
+      "gitBlobSha": "81e2d28d6780ede2cca4f1c3fcc6e2a73ed2a791"
+    },
+    {
+      "path": "src/browser.js",
+      "gitBlobSha": "ef61050f06743745a5832a52a25cbb719612237e"
+    },
+    {
+      "path": "src/cache.js",
+      "gitBlobSha": "1358355afe9369802a4a05c11cdf98f91d115a3e"
+    },
+    {
+      "path": "src/capture-import.js",
+      "gitBlobSha": "4af95f2c0e841bb1de9dbf46c781eef21373aba4"
+    },
+    {
+      "path": "src/captured-offer-gates.js",
+      "gitBlobSha": "9a7c7e5282b4d14dc81c1e65bfc10c34f91cfb5b"
+    },
+    {
+      "path": "src/captured-offer-original.js",
+      "gitBlobSha": "d42e1ac5736b2badd0b52195bffae22dc4a68b0f"
+    },
+    {
+      "path": "src/case-coverage.js",
+      "gitBlobSha": "fb2df464253f8e54c1262073b1cb8b7661671ceb"
+    },
+    {
+      "path": "src/case-evidence-gates.js",
+      "gitBlobSha": "b2c9f162f4b41b36ed13bde1951985e79851e445"
+    },
+    {
+      "path": "src/case-readiness.js",
+      "gitBlobSha": "10716edad08c53a40d782e59e52f4219f13b9d98"
+    },
+    {
+      "path": "src/case-workflow-lock.js",
+      "gitBlobSha": "454ec92160fa919f9ae6a04baeee58dfe475940a"
+    },
+    {
+      "path": "src/case-workflow.js",
+      "gitBlobSha": "cd79989272698f99d35f48f7109d057e53e29f16"
+    },
+    {
+      "path": "src/case-worklist.js",
+      "gitBlobSha": "76912d2978f68d97359fa77f30c3ece71c67532b"
+    },
+    {
+      "path": "src/catalog-products.js",
+      "gitBlobSha": "8f02fb9d7acb70b2b4e2f968d41d15a002246924"
+    },
+    {
+      "path": "src/category-review.js",
+      "gitBlobSha": "ea8bcf998e838630ebc942948fc8723b5d3e5c9c"
+    },
+    {
+      "path": "src/checkout-scenarios.js",
+      "gitBlobSha": "52e757793f69df7a6a19ff5778483eed134470eb"
+    },
+    {
+      "path": "src/collection-review-replay.js",
+      "gitBlobSha": "a877948d6d75dfafcaefbcaf6ce746267e0ef39d"
+    },
+    {
+      "path": "src/collection-scope.js",
+      "gitBlobSha": "675a2475bde04ea6edbabfcaf287e2b8da19ec06"
+    },
+    {
+      "path": "src/collection-source-replay.js",
+      "gitBlobSha": "c1f3df60523179848e25674bc8bcccb4301f072a"
+    },
+    {
+      "path": "src/commands.js",
+      "gitBlobSha": "0849b3887a43c19550dfba84ca804d9f49344e9b"
+    },
+    {
+      "path": "src/compare.js",
+      "gitBlobSha": "fff25fb85cdc3e528886779268f169aee286e577"
+    },
+    {
+      "path": "src/comparison-inputs.js",
+      "gitBlobSha": "7d85fa9c7ea092a09981e6aa710d73495e8063dc"
+    },
+    {
+      "path": "src/comparison-observations.js",
+      "gitBlobSha": "717e76e8716ce2e3e3f8b25a7e86da75847d8c83"
+    },
+    {
+      "path": "src/config.js",
+      "gitBlobSha": "610139cbea27f3bc35f586228a4a4545b1d5c7f3"
+    },
+    {
+      "path": "src/coverage.js",
+      "gitBlobSha": "954726edaacce0b844f24733c563ad401ac21b8c"
+    },
+    {
+      "path": "src/crawl.js",
+      "gitBlobSha": "0af61dcbff1b705cf866261bd77f4b3483d9b36f"
+    },
+    {
+      "path": "src/delivery-context.js",
+      "gitBlobSha": "095db7390b9f1817592e66f55d7c065709ad6880"
+    },
+    {
+      "path": "src/delivery.js",
+      "gitBlobSha": "41330167d158c3990c89cd86a9676a0c600ecb53"
+    },
+    {
+      "path": "src/discovery-publication-cache.js",
+      "gitBlobSha": "cd967d91eceaafff840afea5886d7f469450e4e6"
+    },
+    {
+      "path": "src/doublets.js",
+      "gitBlobSha": "d96b267c314c84dc1a384b4470580ab9583473e0"
+    },
+    {
+      "path": "src/flavour-scope.js",
+      "gitBlobSha": "a722ba8244a571604b7d7e601c156a8d6f8ed78d"
+    },
+    {
+      "path": "src/food-component-evidence.js",
+      "gitBlobSha": "4996d5321fb2c60ebe836df9cca91837166f5c13"
+    },
+    {
+      "path": "src/food-components.js",
+      "gitBlobSha": "ea488243e1f7726dad6a1828d204151e9184687b"
+    },
+    {
+      "path": "src/food-offer-discovery.js",
+      "gitBlobSha": "aa2d733ae2ba3a765e716d8b9a61baf6ea0df56e"
+    },
+    {
+      "path": "src/food-offer-source-basis.js",
+      "gitBlobSha": "35fd82b760d84d1589779a6db32007e5e2599e52"
+    },
+    {
+      "path": "src/handpicked-links.js",
+      "gitBlobSha": "f06f858e1a5d97cdc573e2f6b17212112d1b28ef"
+    },
+    {
+      "path": "src/historical-capture-replay.js",
+      "gitBlobSha": "a1ecf9d74401d3ebdb2ab504f1337eda663704c3"
+    },
+    {
+      "path": "src/http-operations.js",
+      "gitBlobSha": "a0defe500829232dd3a4953fbc0267d35b441d31"
+    },
+    {
+      "path": "src/image-source-request.js",
+      "gitBlobSha": "4c50ce8d8d93e7bb521585ee2407bac468fa5ef1"
+    },
+    {
+      "path": "src/index.d.ts",
+      "gitBlobSha": "90f1ecc4cb674dda3b58937dd4b71164dac5f7a1"
+    },
+    {
+      "path": "src/index.js",
+      "gitBlobSha": "1fe2c340d35a67afaedbf010af3825a603495312"
+    },
+    {
+      "path": "src/label-worklist.js",
+      "gitBlobSha": "77d4d6ca64570f42ab06f2fca390120079642973"
+    },
+    {
+      "path": "src/lazada-checkout-actions.js",
+      "gitBlobSha": "e708db87d1f22ad71fc438d6622d153e1f96f260"
+    },
+    {
+      "path": "src/lazada-checkout-adapter.js",
+      "gitBlobSha": "a8b268d7a70c5de4ed328e76707359d858a23d19"
+    },
+    {
+      "path": "src/lazada-checkout-capture.js",
+      "gitBlobSha": "86056e0b2cf152e1ddc19ee4acad029925b02b4b"
+    },
+    {
+      "path": "src/lazada-checkout-fields.js",
+      "gitBlobSha": "696d1a4bf68ce2856666ddfadb4037809c89923c"
+    },
+    {
+      "path": "src/lazada-checkout-gifts.js",
+      "gitBlobSha": "2b3822f641a3c83d1149bea0c96019beeb4591a4"
+    },
+    {
+      "path": "src/lazada-checkout-line-bindings.js",
+      "gitBlobSha": "d8f6677e14f285dc03aacdf52b70fd28faa20b35"
+    },
+    {
+      "path": "src/login.js",
+      "gitBlobSha": "b3db104410537bd75b3a5980ed609c454c747c97"
+    },
+    {
+      "path": "src/manufacturer-research.js",
+      "gitBlobSha": "c744313d82fbef2cb8f3370caf5b6176e0042242"
+    },
+    {
+      "path": "src/manufacturer-review.js",
+      "gitBlobSha": "4d00f96d1a2e1350ab11936251f1151e80459fe6"
+    },
+    {
+      "path": "src/manufacturer-source-cache.js",
+      "gitBlobSha": "0c3f53308260ccc2c9a1bb473cf2e187a46538e2"
+    },
+    {
+      "path": "src/manufacturer-source-validity.js",
+      "gitBlobSha": "3a8727bf8b0f54d652ab5ed6cf2451797e4cd572"
+    },
+    {
+      "path": "src/manufacturer-workflow-facts.js",
+      "gitBlobSha": "965279e2190bb9170114c826df1e243bbc954f80"
+    },
+    {
+      "path": "src/manufacturer-workflow-review.js",
+      "gitBlobSha": "9df55d4ca70ce6631c2d072ab3aa0825f3f34bc4"
+    },
+    {
+      "path": "src/manufacturer-workflow-search.js",
+      "gitBlobSha": "15427fdb97b0f10d8c1857777bc18a2da23334fa"
+    },
+    {
+      "path": "src/manufacturer-workflow.js",
+      "gitBlobSha": "bd9d46b397aadf63a4cc7113cd6c6c17b507571b"
+    },
+    {
+      "path": "src/manufacturers.js",
+      "gitBlobSha": "166873376ff26b5106f8db6d69326fe4e0b92b8c"
+    },
+    {
+      "path": "src/native-store.js",
+      "gitBlobSha": "018616fc01b01fe352d75f677accdd7dc93802b4"
+    },
+    {
+      "path": "src/nutrition.js",
+      "gitBlobSha": "56616833dcaa8aea6b4af7ef5e9af5a165560b3d"
+    },
+    {
+      "path": "src/ocr-evidence.js",
+      "gitBlobSha": "ec3dbbfdd8e89a45a819f203c5a414360593803c"
+    },
+    {
+      "path": "src/ocr-models.js",
+      "gitBlobSha": "5d57d7d68c500402c6fc91db0d4b1b27b65dcf7d"
+    },
+    {
+      "path": "src/ocr.js",
+      "gitBlobSha": "0b16f77c7599702bd6b5acdf2d4407b0744068ed"
+    },
+    {
+      "path": "src/operations.js",
+      "gitBlobSha": "f0dd1c2fbb23e7ea777266ee66e66d59673ba146"
+    },
+    {
+      "path": "src/package-artwork-consistency.js",
+      "gitBlobSha": "ceda82ff643959ee7cf6290b43b01275e3be8203"
+    },
+    {
+      "path": "src/package-image.js",
+      "gitBlobSha": "d00d0ae4452e6e392657494a6e81cf61e60f2e12"
+    },
+    {
+      "path": "src/package-mass-consistency.js",
+      "gitBlobSha": "f04ccb5087216c242798463462e5ae84fb4eb964"
+    },
+    {
+      "path": "src/package-quantity-review-evidence.js",
+      "gitBlobSha": "1ee13b2854e40058f1cc0e95f6c88b34d935422f"
+    },
+    {
+      "path": "src/package-quantity-review.js",
+      "gitBlobSha": "04396775ac82065949c0ed84328c465645d9904c"
+    },
+    {
+      "path": "src/package-quantity.js",
+      "gitBlobSha": "eb034a62acd93f933930ea4650d39d4dec5a9ba6"
+    },
+    {
+      "path": "src/page-capture.js",
+      "gitBlobSha": "98d5a934585ad4abf786042cc6809ccfad68c707"
+    },
+    {
+      "path": "src/page-challenge.js",
+      "gitBlobSha": "28d16923052028f433c4f2a79550b2fac5a668a1"
+    },
+    {
+      "path": "src/page-dialogs.js",
+      "gitBlobSha": "6756dcb13b39996cf7057ccc842c01a6f91ffbd9"
+    },
+    {
+      "path": "src/page-readiness.js",
+      "gitBlobSha": "95332aee0b3771ff20f133b8b0ad26092f21500d"
+    },
+    {
+      "path": "src/page-scroll.js",
+      "gitBlobSha": "d3a44fd0b3bcc4de20ba7abf948d0b8e3f1de13b"
+    },
+    {
+      "path": "src/persistent-browser-worker.js",
+      "gitBlobSha": "7ac42d06f6a8207832b80d864a3ee6bdd7a56e20"
+    },
+    {
+      "path": "src/persistent-browser.js",
+      "gitBlobSha": "9598fc0d311dbd1f9614c725dc82d2776c0405ff"
+    },
+    {
+      "path": "src/products.js",
+      "gitBlobSha": "2e5f88b44688ee9ca83a512c8833f71895dd9f49"
+    },
+    {
+      "path": "src/promotions.js",
+      "gitBlobSha": "dae9d2d78d1400bc124cef63fc5e0bad2507dc54"
+    },
+    {
+      "path": "src/protein-amount.js",
+      "gitBlobSha": "5816520ece4e2dc6e2a356d0fff6e23fb8609143"
+    },
+    {
+      "path": "src/public-captures.js",
+      "gitBlobSha": "a5aba6f0d6e7d3692f67599b795c43ff27393e51"
+    },
+    {
+      "path": "src/public-discovery.js",
+      "gitBlobSha": "d2eb0f263fda2c667749292274fa508ee6c5b6da"
+    },
+    {
+      "path": "src/publication-cache.js",
+      "gitBlobSha": "b7210c16111f7cce3ca821fa198977922a6acbf2"
+    },
+    {
+      "path": "src/requirement-draft-review.js",
+      "gitBlobSha": "7837c6fdcb55014f972b9da7d10eca5c1a1fdf4f"
+    },
+    {
+      "path": "src/requirement-registry.js",
+      "gitBlobSha": "daa3b03660fd8bd0406346b70b222acf69a12cbf"
+    },
+    {
+      "path": "src/reviewed-package-mass.js",
+      "gitBlobSha": "46710bf98658b7244c8361be4e0e79220f890184"
+    },
+    {
+      "path": "src/scope-decisions.js",
+      "gitBlobSha": "de0664b20a9ffa5bd8163984eaea30df861ca679"
+    },
+    {
+      "path": "src/server.js",
+      "gitBlobSha": "dbdba95ce13e0cc50ee39a02c5dae4530edfa3a6"
+    },
+    {
+      "path": "src/session.js",
+      "gitBlobSha": "634de9e6a7cc2efa5119466ed74bb64c232045d1"
+    },
+    {
+      "path": "src/shopping-report.js",
+      "gitBlobSha": "cf8d474a25dbb4dd6c45311f23806765bd21e49c"
+    },
+    {
+      "path": "src/source-challenge.js",
+      "gitBlobSha": "f3eeb53a4f0bafcaee725a3440ed8683750daac6"
+    },
+    {
+      "path": "src/source-invalidation.js",
+      "gitBlobSha": "ce6daf79cccc93267d978df53325dada1629fab5"
+    },
+    {
+      "path": "src/specification-holds.js",
+      "gitBlobSha": "5650a9a9d340c6dc2f90a7e8e709a3445051908e"
+    },
+    {
+      "path": "src/store-lock-directory.js",
+      "gitBlobSha": "177c129b9bf004c1363ec15a7eb71944e1e7965f"
+    },
+    {
+      "path": "src/store-projection.js",
+      "gitBlobSha": "311c327987dfd04b6f92fb40babdc47625e347aa"
+    },
+    {
+      "path": "src/store.js",
+      "gitBlobSha": "0f777244bbbeb308779e4b71f773e883d2eab1da"
+    },
+    {
+      "path": "src/target-category.js",
+      "gitBlobSha": "e26db298e8a775f4b15bbf6bdfadfbb250275640"
+    },
+    {
+      "path": "src/telegram.js",
+      "gitBlobSha": "51a342912f2949fee20b9481b25593177808f04c"
+    },
+    {
+      "path": "src/text.js",
+      "gitBlobSha": "c94ab1ac4afe03ade90ac8d1af26c82080105ac1"
+    },
+    {
+      "path": "src/translation-catalog.js",
+      "gitBlobSha": "007a4bf50eda8a1ef36cb6d0fb177b13db7ea1a9"
+    },
+    {
+      "path": "src/translation-presentation-chunks.js",
+      "gitBlobSha": "e8156d897b8b7cc698311500ec3fbf9d704ca371"
+    },
+    {
+      "path": "src/translation-presentation.js",
+      "gitBlobSha": "efa8e1d0d2fd5348c0d897c1995d36df6ea06d33"
+    },
+    {
+      "path": "src/translation-quality.js",
+      "gitBlobSha": "03f4d0e91f2c6c9d7afa4be39db66e375ea34088"
+    },
+    {
+      "path": "src/translation.js",
+      "gitBlobSha": "810bc260ff9edcd2de0f1f068e4284b97875e68d"
+    },
+    {
+      "path": "src/util.js",
+      "gitBlobSha": "e499ea6a1636a25b9e942dae6f91bbc7b0319b37"
+    },
+    {
+      "path": "src/values.js",
+      "gitBlobSha": "87e8e053141f7d13c05c2767f04567dd5715c302"
+    },
+    {
+      "path": "src/variant-policy.js",
+      "gitBlobSha": "e9cbc0a09a3a774101c611f888c3a3612e3c021b"
+    },
+    {
+      "path": "src/verification.js",
+      "gitBlobSha": "1ce98158e6a6cdc3e0eddc718bdaa392cc865a85"
+    },
+    {
+      "path": "src/web/app.css",
+      "gitBlobSha": "da31c47b00a4ac1457877a118bd798402ef5a04d"
+    },
+    {
+      "path": "src/web/app.js",
+      "gitBlobSha": "5a4d1cdf559bbdd8c0d9c9ef60484e81c4084118"
+    },
+    {
+      "path": "src/web/index.html",
+      "gitBlobSha": "a0b68de3ed97a73fff91fcc7b0291bee3465d852"
+    },
+    {
+      "path": "src/workflow-commands.js",
+      "gitBlobSha": "6a7b22cc60f2b52e7f2d54ed74697ef307707740"
+    },
+    {
+      "path": "src/workflow-operations.js",
+      "gitBlobSha": "35ff73af27a4ca4379231dfd173c857f4771e35e"
+    },
+    {
+      "path": "src/workflow-types.d.ts",
+      "gitBlobSha": "ffc1fbe3c4510ba62cfa0518f9baec3c80d46fc7"
+    },
+    {
+      "path": "tests/acceptance-corrections.test.js",
+      "gitBlobSha": "90104e2728557bedfc41a49bf788bac087b40bf7"
+    },
+    {
+      "path": "tests/account-backlog-order.test.js",
+      "gitBlobSha": "7400e2862e8e8e3f26ffa4cd508dbe1150aaa347"
+    },
+    {
+      "path": "tests/account-cache.test.js",
+      "gitBlobSha": "05bdf975f8265cac902a555d8eeac8dbe5f00e90"
+    },
+    {
+      "path": "tests/account-case-workflow.test.js",
+      "gitBlobSha": "a937c389b2f333e1e66c4dec67792d7518e86d9c"
+    },
+    {
+      "path": "tests/account-category-scope.test.js",
+      "gitBlobSha": "e01cc34c924da287dcbb0dd6d8b2ae19247369b7"
+    },
+    {
+      "path": "tests/account-collection-attempts.test.js",
+      "gitBlobSha": "acecf23d65e7ba63eab672ff41e1c7fd7e21dd84"
+    },
+    {
+      "path": "tests/archive-provenance.test.js",
+      "gitBlobSha": "9b0de23d043986a109cb5eddb240718a3fc23cc2"
+    },
+    {
+      "path": "tests/archive-refresh.test.js",
+      "gitBlobSha": "01a022377902338f8ee13a19475b14d3ab62d28e"
+    },
+    {
+      "path": "tests/archive-telemetry-redaction.test.js",
+      "gitBlobSha": "60593f7073c8affc7a248f0dc8a0e1ac1b9ec518"
+    },
+    {
+      "path": "tests/archive.test.js",
+      "gitBlobSha": "3136c47f960873ceb65af1c6b9a723e96597cf8f"
+    },
+    {
+      "path": "tests/atomic-write.test.js",
+      "gitBlobSha": "7e50223a9b8204723ccac151caa59bd815871696"
+    },
+    {
+      "path": "tests/availability.test.js",
+      "gitBlobSha": "3df77037aa9371f26ed2f101c338c2714fdd58f4"
+    },
+    {
+      "path": "tests/basket-quotes.test.js",
+      "gitBlobSha": "5706d069c5aa07bc09ba0b38e5b642bd9fadc4b5"
+    },
+    {
+      "path": "tests/basket-source-invalidations.test.js",
+      "gitBlobSha": "8fea9f3d948244190d7c0ffee659dc5520b50fdd"
+    },
+    {
+      "path": "tests/blob-publication.test.js",
+      "gitBlobSha": "a7d7681ad079988e4458886c7660e5509e7213cb"
+    },
+    {
+      "path": "tests/bonus-paid-mass-hold.test.js",
+      "gitBlobSha": "cab74028773a1d73f1feb31036e30d9bb632243d"
+    },
+    {
+      "path": "tests/bootstrap-dependencies.test.js",
+      "gitBlobSha": "a4705168ffff39455f368c9c74272e4219dc6cb4"
+    },
+    {
+      "path": "tests/bot-commit-attribution.test.js",
+      "gitBlobSha": "12ea1efe140dd47699b599ec321f08fee3419947"
+    },
+    {
+      "path": "tests/browser-challenge-handoff.test.js",
+      "gitBlobSha": "6f334880a827b5ee7de6d10c2c2811b597d3b91f"
+    },
+    {
+      "path": "tests/browser-connection.test.js",
+      "gitBlobSha": "0f09520f5302f440b3ae68c50b62e217694da49d"
+    },
+    {
+      "path": "tests/browser-image-cache.test.js",
+      "gitBlobSha": "8583ecc63fa6e44f3c67ac76f691a0aaef9db635"
+    },
+    {
+      "path": "tests/browser-import-review.test.js",
+      "gitBlobSha": "5a95225688daf95a5c29640e70789c6d6ac6ac6b"
+    },
+    {
+      "path": "tests/browser-pacing.test.js",
+      "gitBlobSha": "7e6d3df74545c9a6fd61c4cd0c1d123e706a3d03"
+    },
+    {
+      "path": "tests/cached-ice-selling-unit-review.test.js",
+      "gitBlobSha": "d843a7e6455975f627162f1b72c98b8b7a7e3c3a"
+    },
+    {
+      "path": "tests/case-checkout-replay.test.js",
+      "gitBlobSha": "d1418fc1bb5b561cd7e90d199377aaf78c00314b"
+    },
+    {
+      "path": "tests/case-original-invalidation.test.js",
+      "gitBlobSha": "2dd7efcdde81077a86d78e9e792167ee0cf88a1a"
+    },
+    {
+      "path": "tests/case-readiness-evidence.test.js",
+      "gitBlobSha": "814a08e82d02d33193cc269b2223c798ef747d94"
+    },
+    {
+      "path": "tests/case-workflow-draft.test.js",
+      "gitBlobSha": "09886b2e36f6658ac795df087a52f699e07cfebe"
+    },
+    {
+      "path": "tests/catalog-audit.test.js",
+      "gitBlobSha": "46edc165af6e1862fa7271834d704112afb91e79"
+    },
+    {
+      "path": "tests/catalog-markdown-pages.test.js",
+      "gitBlobSha": "a65dd039fd61329b18f638afc41f19cc87fda27e"
+    },
+    {
+      "path": "tests/catalog-products.test.js",
+      "gitBlobSha": "77f11b4254e8a372c6de8012598612660a276fbf"
+    },
+    {
+      "path": "tests/catalog-tables.test.js",
+      "gitBlobSha": "9c78ceb0d6cce2ddc7f3254c58d0d934a1d4f4e2"
+    },
+    {
+      "path": "tests/category-coverage.test.js",
+      "gitBlobSha": "6f54ad1efcc17c20dbebc2819ab3316307689add"
+    },
+    {
+      "path": "tests/category-discovery.test.js",
+      "gitBlobSha": "c70f46f1bcf2f61478d64f7dd8c85506106b908a"
+    },
+    {
+      "path": "tests/category-review.test.js",
+      "gitBlobSha": "58e51bd3a3369ba7c720e1f0b8ec35a49c52f69a"
+    },
+    {
+      "path": "tests/challenge-source-archive.test.js",
+      "gitBlobSha": "02972b88d7778c0774bf2a8f43864d46fb1132a4"
+    },
+    {
+      "path": "tests/changeset-config.test.js",
+      "gitBlobSha": "d97407abbbd14170899baae2cba0f5116cbd7914"
+    },
+    {
+      "path": "tests/check-changesets.test.js",
+      "gitBlobSha": "94d1e6272359d23e3091bcbd2b43d663f347cfc8"
+    },
+    {
+      "path": "tests/check-file-line-limits.test.js",
+      "gitBlobSha": "afec46a3aa3bdbb98af9640c9fdb64df8aac7fa5"
+    },
+    {
+      "path": "tests/check-release-needed.test.js",
+      "gitBlobSha": "c045dc264bb322fcfc172bae59f2e849da251d00"
+    },
+    {
+      "path": "tests/check-staged-formatting.test.js",
+      "gitBlobSha": "6c58b42a109faa831937e4bb47daddf3d42c138c"
+    },
+    {
+      "path": "tests/check-web-archive.test.js",
+      "gitBlobSha": "ea9f46452fd1748653beac1bb08a0258f676c6da"
+    },
+    {
+      "path": "tests/checkout-credentials.test.js",
+      "gitBlobSha": "ddf955c8ba0da9325b4419319065bb24d344b538"
+    },
+    {
+      "path": "tests/checkout-scenarios.test.js",
+      "gitBlobSha": "471979be9698f7d28f90ddf06f617a2f84d5644d"
+    },
+    {
+      "path": "tests/ci-timeouts.test.js",
+      "gitBlobSha": "377cc2157d450200f1ad93063686de33fdd56b40"
+    },
+    {
+      "path": "tests/ci-workflow-policy.test.js",
+      "gitBlobSha": "b8086b04d62eefe522a63a9559ec5980cb357f9b"
+    },
+    {
+      "path": "tests/collection-checkpoint-deferral.test.js",
+      "gitBlobSha": "5716f6f8201962f6cc6b7169440100fc85d72bba"
+    },
+    {
+      "path": "tests/collection-checkpoint.test.js",
+      "gitBlobSha": "5398de15e053624959f7b6db2803b8ea83694a49"
+    },
+    {
+      "path": "tests/collection-review-replay.test.js",
+      "gitBlobSha": "e64aee45b5e0e0055ced2b9ccdc1e89a1831658c"
+    },
+    {
+      "path": "tests/collection-source-replay.test.js",
+      "gitBlobSha": "e631752d1c94d3ef7f0ba10100a951acb0174115"
+    },
+    {
+      "path": "tests/commit-message.test.js",
+      "gitBlobSha": "5c1647611750af055d01a0eeeac73c2cb49c1cd9"
+    },
+    {
+      "path": "tests/comparison-observations.test.js",
+      "gitBlobSha": "8ba2d0e86e14a4b9069a942084b356dd31cf080a"
+    },
+    {
+      "path": "tests/configuration-line-endings.test.js",
+      "gitBlobSha": "591b82e97eb373372df7b098fb1f5df7b54afaae"
+    },
+    {
+      "path": "tests/create-github-release.test.js",
+      "gitBlobSha": "0078d90c9f4f63eddbed1ad422903567f7f1f1c0"
+    },
+    {
+      "path": "tests/deadline-report.test.js",
+      "gitBlobSha": "883df7482afa2bdf20c2d0f7fb3e399df7301d7b"
+    },
+    {
+      "path": "tests/debug-print.test.js",
+      "gitBlobSha": "ec11dc8b0d85b6775788fb91b5a9f0d261e50512"
+    },
+    {
+      "path": "tests/delivery-context.test.js",
+      "gitBlobSha": "1ae5c08cff3715fe31fc0d9a1351c6c91ba51701"
+    },
+    {
+      "path": "tests/detect-code-changes.test.js",
+      "gitBlobSha": "e4e282ffe9a7282b623b06cb97f91d28c5b2bcda"
+    },
+    {
+      "path": "tests/discovery-publication-cache.test.js",
+      "gitBlobSha": "ce0b503761e123c49122244df009b9e0199cd3a5"
+    },
+    {
+      "path": "tests/docker-build.test.js",
+      "gitBlobSha": "372e7a645ea879a4a082bf115ed249b642d1320c"
+    },
+    {
+      "path": "tests/docker-publish.test.js",
+      "gitBlobSha": "923bb6aff7ce22e03ad072192ba8e1e5f183d12b"
+    },
+    {
+      "path": "tests/e2e/account-login.test.js",
+      "gitBlobSha": "e5c9e2d6cb35f7bc7e7ef8f8744f92f10a675e89"
+    },
+    {
+      "path": "tests/e2e/archive.test.js",
+      "gitBlobSha": "fa9d431ecf21bdb698876f33d1446a6848514061"
+    },
+    {
+      "path": "tests/e2e/basket-quotes.test.js",
+      "gitBlobSha": "65958ac78aac0607b9cc2a6193c2fbb68f94b9b7"
+    },
+    {
+      "path": "tests/e2e/captcha-stop.test.js",
+      "gitBlobSha": "5e546eff9821ce001849dba7e8f249eff2109775"
+    },
+    {
+      "path": "tests/e2e/capture-timeout.test.js",
+      "gitBlobSha": "f88784a8a8b74c67cc2b1e2c24195938d402cedc"
+    },
+    {
+      "path": "tests/e2e/category-discovery.test.js",
+      "gitBlobSha": "2b1efcbbe16ff3a8c04a72a14687c9cef1bc51d3"
+    },
+    {
+      "path": "tests/e2e/challenge-window-retention.test.js",
+      "gitBlobSha": "3fc9d14ff56364bbf902480c0aac63c6a6f2f40f"
+    },
+    {
+      "path": "tests/e2e/checkout-scenarios.test.js",
+      "gitBlobSha": "ef7a99f7a2f968e6275b219dc7ee1b3aab0b815b"
+    },
+    {
+      "path": "tests/e2e/delivery.test.js",
+      "gitBlobSha": "eabb5478f59597f5b913eeccb6e51aa84d9e33fc"
+    },
+    {
+      "path": "tests/e2e/dialog-variant.test.js",
+      "gitBlobSha": "8faad79986cae42459a15078d8015da12a5cf3f7"
+    },
+    {
+      "path": "tests/e2e/draft-workflow-interfaces.test.js",
+      "gitBlobSha": "a1d65a091b4ce69b77624a34137478c2b4162dfb"
+    },
+    {
+      "path": "tests/e2e/flavour-scope.test.js",
+      "gitBlobSha": "ec828780b8ce085d6742730197127b59365d73ac"
+    },
+    {
+      "path": "tests/e2e/ice-quantity-review.test.js",
+      "gitBlobSha": "75f479d480173ad26ed50a88b0f1813fabac6a12"
+    },
+    {
+      "path": "tests/e2e/ice-selling-units.test.js",
+      "gitBlobSha": "4d6fc8d376e4baaeca6251bc2f8c820f3a9c53e4"
+    },
+    {
+      "path": "tests/e2e/image-redirects.test.js",
+      "gitBlobSha": "6e86bb49348500c31519ca645f5d2b9d4a6357c4"
+    },
+    {
+      "path": "tests/e2e/native-store.test.js",
+      "gitBlobSha": "74cfb317d137d7996c1440d6c912913aac305e8c"
+    },
+    {
+      "path": "tests/e2e/page-loading.test.js",
+      "gitBlobSha": "fb8ee9e018b48a0711f640aae7aa4a28ba034230"
+    },
+    {
+      "path": "tests/e2e/page-scroll.test.js",
+      "gitBlobSha": "db5f2d7ea77700a77a0ab5e2dd43bab08e4548e9"
+    },
+    {
+      "path": "tests/e2e/persistent-window-recovery.test.js",
+      "gitBlobSha": "2b573c2403f9499240a3b43fb654699d18b8e00d"
+    },
+    {
+      "path": "tests/e2e/persistent-window.test.js",
+      "gitBlobSha": "5f92118568dd81e061040c62e8a0617fd6b15489"
+    },
+    {
+      "path": "tests/e2e/pipeline.test.js",
+      "gitBlobSha": "3c300b75db72e08963cc0134b33aed908570f470"
+    },
+    {
+      "path": "tests/e2e/preferred-variant.test.js",
+      "gitBlobSha": "5346694489a5934b84fd6f5ef4e028d9a32bde20"
+    },
+    {
+      "path": "tests/e2e/prepared-checkout-adapter.test.js",
+      "gitBlobSha": "850a7673cb109ecd0a1097a2db65ad12aaadd1d9"
+    },
+    {
+      "path": "tests/e2e/tag-search-readiness.test.js",
+      "gitBlobSha": "3b32ee9a28d8e5aed12b965001bf03f20ccde44e"
+    },
+    {
+      "path": "tests/e2e/telegram.test.js",
+      "gitBlobSha": "c0bc311a695cb73536008363cf71be6c8f26c95e"
+    },
+    {
+      "path": "tests/e2e/translation-catalog.test.js",
+      "gitBlobSha": "07bb414ec1ac982c85defd10ddd89321e459c00c"
+    },
+    {
+      "path": "tests/e2e/translation.test.js",
+      "gitBlobSha": "a7988565f56b7b06fcf3c0e0eea12e1947f5c679"
+    },
+    {
+      "path": "tests/e2e/verified-case.test.js",
+      "gitBlobSha": "827f51dce62253eccf5260df50c449585c4afc5f"
+    },
+    {
+      "path": "tests/fixtures/basket-mapping.json",
+      "gitBlobSha": "d722aac4b8afa5f613f595ed270a74a70ac38a9f"
+    },
+    {
+      "path": "tests/fixtures/basket-quote.html",
+      "gitBlobSha": "02140a7059ed4859aa5411b1a4561f392f300f7a"
+    },
+    {
+      "path": "tests/fixtures/checkout-scenarios.html",
+      "gitBlobSha": "c9d5670de9ab8e218409476f67507ed27c133416"
+    },
+    {
+      "path": "tests/fixtures/draft-workflows/products.json",
+      "gitBlobSha": "a292c225d5d44269a7d0985fd6e8eff91e731b98"
+    },
+    {
+      "path": "tests/fixtures/ice-protein-bases.json",
+      "gitBlobSha": "bbafb3b5e5253c989215a70d118f3bae8ff63912"
+    },
+    {
+      "path": "tests/fixtures/ice-selling-units.json",
+      "gitBlobSha": "c343d070e5e7101302344960be82eef589c9c614"
+    },
+    {
+      "path": "tests/fixtures/login.html",
+      "gitBlobSha": "12c5326a35203c1bf005140f4265e6baa4ff7224"
+    },
+    {
+      "path": "tests/fixtures/lychee-report.md",
+      "gitBlobSha": "bf60228e38784b84aed1f4a56b0ed8a91917b8f4"
+    },
+    {
+      "path": "tests/fixtures/package-mass-consistency/ascent-vanilla-25g-spec.html.gz",
+      "gitBlobSha": "66f49bb4d73df6d124ee521732d347404fa77ecc"
+    },
+    {
+      "path": "tests/fixtures/package-mass-consistency/source.json",
+      "gitBlobSha": "8630f955912e0da30e72f1c06eea68681be7145e"
+    },
+    {
+      "path": "tests/fixtures/preflight-stub/curl",
+      "gitBlobSha": "7c2969bdb96e43ee42dfd7c2be7f35fedeb6399a"
+    },
+    {
+      "path": "tests/fixtures/products.json",
+      "gitBlobSha": "1d79c098663d313788e00ea8086c7a5f045b960d"
+    },
+    {
+      "path": "tests/fixtures/public-api-types.ts",
+      "gitBlobSha": "e7955cd7d4671f517edb90db10747618438c5c65"
+    },
+    {
+      "path": "tests/fixtures/public-cache/README.md",
+      "gitBlobSha": "51caddfacb98603d6518d2f0c08ad422f5000f6a"
+    },
+    {
+      "path": "tests/fixtures/public-cache/manifest.json",
+      "gitBlobSha": "2dec376bf563bb6023f3b8092f617d1f4662d003"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/blobs/02/02db964a0d7b5f2c6c5ee37602493aae3f86f5198c017c98c93a4de1979a279e",
+      "gitBlobSha": "a7f5ad2b77a8623db9b3265f0c69a7a6afa60e12"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/blobs/7f/7faf38ad27d4918d11c1d6200bbdecb3d669c1beb700ce182b1f09d7fccf6d54",
+      "gitBlobSha": "2c0d385c9e334b7da4ee4cdef2891ed4c9977885"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/088c8e1107ffdf88c595d270bba058c3639a1513305b1f2a3544da3bfb91e1ae.links",
+      "gitBlobSha": "626c7160bee9846aa2579409ed1e4b13dd3cf25f"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/088c8e1107ffdf88c595d270bba058c3639a1513305b1f2a3544da3bfb91e1ae.lino",
+      "gitBlobSha": "8d3b0a5bb6f6020ec5f26fbe764e842f50025269"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/088c8e1107ffdf88c595d270bba058c3639a1513305b1f2a3544da3bfb91e1ae.lino.sha256",
+      "gitBlobSha": "9081e2673f1df1819bb469e0a8dfb8ba2e3e7140"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/2e58d15bde4acd5728ad0ce5edb6a540a2391199a73c97faff7c15a81cad527e.links",
+      "gitBlobSha": "6d6fe764f2b4be21143fe3bc792292f5ba35d400"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/2e58d15bde4acd5728ad0ce5edb6a540a2391199a73c97faff7c15a81cad527e.lino",
+      "gitBlobSha": "b133525d2944a13b6985ab74f563926ae16b7046"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/2e58d15bde4acd5728ad0ce5edb6a540a2391199a73c97faff7c15a81cad527e.lino.sha256",
+      "gitBlobSha": "350fff608073638822d3c79986932a79ea11d332"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/442ed7307e0f8769d1df7a78d4e01ce6ed46f25f78306ed6261d3b088307b3d2.links",
+      "gitBlobSha": "df1edc991b8316e49aa177e8ff0229ee3912afab"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/442ed7307e0f8769d1df7a78d4e01ce6ed46f25f78306ed6261d3b088307b3d2.lino",
+      "gitBlobSha": "57653a5b28201f5a41d1301ee58a59b1273d6a5d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/442ed7307e0f8769d1df7a78d4e01ce6ed46f25f78306ed6261d3b088307b3d2.lino.sha256",
+      "gitBlobSha": "c75557535876925fa86c1f0b6260ae8159bfa7f9"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/4fed38fb349e39755729d3c4c1c550238013460d5c51580508e72587d6b788da.links",
+      "gitBlobSha": "612f7c4652885c2877f192c8decf88bc1cbb6a64"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/4fed38fb349e39755729d3c4c1c550238013460d5c51580508e72587d6b788da.lino",
+      "gitBlobSha": "82f7f82991b65d5dd4401b7db1b59898400ca3b0"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/4fed38fb349e39755729d3c4c1c550238013460d5c51580508e72587d6b788da.lino.sha256",
+      "gitBlobSha": "9abb96526afa88a684e15c3da818dff8dffb0189"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/8d23d86f986338b02f7c10af096ed6dd03bbd74d91c6aebc3d8af96c060ebc40.links",
+      "gitBlobSha": "b135cc6415eb682f8afbc18ca899140703427f51"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/8d23d86f986338b02f7c10af096ed6dd03bbd74d91c6aebc3d8af96c060ebc40.lino",
+      "gitBlobSha": "b0fc1febb07bbe808bb0279b2009812e457a97cc"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/8d23d86f986338b02f7c10af096ed6dd03bbd74d91c6aebc3d8af96c060ebc40.lino.sha256",
+      "gitBlobSha": "421b04a83cd9c3889ce2df620b1ea2753c352998"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/9a698345dc09b31c59f86649f2a52d8241b0703371c23698eac0ed129c9a5bc0.links",
+      "gitBlobSha": "c21c61338d82f6daa6557850aca233d814c72b1b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/9a698345dc09b31c59f86649f2a52d8241b0703371c23698eac0ed129c9a5bc0.lino",
+      "gitBlobSha": "b14f93f5b6574e0bfd23a25660b4cdb9050b5237"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/9a698345dc09b31c59f86649f2a52d8241b0703371c23698eac0ed129c9a5bc0.lino.sha256",
+      "gitBlobSha": "7c565174b1dbd7ec95dd1afdbb702a1263534b43"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/ad29a47a3ca38b0c10fb1826a70d4a061926ef75fe62d85bdac8e3a3350a8dfa.links",
+      "gitBlobSha": "58cb760e9d3541a00ce0e955b9ecbb33a59ebe2f"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/ad29a47a3ca38b0c10fb1826a70d4a061926ef75fe62d85bdac8e3a3350a8dfa.lino",
+      "gitBlobSha": "bf68255502876d022143c62bacf9c3bd82d62341"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/ad29a47a3ca38b0c10fb1826a70d4a061926ef75fe62d85bdac8e3a3350a8dfa.lino.sha256",
+      "gitBlobSha": "1296a2ad503331ac9195e9b893f159dd0f9d09c6"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/e66704c4c1496fcadba04f147f8dd21b49540561549e942e347e0570ca5f1628.links",
+      "gitBlobSha": "e3dd2bf91598e513206b957a661d67c33dea817c"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/e66704c4c1496fcadba04f147f8dd21b49540561549e942e347e0570ca5f1628.lino",
+      "gitBlobSha": "dab3a93486ac164c93a934fb850fb7b0b5784397"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/cache/e66704c4c1496fcadba04f147f8dd21b49540561549e942e347e0570ca5f1628.lino.sha256",
+      "gitBlobSha": "28d6e8be7866539cc32cbe33dfe2e1f49af9f83b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/058a21567c97f4fe33556dd29bbafac481bb625b241a82c3c13eb1810258f49f.links",
+      "gitBlobSha": "c02bddffa05211360d40e5080512d79c249a2a25"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/058a21567c97f4fe33556dd29bbafac481bb625b241a82c3c13eb1810258f49f.lino",
+      "gitBlobSha": "d0794b9099641b0cde978d3842be399b15c87eb1"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/058a21567c97f4fe33556dd29bbafac481bb625b241a82c3c13eb1810258f49f.lino.sha256",
+      "gitBlobSha": "c49439949dadb99bf8b372430e54c5f4c1ab30d7"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/09953f9562e39c271799524a5c85fb1a09a0d7d01a8336961f6e097c4729e162.links",
+      "gitBlobSha": "4a90edac103061284d06c69e97e20175e3b2e949"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/09953f9562e39c271799524a5c85fb1a09a0d7d01a8336961f6e097c4729e162.lino",
+      "gitBlobSha": "8b850bca34f50f2056d6fccc2f65d74230608847"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/09953f9562e39c271799524a5c85fb1a09a0d7d01a8336961f6e097c4729e162.lino.sha256",
+      "gitBlobSha": "d11f812c031f87d4ae70b5d18413bc6a2aee2136"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/1fa751ea7b341574d7cc973686b28547983e6d0a695ba7238c5d850130645452.links",
+      "gitBlobSha": "96e02b4a70023d1d04fbc249347ee5d2581b1b2e"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/1fa751ea7b341574d7cc973686b28547983e6d0a695ba7238c5d850130645452.lino",
+      "gitBlobSha": "0f5506ee161b390808c13122d09091c6f195ffc4"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/1fa751ea7b341574d7cc973686b28547983e6d0a695ba7238c5d850130645452.lino.sha256",
+      "gitBlobSha": "0e1de8675a9c842fc979921a40db32ff56342824"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/2009dc5ef4b2eb41fc2528f66d94bbbc28f6a3744edabd0f6d7587bc14b8c237.links",
+      "gitBlobSha": "bee674e8637502c6be3064fa4ce7e8d315f8b066"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/2009dc5ef4b2eb41fc2528f66d94bbbc28f6a3744edabd0f6d7587bc14b8c237.lino",
+      "gitBlobSha": "7fd025afdb297ec3f8d4c2829035bb89f2edde6c"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/2009dc5ef4b2eb41fc2528f66d94bbbc28f6a3744edabd0f6d7587bc14b8c237.lino.sha256",
+      "gitBlobSha": "272a8a06ecf551a33afbbaabc0b06c3548952f21"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4835784fa17d80cb128331d7742c4588f5258944102d3d9f8d086f656e3b6b67.links",
+      "gitBlobSha": "6cc23943884521f153241e462b4db3f3509f5e4d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4835784fa17d80cb128331d7742c4588f5258944102d3d9f8d086f656e3b6b67.lino",
+      "gitBlobSha": "40b9b2081a181884d98f19c420670d22ab8dea71"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4835784fa17d80cb128331d7742c4588f5258944102d3d9f8d086f656e3b6b67.lino.sha256",
+      "gitBlobSha": "663ac76b0633180dc0e25f44447e0bc0b162797b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4ee3b944e04f39751ab812f3a224fdae1f4a7904234c695816f6c08fbf283d91.links",
+      "gitBlobSha": "300332c83034a9846a624d48c01ac5b6026f4db5"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4ee3b944e04f39751ab812f3a224fdae1f4a7904234c695816f6c08fbf283d91.lino",
+      "gitBlobSha": "4ce22f5e327e5903af6247aabb5be1564cc111ac"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/4ee3b944e04f39751ab812f3a224fdae1f4a7904234c695816f6c08fbf283d91.lino.sha256",
+      "gitBlobSha": "6362f74dc411e102fc89e3b3ba434115bd00d6db"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/a8b5c0056b41fe916cc5b07824faa5899875c706fdb0cb3bd212c1b4e9d9debe.links",
+      "gitBlobSha": "ca1a888534fbb2e91631d724940ecc9989594cf9"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/a8b5c0056b41fe916cc5b07824faa5899875c706fdb0cb3bd212c1b4e9d9debe.lino",
+      "gitBlobSha": "46c8b22f9c6bda6cd99c2d1749398ef7b6c99b09"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/a8b5c0056b41fe916cc5b07824faa5899875c706fdb0cb3bd212c1b4e9d9debe.lino.sha256",
+      "gitBlobSha": "d930f359d0521dd0417fb10bc85bdcbeae0a9607"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e46dd03ce5f34b1aa27bf61d9e099cf3f999307dbf2f1ba854964c490584c3df.links",
+      "gitBlobSha": "daed38541a1ee3d38471bec50d28a12c2038abe0"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e46dd03ce5f34b1aa27bf61d9e099cf3f999307dbf2f1ba854964c490584c3df.lino",
+      "gitBlobSha": "fa9c1173092e32c4d386fae6c798ba904e32320d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e46dd03ce5f34b1aa27bf61d9e099cf3f999307dbf2f1ba854964c490584c3df.lino.sha256",
+      "gitBlobSha": "648dde80ae668a89d32bea9c4ba1779c1489c052"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e8eecbb02a3cee41453e03ec69d6518dd991385f73ad17ad3b56e11016d9b88b.links",
+      "gitBlobSha": "08d8040ad6cc738b1fba835d5e259be3c20ae16b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e8eecbb02a3cee41453e03ec69d6518dd991385f73ad17ad3b56e11016d9b88b.lino",
+      "gitBlobSha": "5623729edb422ea17980f87b884a2f89671ab235"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/e8eecbb02a3cee41453e03ec69d6518dd991385f73ad17ad3b56e11016d9b88b.lino.sha256",
+      "gitBlobSha": "c06ee957dc0ab5182262422ff6560f9dbb6f8da5"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/edd7738fc39a35c7b91b47cbf62767015d66a1b7f1ab942c3b964c45fc896eb6.links",
+      "gitBlobSha": "154e86faae69bc673d32732a0e55accbcd9f2c5f"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/edd7738fc39a35c7b91b47cbf62767015d66a1b7f1ab942c3b964c45fc896eb6.lino",
+      "gitBlobSha": "41278fa59714326c87cac9653a8d0a21f05ca209"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/evidence/edd7738fc39a35c7b91b47cbf62767015d66a1b7f1ab942c3b964c45fc896eb6.lino.sha256",
+      "gitBlobSha": "c7cb06a23a9703800c6a7876f96116a6ec9a8165"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/021ad99c6f38a82920ea109304fe49bf92d67e482d97bb8772c27aaa10b6ded9.links",
+      "gitBlobSha": "4b8e478659f409c6db2eb4c4c1c34a1b7bd703a6"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/021ad99c6f38a82920ea109304fe49bf92d67e482d97bb8772c27aaa10b6ded9.lino",
+      "gitBlobSha": "5a969d2f0b361126101f70d43c8c8c1082499978"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/021ad99c6f38a82920ea109304fe49bf92d67e482d97bb8772c27aaa10b6ded9.lino.sha256",
+      "gitBlobSha": "62deacef454a626a54984902f3fa4bb405312827"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/a6b8c68acf03f4c0fcb8209e372026b8c629edbe9d0bda9a25bf0fe75e8229c8.links",
+      "gitBlobSha": "8fbdbab50fc5c2b05669d51b6b9a3466d82c2384"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/a6b8c68acf03f4c0fcb8209e372026b8c629edbe9d0bda9a25bf0fe75e8229c8.lino",
+      "gitBlobSha": "c33aad090e68859a774bfa1c60821964ff3b56c4"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/ocr/a6b8c68acf03f4c0fcb8209e372026b8c629edbe9d0bda9a25bf0fe75e8229c8.lino.sha256",
+      "gitBlobSha": "c10be427e82acb5e4580a583e99033ca8d0d3aee"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/7d28dd7972baf7eaa3f62949ad95c43181600696d649c41f24b9db3c677215d0.links",
+      "gitBlobSha": "698b8b5be4b404d7f1a4f74ac1f96d509b28d88d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/7d28dd7972baf7eaa3f62949ad95c43181600696d649c41f24b9db3c677215d0.lino",
+      "gitBlobSha": "382faba9b01030a364322e5d8dcb573a318b700c"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/7d28dd7972baf7eaa3f62949ad95c43181600696d649c41f24b9db3c677215d0.lino.sha256",
+      "gitBlobSha": "75edbe727aef18ecc39a958f1a90a070daf49a0c"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/901fb47a52e6160e4a0bab590e2ed82623c3937f2535bdca596656fb7f2b959b.links",
+      "gitBlobSha": "7ce63cb353a7bdacb582b4d1705293cc08b28f0d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/901fb47a52e6160e4a0bab590e2ed82623c3937f2535bdca596656fb7f2b959b.lino",
+      "gitBlobSha": "6f9f2d547b206230b5f58a0aff46394087da9479"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/901fb47a52e6160e4a0bab590e2ed82623c3937f2535bdca596656fb7f2b959b.lino.sha256",
+      "gitBlobSha": "c0f6595dc08f666b8a32f72603e136cf10537248"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/96130ba57b3ac54d2ae779685d75bdd00642c46fb05e88f920fbd64c41c98071.links",
+      "gitBlobSha": "8bb64d165f80ad1e5e6eeda6c40d325d966f8f2d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/96130ba57b3ac54d2ae779685d75bdd00642c46fb05e88f920fbd64c41c98071.lino",
+      "gitBlobSha": "8006ddb1ba5bf31af2bc0bbf153f8ef217d38828"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/96130ba57b3ac54d2ae779685d75bdd00642c46fb05e88f920fbd64c41c98071.lino.sha256",
+      "gitBlobSha": "3138c8fdb424ba054283c6133ea5db40ec768c21"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/9c4e60856d6282481f88be817920d7328d38e7cb5af818e9bbc5bbae4a2a36b2.links",
+      "gitBlobSha": "6ee4f52779109bdc48fc40c72acec645fac602b9"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/9c4e60856d6282481f88be817920d7328d38e7cb5af818e9bbc5bbae4a2a36b2.lino",
+      "gitBlobSha": "96cc0142e35b31a696c7aee691b8918b641a93fa"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/offer/9c4e60856d6282481f88be817920d7328d38e7cb5af818e9bbc5bbae4a2a36b2.lino.sha256",
+      "gitBlobSha": "970803868c74b80cd779dc133f9b7e6dffbd320e"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/0ed7b63e2d01a71156dcbfe1145880301bf8a243bf867943b09374e14c05368f.links",
+      "gitBlobSha": "b78e113eaaf0b2ffeefd600001236bf1428f7852"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/0ed7b63e2d01a71156dcbfe1145880301bf8a243bf867943b09374e14c05368f.lino",
+      "gitBlobSha": "a6e1b2eda9ce570a16edef6318187d60c4cc6c3f"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/0ed7b63e2d01a71156dcbfe1145880301bf8a243bf867943b09374e14c05368f.lino.sha256",
+      "gitBlobSha": "6dc70c7aa0cdd6f606e1700ac1c1dac2db64350a"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c186e2dae7bce3c9e63c7cd11799bb381222c366520b1eb2b7b3d3e6d69c577.links",
+      "gitBlobSha": "441cf111d117daa54b5c9c5bde14fc96484a0b1d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c186e2dae7bce3c9e63c7cd11799bb381222c366520b1eb2b7b3d3e6d69c577.lino",
+      "gitBlobSha": "cd8b0ba68860b2c0b02c9c73669136db1748e8c4"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c186e2dae7bce3c9e63c7cd11799bb381222c366520b1eb2b7b3d3e6d69c577.lino.sha256",
+      "gitBlobSha": "61cd3e333b1fd68a59ace3240726443a9c39a5f8"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c3cd22c52fbecdba9e230d97f19edebfe80c5998d988faef06f66d41a80bf8f.links",
+      "gitBlobSha": "510622a7153bfed155ef7d898d95a984336bae0d"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c3cd22c52fbecdba9e230d97f19edebfe80c5998d988faef06f66d41a80bf8f.lino",
+      "gitBlobSha": "83bf70ee6d6c8ceda9fed10caf23172c36d2590b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/3c3cd22c52fbecdba9e230d97f19edebfe80c5998d988faef06f66d41a80bf8f.lino.sha256",
+      "gitBlobSha": "443e54103785f68b1e6cad6de07c688186b42551"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/da93de6eb780a8aa741725ceae046b12c272094434a3184387b64091097cccfa.links",
+      "gitBlobSha": "4bf92ec7ae2c3b7cdfa285dc5506ef71353900ce"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/da93de6eb780a8aa741725ceae046b12c272094434a3184387b64091097cccfa.lino",
+      "gitBlobSha": "62308f9296c701be87af5388c281de151df087bc"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/product/da93de6eb780a8aa741725ceae046b12c272094434a3184387b64091097cccfa.lino.sha256",
+      "gitBlobSha": "8c4ede274562a0d63f7095970b0bcf71e2bd8be9"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/0f15002b08636c46973debb33e09f1afd3355a9653be7e22672949921c598f1f.links",
+      "gitBlobSha": "b14419a18d698fdb076e07ccf8a73ca575429c5b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/0f15002b08636c46973debb33e09f1afd3355a9653be7e22672949921c598f1f.lino",
+      "gitBlobSha": "241aafd34535a70bcb57daf41419915206a839d2"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/0f15002b08636c46973debb33e09f1afd3355a9653be7e22672949921c598f1f.lino.sha256",
+      "gitBlobSha": "dea430f18419dec59297430888c98c96df41015b"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/35cd0e5b2b5607bf9f9e4e633c2cb8d1fae9938ba2cb94efffb2df883b6fe60f.links",
+      "gitBlobSha": "ce5e2cd971d55191a75534b77e2a88d34c37d3e1"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/35cd0e5b2b5607bf9f9e4e633c2cb8d1fae9938ba2cb94efffb2df883b6fe60f.lino",
+      "gitBlobSha": "b93b3333b8e9a82912383b8c2ed8b8a8358b142c"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/35cd0e5b2b5607bf9f9e4e633c2cb8d1fae9938ba2cb94efffb2df883b6fe60f.lino.sha256",
+      "gitBlobSha": "d78c8047d4136d2292132b70e45024c208b1fed8"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/77d6a66c2dc8e4c023d009a74a505eaf7c93a7e0771341e11ec1e30ed0c4a001.links",
+      "gitBlobSha": "f94c1789ce27b366e341f1b599830366c6e6f0bd"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/77d6a66c2dc8e4c023d009a74a505eaf7c93a7e0771341e11ec1e30ed0c4a001.lino",
+      "gitBlobSha": "ffa1518acac8ba5c0cddbdc51b3a5348c9f677f2"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/77d6a66c2dc8e4c023d009a74a505eaf7c93a7e0771341e11ec1e30ed0c4a001.lino.sha256",
+      "gitBlobSha": "23b4092b554574e76718c38960f93c480d2487ff"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/f1389fdaa17c8ca305a2123f27ecf7c3974ad864268d19c3f840cc0be8565b1c.links",
+      "gitBlobSha": "6dec5c194a3deeffd774220165b29e457cfeec51"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/f1389fdaa17c8ca305a2123f27ecf7c3974ad864268d19c3f840cc0be8565b1c.lino",
+      "gitBlobSha": "3095c3c0b77fc042281ae018785b06f864000624"
+    },
+    {
+      "path": "tests/fixtures/public-cache/store/sku-inventory/f1389fdaa17c8ca305a2123f27ecf7c3974ad864268d19c3f840cc0be8565b1c.lino.sha256",
+      "gitBlobSha": "8c2651756a74c7aff88a53be509d21ee368263c9"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/levels-2560g.html.gz",
+      "gitBlobSha": "20f388448076c1736fdb7745ea9748db9115e147"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/levels-vanilla-front-original.webp",
+      "gitBlobSha": "be319245668ce730b01d79136e5351db21f493af"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/on-900g.html.gz",
+      "gitBlobSha": "0390561e576d44d9592cde66daf70f1667ea3fb3"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/prosupps-907g.html.gz",
+      "gitBlobSha": "92a330edcd6d73161031b84bb1bbc265866fa9ea"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/prosupps-chocolate-front-original.webp",
+      "gitBlobSha": "38436aac78146ba292dc33c863d1c9b322f35281"
+    },
+    {
+      "path": "tests/fixtures/selected-package-mass/sources.json",
+      "gitBlobSha": "53e67b5dacd0ab9eeec826f7bab470b8ef4b1a86"
+    },
+    {
+      "path": "tests/fixtures/translation/vi-en.json",
+      "gitBlobSha": "463eadd7b1315f0524abcff0665ba24624aee27d"
+    },
+    {
+      "path": "tests/flavour-scope.test.js",
+      "gitBlobSha": "bdf23cd25744ccd259a34b338c7d8046a48edad6"
+    },
+    {
+      "path": "tests/food-component-evidence.test.js",
+      "gitBlobSha": "7f94ed8f8022cbd2ac199088a27352920e6f776b"
+    },
+    {
+      "path": "tests/food-component-persistence.test.js",
+      "gitBlobSha": "bb1612133199ef476cdf21fb58b195e44a3786d3"
+    },
+    {
+      "path": "tests/food-components.test.js",
+      "gitBlobSha": "81ab96b4b6ee5eea9e9df02194a1446055ad35d4"
+    },
+    {
+      "path": "tests/food-offer-discovery.test.js",
+      "gitBlobSha": "f664a156f894a1cf7e4e6c9356af3de3cd1bb097"
+    },
+    {
+      "path": "tests/food-offer-source-basis.test.js",
+      "gitBlobSha": "69ba11d819af8f709fc1c09153fff56f4637409a"
+    },
+    {
+      "path": "tests/github-actions-log.test.js",
+      "gitBlobSha": "001a66140a38c38d1da03a9031ed99b9b58c685a"
+    },
+    {
+      "path": "tests/handpicked-links.test.js",
+      "gitBlobSha": "4b4101aa620708960c49e22dc68341fefebc98cf"
+    },
+    {
+      "path": "tests/handpicked-report.test.js",
+      "gitBlobSha": "ae7eafc60d2b5102cf35fd8edbab47583ed6f012"
+    },
+    {
+      "path": "tests/helpers/checkout-scenarios.js",
+      "gitBlobSha": "b313f79ff1e32524515661849298104353310839"
+    },
+    {
+      "path": "tests/helpers/draft-workflows.js",
+      "gitBlobSha": "4a3cdc052dddb63de72828eb73a4af7a2d6faa04"
+    },
+    {
+      "path": "tests/helpers/manufacturer-workflow.js",
+      "gitBlobSha": "6bdb77f9b0338f5306c14b4837b2654084f74f84"
+    },
+    {
+      "path": "tests/historical-capture-replay.test.js",
+      "gitBlobSha": "8f75c16865b74f55b82b7592827f802c71e51fa5"
+    },
+    {
+      "path": "tests/human-food-scope.test.js",
+      "gitBlobSha": "48e6bd69aea6ac5ec7643528528631fb976fcae8"
+    },
+    {
+      "path": "tests/ice-selling-units.test.js",
+      "gitBlobSha": "a1d11ec2aac37c80e95c3e3e8fa581752634a299"
+    },
+    {
+      "path": "tests/ice-unit-completeness.test.js",
+      "gitBlobSha": "4377ccce032fa98da090eae9d73370ee19814f5d"
+    },
+    {
+      "path": "tests/ice-unit-rankings.test.js",
+      "gitBlobSha": "f5800e21774b9c488647c1a86661c27cbecee26a"
+    },
+    {
+      "path": "tests/ice-withheld-specifications.test.js",
+      "gitBlobSha": "a96ea859c4154de7b2b2bc630fe4c617925c0d39"
+    },
+    {
+      "path": "tests/image-redirect-pacing.test.js",
+      "gitBlobSha": "2207a3eda0e6fa765f7aaaa9b2746276415b5748"
+    },
+    {
+      "path": "tests/image-source-challenge.test.js",
+      "gitBlobSha": "6e969d6df895fa537de986d8e54b371801e15b0b"
+    },
+    {
+      "path": "tests/index.test.js",
+      "gitBlobSha": "e9d18f8bbbbaa8491b70be7aa4c2b58434bb4385"
+    },
+    {
+      "path": "tests/install-git-hooks.test.js",
+      "gitBlobSha": "cc32b33e56e50659cbb8ee17c8ff9bfdd47936d3"
+    },
+    {
+      "path": "tests/land-via-pull-request.test.js",
+      "gitBlobSha": "6ba5435999dd0a18e1204034fdda80473d287dbe"
+    },
+    {
+      "path": "tests/lazada-checkout-draft.test.js",
+      "gitBlobSha": "4269ab9dac766310fb2b550d3aec228408815cfe"
+    },
+    {
+      "path": "tests/lazada-checkout-gifts.test.js",
+      "gitBlobSha": "84c93f775535e1988de59c54fbdb6961823103d4"
+    },
+    {
+      "path": "tests/lazada-e2e-workflow.test.js",
+      "gitBlobSha": "2a42e6390ed8104a212009624a40133ca94d8e19"
+    },
+    {
+      "path": "tests/lazada.test.js",
+      "gitBlobSha": "f31ff95f49ef78e361b54ba740619143a5db9b12"
+    },
+    {
+      "path": "tests/links-workflow.test.js",
+      "gitBlobSha": "3fbc1d2d746ed13df167655b10f1b52126acef61"
+    },
+    {
+      "path": "tests/lino-large-documents.test.js",
+      "gitBlobSha": "976f3a39fe17adae31d8fd15940089ff62502076"
+    },
+    {
+      "path": "tests/lint-changed-lines.test.js",
+      "gitBlobSha": "952539c1fe41b33d0e6f69a43fbb5c6e34fda595"
+    },
+    {
+      "path": "tests/manufacturer-owned-brands.test.js",
+      "gitBlobSha": "f5c57ad7ea29388c308e5edffe518b2bb5d7f8a0"
+    },
+    {
+      "path": "tests/manufacturer-package-basis.test.js",
+      "gitBlobSha": "b16c2c37cf7e798524c217ba768bdf204f6780ce"
+    },
+    {
+      "path": "tests/manufacturer-research-stop.test.js",
+      "gitBlobSha": "27d5e109e8689869c469914af8ca8e6046ca1676"
+    },
+    {
+      "path": "tests/manufacturer-research.test.js",
+      "gitBlobSha": "05e673e3afa6912d61e47fec8672e3de4306dc97"
+    },
+    {
+      "path": "tests/manufacturer-source-challenge.test.js",
+      "gitBlobSha": "8883e2f50e5a48b888c2fad51d806274a9111774"
+    },
+    {
+      "path": "tests/manufacturer-source-validity.test.js",
+      "gitBlobSha": "bb343bd5e540624ac23c96fa604aade6b9ce4e89"
+    },
+    {
+      "path": "tests/manufacturer-workflow-draft.test.js",
+      "gitBlobSha": "2107d91cec7e008d2d06b9b72ed7b87407fea605"
+    },
+    {
+      "path": "tests/mass-evidence-performance.test.js",
+      "gitBlobSha": "fe9fce1ce60e7a1c35e6e4dcd603a0cee7be0c05"
+    },
+    {
+      "path": "tests/merge-changesets.test.js",
+      "gitBlobSha": "e44a980dff5a7f51e8ddb0e98a14f15a55b0af7b"
+    },
+    {
+      "path": "tests/no-changelog-comments.test.js",
+      "gitBlobSha": "ecec1531f7daa8f4da6eda0d2555fc8d47251a55"
+    },
+    {
+      "path": "tests/npm-registry.test.js",
+      "gitBlobSha": "4d1c240e86f63a28268f700d49469aadfcc49a39"
+    },
+    {
+      "path": "tests/nutrition-parsing-performance.test.js",
+      "gitBlobSha": "61730c9a67243ceeaaec269a8ed92d469b3eaf8e"
+    },
+    {
+      "path": "tests/observation-order.test.js",
+      "gitBlobSha": "2421d58653a71dd376287956c49f29d2139fff2b"
+    },
+    {
+      "path": "tests/observed-prices.test.js",
+      "gitBlobSha": "27a644d8c95f221dd9102f9f33a9532ba2ef50de"
+    },
+    {
+      "path": "tests/ocr-crops.test.js",
+      "gitBlobSha": "fd361185a36b2f6474e00e6a3ec6107c76a20ba8"
+    },
+    {
+      "path": "tests/ocr-models.test.js",
+      "gitBlobSha": "ee020af8a2e0c6e63b39cd48b17c4c58b177bb7b"
+    },
+    {
+      "path": "tests/ocr-stop-propagation.test.js",
+      "gitBlobSha": "8e70f9ad38989125a188a2bf8ad49391d4ba7f2a"
+    },
+    {
+      "path": "tests/package-artwork-consistency.test.js",
+      "gitBlobSha": "dbc48a93e281b7a4b2ac1114db0d10c35b2240bd"
+    },
+    {
+      "path": "tests/package-image-identity.test.js",
+      "gitBlobSha": "fa3342eb1fd49f69330c166a78d91e64e717d83a"
+    },
+    {
+      "path": "tests/package-info.test.js",
+      "gitBlobSha": "1c00690b55cf3775a45f3d19e75f186f473d9f0b"
+    },
+    {
+      "path": "tests/package-manager.test.js",
+      "gitBlobSha": "7ff324eab3aa8578a520355077e2cf1c5e773219"
+    },
+    {
+      "path": "tests/package-mass-consistency.test.js",
+      "gitBlobSha": "ab189902322f3993194b8655f7047840f243a420"
+    },
+    {
+      "path": "tests/package-mass-quarantine.test.js",
+      "gitBlobSha": "b39dc8070d07d72e49329b0cb0c4ddc16283959f"
+    },
+    {
+      "path": "tests/package-metadata.test.js",
+      "gitBlobSha": "edcdd096f0044fc62a581a0dbd6a8b1c01a882ac"
+    },
+    {
+      "path": "tests/package-quantity-review.test.js",
+      "gitBlobSha": "c679c8d3a5ec835cc5fd62baff18a8618764906a"
+    },
+    {
+      "path": "tests/page-capture.test.js",
+      "gitBlobSha": "68ba01c1fb3ba52ce434cb4c59c3a72f6577680f"
+    },
+    {
+      "path": "tests/page-challenge.test.js",
+      "gitBlobSha": "bd96519ad6e4b336057215413009de776a88a207"
+    },
+    {
+      "path": "tests/page-readiness-tag.test.js",
+      "gitBlobSha": "3a2fbc0c6fa7ab6191bb0c905aecaf3be77207fb"
+    },
+    {
+      "path": "tests/page-readiness.test.js",
+      "gitBlobSha": "b3e3758ab54694f0e74f0c3de4e73898f235083e"
+    },
+    {
+      "path": "tests/persistent-window-recovery.test.js",
+      "gitBlobSha": "a90c166f658c3d352728d9ca4e37ff7b17846269"
+    },
+    {
+      "path": "tests/pipeline-status.test.js",
+      "gitBlobSha": "e28e04d62deef2dbb10512a644aa17f522c20bd6"
+    },
+    {
+      "path": "tests/pr-guards.test.js",
+      "gitBlobSha": "11928be82011ab6e1946099d62a548ec46d22cad"
+    },
+    {
+      "path": "tests/promotion-collector.test.js",
+      "gitBlobSha": "0e7cfdb8632574f81c3cc991aae3bc576dd98425"
+    },
+    {
+      "path": "tests/promotion-identity.test.js",
+      "gitBlobSha": "86faee3940e379763208c0b4380325aeb7a0793c"
+    },
+    {
+      "path": "tests/promotion-report-escaping.test.js",
+      "gitBlobSha": "b21e9944f61d8360a88a54b25b12d2f7c67d9123"
+    },
+    {
+      "path": "tests/promotions.test.js",
+      "gitBlobSha": "1181f445e555b0fd33bc12ef1b81d3d2fda3e90f"
+    },
+    {
+      "path": "tests/public-api-typecheck.test.js",
+      "gitBlobSha": "c2109d2a2b359680b7ae39a231a2f0d3fb86de05"
+    },
+    {
+      "path": "tests/public-cache.test.js",
+      "gitBlobSha": "52c3988a09dadb1a5cc8fbc057c6d5f6096796d8"
+    },
+    {
+      "path": "tests/public-captures.test.js",
+      "gitBlobSha": "6714605009f52aa1cb5a01c373e10b6eb66d96c7"
+    },
+    {
+      "path": "tests/public-discovery.test.js",
+      "gitBlobSha": "0454e6a5a241e751d1b5147425b5da7aff92ae57"
+    },
+    {
+      "path": "tests/public-source-secrets.test.js",
+      "gitBlobSha": "a4a80dda6ab41d249c843b013e07c4bd519d1b96"
+    },
+    {
+      "path": "tests/publication-cache.test.js",
+      "gitBlobSha": "b94096a543875ccc1ff83f224d9460c890832560"
+    },
+    {
+      "path": "tests/publish-failure-classifier.test.js",
+      "gitBlobSha": "055b5cdb7ef59185444f27f04162fd5bcbed237a"
+    },
+    {
+      "path": "tests/publish-retry.test.js",
+      "gitBlobSha": "647cb986bfa8fce1f65002cbba5c4ceec8a1db8c"
+    },
+    {
+      "path": "tests/push-failure-classifier.test.js",
+      "gitBlobSha": "360890e8c4c6d138ee15fd02c021ebebdf013289"
+    },
+    {
+      "path": "tests/push-main-with-rebase-retry.test.js",
+      "gitBlobSha": "5ca9e658b1db861bfe36fda43c5ebd98bb35290f"
+    },
+    {
+      "path": "tests/recheck-broken-links.test.js",
+      "gitBlobSha": "8efcd1390a4d63686fcc5d8f8037a1a06247314d"
+    },
+    {
+      "path": "tests/release-badge.test.js",
+      "gitBlobSha": "43382fbdcdc0ee906aef900220d76ba34dae9c64"
+    },
+    {
+      "path": "tests/release-metadata.test.js",
+      "gitBlobSha": "e11f8e9bf0a10a63d553bc476b5a4a182277c0c4"
+    },
+    {
+      "path": "tests/release-naming.test.js",
+      "gitBlobSha": "4a7c63f42652f4061ed068a92fc7030862563b69"
+    },
+    {
+      "path": "tests/release-preflight.test.js",
+      "gitBlobSha": "724b1ddcd4f9ab816db96aa1b7963fa5177b0e2e"
+    },
+    {
+      "path": "tests/removed-product.test.js",
+      "gitBlobSha": "cd1187f2a77a5316ab7705dc53381b03c9843f8e"
+    },
+    {
+      "path": "tests/report-order-audit.test.js",
+      "gitBlobSha": "98a4f721faafb962f0a4aba8d731ff667fbe643d"
+    },
+    {
+      "path": "tests/report-unit-costs.test.js",
+      "gitBlobSha": "d3b235d1cd3552dde674dff55173e89db8eb28d2"
+    },
+    {
+      "path": "tests/required-docs.test.js",
+      "gitBlobSha": "22030b7f3980fea026606435fd6921f27ce4043c"
+    },
+    {
+      "path": "tests/requirement-audit-gates.test.js",
+      "gitBlobSha": "68a2d18a1682527c56192d75fd869bb7ae340900"
+    },
+    {
+      "path": "tests/requirement-coverage.test.js",
+      "gitBlobSha": "e16e5c7b18648a01903cec48df0e3094f508915e"
+    },
+    {
+      "path": "tests/run-with-budget-warning.test.js",
+      "gitBlobSha": "ccc43d47d2c98fdd87bc3077c24a7e5b430f80bc"
+    },
+    {
+      "path": "tests/runtime-workflow.test.js",
+      "gitBlobSha": "f5e3c38326728bb2f4578d5a262a7a97b6d1d94a"
+    },
+    {
+      "path": "tests/sanitize-npm-userconfig.test.js",
+      "gitBlobSha": "5edb4c500f94e7702fb9e846317e26fa0aa08357"
+    },
+    {
+      "path": "tests/scope-decisions.test.js",
+      "gitBlobSha": "6777d4707d8cf148860c425ff7e2b8d9937ab504"
+    },
+    {
+      "path": "tests/scripts-use-module-adoption.test.js",
+      "gitBlobSha": "17babb6fe9214fd08cc23b621fce99504b51d2d6"
+    },
+    {
+      "path": "tests/security-workflow.test.js",
+      "gitBlobSha": "d9aec2c5736d0ff9ffdc8eb7d43deec4490e5aec"
+    },
+    {
+      "path": "tests/selected-package-corrections.test.js",
+      "gitBlobSha": "74f18d1eae6a3b42dbf66bf5ab1994d68ae38401"
+    },
+    {
+      "path": "tests/selected-package-mass.test.js",
+      "gitBlobSha": "d9cef81b2920f77badbcb34cf1fd77d4a778e39f"
+    },
+    {
+      "path": "tests/selected-package-ocr.test.js",
+      "gitBlobSha": "9c66ed7dad06332d034a74c3dd876829c4af8b22"
+    },
+    {
+      "path": "tests/setup-buildx-resilient.test.js",
+      "gitBlobSha": "9505bb778088fe464de69ad91fe1ab432d918b15"
+    },
+    {
+      "path": "tests/setup-npm.test.js",
+      "gitBlobSha": "2c61cd351e3cf288e92e5b975cb296801e96b2d1"
+    },
+    {
+      "path": "tests/shopping-workflow-draft.test.js",
+      "gitBlobSha": "bf48e8ecb45aeec4053af827bf3bb3bb76dea522"
+    },
+    {
+      "path": "tests/simulate-fresh-merge.test.js",
+      "gitBlobSha": "3133a4587946960338996bb997a1148131b964d0"
+    },
+    {
+      "path": "tests/smoke-test-package.test.js",
+      "gitBlobSha": "be6dfe2655abbada8242c5dfbc9be5fb98db622b"
+    },
+    {
+      "path": "tests/source-byte-checkout.test.js",
+      "gitBlobSha": "9a8ea2e4f360caa47bb64fbcdeac6d815d62cac5"
+    },
+    {
+      "path": "tests/source-invalidation.test.js",
+      "gitBlobSha": "fc29b3c5a97bed3a294de0570d7719ca1c2efdb9"
+    },
+    {
+      "path": "tests/source-text-parsing-performance.test.js",
+      "gitBlobSha": "d57b9f739fe1773bd72305637997a474aa9a1bbd"
+    },
+    {
+      "path": "tests/specification-holds.test.js",
+      "gitBlobSha": "418709d71382f33b4891bfbf7e087079c19d6cae"
+    },
+    {
+      "path": "tests/status-gate-coverage.test.js",
+      "gitBlobSha": "1f35842e59b045ca0cc58a48d3babc347e749978"
+    },
+    {
+      "path": "tests/store-batch.test.js",
+      "gitBlobSha": "8564de718e275cbb4bdd26c7872ef3da57d6b794"
+    },
+    {
+      "path": "tests/store-list.test.js",
+      "gitBlobSha": "6644265b3de2041e478f66433c49e17627e5cb93"
+    },
+    {
+      "path": "tests/store-lock-directory.test.js",
+      "gitBlobSha": "4deeb103c73858da30f8bc608dcda515d4cf3c8e"
+    },
+    {
+      "path": "tests/store-projection.test.js",
+      "gitBlobSha": "edcafbee79efa91fae8f3406ca9fb21e03889216"
+    },
+    {
+      "path": "tests/tag-prefix.test.js",
+      "gitBlobSha": "f18cbcefe556e028d0b52d58368b46d68517dfeb"
+    },
+    {
+      "path": "tests/transient-links.test.js",
+      "gitBlobSha": "67efd1b10f711eccd523623e37dec05d079a64bd"
+    },
+    {
+      "path": "tests/translation-catalog.test.js",
+      "gitBlobSha": "4e2ee63c5ca3d233985a7c39fd8d5c2bfd3df35d"
+    },
+    {
+      "path": "tests/translation-presentation-baskets.test.js",
+      "gitBlobSha": "d0b51690cf15abdf607d1042ad88075c5d4cb370"
+    },
+    {
+      "path": "tests/translation-presentation-chunks.test.js",
+      "gitBlobSha": "ceddb5ff468d6f5c7abeb0926507b0b0656214ab"
+    },
+    {
+      "path": "tests/translation-quality.test.js",
+      "gitBlobSha": "817f55d2b49a1539ff36b9abe5479aadf6fbae2c"
+    },
+    {
+      "path": "tests/translation.test.js",
+      "gitBlobSha": "a10569c75b4cc912384d5a2a2d749eaf54da6a64"
+    },
+    {
+      "path": "tests/tsconfig.public-api.json",
+      "gitBlobSha": "e08a35c64e46aa4c212586b7a5f4b04a0176aa63"
+    },
+    {
+      "path": "tests/universal-app.test.js",
+      "gitBlobSha": "02b4b6b2518df31c6300656c70052319b4627a7f"
+    },
+    {
+      "path": "tests/urgent-ingredients.test.js",
+      "gitBlobSha": "88485d1943494b7cae9c7518d080f3b16fce31a2"
+    },
+    {
+      "path": "tests/use-module-integration.test.js",
+      "gitBlobSha": "cd4701dda998508208d679a6603652866dfaa936"
+    },
+    {
+      "path": "tests/use-module.test.js",
+      "gitBlobSha": "f79b833ff988df5598c2ecb015680de7efb4d2dd"
+    },
+    {
+      "path": "tests/variant-policy.test.js",
+      "gitBlobSha": "db0149e766fa350dc679a34aeb4ab422d5baaf60"
+    },
+    {
+      "path": "tests/version-and-commit.test.js",
+      "gitBlobSha": "dd8b9d2ba70cf6fe01d28ad53447096839e28c0b"
+    },
+    {
+      "path": "tests/wait-for-npm.test.js",
+      "gitBlobSha": "d3f5e89387e6766430ec5b458b6887099a56e4cb"
+    },
+    {
+      "path": "tests/whey-verification-worklist.test.js",
+      "gitBlobSha": "46f2dd02fd5808c254d0d2671d89f859390dd3d3"
+    },
+    {
+      "path": "tests/windows-ocr-install.test.js",
+      "gitBlobSha": "14a07987c13a125d10c9e6b7e8dc7faa2f8e8363"
+    },
+    {
+      "path": "tests/workflow-permissions.test.js",
+      "gitBlobSha": "3c07c5db8decec4f301b5e8588b208de8eba38c1"
+    },
+    {
+      "path": "tests/workflow-reliability.test.js",
+      "gitBlobSha": "b2aa4ff6c7b48573b5e7d530451e0780eeaccb8e"
+    },
+    {
+      "path": "tests/workflows-lint.test.js",
+      "gitBlobSha": "8e53d3bddcc641cd36a77e35055ae0e4ed68fc9e"
+    }
+  ]
+}

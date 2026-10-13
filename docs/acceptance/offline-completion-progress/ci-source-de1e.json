@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-13T10:42:37.162418+00:00",
+  "sourceCommit": "de1e18e3a9426417bd7f7e88070a0d3dc24c6d73",
+  "testedMerge": "92806e14fbc21981a21d2dcc3b5197569096ae0c",
+  "sourceAccepted": true,
+  "sourceFilesMatched": 620,
+  "allNineCompleteRuntimeJobsPassed": true,
+  "fullCiE2ePassed": 85,
+  "fullCiE2eFailed": 0,
+  "fullCiE2eCancelled": 0,
+  "fullCiE2eSkipped": 0,
+  "allSixWorkflowsPassed": true,
+  "workflows": [
+    {
+      "id": 38380990694,
+      "name": "Lazada E2E",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990694"
+    },
+    {
+      "id": 38380990605,
+      "name": "Checks and release",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605"
+    },
+    {
+      "id": 38380990579,
+      "name": "Workflows",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990579"
+    },
+    {
+      "id": 38380990685,
+      "name": "Broken Link Checker",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990685"
+    },
+    {
+      "id": 38380990675,
+      "name": "Security",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990675"
+    },
+    {
+      "id": 38380990585,
+      "name": "Example app",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990585"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": 115241061184,
+      "name": "Browser, OCR, CLI, Telegram and binary store",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 85,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "c948b8c3221997c9e69ebd8986b45067dfb084f6bf5bca343a65038e2c9c7ef5",
+      "originalLogBytes": 106333,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115241061184.log.gz",
+      "compressedSha256": "d71f642b9a0dde81b77368ec22d888862d844e79e23937e5cebac20a6641fc96",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990694/job/115241061184"
+    },
+    {
+      "jobId": 115242381936,
+      "name": "Test (node on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1568,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "153ab92391ef2ee8a18f5fe0a3162f6c96cd4058663d88342af0ed3ed52e13bd",
+      "originalLogBytes": 252252,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381936.log.gz",
+      "compressedSha256": "e0b739fac057662b0b9e83a4bf1855eb3b40c5deb339909367f44f7ef5620fd0",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381936"
+    },
+    {
+      "jobId": 115242381942,
+      "name": "Test (deno on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1454,
+      "failed": 0,
+      "steps": 16,
+      "originalLogSha256": "0b8e3d3c7a09add6c360e8fccb0299f3ee64d628483178a511efe1ab5baa1093",
+      "originalLogBytes": 371011,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381942.log.gz",
+      "compressedSha256": "e3159e030915b874672b43812d35f0bc5ab8ce5c140309dcab444586fcaab7d6",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381942"
+    },
+    {
+      "jobId": 115242381950,
+      "name": "Test (bun on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1608,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "22c98d42d6f3bf2aa9d5f2408df38bdb17a5b3ced5980890c41ff46519cccc50",
+      "originalLogBytes": 317020,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381950.log.gz",
+      "compressedSha256": "e9911a3524ceb4b60f55723d7854619ac6151449cfa377f6480ca92d3309220c",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381950"
+    },
+    {
+      "jobId": 115242381955,
+      "name": "Test (deno on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1453,
+      "failed": 0,
+      "steps": 16,
+      "originalLogSha256": "0df7d4d6b49bfe08838ec57dca65c62ee40a6f7f4d96ce67be644de25d533158",
+      "originalLogBytes": 369501,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381955.log.gz",
+      "compressedSha256": "120aad423048cbd6d89495dbee4fc27be1bdf605a9a5e58d5a9b156034bada2d",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381955"
+    },
+    {
+      "jobId": 115242381965,
+      "name": "Test (node on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1609,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "966fbef7c9d93716d19c31f4accc3e0c67e1bcc12a60b20e9fe4ebd038c8f8fd",
+      "originalLogBytes": 258667,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381965.log.gz",
+      "compressedSha256": "9efa6571b2d90d025d0cda0671534360fc27d67648ba96a7e97a662371bf7744",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381965"
+    },
+    {
+      "jobId": 115242381973,
+      "name": "Test (deno on ubuntu-24.04)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1453,
+      "failed": 0,
+      "steps": 16,
+      "originalLogSha256": "065c25658fb1c7848f28113f2641b84777ee8f97cc9339c2a257d5bda1bc881b",
+      "originalLogBytes": 369530,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381973.log.gz",
+      "compressedSha256": "f8583d712e1145120f34ef06da68852b4c3d3f6cd1661c309dbda152cd3dfbb0",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381973"
+    },
+    {
+      "jobId": 115242381977,
+      "name": "Test (bun on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1608,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "3017d2da5edefe6669d79f23355b0b34ff2722250a6a676450b5bb222b3e5340",
+      "originalLogBytes": 313555,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242381977.log.gz",
+      "compressedSha256": "9c8d8d9dea9ecac69b6971caa2ae3f4a077b3f6e3d666295118271d93d313ed7",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242381977"
+    },
+    {
+      "jobId": 115242382096,
+      "name": "Test (node on macos-15)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1609,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "b8a8be36c35ae85960807a0f13c78190f95c553dfbafbc68f1735655597e563d",
+      "originalLogBytes": 257301,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242382096.log.gz",
+      "compressedSha256": "c9996d99afa25fabdfd38638a7181ecdfaaca4dc1e206d4dd9f80aac1bedc785",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242382096"
+    },
+    {
+      "jobId": 115242382200,
+      "name": "Test (bun on windows-2025)",
+      "status": "completed",
+      "conclusion": "success",
+      "passed": 1572,
+      "failed": 0,
+      "steps": 0,
+      "originalLogSha256": "03e190e77ab3d13a3e42878cf06c7ea5e6f17c14bb3ab8d4166328408f3a3d54",
+      "originalLogBytes": 289516,
+      "committedLog": "docs/acceptance/offline-completion-progress/ci-de1e-original-logs/115242382200.log.gz",
+      "compressedSha256": "fbdef1e87f1de88426874f92c6360e41b8cb5345d91f58a50033dd5edcfa5dbe",
+      "url": "https://github.com/konard/lazada-search/actions/runs/38380990605/job/115242382200"
+    }
+  ],
+  "codeql": {
+    "id": 115241413895,
+    "status": "completed",
+    "conclusion": "success",
+    "annotationsCount": 0,
+    "url": "https://github.com/konard/lazada-search/runs/115241413895"
+  },
+  "allRequirementsDelivered": false,
+  "incompleteDataOrLiveOutcomes": 20,
+  "collectionStopCleared": false,
+  "scope": "Full actual CI acceptance of the immutable executable source. Price/label/market/account/frozen-delivery evidence and owner publication remain separate."
+}
