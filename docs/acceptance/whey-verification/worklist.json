@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-13T20:39:51.711Z",
+  "generatedAt": "2026-10-13T21:00:12.430Z",
   "input": {
     "path": "docs/tables/catalog.json",
-    "sha256": "c69593297c8ef63f36bdf1de1e7f6c320838d0061c1df32ea33399ec9a78b35d",
-    "bytes": 42320408
+    "sha256": "8dd739ccc509e4bb6e0d4c8a03ed44e410ee7636ab5b8de4cf63c056e46c4e7d",
+    "bytes": 42518852
   },
-  "catalogCheckedAt": "2026-10-13T20:39:17.100Z",
+  "catalogCheckedAt": "2026-10-13T20:59:42.215Z",
   "market": "vn",
   "deliveryArea": "Nha Trang",
   "scope": "Chocolate/plain whey; soy and mixed powders classified separately. Listing discovery never excludes flavour siblings by title.",
@@ -19,15 +19,15 @@
     "networkRequests": 0
   },
   "counts": {
-    "capturedPowderSkus": 513,
+    "capturedPowderSkus": 522,
     "strictWheySkus": 189,
     "strictSoySkus": 1,
     "verifiedStrictWheySkus": 11,
     "missingFactoryMatches": 185,
-    "discoveryTasks": 5889,
-    "pendingSkuTasks": 651,
+    "discoveryTasks": 5880,
+    "pendingSkuTasks": 694,
     "excludedSkuOptions": 1043,
-    "originalSourcePointers": 2348,
+    "originalSourcePointers": 2364,
     "unresolvedEvidencePointers": 0
   },
   "capturedSkus": [
@@ -70155,6 +70155,68 @@
       "sourcedClaims": []
     },
     {
+      "productId": "product:d050ceb32cc4e1d7a062f71633588f85d7c12e1d6a4a3a9350dcd17fa9780d52",
+      "listingKey": "lazada.vn:item:1283276080",
+      "url": "https://www.lazada.vn/products/pdp-i1283276080.html",
+      "sku": "1283276080_VNAMZ-4848139955",
+      "title": "Hộp đựng whey, mass tập gym tập thể thao Ishake Protein Funnel 200ml",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["Myprotein 200ml"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "price": 78000,
+      "priceObservedAt": "2026-10-13T20:51:53.883Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 78000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:9abeb5271c6f557193fa3bb54c410b69280c09a0f137ee1eec4b820f92c0fdf2"
+      ],
+      "sourcedClaims": []
+    },
+    {
       "productId": "product:dfc54c2af0e2055d078ae7b129c0e6588d8f7a5306d96231ebbbc97d13b19ca9",
       "listingKey": "lazada.vn:item:1303303109",
       "url": "https://www.lazada.vn/products/pdp-i1303303109.html",
@@ -71500,6 +71562,87 @@
           "evidenceId": "evidence:1309097aea0094ed8be9c5200d6a722d31d0bbe99ddd50d1771d05cf0ca87a31",
           "requiresReview": true,
           "excerpt": "Khối lượng tịnh: 500g"
+        }
+      ]
+    },
+    {
+      "productId": "product:b3e1275808b368d62279ad1436d4bc319babd4baf54736d6a32550f9c5029f82",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/pdp-i13353920059.html",
+      "sku": "13353920059_VNAMZ-116784552409",
+      "title": "JI-TOP | Hộp Đựng Bột Protein Di Động",
+      "brand": "JI-TOP",
+      "proteinSource": "other-protein",
+      "flavour": "unknown",
+      "selectedOptions": [
+        "Panda [500ml] cốc lắc màu đen + quả bóng khuấy + cọ cốc"
+      ],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "price": 300000,
+      "priceObservedAt": "2026-10-13T20:55:53.888Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": null,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 300000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:1a8fde6bd31ccb29804c05705c74f6a84bbb7f0bdd78ef125b3985ebef421b97"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netVolumeMl",
+          "value": 51,
+          "source": "dom",
+          "evidenceId": "evidence:1a8fde6bd31ccb29804c05705c74f6a84bbb7f0bdd78ef125b3985ebef421b97",
+          "requiresReview": false,
+          "excerpt": "Net Content \n51ml"
+        },
+        {
+          "field": "ingredients",
+          "value": ["Protein whey"],
+          "source": "dom",
+          "evidenceId": "evidence:1a8fde6bd31ccb29804c05705c74f6a84bbb7f0bdd78ef125b3985ebef421b97",
+          "requiresReview": false,
+          "excerpt": "\n Thành phần \nProtein whey"
         }
       ]
     },
@@ -77476,6 +77619,85 @@
       ]
     },
     {
+      "productId": "product:5d51ff5df56bfdbec367fee2bfbce23c86fd4d5c62d2a3cd9df4eace871a9e59",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/pdp-i13451375503.html",
+      "sku": "13451375503_VNAMZ-117291408503",
+      "title": "MNTT 500ml/750ml Cốc Lắc Whey Có cân Thép không gỉ 304 Chai Bột protein Cốc uống trực tiếp Di động Cốc nước thể thao Thể dục thể thao",
+      "brand": "MNTT",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["black-500ml"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": 304,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "price": 162910,
+      "priceObservedAt": "2026-10-13T20:56:53.881Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 316000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 304,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 162910,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:8c3e912259f53caa865e1d438fe05ece6028ce3a90973bfaa6d2ba523af68dc3"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netVolumeMl",
+          "value": 500,
+          "source": "dom",
+          "evidenceId": "evidence:8c3e912259f53caa865e1d438fe05ece6028ce3a90973bfaa6d2ba523af68dc3",
+          "requiresReview": false,
+          "excerpt": "Dung tích: 500ml"
+        },
+        {
+          "field": "packCount",
+          "value": 304,
+          "source": "dom",
+          "evidenceId": "evidence:8c3e912259f53caa865e1d438fe05ece6028ce3a90973bfaa6d2ba523af68dc3",
+          "requiresReview": false,
+          "excerpt": "MNTT 500ml/750ml Cốc Lắc Whey Có cân Thép không gỉ 304 Chai Bột protein Cốc uống trực tiếp Di động Cốc nước thể thao Thể dục thể thao"
+        }
+      ]
+    },
+    {
       "productId": "product:8eda5bb1baedd8d69a1e69dfbf0981942b5be8295c64603b62ab37e56f64d59f",
       "listingKey": "lazada.vn:item:13454667632",
       "url": "https://www.lazada.vn/products/pdp-i13454667632.html",
@@ -77744,6 +77966,77 @@
       ]
     },
     {
+      "productId": "product:ee7f3198afbd9163cba35b15fcdad4734517f7ca3e36891b6d43233b35aee94a",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/pdp-i13458993341.html",
+      "sku": "13458993341_VNAMZ-117309385188",
+      "title": "GONOVO Thép không gỉ 304 Cốc Lắc Whey Có cân 500ml/750ml Cốc bột protein thể dục Cốc uống trực tiếp Chịu nhiệt độ cao Cốc nước thể thao Thể dục thể thao",
+      "brand": "GONOVO",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["black-500ml"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "price": 134694,
+      "priceObservedAt": "2026-10-13T20:48:53.909Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 264107,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 134694,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:a3a5aca3ce796c94a84c13921abc5ca1d363818e7e94e4d10b33a34fb11f921d"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netVolumeMl",
+          "value": 500,
+          "source": "dom",
+          "evidenceId": "evidence:a3a5aca3ce796c94a84c13921abc5ca1d363818e7e94e4d10b33a34fb11f921d",
+          "requiresReview": false,
+          "excerpt": "Dung tích: 500ml"
+        }
+      ]
+    },
+    {
       "productId": "product:7f61e5c0147470bac7fb2efcf05363e105da924aef209a8b48c4fa790c7a3080",
       "listingKey": "lazada.vn:item:13459402808",
       "url": "https://www.lazada.vn/products/pdp-i13459402808.html",
@@ -77921,6 +78214,77 @@
           "evidenceId": "evidence:775d35f74265802e3b7a5f556e00081ac9ffcfad35eb3b2e5d5632905c0bace3",
           "requiresReview": true,
           "excerpt": " sản phẩm: SEEQ-VARIETY-BRWWSL-018 \n\nUPC: 9307 \n\nNhà sản xuất: SEEQ \n\nMã ASIN: B0F954C9FT \n\nĐơn vị: 17.77 ounce\nIf you want to report an issue with this item Click Here"
+        }
+      ]
+    },
+    {
+      "productId": "product:e71f6126b575e19bf68ea5c6ddae3aaa10612908aa1e628b30daa242e82cf367",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/pdp-i13461476014.html",
+      "sku": "13461476014_VNAMZ-117310277863",
+      "title": "GAOSU 500ml/750ml Cốc Lắc Whey Thép không gỉ 304 Có cân Chai Bột protein Cốc uống trực tiếp Chịu nhiệt độ cao Cốc nước thể thao Thể dục thể thao",
+      "brand": "Gaosu",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["silver-750ml"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "price": 151474,
+      "priceObservedAt": "2026-10-13T20:47:53.849Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 292000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 151474,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:d6160ea0abd3da93987fbaf7598f12451813cdee435731ddb18874e4423e8217"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netVolumeMl",
+          "value": 500,
+          "source": "dom",
+          "evidenceId": "evidence:d6160ea0abd3da93987fbaf7598f12451813cdee435731ddb18874e4423e8217",
+          "requiresReview": false,
+          "excerpt": "Dung tích: 500ml"
         }
       ]
     },
@@ -78819,6 +79183,192 @@
           "excerpt": "gầy hoặc đang cần phục hồi sức khỏe. \n\n3. Hướng dẫn cách dùng\nLiều lượng: Pha 2 muỗng (khoảng 39g - 41g tùy hương vị) với khoảng 250ml - 300ml nước lạnh hoặc sữa tươi không đường. \nCách pha: Cho bột vào "
         }
       ]
+    },
+    {
+      "productId": "product:03c7e53606d2236207a423cd84a7c3572682351b61330dbf350fddea57472625",
+      "listingKey": "lazada.vn:item:13472411267",
+      "url": "https://www.lazada.vn/products/pdp-i13472411267.html",
+      "sku": "13472411267_VNAMZ-117392120530",
+      "title": "【Frosted Thread】 1pc 100ML Outdoor Sport Mini Portable Protein Container Powder Bottle with Whey Keychain Health Funnel Medicine Box",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["WHITE"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:50:13.226Z",
+      "price": 296270,
+      "priceObservedAt": "2026-10-13T20:50:13.226Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 385840,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 296270,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:d330381bab01eb67ef2b8ab9af0b44bbeb0e8ba2bca980e7992f8af1255a1d42"
+      ],
+      "sourcedClaims": []
+    },
+    {
+      "productId": "product:f8a1e668eafc0328566f04f5f86ed78e4b3838740e3f41106b9e11dc8ae802c0",
+      "listingKey": "lazada.vn:item:13474489501",
+      "url": "https://www.lazada.vn/products/pdp-i13474489501.html",
+      "sku": "13474489501_VNAMZ-117384919366",
+      "title": "Bình Nước Thể Thao Chân Không Hai Lớp Bằng Thép Không Gỉ Có Thể Tháo Rời, Dung Tích 601-700ml, Dùng Ngoài Trời, Đựng Bột Whey Protein",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["Xám"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:53:06.960Z",
+      "price": 242000,
+      "priceObservedAt": "2026-10-13T20:53:06.960Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 314000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 242000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:e1d60f0ee0b44cb9eb30ad2a58db6e66a18abae55abbcdc1a14dea92d9aa5f89"
+      ],
+      "sourcedClaims": []
+    },
+    {
+      "productId": "product:ee7763acfacca7a19d08bd1b959ae500937f065156d1f85e696780d513afb780",
+      "listingKey": "lazada.vn:item:13476800375",
+      "url": "https://www.lazada.vn/products/pdp-i13476800375.html",
+      "sku": "13476800375_VNAMZ-117401410108",
+      "title": "Bình Nước Thể Thao Chân Không Hai Lớp Bằng Thép Không Gỉ Có Thể Tháo Rời, Dung Tích 601-700ml, Dùng Ngoài Trời, Đựng Bột Whey Protein",
+      "brand": "",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["Xám"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:54:13.524Z",
+      "price": 253000,
+      "priceObservedAt": "2026-10-13T20:54:13.524Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 329000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 253000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:6fba4e63c3395f4fa3131da4fdf012e493aa74b56a5f6b44f4c11a4aef537dc8"
+      ],
+      "sourcedClaims": []
     },
     {
       "productId": "product:5f2108882cb96515f3322678c9c109e37ff620114d33a8d782cbd58c4c3901c5",
@@ -80187,6 +80737,77 @@
           "evidenceId": "evidence:1717a19f1ce3c2395ab536f1e7593a06dd57f3705fb42eaeac6f62197859993d",
           "requiresReview": false,
           "excerpt": "18 gói các loại khác 18 gói các loại khác"
+        }
+      ]
+    },
+    {
+      "productId": "product:d560e5c78dbc67f738b73a7a49b80f7119bb48c31155dd238b3833d6d9d0da2b",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/pdp-i13480590988.html",
+      "sku": "13480590988_VNAMZ-117418952669",
+      "title": "SHENJIN Thép không gỉ 304 Cốc Lắc Whey 500ml/750ml Có cân Cốc bột protein thể dục Cốc sữa lắc Chống rò rỉ Cốc nước thể thao Thể dục thể thao",
+      "brand": "shenjin",
+      "proteinSource": "whey",
+      "flavour": "unknown",
+      "selectedOptions": ["red-500ml"],
+      "scopeEligible": false,
+      "scopeExclusion": null,
+      "netMassG": null,
+      "packCount": null,
+      "denominatorAuthority": "captured normalized seller observation; factory approval pending",
+      "manufacturerVerified": false,
+      "manufacturerVerification": null,
+      "manufacturerCandidates": [],
+      "manufacturerProblems": [
+        "Exact manufacturer variant verification required",
+        "Manufacturer specification required: netMassG",
+        "Manufacturer specification required: proteinPer100g",
+        "Manufacturer specification required: sugarPer100g",
+        "Manufacturer specification required: fatPer100g",
+        "Manufacturer specification required: saturatedFatPer100g",
+        "Manufacturer specification required: kcalPer100g",
+        "Manufacturer specification required: ingredients"
+      ],
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "price": 159000,
+      "priceObservedAt": "2026-10-13T20:46:53.849Z",
+      "available": true,
+      "priceVariantConfirmed": true,
+      "originalPrice": 277000,
+      "costs": {
+        "quantity": 1,
+        "packagesPerSellingUnit": 1,
+        "massG": null,
+        "volumeMl": null,
+        "proteinG": null,
+        "totalBeforeDelivery": 159000,
+        "totalAfterDelivery": null,
+        "shippingVnd": null,
+        "beforePerFoodGram": null,
+        "afterPerFoodGram": null,
+        "beforePerMl": null,
+        "afterPerMl": null,
+        "beforePerProteinGram": null,
+        "afterPerProteinGram": null,
+        "deliveryQuoteMatched": false
+      },
+      "tasks": [
+        "verify-selected-flavour",
+        "match-exact-factory-package-and-formula",
+        "identify-manufacturer-from-original-package",
+        "quote-exact-quantity-to-Nha-Trang"
+      ],
+      "evidenceIds": [
+        "evidence:067bcbac44ab9d42f48e3b9d6d5583b283683b2eaeeedb9c0c1d0d80f756959b"
+      ],
+      "sourcedClaims": [
+        {
+          "field": "netVolumeMl",
+          "value": 500,
+          "source": "dom",
+          "evidenceId": "evidence:067bcbac44ab9d42f48e3b9d6d5583b283683b2eaeeedb9c0c1d0d80f756959b",
+          "requiresReview": false,
+          "excerpt": "Dung tích: 500ml"
         }
       ]
     },
@@ -87294,27 +87915,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13476800375",
-      "listingKey": "lazada.vn:item:13476800375",
-      "url": "https://www.lazada.vn/products/pdp-i13476800375.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Bình Nước Thể Thao Chân Không Hai Lớp Bằng Thép Không Gỉ Có Thể Tháo Rời, Dung Tích 601-700ml, Dùng Ngoài Trời, Đựng Bột Whey Protein"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:03c36fcfdb30dcf773aa71f274d17a020d317b75e2dfeaee4b0f3921d97af4fa",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:3124076606",
       "listingKey": "lazada.vn:item:3124076606",
       "url": "https://www.lazada.vn/products/pdp-i3124076606.html",
@@ -93359,32 +93959,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13353920059",
-      "listingKey": "lazada.vn:item:13353920059",
-      "url": "https://www.lazada.vn/products/pdp-i13353920059.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": ["JI-TOP | Hộp Đựng Bột Protein Di Động"],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:0a2ef181499f37d227a08e26056cfc4e50eb4e4cfb7532de1e317300902bd321",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=31&q=protein+powder",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=31&q=protein+powder",
-          "query": "protein powder",
-          "observedAt": "2026-10-10T13:24:30.025Z"
-        },
-        {
-          "discoveryId": "discovery:2d72e67b1850975875a5bc97f48b1a9f22cc7c68215fdd943a0dde564ef9e5e8",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:2236843394",
       "listingKey": "lazada.vn:item:2236843394",
       "url": "https://www.lazada.vn/products/pdp-i2236843394.html",
@@ -93559,27 +94133,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=21&q=protein+powder",
           "query": "protein powder",
           "observedAt": "2026-10-10T13:14:29.343Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13458993341",
-      "listingKey": "lazada.vn:item:13458993341",
-      "url": "https://www.lazada.vn/products/pdp-i13458993341.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "GONOVO Thép không gỉ 304 Cốc Lắc Whey Có cân 500ml/750ml Cốc bột protein thể dục Cốc uống trực tiếp Chịu nhiệt độ cao Cốc nước thể thao Thể dục thể thao"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:0a60776ad9b1ec14f4ae6a4003cdbf68464f54370c9f606b4d1af3fc90121ff9",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
         }
       ],
       "status": "pending",
@@ -109640,27 +110193,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13480590988",
-      "listingKey": "lazada.vn:item:13480590988",
-      "url": "https://www.lazada.vn/products/pdp-i13480590988.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "SHENJIN Thép không gỉ 304 Cốc Lắc Whey 500ml/750ml Có cân Cốc bột protein thể dục Cốc sữa lắc Chống rò rỉ Cốc nước thể thao Thể dục thể thao"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:1e1fa43a55332868aad89e2f263f15702cfcd85140b61d267efbe4d27b4d888c",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:13324934962",
       "listingKey": "lazada.vn:item:13324934962",
       "url": "https://www.lazada.vn/products/pdp-i13324934962.html",
@@ -113473,27 +114005,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/bach-hoa-online-kem-daua/?page=5&sort=priceasc",
           "query": "category:https://www.lazada.vn/bach-hoa-online-kem-daua/?sort=priceasc",
           "observedAt": "2026-10-10T15:07:54.761Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13461476014",
-      "listingKey": "lazada.vn:item:13461476014",
-      "url": "https://www.lazada.vn/products/pdp-i13461476014.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "GAOSU 500ml/750ml Cốc Lắc Whey Thép không gỉ 304 Có cân Chai Bột protein Cốc uống trực tiếp Chịu nhiệt độ cao Cốc nước thể thao Thể dục thể thao"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:2328a88f1a370a645c62015a09bec111d9886d52187bb6357a2e8c5eb977f5a7",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
         }
       ],
       "status": "pending",
@@ -131073,27 +131584,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=36&q=whey+isolate",
           "query": "whey isolate",
           "observedAt": "2026-10-10T12:09:26.081Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:1283276080",
-      "listingKey": "lazada.vn:item:1283276080",
-      "url": "https://www.lazada.vn/products/pdp-i1283276080.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Hộp đựng whey, mass tập gym tập thể thao Ishake Protein Funnel 200ml"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:3b220405695f2ea5ad0ad270e7b43e9446341b82f1bd7a6802943b99a06a5f1d",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
         }
       ],
       "status": "pending",
@@ -181939,27 +182429,6 @@
       "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
     },
     {
-      "taskId": "powder-inventory:lazada.vn:item:13451375503",
-      "listingKey": "lazada.vn:item:13451375503",
-      "url": "https://www.lazada.vn/products/pdp-i13451375503.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "MNTT 500ml/750ml Cốc Lắc Whey Có cân Thép không gỉ 304 Chai Bột protein Cốc uống trực tiếp Di động Cốc nước thể thao Thể dục thể thao"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:8cba3c2382a47a42c2fc1fcd7c413105b09a650353759f8c04486e5da9a1d8ab",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
       "taskId": "category-review:lazada.vn:item:996560723",
       "listingKey": "lazada.vn:item:996560723",
       "url": "https://www.lazada.vn/products/pdp-i996560723.html",
@@ -188693,27 +189162,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=57&q=whey+isolate",
           "query": "whey isolate",
           "observedAt": "2026-10-10T12:30:26.340Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13474489501",
-      "listingKey": "lazada.vn:item:13474489501",
-      "url": "https://www.lazada.vn/products/pdp-i13474489501.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "Bình Nước Thể Thao Chân Không Hai Lớp Bằng Thép Không Gỉ Có Thể Tháo Rời, Dung Tích 601-700ml, Dùng Ngoài Trời, Đựng Bột Whey Protein"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:9a3799a092d60881ec9be38907df226d987e5c8749f2b96a3c95f235b00f87c2",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
         }
       ],
       "status": "pending",
@@ -198235,27 +198683,6 @@
           "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=39&q=whey+protein",
           "query": "whey protein",
           "observedAt": "2026-10-10T10:57:15.232Z"
-        }
-      ],
-      "status": "pending",
-      "flavourExcluded": false,
-      "reason": "A listing title cannot rule out chocolate/plain sibling SKUs; uncertain categories require resumable review."
-    },
-    {
-      "taskId": "powder-inventory:lazada.vn:item:13472411267",
-      "listingKey": "lazada.vn:item:13472411267",
-      "url": "https://www.lazada.vn/products/pdp-i13472411267.html",
-      "stage": "collect-listing-and-all-selling-options",
-      "titles": [
-        "【Frosted Thread】 1pc 100ML Outdoor Sport Mini Portable Protein Container Powder Bottle with Whey Keychain Health Funnel Medicine Box"
-      ],
-      "sourceReferences": [
-        {
-          "discoveryId": "discovery:aea94a7470c6cd2f0d6506c5232be82cd2780a92531d934f8953237a38d9d258",
-          "sourceUrl": "https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "cacheId": "search:vn:Nha Trang:https://www.lazada.vn/catalog/?page=14&q=whey+protein",
-          "query": "whey protein",
-          "observedAt": "2026-10-10T10:32:15.120Z"
         }
       ],
       "status": "pending",
@@ -227146,6 +227573,62 @@
       "exclusionReason": null
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:1283276080:4848139956",
+      "listingKey": "lazada.vn:item:1283276080",
+      "url": "https://www.lazada.vn/products/hop-dung-whey-mass-tap-gym-tap-the-thao-ishake-protein-funnel-200ml-i1283276080-s4848139956.html",
+      "sku": "4848139956",
+      "options": [{ "name": "Màu sắc", "value": "Mutant 200ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:1283276080:4848139957",
+      "listingKey": "lazada.vn:item:1283276080",
+      "url": "https://www.lazada.vn/products/hop-dung-whey-mass-tap-gym-tap-the-thao-ishake-protein-funnel-200ml-i1283276080-s4848139957.html",
+      "sku": "4848139957",
+      "options": [{ "name": "Màu sắc", "value": "Dymatize 100ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:1283276080:4848139958",
+      "listingKey": "lazada.vn:item:1283276080",
+      "url": "https://www.lazada.vn/products/hop-dung-whey-mass-tap-gym-tap-the-thao-ishake-protein-funnel-200ml-i1283276080-s4848139958.html",
+      "sku": "4848139958",
+      "options": [{ "name": "Màu sắc", "value": "On 100ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:1283276080:6058710094",
+      "listingKey": "lazada.vn:item:1283276080",
+      "url": "https://www.lazada.vn/products/hop-dung-whey-mass-tap-gym-tap-the-thao-ishake-protein-funnel-200ml-i1283276080-s6058710094.html",
+      "sku": "6058710094",
+      "options": [{ "name": "Màu sắc", "value": "Iso HD 200ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:1303303109:5023280945",
       "listingKey": "lazada.vn:item:1303303109",
       "url": "https://www.lazada.vn/products/sua-whey-protein-hammer-nutrition-24-serving-whey-isolate-duy-tri-va-phuc-hoi-co-nhanh-chong-i1303303109-s5023280945.html",
@@ -228110,6 +228593,182 @@
       "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353782896.html",
       "observedAt": "2026-10-11T04:16:29.958Z",
       "requiredAction": "capture-exact-sku-price-and-labels",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552402",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552402.html",
+      "sku": "116784552402",
+      "options": [
+        { "name": "màu sắc", "value": "Trên một lớp phấn phủ [60g]" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552403",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552403.html",
+      "sku": "116784552403",
+      "options": [
+        { "name": "màu sắc", "value": "Hộp phấn phủ lớp thứ hai [120g]" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552404",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552404.html",
+      "sku": "116784552404",
+      "options": [
+        { "name": "màu sắc", "value": "Hộp phấn phủ ba lớp ON [180g]" }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552405",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552405.html",
+      "sku": "116784552405",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "ON【1000ml】cốc lắc + bi khuấy + cọ rửa cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552406",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552406.html",
+      "sku": "116784552406",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "ON【500ml】Cốc lắc ba lớp + bi lắc + cọ rửa cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552407",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552407.html",
+      "sku": "116784552407",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "ON【600ml】Cốc lắc trắng + bi lắc + cọ rửa cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552408",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552408.html",
+      "sku": "116784552408",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "Cốc lắc Saiba [400ml] + bóng trộn + cọ rửa cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552410",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552410.html",
+      "sku": "116784552410",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "Cốc lắc trong suốt Panda [500ml] + quả bóng khuấy + cọ cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:116784552411",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s116784552411.html",
+      "sku": "116784552411",
+      "options": [
+        {
+          "name": "màu sắc",
+          "value": "Cốc lắc Panda [500ml] màu xám + bi lắc + cọ rửa cốc"
+        }
+      ],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13353920059:117282807445",
+      "listingKey": "lazada.vn:item:13353920059",
+      "url": "https://www.lazada.vn/products/ji-top-hop-dung-bot-protein-di-dong-i13353920059-s117282807445.html",
+      "sku": "117282807445",
+      "options": [{ "name": "màu sắc", "value": "Hộp phấn ba lớp [180g]" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
       "exclusionReason": null
     },
     {
@@ -236172,6 +236831,104 @@
       "exclusionReason": null
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408496",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408496.html",
+      "sku": "117291408496",
+      "options": [{ "name": "style", "value": "red-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408497",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408497.html",
+      "sku": "117291408497",
+      "options": [{ "name": "style", "value": "white-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408498",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408498.html",
+      "sku": "117291408498",
+      "options": [{ "name": "style", "value": "silver-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408499",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408499.html",
+      "sku": "117291408499",
+      "options": [{ "name": "style", "value": "black-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408500",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408500.html",
+      "sku": "117291408500",
+      "options": [{ "name": "style", "value": "silver-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408501",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408501.html",
+      "sku": "117291408501",
+      "options": [{ "name": "style", "value": "white-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13451375503:117291408502",
+      "listingKey": "lazada.vn:item:13451375503",
+      "url": "https://www.lazada.vn/products/mntt-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-coc-uong-truc-tiep-di-dong-coc-nuoc-the-thao-the-duc-the-thao-i13451375503-s117291408502.html",
+      "sku": "117291408502",
+      "options": [{ "name": "style", "value": "red-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:13455376205:117283037712",
       "listingKey": "lazada.vn:item:13455376205",
       "url": "https://www.lazada.vn/products/pengong-500ml750ml-coc-lac-whey-co-can-thep-khong-gi-304-chai-bot-protein-phong-cach-don-gian-chiu-nhiet-do-cao-coc-bot-protein-the-duc-the-duc-the-thao-i13455376205-s117283037712.html",
@@ -236280,6 +237037,104 @@
       "status": "pending",
       "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13457719883.html",
       "observedAt": "2026-10-13T17:20:01.294Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385181",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385181.html",
+      "sku": "117309385181",
+      "options": [{ "name": "style", "value": "silver-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385182",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385182.html",
+      "sku": "117309385182",
+      "options": [{ "name": "style", "value": "white-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385183",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385183.html",
+      "sku": "117309385183",
+      "options": [{ "name": "style", "value": "red-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385184",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385184.html",
+      "sku": "117309385184",
+      "options": [{ "name": "style", "value": "white-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385185",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385185.html",
+      "sku": "117309385185",
+      "options": [{ "name": "style", "value": "black-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385186",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385186.html",
+      "sku": "117309385186",
+      "options": [{ "name": "style", "value": "red-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13458993341:117309385187",
+      "listingKey": "lazada.vn:item:13458993341",
+      "url": "https://www.lazada.vn/products/gonovo-thep-khong-gi-304-coc-lac-whey-co-can-500ml750ml-coc-bot-protein-the-duc-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13458993341-s117309385187.html",
+      "sku": "117309385187",
+      "options": [{ "name": "style", "value": "silver-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
       "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
       "exclusionReason": null
     },
@@ -236466,6 +237321,104 @@
       "observedAt": "2026-10-10T21:06:51.321Z",
       "requiredAction": "capture-exact-sku-price-and-labels",
       "exclusionReason": "selected-shaker-option"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277858",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277858.html",
+      "sku": "117310277858",
+      "options": [{ "name": "style", "value": "white-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277859",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277859.html",
+      "sku": "117310277859",
+      "options": [{ "name": "style", "value": "red-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277860",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277860.html",
+      "sku": "117310277860",
+      "options": [{ "name": "style", "value": "white-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277861",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277861.html",
+      "sku": "117310277861",
+      "options": [{ "name": "style", "value": "red-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277862",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277862.html",
+      "sku": "117310277862",
+      "options": [{ "name": "style", "value": "black-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277864",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277864.html",
+      "sku": "117310277864",
+      "options": [{ "name": "style", "value": "silver-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13461476014:117310277865",
+      "listingKey": "lazada.vn:item:13461476014",
+      "url": "https://www.lazada.vn/products/gaosu-500ml750ml-coc-lac-whey-thep-khong-gi-304-co-can-chai-bot-protein-coc-uong-truc-tiep-chiu-nhiet-do-cao-coc-nuoc-the-thao-the-duc-the-thao-i13461476014-s117310277865.html",
+      "sku": "117310277865",
+      "options": [{ "name": "style", "value": "black-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
     },
     {
       "taskId": "selected-sku:lazada.vn:item:13461749896:117324261967",
@@ -240391,6 +241344,20 @@
       "exclusionReason": "selected-other-flavour"
     },
     {
+      "taskId": "selected-sku:lazada.vn:item:13472411267:117392120531",
+      "listingKey": "lazada.vn:item:13472411267",
+      "url": "https://www.lazada.vn/products/frosted-thread-1pc-100ml-outdoor-sport-mini-portable-protein-container-powder-bottle-with-whey-keychain-health-funnel-medicine-box-i13472411267-s117392120531.html",
+      "sku": "117392120531",
+      "options": [{ "name": "Màu sắc", "value": "black" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13472411267.html",
+      "observedAt": "2026-10-13T20:50:13.226Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
       "taskId": "selected-sku:lazada.vn:item:13474249654:117400466191",
       "listingKey": "lazada.vn:item:13474249654",
       "url": "https://www.lazada.vn/products/sfd-protein-instant-wpc-plus-900g-bot-whey-protein-bo-sung-protein-cho-co-the-chinh-hang-i13474249654-s117400466191.html",
@@ -241206,6 +242173,104 @@
       "observedAt": "2026-10-11T09:24:36.730Z",
       "requiredAction": "capture-exact-sku-price-and-labels",
       "exclusionReason": "selected-other-flavour"
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952670",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952670.html",
+      "sku": "117418952670",
+      "options": [{ "name": "style", "value": "white-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952671",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952671.html",
+      "sku": "117418952671",
+      "options": [{ "name": "style", "value": "silver-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952672",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952672.html",
+      "sku": "117418952672",
+      "options": [{ "name": "style", "value": "black-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952673",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952673.html",
+      "sku": "117418952673",
+      "options": [{ "name": "style", "value": "white-500ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952674",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952674.html",
+      "sku": "117418952674",
+      "options": [{ "name": "style", "value": "silver-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952675",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952675.html",
+      "sku": "117418952675",
+      "options": [{ "name": "style", "value": "black-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
+    },
+    {
+      "taskId": "selected-sku:lazada.vn:item:13480590988:117418952676",
+      "listingKey": "lazada.vn:item:13480590988",
+      "url": "https://www.lazada.vn/products/shenjin-thep-khong-gi-304-coc-lac-whey-500ml750ml-co-can-coc-bot-protein-the-duc-coc-sua-lac-chong-ro-ri-coc-nuoc-the-thao-the-duc-the-thao-i13480590988-s117418952676.html",
+      "sku": "117418952676",
+      "options": [{ "name": "style", "value": "red-750ml" }],
+      "available": true,
+      "flavour": "unknown",
+      "status": "pending",
+      "sourceCacheId": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "requiredAction": "inspect-exact-sku-flavour-before-price-ranking",
+      "exclusionReason": null
     },
     {
       "taskId": "selected-sku:lazada.vn:item:13480790427:117402677060",
@@ -253916,6 +254981,17 @@
       }
     },
     {
+      "id": "evidence:067bcbac44ab9d42f48e3b9d6d5583b283683b2eaeeedb9c0c1d0d80f756959b",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "824769dc50f478d477024efad07a1a41fb3732816d427633449828fa01682c0a",
+        "bytes": 350306
+      }
+    },
+    {
       "id": "evidence:0683ec5b45c085b7038485448142205ab5eb541a3363cfb1c84329657eb0c4bd",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i13430219487.html",
@@ -254989,6 +256065,17 @@
         "type": "stored-blob",
         "sha256": "2abd80dd141fbf99e6052d8c6e9228d3a06b52a7c9c8c33b94eba2d505d87d49",
         "bytes": 328311
+      }
+    },
+    {
+      "id": "evidence:1a8fde6bd31ccb29804c05705c74f6a84bbb7f0bdd78ef125b3985ebef421b97",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "9e6cbb8361cda578f27dfb1f7c680bd8a687a2d2445eae5d468ecf18f3084a9a",
+        "bytes": 373489
       }
     },
     {
@@ -259169,6 +260256,17 @@
       }
     },
     {
+      "id": "evidence:6fba4e63c3395f4fa3131da4fdf012e493aa74b56a5f6b44f4c11a4aef537dc8",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13476800375.html",
+      "observedAt": "2026-10-13T20:54:13.524Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "edbca36fed82c25460d1bf9b01d6bbb84b548fa709b698dae4d6326af082a677",
+        "bytes": 229964
+      }
+    },
+    {
       "id": "evidence:6fc2b634579a4f29ade0157098ca7480322dd46dc1641261b7096c2dfed0c918",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i13384018556.html",
@@ -260568,6 +261666,17 @@
       }
     },
     {
+      "id": "evidence:8c3e912259f53caa865e1d438fe05ece6028ce3a90973bfaa6d2ba523af68dc3",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "281a901f4292fafca9012ab08436e2a0f83e5ffe89885b061fd4a4a8d034e3b0",
+        "bytes": 350048
+      }
+    },
+    {
       "id": "evidence:8c451bd1cf713fd1d51430853eba568053ab39dfb1e107681ec62ee016c3addd",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i13442013824.html",
@@ -261220,6 +262329,17 @@
       }
     },
     {
+      "id": "evidence:9abeb5271c6f557193fa3bb54c410b69280c09a0f137ee1eec4b820f92c0fdf2",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "4d8403fa7f68b0ec2b68fcf1d0c04ffc163ba5517a4b5e6858bce6cb24e03f7f",
+        "bytes": 339581
+      }
+    },
+    {
       "id": "evidence:9ac83aafdf04a46b8c9825e22ddbc50572ce2cb1876384e5959f82dd139c4e28",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i3154800181.html",
@@ -261587,6 +262707,17 @@
         "type": "stored-blob",
         "sha256": "eb2564ea22534af33efafebba8c3e99a2cebc087861b61330a5947345282595c",
         "bytes": 298628
+      }
+    },
+    {
+      "id": "evidence:a3a5aca3ce796c94a84c13921abc5ca1d363818e7e94e4d10b33a34fb11f921d",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "d5bc9e33d0abb0f67438360aeaaa595a501c0ae1ec7a071226eb062ddd77a49f",
+        "bytes": 355244
       }
     },
     {
@@ -263815,6 +264946,17 @@
       }
     },
     {
+      "id": "evidence:d330381bab01eb67ef2b8ab9af0b44bbeb0e8ba2bca980e7992f8af1255a1d42",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13472411267.html",
+      "observedAt": "2026-10-13T20:50:13.226Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "44dc4e8679a81c119247222eadb28f8ef2403376b2bc9fe7e0ec001f70a15d72",
+        "bytes": 310991
+      }
+    },
+    {
       "id": "evidence:d34123a69bd285cccd564ed7407614968b9e2a738d36e093ee6af22f0507c13b",
       "role": "listing",
       "url": "https://www.lazada.vn/products/pdp-i954218508.html",
@@ -263988,6 +265130,17 @@
       "screenshot": {
         "sha256": "2fbe901ef761469590c92b6878bd06e3ca6d0add8c8e6c797dfe8217c5482ae5",
         "bytes": 905366
+      }
+    },
+    {
+      "id": "evidence:d6160ea0abd3da93987fbaf7598f12451813cdee435731ddb18874e4423e8217",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "7fb43f8e3334452172ecdf3f5230cd4b0c7bbbff2aa3f34afff5f79e03c941bc",
+        "bytes": 354237
       }
     },
     {
@@ -264523,6 +265676,17 @@
       "html": {
         "sha256": "be65e0c1efa08888d5eb242d247e4d7659a9b1642deb517220af1422deb3b827",
         "bytes": 427741
+      }
+    },
+    {
+      "id": "evidence:e1d60f0ee0b44cb9eb30ad2a58db6e66a18abae55abbcdc1a14dea92d9aa5f89",
+      "role": "listing",
+      "url": "https://www.lazada.vn/products/pdp-i13474489501.html",
+      "observedAt": "2026-10-13T20:53:06.960Z",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "e830865144105cc7f5ca1a02d6827fbdb2f761679e01e37b4cbb3e99ed241391",
+        "bytes": 234776
       }
     },
     {
@@ -272532,6 +273696,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1283276080.html",
+      "url": "https://www.lazada.vn/products/pdp-i1283276080.html",
+      "observedAt": "2026-10-13T20:51:53.883Z",
+      "fetchedAt": 1791924713883,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "4d8403fa7f68b0ec2b68fcf1d0c04ffc163ba5517a4b5e6858bce6cb24e03f7f",
+        "bytes": 339581
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i1303303109.html",
       "url": "https://www.lazada.vn/products/pdp-i1303303109.html",
       "observedAt": "2026-10-11T06:06:53.686Z",
@@ -272721,6 +273897,18 @@
         "type": "stored-blob",
         "sha256": "a35096ea580caef17fef34fdb01029716e2bc68bd2fa26dab06d4791218ecadf",
         "bytes": 309783
+      }
+    },
+    {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13353920059.html",
+      "url": "https://www.lazada.vn/products/pdp-i13353920059.html",
+      "observedAt": "2026-10-13T20:55:53.888Z",
+      "fetchedAt": 1791924953888,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "9e6cbb8361cda578f27dfb1f7c680bd8a687a2d2445eae5d468ecf18f3084a9a",
+        "bytes": 373489
       }
     },
     {
@@ -273710,6 +274898,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451375503.html",
+      "url": "https://www.lazada.vn/products/pdp-i13451375503.html",
+      "observedAt": "2026-10-13T20:56:53.881Z",
+      "fetchedAt": 1791925013881,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "281a901f4292fafca9012ab08436e2a0f83e5ffe89885b061fd4a4a8d034e3b0",
+        "bytes": 350048
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13451810835.html",
       "url": "https://www.lazada.vn/products/pdp-i13451810835.html",
       "observedAt": "2026-10-10T16:42:24.057Z",
@@ -273746,6 +274946,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13458993341.html",
+      "url": "https://www.lazada.vn/products/pdp-i13458993341.html",
+      "observedAt": "2026-10-13T20:48:53.909Z",
+      "fetchedAt": 1791924533909,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "d5bc9e33d0abb0f67438360aeaaa595a501c0ae1ec7a071226eb062ddd77a49f",
+        "bytes": 355244
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13460375287.html",
       "url": "https://www.lazada.vn/products/pdp-i13460375287.html",
       "observedAt": "2026-10-13T14:57:03.800Z",
@@ -273779,6 +274991,18 @@
         "type": "stored-blob",
         "sha256": "5da3d99961bcf7f1c18e66e2012749766879e55d3740f265565679929a961ab4",
         "bytes": 310240
+      }
+    },
+    {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13461476014.html",
+      "url": "https://www.lazada.vn/products/pdp-i13461476014.html",
+      "observedAt": "2026-10-13T20:47:53.849Z",
+      "fetchedAt": 1791924473849,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "7fb43f8e3334452172ecdf3f5230cd4b0c7bbbff2aa3f34afff5f79e03c941bc",
+        "bytes": 354237
       }
     },
     {
@@ -274106,6 +275330,18 @@
       }
     },
     {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13472411267.html",
+      "url": "https://www.lazada.vn/products/pdp-i13472411267.html",
+      "observedAt": "2026-10-13T20:50:13.226Z",
+      "fetchedAt": 1791924613226,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "44dc4e8679a81c119247222eadb28f8ef2403376b2bc9fe7e0ec001f70a15d72",
+        "bytes": 310991
+      }
+    },
+    {
       "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13474249654.html",
       "url": "https://www.lazada.vn/products/pdp-i13474249654.html",
       "observedAt": "2026-10-11T07:59:11.353Z",
@@ -274427,6 +275663,18 @@
         "type": "stored-blob",
         "sha256": "c43c153ca59520c9be52237aa515a53e2a3ecc8e37283d7d93cec4b52e7dea93",
         "bytes": 314286
+      }
+    },
+    {
+      "id": "lazada:vn:Nha Trang:https://www.lazada.vn/products/pdp-i13480590988.html",
+      "url": "https://www.lazada.vn/products/pdp-i13480590988.html",
+      "observedAt": "2026-10-13T20:46:53.849Z",
+      "fetchedAt": 1791924413849,
+      "status": "ok",
+      "html": {
+        "type": "stored-blob",
+        "sha256": "824769dc50f478d477024efad07a1a41fb3732816d427633449828fa01682c0a",
+        "bytes": 350306
       }
     },
     {
