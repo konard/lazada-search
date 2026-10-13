@@ -1,6 +1,6 @@
 # User-picked Lazada links: exact identity and unit costs
 
-Updated 2026-10-13T15:05:20.654Z. Public cached sources only, Vietnam / Nha Trang, VND. No identity inferred from user labels or similar titles. A resolved listing alone does not identify its selling option. Cached observations retain their timestamps. Delivery metrics require the exact Nha Trang one-unit quote. Source-derived unit costs remain separate from any published conditional factory calculation. Manufacturer matching does not establish seller authenticity.
+Updated 2026-10-13T15:28:25.790Z. Public cached sources only, Vietnam / Nha Trang, VND. No identity inferred from user labels or similar titles. A resolved listing alone does not identify its selling option. Cached observations retain their timestamps. Delivery metrics require the exact Nha Trang one-unit quote. Source-derived unit costs remain separate from any published conditional factory calculation. Manufacturer matching does not establish seller authenticity.
 
 6 submitted rows; 6 resolved listing identities; 6 resolved selling SKUs; 6 exact SKUs with cached observations. Duplicate counts are 1 resolved listing rows and 0 resolved exact SKU rows. Two similarly named links are never assumed to be duplicates.
 
